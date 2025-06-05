@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas OS vs Windows 11 - Comparaison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.08)"/><circle cx="60" cy="20" r="1.5" fill="rgba(255,255,255,0.06)"/></svg>');
+            animation: sparkle 15s infinite linear;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-160px); }
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            font-weight: 300;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 0;
+        }
+
+        .comparison-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 25px 20px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .comparison-table th:first-child {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            width: 22%;
+        }
+
+        .comparison-table th:nth-child(2) {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            width: 39%;
+        }
+
+        .comparison-table th:nth-child(3) {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            width: 39%;
+        }
+
+        .comparison-table td {
+            padding: 25px 20px;
+            border-bottom: 1px solid #ecf0f1;
+            vertical-align: top;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #f8fafe;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: #fafbfc;
+        }
+
+        .criteria-cell {
+            font-weight: 700;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #ecf0f1 0%, #d5dbdb 100%) !important;
+            border-right: 5px solid #e74c3c;
+            font-size: 1rem;
+        }
+
+        .atlas-cell {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+            border-left: 4px solid #2196f3;
+        }
+
+        .windows-cell {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%) !important;
+            border-left: 4px solid #4caf50;
+        }
+
+        .pro {
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .con {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .neutral {
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 2px 4px 2px 0;
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+        }
+
+        .performance-highlight {
+            background: linear-gradient(135deg, #4caf50 0%, #43a047 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 4px 0;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #ff5722 0%, #d84315 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px 0;
+            box-shadow: 0 3px 10px rgba(255, 87, 34, 0.4);
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px 30px;
+            margin: 0;
+        }
+
+        .summary-title {
+            color: #2c3e50;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 6px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .summary-card.atlas {
+            border-left-color: #3498db;
+        }
+
+        .summary-card.windows {
+            border-left-color: #27ae60;
+        }
+
+        .summary-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .summary-card p {
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .recommendation {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.6;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 15px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                border-radius: 8px;
+            }
+        }
+
+        .scroll-hint {
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🖥️ Atlas OS vs Windows 11</h1>
+            <p>Analyse comparative complète pour votre décision</p>
+        </header>
+
+        <div class="scroll-hint">
+            📱 Défilez horizontalement pour voir toutes les colonnes sur mobile
+        </div>
+
+        <div class="table-container">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>🎯 Critères</th>
+                        <th>🔷 Atlas OS</th>
+                        <th>🟢 Windows 11</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="criteria-cell">Nature du système</td>
+                        <td class="atlas-cell">
+                            <span class="badge">Version modifiée</span> de Windows obtenue via des scripts (Atlas Playbook + AME Wizard). 
+                            <br><span class="con">Pas un OS indépendant</span>, mais un Windows "allégé"
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Système complet officiel</span> fourni et supporté par Microsoft avec l'ensemble des fonctionnalités et services prévus
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Installation</td>
+                        <td class="atlas-cell">
+                            <span class="warning">Réinstallation complète requise</span> via ISO officielle + exécution de scripts. 
+                            Processus technique relativement "fermé"
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Installation guidée simple</span> par Media Creation Tool. 
+                            Processus accessible à tous avec possibilité de personnalisation
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Réversibilité</td>
+                        <td class="atlas-cell">
+                            <span class="con">Modifications largement irréversibles</span> - réinstallation Windows complète nécessaire pour revenir à l'état stock
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Retour à l'état d'origine garanti</span> par Microsoft. 
+                            Modifications ajustables ou inversées manuellement
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Sécurité</td>
+                        <td class="atlas-cell">
+                            <span class="warning">Désactive protections essentielles</span> (Windows Defender, restauration système, mitigations Spectre/Meltdown). 
+                            <span class="con">Risque accru sans mises à jour automatiques</span>
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Fonctionnalités de sécurité activées par défaut</span> (Defender, mises à jour régulières, restauration système). 
+                            Support officiel et correctifs continus
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Performance Gaming</td>
+                        <td class="atlas-cell">
+                            <span class="performance-highlight">Optimisé pour le gaming</span>
+                            <br>• Libère ~1 à 1,5 GB de RAM au démarrage
+                            <br>• <span class="pro">VALORANT: 217 → 366 FPS</span>
+                            <br>• Baisse de latence sur matériel ancien
+                        </td>
+                        <td class="windows-cell">
+                            Utilisation plus élevée des ressources sur matériel modeste. 
+                            <span class="neutral">Différence marginale sur matériel moderne</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Bloatware</td>
+                        <td class="atlas-cell">
+                            <span class="pro">Supprime ou désactive</span> nombreuses applications préinstallées, services de tracking et télémétrie
+                        </td>
+                        <td class="windows-cell">
+                            <span class="con">Nombreuses applications préinstallées</span> (bloatware, publicité intégrée, collecte de données) 
+                            qui peuvent alourdir le système
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Personnalisation</td>
+                        <td class="atlas-cell">
+                            Ensemble <span class="neutral">standardisé de modifications</span> via playbook. 
+                            Granularité inférieure à l'ajustement manuel complet
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Contrôle complet</span> sur chaque service via outils natifs (Services, Registre). 
+                            Scripts débloat personnalisés possibles
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Compatibilité</td>
+                        <td class="atlas-cell">
+                            <span class="con">Impact possible sur compatibilité</span> avec applications Microsoft, services UWP, outils de sécurité. 
+                            <span class="badge">Usage gaming/matériel ancien recommandé</span>
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Haute compatibilité</span> avec l'ensemble des logiciels et services Microsoft. 
+                            Adapté à usage polyvalent (bureautique, multimédia, professionnel)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Interface</td>
+                        <td class="atlas-cell">
+                            Fonctionnalités désactivées (animations, Cortana, intégration Edge). 
+                            <span class="neutral">Interface plus "brute" mais réactive</span>
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Interface complète</span> avec tous les éléments de confort et fonctionnalités intégrées. 
+                            Équilibre performance/ergonomie
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Mises à jour</td>
+                        <td class="atlas-cell">
+                            <span class="warning">Mises à jour contournées</span> pour éviter réintroduction de fonctionnalités. 
+                            <span class="con">Risque d'incompatibilités</span> lors des mises à jour majeures
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Windows Update continu et testé</span> par Microsoft. 
+                            Accès aux dernières fonctionnalités et correctifs de sécurité
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Support</td>
+                        <td class="atlas-cell">
+                            <span class="neutral">Support communautaire uniquement</span> (forums, Discord, Reddit). 
+                            <span class="con">Pas de support Microsoft officiel</span>
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Support officiel Microsoft</span> via centres d'aide, documentation. 
+                            Écosystème de partenaires et solutions de dépannage
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="criteria-cell">Stabilité</td>
+                        <td class="atlas-cell">
+                            <span class="warning">Risque accru</span> (vulnérabilités, infections, exploits). 
+                            <span class="con">Modifications irréversibles</span> avec comportements inattendus possibles
+                        </td>
+                        <td class="windows-cell">
+                            <span class="pro">Système complet et mis à jour</span> intégrant mécanismes de sécurité robustes et outils de restauration
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <section class="summary-section">
+            <h2 class="summary-title">📊 Synthèse & Recommandations</h2>
+            
+            <div class="summary-cards">
+                <div class="summary-card atlas">
+                    <h3>🔷 Atlas OS</h3>
+                    <p><strong>Pour qui :</strong> Gamers expérimentés et passionnés cherchant à maximiser les performances, particulièrement sur du matériel ancien ou modeste.</p>
+                    <p><strong>Avantages :</strong> Gains de performance significatifs, suppression du bloatware, optimisation gaming poussée.</p>
+                    <p><strong>Inconvénients :</strong> Compromis importants sur la sécurité, compatibilité réduite, support uniquement communautaire.</p>
+                </div>
+                
+                <div class="summary-card windows">
+                    <h3>🟢 Windows 11</h3>
+                    <p><strong>Pour qui :</strong> Tous types d'utilisateurs pour usage général, professionnel, bureautique, multimédia.</p>
+                    <p><strong>Avantages :</strong> Sécurité garantie, compatibilité maximale, support officiel, stabilité à long terme.</p>
+                    <p><strong>Inconvénients :</strong> Plus lourd en ressources, présence de bloatware, télémétrie active.</p>
+                </div>
+            </div>
+
+            <div class="recommendation">
+                <strong>💡 Notre recommandation :</strong> 
+                Choisissez Atlas OS uniquement si vous êtes un utilisateur expérimenté, prioritairement gamer, 
+                et prêt à accepter les risques de sécurité. Pour tous les autres usages, 
+                Windows 11 standard demeure la solution la plus sûre et polyvalente.
+            </div>
+        </section>
+    </div>
+</body>
+</html>
