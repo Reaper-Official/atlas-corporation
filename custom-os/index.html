@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaper Custom OS - Windows 11 Sécurisé</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4a5568;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d3748;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ff9a56, #ff6b6b);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .security-alert {
+            background: #fed7d7;
+            border: 2px solid #fc8181;
+            color: #c53030;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .security-alert h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .installation-steps {
+            background: #edf2f7;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .step {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .step h4 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">⚡ Reaper Custom OS</a>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#avantages">Avantages</a></li>
+                <li><a href="#securite">Sécurité</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil" class="hero">
+            <div class="container">
+                <h1>Reaper Custom OS</h1>
+                <p>Une personnalisation de Windows 11 qui transforme la protection de la vie privée en une réalité</p>
+                <a href="#installation" class="cta-button">Télécharger maintenant</a>
+            </div>
+        </section>
+
+        <section id="avantages" class="section">
+            <div class="container">
+                <h2>Pourquoi choisir Reaper Custom OS ?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Installation Ultra-Rapide</h3>
+                        <p>Installation complète en seulement 5 minutes avec une clé USB performante, contre 15 minutes ou plus avec la version officielle Microsoft.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Vie Privée Protégée</h3>
+                        <p>Suppression automatique des bloatwares Microsoft : OneDrive, ClipChamp, Cortana, et autres applications intrusives.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Configuration Simplifiée</h3>
+                        <p>Aucun compte Microsoft obligatoire, accès immédiat au bureau avec une configuration optimisée pour la performance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Sécurité Renforcée</h3>
+                        <p>Windows Defender conservé pour une protection optimale, avec création sécurisée de mots de passe administrateur.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎮</div>
+                        <h3>Gaming Optimisé</h3>
+                        <p>Accès rapide à vos jeux favoris avec une interface épurée et des performances maximisées.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Facilité d'Utilisation</h3>
+                        <p>Application optionnelle avec logiciels essentiels pour une prise en main immédiate de Windows 11.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="securite" class="section">
+            <div class="container">
+                <h2>Sécurité & Comparaison des Versions</h2>
+                
+                <div class="warning-box">
+                    <h3>🚨 Important à Savoir</h3>
+                    <p>Nous avons choisi Windows 11 Famille pour éviter les vulnérabilités critiques présentes dans Windows 11 Pro.</p>
+                </div>
+
+                <div class="security-alert">
+                    <h4>⚠️ Vulnérabilité Windows 11 Pro - Port 3389</h4>
+                    <p><strong>Niveau de risque : 8.1/10</strong></p>
+                    <p>Le Bureau à Distance (RDP) de Windows 11 Pro présente des failles critiques :</p>
+                    <ul style="margin-top: 1rem; padding-left: 2rem;">
+                        <li><strong>CAS 1 :</strong> Création de comptes administrateur via script + exposition UPNP</li>
+                        <li><strong>CAS 2 :</strong> Connexion forcée à des tunnels VPN compromettants</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Solution :</strong> Windows 11 Famille limite ces risques en ne permettant que les demandes de connexion sortantes.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>✅ Windows 11 Famille (Reaper Custom OS)</h3>
+                        <ul style="padding-left: 1.5rem; margin-top: 1rem;">
+                            <li>Sécurité renforcée contre les intrusions RDP</li>
+                            <li>Mises à jour régulières et rapides</li>
+                            <li>Bloatwares supprimés</li>
+                            <li>Configuration optimisée</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>❌ Windows 11 Pro Standard</h3>
+                        <ul style="padding-left: 1.5rem; margin-top: 1rem;">
+                            <li>Vulnérabilité RDP critique (8.1/10)</li>
+                            <li>Mises à jour tardives</li>
+                            <li>Bloatwares préinstallés</li>
+                            <li>Collecte de données extensive</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="installation" class="section">
+            <div class="container">
+                <h2>Guide d'Installation</h2>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Attention</h3>
+                    <p>Vous perdrez toutes vos données sur la clé USB et sur le PC ciblé. Effectuez une sauvegarde avant de procéder.</p>
+                </div>
+
+                <div class="installation-steps">
+                    <h3>Prérequis</h3>
+                    <div class="step">
+                        <h4>🖥️ Matériel Requis</h4>
+                        <p>• Un ordinateur sous Windows (10 ou 11)<br>
+                        • Une clé USB de 8 Go minimum<br>
+                        • Connexion Internet stable</p>
+                    </div>
+                </div>
+
+                <div class="installation-steps">
+                    <h3>Méthode Recommandée - Application Automatique</h3>
+                    <div class="step">
+                        <h4>1. Préparation de la Clé USB</h4>
+                        <p>• Choisissez votre clé USB dans l'application<br>
+                        • Cochez "windows.iso"<br>
+                        • Cliquez sur "Créer ma clé USB bootable"</p>
+                    </div>
+                    <div class="step">
+                        <h4>2. Installation Ventoy</h4>
+                        <p>• Cliquez sur "Installer" puis "Oui" (double confirmation)<br>
+                        • Fermez Ventoy2Disk.exe une fois terminé<br>
+                        • L'application télécharge automatiquement Windows 11</p>
+                    </div>
+                </div>
+
+                <div class="installation-steps">
+                    <h3>Configuration BIOS</h3>
+                    <div class="step">
+                        <h4>3. Accès au BIOS</h4>
+                        <p>• Redémarrez et appuyez rapidement sur DEL ou F2<br>
+                        • Accédez au mode "Advanced Mode"<br>
+                        • Naviguez vers "Boot" ou "Démarrage"</p>
+                    </div>
+                    <div class="step">
+                        <h4>4. Ordre de Démarrage</h4>
+                        <p>• Sélectionnez votre clé USB en premier<br>
+                        • Sauvegardez avec "Save and Exit"</p>
+                    </div>
+                </div>
+
+                <div class="security-alert">
+                    <h4>🔐 Configuration Secure Boot</h4>
+                    <p><strong>OS Type :</strong> Windows UEFI Mode<br>
+                    <strong>Secure Boot Mode :</strong> Standard (clés Microsoft par défaut)</p>
+                </div>
+
+                <div class="installation-steps">
+                    <h3>Résolution des Problèmes de Disque</h3>
+                    <div class="step">
+                        <h4>Si le disque n'est pas reconnu</h4>
+                        <p>Appuyez sur Shift + F10 pour ouvrir l'invite de commandes, puis exécutez :</p>
+                        <div class="code-block">
+diskpart<br>
+list disk<br>
+select disk 0<br>
+clean<br>
+convert gpt<br>
+create partition primary<br>
+format fs=ntfs quick<br>
+assign letter=C<br>
+exit
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Prêt à Sécuriser Votre Windows 11 ?</h2>
+                <div style="text-align: center; padding: 2rem;">
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                        Rejoignez des milliers d'utilisateurs qui ont fait le choix de la sécurité et de la performance.
+                    </p>
+                    <a href="#installation" class="cta-button">Commencer l'Installation</a>
+                </div>
+                
+                <div style="background: #f8fafc; padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                    <h3 style="text-align: center; margin-bottom: 1rem;">Questions ? Support Technique</h3>
+                    <p style="text-align: center;">
+                        Pour toute question ou assistance, n'hésitez pas à nous contacter.<br>
+                        Notre équipe est là pour vous accompagner dans votre transition vers un Windows 11 sécurisé.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Reaper Custom OS. Une solution sécurisée pour Windows 11.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                Transformez votre expérience Windows en privilégiant sécurité et performance.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling pour les liens de navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation du header au scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Animation des cartes au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer toutes les cartes
+        document.querySelectorAll('.feature-card, .step').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
