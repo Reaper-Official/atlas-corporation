@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows : Stop aux Fausses Optimisations !</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 15%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .warning-banner {
+            background: linear-gradient(45deg, #ff4757, #ff3838);
+            padding: 1rem;
+            text-align: center;
+            animation: pulse 2s infinite;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .alert-mega {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border: 3px solid #fff3cd;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(231,76,60,0.6);
+            animation: urgent-pulse 2s infinite;
+        }
+
+        @keyframes urgent-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(231,76,60,0.6); }
+            50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(231,76,60,0.8); }
+        }
+
+        .separator {
+            height: 2px;
+            background: rgba(255,255,255,0.3);
+            margin: 1rem 0;
+        }
+
+        .section-title {
+            color: #f39c12;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .blame {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .final {
+            font-size: 1.3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .myth-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 4rem;
+            margin: 5rem 0;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .danger-level-max {
+            border-left: 6px solid #e74c3c;
+            background: linear-gradient(135deg, rgba(231,76,60,0.2), rgba(192,57,43,0.2));
+        }
+
+        .danger-level-high {
+            border-left: 6px solid #f39c12;
+            background: linear-gradient(135deg, rgba(243,156,18,0.2), rgba(230,126,34,0.2));
+        }
+
+        .danger-level-medium {
+            border-left: 6px solid #f1c40f;
+            background: linear-gradient(135deg, rgba(241,196,15,0.2), rgba(243,156,18,0.2));
+        }
+
+        .danger-level-low {
+            border-left: 6px solid #3498db;
+            background: linear-gradient(135deg, rgba(52,152,219,0.2), rgba(41,128,185,0.2));
+        }
+
+        .danger-badge {
+            position: absolute;
+            top: -5px;
+            right: 20px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            animation: badge-float 3s ease-in-out infinite;
+        }
+
+        @keyframes badge-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .danger-level-high .danger-badge {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+        }
+
+        .danger-level-medium .danger-badge {
+            background: linear-gradient(45deg, #f1c40f, #f39c12);
+        }
+
+        .danger-level-low .danger-badge {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+
+        .myth-card::before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .myth-card:hover::before {
+            opacity: 1;
+        }
+
+        .myth-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .myth-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        .myth-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .truth-section {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .truth-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: floatAround 15s linear infinite;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .loading-placeholder {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 1rem;
+            }
+            .section {
+                padding: 2rem 1rem;
+            }
+            .myth-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element" style="left: 10%; animation-delay: 0s;">💻</div>
+        <div class="floating-element" style="left: 20%; animation-delay: 2s;">⚡</div>
+        <div class="floating-element" style="left: 30%; animation-delay: 4s;">🚫</div>
+        <div class="floating-element" style="left: 40%; animation-delay: 6s;">⚠️</div>
+        <div class="floating-element" style="left: 50%; animation-delay: 8s;">🔧</div>
+        <div class="floating-element" style="left: 60%; animation-delay: 10s;">❌</div>
+        <div class="floating-element" style="left: 70%; animation-delay: 12s;">💡</div>
+        <div class="floating-element" style="left: 80%; animation-delay: 14s;">🎯</div>
+    </div>
+
+    <div class="warning-banner">
+        🚨 ATTENTION : 90% des "optimisations" Windows sont DANGEREUSES ! 🚨
+    </div>
+
+    <section class="hero">
+        <h1>STOP aux Fausses Optimisations Windows !</h1>
+        <p>
+            Découvrez la vérité sur ces "astuces" qui ralentissent votre PC au lieu de l'accélérer.
+            Basé sur des faits, pas sur du marketing !
+        </p>
+        <a href="#myths" class="cta-button">Découvrir les Mythes 🔍</a>
+    </section>
+
+    
+
+    <section id="myths" class="section">
+        <div class="alert-mega">
+            <h2>⚠️ FAILLE ZERO DAY — MISE EN DANGER DIRECTE ⚠️</h2>
+            <p><strong>Score : 7.8/10 & 8.1/10</strong> — (CVE-2025-29824, CVE-2025-27480...)</p>
+            <p>💥 Intrusion à distance possible : fichiers, comptes, mots de passe en danger.</p>
+            <div class="separator"></div>
+            <p class="section-title"><strong>Utilisateurs d'OPTIS non à jour :</strong></p>
+            <p>😡 Ce n'est pas "optimisé", c'est une PORTE D'ENTRÉE pour les pirates.</p>
+            <p>🪱 Les vers informatiques infectent tout le réseau.</p>
+            <p>👨‍👩‍👧‍👦 Votre famille, vos amis connectés à votre Wi-Fi ? Piratés aussi.</p>
+            <p class="blame"><strong>Et ce sera DE VOTRE FAUTE.</strong></p>
+            <div class="separator"></div>
+            <p class="final"><strong>✅ Faites les mises à jour MAINTENANT.<br>❌ Ne soyez pas le maillon faible.</strong></p>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">🚨 DANGER MAXIMUM</div>
+            <div class="myth-title">Drivers "optimisés" ? DANGER !</div>
+            <div class="myth-content">
+                Désinstaller des composants Nvidia peut causer des pertes de performance au lieu d'en gagner.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Les drivers officiels sont optimisés par les fabricants. Les versions "modifiées" créent plus de problèmes qu'elles n'en résolvent !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">💀 SYSTÈME EN PÉRIL</div>
+            <div class="myth-title">Modifier le Registre Windows</div>
+            <div class="myth-content">
+                Toucher au registre sans connaissances peut rendre Windows instable ou inutilisable. Beaucoup de tweaks sont inutiles ou placebo.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Le registre Windows est le cœur du système. Une seule mauvaise modification = PC inutilisable !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-high">
+            <div class="danger-badge">🗑️ ARNAQUE TOTALE</div>
+            <div class="myth-title">Nettoyeurs Windows = Inefficaces</div>
+            <div class="myth-content">
+                Ils promettent d'accélérer Windows, mais sont souvent inutiles ou nuisibles. Un nettoyage excessif crée plus de problèmes qu'il n'en résout.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Windows 10/11 se nettoie automatiquement. Ces logiciels suppriment souvent des fichiers importants !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">🛡️ SÉCURITÉ COMPROMISE</div>
+            <div class="myth-title">Désactivation des mises à jour</div>
+            <div class="myth-content">
+                Peut sembler pratique, mais cela expose à des failles de sécurité et des incompatibilités avec des logiciels récents.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Les mises à jour corrigent les failles de sécurité. Sans elles, votre PC devient une cible facile pour les hackers !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-high">
+            <div class="danger-badge">📉 PERFORMANCE DÉGRADÉE</div>
+            <div class="myth-title">"Boosters" et "optimisateurs"</div>
+            <div class="myth-content">
+                Ces logiciels ferment souvent des processus utiles, ce qui cause bugs ou baisses de performance.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Windows gère déjà parfaitement ses ressources. Ces "boosters" cassent plus qu'ils n'arrangent !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-high">
+            <div class="danger-badge">💾 CRASH ASSURÉ</div>
+            <div class="myth-title">Modifier le fichier d'échange (pagefile)</div>
+            <div class="myth-content">
+                Le désactiver ou le réduire peut entraîner des crashs dès que la RAM est saturée.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Le pagefile évite les crashs quand la RAM est pleine. Le supprimer = plantages garantis !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-medium">
+            <div class="danger-badge">🐌 RALENTISSEMENT</div>
+            <div class="myth-title">Désactivation du prefetch/superfetch</div>
+            <div class="myth-content">
+                Ces services accélèrent le lancement des applications. Les désactiver ralentit le système.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Ces services pré-chargent vos applis favorites. Les désactiver = démarrages plus lents !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">⚡ SYSTÈME INSTABLE</div>
+            <div class="myth-title">Forcer la priorité des processus</div>
+            <div class="myth-content">
+                Augmenter la priorité d'un programme peut provoquer des conflits avec le système, entraînant saccades ou plantages.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Windows équilibre automatiquement les priorités. Forcer = déséquilibrer tout le système !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">🔥 REGISTRE DÉTRUIT</div>
+            <div class="myth-title">Nettoyage trop agressif du registre</div>
+            <div class="myth-content">
+                Peut supprimer des clés critiques, provoquant instabilité ou incapacité à démarrer Windows.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Supprimer une mauvaise clé = Windows qui ne démarre plus. Danger absolu !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-low">
+            <div class="danger-badge">🎮 PLACEBO</div>
+            <div class="myth-title">Mode Jeu & Boost PC = Placebo</div>
+            <div class="myth-content">
+                Ces fonctions n'ont généralement aucun impact réel. Windows gère déjà bien les ressources.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Windows 10/11 optimise automatiquement les performances gaming. Ces modes ne font rien de plus !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-low">
+            <div class="danger-badge">🌐 MYTHE RÉSEAU</div>
+            <div class="myth-title">Changer les DNS n'accélère pas la connexion</div>
+            <div class="myth-content">
+                Changer les DNS n'accélère pas la connexion. La vitesse dépend surtout de ton fournisseur d'accès.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Les DNS traduisent les noms de sites en adresses IP. Ça n'augmente pas votre débit internet !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">🛡️ SÉCURITÉ OFF</div>
+            <div class="myth-title">Désactiver l'UAC</div>
+            <div class="myth-content">
+                UAC protège contre les modifications système non souhaitées. Le désactiver augmente le risque d'infections.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    L'UAC est votre bouclier contre les malwares. Le désactiver = ouvrir la porte aux virus !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">🏴‍☠️ ILLÉGAL & DANGEREUX</div>
+            <div class="myth-title">Utiliser un logiciel cracké</div>
+            <div class="myth-content">
+                Les logiciels piratés sont souvent infectés. C'est dangereux et illégal, et ton PC peut être utilisé à ton insu.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    90% des logiciels crackés contiennent des malwares. Votre PC devient un zombie pour les hackers !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-medium">
+            <div class="danger-badge">🎯 GAINS MINIMES</div>
+            <div class="myth-title">Tweaker Windows pour les jeux</div>
+            <div class="myth-content">
+                Les gains réels sont minimes. Le vrai boost vient des drivers à jour, du matériel et des réglages dans le jeu.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Mieux vaut investir dans de meilleurs composants que perdre du temps avec des tweaks !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-high">
+            <div class="danger-badge">💿 SSD DÉTRUIT</div>
+            <div class="myth-title">Défragmenter un SSD</div>
+            <div class="myth-content">
+                Inutile et nocif : ça use les cellules. Windows s'occupe déjà de l'optimisation des SSD automatiquement.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Défragmenter un SSD = réduire sa durée de vie pour RIEN. Windows optimise automatiquement !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">🔒 DONNÉES EXPOSÉES</div>
+            <div class="myth-title">Désactiver le chiffrement</div>
+            <div class="myth-content">
+                Désactiver BitLocker ou un autre chiffrement expose tes données en cas de vol. Ce n'est pas une bonne idée.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    PC volé + chiffrement désactivé = toutes vos données récupérables par le voleur !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-high">
+            <div class="danger-badge">🔥 MATÉRIEL EN DANGER</div>
+            <div class="myth-title">OPTIMISATION OC/UV (Overclock/Undervolt)</div>
+            <div class="myth-content">
+                L'overclock ou undervolt mal fait entraîne instabilités, surchauffe, ou endommagement du matériel. Et les gains sont souvent minimes sans refroidissement adapté.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Overclock mal fait = composants grillés. Réservé aux experts avec refroidissement pro !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-low">
+            <div class="danger-badge">📶 MYTHE Wi-Fi</div>
+            <div class="myth-title">Booster son Wi-Fi avec des tweaks Windows</div>
+            <div class="myth-content">
+                Modifier les réglages réseau ne fera rien si ton FAI ou ton routeur sont limités. Un bon équipement est plus efficace.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Votre Wi-Fi est limité par votre routeur et votre FAI, pas par Windows !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">⚡ SYSTÈME EXPERT</div>
+            <div class="myth-title">OPTIMISATION IRQ/DPC</div>
+            <div class="myth-content">
+                Les interruptions matérielles (IRQ) et les appels différés (DPC) sont gérés par Windows de façon optimale. Les toucher sans expertise provoque instabilités.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Réservé aux ingénieurs système. 99% des utilisateurs casseront leur PC !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-medium">
+            <div class="danger-badge">🎨 FONCTIONS PERDUES</div>
+            <div class="myth-title">OPTIMISATION RÉACTIVITÉ SYSTÈME</div>
+            <div class="myth-content">
+                En général, cela cache des désactivations de services, effets visuels, etc., qui rendent Windows moins agréable ou fonctionnel sans gain clair.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Vous perdez des fonctionnalités utiles pour un gain imaginaire !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-low">
+            <div class="danger-badge">⏱️ PLACEBO LATENCE</div>
+            <div class="myth-title">OPTIMISATION LATENCE</div>
+            <div class="myth-content">
+                À part dans des cas réseau très spécifiques (jeux compétitifs ultra-réactifs), ce genre de tweak ne change rien de notable.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Sauf si vous êtes pro-gamer, ces tweaks ne servent à rien !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-max">
+            <div class="danger-badge">⚙️ SERVICES CRITIQUES</div>
+            <div class="myth-title">OPTIMISATION Services WINDOWS</div>
+            <div class="myth-content">
+                Certains services sont critiques. Les désactiver peut provoquer des erreurs, ralentissements, bugs systèmes. Windows sait mieux que ces "optimisateurs" ce dont il a besoin.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Microsoft a optimisé Windows pendant des décennies. Ces "optimisateurs" cassent tout !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-low">
+            <div class="danger-badge">🌐 MARKETING TCP</div>
+            <div class="myth-title">OPTIMISATION de paquet TCP</div>
+            <div class="myth-content">
+                Des outils comme TCP Optimizer ne font rien de visible dans 99% des situations domestiques. C'est marketing.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    TCP est un protocole universel. On ne l'optimise pas avec un logiciel random !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-medium">
+            <div class="danger-badge">📊 1% LOW MYTH</div>
+            <div class="myth-title">OPTIMISATION des 1% Low</div>
+            <div class="myth-content">
+                Les 1% low (FPS les plus bas) dépendent de la stabilité du jeu, du matériel, et de la charge du système — pas de tweaks système magiques.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Vos 1% low dépendent de votre hardware, pas de tweaks Windows !
+                </div>
+            </div>
+        </div>
+
+        <div class="myth-card danger-level-high">
+            <div class="danger-badge">🔧 CONFIG SYSTÈME</div>
+            <div class="myth-title">Fix erreurs HPET/SLDC/PTI/DPE</div>
+            <div class="myth-content">
+                Modifier des réglages comme HPET ou désactiver SLDC/PTI/DPE peut entraîner instabilités, pertes de performance ou de sécurité.
+                <div class="truth-section">
+                    <div class="truth-title">✅ LA VÉRITÉ :</div>
+                    Ces protections CPU sont là pour une raison. Les désactiver = failles de sécurité !
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Animation fluide pour le scroll
+        document.querySelector('a[href="#myths"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#myths').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Effet parallax léger
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Animation d'apparition des éléments
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Observer tous les éléments à animer
+        document.querySelectorAll('.myth-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
