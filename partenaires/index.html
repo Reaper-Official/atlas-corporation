@@ -141,7 +141,7 @@
             margin-bottom: 40px;
         }
 
-        .section-title {
+        .menu-section-title {
             font-size: 18px;
             font-weight: bold;
             color: #667eea;
@@ -498,10 +498,6 @@
             .partner-card {
                 padding: 2rem;
             }
-            
-            .nav-links {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -512,13 +508,12 @@
         <div class="floating-element"></div>
     </div>
 
-    <header>
-        <div class="menu-overlay" id="menuOverlay"></div>
-
+    <!-- Menu overlay et panel -->
+    <div class="menu-overlay" id="menuOverlay"></div>
     <div class="menu-panel" id="menuPanel">
         <div class="menu-content">
             <div class="menu-section">
-                <h3 class="section-title">Section Debunk</h3>
+                <h3 class="menu-section-title">Section Debunk</h3>
                 <ul class="menu-items">
                     <li class="menu-item">
                         <a href="./logiciels-foireux/">Les logiciels à Ne Pas Installer</a>
@@ -533,7 +528,7 @@
             </div>
 
             <div class="menu-section">
-                <h3 class="section-title">Section Informative</h3>
+                <h3 class="menu-section-title">Section Informative</h3>
                 <ul class="menu-items">
                     <li class="menu-item">
                         <a href="./bonnes-pratiques/">Les Bonnes Pratiques</a>
@@ -542,7 +537,7 @@
             </div>
 
             <div class="menu-section highlight-section">
-                <h3 class="section-title">Actions Prioritaires</h3>
+                <h3 class="menu-section-title">Actions Prioritaires</h3>
                 <div class="highlight-item">
                     <a href="./custom-os/">Mon Windows 11 Personnalisé</a>
                 </div>
@@ -556,6 +551,17 @@
         </div>
     </div>
 
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Mon Site</div>
+                <button class="menu-toggle" id="menuToggle">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </button>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -627,6 +633,27 @@
     </footer>
 
     <script>
+        // Gestion du menu hamburger
+        const menuToggle = document.getElementById('menuToggle');
+        const menuPanel = document.getElementById('menuPanel');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            menuPanel.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        // Fermer le menu avec Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menuPanel.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
         // Animation des cartes au scroll
         const observerOptions = {
             threshold: 0.1,
