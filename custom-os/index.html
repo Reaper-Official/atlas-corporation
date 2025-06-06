@@ -353,13 +353,13 @@
             </div>
         </section>
 
- <div class="installation-steps">
+<div class="installation-steps">
     <h3>Méthode Recommandée - Application Automatique</h3>
     <div class="step">
         <h4>1. Préparation de la Clé USB</h4>
         <p>
-            • Téléchargez l'application : <a href="https://fichiers.atlas-corporation.fr/REAPER_USB_Creator.exe" target="_blank">REAPER_USB_Creator.exe</a><br>
-            • Sélectionnez votre clé USB<br>
+            Téléchargez l'application : <a href="https://fichiers.atlas-corporation.fr/REAPER_USB_Creator.exe" target="_blank">REAPER_USB_Creator.exe</a><br>
+            • Choisissez votre clé USB<br>
             • Cochez "windows.iso"<br>
             • Cliquez sur "Créer ma clé USB bootable"
         </p>
@@ -367,24 +367,10 @@
     <div class="step">
         <h4>2. Installation Ventoy</h4>
         <p>
-            • Cliquez sur "Installer", puis "Oui", puis encore "Oui"<br>
-            • Une fois terminé, fermez Ventoy2Disk.exe<br>
-            • L’application peut indiquer "Ne Répond Pas" : c’est normal, l’image de Windows est en cours de copie<br>
-            • Attendez la confirmation finale avant de fermer
-        </p>
-    </div>
-</div>
-
-<div class="installation-steps">
-    <h3>Méthode Alternative - ISO Manuelle (Non Recommandée)</h3>
-    <div class="step">
-        <h4>3. Préparation ISO</h4>
-        <p>
-            • Téléchargez l’ISO : <a href="https://fichiers.atlas-corporation.fr/windows.iso" target="_blank">windows.iso</a><br>
-            • Téléchargez Ventoy : <a href="https://www.ventoy.net/en/download.html" target="_blank">ventoy.net</a> et extrayez le ZIP<br>
-            • Lancez Ventoy2Disk.exe<br>
-            • Sélectionnez la clé USB et cliquez sur "Installer" (double confirmation)<br>
-            • Copiez le fichier ISO vers le dossier "Ventoy" de la clé USB
+            • Cliquez sur "Installer" puis confirmez deux fois "Oui"<br>
+            • Fermez Ventoy2Disk.exe une fois terminé<br>
+            • L'application passera en "Ne Répond Pas" : cela signifie que l'image Windows 11 est en train de se copier<br>
+            • Ne touchez à rien tant que la confirmation n'apparaît pas
         </p>
     </div>
 </div>
@@ -392,32 +378,19 @@
 <div class="installation-steps">
     <h3>Configuration BIOS</h3>
     <div class="step">
-        <h4>4. Accès au BIOS</h4>
+        <h4>3. Accès au BIOS</h4>
         <p>
             • Redémarrez le PC<br>
-            • Appuyez rapidement sur DEL ou F2 à plusieurs reprises<br>
-            • Entrez dans le mode "Advanced Mode"<br>
-            • Allez dans l’onglet "Boot" ou "Démarrage"
+            • Appuyez rapidement (spammer) sur DEL ou F2<br>
+            • Accédez au mode "Advanced Mode"<br>
+            • Rendez-vous dans l'onglet "Boot" ou "Démarrage"
         </p>
     </div>
     <div class="step">
-        <h4>5. Ordre de Démarrage</h4>
+        <h4>4. Ordre de Démarrage</h4>
         <p>
-            • Sélectionnez votre clé USB en 1er dans le "Boot Order"<br>
+            • Placez votre clé USB en premier dans l'ordre de démarrage<br>
             • Sauvegardez et quittez via "Save and Exit"
-        </p>
-    </div>
-</div>
-
-<div class="installation-steps">
-    <h3>Lancement de l'Installation</h3>
-    <div class="step">
-        <h4>6. Interface Ventoy</h4>
-        <p>
-            • Si "Ventoy" s’affiche, tout fonctionne<br>
-            • Sélectionnez le fichier windows.iso avec Entrée<br>
-            • Choisissez "Normal Mode", appuyez sur Entrée<br>
-            • L’installation de Windows 11 débute
         </p>
     </div>
 </div>
@@ -427,17 +400,16 @@
     <p>
         <strong>OS Type :</strong> Windows UEFI Mode<br>
         <strong>Secure Boot Mode :</strong> Standard (clés Microsoft par défaut)<br><br>
-        • Si vous utilisez Linux ou un bootloader personnalisé, choisissez "Other OS" ou "Custom"
+        • Choisissez "Other OS" uniquement si vous installez un système non signé comme un Linux personnalisé
     </p>
 </div>
 
 <div class="installation-steps">
     <h3>Résolution des Problèmes de Disque</h3>
     <div class="step">
-        <h4>7. Si le disque n'est pas reconnu</h4>
+        <h4>Si le disque n'est pas reconnu</h4>
         <p>
-            • Appuyez sur Shift + F10 à l'écran d'installation<br>
-            • Tapez les commandes suivantes :
+            Appuyez sur Shift + F10 pour ouvrir l'invite de commandes, puis exécutez :
         </p>
         <div class="code-block">
 diskpart<br>
@@ -451,32 +423,11 @@ assign letter=C<br>
 exit
         </div>
         <p>
-            • Fermez l'invite de commandes<br>
-            • Supprimez la partition avec la croix rouge<br>
-            • Cliquez sur "Suivant"
+            Ensuite, supprimez la partition avec l’icône en croix rouge dans l’installateur Windows, puis cliquez sur "Suivant".
         </p>
     </div>
 </div>
 
-<section id="contact" class="section">
-    <div class="container">
-        <h2>Prêt à Sécuriser Votre Windows 11 ?</h2>
-        <div style="text-align: center; padding: 2rem;">
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                Rejoignez des milliers d'utilisateurs qui ont fait le choix de la sécurité et de la performance.
-            </p>
-            <a href="#installation" class="cta-button">Commencer l'Installation</a>
-        </div>
-
-        <div style="background: #f8fafc; padding: 2rem; border-radius: 10px; margin-top: 2rem;">
-            <h3 style="text-align: center; margin-bottom: 1rem;">Questions ? Support Technique</h3>
-            <p style="text-align: center;">
-                Pour toute question ou assistance, n'hésitez pas à nous contacter.<br>
-                Notre équipe est là pour vous accompagner dans votre transition vers un Windows 11 sécurisé.
-            </p>
-        </div>
-    </div>
-</section>
 
 
     </main>
