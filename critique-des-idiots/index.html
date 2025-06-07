@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Influenceurs Hardware : Analyse Critique</title>
+    <title>Analyse Critique : Influenceurs Hardware</title>
     <style>
         * {
             margin: 0;
@@ -11,239 +11,336 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #dc2626;
+            --accent-color: #059669;
+            --warning-color: #f59e0b;
+            --bg-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-radius: 16px;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-gradient);
             min-height: 100vh;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            margin-bottom: 20px;
+            padding: 2rem;
         }
 
-        header {
+        .hero {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-            border-radius: 15px;
+            margin-bottom: 4rem;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, var(--primary-color), #3b82f6);
             color: white;
-            box-shadow: 0 10px 30px rgba(238, 90, 82, 0.3);
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .subtitle {
-            font-size: 1.2em;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .intro {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+            font-size: 1.1rem;
         }
 
         .section {
-            margin-bottom: 40px;
-            padding: 30px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid #ff6b6b;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
         }
 
         .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section h2 {
-            color: #ff6b6b;
-            font-size: 2em;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         .section h3 {
-            color: #333;
-            font-size: 1.4em;
-            margin: 25px 0 15px 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
         }
 
         .warning-box {
-            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-            border: none;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(253, 203, 110, 0.3);
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid var(--warning-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: '⚠️';
+            font-size: 1.5rem;
+            position: absolute;
+            top: -8px;
+            left: 15px;
+            background: #fef3c7;
+            padding: 0 8px;
         }
 
         .warning-box h4 {
-            color: #e17055;
-            margin-bottom: 10px;
-            font-size: 1.2em;
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
-        .problem-list {
-            background: #fff5f5;
-            border-left: 4px solid #e53e3e;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .problem-list ul {
-            margin-left: 20px;
-        }
-
-        .problem-list li {
-            margin-bottom: 8px;
-            color: #c53030;
-        }
-
-        .comparison-table {
+        .problem-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .problem-card {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .problem-card h4 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problem-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .problem-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #fecaca;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .problem-card li:before {
+            content: '•';
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .problem-card li:last-child {
+            border-bottom: none;
+        }
+
+        .performance-showcase {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            position: relative;
+        }
+
+        .performance-showcase::before {
+            content: 'Performance Test';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #f8fafc;
+            padding: 0 10px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .perf-highlight {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            padding: 1.5rem;
+            border-radius: 12px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background: radial-gradient(circle at 30% 30%, white, transparent);
         }
 
         .good-practice {
-            background: linear-gradient(135deg, #81ecec, #74b9ff);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+            background: linear-gradient(135deg, var(--accent-color), #10b981);
         }
 
         .bad-practice {
-            background: linear-gradient(135deg, #fd79a8, #e84393);
+            background: linear-gradient(135deg, var(--secondary-color), #ef4444);
+        }
+
+        .comparison-card h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .comparison-card p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .best-practices-section {
+            background: linear-gradient(135deg, var(--accent-color), #10b981);
             color: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(232, 67, 147, 0.3);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin: 3rem 0;
+            box-shadow: var(--shadow);
         }
 
-        .icon {
-            font-size: 1.5em;
-            margin-right: 10px;
-        }
-
-        .best-practices {
-            background: linear-gradient(135deg, #00b894, #00cec9);
+        .best-practices-section h3 {
             color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.3);
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 1.5rem;
         }
 
-        .best-practices h3 {
-            color: white;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            margin-bottom: 20px;
+        .best-practices-list {
+            display: grid;
+            gap: 1rem;
         }
 
-        .best-practices ul {
-            margin-left: 20px;
-        }
-
-        .best-practices li {
-            margin-bottom: 10px;
-            font-size: 1.1em;
+        .best-practice-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .conclusion {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
-            padding: 30px;
-            border-radius: 15px;
+            padding: 3rem;
+            border-radius: var(--border-radius);
             text-align: center;
-            margin-top: 40px;
-            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.3);
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
         }
 
         .conclusion h2 {
             color: white;
-            margin-bottom: 20px;
-        }
-
-        .performance-example {
-            background: #f8f9fa;
-            border: 2px solid #dee2e6;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .performance-highlight {
-            background: #e74c3c;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-
-            .section {
-                padding: 20px;
-            }
-
-            .comparison-table {
-                grid-template-columns: 1fr;
-            }
+            margin-bottom: 1.5rem;
         }
 
         .scroll-top {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff6b6b;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 56px;
+            height: 56px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            box-shadow: var(--shadow);
             transition: all 0.3s ease;
             opacity: 0;
             visibility: hidden;
+            font-size: 1.25rem;
         }
 
         .scroll-top.visible {
@@ -252,189 +349,273 @@
         }
 
         .scroll-top:hover {
-            background: #ee5a52;
-            transform: translateY(-3px);
+            background: #1d4ed8;
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .image-placeholder {
+            background: #f3f4f6;
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>🔍 Influenceurs Hardware</h1>
-            <div class="subtitle">Analyse critique de la créativité... et des pratiques douteuses</div>
+        <header class="hero fade-in">
+            <h1>🔍 Analyse Critique</h1>
+            <p class="hero-subtitle">Décryptage des pratiques douteuses dans l'univers des influenceurs hardware français</p>
         </header>
 
-        <div class="intro">
-            <p>Dans cette analyse, nous découvrons les influenceurs hardware qui ne manquent pas de créativité dans leurs pratiques. Cette page met en lumière les incohérences, les tests biaisés et les double discours qui caractérisent certains acteurs populaires du monde tech français.</p>
+        <div class="intro-card fade-in">
+            <p>Cette analyse met en lumière les pratiques questionables de certains influenceurs tech français : tests biaisés, recommandations incohérentes et conflits d'intérêts. Une approche critique nécessaire pour aider les consommateurs à faire des choix éclairés.</p>
         </div>
 
-        <section class="section">
-            <h2><span class="icon">⚡</span>FrenchHardware & FlowUP</h2>
-            <h3>Hypocrisie, tests biaisés et double discours</h3>
+        <section class="section fade-in">
+            <div class="section-header">
+                <div class="section-icon">⚡</div>
+                <div>
+                    <h2>FrenchHardware & FlowUP</h2>
+                    <p style="color: var(--text-secondary);">Double discours et tests orientés</p>
+                </div>
+            </div>
             
-            <p>FrenchHardware et FlowUP se positionnent comme des experts, prêts à descendre certaines marques avec des critiques appuyées. Mais lorsque cela touche leurs propres configurations ou les produits qu'ils vendent, leur discours change radicalement.</p>
+            <p>Ces influenceurs appliquent des critères de jugement variables selon leurs intérêts commerciaux. Sévères avec certaines marques, ils deviennent soudainement indulgents quand il s'agit de produits qu'ils vendent ou utilisent.</p>
 
             <div class="warning-box">
-                <h4>🚨 Le problème principal</h4>
-                <p>Ils appliquent des critères de jugement stricts à certaines marques, mais quand ils utilisent ou vendent des produits ayant les mêmes défauts, ils trouvent des excuses.</p>
+                <h4>Problème Principal</h4>
+                <p>Incohérence flagrante entre leurs critères d'évaluation selon qu'ils aient ou non un intérêt dans le produit testé.</p>
             </div>
 
-            <h3>Des SSD aux performances désastreuses, mais défendus par eux</h3>
+            <h3>SSD aux performances décevantes</h3>
             
-            <div class="problem-list">
-                <h4>Kingston NV2 et NV3</h4>
-                <ul>
-                    <li>Présentés comme des SSD NVMe abordables et performants</li>
-                    <li>Vitesses qui s'effondrent dès qu'on dépasse un certain niveau d'utilisation</li>
-                    <li>Peuvent devenir plus lents qu'un bon vieux SATA une fois remplis</li>
-                </ul>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h4>🔥 Kingston NV2 & NV3</h4>
+                    <ul>
+                        <li>Présentés comme performants et abordables</li>
+                        <li>Vitesses qui chutent drastiquement en utilisation réelle</li>
+                        <li>Peuvent devenir plus lents qu'un SSD SATA classique</li>
+                        <li>Cache SLC rapidement saturé</li>
+                        <img src="write-over-time.png">
+                        <img src="write-over-tim2e.png">
+                    </ul>
+                </div>
+
+                <div class="problem-card">
+                    <h4>⚠️ Crucial P3 & P3 Plus</h4>
+                    <ul>
+                        <li>Vendus comme alternatives "solides"</li>
+                        <li>Problèmes de stabilité en écriture prolongée</li>
+                        <li>Temps de réponse anormalement élevés</li>
+                        <li>Débits catastrophiques hors cache</li>
+                        <img src="IMG_4379.webp.20a1277842fb95f4301ee82bfe06e36e.png">
+                    </ul>
+                </div>
             </div>
 
-            <div class="problem-list">
-                <h4>Crucial P3 et P3 Plus</h4>
-                <ul>
-                    <li>Vendus comme des alternatives solides</li>
-                    <li>Énormes problèmes de stabilité après quelques écritures prolongées</li>
-                    <li>Vitesse d'écriture catastrophique</li>
-                    <li>Temps de réponse anormalement élevés</li>
-                    <img src="IMG_4379.webp.20a1277842fb95f4301ee82bfe06e36e.png">
-                </ul>
-            </div>
-
-            <div class="performance-example">
-                <p><strong>Exemple concret :</strong></p>
-                <p>Disque dur Seagate : <span class="performance-highlight">Même performances qu'un Kingston NV3 en AVERAGE</span></p>
-                <p>Vitesse ADSL : 70 Mbps <br> Franchement on est pas mal sur ce genre de chose</p>
-                <p>SSD Kingston NV3 : <span class="performance-highlight">307 Mbps seulement en NVME !</span></p>
-                <div>
-                    <img src="write-over-tim2e.png">
-                    <img src="write-over-time.png">
-                    <h1>On nous dit que ça, ce sont de bons disques !<br>Regardez en comparaison</h1>
+            <div class="performance-showcase">
+                <p><strong>Comparaison Performance :</strong></p>
+                <p>• Disque SATA traditionnel : <span class="perf-highlight">Performances constantes</span></p>
+                <p>• Connexion ADSL : 70 Mbps - Performances stables</p>
+                <p>• Kingston NV3 (NVMe) : <span class="perf-highlight">Seulement 307 Mbps en moyenne</span></p>
+                <div class="image-placeholder">
+                    <h4>⚠️ A titre de comparaison, un SSD très réputé dans le marché :</h4>
                     <img src="write-over-tim3e.png">
                 </div>
             </div>
 
-            <h3>Corsair : Ils critiquent en privé, mais le vendent en public</h3>
+            <h3>Corsair : Critique privée, vente publique</h3>
             
-            <div class="problem-list">
-                <h4>Problèmes des barrettes RAM Corsair</h4>
+            <div class="problem-card">
+                <h4>🎯 Problèmes RAM Corsair</h4>
                 <ul>
-                    <li>Corsair change les composants sans prévenir, même référence produit</li>
-                    <li>Versions totalement différentes selon la date d'achat</li>
-                    <li>Puces variables : Samsung, SK Hynix, Micron</li>
-                    <li>Timings et performances très variables</li>
-                    <li>Profils XMP qui ne s'activent pas correctement</li>
-                    <li>Crashes et problèmes de compatibilité</li>
+                    <li>Changements de composants sans notification</li>
+                    <li>Même référence, composants différents selon la date</li>
+                    <li>Puces variables (Samsung, SK Hynix, Micron)</li>
+                    <li>Profils XMP défaillants</li>
+                    <li>Instabilités et incompatibilités fréquentes</li>
                 </ul>
             </div>
 
-            <h3>Le mythe du watercooling : Une désinformation assumée</h3>
+            <h3>Le mythe du watercooling</h3>
             
-            <div class="comparison-table">
-                <div class="bad-practice">
-                    <h4>❌ Leur discours</h4>
-                    <p>Les watercoolings sont supérieurs aux ventirads dans toutes les situations</p>
+            <div class="comparison-grid">
+                <div class="comparison-card bad-practice">
+                    <h4>❌ Leur Discours</h4>
+                    <p>Les watercoolings sont systématiquement supérieurs aux ventirads dans toutes les situations</p>
                 </div>
-                <div class="good-practice">
-                    <h4>✅ La réalité</h4>
-                    <p>Un bon ventirad à 40-50€ peut battre un AIO 120mm vendu deux fois plus cher</p>
+                <div class="comparison-card good-practice">
+                    <h4>✅ La Réalité</h4>
+                    <p>Un ventirad de qualité à 40-50€ surpasse souvent un AIO 120mm vendu 100€+</p>
                 </div>
-            </div>
-
-            <div class="warning-box">
-                <h4>🔍 Ce que leurs propres tests montrent</h4>
-                <p>Certains AIO 240mm bas de gamme ne font pas mieux qu'un ventirad bien conçu, tout en étant plus bruyants et plus fragiles.</p>
             </div>
         </section>
 
-        <section class="section">
-            <h2><span class="icon">🎯</span>Solotech</h2>
-            <h3>Incompétence, tests bâclés et manque total de rigueur</h3>
+        <section class="section fade-in">
+            <div class="section-header">
+                <div class="section-icon">🎯</div>
+                <div>
+                    <h2>Solotech</h2>
+                    <p style="color: var(--text-secondary);">Tests bâclés et incompréhension technique</p>
+                </div>
+            </div>
             
-            <p>Solotech est l'exemple parfait du pseudo-testeur qui ne comprend même pas ce qu'il fait. Il vante des produits comme le Crucial NV3, un SSD dont les performances s'effondrent en dehors du cache SLC, sans jamais mentionner ses débits catastrophiques en écriture prolongée.</p>
+            <p>Parfait exemple du pseudo-testeur qui recommande sans comprendre. Met en avant des produits problématiques comme le Crucial NV3 sans mentionner leurs défauts majeurs.</p>
 
-            <div class="problem-list">
-                <h4>Ses principales erreurs</h4>
-                <ul>
-                    <li>Éloge de la RAM Corsair sans mentionner les défauts de fabrication</li>
-                    <li>Promotion des watercoolings sans analyser les performances à long terme</li>
-                    <li>Incapacité à configurer RivaTuner correctement</li>
-                    <li>Benchmarks en arrière-plan pour surveiller les températures déjà disponibles en overlay</li>
-                    <li>Manque total de méthodologie dans les tests</li>
-                </ul>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h4>🚫 Principales Erreurs</h4>
+                    <ul>
+                        <li>Éloge de la RAM Corsair sans évoquer les défauts</li>
+                        <li>Promotion des watercoolings sans analyse long terme</li>
+                        <li>Configuration incorrecte des outils de monitoring</li>
+                        <li>Benchmarks redondants et mal configurés</li>
+                        <li>Absence totale de méthodologie rigoureuse</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="warning-box">
-                <h4>💡 Exemple concret</h4>
-                <p>Il recommande les watercoolings en soulignant une différence de 4°C par rapport à des ventirads moins chers (20€ de moins), mais oublie de comparer les performances à long terme, le bruit et les risques (pannes, fuites).</p>
+                <h4>Exemple Concret</h4>
+                <p>Recommande des watercoolings pour 4°C de différence par rapport à des ventirads 20€ moins chers, sans considérer les risques de panne, le bruit, ou la durabilité.</p>
             </div>
 
-            <p><strong>Conclusion :</strong> Solotech n'est pas un testeur, c'est un simple relais publicitaire qui ne comprend pas les performances réelles des composants.</p>
+            <div class="comparison-grid">
+                <div class="comparison-card bad-practice">
+                    <h4>🔍 Son Approche</h4>
+                    <p>Relais publicitaire déguisé en expertise technique</p>
+                </div>
+                <div class="comparison-card good-practice">
+                    <h4>✅ Approche Correcte</h4>
+                    <p>Tests méthodiques, analyse des défauts, comparaison coût/bénéfice</p>
+                </div>
+            </div>
         </section>
 
-        <section class="section">
-            <h2><span class="icon">🌪️</span>PAX</h2>
-            <h3>Pratiques absurdes : Quand la logique disparaît</h3>
-            
-            <h3>🌊 Incompréhension totale du CFM et de l'effet Venturi</h3>
-            
-            <p>PAX semble croire qu'un ventilateur avec un CFM élevé est automatiquement plus efficace, sans prendre en compte le contexte d'utilisation et les obstacles au flux d'air.</p>
-
-            <div class="warning-box">
-                <h4>🔬 L'effet Venturi ignoré</h4>
-                <p>Cet effet physique décrit comment un fluide accélère lorsqu'il passe dans un espace rétréci, entraînant une baisse de pression. PAX ignore complètement ce principe fondamental.</p>
+        <section class="section fade-in">
+            <div class="section-header">
+                <div class="section-icon">🌪️</div>
+                <div>
+                    <h2>PAX</h2>
+                    <p style="color: var(--text-secondary);">Méconnaissance des principes physiques</p>
+                </div>
             </div>
 
-            <div class="problem-list">
-                <h4>Erreurs sur RPM et pression statique</h4>
-                <ul>
-                    <li>Compare les ventilateurs uniquement sur la vitesse de rotation</li>
-                    <li>Ignore l'importance de la pression statique</li>
-                    <li>Propose des configurations où les ventilateurs sont mal adaptés</li>
-                    <li>Crée des flux d'air chaotiques avec trop de ventilateurs mal positionnés</li>
-                </ul>
+            <h3>🌊 Incompréhension de l'aérodynamique</h3>
+            
+            <p>PAX semble ignorer les principes fondamentaux de la mécanique des fluides, particulièrement l'effet Venturi et l'importance de la pression statique.</p>
+
+            <div class="warning-box">
+                <h4>Effet Venturi Ignoré</h4>
+                <p>Principe physique fondamental : un fluide accélère en passant dans un espace rétréci, créant une baisse de pression. PAX base ses recommandations uniquement sur le CFM théorique.</p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h4>⚙️ Erreurs sur la Ventilation</h4>
+                    <ul>
+                        <li>Comparaison uniquement basée sur les RPM</li>
+                        <li>Ignorance de la pression statique</li>
+                        <li>Configurations créant des flux chaotiques</li>
+                        <li>Positionnement inadéquat des ventilateurs</li>
+                    </ul>
+                </div>
             </div>
 
             <h3>Conseils logiciels douteux</h3>
             
-            <div class="comparison-table">
-                <div class="bad-practice">
+            <div class="comparison-grid">
+                <div class="comparison-card bad-practice">
                     <h4>❌ Lossless Scaling</h4>
-                    <p>PAX le présente comme idéal, mais il ajoute de la latence et peut générer des artefacts visuels</p>
+                    <p>Ajout de latence et artefacts visuels non mentionnés</p>
                 </div>
-                <div class="bad-practice">
+                <div class="comparison-card bad-practice">
                     <h4>❌ Glary Utilities</h4>
-                    <p>Pseudo-optimiseur inutile et potentiellement nuisible qui fait ce que Windows gère déjà</p>
+                    <p>Pseudo-optimiseur remplaçant des fonctions natives Windows</p>
                 </div>
             </div>
 
             <div class="warning-box">
-                <h4>⚠️ Pourquoi ces logiciels sont risqués</h4>
-                <ul>
-                    <li>Peuvent supprimer des fichiers nécessaires</li>
-                    <li>Désactivent parfois des services vitaux</li>
-                    <li>Contiennent souvent des publicités</li>
-                    <li>Ajoutent une couche logicielle superflue</li>
+                <h4>Risques des Pseudo-Optimiseurs</h4>
+                <ul style="list-style: disc; margin-left: 1.5rem;">
+                    <li>Suppression de fichiers système essentiels</li>
+                    <li>Désactivation de services critiques</li>
+                    <li>Ajout de publicités intrusives</li>
+                    <li>Dégradation des performances système</li>
                 </ul>
             </div>
         </section>
 
-        <div class="best-practices">
-            <h3>✅ Bonnes pratiques pour éviter le piège</h3>
-            <ul>
-                <li>Toujours croiser plusieurs sources avant d'acheter un produit</li>
-                <li>Ne pas se fier uniquement aux influenceurs avec intérêt commercial</li>
-                <li>Consulter des tests indépendants de sites qui ne vendent pas de matériel</li>
-                <li>Se méfier des avis trop tranchés sans nuance</li>
-                <li>Utiliser les outils natifs Windows plutôt que des optimiseurs tiers</li>
-                <li>Comprendre les principes physiques avant de suivre des conseils techniques</li>
-            </ul>
+        <div class="best-practices-section fade-in">
+            <h3>✅ Guide pour éviter les pièges</h3>
+            <div class="best-practices-list">
+                <div class="best-practice-item">
+                    <strong>Sources multiples :</strong> Toujours croiser plusieurs avis indépendants avant un achat
+                </div>
+                <div class="best-practice-item">
+                    <strong>Indépendance :</strong> Privilégier les testeurs sans intérêt commercial direct
+                </div>
+                <div class="best-practice-item">
+                    <strong>Tests long terme :</strong> Chercher des retours d'expérience sur plusieurs mois
+                </div>
+                <div class="best-practice-item">
+                    <strong>Méfiance critique :</strong> Questionner les avis trop tranchés sans nuance
+                </div>
+                <div class="best-practice-item">
+                    <strong>Outils natifs :</strong> Utiliser les fonctions Windows plutôt que des optimiseurs tiers
+                </div>
+                <div class="best-practice-item">
+                    <strong>Compréhension technique :</strong> Se former aux bases avant de suivre des conseils complexes
+                </div>
+            </div>
         </div>
 
-        <div class="conclusion">
-            <h2>🎯 Conclusion : Ne vous laissez pas berner !</h2>
-            <p>Ces influenceurs se présentent comme des experts honnêtes et indépendants, mais leurs tests et critiques sont biaisés par leurs intérêts personnels et commerciaux. Un vrai testeur doit être cohérent et impartial.</p>
-            <p><strong>Méfiez-vous de leurs recommandations et vérifiez toujours plusieurs sources avant d'acheter du matériel informatique.</strong></p>
+        <div class="conclusion fade-in">
+            <h2>🎯 Conclusion</h2>
+            <p>Ces influenceurs exploitent la confiance de leur audience à des fins commerciales. Leurs recommandations sont souvent biaisées par leurs partenariats et leur manque de rigueur technique.</p>
+            <p><strong>Adoptez une approche critique : vérifiez, comparez, et ne faites jamais confiance à une seule source.</strong></p>
         </div>
     </div>
 
@@ -458,26 +639,41 @@
             });
         }
 
-        // Smooth scrolling for better UX
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
         document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.section');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, {
-                threshold: 0.1
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                observer.observe(element);
             });
 
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(section);
+            // Initial visibility for hero
+            setTimeout(() => {
+                document.querySelector('.hero').classList.add('visible');
+            }, 100);
+        });
+
+        // Enhanced hover effects
+        document.querySelectorAll('.section').forEach(section => {
+            section.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            section.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-4px)';
             });
         });
     </script>
