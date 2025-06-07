@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMD vs Intel - L'analyse complète</title>
+    <title>💀 Intel vs AMD 2025 : L'Autopsie d'une Chute</title>
     <style>
         * {
             margin: 0;
@@ -12,360 +12,776 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
             line-height: 1.6;
-            color: #f0f0f0;
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
-            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 80px 0 60px;
             position: relative;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 0, 100, 0.1) 0%, transparent 50%);
         }
 
-        .header-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(220, 38, 127, 0.3) 0%, rgba(67, 56, 202, 0.2) 50%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, #dc2626 0%, #dc267f 50%, #4338ca 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            animation: slideInDown 0.8s ease-out;
-        }
-
-        @keyframes slideInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .subtitle {
-            font-size: 1.3rem;
-            color: #a0a0a0;
-            margin-bottom: 40px;
-            animation: slideInUp 0.8s ease-out 0.2s both;
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .intro {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 60px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            animation: fadeIn 1s ease-out 0.4s both;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .section {
-            margin-bottom: 60px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 24px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .section-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .section-card::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #dc2626, #dc267f, #4338ca);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
         }
 
-        .section-card:hover::before {
-            opacity: 1;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .section-icon {
-            font-size: 2.5rem;
-            margin-right: 20px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        .section-content {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: #d0d0d0;
-        }
-
-        .highlight-list {
-            list-style: none;
-            margin: 20px 0;
-        }
-
-        .highlight-list li {
-            padding: 12px 0;
-            padding-left: 30px;
+        .hero-content {
+            z-index: 2;
             position: relative;
-            border-left: 2px solid rgba(220, 38, 127, 0.3);
-            margin-left: 10px;
-            transition: all 0.3s ease;
+            max-width: 1000px;
+            padding: 2rem;
         }
 
-        .highlight-list li:hover {
-            border-left-color: #dc267f;
-            padding-left: 35px;
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff0066, #ff6b35, #f7931e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        .highlight-list li::before {
-            content: '▶';
-            position: absolute;
-            left: -8px;
-            top: 12px;
-            color: #dc267f;
-            font-size: 0.8rem;
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255, 0, 102, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.8)); }
         }
 
-        .special-highlight {
-            background: linear-gradient(135deg, rgba(220, 38, 127, 0.1) 0%, rgba(67, 56, 202, 0.1) 100%);
-            border: 1px solid rgba(220, 38, 127, 0.3);
-            border-radius: 16px;
-            padding: 25px;
-            margin: 25px 0;
-            position: relative;
-        }
-
-        .special-highlight::before {
-            content: '🔥';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: #1a1a2e;
-            padding: 5px 10px;
-            border-radius: 10px;
+        .hero p {
             font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 0.9; transform: translateY(0); }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff0066, #ff6b35);
+            border-radius: 2px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .brand-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .brand-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .brand-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .amd-card {
+            border-color: rgba(237, 28, 36, 0.3);
+            background: linear-gradient(135deg, rgba(237, 28, 36, 0.1), rgba(255, 255, 255, 0.05));
+        }
+
+        .intel-card {
+            border-color: rgba(0, 113, 197, 0.3);
+            background: linear-gradient(135deg, rgba(0, 113, 197, 0.1), rgba(255, 255, 255, 0.05));
+        }
+
+        .brand-logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .amd-logo { color: #ed1c24; }
+        .intel-logo { color: #0071c5; }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pros, .cons {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pros {
+            border-left: 4px solid #00ff88;
+        }
+
+        .cons {
+            border-left: 4px solid #ff4757;
+        }
+
+        .pros h3 { color: #00ff88; }
+        .cons h3 { color: #ff4757; }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .cons .feature-list li::before {
+            content: '✗';
+            color: #ff4757;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
         }
 
         .stat-card:hover {
-            background: rgba(255, 255, 255, 0.1);
             transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #dc267f;
-            display: block;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff0066, #ff6b35);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .stat-label {
-            color: #a0a0a0;
-            font-size: 0.9rem;
+        .timeline-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 3rem 0;
+            position: relative;
         }
 
-        .source-link {
-            display: inline-block;
-            background: rgba(67, 56, 202, 0.2);
-            color: #8b9cfc;
-            padding: 8px 16px;
-            border-radius: 12px;
-            text-decoration: none;
-            margin: 5px 5px 5px 0;
-            font-size: 0.9rem;
-            border: 1px solid rgba(67, 56, 202, 0.3);
-            transition: all 0.3s ease;
+        .timeline-container::before {
+            content: 'VS';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff0066, #ff6b35);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 10;
+            background-color: #1a1a2e;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
         }
 
-        .source-link:hover {
-            background: rgba(67, 56, 202, 0.4);
-            border-color: rgba(67, 56, 202, 0.6);
-            transform: translateY(-2px);
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
         }
 
-        .conclusion {
-            background: linear-gradient(135deg, rgba(220, 38, 127, 0.15) 0%, rgba(67, 56, 202, 0.15) 100%);
-            border: 2px solid rgba(220, 38, 127, 0.3);
-            border-radius: 24px;
-            padding: 50px;
+        .timeline-brand {
+            position: relative;
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+        }
+
+        .amd-timeline {
+            background: linear-gradient(135deg, rgba(237, 28, 36, 0.1), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(237, 28, 36, 0.3);
+        }
+
+        .intel-timeline {
+            background: linear-gradient(135deg, rgba(0, 113, 197, 0.1), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(0, 113, 197, 0.3);
+        }
+
+        .timeline-title {
+            font-size: 2rem;
+            font-weight: bold;
             text-align: center;
-            margin-top: 60px;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px currentColor;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            max-height: 800px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+
+        .timeline::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .timeline::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .timeline::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .amd-timeline .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #ed1c24, #ff6b35);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(237, 28, 36, 0.5);
+        }
+
+        .intel-timeline .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #0071c5, #4a90e2);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(0, 113, 197, 0.5);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInTimeline 0.8s ease forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes slideInTimeline {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .amd-timeline .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.7rem;
+            top: 0.5rem;
+            width: 14px;
+            height: 14px;
+            background: linear-gradient(45deg, #ed1c24, #ff6b35);
+            border-radius: 50%;
+            border: 3px solid #1a1a2e;
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(237, 28, 36, 0.6);
+            animation: glow-amd 2s ease-in-out infinite alternate;
+        }
+
+        .intel-timeline .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.7rem;
+            top: 0.5rem;
+            width: 14px;
+            height: 14px;
+            background: linear-gradient(45deg, #0071c5, #4a90e2);
+            border-radius: 50%;
+            border: 3px solid #1a1a2e;
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(0, 113, 197, 0.6);
+            animation: glow-intel 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-amd {
+            from { box-shadow: 0 0 10px rgba(237, 28, 36, 0.4); }
+            to { box-shadow: 0 0 20px rgba(237, 28, 36, 0.8); }
+        }
+
+        @keyframes glow-intel {
+            from { box-shadow: 0 0 10px rgba(0, 113, 197, 0.4); }
+            to { box-shadow: 0 0 20px rgba(0, 113, 197, 0.8); }
+        }
+
+        .timeline-date {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .amd-timeline .timeline-date {
+            color: #ed1c24;
+            border: 1px solid rgba(237, 28, 36, 0.3);
+        }
+
+        .intel-timeline .timeline-date {
+            color: #0071c5;
+            border: 1px solid rgba(0, 113, 197, 0.3);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .conclusion::before {
+        .timeline-content::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-            animation: shimmer 3s infinite;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .timeline-content:hover::before {
+            left: 100%;
+        }
+
+        .amd-timeline .timeline-content:hover {
+            transform: translateX(10px) scale(1.02);
+            background: rgba(237, 28, 36, 0.1);
+            border-color: rgba(237, 28, 36, 0.3);
+            box-shadow: 0 15px 30px rgba(237, 28, 36, 0.2);
+        }
+
+        .intel-timeline .timeline-content:hover {
+            transform: translateX(10px) scale(1.02);
+            background: rgba(0, 113, 197, 0.1);
+            border-color: rgba(0, 113, 197, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 113, 197, 0.2);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-content p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, rgba(255, 0, 102, 0.1), rgba(255, 107, 53, 0.1));
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 102, 0.2);
         }
 
         .conclusion h2 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ff0066;
         }
 
-        .conclusion p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #d0d0d0;
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff0066, #ff6b35);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 0, 102, 0.3);
+        }
+
+        @media (max-width: 1024px) {
+            .timeline-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .timeline-container::before {
+                display: none;
+            }
+
+            .timeline {
+                max-height: none;
+            }
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            header {
-                padding: 60px 0 40px;
-            }
-            
-            .intro, .section-card, .conclusion {
-                padding: 25px;
-            }
-            
-            .section-icon {
-                font-size: 2rem;
-                margin-right: 15px;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            .stats-grid {
+            .comparison-grid,
+            .pros-cons {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
             }
         }
 
-        .scroll-indicator {
+        .floating-elements {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 4px;
             height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float-random 15s infinite linear;
+        }
+
+        @keyframes float-random {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
         .scroll-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #dc2626, #dc267f, #4338ca);
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 0%;
-            transition: width 0.1s ease;
+            height: 4px;
+            background: linear-gradient(90deg, #ff0066, #ff6b35);
+            z-index: 1000;
+            transition: width 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <div class="scroll-indicator">
-        <div class="scroll-progress" id="scrollProgress"></div>
-    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>💀 Intel vs AMD 2025</h1>
+            <p>L'autopsie complète d'une chute historique et de la renaissance d'AMD</p>
+        </div>
+    </section>
 
     <div class="container">
-        <header>
-            <div class="header-glow"></div>
-            <h1>💥 AMD vs Intel</h1>
-            <p class="subtitle">Pourquoi Intel a perdu face à AMD dans le domaine des processeurs</p>
-        </header>
+        <section class="section">
+            <h2 class="section-title">📊 Comparaison Performance</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <p>Parts de marché AMD en Allemagne</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">300W</div>
+                    <p>Consommation max Intel i9-14900K</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">120W</div>
+                    <p>Consommation AMD 7800X3D</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20%</div>
+                    <p>Perte performance avec microcode Intel</p>
+                </div>
+            </div>
+        </section>
 
-        <div class="intro">
-            <p>Pendant près de deux décennies, Intel a régné sans partage sur le marché des processeurs x86. Mais depuis 2017, la situation s'est inversée. AMD est passé du statut de challenger à celui de leader technologique, commercial et symbolique. Voici pourquoi.</p>
-        </div>
+        <section class="section">
+            <h2 class="section-title">⚖️ Avantages & Inconvénients</h2>
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>✅ Pourquoi AMD Gagne</h3>
+                    <ul class="feature-list">
+                        <li>Architecture Zen révolutionnaire</li>
+                        <li>Technologie 3D V-Cache</li>
+                        <li>Consommation optimisée</li>
+                        <li>Socket AM5 évolutif jusqu'en 2026</li>
+                        <li>Gravure avancée 5nm/4nm chez TSMC</li>
+                        <li>Rapport performance/prix excellent</li>
+                        <li>Stabilité et fiabilité</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h3>❌ Pourquoi Intel Chute</h3>
+                    <ul class="feature-list">
+                        <li>Retards massifs sur le 10nm</li>
+                        <li>Consommation excessive (300W+)</li>
+                        <li>Problèmes de stabilité</li>
+                        <li>Socket fermé sans évolutivité</li>
+                        <li>Microcode de bridage honteux</li>
+                        <li>Prix élevés pour moins de performance</li>
+                        <li>Marketing mensonger "Ultra"</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
+        <section class="section">
+            <h2 class="section-title">📅 Chronologie de la Chute</h2>
+            <div class="timeline-container">
+                <!-- Timeline AMD -->
+                <div class="timeline-brand amd-timeline">
+                    <div class="timeline-title amd-logo">🔥 Renaissance AMD</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2017</div>
+                            <div class="timeline-content">
+                                <h4>🚀 Lancement Architecture Zen</h4>
+                                <p>Révolution complète avec les Ryzen - AMD revient dans la course avec des performances compétitives après des années de retard.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2019</div>
+                            <div class="timeline-content">
+                                <h4>⚡ Zen 2 - Premier 7nm</h4>
+                                <p>AMD prend l'avantage avec la gravure 7nm chez TSMC pendant qu'Intel reste bloqué en 14nm.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020</div>
+                            <div class="timeline-content">
+                                <h4>👑 Zen 3 - Dominance</h4>
+                                <p>AMD dépasse Intel en performance gaming et productivité. Les Ryzen 5000 établissent une nouvelle référence.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022</div>
+                            <div class="timeline-content">
+                                <h4>🧠 3D V-Cache Revolution</h4>
+                                <p>Lancement des X3D avec cache vertical - Performance gaming inégalée avec une consommation maîtrisée.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023</div>
+                            <div class="timeline-content">
+                                <h4>🔌 Socket AM5 & Zen 4</h4>
+                                <p>Nouvelle plateforme pérenne avec DDR5, PCIe 5.0 et support garanti jusqu'en 2026.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024</div>
+                            <div class="timeline-content">
+                                <h4>🎯 Zen 5 & X3D Gen 2</h4>
+                                <p>Amélioration continue avec les 9000X3D - AMD consolide sa domination gaming et productivité.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Intel -->
+                <div class="timeline-brand intel-timeline">
+                    <div class="timeline-title intel-logo">💀 Déclin Intel</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2016-2021</div>
+                            <div class="timeline-content">
+                                <h4>🐌 Enlisement 14nm</h4>
+                                <p>Intel reste bloqué sur la gravure 14nm pendant 5 ans, recyclant sans cesse la même architecture Skylake.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021</div>
+                            <div class="timeline-content">
+                                <h4>🔥 Rocket Lake Catastrophe</h4>
+                                <p>Retour au 14nm avec une architecture rétro-portée - Consommation explosive pour des performances décevantes.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022</div>
+                            <div class="timeline-content">
+                                <h4>⚡ Alder Lake - Espoir éphémère</h4>
+                                <p>Premier "10nm" d'Intel mais consommation extrême (300W+) et problèmes de compatibilité avec les E-cores.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023</div>
+                            <div class="timeline-content">
+                                <h4>🚫 Raptor Lake Fiasco</h4>
+                                <p>Problèmes de stabilité massifs, dégradation des processeurs, microcode de bridage forcé pour "corriger".</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024</div>
+                            <div class="timeline-content">
+                                <h4>🎭 Arrow Lake "Ultra" Marketing</h4>
+                                <p>Rebranding désespéré en "Ultra" pour masquer des performances gaming catastrophiques vs AMD X3D.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025</div>
+                            <div class="timeline-content">
+                                <h4>📉 Effondrement des parts de marché</h4>
+                                <p>Intel perd massivement du terrain : 90% de parts AMD en Allemagne, fuite des constructeurs OEM.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="section">
             <div class="section-card">
                 <div class="section-header">
