@@ -207,13 +207,13 @@
         .highlight-item a {
             display: block;
             padding: 18px 20px;
-            color: rgb(0, 0, 0);
+            color: white;
             text-decoration: none;
             font-weight: 600;
             text-align: center;
         }
 
-        /* Main Content Styles */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -345,7 +345,7 @@
             margin: 1rem 0;
         }
 
-        .section-title {
+        .alert-section-title {
             color: #f39c12;
             font-size: 1.3rem;
             font-weight: bold;
@@ -371,12 +371,14 @@
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
             border-radius: 25px;
-            padding: 4rem;
-            margin: 5rem 0;
+            padding: 2rem;
+            margin: 2rem 0;
             border: 1px solid rgba(255,255,255,0.2);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
         .danger-level-max {
@@ -498,12 +500,6 @@
             100% { transform: translateY(-100px) rotate(360deg); }
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
         .loading-placeholder {
             text-align: center;
             padding: 3rem;
@@ -511,29 +507,34 @@
             opacity: 0.8;
         }
 
+        .visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
             }
-            
+
             .logo {
                 font-size: 1.5rem;
             }
-            
+
             .menu-panel {
                 width: 100%;
                 right: -100%;
             }
-            
+
             .hero {
                 padding: 1rem;
                 padding-top: 7rem;
             }
-            
+
             .section {
                 padding: 2rem 1rem;
             }
-            
+
             .myth-card {
                 padding: 1.5rem;
             }
@@ -552,146 +553,454 @@
     </nav>
 
     <!-- Menu Overlay -->
-  <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="menu-overlay" id="menuOverlay"></div>
     <div class="menu-panel" id="menuPanel">
-        <div class="menu-content">
-            <div class="menu-section">
-                <h3 class="section-title">Accueil</h3>
-                <ul class="menu-items">
-                    <li class="menu-item">
-                        <a href="https://atlas-corporation.fr">Retourner à l'accueil</a>
-                    </li>
-                </ul>
-                <h3 class="section-title">Section Debunk</h3>
-                <ul class="menu-items">
-                    <li class="menu-item">
-                        <a href="https://atlas-corporation.fr/critique-des-idiots/">Critique des Influenceurs Techs (FR)</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="https://atlas-corporation.fr/logiciels-foireux/">Les logiciels à Ne Pas Installer</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="https://atlas-corporation.fr/atlas-os-vs-windows/">Atlas OS VS Windows</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="https://atlas-corporation.fr/optimisations">Les Optimisations</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="menu-section">
-                <h3 class="section-title">Section Informative</h3>
-                <ul class="menu-items">
-                    <li class="menu-item">
-                        <a href="https://atlas-corporation.fr/bonnes-pratiques/">Les Bonnes Pratiques</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="https://atlas-corporation.fr/infos-utiles/">Les Informations Pratiques</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="menu-section highlight-section">
-                <h3 class="section-title">Actions Prioritaires</h3>
-                <div class="highlight-item">
-                    <a href="https://atlas-corporation.fr/custom-os/">Mon Windows 11 Personnalisé</a>
-                </div>
-                <div class="highlight-item">
-                    <a href="https://cyberveille.esante.gouv.fr/alertes-et-vulnerabilites">Surveillance Cyber</a>
-                </div>
-                <div class="highlight-item">
-                    <a href="https://atlas-corporation.fr/partenaires/">Nos Partenaires</a>
-                </div>
-            </div>
+        <div class="menu-content" id="menuContent">
+            <!-- Menu généré dynamiquement -->
         </div>
     </div>
 
-
     <!-- Floating Elements -->
-    <div class="floating-elements">
-        <div class="floating-element" style="left: 10%; animation-delay: 0s;">💻</div>
-        <div class="floating-element" style="left: 20%; animation-delay: 2s;">⚡</div>
-        <div class="floating-element" style="left: 30%; animation-delay: 4s;">🚫</div>
-        <div class="floating-element" style="left: 40%; animation-delay: 6s;">⚠️</div>
-        <div class="floating-element" style="left: 50%; animation-delay: 8s;">🔧</div>
-        <div class="floating-element" style="left: 60%; animation-delay: 10s;">❌</div>
-        <div class="floating-element" style="left: 70%; animation-delay: 12s;">💡</div>
-        <div class="floating-element" style="left: 80%; animation-delay: 14s;">🎯</div>
+    <div class="floating-elements" id="floatingElements">
+        <!-- Éléments générés dynamiquement -->
     </div>
 
     <!-- Warning Banner -->
-    <div class="warning-banner">
-        🚨 ATTENTION : 90% des "optimisations" Windows sont DANGEREUSES ! 🚨
+    <div class="warning-banner" id="warningBanner">
+        <!-- Contenu généré dynamiquement -->
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>STOP aux Fausses Optimisations Windows !</h1>
-        <p>
-            Découvrez la vérité sur ces "astuces" qui ralentissent votre PC au lieu de l'accélérer.
-            Basé sur des faits, pas sur du marketing !
-        </p>
-        <a href="#myths" class="cta-button">Découvrir les Mythes 🔍</a>
+        <h1 id="heroTitle">Chargement...</h1>
+        <p id="heroDescription">Chargement du contenu...</p>
+        <a href="#myths" class="cta-button" id="ctaButton">Découvrir 🔍</a>
     </section>
 
     <!-- Main Content -->
     <section id="myths" class="section">
-        <div class="alert-mega">
-            <h2>⚠️ FAILLE ZERO DAY — MISE EN DANGER DIRECTE ⚠️</h2>
-            <p><strong>Score : 7.8/10 & 8.1/10</strong> — (CVE-2025-29824, CVE-2025-27480...)</p>
-            <p>💥 Intrusion à distance possible : fichiers, comptes, mots de passe en danger.</p>
-            <div class="separator"></div>
-            <p class="section-title"><strong>Utilisateurs d'OPTIS non à jour :</strong></p>
-            <p>😡 Ce n'est pas "optimisé", c'est une PORTE D'ENTRÉE pour les pirates.</p>
-            <p>🪱 Les vers informatiques infectent tout le réseau.</p>
-            <p>👨‍👩‍👧‍👦 Votre famille, vos amis connectés à votre Wi-Fi ? Piratés aussi.</p>
-            <p class="blame"><strong>Et ce sera DE VOTRE FAUTE.</strong></p>
-            <div class="separator"></div>
-            <p class="final"><strong>✅ Faites les mises à jour MAINTENANT.<br>❌ Ne soyez pas le maillon faible.</strong></p>
+        <div class="alert-mega" id="alertSection">
+            <!-- Contenu généré dynamiquement -->
         </div>
-
-        <div class="myth-card danger-level-max">
-            <div class="danger-badge">🚨 DANGER MAXIMUM</div>
-            <div class="myth-title">Drivers "optimisés" ? DANGER !</div>
-            <div class="myth-content">
-                Désinstaller des composants Nvidia peut causer des pertes de performance au lieu d'en gagner.
-                <div class="truth-section">
-                    <div class="truth-title">✅ LA VÉRITÉ :</div>
-                    Les drivers officiels sont optimisés par les fabricants. Les versions "modifiées" créent plus de problèmes qu'elles n'en résolvent !
-                </div>
+        <div id="mythsContainer">
+            <div class="loading-placeholder">
+                <p>Chargement des mythes...</p>
             </div>
         </div>
-
-        <div class="myth-card danger-level-max">
-            <div class="danger-badge">💀 SYSTÈME EN PÉRIL</div>
-            <div class="myth-title">Modifier le Registre Windows</div>
-            <div class="myth-content">
-                Toucher au registre sans connaissances peut rendre Windows instable ou inutilisable. Beaucoup de tweaks sont inutiles ou placebo.
-                <div class="truth-section">
-                    <div class="truth-title">✅ LA VÉRITÉ :</div>
-                    Le registre Windows est le cœur du système. Une seule mauvaise modification = PC inutilisable !
-                </div>
-            </div>
-        </div>
-
-        <div class="myth-card danger-level-high">
-            <div class="danger-badge">🗑️ ARNAQUE TOTALE</div>
-            <div class="myth-title">Nettoyeurs Windows = Inefficaces</div>
-            <div class="myth-content">
-                Ils promettent d'accélérer Windows, mais sont souvent inutiles ou nuisibles. Un nettoyage excessif crée plus de problèmes qu'il n'en résout.
-                <div class="truth-section">
-                    <div class="truth-title">✅ LA VÉRITÉ :</div>
-                    Windows 10/11 se nettoie automatiquement. Ces logiciels suppriment souvent des fichiers importants !
-                </div>
-            </div>
-        </div>
-
-        <!-- Répétition de toutes les autres cartes ici... -->
-        <!-- Pour des raisons de brièveté, je n'inclus que quelques exemples, mais le code complet inclurait toutes les cartes -->
-        
     </section>
 
     <script>
+        // Configuration des données JSON
+        const siteData = {
+            "hero": {
+                "title": "STOP aux Fausses Optimisations Windows !",
+                "description": "Découvrez la vérité sur ces \"astuces\" qui ralentissent votre PC au lieu de l'accélérer. Basé sur des faits, pas sur du marketing !",
+                "ctaText": "Découvrir les Mythes 🔍"
+            },
+            "warningBanner": {
+                "text": "🚨 ATTENTION : 90% des \"optimisations\" Windows sont DANGEREUSES ! 🚨"
+            },
+            "floatingElements": ["💻", "⚡", "🚫", "⚠️", "🔧", "❌", "💡", "🎯"],
+            "menu": {
+                "sections": [
+                    {
+                        "title": "Accueil",
+                        "items": [
+                            {
+                                "text": "Retourner à l'accueil",
+                                "url": "https://atlas-corporation.fr"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Section Debunk",
+                        "items": [
+                            {
+                                "text": "Critique des Influenceurs Techs (FR)",
+                                "url": "https://atlas-corporation.fr/critique-des-idiots/"
+                            },
+                            {
+                                "text": "Les logiciels à Ne Pas Installer",
+                                "url": "https://atlas-corporation.fr/logiciels-foireux/"
+                            },
+                            {
+                                "text": "Atlas OS VS Windows",
+                                "url": "https://atlas-corporation.fr/atlas-os-vs-windows/"
+                            },
+                            {
+                                "text": "Les Optimisations",
+                                "url": "https://atlas-corporation.fr/optimisations"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Section Informative",
+                        "items": [
+                            {
+                                "text": "Les Bonnes Pratiques",
+                                "url": "https://atlas-corporation.fr/bonnes-pratiques/"
+                            },
+                            {
+                                "text": "Les Informations Pratiques",
+                                "url": "https://atlas-corporation.fr/infos-utiles/"
+                            }
+                        ]
+                    }
+                ],
+                "highlights": [
+                    {
+                        "text": "Mon Windows 11 Personnalisé",
+                        "url": "https://atlas-corporation.fr/custom-os/"
+                    },
+                    {
+                        "text": "Surveillance Cyber",
+                        "url": "https://cyberveille.esante.gouv.fr/alertes-et-vulnerabilites"
+                    },
+                    {
+                        "text": "Nos Partenaires",
+                        "url": "https://atlas-corporation.fr/partenaires/"
+                    }
+                ]
+            },
+            "alert": {
+                "title": "⚠️ FAILLE ZERO DAY — MISE EN DANGER DIRECTE ⚠️",
+                "score": "Score : 7.8/10 & 8.1/10",
+                "cves": "(CVE-2025-29824, CVE-2025-27480...)",
+                "description": "💥 Intrusion à distance possible : fichiers, comptes, mots de passe en danger.",
+                "sectionTitle": "Utilisateurs d'OPTIS non à jour :",
+                "points": [
+                    "😡 Ce n'est pas \"optimisé\", c'est une PORTE D'ENTRÉE pour les pirates.",
+                    "🪱 Les vers informatiques infectent tout le réseau.",
+                    "👨‍👩‍👧‍👦 Votre famille, vos amis connectés à votre Wi-Fi ? Piratés aussi."
+                ],
+                "blame": "Et ce sera DE VOTRE FAUTE.",
+                "final": "✅ Faites les mises à jour MAINTENANT.<br>❌ Ne soyez pas le maillon faible."
+            },
+            "myths": [
+                {
+                    "id": "drivers-optimises",
+                    "title": "Drivers \"optimisés\" ? DANGER !",
+                    "dangerLevel": "max",
+                    "badge": "🚨 DANGER MAXIMUM",
+                    "content": "Désinstaller des composants Nvidia peut causer des pertes de performance au lieu d'en gagner.",
+                    "truth": "Les drivers officiels sont optimisés par les fabricants. Les versions \"modifiées\" créent plus de problèmes qu'elles n'en résolvent !"
+                },
+                {
+                    "id": "registre-windows",
+                    "title": "Modifier le Registre Windows",
+                    "dangerLevel": "max",
+                    "badge": "💀 SYSTÈME EN PÉRIL",
+                    "content": "Toucher au registre sans connaissances peut rendre Windows instable ou inutilisable. Beaucoup de tweaks sont inutiles ou placebo.",
+                    "truth": "Le registre Windows est le cœur du système. Une seule mauvaise modification = PC inutilisable !"
+                },
+                {
+                    "id": "nettoyeurs-windows",
+                    "title": "Nettoyeurs Windows = Inefficaces",
+                    "dangerLevel": "high",
+                    "badge": "🗑️ ARNAQUE TOTALE",
+                    "content": "Ils promettent d'accélérer Windows, mais sont souvent inutiles ou nuisibles. Un nettoyage excessif crée plus de problèmes qu'il n'en résout.",
+                    "truth": "Windows 10/11 se nettoie automatiquement. Ces logiciels suppriment souvent des fichiers importants !"
+                },
+                {
+                    "id": "desactiver-services",
+                    "title": "Désactiver les Services Windows",
+                    "dangerLevel": "high",
+                    "badge": "⚠️ RISQUE ÉLEVÉ",
+                    "content": "Désactiver des services système peut causer des dysfonctionnements et des problèmes de sécurité.",
+                    "truth": "Windows gère automatiquement ses services. Les désactiver peut créer des failles de sécurité !"
+                },
+                {
+                    "id": "overclock-extreme",
+                    "title": "Overclock Extrême Sans Précaution",
+                    "dangerLevel": "medium",
+                    "badge": "🔥 SURCHAUFFE",
+                    "content": "Pousser les composants au maximum sans refroidissement adéquat peut les endommager définitivement.",
+                    "truth": "L'overclock nécessite des connaissances techniques et un refroidissement adapté !"
+                },
+                [
+    {
+        "id": "ccleaner",
+        "title": "CCleaner",
+        "dangerLevel": "medium",
+        "badge": "🛑 RISQUÉ",
+        "content": "Obsolète et peut supprimer des fichiers système.",
+        "truth": "Windows a déjà un Assistant de stockage intégré !"
+    },
+    {
+        "id": "systemcare-glary",
+        "title": "IOBit SystemCare / Glary Utilities",
+        "dangerLevel": "medium",
+        "badge": "🛑 INUTILE",
+        "content": "Font ce que Windows fait déjà automatiquement.",
+        "truth": "Laissez Windows se gérer tout seul !"
+    },
+    {
+        "id": "ram-booster",
+        "title": "RAM Booster / RAMMap",
+        "dangerLevel": "low",
+        "badge": "🔄 PLACEBO",
+        "content": "Prétendent libérer la RAM mais ralentissent le PC.",
+        "truth": "Windows gère la mémoire automatiquement !"
+    },
+    {
+        "id": "game-booster",
+        "title": "Smart Game Booster",
+        "dangerLevel": "low",
+        "badge": "🎮 PLACEBO",
+        "content": "Optimisations inutiles pour les jeux.",
+        "truth": "Utilisez le Mode Jeu de Windows !"
+    },
+    {
+        "id": "parkcontrol",
+        "title": "ParkControl",
+        "dangerLevel": "high",
+        "badge": "🔧 RISQUÉ",
+        "content": "Force le CPU à consommer plus d'énergie.",
+        "truth": "Utilisez les profils d'alimentation Windows !"
+    },
+    {
+        "id": "tcp-optimizer",
+        "title": "TCP Optimizer / DNS Jumper",
+        "dangerLevel": "high",
+        "badge": "🌐 RISQUÉ",
+        "content": "Peuvent casser votre connexion internet.",
+        "truth": "Changez vos DNS manuellement (1.1.1.1 ou 8.8.8.8) !"
+    },
+    {
+        "id": "antivirus-tiers",
+        "title": "Avast / Norton & Antivirus Tiers",
+        "dangerLevel": "high",
+        "badge": "🔒 INTRUSIF",
+        "content": "Ralentissent le PC, collectent vos données.",
+        "truth": "Windows Defender suffit largement !"
+    },
+    {
+        "id": "driver-updaters",
+        "title": "DriverBooster / DriversCloud / TousLesDrivers",
+        "dangerLevel": "high",
+        "badge": "⚡ DANGEREUX",
+        "content": "Installent de mauvais pilotes qui cassent le système.",
+        "truth": "Téléchargez sur les sites officiels (Intel, NVIDIA, AMD) !"
+    },
+    {
+        "id": "icue",
+        "title": "Corsair iCUE",
+        "dangerLevel": "medium",
+        "badge": "🎮 LOURD",
+        "content": "Très gourmand en ressources, plein de bugs.",
+        "truth": "Essayez OpenRGB ou SignalRGB !"
+    },
+    {
+        "id": "razer-cortex",
+        "title": "Razer Cortex",
+        "dangerLevel": "low",
+        "badge": "🎮 PLACEBO",
+        "content": "Boosts de performance insignifiants.",
+        "truth": "Le Gestionnaire des tâches Windows fait pareil !"
+    },
+    {
+        "id": "friends-advice",
+        "title": "Conseils d'Amis",
+        "dangerLevel": "medium",
+        "badge": "❌ OBSOLÈTE",
+        "content": "Bien intentionnés mais souvent périmés.",
+        "truth": "Vérifiez toujours avant d'agir !"
+    }
+]
+            ]
+        };
+
+        // Fonction pour initialiser le contenu
+        function initializeContent() {
+            // Hero section
+            document.getElementById('heroTitle').textContent = siteData.hero.title;
+            document.getElementById('heroDescription').textContent = siteData.hero.description;
+            document.getElementById('ctaButton').textContent = siteData.hero.ctaText;
+
+            // Warning banner
+            document.getElementById('warningBanner').textContent = siteData.warningBanner.text;
+
+            // Floating elements
+            const floatingContainer = document.getElementById('floatingElements');
+            siteData.floatingElements.forEach((element, index) => {
+                const div = document.createElement('div');
+                div.className = 'floating-element';
+                div.style.left = `${10 + (index * 10)}%`;
+                div.style.animationDelay = `${index * 2}s`;
+                div.textContent = element;
+                floatingContainer.appendChild(div);
+            });
+
+            // Menu
+            generateMenu();
+
+            // Alert section
+            generateAlert();
+
+            // Myths
+            generateMyths();
+        }
+
+        // Fonction pour générer le menu
+        function generateMenu() {
+            const menuContent = document.getElementById('menuContent');
+            let menuHTML = '';
+
+            // Sections normales
+            siteData.menu.sections.forEach(section => {
+                menuHTML += `
+                    <div class="menu-section">
+                        <h3 class="section-title">${section.title}</h3>
+                        <ul class="menu-items">
+                `;
+                section.items.forEach(item => {
+                    menuHTML += `
+                        <li class="menu-item">
+                            <a href="${item.url}">${item.text}</a>
+                        </li>
+                    `;
+                });
+                menuHTML += '</ul></div>';
+            });
+
+            // Section highlights
+            menuHTML += `
+                <div class="menu-section highlight-section">
+                    <h3 class="section-title">Actions Prioritaires</h3>
+            `;
+            siteData.menu.highlights.forEach(highlight => {
+                menuHTML += `
+                    <div class="highlight-item">
+                        <a href="${highlight.url}">${highlight.text}</a>
+                    </div>
+                `;
+            });
+            menuHTML += '</div>';
+
+            menuContent.innerHTML = menuHTML;
+        }
+
+        // Fonction pour générer l'alerte
+        function generateAlert() {
+            const alertSection = document.getElementById('alertSection');
+            const alert = siteData.alert;
+            
+            let alertHTML = `
+                <h2>${alert.title}</h2>
+                <p><strong>${alert.score}</strong> — ${alert.cves}</p>
+                <p>${alert.description}</p>
+                <div class="separator"></div>
+                <p class="alert-section-title"><strong>${alert.sectionTitle}</strong></p>
+            `;
+            
+            alert.points.forEach(point => {
+                alertHTML += `<p>${point}</p>`;
+            });
+            
+            alertHTML += `
+                <p class="blame"><strong>${alert.blame}</strong></p>
+                <div class="separator"></div>
+                <p class="final"><strong>${alert.final}</strong></p>
+            `;
+            
+            alertSection.innerHTML = alertHTML;
+        }
+
+        // Fonction pour générer les mythes
+        function generateMyths() {
+            const mythsContainer = document.getElementById('mythsContainer');
+            let mythsHTML = '';
+            
+            siteData.myths.forEach(myth => {
+                mythsHTML += `
+                    <div class="myth-card danger-level-${myth.dangerLevel}" data-myth-id="${myth.id}">
+                        <div class="danger-badge">${myth.badge}</div>
+                        <div class="myth-title">${myth.title}</div>
+                        <div class="myth-content">
+                            ${myth.content}
+                            <div class="truth-section">
+                                <div class="truth-title">✅ LA VÉRITÉ :</div>
+                                ${myth.truth}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            mythsContainer.innerHTML = mythsHTML;
+            
+            // Réinitialiser l'observer pour les nouvelles cartes
+            initializeAnimations();
+        }
+
+        // Fonction pour initialiser les animations
+        function initializeAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            });
+
+            // Observer toutes les cartes de mythes
+            document.querySelectorAll('.myth-card').forEach(card => {
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        }
+
+        // Fonction pour ajouter un nouveau mythe (exemple d'utilisation)
+        function addMyth(newMyth) {
+            siteData.myths.push(newMyth);
+            generateMyths();
+        }
+
+        // Fonction pour supprimer un mythe
+        function removeMyth(mythId) {
+            siteData.myths = siteData.myths.filter(myth => myth.id !== mythId);
+            generateMyths();
+        }
+
+        // Fonction pour mettre à jour un mythe
+        function updateMyth(mythId, updates) {
+            const mythIndex = siteData.myths.findIndex(myth => myth.id === mythId);
+            if (mythIndex !== -1) {
+                siteData.myths[mythIndex] = { ...siteData.myths[mythIndex], ...updates };
+                generateMyths();
+            }
+        }
+
+        // Fonction pour sauvegarder les données (exemple)
+        function saveData() {
+            try {
+                const dataStr = JSON.stringify(siteData, null, 2);
+                console.log('Données sauvegardées:', dataStr);
+                // Ici vous pourriez envoyer les données à un serveur
+                // ou les sauvegarder dans un fichier
+            } catch (error) {
+                console.error('Erreur lors de la sauvegarde:', error);
+            }
+        }
+
+        // Fonction pour charger des données depuis une source externe
+        async function loadExternalData(url) {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                // Fusionner les nouvelles données avec les données existantes
+                Object.assign(siteData, data);
+                
+                // Régénérer le contenu
+                initializeContent();
+                
+                console.log('Données chargées avec succès');
+            } catch (error) {
+                console.error('Erreur lors du chargement des données:', error);
+            }
+        }
+
         // Menu toggle functionality
         const menuToggle = document.getElementById('menuToggle');
         const menuOverlay = document.getElementById('menuOverlay');
@@ -709,45 +1018,34 @@
             menuPanel.classList.remove('active');
         }
 
+        // Event listeners
         menuToggle.addEventListener('click', toggleMenu);
         menuOverlay.addEventListener('click', closeMenu);
 
         // Close menu when clicking on a menu link
-        document.querySelectorAll('.menu-item a, .highlight-item a').forEach(link => {
-            link.addEventListener('click', closeMenu);
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.menu-item a, .highlight-item a')) {
+                closeMenu();
+            }
         });
 
         // Animation fluide pour le scroll
-        document.querySelector('a[href="#myths"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('#myths').scrollIntoView({
-                behavior: 'smooth'
-            });
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a[href="#myths"]')) {
+                e.preventDefault();
+                document.querySelector('#myths').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
 
         // Effet parallax léger
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        });
-
-        // Animation d'apparition des éléments
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
-        // Observer tous les éléments à animer
-        document.querySelectorAll('.myth-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'all 0.6s ease';
-            observer.observe(card);
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
         });
 
         // Escape key to close menu
@@ -755,6 +1053,110 @@
             if (e.key === 'Escape') {
                 closeMenu();
             }
+        });
+
+        // Fonction pour filtrer les mythes par niveau de danger
+        function filterMythsByDanger(dangerLevel) {
+            const filteredMyths = siteData.myths.filter(myth => myth.dangerLevel === dangerLevel);
+            const mythsContainer = document.getElementById('mythsContainer');
+            let mythsHTML = '';
+            
+            filteredMyths.forEach(myth => {
+                mythsHTML += `
+                    <div class="myth-card danger-level-${myth.dangerLevel}" data-myth-id="${myth.id}">
+                        <div class="danger-badge">${myth.badge}</div>
+                        <div class="myth-title">${myth.title}</div>
+                        <div class="myth-content">
+                            ${myth.content}
+                            <div class="truth-section">
+                                <div class="truth-title">✅ LA VÉRITÉ :</div>
+                                ${myth.truth}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            mythsContainer.innerHTML = mythsHTML || '<p class="loading-placeholder">Aucun mythe trouvé pour ce niveau de danger.</p>';
+            initializeAnimations();
+        }
+
+        // Fonction pour rechercher dans les mythes
+        function searchMyths(searchTerm) {
+            const filteredMyths = siteData.myths.filter(myth => 
+                myth.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                myth.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                myth.truth.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            
+            const mythsContainer = document.getElementById('mythsContainer');
+            let mythsHTML = '';
+            
+            filteredMyths.forEach(myth => {
+                mythsHTML += `
+                    <div class="myth-card danger-level-${myth.dangerLevel}" data-myth-id="${myth.id}">
+                        <div class="danger-badge">${myth.badge}</div>
+                        <div class="myth-title">${myth.title}</div>
+                        <div class="myth-content">
+                            ${myth.content}
+                            <div class="truth-section">
+                                <div class="truth-title">✅ LA VÉRITÉ :</div>
+                                ${myth.truth}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            mythsContainer.innerHTML = mythsHTML || '<p class="loading-placeholder">Aucun résultat trouvé.</p>';
+            initializeAnimations();
+        }
+
+        // Fonction pour réinitialiser l'affichage
+        function resetDisplay() {
+            generateMyths();
+        }
+
+        // API publique pour manipuler les données
+        window.SiteAPI = {
+            // Données
+            getData: () => siteData,
+            
+            // Mythes
+            addMyth: addMyth,
+            removeMyth: removeMyth,
+            updateMyth: updateMyth,
+            filterMythsByDanger: filterMythsByDanger,
+            searchMyths: searchMyths,
+            resetDisplay: resetDisplay,
+            
+            // Données
+            saveData: saveData,
+            loadExternalData: loadExternalData,
+            
+            // Utilitaires
+            regenerateContent: initializeContent
+        };
+
+        // Initialisation au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeContent();
+            
+            // Exemple d'utilisation de l'API
+            console.log('API Site disponible:', window.SiteAPI);
+            console.log('Données actuelles:', window.SiteAPI.getData());
+            
+            // Exemples d'utilisation:
+            // window.SiteAPI.searchMyths('drivers');
+            // window.SiteAPI.filterMythsByDanger('max');
+            // window.SiteAPI.addMyth({
+            //     id: 'nouveau-mythe',
+            //     title: 'Nouveau Mythe',
+            //     dangerLevel: 'high',
+            //     badge: '🚨 NOUVEAU',
+            //     content: 'Description du nouveau mythe...',
+            //     truth: 'La vérité sur ce mythe...'
+            // });
         });
     </script>
 </body>
