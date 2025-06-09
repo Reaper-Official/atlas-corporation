@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title> SYSTÈME COMPROMIS ! ! ! </title>
+  <style>
+    body {
+      background-color: black;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.1em;
+      padding: 20px;
+      margin: 0;
+      cursor: none;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    #console {
+      white-space: pre-wrap;
+      overflow: hidden;
+    }
+
+    .message {
+      animation: flicker 0.3s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    .green   { color: #00ff00; }
+    .red     { color: #ff0033; }
+    .yellow  { color: #ffff00; }
+    .cyan    { color: #00ffff; }
+    .magenta { color: #ff00ff; }
+    .white   { color: #ffffff; }
+  </style>
+</head>
+<body>
+  <div id="console"></div>
+  <audio id="beep" src="https://www.soundjay.com/button/sounds/beep-07.mp3"></audio>
+
+  <script>
+    const consoleDiv = document.getElementById('console');
+    const beep = document.getElementById('beep');
+    const colors = ['green', 'red', 'yellow', 'cyan', 'magenta', 'white'];
+
+    let ipv4 = "Récupération...";
+    let ipv6 = "Récupération...";
+    let loc = "Récupération...";
+
+    // Obtenir l’IPv4
+    fetch("https://api.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => { ipv4 = data.ip; })
+      .catch(() => { ipv4 = "Non détectée"; });
+
+    // Obtenir l’IPv6
+    fetch("https://api64.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => {
+        if (data.ip.includes(":")) {
+          ipv6 = data.ip;
+        } else {
+          ipv6 = "Non disponible";
+        }
+      })
+      .catch(() => { ipv6 = "Non disponible"; });
+
+    // Localisation avec ipapi
+    fetch("https://ipapi.co/json")
+      .then(res => res.json())
+      .then(data => {
+        loc = `${data.city}, ${data.country_name}`;
+      })
+      .catch(() => {
+        loc = "Inconnue";
+      });
+
+    const messages = [
+      "[Connexion au serveur distant...]",
+      "[Connexion au serveur distant établie !]",
+      "[Adresse IPv4 détectée : __IPV4__ : c'est ton IP poto !]",
+      "[Adresse IPv6 détectée : __IPV6__]",
+      "[Localisation : Trouvée !]",
+      "[IP source détectée ...]",
+      "[Port 22 ouvert - SSH engagé]",
+      "[Authentification brute-force en cours...]",
+      "[Accès ROOT obtenu.]",
+      "[Montage du système de fichiers...]",
+      "[Scan des dossiers /home, /etc, /var...]",
+      "[Fichiers sensibles détectés : 142]",
+      "[Exfiltration des données en cours...]",
+      "[Connexion au réseau Tor...]",
+      "[Adresse MAC : 00:1C:B3:09:85:15]",
+      "[FIREWALL : OFF]",
+      "[Installation du keylogger...]",
+      "[Installation du keylogger : Finalisée]",
+      "[Tracking de la position : Activé]",
+      "[Webcam détectée : Caméra 1080p]",
+      "[Stream vidéo : Activé]",
+      "[Microphone : Activé]",
+      "[Transfert audio en direct...]",
+      "[Contournement antivirus : Réussi]",
+      "[Injection de script dans le navigateur...]",
+      "[Cookies volés : 22]",
+      "[Session Facebook : Interceptée]",
+      "[Connexion à Compte Bancaire : Réussie...]",
+      "[Collecte des identifiants... OK]",
+      "[Suppression progressive des sauvegardes]",
+      "[Effacement du point de restauration système]",
+      "[Altération du registre Windows...]",
+      "[Blocage du clavier enclenché]",
+      "[Affichage de messages système falsifiés]",
+      "[Analyse du disque C:\\ en cours...]",
+      "[Corruption de 342 fichiers...]",
+      "[Cryptage des données utilisateur...]",
+      "[Demande de rançon : Ready]",
+      "[Système en mode silencieux]",
+      "[Accès BIOS détecté]",
+      "[Modification du bootloader...]",
+      "[Ajout d’une tâche planifiée : redémarrage infini]",
+      "[Désactivation du Gestionnaire des tâches]",
+      "[Empêchement de l’arrêt système]",
+      "[Verrouillage de session : Actif]",
+      "[Fichier SYSTEM32 : Compromis]",
+      "[ALT+F4 : désactivé]",
+      "[Vous êtes observé...]",
+      "[Tentative de fuite détectée]",
+      "[Toutes les caméras activées]",
+      "[Nom de l'utilisateur : " + navigator.userAgent + "]",
+      "[Localisation GPS triangulée...]",
+      "[Coordonnées envoyées à ComCyber]",
+      "[Disque externe détecté : CHIFFREMENT EN COURS]",
+      "[Suppression des journaux d’activité...]",
+      "[Rétrocontrôle : Etabli]",
+      "[Connexion au système : MAINTENUE]",
+      "[Échec de la déconnexion - vous ne pouvez pas fuir.]",
+      "[Échec de la déconnexion - vous ne pouvez pas fuir.]",
+      "[Échec de la déconnexion - vous ne pouvez pas fuir.]",
+      "[Échec de la déconnexion - vous ne pouvez pas fuir.]",
+      "[ÉCHO DE L'ÉCRAN ACTIF - Capture d’écran toutes les 5 sec.]",
+      "[Téléversement sur darknet terminé]",
+      "[Contrôle total du terminal en place]",
+      "[Aucune issue possible.]",
+      "[Simulation mentale enclenchée.]",
+      "[Bienvenue dans le vide.]",
+      "[Bienvenue dans le vide.]",
+      "[Bienvenue dans le vide.]",
+      "[Bienvenue dans le vide.]",
+      "[Bienvenue dans le vide.]",
+      "[Bienvenue dans le vide.]",
+      "[Bienvenue dans le vide.]",
+    ];
+
+    let i = 0;
+
+    function writeLine() {
+      if (i < messages.length) {
+        let message = messages[i]
+          .replace("__IPV4__", ipv4)
+          .replace("__IPV6__", ipv6)
+          .replace("__LOC__", loc);
+
+        const line = document.createElement('div');
+        line.className = 'message ' + colors[Math.floor(Math.random() * colors.length)];
+        line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        consoleDiv.appendChild(line);
+        beep.play();
+        window.scrollTo(0, document.body.scrollHeight);
+        i++;
+        setTimeout(writeLine, 1500);
+      } else {
+        const end = document.createElement('div');
+        end.textContent = "\n>>> CONTRÔLE ABSOLU ÉTABLI. VOUS ÊTES NOUS.";
+        end.className = 'message red';
+        consoleDiv.appendChild(end);
+      }
+    }
+
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('selectstart', e => e.preventDefault());
+
+    setTimeout(writeLine, 1500);
+  </script>
+</body>
+</html>
