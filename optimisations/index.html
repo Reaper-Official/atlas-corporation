@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚫 STOP aux Fausses Optimisations Windows</title>
+    <title>⚠️ Optimisations Avancées : Entre Mythe et Réalité</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Condensed:wght@400;700&display=swap');
         
@@ -38,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* Motif de fond avec texture militaire */
         body::before {
             content: '';
             position: fixed;
@@ -59,7 +58,6 @@
             z-index: -1;
         }
 
-        /* Header tactique */
         .header {
             position: fixed;
             top: 0;
@@ -129,14 +127,12 @@
             color: white;
         }
 
-        /* Container principal */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 100px 20px 50px;
         }
 
-        /* Header principal */
         .main-header {
             text-align: center;
             margin-bottom: 60px;
@@ -179,7 +175,6 @@
             line-height: 1.8;
         }
 
-        /* Bannière d'alerte critique */
         .warning-box {
             background: linear-gradient(135deg, var(--danger-max), var(--accent-red));
             border: 3px solid #ff0000;
@@ -223,7 +218,6 @@
             font-weight: 600;
         }
 
-        /* Sections de catégories */
         .category {
             margin: 50px 0;
             background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
@@ -256,8 +250,7 @@
             background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
         }
 
-        /* Éléments logiciels */
-        .software-item {
+        .optimization-item {
             background: var(--secondary-dark);
             border-bottom: 1px solid var(--border-color);
             padding: 30px;
@@ -265,16 +258,16 @@
             transition: all 0.3s ease;
         }
 
-        .software-item:hover {
+        .optimization-item:hover {
             background: var(--tertiary-dark);
             border-left: 4px solid var(--accent-orange);
         }
 
-        .software-item:last-child {
+        .optimization-item:last-child {
             border-bottom: none;
         }
 
-        .software-name {
+        .optimization-name {
             font-family: 'Orbitron', monospace;
             font-size: 1.4rem;
             font-weight: 700;
@@ -282,6 +275,37 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .danger-level {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .danger-extreme {
+            background: var(--danger-max);
+            color: white;
+        }
+
+        .danger-high {
+            background: var(--danger-high);
+            color: white;
+        }
+
+        .danger-medium {
+            background: var(--danger-medium);
+            color: var(--primary-dark);
+        }
+
+        .danger-low {
+            background: var(--danger-low);
+            color: white;
         }
 
         .reason-section {
@@ -306,15 +330,7 @@
             line-height: 1.6;
         }
 
-        .reason-content ul {
-            margin: 10px 0 10px 20px;
-        }
-
-        .reason-content li {
-            margin: 5px 0;
-        }
-
-        .alternative {
+        .reality-check {
             background: linear-gradient(90deg, var(--accent-green), #20b2aa);
             color: white;
             padding: 15px 20px;
@@ -323,45 +339,11 @@
             border-left: 4px solid #006400;
         }
 
-        .alternative::before {
-            content: '✅ ';
+        .reality-check::before {
+            content: '💡 ';
             font-size: 1.2rem;
         }
 
-        /* Section amis */
-        .friends-section {
-            background: linear-gradient(135deg, var(--danger-medium), #ff8c00);
-            border: 2px solid var(--accent-yellow);
-            padding: 30px;
-            margin: 40px 0;
-            color: var(--primary-dark);
-        }
-
-        .friends-section h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Grille pour les éléments plus petits */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 0;
-        }
-
-        .grid .software-item {
-            border-right: 1px solid var(--border-color);
-        }
-
-        .grid .software-item:last-child {
-            border-right: none;
-        }
-
-        /* Conclusion */
         .conclusion {
             background: linear-gradient(135deg, var(--accent-green), #228b22);
             color: white;
@@ -387,13 +369,11 @@
             margin: 0 auto;
         }
 
-        /* Emojis et icônes */
         .emoji {
             font-size: 1.2em;
             margin-right: 10px;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -412,7 +392,6 @@
             animation: pulse 3s ease-in-out infinite;
         }
 
-        /* Effets de particules */
         .floating-element {
             position: fixed;
             font-size: 1.5rem;
@@ -429,7 +408,6 @@
             75% { transform: translateY(-30px) rotate(270deg); opacity: 0.2; }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -443,21 +421,12 @@
                 font-size: 2rem;
             }
             
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .grid .software-item {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-            
             .category-title {
                 font-size: 1.4rem;
                 padding: 15px 20px;
             }
             
-            .software-item {
+            .optimization-item {
                 padding: 20px;
             }
         }
@@ -467,7 +436,7 @@
                 padding: 40px 20px;
             }
             
-            .warning-box, .friends-section, .conclusion {
+            .warning-box, .conclusion {
                 padding: 20px;
             }
             
@@ -478,287 +447,225 @@
     </style>
 </head>
 <body>
-    <!-- Header tactique -->
     <header class="header">
         <div class="nav-container">
-            <div class="logo">Atlas Corporation Optimisations</div>
+            <div class="logo">Atlas Corporation</div>
             <nav class="nav-menu">
-                <a href="#cleaners" class="nav-item">Nettoyeurs</a>
-                <a href="#boosters" class="nav-item">Boosters</a>
-                <a href="#security" class="nav-item">Sécurité</a>
-                <a href="#gaming" class="nav-item">Gaming</a>
+                <a href="#hardware" class="nav-item">Matériel</a>
+                <a href="#system" class="nav-item">Système</a>
+                <a href="#network" class="nav-item">Réseau</a>
+                <a href="#performance" class="nav-item">Performance</a>
             </nav>
         </div>
     </header>
 
     <div class="container">
-        <!-- Header principal -->
         <div class="main-header fade-in">
-            <h1 class="main-title">🚫 Les Faux Outils d'Optimisation PC</h1>
+            <h1 class="main-title">⚠️ Optimisations Avancées : Mythe vs Réalité</h1>
             <p class="main-description">
-                Découvrez pourquoi ces logiciels et des personnes prétendument "optimisateurs" détruisent votre PC au lieu de l'améliorer, 
-                et quelles sont les meilleures alternatives.
+                Découvrez pourquoi ces optimisations "avancées" sont souvent dangereuses, inutiles ou obsolètes. 
+                La vérité technique derrière les tweaks populaires.
             </p>
         </div>
 
-        <!-- Alerte critique -->
         <div class="warning-box pulse">
-            <h2><span class="emoji">⚠️</span> Attention Important</h2>
-            <p>Si votre PC contient un ou plusieurs logiciels ci-dessous, privilégiez une <strong>réinstallation propre de Windows</strong> plutôt que de chercher des solutions miracles qui, bien souvent, ne font qu'aggraver les choses.</p>
+            <h2><span class="emoji">🧠</span> La Réalité Technique</h2>
+            <p><strong>Tu ne peux pas défier la physique.</strong> Les CPUs modernes, Windows et les pilotes sont déjà optimisés par des équipes d'ingénieurs. Ces "tweaks miracles" relèvent souvent du <strong>placebo technique</strong> ou peuvent carrément <strong>détruire la stabilité</strong> de ton système.</p>
         </div>
 
-        <div class="warning-box pulse">
-            <h2><span class="emoji">🧠</span>  On ne bat pas la physique </h2>
-            
-            <p><strong>Ton PC ne pense pas comme toi.</strong> Il ne comprend pas le "rapide" ou le "lent" : il exécute des <strong>cycles, des zéros et des uns</strong>. Il compte en <strong>binaire</strong>, pas en décimal.</p>
-            <p><strong>Tu ne peux pas "booster" ta connexion</strong> avec un fichier .reg, ni <strong>réduire le ping</strong> en modifiant le registre. Ce n’est pas de la magie, c’est de la <strong>physique, de la logique et des limites matérielles</strong>.</p>
-            <p><strong>Les tweaks miracles ?</strong> Souvent du vent. <strong>La vraie optimisation, c’est la compréhension.</strong></p>
-
-        </div>
-
-        <!-- Section Amis -->
-        <div class="friends-section fade-in">
-            <h2><span class="emoji">❌</span> Les Amis Bien Intentionnés</h2>
-            <div class="reason-section">
-                <div class="reason-title">🔴 Pourquoi ce n'est pas toujours une bonne idée ?</div>
-                <div class="reason-content">
-                    <p>Ils veulent aider, mais donnent parfois des conseils qui ne sont plus d'actualité :</p>
-                    <ul>
-                        <li><em>"Installe ce logiciel, il va accélérer ton PC !"</em> → En réalité, Windows gère déjà ça tout seul.</li>
-                        <li><em>"Supprime ce fichier, ça sert à rien !"</em> → Oups... c'était un fichier système important.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="alternative">
-                <strong>Alternative recommandée :</strong> Toujours vérifier les conseils avant d'agir et privilégier les outils intégrés de Windows.
-            </div>
-        </div>
-
-        <!-- Nettoyeurs et Optimisateurs -->
-        <div class="category fade-in" id="cleaners">
+        <div class="category fade-in" id="hardware">
             <div class="category-title">
-                <span class="emoji">🛑</span> Les Soi-disant Nettoyeurs et Optimisateurs
+                <span class="emoji">🔧</span> Optimisations Matériel Dangereuses
             </div>
 
-            <div class="software-item">
-                <div class="software-name">
-                    <span class="emoji">🛑</span> CCleaner
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">⚡</span> Overclocking / Undervolting (OC/UV)
                 </div>
-                <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est inutile ?</div>
-                    <div class="reason-content">
-                        Autrefois utile, ce logiciel est aujourd'hui redondant. Windows intègre déjà un Assistant de stockage qui supprime les fichiers temporaires et inutiles. Le nettoyage du registre est inefficace et peut supprimer des clés essentielles.
-                    </div>
-                </div>
+                <div class="danger-level danger-high">Risque Élevé</div>
                 <div class="reason-section">
                     <div class="reason-title">Pourquoi c'est risqué ?</div>
                     <div class="reason-content">
-                        • A déjà été utilisé pour diffuser des malwares (2017)<br>
-                        • Fonctionne en arrière-plan, consommant des ressources<br>
-                        • Peut effacer des fichiers système critiques
+                        L'overclocking peut apporter des gains, mais s'il est mal maîtrisé (fréquences trop hautes, tensions mal réglées), ça crée de l'instabilité ou endommage le matériel. L'undervolting demande aussi de tester soigneusement. Dans 90% des cas, les gens copient des réglages sans comprendre et foutent tout en l'air.
                     </div>
                 </div>
-                <div class="alternative">
-                    Alternative : Utiliser l'Assistant de stockage intégré à Windows
+                <div class="reality-check">
+                    Réalité : Seuls les experts devraient s'y aventurer, avec monitoring constant
                 </div>
             </div>
 
-            <div class="software-item">
-                <div class="software-name">
-                    <span class="emoji">🛑</span> IOBit Advanced SystemCare / Glary Utilities
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">🧮</span> Optimisation BIOS & Timings RAM
                 </div>
+                <div class="danger-level danger-extreme">Terrain Miné</div>
                 <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est inutile ?</div>
+                    <div class="reason-title">Pourquoi c'est très technique ?</div>
                     <div class="reason-content">
-                        Ces logiciels font des optimisations déjà prises en charge par Windows. Suppression de fichiers temporaires, gestion des services... tout est déjà géré efficacement par le système.
+                        Le BIOS contrôle tous les paramètres bas niveau de la carte mère. Optimiser les timings RAM peut améliorer les perfs, mais si tu n'as pas une bonne RAM ou si tu comprends rien aux valeurs primaires/secondaires/tertiaires, tu vas surtout rendre ta machine instable. Ce n'est pas un terrain de jeu pour amateur.
                     </div>
                 </div>
-                <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est risqué ?</div>
-                    <div class="reason-content">
-                        • Peuvent supprimer des fichiers nécessaires<br>
-                        • Peuvent désactiver des services vitaux<br>
-                        • Contiennent souvent des publicités
-                    </div>
-                </div>
-                <div class="alternative">
-                    Alternative : Laisser Windows gérer son propre entretien
+                <div class="reality-check">
+                    Réalité : Nécessite une compréhension approfondie de l'architecture système
                 </div>
             </div>
         </div>
 
-        <!-- Boosters de Performance -->
-        <div class="category fade-in" id="boosters">
+        <div class="category fade-in" id="system">
             <div class="category-title">
-                <span class="emoji">⚡</span> Les Faux Boosters de Performance
+                <span class="emoji">🖥️</span> Optimisations Système Inutiles
             </div>
 
-            <div class="software-item">
-                <div class="software-name">
-                    <span class="emoji">🛑</span> RAMMap / RAM Booster / Superfetch Disabler
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">💾</span> Optimisation CPU/GPU
                 </div>
+                <div class="danger-level danger-low">Redondant</div>
                 <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est inutile ?</div>
+                    <div class="reason-title">Pourquoi c'est déjà fait ?</div>
                     <div class="reason-content">
-                        Windows gère automatiquement la mémoire vive de façon optimale. Forcer la libération de RAM ne fait qu'effacer des caches utiles, ralentissant le chargement des applications.
+                        Windows, les pilotes NVIDIA/AMD et les CPUs modernes optimisent déjà les performances de manière dynamique. À moins d'un usage extrême (benchmarking, encodage, rendu 3D), tu gagnes peu. Et encore une fois, mal fait = instable.
                     </div>
                 </div>
-                <div class="alternative">
-                    Alternative : Ne pas toucher à la gestion de la RAM, Windows s'en charge
+                <div class="reality-check">
+                    Réalité : Les fabricants ont déjà optimisé ces composants
                 </div>
             </div>
 
-            <div class="software-item">
-                <div class="software-name">
-                    <span class="emoji">🛑</span> Smart Game Booster
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">💽</span> Optimisation SSD
                 </div>
+                <div class="danger-level danger-low">Absurde</div>
                 <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est inutile ?</div>
+                    <div class="reason-title">Pourquoi c'est absurde ?</div>
                     <div class="reason-content">
-                        Ce logiciel tente d'optimiser les performances en fermant des processus en arrière-plan. Windows alloue déjà intelligemment les ressources.
+                        Les SSD modernes (NVMe, SATA) ont déjà un firmware optimisé. Croire que tu peux doubler les performances en "tweakant" un réglage Windows, c'est ignorer que le goulot d'étranglement est rarement là. Tu ne vas pas défier la physique ou la norme NVMe 1.4 avec un script PowerShell.
                     </div>
                 </div>
-                <div class="alternative">
-                    Alternative : Activer le Mode Jeu de Windows dans les paramètres
+                <div class="reality-check">
+                    Réalité : Les SSD sont optimisés au niveau firmware
+                </div>
+            </div>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">📝</span> Optimisation Registre
+                </div>
+                <div class="danger-level danger-extreme">Très Mauvaise Idée</div>
+                <div class="reason-section">
+                    <div class="reason-title">Pourquoi c'est dangereux ?</div>
+                    <div class="reason-content">
+                        Modifier le registre sans savoir ce qu'on fait est le moyen le plus rapide de rendre Windows instable, voire inutilisable. C'est un composant critique. Les "tweaks de registre" à la chaîne, trouvés sur Reddit ou YouTube, finissent souvent par casser des fonctions système.
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Réalité : Le registre est le cœur de Windows, ne pas toucher !
                 </div>
             </div>
         </div>
 
-        <!-- Optimisations CPU et Réseau -->
-        <div class="category fade-in">
+        <div class="category fade-in" id="network">
             <div class="category-title">
-                <span class="emoji">🔧</span> Les Optimisations CPU et Réseau Risquées
+                <span class="emoji">🌐</span> Optimisations Réseau Dangereuses
             </div>
 
-            <div class="software-item">
-                <div class="software-name">
-                    <span class="emoji">🛑</span> ParkControl
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">📡</span> Optimisation Paquets TCP
                 </div>
+                <div class="danger-level danger-high">Dangereux</div>
                 <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est inutile ?</div>
+                    <div class="reason-title">Pourquoi c'est dangereux ?</div>
                     <div class="reason-content">
-                        Force les cœurs du processeur à rester actifs en permanence, mais n'apporte aucun gain de performances pour un usage classique.
+                        Modifier le comportement de la pile réseau TCP/IP (taille des buffers, Nagle, RWIN, MTU, etc.) sans en comprendre les implications peut dégrader ta connexion. Tu ne vas pas "booster ton ping" comme dans les vidéos TikTok, tu risques juste de rendre certains services inaccessibles.
                     </div>
                 </div>
-                <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est risqué ?</div>
-                    <div class="reason-content">
-                        • Augmente la consommation d'énergie et la chauffe<br>
-                        • Peut réduire la durée de vie du CPU
-                    </div>
-                </div>
-                <div class="alternative">
-                    Alternative : Utiliser les profils d'alimentation Windows
+                <div class="reality-check">
+                    Réalité : Windows gère déjà optimalement la pile TCP/IP
                 </div>
             </div>
 
-            <div class="software-item">
-                <div class="software-name">
-                    <span class="emoji">🛑</span> TCP Optimizer / DNS Jumper
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">⚡</span> Optimisation Latence
                 </div>
+                <div class="danger-level danger-low">Bullshit Marketing</div>
                 <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est inutile ?</div>
+                    <div class="reason-title">Pourquoi c'est du marketing ?</div>
                     <div class="reason-content">
-                        Windows ajuste déjà automatiquement les paramètres réseau et TCP/IP. Modifier manuellement son DNS dans Windows est plus simple et sécurisé.
+                        Réduire la latence de 1-2 ms (au niveau input ou DPC latency) n'a aucun effet perceptible pour l'utilisateur lambda. C'est pertinent pour un musicien pro qui fait de l'audio en temps réel avec une interface externe. Pas pour jouer à Fortnite…
                     </div>
                 </div>
-                <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est risqué ?</div>
-                    <div class="reason-content">
-                        • Peut causer de l'instabilité réseau<br>
-                        • Peut exposer à des DNS non fiables<br>
-                        • Peut augmenter la latence
-                    </div>
-                </div>
-                <div class="alternative">
-                    Alternative : Changer manuellement les DNS (Cloudflare 1.1.1.1, Google 8.8.8.8)
+                <div class="reality-check">
+                    Réalité : Les gains sont imperceptibles pour l'usage normal
                 </div>
             </div>
         </div>
 
-        <!-- Sécurité et Pilotes -->
-        <div class="category fade-in" id="security">
+        <div class="category fade-in" id="performance">
             <div class="category-title">
-                <span class="emoji">🔒</span> Sécurité et Pilotes à Éviter
+                <span class="emoji">🎮</span> Mythes de Performance
             </div>
 
-            <div class="software-item">
-                <div class="software-name">
-                    <span class="emoji">🛑</span> Avast, Norton & Antivirus Tiers
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">📊</span> Optimisation des 1% Low
                 </div>
+                <div class="danger-level danger-low">Abus de Langage</div>
                 <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est problématique ?</div>
+                    <div class="reason-title">Pourquoi c'est un mythe ?</div>
                     <div class="reason-content">
-                        • <strong>Avast :</strong> Ralentit le PC, collecte et revend vos données, spam de notifications<br>
-                        • <strong>Norton :</strong> Très gourmand en ressources, renouvellements automatiques coûteux<br>
-                        • Faux positifs fréquents, difficiles à désinstaller
+                        Le concept de "1% low FPS" est une mesure de la stabilité, pas une chose qu'on "optimise" directement. Tu peux améliorer les perfs globales, mais faire grimper les "1% low" magiquement avec une ligne de commande, c'est juste du mythe.
                     </div>
                 </div>
-                <div class="alternative">
-                    Alternative : Windows Defender (Microsoft Defender), léger et efficace
+                <div class="reality-check">
+                    Réalité : C'est une métrique, pas quelque chose qu'on "tweak"
                 </div>
             </div>
 
-            <div class="software-item">
-                <div class="software-name">
-                    <span class="emoji">🛑</span> TousLesDrivers / DriversCloud / DriverBooster
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">🎯</span> Stabilité des FPS
                 </div>
+                <div class="danger-level danger-medium">Dépendant du Jeu</div>
                 <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est risqué ?</div>
+                    <div class="reason-title">Pourquoi c'est limité ?</div>
                     <div class="reason-content">
-                        Installent souvent des pilotes non officiels ou inadaptés, pouvant provoquer des bugs, instabilités et même rendre Windows inutilisable au démarrage.
+                        Certains jeux sont mal codés, mal optimisés, ou utilisent des moteurs vieillissants. Aucune optimisation système ne corrigera un moteur Unity ou Unreal Engine mal implémenté. À part attendre des patchs ou limiter les FPS via RTSS, t'as pas beaucoup de leviers.
                     </div>
                 </div>
-                <div class="alternative">
-                    Alternative : Télécharger les pilotes sur les sites officiels (Intel, NVIDIA, AMD) ou via Windows Update
+                <div class="reality-check">
+                    Réalité : Le problème vient souvent du jeu, pas du système
+                </div>
+            </div>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">⚙️</span> Optimisation Kernel & Scheduler
+                </div>
+                <div class="danger-level danger-extreme">Terrain Miné</div>
+                <div class="reason-section">
+                    <div class="reason-title">Pourquoi c'est un terrain miné ?</div>
+                    <div class="reason-content">
+                        Toucher au noyau de Windows (scheduler, priorité des threads, délais d'interruptions) sans être dev système, c'est comme bricoler un moteur de F1 avec une clé à molette rouillée. C'est super risqué, et ça peut dégrader les perfs ou rendre ton OS instable pour zéro gain visible.
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Réalité : Microsoft optimise cela depuis des décennies
                 </div>
             </div>
         </div>
 
-        <!-- Logiciels Gaming -->
-        <div class="category fade-in" id="gaming">
-            <div class="category-title">
-                <span class="emoji">🎮</span> Logiciels de Gestion Gourmands
-            </div>
-
-            <div class="grid">
-                <div class="software-item">
-                    <div class="software-name">
-                        <span class="emoji">🛑</span> Corsair iCUE
-                    </div>
-                    <div class="reason-content">
-                        Très exigeant en ressources, souvent sujet à des bugs, ralentit le système et engendre des conflits RGB.
-                    </div>
-                    <div class="alternative">
-                        Alternative : OpenRGB ou SignalRGB, plus légers
-                    </div>
-                </div>
-
-                <div class="software-item">
-                    <div class="software-name">
-                        <span class="emoji">🛑</span> Razer Cortex
-                    </div>
-                    <div class="reason-content">
-                        Les "boosts" de performance sont insignifiants. Windows gère déjà très bien l'allocation des ressources.
-                    </div>
-                    <div class="alternative">
-                        Alternative : Utiliser le Gestionnaire des tâches Windows
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Conclusion -->
         <div class="conclusion fade-in">
-            <h2><span class="emoji">✨</span> Windows Sait Déjà Tout Faire</h2>
-            <p>Ces logiciels promettent des améliorations de performances, mais Windows gère déjà ces aspects de manière intelligente. La plupart du temps, ces outils apportent plus de problèmes que de bénéfices.</p>
+            <h2><span class="emoji">💡</span> La Vérité sur l'Optimisation</h2>
+            <p>Tu veux des perfs ? Mets à jour tes pilotes, prends un bon SSD, ajoute de la RAM, et optimise dans les jeux. Le reste, c'est du théâtre. Ces "optimisations avancées" sont le fruit de la culture du bidouillage aveugle : des scripts trouvés sur des forums obscurs, appliqués sans comprendre. La vérité, c'est que ces réglages sont risqués, inefficaces ou obsolètes.</p>
         </div>
     </div>
 
     <script>
-        // Créer des éléments flottants
         function createFloatingElements() {
-            const elements = ["💻", "⚡", "🚫", "⚠️", "🔧", "❌", "💡", "🎯", "🛡️", "🔒"];
+            const elements = ["⚠️", "🔧", "💻", "🧠", "⚡", "🚫", "💡", "🎯", "🛡️", "📊"];
             
             for (let i = 0; i < 15; i++) {
                 const element = document.createElement('div');
@@ -773,7 +680,6 @@
             }
         }
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -787,7 +693,6 @@
             });
         });
 
-        // Animation au scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -802,4 +707,13 @@
             });
         }, observerOptions);
 
-        // Observer
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingElements();
+        });
+    </script>
+</body>
+</html>
