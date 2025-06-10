@@ -38,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* Motif de fond avec texture militaire */
         body::before {
             content: '';
             position: fixed;
@@ -59,7 +58,6 @@
             z-index: -1;
         }
 
-        /* Header tactique */
         .header {
             position: fixed;
             top: 0;
@@ -129,14 +127,12 @@
             color: white;
         }
 
-        /* Container principal */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 100px 20px 50px;
         }
 
-        /* Header principal */
         .main-header {
             text-align: center;
             margin-bottom: 60px;
@@ -179,7 +175,6 @@
             line-height: 1.8;
         }
 
-        /* Bannière d'alerte critique */
         .warning-box {
             background: linear-gradient(135deg, var(--danger-max), var(--accent-red));
             border: 3px solid #ff0000;
@@ -223,7 +218,6 @@
             font-weight: 600;
         }
 
-        /* Sections de catégories */
         .category {
             margin: 50px 0;
             background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
@@ -256,8 +250,7 @@
             background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
         }
 
-        /* Éléments logiciels */
-        .software-item {
+        .software-item, .reason-item {
             background: var(--secondary-dark);
             border-bottom: 1px solid var(--border-color);
             padding: 30px;
@@ -265,16 +258,16 @@
             transition: all 0.3s ease;
         }
 
-        .software-item:hover {
+        .software-item:hover, .reason-item:hover {
             background: var(--tertiary-dark);
             border-left: 4px solid var(--accent-orange);
         }
 
-        .software-item:last-child {
+        .software-item:last-child, .reason-item:last-child {
             border-bottom: none;
         }
 
-        .software-name {
+        .software-name, .reason-title-main {
             font-family: 'Orbitron', monospace;
             font-size: 1.4rem;
             font-weight: 700;
@@ -328,7 +321,6 @@
             font-size: 1.2rem;
         }
 
-        /* Section amis */
         .friends-section {
             background: linear-gradient(135deg, var(--danger-medium), #ff8c00);
             border: 2px solid var(--accent-yellow);
@@ -346,7 +338,6 @@
             letter-spacing: 1px;
         }
 
-        /* Grille pour les éléments plus petits */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -361,7 +352,6 @@
             border-right: none;
         }
 
-        /* Conclusion */
         .conclusion {
             background: linear-gradient(135deg, var(--accent-green), #228b22);
             color: white;
@@ -387,13 +377,41 @@
             margin: 0 auto;
         }
 
-        /* Emojis et icônes */
+        .conclusions-list {
+            background: linear-gradient(135deg, var(--accent-green), #228b22);
+            color: white;
+            padding: 40px;
+            margin: 50px 0;
+            border: 3px solid #006400;
+        }
+
+        .conclusions-list h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .conclusions-list ul {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .conclusions-list li {
+            margin: 15px 0;
+            padding-left: 10px;
+        }
+
         .emoji {
             font-size: 1.2em;
             margin-right: 10px;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -412,7 +430,6 @@
             animation: pulse 3s ease-in-out infinite;
         }
 
-        /* Effets de particules */
         .floating-element {
             position: fixed;
             font-size: 1.5rem;
@@ -429,7 +446,6 @@
             75% { transform: translateY(-30px) rotate(270deg); opacity: 0.2; }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -457,7 +473,7 @@
                 padding: 15px 20px;
             }
             
-            .software-item {
+            .software-item, .reason-item {
                 padding: 20px;
             }
         }
@@ -467,7 +483,7 @@
                 padding: 40px 20px;
             }
             
-            .warning-box, .friends-section, .conclusion {
+            .warning-box, .friends-section, .conclusion, .conclusions-list {
                 padding: 20px;
             }
             
@@ -478,36 +494,88 @@
     </style>
 </head>
 <body>
-    <!-- Header tactique -->
     <header class="header">
         <div class="nav-container">
-            <div class="logo">Atlas Corporation - Optimisations</div>
+            <div class="logo">Atlas Corp</div>
             <nav class="nav-menu">
+                <a href="#reasons" class="nav-item">Pourquoi</a>
                 <a href="#cleaners" class="nav-item">Nettoyeurs</a>
                 <a href="#boosters" class="nav-item">Boosters</a>
                 <a href="#security" class="nav-item">Sécurité</a>
                 <a href="#gaming" class="nav-item">Gaming</a>
+                <a href="#solutions" class="nav-item">Solutions</a>
             </nav>
         </div>
     </header>
 
     <div class="container">
-        <!-- Header principal -->
         <div class="main-header fade-in">
-            <h1 class="main-title">🚫 Les Faux Outils d'Optimisation PC</h1>
+            <h1 class="main-title">🚫 Les Fausses Optimisations Windows</h1>
             <p class="main-description">
                 Découvrez pourquoi ces logiciels prétendument "optimisateurs" détruisent votre PC au lieu de l'améliorer, 
-                et quelles sont les meilleures alternatives.
+                et quelles sont les meilleures alternatives basées sur une compréhension réelle du système.
             </p>
         </div>
 
-        <!-- Alerte critique -->
         <div class="warning-box pulse">
             <h2><span class="emoji">⚠️</span> Attention Important</h2>
             <p>Si votre PC contient un ou plusieurs logiciels ci-dessous, privilégiez une <strong>réinstallation propre de Windows</strong> plutôt que de chercher des solutions miracles qui, bien souvent, ne font qu'aggraver les choses.</p>
         </div>
 
-        <!-- Section Amis -->
+        <div class="category fade-in" id="reasons">
+            <div class="category-title">
+                <span class="emoji">❌</span> Pourquoi les "Optimisations Windows" sont une Mauvaise Idée
+            </div>
+
+            <div class="reason-item">
+                <div class="reason-title-main">1. Suppositions Non Vérifiables</div>
+                <div class="reason-content">
+                    Beaucoup d'"optimisations" se basent sur des croyances non fondées ("tel service ralentit le PC", "désactiver ça libère la RAM") sans preuve mesurable.
+                    <br><br><strong>Exemple :</strong> désactiver le service SysMain (ex-Superfetch) sous prétexte qu'il consomme du CPU, alors qu'il améliore réellement la réactivité des applications fréquemment utilisées sur les machines modernes.
+                </div>
+            </div>
+
+            <div class="reason-item">
+                <div class="reason-title-main">2. Interactions Complexes Non Documentées</div>
+                <div class="reason-content">
+                    Les services Windows interagissent entre eux de manière complexe. Microsoft ne rend pas public tout leur fonctionnement, donc même un développeur expérimenté ne peut pas tout anticiper.
+                    <br><br><strong>Exemple :</strong> désactiver les services liés à la télémétrie peut aussi impacter Windows Update, les diagnostics, ou la stabilité du système sur le long terme.
+                </div>
+            </div>
+
+            <div class="reason-item">
+                <div class="reason-title-main">3. Gains Négligeables, Risques Élevés</div>
+                <div class="reason-content">
+                    Beaucoup de tweaks n'apportent aucun gain réel observable, mais augmentent considérablement le risque d'instabilité.
+                    <br><br><strong>Exemple :</strong> désactiver les animations de l'interface pour "gagner de la RAM" donne un système plus saccadé visuellement, sans réel impact sur les performances.
+                </div>
+            </div>
+
+            <div class="reason-item">
+                <div class="reason-title-main">4. Windows est Déjà Optimisé Dynamiquement</div>
+                <div class="reason-content">
+                    Windows ajuste automatiquement ses performances selon l'usage : priorité de tâches, mise en cache, planificateur de tâches, etc. Ces mécanismes sont plus intelligents que 99% des scripts trouvés sur le net.
+                    <br><br><strong>Exemple :</strong> Windows réduit automatiquement les services en arrière-plan quand un jeu est lancé en plein écran.
+                </div>
+            </div>
+
+            <div class="reason-item">
+                <div class="reason-title-main">5. Complications pour le Diagnostic</div>
+                <div class="reason-content">
+                    Un système "optimisé" manuellement est souvent dans un état non standard. Cela rend le dépannage très difficile, même pour un professionnel.
+                    <br><br><strong>Exemple :</strong> un utilisateur désactive les journaux d'événements pour "économiser des ressources", rendant toute analyse ultérieure d'un bug presque impossible.
+                </div>
+            </div>
+
+            <div class="reason-item">
+                <div class="reason-title-main">6. Scripts Dangereux en Circulation</div>
+                <div class="reason-content">
+                    De nombreux scripts d'optimisation automatisés (PowerShell, .bat, etc.) sont écrits sans connaissance approfondie de Windows et peuvent casser des fonctions essentielles.
+                    <br><br><strong>Exemple :</strong> "debloaters" qui désinstallent Windows Store et cassent le panneau des paramètres, les mises à jour, ou même la sécurité (Defender désactivé).
+                </div>
+            </div>
+        </div>
+
         <div class="friends-section fade-in">
             <h2><span class="emoji">❌</span> Les Amis Bien Intentionnés</h2>
             <div class="reason-section">
@@ -525,7 +593,6 @@
             </div>
         </div>
 
-        <!-- Nettoyeurs et Optimisateurs -->
         <div class="category fade-in" id="cleaners">
             <div class="category-title">
                 <span class="emoji">🛑</span> Les Soi-disant Nettoyeurs et Optimisateurs
@@ -578,7 +645,6 @@
             </div>
         </div>
 
-        <!-- Boosters de Performance -->
         <div class="category fade-in" id="boosters">
             <div class="category-title">
                 <span class="emoji">⚡</span> Les Faux Boosters de Performance
@@ -591,7 +657,7 @@
                 <div class="reason-section">
                     <div class="reason-title">Pourquoi c'est inutile ?</div>
                     <div class="reason-content">
-                        Windows gère automatiquement la mémoire vive de façon optimale. Forcer la libération de RAM ne fait qu'effacer des caches utiles, ralentissant le chargement des applications.
+                        Windows gère automatiquement la mémoire vive de façon optimale. Forcer la libération de RAM ne fait qu'effacer des caches utiles, ralentissant le chargement des applications. Beaucoup de services consomment zéro ressource tant qu'ils ne sont pas sollicités.
                     </div>
                 </div>
                 <div class="alternative">
@@ -601,46 +667,31 @@
 
             <div class="software-item">
                 <div class="software-name">
-                    <span class="emoji">🛑</span> Smart Game Booster
+                    <span class="emoji">🛑</span> Smart Game Booster / ParkControl
                 </div>
                 <div class="reason-section">
                     <div class="reason-title">Pourquoi c'est inutile ?</div>
                     <div class="reason-content">
-                        Ce logiciel tente d'optimiser les performances en fermant des processus en arrière-plan. Windows alloue déjà intelligemment les ressources.
-                    </div>
-                </div>
-                <div class="alternative">
-                    Alternative : Activer le Mode Jeu de Windows dans les paramètres
-                </div>
-            </div>
-        </div>
-
-        <!-- Optimisations CPU et Réseau -->
-        <div class="category fade-in">
-            <div class="category-title">
-                <span class="emoji">🔧</span> Les Optimisations CPU et Réseau Risquées
-            </div>
-
-            <div class="software-item">
-                <div class="software-name">
-                    <span class="emoji">🛑</span> ParkControl
-                </div>
-                <div class="reason-section">
-                    <div class="reason-title">Pourquoi c'est inutile ?</div>
-                    <div class="reason-content">
-                        Force les cœurs du processeur à rester actifs en permanence, mais n'apporte aucun gain de performances pour un usage classique.
+                        Ces logiciels tentent d'optimiser les performances en fermant des processus ou en forçant les cœurs CPU à rester actifs. Windows alloue déjà intelligemment les ressources et gère l'économie d'énergie.
                     </div>
                 </div>
                 <div class="reason-section">
                     <div class="reason-title">Pourquoi c'est risqué ?</div>
                     <div class="reason-content">
                         • Augmente la consommation d'énergie et la chauffe<br>
-                        • Peut réduire la durée de vie du CPU
+                        • Peut réduire la durée de vie du CPU<br>
+                        • Peut causer de l'instabilité système
                     </div>
                 </div>
                 <div class="alternative">
-                    Alternative : Utiliser les profils d'alimentation Windows
+                    Alternative : Activer le Mode Jeu de Windows / Utiliser les profils d'alimentation Windows
                 </div>
+            </div>
+        </div>
+
+        <div class="category fade-in">
+            <div class="category-title">
+                <span class="emoji">🔧</span> Les Optimisations Réseau Risquées
             </div>
 
             <div class="software-item">
@@ -667,7 +718,6 @@
             </div>
         </div>
 
-        <!-- Sécurité et Pilotes -->
         <div class="category fade-in" id="security">
             <div class="category-title">
                 <span class="emoji">🔒</span> Sécurité et Pilotes à Éviter
@@ -689,7 +739,6 @@
                     Alternative : Windows Defender (Microsoft Defender), léger et efficace
                 </div>
             </div>
-
             <div class="software-item">
                 <div class="software-name">
                     <span class="emoji">🛑</span> TousLesDrivers / DriversCloud / DriverBooster
