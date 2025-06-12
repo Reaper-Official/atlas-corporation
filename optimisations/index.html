@@ -474,12 +474,52 @@
             <p><strong>Tu ne peux pas défier la physique.</strong> Les CPUs modernes, Windows et les pilotes sont déjà optimisés par des équipes d'ingénieurs. Ces "tweaks miracles" relèvent souvent du <strong>placebo technique</strong> ou peuvent carrément <strong>détruire la stabilité</strong> de ton système.</p>
         </div>
 
-        <div class="category fade-in" id="hardware">
+<div class="warning-box pulse">
+            <h2><span class="emoji">🧠</span> La Réalité Technique</h2>
+            <p><strong>Tu ne peux pas défier la physique.</strong> Les CPUs modernes, Windows et les pilotes sont déjà optimisés par des équipes d'ingénieurs. Ces "tweaks miracles" relèvent souvent du <strong>placebo technique</strong> ou peuvent carrément <strong>détruire la stabilité</strong> de ton système.</p>
+        </div>
+
+        <div class="category fade-in" id="technical">
             <div class="category-title">
-                <span class="emoji">🔧</span> Optimisations Matériel Dangereuses
+                <span class="emoji">🔧</span> Raisons Techniques : Pourquoi Ces Optimisations Sont Inutiles
             </div>
 
             <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">🖥️</span> Windows Est Déjà Fortement Optimisé
+                </div>
+                <div class="danger-level danger-low">Obsolète</div>
+                <div class="reason-section">
+                    <div class="reason-title">Pourquoi c'est déjà fait ?</div>
+                    <div class="reason-content">
+                        Windows (surtout les versions récentes comme 10/11) est conçu pour s'adapter à une large gamme de matériels et cas d'usage. Microsoft travaille avec les fabricants (Intel, AMD, NVIDIA...) pour que l'OS utilise automatiquement les bons réglages et pilotes. Modifier ces paramètres revient souvent à casser volontairement une configuration stable.
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Réalité : Microsoft optimise Windows depuis des décennies avec des milliers d'ingénieurs
+                </div>
+            </div>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">📊</span> Effets Placebo et Gains Insignifiants
+                </div>
+                <div class="danger-level danger-medium">Trompeur</div>
+                <div class="reason-section">
+                    <div class="reason-title">La Vérité Sur Les Gains</div>
+                    <div class="reason-content">
+                        Les "gains" de 8-10% sont souvent mesurés dans des benchmarks synthétiques, pas dans des situations réelles. En usage réel (jeux, bureautique, montage), les gains sont souvent indétectables à l'œil nu. De nombreux tests indépendants ont montré que ces optimisations donnent moins de 1 à 2% de gain réel, souvent avec des effets secondaires négatifs.
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Réalité : Gains réels quasi-inexistants, risques bien réels
+                </div>
+            </div>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">⚡</span> Overclocking/Undervolting Non Généralisable
+                </div>
                 <div class="optimization-name">
                     <span class="emoji">⚡</span> Overclocking / Undervolting (OC/UV)
                 </div>
@@ -493,6 +533,114 @@
                 <div class="reality-check">
                     Réalité : Seuls les experts devraient s'y aventurer, avec monitoring constant
                 </div>
+                
+                <div class="danger-level danger-high">Très Risqué</div>
+                <div class="reason-section">
+                    <div class="reason-title">Pourquoi c'est dangereux ?</div>
+                    <div class="reason-content">
+                        Ces réglages dépendent fortement du silicium exact, du système de refroidissement, de l'alimentation, etc. Les appliquer sans connaissance précise du matériel peut causer : instabilité, BSOD (blue screen), usure prématurée, pertes de données.
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Réalité : Chaque processeur est unique, impossible à optimiser à distance
+                </div>
+            </div>
+        </div>
+
+        <div class="category fade-in" id="security">
+            <div class="category-title">
+                <span class="emoji">🛡️</span> Raisons de Sécurité et de Fiabilité
+            </div>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">💀</span> Scripts Obscurs = Danger Absolu
+                </div>
+                <div class="danger-level danger-extreme">Critique</div>
+                <div class="reason-section">
+                    <div class="reason-title">Les Vrais Risques</div>
+                    <div class="reason-content">
+                        Vous exécutez des scripts faits par un inconnu avec des droits d'administrateur sur votre machine. Ces scripts peuvent contenir :
+                        <ul>
+                            <li>des backdoors (portes dérobées)</li>
+                            <li>des logiciels de surveillance (keyloggers, miners)</li>
+                            <li>des modifications profondes du système non détectables facilement</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Réalité : Vous donnez un accès total à votre système à des inconnus
+                </div>
+            </div>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">🔥</span> Modifications BIOS = Haut Risque
+                </div>
+                <div class="danger-level danger-extreme">Terrain Miné</div>
+                <div class="reason-section">
+                    <div class="reason-title">Pourquoi c'est critique ?</div>
+                    <div class="reason-content">
+                        Le BIOS gère l'allumage et la stabilité de l'ensemble du PC. Mal configurer le BIOS peut : rendre le PC instable, l'empêcher de démarrer (brick), annuler la garantie constructeur, nécessiter une réinitialisation matérielle (clear CMOS).
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Réalité : Un mauvais réglage BIOS peut transformer votre PC en brique
+                </div>
+            </div>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span class="emoji">💣</span> Incompatibilités à Venir
+                </div>
+                <div class="danger-level danger-high">Problématique</div>
+                <div class="reason-section">
+                    <div class="reason-title">Conséquences à Long Terme</div>
+                    <div class="reason-content">
+                        Après ce genre d'optimisation : les mises à jour Windows peuvent échouer, certains logiciels (antivirus, pilotes GPU) peuvent buguer, vous risquez de devoir réinstaller complètement Windows pour revenir en arrière.
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Réalité : Ces modifications cassent la compatibilité future
+                </div>
+            </div>
+        </div>
+
+        <div class="scientific-box fade-in" id="marketing">
+            <h2><span class="emoji">🧪</span> Marketing Manipulateur : Benchmark = Outil Manipulable</h2>
+            <p><strong>Attention aux faux gains :</strong> Un score 3DMark ou UserBenchmark peut facilement être gonflé artificiellement en arrêtant les processus en arrière-plan, baissant la résolution, ou changeant la priorité des tâches. Cela ne reflète aucune amélioration réelle de votre expérience utilisateur. Les optimisations génériques sont vendues comme "sur mesure" alors que l'auteur utilise probablement des réglages génériques recyclés.</p>
+        </div>
+
+        <div class="comparison-table fade-in">
+            <div class="comparison-header">
+                Ce qu'ils promettent VS Ce qui se passe en réalité
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-promise">🎯 Gain de FPS massif</div>
+                <div class="comparison-reality">📉 1-2 FPS au mieux</div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-promise">🛡️ Stabilité absolue</div>
+                <div class="comparison-reality">💥 Bugs, instabilité fréquente</div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-promise">🎯 Réglages sur mesure</div>
+                <div class="comparison-reality">🔄 Scripts génériques recyclés</div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-promise">↩️ Réversible & sûr</div>
+                <div class="comparison-reality">⚠️ Très difficile à annuler, risqué</div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-promise">💰 Économie de matériel</div>
+                <div class="comparison-reality">❌ Faux : le hardware limite les perfs</div>
+            </div>
+        </div>
+
+
+        <div class="category fade-in" id="hardware">
+            <div class="category-title">
+                <span class="emoji">🔧</span> Optimisations Matériel Dangereuses
             </div>
 
             <div class="optimization-item">
