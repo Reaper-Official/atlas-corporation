@@ -2,595 +2,221 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚠️ Optimisations Avancées : Entre Mythe et Réalité</title>
+    <title>Optimisations Avancées : Mythe vs Réalité</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Condensed:wght@400;700&display=swap');
-        
+        /* Reset et base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-dark: #0a0a0a;
-            --secondary-dark: #1a1a1a;
-            --tertiary-dark: #2d2d2d;
-            --accent-orange: #ff6b35;
-            --accent-red: #dc3545;
-            --accent-yellow: #ffc107;
-            --accent-green: #28a745;
-            --text-light: #e8e8e8;
-            --text-muted: #b0b0b0;
-            --border-color: #404040;
-            --danger-max: #8b0000;
-            --danger-high: #ff4500;
-            --danger-medium: #ffa500;
-            --danger-low: #32cd32;
-        }
-
         body {
-            font-family: 'Roboto Condensed', sans-serif;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
-            color: var(--text-light);
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f7f8fc;
+            color: #333;
             line-height: 1.6;
-            overflow-x: hidden;
+            padding-bottom: 100px;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.05) 0%, transparent 50%),
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 100px,
-                    rgba(255, 255, 255, 0.01) 100px,
-                    rgba(255, 255, 255, 0.01) 101px
-                );
-            z-index: -1;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .header {
-            position: fixed;
+            background: #1e1e2f;
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
             top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 3px solid var(--accent-orange);
-            z-index: 1000;
-            padding: 15px 0;
-            box-shadow: 0 2px 20px rgba(255, 107, 53, 0.3);
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
         }
 
         .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--accent-orange);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+            font-weight: bold;
+            font-size: 1.3rem;
         }
 
         .nav-menu {
             display: flex;
-            gap: 30px;
+            gap: 1rem;
         }
 
         .nav-item {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            padding: 8px 16px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
-
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-orange), transparent);
-            transition: width 0.3s ease;
-            z-index: -1;
-        }
-
-        .nav-item:hover::before {
-            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background 0.2s;
         }
 
         .nav-item:hover {
-            border-color: var(--accent-orange);
-            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .container {
-            max-width: 1200px;
+            padding: 2rem;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 100px 20px 50px;
         }
 
         .main-header {
             text-align: center;
-            margin-bottom: 60px;
-            padding: 60px 0;
-            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
-            border: 2px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .main-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow), var(--accent-orange));
+            margin-bottom: 2rem;
         }
 
         .main-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 900;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
         .main-description {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
+            color: #555;
         }
 
-        .loading {
-            text-align: center;
-            padding: 50px;
-            font-size: 1.2rem;
-            color: var(--accent-orange);
+        .warning-box, .scientific-box, .solutions-section, .conclusion, .comparison-table {
+            background-color: #fff;
+            border-left: 5px solid #e63946;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
         }
 
-        .error {
-            text-align: center;
-            padding: 50px;
-            font-size: 1.2rem;
-            color: var(--accent-red);
-            background: rgba(220, 53, 69, 0.1);
-            border: 2px solid var(--accent-red);
-            margin: 20px 0;
-        }
-
-        .warning-box {
-            background: linear-gradient(135deg, var(--danger-max), var(--accent-red));
-            border: 3px solid #ff0000;
-            padding: 30px;
-            margin: 40px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .warning-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 15px,
-                rgba(255, 255, 255, 0.1) 15px,
-                rgba(255, 255, 255, 0.1) 30px
-            );
-        }
-
-        .warning-box h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .warning-box p {
-            font-size: 1.1rem;
-            position: relative;
-            z-index: 10;
-            font-weight: 600;
-        }
-
-        .comparison-table {
-            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
-            border: 2px solid var(--border-color);
-            margin: 40px 0;
-            overflow: hidden;
-        }
-
-        .comparison-table h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--primary-dark);
-            padding: 20px 30px;
-            margin: 0;
-        }
-
-        .comparison-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .comparison-row:last-child {
-            border-bottom: none;
-        }
-
-        .comparison-cell {
-            padding: 20px;
-            position: relative;
-        }
-
-        .comparison-cell.promise {
-            background: rgba(255, 107, 53, 0.1);
-            border-right: 1px solid var(--border-color);
-        }
-
-        .comparison-cell.reality {
-            background: rgba(220, 53, 69, 0.1);
-        }
-
-        .comparison-cell::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-        }
-
-        .comparison-cell.promise::before {
-            background: var(--accent-orange);
-        }
-
-        .comparison-cell.reality::before {
-            background: var(--accent-red);
-        }
-
-        .category {
-            margin: 50px 0;
-            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
-            border: 2px solid var(--border-color);
-            padding: 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--primary-dark);
-            padding: 20px 30px;
-            margin: 0;
-            position: relative;
-        }
-
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
-        }
-
-        .optimization-item {
-            background: var(--secondary-dark);
-            border-bottom: 1px solid var(--border-color);
-            padding: 30px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .optimization-item:hover {
-            background: var(--tertiary-dark);
-            border-left: 4px solid var(--accent-orange);
-        }
-
-        .optimization-item:last-child {
-            border-bottom: none;
-        }
-
-        .optimization-name {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--accent-orange);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .danger-level {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .danger-critique { background: var(--danger-max); color: white; }
-        .danger-terrain-mine { background: #8b0000; color: white; }
-        .danger-tres-risque { background: var(--danger-high); color: white; }
-        .danger-dangereux { background: var(--danger-high); color: white; }
-        .danger-problematique { background: var(--danger-medium); color: var(--primary-dark); }
-        .danger-trompeur { background: var(--danger-medium); color: var(--primary-dark); }
-        .danger-bullshit-marketing { background: #ff1493; color: white; }
-        .danger-absurde { background: #9400d3; color: white; }
-        .danger-redondant { background: var(--danger-low); color: white; }
-        .danger-obsolete { background: #808080; color: white; }
-        .danger-abus-langage { background: #daa520; color: var(--primary-dark); }
-        .danger-dependant-jeu { background: #4682b4; color: white; }
-        .danger-arnaque-totale { background: #b22222; color: white; }
-        .danger-arnaque-premium { background: #8b0000; color: white; }
-        .danger-fuite-immediate { background: #ff0000; color: white; }
-
-        .reason-section {
-            margin: 20px 0;
-            background: rgba(0, 0, 0, 0.3);
-            border-left: 4px solid var(--accent-red);
-            padding: 15px 20px;
-        }
-
-        .reason-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--accent-yellow);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .reason-content {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        .reason-content ul {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-
-        .reason-content li {
-            margin: 5px 0;
-        }
-
-        .reality-check {
-            background: linear-gradient(90deg, var(--accent-green), #20b2aa);
-            color: white;
-            padding: 15px 20px;
-            margin-top: 20px;
-            font-weight: 700;
-            border-left: 4px solid #006400;
-        }
-
-        .reality-check::before {
-            content: '💡 ';
-            font-size: 1.2rem;
-        }
-
-        .details-section {
-            margin: 15px 0;
-            background: rgba(0, 0, 0, 0.4);
-            border-left: 4px solid var(--accent-orange);
-            padding: 15px 20px;
-        }
-
-        .conditions-list {
-            background: rgba(220, 53, 69, 0.1);
-            border: 2px solid var(--accent-red);
-            padding: 20px;
-            margin: 15px 0;
-        }
-
-        .conditions-list ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .conditions-list li {
-            margin: 8px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .conditions-list li::before {
-            content: '⚠️';
-            position: absolute;
-            left: 0;
-        }
-
-        .solutions {
-            background: linear-gradient(135deg, var(--accent-green), #228b22);
-            color: white;
-            padding: 40px;
-            margin: 50px 0;
-            border: 3px solid #006400;
-        }
-
-        .solutions h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .solutions ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .solutions li {
-            margin: 10px 0;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .solutions li:last-child {
-            border-bottom: none;
-        }
-
-        .solutions li::before {
-            content: '✅';
-            position: absolute;
-            left: 0;
-            font-size: 1.2rem;
+        .solutions-section {
+            border-color: #2a9d8f;
         }
 
         .conclusion {
-            background: linear-gradient(135deg, var(--accent-green), #228b22);
-            color: white;
-            padding: 40px;
-            margin: 50px 0;
-            text-align: center;
-            border: 3px solid #006400;
+            border-color: #f4a261;
         }
 
-        .conclusion h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .comparison-table {
+            border-color: #457b9d;
         }
 
-        .conclusion p {
+        .comparison-header {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .category {
+            background: #fff;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            border-left: 5px solid #264653;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .category-title {
             font-size: 1.2rem;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
+            font-weight: bold;
+            margin-bottom: 1rem;
         }
 
-        .emoji {
-            font-size: 1.2em;
-            margin-right: 10px;
+        .optimization-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid #ccc;
+        }
+
+        .optimization-name {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .danger-level {
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .danger-élevé {
+            color: #e63946;
+        }
+
+        .danger-moyen {
+            color: #f4a261;
+        }
+
+        .danger-faible {
+            color: #2a9d8f;
+        }
+
+        .explanation-title, .details-title {
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .details-section, .explanation-section, .conditions-list {
+            margin-left: 1rem;
+        }
+
+        .reality-check {
+            background-color: #f1faee;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            border-left: 4px solid #1d3557;
+        }
+
+        .solutions-list {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        .loading {
+            font-style: italic;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            0%, 100% { box-shadow: 0 0 0px rgba(230, 57, 70, 0.4); }
+            50% { box-shadow: 0 0 10px rgba(230, 57, 70, 0.4); }
         }
 
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
+        /* Emojis flottants */
+        .floating-element {
+            position: fixed;
+            font-size: 1.5rem;
+            animation: floatY ease-in-out infinite;
+            pointer-events: none;
+            opacity: 0.3;
         }
 
-        .pulse {
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .container {
-                padding: 80px 15px 30px;
-            }
-            
-            .main-title {
-                font-size: 2rem;
-            }
-            
-            .category-title {
-                font-size: 1.4rem;
-                padding: 15px 20px;
-            }
-            
-            .optimization-item {
-                padding: 20px;
-            }
-
-            .comparison-row {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-cell.promise {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-header {
-                padding: 40px 20px;
-            }
-            
-            .warning-box, .conclusion, .solutions {
-                padding: 20px;
-            }
-            
-            .reason-section {
-                padding: 10px 15px;
-            }
+        @keyframes floatY {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
         }
     </style>
 </head>
@@ -599,229 +225,197 @@
         <div class="nav-container">
             <div class="logo">Atlas Corporation</div>
             <nav class="nav-menu">
-                <span class="nav-item" onclick="scrollToSection('technical')">Technique</span>
-                <span class="nav-item" onclick="scrollToSection('security')">Sécurité</span>
-                <span class="nav-item" onclick="scrollToSection('hardware')">Matériel</span>
-                <span class="nav-item" onclick="scrollToSection('system')">Système</span>
-                <span class="nav-item" onclick="scrollToSection('snite')">Arnaque Snite</span>
+                <a href="#arguments" class="nav-item">Arguments</a>
+                <a href="#categories" class="nav-item">Catégories</a>
+                <a href="#snite" class="nav-item">Arnaque Snite</a>
+                <a href="#solutions" class="nav-item">Solutions</a>
+                <a href="#conclusion" class="nav-item">Conclusion</a>
             </nav>
         </div>
     </header>
 
     <div class="container">
         <div class="main-header fade-in">
-            <h1 class="main-title" id="main-title">⚠️ Chargement...</h1>
+            <h1 class="main-title" id="main-title">⚠️ Optimisations Avancées : Mythe vs Réalité</h1>
             <p class="main-description" id="main-description">
-                Chargement des données...
+                Découvrez pourquoi ces optimisations "avancées" sont souvent dangereuses, inutiles ou obsolètes. 
+                La vérité technique derrière les tweaks populaires.
             </p>
         </div>
 
-        <div id="loading" class="loading">
-            <p>🔄 Chargement du fichier args.json...</p>
+        <div class="warning-box pulse" id="warning-section">
+            <h2><span class="emoji">🧠</span> <span id="warning-title">Chargement...</span></h2>
+            <p id="warning-content">Chargement des données...</p>
         </div>
 
-        <div id="error" class="error" style="display: none;">
-            <p>❌ Erreur lors du chargement du fichier args.json</p>
-            <p>Veuillez vérifier que le fichier existe et est accessible.</p>
+        <div class="scientific-box fade-in" id="marketing-section" style="display: none;">
+            <h2 id="marketing-title">Marketing Manipulateur</h2>
+            <p id="marketing-content"></p>
         </div>
 
-        <div id="content" style="display: none;">
-            <!-- Le contenu sera généré par JavaScript -->
+        <div class="comparison-table fade-in" id="comparison-section" style="display: none;">
+            <div class="comparison-header">Promesses vs Réalité</div>
+            <div id="comparison-rows"></div>
+        </div>
+
+        <div id="categories-container">
+            <div class="loading">Chargement des catégories...</div>
+        </div>
+
+        <div class="solutions-section fade-in" id="solutions-section" style="display: none;">
+            <h2><span class="emoji">✅</span> <span id="solutions-title">Solutions Réelles</span></h2>
+            <ul class="solutions-list" id="solutions-list"></ul>
+        </div>
+
+        <div class="conclusion fade-in" id="conclusion-section" style="display: none;">
+            <h2><span class="emoji">💡</span> <span id="conclusion-title">Conclusion</span></h2>
+            <p id="conclusion-content"></p>
         </div>
     </div>
 
     <script>
-        // Fonction pour faire défiler vers une section
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+        let argsData = null;
+
+        function createFloatingElements() {
+            const elements = ["⚠️", "🔧", "💻", "🧠", "⚡", "🚫", "💡", "🎯", "🛡️", "📊"];
+            for (let i = 0; i < 15; i++) {
+                const el = document.createElement('div');
+                el.className = 'floating-element';
+                el.textContent = elements[Math.floor(Math.random() * elements.length)];
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.top = Math.random() * 100 + 'vh';
+                el.style.animationDelay = Math.random() * 8 + 's';
+                el.style.animationDuration = (Math.random() * 6 + 6) + 's';
+                document.body.appendChild(el);
             }
         }
 
-        // Fonction pour normaliser les noms de niveau de danger
-        function normalizeDangerLevel(level) {
-            return level.toLowerCase()
-                .replace(/[^a-z]/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-|-$/g, '');
+        function getDangerClass(level) {
+            return 'danger-' + level.toLowerCase();
         }
 
-        // Fonction pour générer le contenu HTML
-        function generateContent(data) {
-            let html = '';
-
-            // Arguments généraux
-            if (data.arguments_generaux) {
-                for (const [key, arg] of Object.entries(data.arguments_generaux)) {
-                    html += `
-                        <div class="warning-box pulse">
-                            <h2><span class="emoji">🧠</span> ${arg.titre}</h2>
-                            <p><strong>${arg.argument}</strong></p>
-                        </div>
-                    `;
-                }
-            }
-
-            // Comparaison promesses vs réalité
-            if (data.comparaison_promesses_realite) {
-                html += `
-                    <div class="comparison-table fade-in">
-                        <h3><span class="emoji">📊</span> Promesses vs Réalité</h3>
-                        ${data.comparaison_promesses_realite.map(item => `
-                            <div class="comparison-row">
-                                <div class="comparison-cell promise">
-                                    <strong>Promesse :</strong> ${item.promesse}
-                                </div>
-                                <div class="comparison-cell reality">
-                                    <strong>Réalité :</strong> ${item.realite}
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            }
-
-            // Catégories d'arguments
-            if (data.categories_arguments) {
-                for (const [categoryKey, category] of Object.entries(data.categories_arguments)) {
-                    html += `
-                        <div class="category fade-in" id="${categoryKey.replace(/_/g, '-')}">
-                            <div class="category-title">
-                                <span class="emoji">🔧</span> ${category.titre}
-                            </div>
-                    `;
-
-                    if (category.arguments) {
-                        for (const arg of category.arguments) {
-                            const dangerClass = normalizeDangerLevel(arg.niveau_danger);
-                            
-                            html += `
-                                <div class="optimization-item">
-                                    <div class="optimization-name">
-                                        <span class="emoji">${arg.emoji || '⚠️'}</span> ${arg.nom}
-                                    </div>
-                                    <div class="danger-level danger-${dangerClass}">${arg.niveau_danger}</div>
-                                    <div class="reason-section">
-                                        <div class="reason-title">Pourquoi c'est problématique ?</div>
-                                        <div class="reason-content">
-                                            ${arg.explication}
-                                        </div>
-                                    </div>
-                                    <div class="reality-check">
-                                        Réalité : ${arg.realite}
-                                    </div>
-                            `;
-
-                            // Détails spéciaux pour Snite
-                            if (arg.details) {
-                                html += `<div class="details-section">`;
-                                for (const [detailKey, detailValue] of Object.entries(arg.details)) {
-                                    html += `<p><strong>${detailKey.replace(/_/g, ' ')} :</strong> ${detailValue}</p>`;
-                                }
-                                html += `</div>`;
-                            }
-
-                            // Conditions pour Snite
-                            if (arg.conditions) {
-                                html += `
-                                    <div class="conditions-list">
-                                        <strong>Conditions abusives :</strong>
-                                        <ul>
-                                            ${arg.conditions.map(condition => `<li>${condition}</li>`).join('')}
-                                        </ul>
-                                    </div>
-                                `;
-                            }
-
-                            html += `</div>`;
-                        }
-                    }
-
-                    html += `</div>`;
-                }
-            }
-
-            // Solutions réelles
-            if (data.solutions_reelles) {
-                html += `
-                    <div class="solutions fade-in">
-                        <h2>${data.solutions_reelles.titre}</h2>
-                        <ul>
-                            ${data.solutions_reelles.actions.map(action => `<li>${action}</li>`).join('')}
-                        </ul>
-                    </div>
-                `;
-            }
-
-            // Conclusion
-            if (data.conclusion) {
-                html += `
-                    <div class="conclusion fade-in">
-                        <h2>${data.conclusion.titre}</h2>
-                        <p>${data.conclusion.message}</p>
-                    </div>
-                `;
-            }
-
-            return html;
+        function getDangerLabel(level, niveaux) {
+            return niveaux[level] || level;
         }
 
-        // Fonction pour charger le fichier JSON
-        async function loadJsonData() {
-            const loadingDiv = document.getElementById('loading');
-            const errorDiv = document.getElementById('error');
-            const contentDiv = document.getElementById('content');
-            const mainTitle = document.getElementById('main-title');
-            const mainDescription = document.getElementById('main-description');
-
+        async function loadArgsData() {
             try {
-                // Tentative de chargement du fichier args.json
-                const response = await fetch('args.json');
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                // Mise à jour du titre et de la description
-                mainTitle.textContent = data.titre_principal || "⚠️ Optimisations Avancées : Mythe vs Réalité";
-                mainDescription.textContent = data.description_generale || "Découvrez pourquoi ces optimisations 'avancées' sont souvent dangereuses, inutiles ou obsolètes.";
-                
-                // Génération du contenu
-                contentDiv.innerHTML = generateContent(data);
-                
-                // Masquer le loading et afficher le contenu
-                loadingDiv.style.display = 'none';
-                contentDiv.style.display = 'block';
-                
-                // Ajouter les animations
-                setTimeout(() => {
-                    const elements = document.querySelectorAll('.fade-in');
-                    elements.forEach((el, index) => {
-                        setTimeout(() => {
-                            el.style.opacity = '1';
-                            el.style.transform = 'translateY(0)';
-                        }, index * 100);
-                    });
-                }, 100);
-                
-            } catch (error) {
-                console.error('Erreur lors du chargement:', error);
-                
-                // Afficher l'erreur
-                loadingDiv.style.display = 'none';
-                errorDiv.style.display = 'block';
-                
-                // Utiliser des données par défaut
-                mainTitle.textContent = "⚠️ Optimisations Avancées : Mythe vs Réalité";
-                mainDescription.textContent = "Erreur lors du chargement des données détaillées.";
+                const response = await fetch('./args.json');
+                if (!response.ok) throw new Error('Fichier args.json introuvable.');
+                argsData = await response.json();
+                displayData();
+            } catch (err) {
+                document.getElementById('categories-container').innerHTML =
+                    `<div class="loading">Erreur : ${err.message}</div>`;
             }
         }
 
-        // Chargement des données au démarrage
-        document.addEventListener('DOMContentLoaded', loadJsonData);
+        function displayData() {
+            if (!argsData) return;
+
+            if (argsData.titre_principal)
+                document.getElementById('main-title').textContent = argsData.titre_principal;
+            if (argsData.description_generale)
+                document.getElementById('main-description').textContent = argsData.description_generale;
+
+            displayGeneralArguments();
+            displayComparison();
+            displayCategories();
+            displaySolutions();
+            displayConclusion();
+        }
+
+        function displayGeneralArguments() {
+            if (argsData.arguments_generaux?.realite_technique) {
+                document.getElementById('warning-title').textContent = argsData.arguments_generaux.realite_technique.titre;
+                document.getElementById('warning-content').textContent = argsData.arguments_generaux.realite_technique.argument;
+            }
+            if (argsData.arguments_generaux?.marketing_manipulateur) {
+                document.getElementById('marketing-title').textContent = argsData.arguments_generaux.marketing_manipulateur.titre;
+                document.getElementById('marketing-content').textContent = argsData.arguments_generaux.marketing_manipulateur.argument;
+                document.getElementById('marketing-section').style.display = 'block';
+            }
+        }
+
+        function displayComparison() {
+            if (!argsData.comparaison_promesses_realite) return;
+            const section = document.getElementById('comparison-section');
+            const rows = document.getElementById('comparison-rows');
+            rows.innerHTML = '';
+            argsData.comparaison_promesses_realite.forEach(row => {
+                rows.innerHTML += `
+                    <div class="comparison-row">
+                        <div class="comparison-promise">${row.promesse}</div>
+                        <div class="comparison-reality">${row.realite}</div>
+                    </div>`;
+            });
+            section.style.display = 'block';
+        }
+
+        function displayCategories() {
+            const container = document.getElementById('categories-container');
+            container.innerHTML = '';
+
+            const niveaux = argsData.niveaux_danger || {};
+            const categories = argsData.categories_arguments || {};
+
+            Object.entries(categories).forEach(([key, cat]) => {
+                const div = document.createElement('div');
+                div.className = 'category fade-in';
+                div.id = key;
+
+                let html = `<div class="category-title">${cat.titre}</div>`;
+                cat.arguments?.forEach(arg => {
+                    html += `
+                        <div class="optimization-item">
+                            <div class="optimization-name"><span class="emoji">${arg.emoji || '⚡'}</span> ${arg.nom}</div>
+                            <div class="danger-level ${getDangerClass(arg.niveau_danger)}">
+                                ${getDangerLabel(arg.niveau_danger, niveaux)}
+                            </div>
+                            ${arg.explication ? `<div class="explanation-section"><div class="explanation-title">Explication</div><div class="explanation-content">${arg.explication}</div></div>` : ''}
+                            ${arg.details ? `
+                                <div class="details-section">
+                                    ${Object.entries(arg.details).map(([k,v]) => `
+                                        <div class="details-item">
+                                            <div class="details-title">${k.replace(/_/g, ' ').toUpperCase()}</div>
+                                            <div>${v}</div>
+                                        </div>`).join('')}
+                                </div>` : ''}
+                            ${arg.conditions ? `
+                                <div class="explanation-section">
+                                    <div class="explanation-title">Conditions Abusives</div>
+                                    <ul class="conditions-list">${arg.conditions.map(c => `<li>${c}</li>`).join('')}</ul>
+                                </div>` : ''}
+                            ${arg.realite ? `<div class="reality-check">${arg.realite}</div>` : ''}
+                        </div>`;
+                });
+
+                div.innerHTML = html;
+                container.appendChild(div);
+            });
+        }
+
+        function displaySolutions() {
+            const section = document.getElementById('solutions-section');
+            const list = document.getElementById('solutions-list');
+            if (!argsData.solutions_reelles) return;
+            list.innerHTML = '';
+            argsData.solutions_reelles.forEach(item => {
+                list.innerHTML += `<li>${item}</li>`;
+            });
+            section.style.display = 'block';
+        }
+
+        function displayConclusion() {
+            if (!argsData.conclusion) return;
+            document.getElementById('conclusion-title').textContent = argsData.conclusion.titre;
+            document.getElementById('conclusion-content').textContent = argsData.conclusion.texte;
+            document.getElementById('conclusion-section').style.display = 'block';
+        }
+
+        // Initialisation
+        createFloatingElements();
+        loadArgsData();
     </script>
 </body>
 </html>
