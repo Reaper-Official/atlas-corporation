@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bonnes Pratiques PC - Guide Complet</title>
     <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --tertiary-dark: #2d2d2d;
+            --accent-orange: #ff6b35;
+            --accent-red: #cc0000;
+            --accent-yellow: #ffcc00;
+            --accent-green: #ff8800;
+            --text-light: #ffffff;
+            --text-muted: #cccccc;
+            --border-color: #660000;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,9 +27,29 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
             min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 204, 0, 0.05) 0%, transparent 50%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(255, 255, 255, 0.01) 100px,
+                    rgba(255, 255, 255, 0.01) 101px
+                );
+            z-index: -1;
         }
 
         .container {
@@ -27,85 +60,153 @@
 
         .header {
             text-align: center;
-            color: white;
+            color: var(--text-light);
             margin-bottom: 40px;
             padding: 40px 0;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow), var(--accent-orange));
         }
 
         .header h1 {
             font-size: 3rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 900;
+            letter-spacing: 2px;
         }
 
         .header p {
             font-size: 1.2rem;
-            opacity: 0.9;
+            color: var(--text-muted);
         }
 
         .content {
-            background: white;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             margin-bottom: 20px;
+            border: 2px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
         }
 
         .section {
             margin-bottom: 40px;
             padding: 30px;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
             border-radius: 15px;
-            border-left: 5px solid #667eea;
+            border-left: 5px solid var(--accent-orange);
+            border: 2px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
         }
 
         .section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
+            border-color: var(--accent-orange);
         }
 
         .section h2 {
-            color: #667eea;
+            color: var(--accent-orange);
             font-size: 1.8rem;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border-bottom: 3px solid var(--accent-orange);
+            padding-bottom: 10px;
         }
 
         .section h3 {
-            color: #4a5568;
+            color: var(--accent-yellow);
             font-size: 1.3rem;
             margin: 20px 0 10px 0;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .section p {
             margin-bottom: 15px;
-            color: #555;
+            color: var(--text-muted);
             font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .tool-card {
-            background: white;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
             padding: 20px;
             margin: 15px 0;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 4px solid #764ba2;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-left: 4px solid var(--accent-orange);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.2);
+            border-left-color: var(--accent-yellow);
         }
 
         .tool-card h4 {
-            color: #764ba2;
+            color: var(--accent-orange);
             font-size: 1.2rem;
             margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         .icon {
             width: 30px;
             height: 30px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-red));
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
@@ -116,7 +217,7 @@
 
         .btn {
             display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-red));
             color: white;
             padding: 12px 25px;
             text-decoration: none;
@@ -124,11 +225,15 @@
             font-weight: 600;
             transition: all 0.3s ease;
             margin: 10px 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--accent-orange);
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+            border-color: var(--accent-yellow);
         }
 
         .antivirus-grid {
@@ -139,25 +244,50 @@
         }
 
         .antivirus-card {
-            background: white;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border-top: 4px solid #667eea;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-top: 4px solid var(--accent-orange);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .antivirus-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
+        }
+
+        .antivirus-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
         }
 
         .antivirus-card h4 {
-            color: #667eea;
+            color: var(--accent-orange);
             font-size: 1.4rem;
             margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
             padding: 20px;
             border-radius: 10px;
             margin: 20px 0;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid var(--accent-yellow);
+            color: var(--text-light);
+            font-weight: 600;
         }
 
         @media (max-width: 768px) {
@@ -171,6 +301,10 @@
             
             .section {
                 padding: 20px;
+            }
+
+            .antivirus-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
