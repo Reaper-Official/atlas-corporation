@@ -89,35 +89,88 @@
             text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
         }
 
-   .nav-menu {
+  .nav-menu {
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
     width: 220px;
-    background-color: #111;
+    background: linear-gradient(180deg, var(--secondary-dark), var(--primary-dark));
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 2rem 1rem;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    padding: 2rem 1.2rem;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.4);
+    border-left: 2px solid var(--accent-orange);
     z-index: 1000;
     overflow-y: auto;
+    gap: 1.2rem;
 }
 
 .nav-item {
-    color: white;
+    color: var(--text-light);
     text-decoration: none;
-    margin-bottom: 1.2rem;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.3s;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .nav-item:hover {
-    color: #00bcd4;
+    background: var(--accent-orange);
+    color: var(--primary-dark);
+    box-shadow: 0 0 10px var(--accent-orange);
 }
 
+/* Effet actif */
+.nav-item.active {
+    background: var(--accent-yellow);
+    color: var(--primary-dark);
+    box-shadow: 0 0 12px var(--accent-yellow);
+}
+
+/* Scroll automatique fluide */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Padding du contenu principal pour pas passer sous la nav */
+.container {
+    margin-right: 240px;
+}
+
+/* Section animée à l’entrée */
+section:target {
+    animation: fadeInGlow 1s ease forwards;
+}
+
+@keyframes fadeInGlow {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        box-shadow: none;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        box-shadow: 0 0 20px rgba(255, 136, 0, 0.3);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .container {
+        margin-right: 0;
+    }
+}
         .container {
             max-width: 1200px;
             margin: 0 auto;
