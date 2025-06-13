@@ -89,43 +89,40 @@
             text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
         }
 
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-        }
+   .side-navbar {
+    width: 200px; /* ou moins selon ton design */
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    overflow-y: auto;
+}
 
-        .nav-item {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            padding: 8px 16px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
+.side-navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-orange), transparent);
-            transition: width 0.3s ease;
-            z-index: -1;
-        }
+.side-navbar li {
+    margin: 1rem 0;
+}
 
-        .nav-item:hover::before {
-            width: 100%;
-        }
+.side-navbar a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
 
-        .nav-item:hover {
-            border-color: var(--accent-orange);
-            color: white;
-        }
+.side-navbar a:hover {
+    text-decoration: underline;
+}
 
         .container {
             max-width: 1200px;
@@ -496,12 +493,15 @@
         <div class="nav-container">
             <div class="logo">Atlas Corporation</div>
             <nav class="nav-menu">
-                <a href="#hardware" class="nav-item">Matériel</a>
-                <a href="#system" class="nav-item">Système</a>
-                <a href="#network" class="nav-item">Réseau</a>
-                <a href="#performance" class="nav-item">Performance</a>
-                <a href="#snite" class="nav-item">Optis. Snite Debunk</a>
-            </nav>
+    <a href="#technical" class="nav-item">Technique</a>
+    <a href="#security" class="nav-item">Sécurité</a>
+    <a href="#marketing" class="nav-item">Marketing</a>
+    <a href="#hardware" class="nav-item">Matériel</a>
+    <a href="#system" class="nav-item">Système</a>
+    <a href="#network" class="nav-item">Réseau</a>
+    <a href="#performance" class="nav-item">Performance</a>
+    <a href="#snite" class="nav-item">Optis. Snite Debunk</a>
+</nav>
         </div>
     </header>
 
