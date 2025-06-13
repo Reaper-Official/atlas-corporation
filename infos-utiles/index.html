@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guide Informatique - Réseau et Composants PC</title>
-    <style>
+ <style>
         :root {
             --primary-dark: #0a0a0a;
             --secondary-dark: #1a1a1a;
@@ -16,6 +16,11 @@
             --text-light: #ffffff;
             --text-muted: #cccccc;
             --border-color: #660000;
+            --danger-max: #ff0000;
+            --danger-high: #ff3333;
+            --danger-medium: #ff6600;
+            --danger-low: #ffaa00;
+            --danger-no: #5bda12;
         }
 
         * {
@@ -66,6 +71,8 @@
             border: 2px solid var(--border-color);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
         }
 
         header::before {
@@ -91,6 +98,16 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: fadeInDown 1s ease-out;
             font-weight: 900;
+        }
+
+        h1::before {
+            content: "⚡";
+            font-size: 3rem;
+            margin-right: 1rem;
+            background: none;
+            -webkit-background-clip: initial;
+            -webkit-text-fill-color: var(--accent-orange);
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .subtitle {
@@ -120,13 +137,14 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
         }
 
         .tab-button:hover, .tab-button.active {
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
             border-color: var(--accent-yellow);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
             color: var(--primary-dark);
         }
 
@@ -164,7 +182,7 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
             border-color: var(--accent-orange);
         }
 
@@ -208,6 +226,7 @@
             margin-left: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
         .connection-grid {
@@ -224,12 +243,14 @@
             border-left: 4px solid var(--accent-orange);
             transition: all 0.3s ease;
             border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.1);
         }
 
         .connection-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.2);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
             border-left-color: var(--accent-yellow);
+            border-color: var(--accent-orange);
         }
 
         .component-grid {
@@ -247,6 +268,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         .component-card::before {
@@ -262,7 +284,7 @@
         .component-card:hover {
             border-color: var(--accent-orange);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
         }
 
         .component-title {
@@ -297,26 +319,29 @@
             color: var(--accent-orange);
             font-weight: bold;
             font-size: 1.1rem;
+            text-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
         }
 
         .warning {
-            background: linear-gradient(135deg, #ff3333, #cc0000);
+            background: linear-gradient(135deg, var(--danger-high), var(--danger-max));
             padding: 15px;
             border-radius: 10px;
             margin: 15px 0;
-            border-left: 4px solid #ff0000;
+            border-left: 4px solid var(--danger-max);
             color: var(--text-light);
             font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
         }
 
         .tip {
-            background: linear-gradient(135deg, var(--accent-green), #228b22);
+            background: linear-gradient(135deg, var(--danger-no), #228b22);
             padding: 15px;
             border-radius: 10px;
             margin: 15px 0;
             border-left: 4px solid #006400;
             color: var(--text-light);
             font-weight: 600;
+            box-shadow: 0 5px 15px rgba(91, 218, 18, 0.3);
         }
 
         @keyframes fadeInDown {
@@ -350,11 +375,49 @@
             }
         }
 
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+            }
+            50% { 
+                transform: scale(1.1);
+                text-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+            }
+        }
+
         .icon {
             width: 24px;
             height: 24px;
             display: inline-block;
             filter: brightness(0) saturate(100%) invert(59%) sepia(84%) saturate(2476%) hue-rotate(346deg) brightness(101%) contrast(101%);
+        }
+
+        /* Enhanced visual effects from PJ2 */
+        .highlight {
+            background: linear-gradient(120deg, var(--accent-orange), var(--accent-yellow));
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        /* Shimmer effect for interactive elements */
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
+
+        .tab-button:hover::before {
+            transform: translateX(100%);
         }
 
         @media (max-width: 768px) {
