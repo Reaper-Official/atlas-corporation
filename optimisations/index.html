@@ -89,39 +89,33 @@
             text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
         }
 
-   .side-navbar {
-    width: 200px; /* ou moins selon ton design */
-    background-color: #1a1a1a;
-    color: white;
+   .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 220px;
+    background-color: #111;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     overflow-y: auto;
 }
 
-.side-navbar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.side-navbar li {
-    margin: 1rem 0;
-}
-
-.side-navbar a {
+.nav-item {
     color: white;
     text-decoration: none;
-    transition: 0.3s;
+    margin-bottom: 1.2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
 }
 
-.side-navbar a:hover {
-    text-decoration: underline;
+.nav-item:hover {
+    color: #00bcd4;
 }
 
         .container {
@@ -1044,6 +1038,27 @@
         document.addEventListener('DOMContentLoaded', () => {
             createFloatingElements();
         });
+        document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelectorAll('.nav-item');
+    const sections = [...navLinks].map(link => document.querySelector(link.getAttribute('href')));
+
+    const activateLink = () => {
+        let index = sections.findIndex(
+            section => section.getBoundingClientRect().top <= window.innerHeight * 0.4
+        );
+
+        navLinks.forEach((link, i) => {
+            if (i === index) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    };
+
+    window.addEventListener("scroll", activateLink);
+    activateLink(); // on load
+});
     </script>
 </body>
 </html>
