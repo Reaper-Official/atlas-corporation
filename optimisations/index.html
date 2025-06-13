@@ -1070,48 +1070,6 @@ section:target {
             });
         });
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = '0s';
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            createFloatingElements();
-        });
-        document.addEventListener("DOMContentLoaded", function () {
-    const navLinks = document.querySelectorAll('.nav-item');
-    const sections = [...navLinks].map(link => document.querySelector(link.getAttribute('href')));
-
-    const activateLink = () => {
-        let index = sections.findIndex(
-            section => section.getBoundingClientRect().top <= window.innerHeight * 0.4
-        );
-
-        navLinks.forEach((link, i) => {
-            if (i === index) {
-                link.classList.add("active");
-            } else {
-                link.classList.remove("active");
-            }
-        });
-    };
-
-    window.addEventListener("scroll", activateLink);
-    activateLink(); // on load
-});
     </script>
 </body>
 </html>
