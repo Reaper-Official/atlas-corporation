@@ -2,420 +2,133 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Optimisations Avancées : Mythe vs Réalité</title>
-    <style>
-        /* Reset et base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f7f8fc;
-            color: #333;
-            line-height: 1.6;
-            padding-bottom: 100px;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .header {
-            background: #1e1e2f;
-            color: #fff;
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .nav-item {
-            padding: 0.5rem;
-            border-radius: 5px;
-            transition: background 0.2s;
-        }
-
-        .nav-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .container {
-            padding: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .main-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .main-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .main-description {
-            color: #555;
-        }
-
-        .warning-box, .scientific-box, .solutions-section, .conclusion, .comparison-table {
-            background-color: #fff;
-            border-left: 5px solid #e63946;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
-
-        .solutions-section {
-            border-color: #2a9d8f;
-        }
-
-        .conclusion {
-            border-color: #f4a261;
-        }
-
-        .comparison-table {
-            border-color: #457b9d;
-        }
-
-        .comparison-header {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .comparison-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .category {
-            background: #fff;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            border-radius: 8px;
-            border-left: 5px solid #264653;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-        }
-
-        .category-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .optimization-item {
-            margin-bottom: 1.5rem;
-            padding-left: 1rem;
-            border-left: 3px solid #ccc;
-        }
-
-        .optimization-name {
-            font-weight: bold;
-            margin-bottom: 0.3rem;
-        }
-
-        .danger-level {
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .danger-élevé {
-            color: #e63946;
-        }
-
-        .danger-moyen {
-            color: #f4a261;
-        }
-
-        .danger-faible {
-            color: #2a9d8f;
-        }
-
-        .explanation-title, .details-title {
-            font-weight: bold;
-            margin-top: 0.5rem;
-        }
-
-        .details-section, .explanation-section, .conditions-list {
-            margin-left: 1rem;
-        }
-
-        .reality-check {
-            background-color: #f1faee;
-            padding: 0.5rem;
-            border-radius: 4px;
-            margin-top: 0.5rem;
-            border-left: 4px solid #1d3557;
-        }
-
-        .solutions-list {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-        }
-
-        .loading {
-            font-style: italic;
-            text-align: center;
-            margin: 1rem 0;
-        }
-
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 1s ease-in;
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0px rgba(230, 57, 70, 0.4); }
-            50% { box-shadow: 0 0 10px rgba(230, 57, 70, 0.4); }
-        }
-
-        /* Emojis flottants */
-        .floating-element {
-            position: fixed;
-            font-size: 1.5rem;
-            animation: floatY ease-in-out infinite;
-            pointer-events: none;
-            opacity: 0.3;
-        }
-
-        @keyframes floatY {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0); }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="nav-container">
-            <div class="logo">Atlas Corporation</div>
-            <nav class="nav-menu">
-                <a href="#arguments" class="nav-item">Arguments</a>
-                <a href="#categories" class="nav-item">Catégories</a>
-                <a href="#snite" class="nav-item">Arnaque Snite</a>
-                <a href="#solutions" class="nav-item">Solutions</a>
-                <a href="#conclusion" class="nav-item">Conclusion</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="container">
+    <header class="container">
         <div class="main-header fade-in">
-            <h1 class="main-title" id="main-title">⚠️ Optimisations Avancées : Mythe vs Réalité</h1>
-            <p class="main-description" id="main-description">
+            <h1 class="main-title">⚠️ Optimisations Avancées : Mythe vs Réalité</h1>
+            <p class="main-description">
                 Découvrez pourquoi ces optimisations "avancées" sont souvent dangereuses, inutiles ou obsolètes. 
                 La vérité technique derrière les tweaks populaires.
             </p>
         </div>
-
-        <div class="warning-box pulse" id="warning-section">
-            <h2><span class="emoji">🧠</span> <span id="warning-title">Chargement...</span></h2>
-            <p id="warning-content">Chargement des données...</p>
+        <div class="warning-box pulse">
+            <h2><span class="emoji">🧠</span> La Réalité Technique</h2>
+            <p><strong>Tu ne peux pas défier la physique.</strong> Les CPUs modernes, Windows et les pilotes sont déjà optimisés par des ingénieurs. Ces "tweaks miracles" relèvent souvent du <strong>placebo technique</strong> ou peuvent <strong>nuire à la stabilité</strong> de ton système.</p>
         </div>
+    </header>
 
-        <div class="scientific-box fade-in" id="marketing-section" style="display: none;">
-            <h2 id="marketing-title">Marketing Manipulateur</h2>
-            <p id="marketing-content"></p>
-        </div>
+    <main class="container">
+        <section class="category fade-in" id="technical">
+            <h2><span class="emoji">🔧</span> Raisons Techniques</h2>
 
-        <div class="comparison-table fade-in" id="comparison-section" style="display: none;">
-            <div class="comparison-header">Promesses vs Réalité</div>
-            <div id="comparison-rows"></div>
-        </div>
+            <article class="optimization-item">
+                <h3><span class="emoji">🖥️</span> Windows Est Déjà Optimisé</h3>
+                <div class="danger-level danger-low">Obsolète</div>
+                <p><strong>Pourquoi ?</strong> Windows 10/11 est conçu pour s'adapter automatiquement au matériel. Modifier ses réglages revient souvent à dégrader une configuration stable.</p>
+                <p class="reality-check">Réalité : Microsoft optimise Windows depuis des décennies.</p>
+            </article>
 
-        <div id="categories-container">
-            <div class="loading">Chargement des catégories...</div>
-        </div>
+            <article class="optimization-item">
+                <h3><span class="emoji">📊</span> Effets Placebo</h3>
+                <div class="danger-level danger-medium">Trompeur</div>
+                <p><strong>Pourquoi ?</strong> Les gains mesurés sont souvent insignifiants dans la pratique, malgré ce que prétendent les benchmarks.</p>
+                <p class="reality-check">Réalité : Gains réels minimes, risques bien présents.</p>
+            </article>
 
-        <div class="solutions-section fade-in" id="solutions-section" style="display: none;">
-            <h2><span class="emoji">✅</span> <span id="solutions-title">Solutions Réelles</span></h2>
-            <ul class="solutions-list" id="solutions-list"></ul>
-        </div>
+            <article class="optimization-item">
+                <h3><span class="emoji">⚡</span> Overclocking / Undervolting</h3>
+                <div class="danger-level danger-high">Très Risqué</div>
+                <p><strong>Pourquoi ?</strong> Réglages non maîtrisés peuvent provoquer instabilités, pannes matérielles ou pertes de données.</p>
+                <p class="reality-check">Réalité : Réservé aux experts avec monitoring constant.</p>
+            </article>
+        </section>
 
-        <div class="conclusion fade-in" id="conclusion-section" style="display: none;">
-            <h2><span class="emoji">💡</span> <span id="conclusion-title">Conclusion</span></h2>
-            <p id="conclusion-content"></p>
-        </div>
-    </div>
+        <section class="category fade-in" id="security">
+            <h2><span class="emoji">🛡️</span> Sécurité et Fiabilité</h2>
 
-    <script>
-        let argsData = null;
+            <article class="optimization-item">
+                <h3><span class="emoji">💀</span> Scripts Obscurs</h3>
+                <div class="danger-level danger-extreme">Critique</div>
+                <p><strong>Pourquoi ?</strong> Ces scripts peuvent inclure malware, keyloggers, ou altérations invisibles du système.</p>
+                <p class="reality-check">Réalité : Vous donnez un accès total à votre système à des inconnus.</p>
+            </article>
 
-        function createFloatingElements() {
-            const elements = ["⚠️", "🔧", "💻", "🧠", "⚡", "🚫", "💡", "🎯", "🛡️", "📊"];
-            for (let i = 0; i < 15; i++) {
-                const el = document.createElement('div');
-                el.className = 'floating-element';
-                el.textContent = elements[Math.floor(Math.random() * elements.length)];
-                el.style.left = Math.random() * 100 + 'vw';
-                el.style.top = Math.random() * 100 + 'vh';
-                el.style.animationDelay = Math.random() * 8 + 's';
-                el.style.animationDuration = (Math.random() * 6 + 6) + 's';
-                document.body.appendChild(el);
-            }
-        }
+            <article class="optimization-item">
+                <h3><span class="emoji">🔥</span> Réglages BIOS</h3>
+                <div class="danger-level danger-extreme">Terrain Miné</div>
+                <p><strong>Pourquoi ?</strong> Un BIOS mal configuré peut rendre le système inutilisable ou casser la garantie.</p>
+                <p class="reality-check">Réalité : Peut transformer votre PC en brique.</p>
+            </article>
+        </section>
 
-        function getDangerClass(level) {
-            return 'danger-' + level.toLowerCase();
-        }
+        <section class="scientific-box fade-in" id="marketing">
+            <h2><span class="emoji">🧪</span> Marketing Manipulateur</h2>
+            <p><strong>Attention :</strong> Les benchmarks sont faciles à manipuler. Ce n'est pas une preuve de gain réel. Méfiez-vous des réglages "sur mesure" qui sont souvent des scripts génériques.</p>
+        </section>
 
-        function getDangerLabel(level, niveaux) {
-            return niveaux[level] || level;
-        }
+        <section class="comparison-table fade-in">
+            <h2>Ce qu'ils promettent VS La Réalité</h2>
+            <div class="comparison-row"><div>🎯 Gain de FPS massif</div><div>📉 1-2 FPS au mieux</div></div>
+            <div class="comparison-row"><div>🛡️ Stabilité absolue</div><div>💥 Instabilités fréquentes</div></div>
+            <div class="comparison-row"><div>🎯 Réglages sur mesure</div><div>🔄 Scripts génériques</div></div>
+            <div class="comparison-row"><div>↩️ Réversible</div><div>⚠️ Très difficile à annuler</div></div>
+            <div class="comparison-row"><div>💰 Moins de dépenses</div><div>❌ Le matériel reste la limite</div></div>
+        </section>
 
-        async function loadArgsData() {
-            try {
-                const response = await fetch('./args.json');
-                if (!response.ok) throw new Error('Fichier args.json introuvable.');
-                argsData = await response.json();
-                displayData();
-            } catch (err) {
-                document.getElementById('categories-container').innerHTML =
-                    `<div class="loading">Erreur : ${err.message}</div>`;
-            }
-        }
+        <section class="category fade-in" id="hardware">
+            <h2><span class="emoji">🔧</span> Optimisations Matérielles</h2>
 
-        function displayData() {
-            if (!argsData) return;
+            <article class="optimization-item">
+                <h3><span class="emoji">🧮</span> BIOS & Timings RAM</h3>
+                <div class="danger-level danger-extreme">Terrain Miné</div>
+                <p><strong>Pourquoi ?</strong> Modifier les timings sans connaissance peut causer de graves instabilités. Ce n'est pas un jeu.</p>
+                <p class="reality-check">Réalité : Nécessite une vraie compréhension de l'architecture système.</p>
+            </article>
+        </section>
 
-            if (argsData.titre_principal)
-                document.getElementById('main-title').textContent = argsData.titre_principal;
-            if (argsData.description_generale)
-                document.getElementById('main-description').textContent = argsData.description_generale;
+        <section class="category fade-in" id="system">
+            <h2><span class="emoji">🖥️</span> Optimisations Système</h2>
 
-            displayGeneralArguments();
-            displayComparison();
-            displayCategories();
-            displaySolutions();
-            displayConclusion();
-        }
+            <article class="optimization-item">
+                <h3><span class="emoji">💾</span> CPU/GPU</h3>
+                <div class="danger-level danger-low">Redondant</div>
+                <p><strong>Pourquoi ?</strong> Les pilotes et Windows gèrent déjà ça efficacement. Tenter d'optimiser manuellement est souvent contre-productif.</p>
+                <p class="reality-check">Réalité : Ces composants sont déjà optimisés.</p>
+            </article>
 
-        function displayGeneralArguments() {
-            if (argsData.arguments_generaux?.realite_technique) {
-                document.getElementById('warning-title').textContent = argsData.arguments_generaux.realite_technique.titre;
-                document.getElementById('warning-content').textContent = argsData.arguments_generaux.realite_technique.argument;
-            }
-            if (argsData.arguments_generaux?.marketing_manipulateur) {
-                document.getElementById('marketing-title').textContent = argsData.arguments_generaux.marketing_manipulateur.titre;
-                document.getElementById('marketing-content').textContent = argsData.arguments_generaux.marketing_manipulateur.argument;
-                document.getElementById('marketing-section').style.display = 'block';
-            }
-        }
+            <article class="optimization-item">
+                <h3><span class="emoji">💽</span> SSD</h3>
+                <div class="danger-level danger-low">Absurde</div>
+                <p><strong>Pourquoi ?</strong> Les SSD modernes sont optimisés via firmware. Modifier Windows n'y changera rien.</p>
+                <p class="reality-check">Réalité : Le firmware gère les performances, pas Windows.</p>
+            </article>
 
-        function displayComparison() {
-            if (!argsData.comparaison_promesses_realite) return;
-            const section = document.getElementById('comparison-section');
-            const rows = document.getElementById('comparison-rows');
-            rows.innerHTML = '';
-            argsData.comparaison_promesses_realite.forEach(row => {
-                rows.innerHTML += `
-                    <div class="comparison-row">
-                        <div class="comparison-promise">${row.promesse}</div>
-                        <div class="comparison-reality">${row.realite}</div>
-                    </div>`;
-            });
-            section.style.display = 'block';
-        }
+            <article class="optimization-item">
+                <h3><span class="emoji">📝</span> Registre Windows</h3>
+                <div class="danger-level danger-extreme">Très Mauvaise Idée</div>
+                <p><strong>Pourquoi ?</strong> Toucher au registre sans comprendre, c’est comme désosser un moteur sans outils.</p>
+                <p class="reality-check">Réalité : Peut rendre Windows inutilisable.</p>
+            </article>
+        </section>
 
-        function displayCategories() {
-            const container = document.getElementById('categories-container');
-            container.innerHTML = '';
+        <section class="category fade-in" id="network">
+            <h2><span class="emoji">🌐</span> Optimisations Réseau</h2>
 
-            const niveaux = argsData.niveaux_danger || {};
-            const categories = argsData.categories_arguments || {};
+            <article class="optimization-item">
+                <h3><span class="emoji">📡</span> Paquets TCP</h3>
+                <div class="danger-level danger-high">Dangereux</div>
+                <p><strong>Pourquoi ?</strong> Modifier la pile réseau Windows peut empirer les performances ou provoquer des conflits logiciels.</p>
+                <p class="reality-check">Réalité : Peu ou pas de gain, mais beaucoup de risques.</p>
+            </article>
+        </section>
+    </main>
 
-            Object.entries(categories).forEach(([key, cat]) => {
-                const div = document.createElement('div');
-                div.className = 'category fade-in';
-                div.id = key;
-
-                let html = `<div class="category-title">${cat.titre}</div>`;
-                cat.arguments?.forEach(arg => {
-                    html += `
-                        <div class="optimization-item">
-                            <div class="optimization-name"><span class="emoji">${arg.emoji || '⚡'}</span> ${arg.nom}</div>
-                            <div class="danger-level ${getDangerClass(arg.niveau_danger)}">
-                                ${getDangerLabel(arg.niveau_danger, niveaux)}
-                            </div>
-                            ${arg.explication ? `<div class="explanation-section"><div class="explanation-title">Explication</div><div class="explanation-content">${arg.explication}</div></div>` : ''}
-                            ${arg.details ? `
-                                <div class="details-section">
-                                    ${Object.entries(arg.details).map(([k,v]) => `
-                                        <div class="details-item">
-                                            <div class="details-title">${k.replace(/_/g, ' ').toUpperCase()}</div>
-                                            <div>${v}</div>
-                                        </div>`).join('')}
-                                </div>` : ''}
-                            ${arg.conditions ? `
-                                <div class="explanation-section">
-                                    <div class="explanation-title">Conditions Abusives</div>
-                                    <ul class="conditions-list">${arg.conditions.map(c => `<li>${c}</li>`).join('')}</ul>
-                                </div>` : ''}
-                            ${arg.realite ? `<div class="reality-check">${arg.realite}</div>` : ''}
-                        </div>`;
-                });
-
-                div.innerHTML = html;
-                container.appendChild(div);
-            });
-        }
-
-        function displaySolutions() {
-            const section = document.getElementById('solutions-section');
-            const list = document.getElementById('solutions-list');
-            if (!argsData.solutions_reelles) return;
-            list.innerHTML = '';
-            argsData.solutions_reelles.forEach(item => {
-                list.innerHTML += `<li>${item}</li>`;
-            });
-            section.style.display = 'block';
-        }
-
-        function displayConclusion() {
-            if (!argsData.conclusion) return;
-            document.getElementById('conclusion-title').textContent = argsData.conclusion.titre;
-            document.getElementById('conclusion-content').textContent = argsData.conclusion.texte;
-            document.getElementById('conclusion-section').style.display = 'block';
-        }
-
-        // Initialisation
-        createFloatingElements();
-        loadArgsData();
-    </script>
+    <footer class="container">
+        <p>&copy; 2025 - Guide des Optimisations Réalistes. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
