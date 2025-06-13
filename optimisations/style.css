@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 :root {
     --primary-dark: #0a0a0a;
     --secondary-dark: #1a1a1a;
@@ -47,6 +48,51 @@ body::before {
             rgba(255, 0, 0, 0.03) 101px
         );
     z-index: -1;
+}
+.comparison-table {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.comparison-header {
+  background-color: #1e293b;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.comparison-row {
+  display: flex;
+  border-top: 1px solid #e2e8f0;
+}
+
+.comparison-promise,
+.comparison-reality {
+  flex: 1;
+  padding: 1rem;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.comparison-promise {
+  background-color: #f1f5f9;
+}
+
+.comparison-reality {
+  background-color: #fef2f2;
+}
+
+/* Optional: simple fade-in animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
 }
 
 .header {
