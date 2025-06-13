@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guide Informatique - Réseau et Composants PC</title>
     <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --tertiary-dark: #2d2d2d;
+            --accent-orange: #ff6b35;
+            --accent-red: #cc0000;
+            --accent-yellow: #ffcc00;
+            --accent-green: #ff8800;
+            --text-light: #ffffff;
+            --text-muted: #cccccc;
+            --border-color: #660000;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,11 +25,31 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto Condensed', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
             min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.05) 0%, transparent 50%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(255, 255, 255, 0.01) 100px,
+                    rgba(255, 255, 255, 0.01) 101px
+                );
+            z-index: -1;
         }
 
         .container {
@@ -28,20 +61,41 @@
         header {
             text-align: center;
             padding: 40px 0;
-            color: white;
             margin-bottom: 40px;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
+            border: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow), var(--accent-orange));
         }
 
         h1 {
+            font-family: 'Orbitron', monospace;
             font-size: 3rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: fadeInDown 1s ease-out;
+            font-weight: 900;
         }
 
         .subtitle {
             font-size: 1.3rem;
-            opacity: 0.9;
+            color: var(--text-muted);
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
@@ -54,22 +108,26 @@
         }
 
         .tab-button {
-            background: rgba(255,255,255,0.1);
-            border: 2px solid rgba(255,255,255,0.3);
-            color: white;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
+            border: 2px solid var(--accent-orange);
+            color: var(--text-light);
             padding: 12px 24px;
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             backdrop-filter: blur(10px);
         }
 
         .tab-button:hover, .tab-button.active {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.6);
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+            border-color: var(--accent-yellow);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+            color: var(--primary-dark);
         }
 
         .content-section {
@@ -82,47 +140,74 @@
         }
 
         .card {
-            background: rgba(255,255,255,0.95);
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             margin-bottom: 25px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 2px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
+            border-color: var(--accent-orange);
         }
 
         .card h2 {
-            color: #4a5568;
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-orange);
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid var(--accent-orange);
             display: flex;
             align-items: center;
             gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         .card h3 {
-            color: #2d3748;
+            color: var(--accent-yellow);
             margin-top: 25px;
             margin-bottom: 15px;
             font-size: 1.3rem;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card p, .card li {
+            color: var(--text-muted);
+            line-height: 1.8;
         }
 
         .speed-tag {
             display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-red));
+            color: var(--text-light);
             padding: 4px 12px;
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: bold;
             margin-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .connection-grid {
@@ -133,16 +218,18 @@
         }
 
         .connection-item {
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
             padding: 20px;
             border-radius: 12px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid var(--accent-orange);
             transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
         }
 
         .connection-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.2);
+            border-left-color: var(--accent-yellow);
         }
 
         .component-grid {
@@ -153,10 +240,10 @@
         }
 
         .component-card {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
             padding: 25px;
             border-radius: 15px;
-            border: 2px solid transparent;
+            border: 2px solid var(--border-color);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -169,22 +256,26 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
         }
 
         .component-card:hover {
-            border-color: #667eea;
+            border-color: var(--accent-orange);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
         }
 
         .component-title {
             font-size: 1.4rem;
-            color: #2d3748;
+            color: var(--accent-orange);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         .criteria-list {
@@ -196,34 +287,36 @@
             padding: 8px 0;
             padding-left: 25px;
             position: relative;
-            color: #4a5568;
+            color: var(--text-muted);
         }
 
         .criteria-list li::before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: #667eea;
+            color: var(--accent-orange);
             font-weight: bold;
             font-size: 1.1rem;
         }
 
         .warning {
-            background: linear-gradient(135deg, #fed7d7, #feb2b2);
+            background: linear-gradient(135deg, #ff3333, #cc0000);
             padding: 15px;
             border-radius: 10px;
             margin: 15px 0;
-            border-left: 4px solid #e53e3e;
-            color: #742a2a;
+            border-left: 4px solid #ff0000;
+            color: var(--text-light);
+            font-weight: 600;
         }
 
         .tip {
-            background: linear-gradient(135deg, #c6f6d5, #9ae6b4);
+            background: linear-gradient(135deg, var(--accent-green), #228b22);
             padding: 15px;
             border-radius: 10px;
             margin: 15px 0;
-            border-left: 4px solid #38a169;
-            color: #22543d;
+            border-left: 4px solid #006400;
+            color: var(--text-light);
+            font-weight: 600;
         }
 
         @keyframes fadeInDown {
@@ -261,6 +354,7 @@
             width: 24px;
             height: 24px;
             display: inline-block;
+            filter: brightness(0) saturate(100%) invert(59%) sepia(84%) saturate(2476%) hue-rotate(346deg) brightness(101%) contrast(101%);
         }
 
         @media (max-width: 768px) {
