@@ -570,128 +570,7 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
         }
- /* Countdown Section */
-        .countdown-section {
-            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
-            padding: 3rem 0;
-            margin: 2rem 0;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
-            border: 3px solid var(--accent-orange);
-            position: relative;
-            overflow: hidden;
-        }
 
-        .countdown-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(255, 204, 0, 0.08) 0%, transparent 50%);
-            z-index: 1;
-        }
-
-        .countdown-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .countdown-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        .countdown-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .countdown-display {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-
-        .countdown-unit {
-            background: linear-gradient(145deg, var(--primary-dark), var(--secondary-dark));
-            border-radius: 15px;
-            padding: 2rem 1rem;
-            border: 2px solid rgba(255, 107, 53, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .countdown-unit::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
-        }
-
-        .countdown-unit:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-orange);
-            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.3);
-        }
-
-        .countdown-number {
-            font-family: 'Orbitron', monospace;
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--accent-orange);
-            display: block;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
-            animation: pulse-number 2s ease-in-out infinite;
-        }
-
-        .countdown-label {
-            font-size: 1rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .countdown-message {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            background: rgba(255, 107, 53, 0.1);
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .event-completed {
-            background: linear-gradient(45deg, var(--danger-no), #4ade80);
-            color: var(--primary-dark);
-            font-weight: 700;
-            animation: celebration 1s ease-in-out infinite alternate;
-        }
         /* Footer */
         footer {
             background: var(--primary-dark);
@@ -833,7 +712,7 @@
         </nav>
     </header>
 
-<div class="menu-overlay" id="menuOverlay">
+<div class="menu-overlay" id="menuOverlay"></div>
     <div class="menu-panel" id="menuPanel">
         <div class="menu-content">
             <div class="menu-section">
@@ -887,48 +766,21 @@
             </div>
         </div>
     </div>
-    </div>
-        <div class="section-title" id="menuOverlay">
+    <section class="section-title">
+        <div>
+            
                     <h1>Votre outil informatif,<br> c'est ce site !</h1>
                     <p>Ce site web se spécialise dans l'accès à l'information, de manière simple et avec une interface intuitive.</p>
                     <p><a href="https://atlas-corporation.fr/logiciels-foireux/" class="highlight">Découvrez les logiciels qui ne vous aident en rien !</a></p>
                     <p>Nos conseils ainsi que les outils pour dépister un problème.</p>
-            </div>
-
-    <section class="hero">
-        <div class="container">
                 </div>
-                <!-- Le div en dessous est à mettre ici sans commentaire le 14 juillet-->
+                <!-- Le div en dessous est à mettre ici sans commentaire le 14 juillet-->>
+               
+            
        
     </section> 
 
-    <section class="countdown-section" style="background: #f0f0f0; padding: 40px 0; text-align: center;">
-  <div class="container" style="max-width: 800px; margin: 0 auto;">
-    <div class="countdown-content">
-
-
-      <div class="countdown-display" id="countdownDisplay" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-        <div class="countdown-unit" style="background: white; padding: 20px; border-radius: 10px; min-width: 80px;">
-          <span class="countdown-number" id="days" style="font-size: 2em; font-weight: bold;">--</span><br>
-          <span class="countdown-label">Jours</span>
-        </div>
-        <div class="countdown-unit" style="background: white; padding: 20px; border-radius: 10px; min-width: 80px;">
-          <span class="countdown-number" id="hours" style="font-size: 2em; font-weight: bold;">--</span><br>
-          <span class="countdown-label">Heures</span>
-        </div>
-        <div class="countdown-unit" style="background: white; padding: 20px; border-radius: 10px; min-width: 80px;">
-          <span class="countdown-number" id="minutes" style="font-size: 2em; font-weight: bold;">--</span><br>
-          <span class="countdown-label">Minutes</span>
-        </div>
-        <div class="countdown-unit" style="background: white; padding: 20px; border-radius: 10px; min-width: 80px;">
-          <span class="countdown-number" id="seconds" style="font-size: 2em; font-weight: bold;">--</span><br>
-          <span class="countdown-label">Secondes</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+    
 
     <section class="tools-section">
         <div class="container">
@@ -1088,32 +940,6 @@
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
         });
-        const targetDate = new Date("2025-07-14T10:00:00");
-
-        function updateCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
-
-    if (diff <= 0) {
-      document.getElementById("countdownDisplay").innerHTML = "<p>🎉 C'est le grand jour ! 🎉</p>";
-      clearInterval(interval);
-      return;
-    }
-
-    const seconds = Math.floor(diff / 1000) % 60;
-    const minutes = Math.floor(diff / 1000 / 60) % 60;
-    const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
-    const days = Math.floor(diff / 1000 / 60 / 60 / 24);
-
-    document.getElementById("days").textContent = String(days).padStart(2, '0');
-    document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-    document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-    document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-  }
-
-  // Mise à jour immédiate + répétition chaque seconde
-  updateCountdown();
-  const interval = setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
