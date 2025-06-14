@@ -59,7 +59,7 @@
             padding: 0 24px;
         }
 
-        /* Header */
+        /* Header - Corrections appliquées */
         header {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
@@ -87,6 +87,7 @@
             align-items: center;
             gap: 0.5rem;
             transition: color 0.3s ease;
+            z-index: 1001;
         }
 
         .logo:hover {
@@ -113,6 +114,7 @@
             gap: 3px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            z-index: 1001;
         }
 
         .menu-toggle:hover {
@@ -260,10 +262,12 @@
             font-size: 14px;
         }
 
-        /* Hero Section */
+        /* Hero Section - Corrections appliquées */
         .hero {
             padding: 80px 0 60px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-content {
@@ -280,6 +284,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.2;
+            /* Fallback pour les navigateurs qui ne supportent pas background-clip */
+            color: var(--accent-orange);
         }
 
         .hero p {
@@ -325,6 +331,8 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            /* Fallback */
+            color: var(--accent-orange);
         }
 
         .section-subtitle {
@@ -351,6 +359,8 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            opacity: 1; /* Correction : visible par défaut */
+            transform: translateY(0); /* Correction : position normale par défaut */
         }
 
         .tool-card::before {
@@ -518,16 +528,6 @@
             }
         }
 
-        .tool-card {
-            animation: fadeInUp 0.6s ease forwards;
-            opacity: 0;
-        }
-
-        .tool-card:nth-child(1) { animation-delay: 0.1s; }
-        .tool-card:nth-child(2) { animation-delay: 0.2s; }
-        .tool-card:nth-child(3) { animation-delay: 0.3s; }
-        .tool-card:nth-child(4) { animation-delay: 0.4s; }
-
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -568,14 +568,19 @@
             }
         }
 
-        /* Scroll animations */
+        /* Correction des animations de fade-in */
         .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 1; /* Visible par défaut */
+            transform: translateY(0); /* Position normale par défaut */
             transition: all 0.6s ease;
         }
 
-        .fade-in.visible {
+        .fade-in.animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .fade-in.animate-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -813,38 +818,17 @@
             });
         });
 
-        // Add scroll effect to header
+        // Add scroll effect to header - CORRECTION
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
             }
         });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe tool cards
-        document.querySelectorAll('.tool-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
-</body>
-</html>
+        // Animation simplifiée au démarrage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Les éléments sont maintenant visibles par défaut
+            console.log('Site Atlas Corporation chargé avec succ
