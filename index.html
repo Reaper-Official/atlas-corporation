@@ -778,7 +778,7 @@
     </footer>
 
     <script>
-        const menuToggle = document.getElementById('menuToggle');
+  const menuToggle = document.getElementById('menuToggle');
 const menuPanel = document.getElementById('menuPanel');
 const menuOverlay = document.getElementById('menuOverlay');
 
@@ -842,33 +842,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observer les cartes d'outils
-    document.querySelectorAll('.tool-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(card);
-    });
+    // Observer les cartes d'outils SEULEMENT si elles existent
+    const toolCards = document.querySelectorAll('.tool-card');
+    if (toolCards.length > 0) {
+        toolCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    }
 
-    // Observer d'autres éléments si nécessaire
-    document.querySelectorAll('.animate-on-scroll').forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(element);
-    });
+    // Observer d'autres éléments avec animation SEULEMENT si ils existent
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    if (animateElements.length > 0) {
+        animateElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+    }
 
-    // Animation d'entrée pour le hero section
+    // Animation d'entrée pour le hero section SEULEMENT si il existe
     const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero .btn');
-    heroElements.forEach((element, index) => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        
-        setTimeout(() => {
+    if (heroElements.length > 0) {
+        heroElements.forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+    }
+
+    // S'assurer que tous les autres éléments restent visibles
+    document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, section').forEach(element => {
+        // Ne pas modifier les éléments qui ont déjà des animations spécifiques
+        if (!element.classList.contains('tool-card') && 
+            !element.classList.contains('animate-on-scroll') && 
+            !element.closest('.hero')) {
             element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }, index * 200);
+            element.style.transform = 'none';
+        }
     });
 });
     </script>
