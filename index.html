@@ -778,7 +778,7 @@
     </footer>
 
     <script>
-  const menuToggle = document.getElementById('menuToggle');
+ const menuToggle = document.getElementById('menuToggle');
 const menuPanel = document.getElementById('menuPanel');
 const menuOverlay = document.getElementById('menuOverlay');
 
@@ -865,7 +865,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Animation d'entrée pour le hero section SEULEMENT si il existe
-    const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero .btn');
+    const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero .btn, .hero .highlight-link');
     if (heroElements.length > 0) {
         heroElements.forEach((element, index) => {
             element.style.opacity = '0';
@@ -876,6 +876,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
             }, index * 200);
+        });
+    } else {
+        // Si pas d'éléments hero trouvés, s'assurer que tous les éléments dans .hero sont visibles
+        const allHeroContent = document.querySelectorAll('.hero *');
+        allHeroContent.forEach(element => {
+            element.style.opacity = '1';
+            element.style.transform = 'none';
         });
     }
 
