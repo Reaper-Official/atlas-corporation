@@ -271,9 +271,23 @@
             padding: 4rem 0;
             text-align: center;
             color: var(--text-light);
+            position: relative;
         }
 
-        .hero h1 {
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero-text h1 {
             font-family: 'Orbitron', monospace;
             font-size: 3.5rem;
             font-weight: 900;
@@ -288,10 +302,9 @@
             animation: fadeInUp 1s ease;
         }
 
-        .hero p {
+        .hero-text p {
             font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            margin-bottom: 1.5rem;
             color: var(--text-muted);
             animation: fadeInUp 1s ease 0.2s both;
         }
@@ -302,6 +315,119 @@
             border-radius: 5px;
             color: var(--primary-dark);
             font-weight: 700;
+        }
+
+        /* Video Section */
+        .hero-video {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            border: 3px solid var(--accent-orange);
+            background: var(--secondary-dark);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-element {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 17px;
+        }
+
+        .video-placeholder {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .video-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: var(--text-light);
+            padding: 2rem 1.5rem 1.5rem;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .video-btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 107, 53, 0.9);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .video-btn:hover {
+            background: var(--accent-orange);
+            transform: scale(1.1);
+        }
+
+        /* Fullscreen styles */
+        .video-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            background: black;
+            border-radius: 0;
+            border: none;
+        }
+
+        .video-fullscreen .video-container {
+            height: 100vh;
+            border-radius: 0;
+        }
+
+        .video-fullscreen .video-element {
+            border-radius: 0;
+        }
+
+        .video-fullscreen .video-title {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .video-fullscreen .video-controls {
+            top: 20px;
+            right: 20px;
         }
 
         /* Tools Section */
@@ -546,7 +672,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-text {
+                text-align: center;
+            }
+            
+            .hero-text h1 {
                 font-size: 2.5rem;
             }
             
@@ -557,6 +692,10 @@
             .menu-panel {
                 width: 100%;
                 right: -100%;
+            }
+            
+            .video-container {
+                height: 250px;
             }
         }
     </style>
@@ -628,13 +767,35 @@
         </div>
     </div>
 
-
     <section class="hero">
         <div class="container">
-            <h1>Votre outil informatif,<br> c'est ce site !</h1>
-            <p>Ce site web se spécialise dans l'accès à l'information, de manière simple et avec une interface intuitive.</p>
-            <p><a href="https://atlas-corporation.fr/logiciels-foireux/" class="highlight">Découvrez les logiciels qui ne vous aident en rien !</a></p>
-            <p>Nos conseils ainsi que les outils pour dépister un problème.</p>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Votre outil informatif,<br> c'est ce site !</h1>
+                    <p>Ce site web se spécialise dans l'accès à l'information, de manière simple et avec une interface intuitive.</p>
+                    <p><a href="https://atlas-corporation.fr/logiciels-foireux/" class="highlight">Découvrez les logiciels qui ne vous aident en rien !</a></p>
+                    <p>Nos conseils ainsi que les outils pour dépister un problème.</p>
+                </div>
+                
+                <div class="hero-video" id="heroVideo">
+                    <div class="video-container">
+                        <!-- Remplacez le src par l'URL de votre vidéo -->
+                        <video class="video-element" id="videoElement" controls muted>
+                            <source src="" type="video/mp4">
+                            <!-- Placeholder si pas de vidéo -->
+                        </video>
+                        <div class="video-placeholder" id="videoPlaceholder">
+                            🎥 Aucune vidéo disponible
+                        </div>
+                    </div>
+                    <div class="video-title" id="videoTitle">
+                        Atlas Corporation - Présentation
+                    </div>
+                    <div class="video-controls">
+                        <button class="video-btn" id="fullscreenBtn" title="Plein écran">⛶</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
