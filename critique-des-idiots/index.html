@@ -1136,6 +1136,104 @@
                 this.style.transform = 'translateY(-4px)';
             });
         });
+        navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            // Calculer la position en tenant compte de la navbar fixe
+            const offsetTop = targetElement.offsetTop - 100;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+
+        // Fermer le menu mobile si ouvert
+        mobileMenu.classList.remove('active');
+        mobileToggle.textContent = '☰';
+
+        // Mettre à jour le lien actif
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// ========================================
+// MISE À JOUR DU LIEN ACTIF AU SCROLL
+// ========================================
+window.addEventListener('scroll', function() {
+    const sections = ['frenchhardware', 'solotech', 'pax', 'guide', 'conclusion'];
+    const scrollPos = window.pageYOffset + 150;
+
+    // Parcourir les sections de bas en haut pour trouver la section active
+    for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && scrollPos >= section.offsetTop) {
+            // Supprimer la classe active de tous les liens
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Ajouter la classe active au lien correspondant
+            const activeLink = document.querySelector(`a[href="#${sections[i]}"]`);
+            if (activeLink) activeLink.classList.add('active');
+            break;
+        }
+    }
+});
+
+// ========================================
+// FONCTION RETOUR EN HAUT (existante)
+// ========================================
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// ========================================
+// ANIMATIONS FADE-IN (existant)
+// ========================================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+// Observer tous les éléments fade-in
+document.addEventListener('DOMContentLoaded', function() {
+    const fadeElements = document.querySelectorAll('.fade-in');
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+
+    // Visibilité initiale du hero
+    setTimeout(() => {
+        document.querySelector('.hero').classList.add('visible');
+    }, 100);
+});
+
+// ========================================
+// EFFETS DE SURVOL AMÉLIORÉS (existant)
+// ========================================
+document.querySelectorAll('.section').forEach(section => {
+    section.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px)';
+    });
+    
+    section.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(-4px)';
+    });
+});
     </script>
 </body>
 </html>
