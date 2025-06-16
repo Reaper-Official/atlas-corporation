@@ -344,49 +344,6 @@
             box-shadow: 0 5px 15px rgba(91, 218, 18, 0.3);
         }
 
-        /* Styles spécifiques au calculateur PSU */
-        select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 2px solid var(--border-color);
-            background: var(--secondary-dark);
-            color: var(--text-light);
-            font-family: inherit;
-        }
-
-        select:focus {
-            border-color: var(--accent-orange);
-            outline: none;
-        }
-
-        label {
-            display: block;
-            color: var(--accent-orange);
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
-            border: none;
-            border-radius: 10px;
-            color: var(--text-light);
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-        }
-
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -445,6 +402,8 @@
             font-weight: 700;
         }
 
+
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -475,7 +434,6 @@
         <div class="nav-tabs">
             <button class="tab-button active" onclick="showSection('internet')">🌐 Réseau Internet</button>
             <button class="tab-button" onclick="showSection('components')">🖥️ Composants PC</button>
-            <button class="tab-button" onclick="showSection('calculator')">⚡ Calculateur PSU</button>
         </div>
 
         <div id="internet" class="content-section active">
@@ -671,4 +629,60 @@
                             <li>Choisissez entre aircooling (ventirad) et watercooling (AIO)</li>
                         </ul>
                         <div class="tip">
-                            💡 <strong>Conseil d'expert :</strong>
+                            💡 <strong>Conseil d'expert :</strong> Choisissez un ventirad si vous avez besoin de performances solides à un prix raisonnable, mais si l'apparence compte pour vous, envisagez un watercooling. N'oubliez pas que de nombreux modèles de watercooling ne sont pas très performants et ne justifient pas toujours leur prix.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Masquer toutes les sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Désactiver tous les boutons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Afficher la section sélectionnée
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activer le bouton correspondant
+            event.target.classList.add('active');
+        }
+
+        // Animation des cartes au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer toutes les cartes
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card, .component-card, .connection-item');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
