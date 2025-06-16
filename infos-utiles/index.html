@@ -431,207 +431,117 @@
             <p class="subtitle">Maîtrisez les réseaux Internet et les composants PC</p>
         </header>
 
-        <div class="nav-tabs">
+                <div class="nav-tabs">
             <button class="tab-button active" onclick="showSection('internet')">🌐 Réseau Internet</button>
             <button class="tab-button" onclick="showSection('components')">🖥️ Composants PC</button>
+            <button class="tab-button" onclick="showSection('psu-calculator')">⚡ Calculateur PSU</button>
         </div>
 
-        <div id="internet" class="content-section active">
+        <div id="psu-calculator" class="content-section">
             <div class="card">
-                <h2>🏠 Méthodes Publiques de Connexion à Internet</h2>
-                <p>Votre Fournisseur d'Accès Internet (FAI) peut vous fournir différentes méthodes de liaison Internet :</p>
-                
-                <div class="connection-grid">
-                    <div class="connection-item">
-                        <h3>🚀 La Fibre Optique</h3>
-                        <p><strong>Débit :</strong> Jusqu'à 8 Gbps<span class="speed-tag">SYMÉTRIQUE</span></p>
-                        <p><strong>Opérateur :</strong> Free (et autres)</p>
-                        <p>La technologie la plus avancée, offrant des débits ultra-rapides et symétriques.</p>
-                    </div>
-                    
-                    <div class="connection-item">
-                        <h3>📞 L'ADSL</h3>
-                        <p><strong>Débit :</strong> Jusqu'à 70 Mbps<span class="speed-tag">EN FERMETURE</span></p>
-                        <p><strong>Opérateurs :</strong> Orange et autres</p>
-                        <p>Technologie historique utilisant les lignes téléphoniques, progressivement remplacée par la fibre.</p>
-                    </div>
-                    
-                    <div class="connection-item">
-                        <h3>📺 Le Câble Coaxial</h3>
-                        <p><strong>Débit :</strong> Jusqu'à 1 Gbps</p>
-                        <p>Utilise l'infrastructure câble TV existante pour fournir Internet.</p>
-                    </div>
-                </div>
-            </div>
+                <h2>⚡ Calculateur de Puissance PSU</h2>
+                <p>Calculez la puissance d'alimentation nécessaire pour votre configuration PC :</p>
 
-            <div class="card">
-                <h2>🏡 Méthodes Privées de Connexion (Réseau Local)</h2>
-                <p>Une fois que votre box Internet reçoit un débit suffisant, vous avez le choix pour connecter vos appareils au réseau local (LAN) :</p>
-
-                <div class="connection-grid">
-                    <div class="connection-item">
-                        <h3>📶 WiFi (Wireless Fidelity)</h3>
-                        <p><strong>Normes disponibles :</strong></p>
-                        <ul style="margin-top: 10px; padding-left: 20px;">
-                            <li>WiFi 5 (802.11ac)</li>
-                            <li>WiFi 6 (802.11ax)</li>
-                            <li>WiFi 6AX</li>
-                            <li>WiFi 6E</li>
-                            <li>WiFi 7 (dernière génération)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="connection-item">
-                        <h3>🔌 Connexions Filaires</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+                    <!-- Formulaire de saisie -->
+                    <div class="component-card">
+                        <div class="component-title">🔧 Configuration PC</div>
                         
-                        <h4>Câble RJ45 ("Ethernet")</h4>
-                        <p>Le câble le plus économique et adapté aux particuliers :</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li><strong>CAT 5E :</strong> 1 Gbps maximum</li>
-                            <li><strong>CAT 6A :</strong> 10 Gbps maximum</li>
-                            <li><strong>CAT 7 :</strong> 40 Gbps sur 50m, 100 Gbps sur 15m</li>
-                            <li><strong>CAT 8 :</strong> 25-40 Gbps sur 30m</li>
-                        </ul>
-                        <div class="tip">
-                            💡 <strong>Conseil :</strong> Privilégiez les câbles CAT 7 ou 8 pour ne pas avoir à les changer régulièrement.
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; color: var(--accent-orange); font-weight: bold; margin-bottom: 5px;">Processeur (CPU)</label>
+                            <select id="cpu-select" style="width: 100%; padding: 10px; border-radius: 5px; background: var(--tertiary-dark); color: var(--text-light); border: 2px solid var(--border-color);">
+                                <option value="65">Intel i3 / AMD Ryzen 3 (65W)</option>
+                                <option value="95">Intel i5 / AMD Ryzen 5 (95W)</option>
+                                <option value="125">Intel i7 / AMD Ryzen 7 (125W)</option>
+                                <option value="170">Intel i9 / AMD Ryzen 9 (170W)</option>
+                                <option value="250">Intel i9-13900K / AMD 7950X (250W)</option>
+                            </select>
                         </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; color: var(--accent-orange); font-weight: bold; margin-bottom: 5px;">Carte Graphique (GPU)</label>
+                            <select id="gpu-select" style="width: 100%; padding: 10px; border-radius: 5px; background: var(--tertiary-dark); color: var(--text-light); border: 2px solid var(--border-color);">
+                                <option value="0">Pas de GPU dédié</option>
+                                <option value="100">GTX 1650 / RX 5500 XT (100W)</option>
+                                <option value="170">GTX 1660 / RX 5600 XT (170W)</option>
+                                <option value="220">RTX 3060 / RX 6600 XT (220W)</option>
+                                <option value="320">RTX 3070 / RX 6700 XT (320W)</option>
+                                <option value="370">RTX 3080 / RX 6800 XT (370W)</option>
+                                <option value="450">RTX 4080 / RX 7800 XT (450W)</option>
+                                <option value="600">RTX 4090 / RX 7900 XTX (600W)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; color: var(--accent-orange); font-weight: bold; margin-bottom: 5px;">Mémoire RAM (nombre de barrettes)</label>
+                            <input type="number" id="ram-count" value="2" min="1" max="8" style="width: 100%; padding: 10px; border-radius: 5px; background: var(--tertiary-dark); color: var(--text-light); border: 2px solid var(--border-color);">
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; color: var(--accent-orange); font-weight: bold; margin-bottom: 5px;">Stockage SSD/NVMe (nombre d'unités)</label>
+                            <input type="number" id="ssd-count" value="1" min="0" max="8" style="width: 100%; padding: 10px; border-radius: 5px; background: var(--tertiary-dark); color: var(--text-light); border: 2px solid var(--border-color);">
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; color: var(--accent-orange); font-weight: bold; margin-bottom: 5px;">Disques durs HDD (nombre d'unités)</label>
+                            <input type="number" id="hdd-count" value="0" min="0" max="8" style="width: 100%; padding: 10px; border-radius: 5px; background: var(--tertiary-dark); color: var(--text-light); border: 2px solid var(--border-color);">
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; color: var(--accent-orange); font-weight: bold; margin-bottom: 5px;">Ventilateurs supplémentaires</label>
+                            <input type="number" id="fan-count" value="3" min="0" max="20" style="width: 100%; padding: 10px; border-radius: 5px; background: var(--tertiary-dark); color: var(--text-light); border: 2px solid var(--border-color);">
+                        </div>
+
+                        <button onclick="calculatePSU()" style="width: 100%; padding: 15px; background: linear-gradient(135deg, var(--accent-orange), var(--accent-red)); border: none; border-radius: 10px; color: var(--text-light); font-weight: bold; font-size: 1.1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">
+                            Calculer la PSU
+                        </button>
+                    </div>
+
+                    <!-- Résultats -->
+                    <div class="component-card">
+                        <div class="component-title">📊 Résultats du Calcul</div>
                         
-                        <h4>Câble SFP</h4>
-                        <p>Plus court mais plus robuste, utilisé entre machines dans une baie informatique :</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li><strong>SFP :</strong> 1 Gbps</li>
-                            <li><strong>SFP+ :</strong> 10 Gbps</li>
-                        </ul>
+                        <div id="calculation-results" style="display: none;">
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark)); border-radius: 10px; border-left: 4px solid var(--accent-orange);">
+                                <h4 style="color: var(--accent-yellow); margin-bottom: 10px;">Consommation Estimée</h4>
+                                <div style="font-size: 2rem; color: var(--accent-orange); font-weight: bold;" id="total-consumption">0W</div>
+                            </div>
+
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark)); border-radius: 10px; border-left: 4px solid var(--accent-yellow);">
+                                <h4 style="color: var(--accent-yellow); margin-bottom: 10px;">PSU Recommandée</h4>
+                                <div style="font-size: 2rem; color: var(--accent-yellow); font-weight: bold;" id="recommended-psu">0W</div>
+                                <p style="margin-top: 10px; color: var(--text-muted);">Avec 20% de marge de sécurité</p>
+                            </div>
+
+                            <div style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, var(--danger-no), #228b22); border-radius: 10px; border-left: 4px solid #006400;">
+                                <h4 style="color: var(--text-light); margin-bottom: 10px;">Certifications Recommandées</h4>
+                                <div id="psu-certifications"></div>
+                            </div>
+
+                            <div style="padding: 15px; background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark)); border-radius: 10px; border-left: 4px solid var(--accent-red);">
+                                <h4 style="color: var(--accent-red); margin-bottom: 10px;">⚠️ Points Importants</h4>
+                                <ul style="color: var(--text-muted); padding-left: 20px;">
+                                    <li>Ce calcul est une estimation approximative</li>
+                                    <li>Les pics de consommation peuvent être supérieurs</li>
+                                    <li>Vérifiez toujours les spécifications exactes</li>
+                                    <li>Privilégiez une PSU de marque reconnue</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="detailed-breakdown" style="margin-top: 20px; display: none;">
+                            <h4 style="color: var(--accent-orange); margin-bottom: 15px;">Détail de la Consommation</h4>
+                            <div id="breakdown-content"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card" style="margin-top: 20px; background: linear-gradient(135deg, #1a0785, #9b1a1a);">
-                    <h3>🌐 Fibre Optique - Utilisations Spécialisées</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                        <div>
-                            <h4>📡 Apport Internet</h4>
-                            <p>Fibre délivrée par l'opérateur uniquement pour la communication avec Internet.</p>
-                        </div>
-                        <div>
-                            <h4>🏢 Liaison Site à Site</h4>
-                            <p>Communication entre bâtiments proches via tranchées souterraines ou conduits urbains (solution coûteuse).</p>
-                        </div>
-                    </div>
+                <div class="tip" style="margin-top: 30px;">
+                    💡 <strong>Conseil d'Expert :</strong> Pour une configuration gaming haut de gamme, privilégiez une PSU 80+ Gold ou Platinum. La marge de 20% permet de gérer les pics de consommation et l'évolution future de votre config.
                 </div>
-            </div>
-        </div>
 
-        <div id="components" class="content-section">
-            <div class="card">
-                <h2>🖥️ Guide Complet des Composants PC</h2>
-                <p>Comment reconnaître et choisir les bons composants pour votre configuration :</p>
-
-                <div class="component-grid">
-                    <div class="component-card">
-                        <div class="component-title">📦 Les Boîtiers PC</div>
-                        <h4>Comment reconnaître un bon boîtier ?</h4>
-                        <ul class="criteria-list">
-                            <li>Au niveau des aspirations d'air (ventilateurs), il ne faut pas de vitre</li>
-                            <li>Vérifiez la compatibilité avec le format de votre carte mère</li>
-                            <li>Formats supportés : E-ATX / ATX / MICRO-ATX / etc...</li>
-                        </ul>
-                        <div class="tip">
-                            💡 <strong>Analogie :</strong> Lorsqu'on place une éolienne, on ne met pas un mur devant - ça marche avec un mur, mais sans mur c'est bien mieux !
-                        </div>
-                    </div>
-
-                    <div class="component-card">
-                        <div class="component-title">⚡ Le Processeur (CPU)</div>
-                        <h4>Comment reconnaître un bon processeur ?</h4>
-                        <ul class="criteria-list">
-                            <li>Vérifiez le nombre de cœurs et de threads : Plus ils sont nombreux, mieux c'est pour le multitâche et les applications exigeantes</li>
-                            <li>Regardez la fréquence (GHz) : Une fréquence plus élevée = meilleure performance en tâche unique</li>
-                            <li>Vérifiez la mémoire cache : Plus elle est grande, plus le processeur est rapide</li>
-                            <li>Comparez l'efficacité énergétique (TDP) : Un TDP élevé consomme plus d'énergie et chauffe davantage</li>
-                            <li>Optez pour un socket compatible avec votre carte mère (de préférence AM4 ou AM5 pour plus de processeurs compatibles et performants)</li>
-                        </ul>
-                    </div>
-
-                    <div class="component-card">
-                        <div class="component-title">🔧 La Carte Mère</div>
-                        <h4>Comment reconnaître une bonne carte mère ?</h4>
-                        <ul class="criteria-list">
-                            <li>Vérifiez le socket du processeur : Il doit être compatible avec votre CPU</li>
-                            <li>Regardez la quantité et le type de RAM supportés</li>
-                            <li>Assurez-vous d'avoir suffisamment de ports d'extension (PCIe, M.2, SATA)</li>
-                            <li>Prêtez attention à la connectivité (USB, Wi-Fi, Ethernet, Bluetooth)</li>
-                            <li>Vérifiez la qualité des VRM pour une meilleure gestion de l'énergie</li>
-                        </ul>
-                    </div>
-
-                    <div class="component-card">
-                        <div class="component-title">🧠 La Mémoire Vive (RAM)</div>
-                        <h4>Comment reconnaître une bonne RAM ?</h4>
-                        <ul class="criteria-list">
-                            <li>Vérifiez la capacité (8 Go minimum pour un usage basique, 16 Go ou plus pour le gaming ou la création)</li>
-                            <li>Regardez la fréquence (MHz) : Plus elle est élevée, meilleures sont les performances</li>
-                            <li>Assurez-vous que la latence (CL) soit faible</li>
-                            <li>Optez pour une marque fiable pour la durabilité</li>
-                            <li>Vérifiez la compatibilité avec la carte mère (DDR4, DDR5, etc.)</li>
-                        </ul>
-                        <div class="warning">
-                            ⚠️ <strong>Important :</strong> On ne prend pas de la RAM Corsair (Merci FrenchHardware & FlowUp)
-                        </div>
-                    </div>
-
-                    <div class="component-card">
-                        <div class="component-title">🎮 La Carte Graphique (GPU)</div>
-                        <h4>Comment reconnaître une bonne carte graphique ?</h4>
-                        <ul class="criteria-list">
-                            <li>Vérifiez la mémoire vidéo (VRAM) : 6 Go minimum pour le gaming en 1080p, 12 Go+ pour la 4K</li>
-                            <li>Comparez la puissance brute (TFLOPS, CUDA cores, Stream processors)</li>
-                            <li>Regardez la fréquence du GPU et de la mémoire</li>
-                            <li>Vérifiez le TDP et les besoins en alimentation (en vérifiant les pics de tensions maximaux)</li>
-                            <li>Assurez-vous qu'elle rentre dans votre boîtier et soit compatible avec votre carte mère</li>
-                        </ul>
-                        <div class="tip">
-                            💡 <strong>Note :</strong> Il existe également d'autres critères tels que les "points chauds" et d'autres éléments techniques.
-                        </div>
-                    </div>
-
-                    <div class="component-card">
-                        <div class="component-title">💾 Le Stockage (SSD/HDD)</div>
-                        <h4>Comment reconnaître un bon stockage ?</h4>
-                        <ul class="criteria-list">
-                            <li>Hiérarchie de vitesse : SSD NVMe > SSD SATA > HDD</li>
-                            <li>Optez pour au moins 500 Go pour un usage général</li>
-                            <li>Vérifiez les vitesses de lecture/écriture (MB/s) et sa stabilité (cache SLC)</li>
-                            <li>Regardez la durée de vie (TBW) et la technologie de mémoire (TLC, QLC, etc.)</li>
-                        </ul>
-                        <div class="tip">
-                            💡 <strong>Sources fiables :</strong> Consultez des données hors constructeurs, ex: TechPowerUp, Tom's Hardware
-                        </div>
-                    </div>
-
-                    <div class="component-card">
-                        <div class="component-title">🔌 L'Alimentation (PSU)</div>
-                        <h4>Comment reconnaître une bonne alimentation ?</h4>
-                        <ul class="criteria-list">
-                            <li>Vérifiez la puissance (W) selon votre configuration (la consommation totale du rail 12V)</li>
-                            <li>Privilégiez une certification 80 Plus (Bronze, Gold, Platinum)</li>
-                            <li>Assurez-vous que les connecteurs correspondent à vos composants (ATX 3.1 PCIe 5.0, et autres)</li>
-                            <li>Optez pour une marque fiable avec des protections intégrées (OVP, OCP, SCP)</li>
-                        </ul>
-                    </div>
-
-                    <div class="component-card">
-                        <div class="component-title">❄️ Le Système de Refroidissement</div>
-                        <h4>Comment reconnaître un bon refroidissement ?</h4>
-                        <ul class="criteria-list">
-                            <li>Vérifiez la compatibilité avec votre CPU</li>
-                            <li>Regardez le TDP supporté</li>
-                            <li>Comparez la nuisance sonore (dB) et l'efficacité thermique</li>
-                            <li>Choisissez entre aircooling (ventirad) et watercooling (AIO)</li>
-                        </ul>
-                        <div class="tip">
-                            💡 <strong>Conseil d'expert :</strong> Choisissez un ventirad si vous avez besoin de performances solides à un prix raisonnable, mais si l'apparence compte pour vous, envisagez un watercooling. N'oubliez pas que de nombreux modèles de watercooling ne sont pas très performants et ne justifient pas toujours leur prix.
-                        </div>
-                    </div>
+                <div class="warning" style="margin-top: 15px;">
+                    ⚠️ <strong>Attention :</strong> Ce calculateur donne une estimation. Pour des configurations très spécifiques (overclocking extrême, workstation), consultez les spécifications exactes de vos composants.
                 </div>
             </div>
         </div>
