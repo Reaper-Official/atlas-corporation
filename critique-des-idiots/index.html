@@ -28,13 +28,231 @@
             --shadow: 0 10px 25px rgba(255, 107, 53, 0.1);
             --shadow-hover: 0 20px 40px rgba(255, 107, 53, 0.25);
         }
+                .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
+        /* Animation pour les éléments flottants */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .section-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(255, 107, 53, 0.3);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            transform: translateY(-100%);
+        }
+
+        .navbar.visible {
+            transform: translateY(0);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            border-bottom-color: var(--accent-orange);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);
+        }
+
+        .navbar-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-light);
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: var(--accent-orange);
+            transform: scale(1.05);
+        }
+
+        .navbar-brand-icon {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .navbar-nav li {
+            position: relative;
+        }
+
+        .navbar-nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar-nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .navbar-nav a:hover::before {
+            left: 100%;
+        }
+
+        .navbar-nav a:hover {
+            color: var(--accent-orange);
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .navbar-nav a.active {
+            color: var(--accent-orange);
+            background: rgba(255, 107, 53, 0.15);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .navbar-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-mobile-toggle:hover {
+            color: var(--accent-orange);
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .navbar-mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--accent-orange);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+            padding: 1rem 0;
+        }
+
+        .navbar-mobile-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navbar-mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0 2rem;
+            list-style: none;
+        }
+
+        .navbar-mobile-nav a {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* Progress Indicator */
+        .navbar-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
+            transition: width 0.3s ease;
+            border-radius: 0 2px 0 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .navbar-mobile-toggle {
+                display: block;
+            }
+
+            .navbar-container {
+                padding: 0 1rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Adjust body padding for fixed navbar */
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.7;
             color: var(--text-light);
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
             min-height: 100vh;
+            padding-top: 80px;
         }
 
         body::before {
@@ -541,7 +759,7 @@
         </div>
 
         <section class="section fade-in">
-            <div class="section-header">
+            <div class="section-header" id="frenchhardware">
                 <div class="section-icon">⚡</div>
                 <div>
                     <h2>FrenchHardware & FlowUP</h2>
@@ -634,7 +852,7 @@
         </section>
 
         <section class="section fade-in">
-            <div class="section-header">
+            <div class="section-header" id="solotech">
                 <div class="section-icon">🎯</div>
                 <div>
                     <h2>Solotech</h2>
@@ -675,7 +893,7 @@
         </section>
 
         <section class="section fade-in">
-            <div class="section-header">
+            <div class="section-header"id="pax">
                 <div class="section-icon">🌪️</div>
                 <div>
                     <h2>PAX</h2>
