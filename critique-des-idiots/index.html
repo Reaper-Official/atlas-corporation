@@ -408,15 +408,68 @@
             margin: 1rem 0;
             font-style: italic;
         }
-        .viode-placeholder {
+        /* Styles corrigés pour la vidéo */
+        .video-container {
             background: var(--tertiary-dark);
-            border: 8px dashed var(--accent-orange);
+            border: 3px solid var(--accent-red);
             border-radius: 12px;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
-            color: var(--text-muted);
-            margin: 4rem 0;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-container h4 {
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-warning {
+            background: rgba(204, 0, 0, 0.1);
+            color: var(--accent-red);
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
             font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .video-container {
+                padding: 1rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -667,10 +720,15 @@
                 </div>
             </div>
 
-            <div class="image-placeholder">
+             <div class="video-container">
                 <h4>🎥 Contenu problématique identifié</h4>
-                <p> <video src="https://atlas-corporation.fr/critique-des-idiots/2025-06-15_19-55-24.mp4" class="viode-placeholder"></video></p>
-                <p style="color: var(--accent-red);">Contenu diffusant des informations techniques erronées</p>
+                <video controls preload="metadata" style="max-height: 400px;">
+                    <source src="https://atlas-corporation.fr/critique-des-idiots/2025-06-15_19-55-24.mp4" type="video/mp4">
+                    <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                </video>
+                <div class="video-warning">
+                    ⚠️ Contenu diffusant des informations techniques erronées sur les normes 80+
+                </div>
             </div>
             
             <div class="image-placeholder">
