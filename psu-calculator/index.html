@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur d'Alimentation PC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .components-section {
+            display: grid;
+            gap: 20px;
+        }
+
+        .component-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .component-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .component-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .component-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+        }
+
+        .results-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .results-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .power-display {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .total-power {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .power-label {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .recommendations {
+            background: linear-gradient(135deg, #f8f9ff, #e8f0ff);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rec-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .rec-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .rec-item:last-child {
+            border-bottom: none;
+        }
+
+        .breakdown {
+            margin-top: 20px;
+        }
+
+        .breakdown-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px solid #667eea;
+        }
+
+        .efficiency-selector {
+            margin-bottom: 20px;
+        }
+
+        .efficiency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+        }
+
+        .efficiency-option {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .efficiency-option:hover {
+            border-color: #667eea;
+        }
+
+        .efficiency-option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            color: #856404;
+        }
+
+        .good {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            color: #155724;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔋 Calculateur d'Alimentation PC</h1>
+        
+        <div class="calculator-grid">
+            <div class="components-section">
+                <!-- Processeur -->
+                <div class="component-card">
+                    <div class="component-title">
+                        <div class="component-icon">🖥️</div>
+                        Processeur (CPU)
+                    </div>
+                    <div class="form-group">
+                        <label for="cpu-brand">Marque</label>
+                        <select id="cpu-brand" onchange="updateCPUModels()">
+                            <option value="">Sélectionner une marque</option>
+                            <option value="intel">Intel</option>
+                            <option value="amd">AMD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpu-model">Modèle</label>
+                        <select id="cpu-model" onchange="calculatePower()">
+                            <option value="">Sélectionner un modèle</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpu-overclock">Overclocking</label>
+                        <select id="cpu-overclock" onchange="calculatePower()">
+                            <option value="1">Aucun</option>
+                            <option value="1.1">Léger (+10%)</option>
+                            <option value="1.2">Modéré (+20%)</option>
+                            <option value="1.3">Fort (+30%)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Carte graphique -->
+                <div class="component-card">
+                    <div class="component-title">
+                        <div class="component-icon">🎮</div>
+                        Carte graphique (GPU)
+                    </div>
+                    <div class="form-group">
+                        <label for="gpu-brand">Marque</label>
+                        <select id="gpu-brand" onchange="updateGPUModels()">
+                            <option value="">Sélectionner une marque</option>
+                            <option value="nvidia">NVIDIA</option>
+                            <option value="amd">AMD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gpu-model">Modèle</label>
+                        <select id="gpu-model" onchange="calculatePower()">
+                            <option value="">Sélectionner un modèle</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gpu-overclock">Overclocking</label>
+                        <select id="gpu-overclock" onchange="calculatePower()">
+                            <option value="1">Aucun</option>
+                            <option value="1.1">Léger (+10%)</option>
+                            <option value="1.2">Modéré (+20%)</option>
+                            <option value="1.3">Fort (+30%)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Mémoire -->
+                <div class="component-card">
+                    <div class="component-title">
+                        <div class="component-icon">💾</div>
+                        Mémoire (RAM)
+                    </div>
+                    <div class="form-group">
+                        <label for="ram-capacity">Capacité totale (GB)</label>
+                        <select id="ram-capacity" onchange="calculatePower()">
+                            <option value="8">8 GB</option>
+                            <option value="16">16 GB</option>
+                            <option value="32" selected>32 GB</option>
+                            <option value="64">64 GB</option>
+                            <option value="128">128 GB</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ram-type">Type</label>
+                        <select id="ram-type" onchange="calculatePower()">
+                            <option value="ddr4">DDR4</option>
+                            <option value="ddr5" selected>DDR5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Stockage -->
+                <div class="component-card">
+                    <div class="component-title">
+                        <div class="component-icon">💿</div>
+                        Stockage
+                    </div>
+                    <div class="form-group">
+                        <label for="ssd-count">Nombre de SSD</label>
+                        <input type="number" id="ssd-count" min="0" max="10" value="1" onchange="calculatePower()">
+                    </div>
+                    <div class="form-group">
+                        <label for="hdd-count">Nombre de HDD</label>
+                        <input type="number" id="hdd-count" min="0" max="10" value="0" onchange="calculatePower()">
+                    </div>
+                    <div class="form-group">
+                        <label for="nvme-count">Nombre de NVMe</label>
+                        <input type="number" id="nvme-count" min="0" max="5" value="1" onchange="calculatePower()">
+                    </div>
+                </div>
+
+                <!-- Refroidissement -->
+                <div class="component-card">
+                    <div class="component-title">
+                        <div class="component-icon">❄️</div>
+                        Refroidissement
+                    </div>
+                    <div class="form-group">
+                        <label for="cooling-type">Type de refroidissement CPU</label>
+                        <select id="cooling-type" onchange="calculatePower()">
+                            <option value="stock">Ventirad stock</option>
+                            <option value="tower">Tour CPU</option>
+                            <option value="aio120">AIO 120mm</option>
+                            <option value="aio240">AIO 240mm</option>
+                            <option value="aio360">AIO 360mm</option>
+                            <option value="custom">Watercooling custom</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="case-fans">Ventilateurs de boîtier</label>
+                        <input type="number" id="case-fans" min="0" max="20" value="3" onchange="calculatePower()">
+                    </div>
+                </div>
+
+                <!-- Périphériques -->
+                <div class="component-card">
+                    <div class="component-title">
+                        <div class="component-icon">🔌</div>
+                        Périphériques
+                    </div>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="optical-drive" onchange="calculatePower()">
+                            <label for="optical-drive">Lecteur optique</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="network-card" onchange="calculatePower()">
+                            <label for="network-card">Carte réseau</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sound-card" onchange="calculatePower()">
+                            <label for="sound-card">Carte son</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="capture-card" onchange="calculatePower()">
+                            <label for="capture-card">Carte capture</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="usb-devices">Périphériques USB</label>
+                        <input type="number" id="usb-devices" min="0" max="20" value="3" onchange="calculatePower()">
+                    </div>
+                </div>
+
+                <!-- Éclairage RGB -->
+                <div class="component-card">
+                    <div class="component-title">
+                        <div class="component-icon">🌈</div>
+                        Éclairage RGB
+                    </div>
+                    <div class="form-group">
+                        <label for="rgb-strips">Bandes LED RGB (mètres)</label>
+                        <input type="number" id="rgb-strips" min="0" max="10" step="0.5" value="0" onchange="calculatePower()">
+                    </div>
+                    <div class="form-group">
+                        <label for="rgb-fans">Ventilateurs RGB</label>
+                        <input type="number" id="rgb-fans" min="0" max="20" value="0" onchange="calculatePower()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-panel">
+                <div class="results-title">Résultats</div>
+                
+                <div class="power-display">
+                    <div class="total-power" id="total-power">0</div>
+                    <div class="power-label">Watts consommés</div>
+                </div>
+
+                <div class="efficiency-selector">
+                    <div class="rec-title">Certification d'efficacité</div>
+                    <div class="efficiency-grid">
+                        <div class="efficiency-option" data-efficiency="0.8" onclick="selectEfficiency(this)">80%</div>
+                        <div class="efficiency-option" data-efficiency="0.82" onclick="selectEfficiency(this)">82%</div>
+                        <div class="efficiency-option selected" data-efficiency="0.85" onclick="selectEfficiency(this)">85%</div>
+                        <div class="efficiency-option" data-efficiency="0.87" onclick="selectEfficiency(this)">87%</div>
+                        <div class="efficiency-option" data-efficiency="0.9" onclick="selectEfficiency(this)">90%</div>
+                        <div class="efficiency-option" data-efficiency="0.92" onclick="selectEfficiency(this)">92%</div>
+                    </div>
+                </div>
+
+                <div class="recommendations">
+                    <div class="rec-title">Recommandations PSU</div>
+                    <div class="rec-item">
+                        <span>Minimum:</span>
+                        <span id="min-psu">0W</span>
+                    </div>
+                    <div class="rec-item">
+                        <span>Recommandé:</span>
+                        <span id="rec-psu">0W</span>
+                    </div>
+                    <div class="rec-item">
+                        <span>Optimal:</span>
+                        <span id="opt-psu">0W</span>
+                    </div>
+                </div>
+
+                <div class="breakdown">
+                    <div class="breakdown-title">Détail de consommation</div>
+                    <div id="power-breakdown">
+                        <!-- Détails générés par JavaScript -->
+                    </div>
+                </div>
+
+                <div id="power-status"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let componentsData = null;
+        let currentEfficiency = 0.85;
+        let powerBreakdown = {};
+        let maxPowerBreakdown = {};
+
+        // Chargement des données JSON
+        async function loadComponentsData() {
+            try {
+                const response = await fetch('compos.json');
+                if (!response.ok) {
+                    throw new Error('Impossible de charger compos.json');
+                }
+                componentsData = await response.json();
+                console.log('Données des composants chargées avec succès');
+            } catch (error) {
+                console.error('Erreur lors du chargement des données:', error);
+                // Fallback vers des données intégrées si le fichier JSON n'est pas accessible
+                componentsData = getFallbackData();
+            }
+        }
+
+        // Données de fallback en cas d'échec du chargement JSON
+        function getFallbackData() {
+            return {
+                cpu: {
+                    intel: {
+                        'i5-13600K': { tdp: 125, max_power: 181 },
+                        'i7-13700K': { tdp: 125, max_power: 253 },
+                        'i9-13900K': { tdp: 125, max_power: 253 }
+                    },
+                    amd: {
+                        'Ryzen 7 7800X3D': { tdp: 120, max_power: 162 },
+                        'Ryzen 9 7950X': { tdp: 170, max_power: 230 }
+                    }
+                },
+                gpu: {
+                    nvidia: {
+                        'RTX 4070': { tdp: 200, max_power: 240 },
+                        'RTX 4080': { tdp: 320, max_power: 380 },
+                        'RTX 4090': { tdp: 450, max_power: 520 }
+                    },
+                    amd: {
+                        'RX 7800 XT': { tdp: 263, max_power: 315 },
+                        'RX 7900 XTX': { tdp: 355, max_power: 420 }
+                    }
+                },
+                ram: {
+                    ddr4: { power_per_gb: 0.4, max_power_per_gb: 0.6 },
+                    ddr5: { power_per_gb: 0.5, max_power_per_gb: 0.7 }
+                },
+                storage: {
+                    ssd_2_5: { load: 3, max_power: 5 },
+                    nvme: { load: 5, max_power: 8 },
+                    hdd: { load: 8, max_power: 12 }
+                },
+                cooling: {
+                    stock: { power: 5, max_power: 8 },
+                    tower: { power: 8, max_power: 12 },
+                    aio120: { power: 15, max_power: 20 },
+                    aio240: { power: 25, max_power: 35 },
+                    aio360: { power: 35, max_power: 50 },
+                    custom: { power: 50, max_power: 80 },
+                    case_fan: { power: 3, max_power: 5 }
+                },
+                motherboard: {
+                    atx: { power: 30, max_power: 40 }
+                },
+                peripherals: {
+                    optical_drive: { load: 15, max_power: 25 },
+                    network_card: { power: 5, max_power: 10 },
+                    sound_card: { power: 8, max_power: 15 },
+                    capture_card: { power: 20, max_power: 35 },
+                    usb_device: { power: 2.5, max_power: 5 }
+                },
+                rgb: {
+                    led_strip_per_meter: { power: 10, max_power: 15 },
+                    rgb_fan: { power: 3, max_power: 5 }
+                }
+            };
+        }
+
+        function updateCPUModels() {
+            if (!componentsData) return;
+            
+            const brand = document.getElementById('cpu-brand').value;
+            const modelSelect = document.getElementById('cpu-model');
+            
+            modelSelect.innerHTML = '<option value="">Sélectionner un modèle</option>';
+            
+            if (brand && componentsData.cpu[brand]) {
+                Object.keys(componentsData.cpu[brand]).forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    modelSelect.appendChild(option);
+                });
+            }
+            
+            calculatePower();
+        }
+
+        function updateGPUModels() {
+            if (!componentsData) return;
+            
+            const brand = document.getElementById('gpu-brand').value;
+            const modelSelect = document.getElementById('gpu-model');
+            
+            modelSelect.innerHTML = '<option value="">Sélectionner un modèle</option>';
+            
+            if (brand && componentsData.gpu[brand]) {
+                Object.keys(componentsData.gpu[brand]).forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    modelSelect.appendChild(option);
+                });
+            }
+            
+            calculatePower();
+        }
+
+        function selectEfficiency(element) {
+            document.querySelectorAll('.efficiency-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            currentEfficiency = parseFloat(element.dataset.efficiency);
+            calculatePower();
+        }
+
+        function calculatePower() {
+            if (!componentsData) return;
+            
+            powerBreakdown = {};
+            maxPowerBreakdown = {};
+            let totalPower = 0;
+            let totalMaxPower = 0;
+
+            // CPU
+            const cpuBrand = document.getElementById('cpu-brand').value;
+            const cpuModel = document.getElementById('cpu-model').value;
+            const cpuOC = parseFloat(document.getElementById('cpu-overclock').value);
+            
+            if (cpuBrand && cpuModel && componentsData.cpu[cpuBrand] && componentsData.cpu[cpuBrand][cpuModel]) {
+                const cpuData = componentsData.cpu[cpuBrand][cpuModel];
+                const cpuPower = cpuData.tdp * cpuOC;
+                const cpuMaxPower = cpuData.max_power * cpuOC;
+                powerBreakdown['CPU'] = Math.round(cpuPower);
+                maxPowerBreakdown['CPU'] = Math.round(cpuMaxPower);
+                totalPower += cpuPower;
+                totalMaxPower += cpuMaxPower;
+            }
+
+            // GPU
+            const gpuBrand = document.getElementById('gpu-brand').value;
+            const gpuModel = document.getElementById('gpu-model').value;
+            const gpuOC = parseFloat(document.getElementById('gpu-overclock').value);
+            
+            if (gpuBrand && gpuModel && componentsData.gpu[gpuBrand] && componentsData.gpu[gpuBrand][gpuModel]) {
+                const gpuData = componentsData.gpu[gpuBrand][gpuModel];
+                const gpuPower = gpuData.tdp * gpuOC;
+                const gpuMaxPower = gpuData.max_power * gpuOC;
+                powerBreakdown['GPU'] = Math.round(gpuPower);
+                maxPowerBreakdown['GPU'] = Math.round(gpuMaxPower);
+                totalPower += gpuPower;
+                totalMaxPower += gpuMaxPower;
+            }
+
+            // RAM
+            const ramCapacity = parseInt(document.getElementById('ram-capacity').value);
+            const ramType = document.getElementById('ram-type').value;
+            
+            if (componentsData.ram[ramType]) {
+                const ramPower = ramCapacity * componentsData.ram[ramType].power_per_gb;
+                const ramMaxPower = ramCapacity * componentsData.ram[ramType].max_power_per_gb;
+                powerBreakdown['RAM'] = Math.round(ramPower);
+                maxPowerBreakdown['RAM'] = Math.round(ramMaxPower);
+                totalPower += ramPower;
+                totalMaxPower += ramMaxPower;
+            }
+
+            // Stockage
+            const ssdCount = parseInt(document.getElementById('ssd-count').value);
+            const hddCount = parseInt(document.getElementById('hdd-count').value);
+            const nvmeCount = parseInt(document.getElementById('nvme-count').value);
+            
+            const storagePower = (ssdCount * componentsData.storage.ssd_2_5.load) + 
+                               (hddCount * componentsData.storage.hdd.load) + 
+                               (nvmeCount * componentsData.storage.nvme.load);
+            const storageMaxPower = (ssdCount * componentsData.storage.ssd_2_5.max_power) + 
+                                   (hddCount * componentsData.storage.hdd.max_power) + 
+                                   (nvmeCount * componentsData.storage.nvme.max_power);
+            
+            if (storagePower > 0) {
+                powerBreakdown['Stockage'] = storagePower;
+                maxPowerBreakdown['Stockage'] = storageMaxPower;
+                totalPower += storagePower;
+                totalMaxPower += storageMaxPower;
+            }
+
+            // Carte mère
+            const motherboardPower = componentsData.motherboard.atx.power;
+            const motherboardMaxPower = componentsData.motherboard.atx.max_power;
+            powerBreakdown['Carte mère'] = motherboardPower;
+            maxPowerBreakdown['Carte mère'] = motherboardMaxPower;
+            totalPower += motherboardPower;
+            totalMaxPower += motherboardMaxPower;
+
+            // Refroidissement
+            const coolingType = document.getElementById('cooling-type').value;
+            const caseFans = parseInt(document.getElementById('case-fans').value);
+            
+            let coolingPower = componentsData.cooling[coolingType].power;
+            let coolingMaxPower = componentsData.cooling[coolingType].max_power;
+            
+            coolingPower += caseFans * componentsData.cooling.case_fan.power;
+            coolingMaxPower += caseFans * componentsData.cooling.case_fan.max_power;
+            
+            powerBreakdown['Refroidissement'] = coolingPower;
+            maxPowerBreakdown['Refroidissement'] = coolingMaxPower;
+            totalPower += coolingPower;
+            totalMaxPower += coolingMaxPower;
+
+            // Périphériques
+            let peripheralsPower = 0;
+            let peripheralsMaxPower = 0;
+            
+            if (document.getElementById('optical-drive').checked) {
+                peripheralsPower += componentsData.peripherals.optical_drive.load;
+                peripheralsMaxPower += componentsData.peripherals.optical_drive.max_power;
+            }
+            if (document.getElementById('network-card').checked) {
+                peripheralsPower += componentsData.peripherals.network_card.power;
+                peripheralsMaxPower += componentsData.peripherals.network_card.max_power;
+            }
+            if (document.getElementById('sound-card').checked) {
+                peripheralsPower += componentsData.peripherals.sound_card.power;
+                peripheralsMaxPower += componentsData.peripherals.sound_card.max_power;
+            }
+            if (document.getElementById('capture-card').checked) {
+                peripheralsPower += componentsData.peripherals.capture_card.power;
+                peripheralsMaxPower += componentsData.peripherals.capture_card.max_power;
+            }
+            
+            const usbDevices = parseInt(document.getElementById('usb-devices').value);
+            peripheralsPower += usbDevices * componentsData.peripherals.usb_device.power;
+            peripheralsMaxPower += usbDevices * componentsData.peripherals.usb_device.max_power;
+            
+            if (peripheralsPower > 0) {
+                powerBreakdown['Périphériques'] = Math.round(peripheralsPower);
+                maxPowerBreakdown['Périphériques'] = Math.round(peripheralsMaxPower);
+                totalPower += peripheralsPower;
+                totalMaxPower += peripheralsMaxPower;
+            }
+
+            // RGB
+            const rgbStrips = parseFloat(document.getElementById('rgb-strips').value);
+            const rgbFans = parseInt(document.getElementById('rgb-fans').value);
+            
+            const rgbPower = (rgbStrips * componentsData.rgb.led_strip_per_meter.power) + 
+                           (rgbFans * componentsData.rgb.rgb_fan.power);
+            const rgbMaxPower = (rgbStrips * componentsData.rgb.led_strip_per_meter.max_power) + 
+                              (rgbFans * componentsData.rgb.rgb_fan.max_power);
+            
+            if (rgbPower > 0) {
+                powerBreakdown['RGB'] = Math.round(rgbPower);
+                maxPowerBreakdown['RGB'] = Math.round(rgbMaxPower);
+                totalPower += rgbPower;
+                totalMaxPower += rgbMaxPower;
+            }
+
+            // Affichage des résultats
+            updateResults(totalPower, totalMaxPower);
+        }uData[cpuBrand][cpuModel]) {
+                const cpuPower = cpuData[cpuBrand][cpuModel] * cpuOC;
+                powerBreakdown['CPU'] = Math.round(cpuPower);
+                totalPower += cpuPower;
+            }
+
+            // GPU
+            const gpuBrand = document.getElementById('gpu-brand').value;
+            const gpuModel = document.getElementById('gpu-model').value;
+            const gpuOC = parseFloat(document.getElementById('gpu-overclock').value);
+            
+            if (gpuBrand && gpuModel && gpuData[gpuBrand][gpuModel]) {
+                const gpuPower = gpuData[gpuBrand][gpuModel] * gpuOC;
+                powerBreakdown['GPU'] = Math.round(gpuPower);
+                totalPower += gpuPower;
+            }
+
+            // RAM
+            const ramCapacity = parseInt(document.getElementById('ram-capacity').value);
+            const ramType = document.getElementById('ram-type').value;
+            const ramPowerPerGB = ramType === 'ddr5' ? 0.5 : 0.4;
+            const ramPower = ramCapacity * ramPowerPerGB;
+            powerBreakdown['RAM'] = Math.round(ramPower);
+            totalPower += ramPower;
+
+            // Stockage
+            const ssdCount = parseInt(document.getElementById('ssd-count').value);
+            const hddCount = parseInt(document.getElementById('hdd-count').value);
+            const nvmeCount = parseInt(document.getElementById('nvme-count').value);
+            
+            const storagePower = (ssdCount * 3) + (hddCount * 8) + (nvmeCount * 5);
+            if (storagePower > 0) {
+                powerBreakdown['Stockage'] = storagePower;
+                totalPower += storagePower;
+            }
+
+            // Carte mère
+            const motherboardPower = 25;
+            powerBreakdown['Carte mère'] = motherboardPower;
+            totalPower += motherboardPower;
+
+            // Refroidissement
+            const coolingType = document.getElementById('cooling-type').value;
+            const caseFans = parseInt(document.getElementById('case-fans').value);
+            
+            let coolingPower = 0;
+            switch (coolingType) {
+                case 'stock': coolingPower = 5; break;
+                case 'tower': coolingPower = 8; break;
+                case 'aio120': coolingPower = 15; break;
+                case 'aio240': coolingPower = 25; break;
+                case 'aio360': coolingPower = 35; break;
+                case 'custom': coolingPower = 50; break;
+            }
+            
+            coolingPower += caseFans * 3;
+            powerBreakdown['Refroidissement'] = coolingPower;
+            totalPower += coolingPower;
+
+            // Périphériques
+            let peripheralsPower = 0;
+            if (document.getElementById('optical-drive').checked) peripheralsPower += 15;
+            if (document.getElementById('network-card').checked) peripheralsPower += 5;
+            if (document.getElementById('sound-card').checked) peripheralsPower += 8;
+            if (document.getElementById('capture-card').checked) peripheralsPower += 20;
+            
+            const usbDevices = parseInt(document.getElementById('usb-devices').value);
+            peripheralsPower += usbDevices * 2.5;
+            
+            if (peripheralsPower > 0) {
+                powerBreakdown['Périphériques'] = Math.round(peripheralsPower);
+                totalPower += peripheralsPower;
+            }
+
+            // RGB
+            const rgbStrips = parseFloat(document.getElementById('rgb-strips').value);
+            const rgbFans = parseInt(document.getElementById('rgb-fans').value);
+            
+            const rgbPower = (rgbStrips * 10) + (rgbFans * 3);
+            if (rgbPower > 0) {
+                powerBreakdown['RGB'] = Math.round(rgbPower);
+                totalPower += rgbPower;
+            }
+
+            // Affichage des résultats
+            updateResults(totalPower);
+        }
+
+        function updateResults(totalPower) {
+            document.getElementById('total-power').textContent = Math.round(totalPower);
+            
+            // Calcul des recommandations PSU
+            const minPSU = Math.ceil(totalPower * 1.2 / 50) * 50;
+            const recPSU = Math.ceil(totalPower * 1.4 / 50) * 50;
+            const optPSU = Math.ceil(totalPower * 1.6 / 50) * 50;
+            
+            document.getElementById('min-psu').textContent = minPSU + 'W';
+            document.getElementById('rec-psu').textContent = recPSU + 'W';
+            document.getElementById('opt-psu').textContent = optPSU + 'W';
+            
+            // Détail de consommation
+            const breakdownDiv = document.getElementById('power-breakdown');
+            breakdownDiv.innerHTML = '';
+            
+            Object.entries(powerBreakdown).forEach(([component, power]) => {
+                const item = document.createElement('div');
+                item.className = 'breakdown-item';
+                item.innerHTML = `<span>${component}:</span><span>${power}W</span>`;
+                breakdownDiv.appendChild(item);
+            });
+            
+            // Total
+            const totalItem = document.createElement('div');
+            totalItem.className = 'breakdown-item';
+            totalItem.innerHTML = `<span>Total:</span><span>${Math.round(totalPower)}W</span>`;
+            breakdownDiv.appendChild(totalItem);
+            
+            // Status
+            const statusDiv = document.getElementById('power-status');
+            statusDiv.innerHTML = '';
+            
+            if (totalPower > 750) {
+                statusDiv.innerHTML = '<div class="warning">⚠️ Configuration très énergivore. Vérifiez que votre installation électrique peut supporter cette charge.</div>';
+            } else if (totalPower < 300) {
+                statusDiv.innerHTML = '<div class="good">✅ Configuration économe en énergie. Parfait pour un usage bureautique ou gaming léger.</div>';
+            } else {
+                statusDiv.innerHTML = '<div class="good">✅ Configuration équilibrée avec une consommation raisonnable.</div>';
+            }
+            
+            // Ajout d'informations sur l'efficacité
+            const efficiencyInfo = document.createElement('div');
+            efficiencyInfo.style.marginTop = '15px';
+            efficiencyInfo.style.fontSize = '0.9em';
+            efficiencyInfo.style.color = '#666';
+            efficiencyInfo.innerHTML = `
+                <strong>Consommation réelle du mur:</strong> ${Math.round(totalPower / currentEfficiency)}W<br>
+                <strong>Certification:</strong> ${Math.round(currentEfficiency * 100)}% d'efficacité
+            `;
+            statusDiv.appendChild(efficiencyInfo);
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            calculatePower();
+        });
+    </script>
+</body>
+</html>

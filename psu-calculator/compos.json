@@ -1,0 +1,205 @@
+{
+  "cpu": {
+    "intel": {
+      "i3-12100": { "tdp": 60, "max_power": 89 },
+      "i3-13100": { "tdp": 60, "max_power": 89 },
+      "i3-14100": { "tdp": 60, "max_power": 89 },
+      "i5-12400": { "tdp": 65, "max_power": 117 },
+      "i5-12600K": { "tdp": 125, "max_power": 150 },
+      "i5-13400": { "tdp": 65, "max_power": 154 },
+      "i5-13600K": { "tdp": 125, "max_power": 181 },
+      "i5-14400": { "tdp": 65, "max_power": 148 },
+      "i5-14600K": { "tdp": 125, "max_power": 181 },
+      "i7-12700": { "tdp": 65, "max_power": 180 },
+      "i7-12700K": { "tdp": 125, "max_power": 190 },
+      "i7-13700": { "tdp": 65, "max_power": 219 },
+      "i7-13700K": { "tdp": 125, "max_power": 253 },
+      "i7-14700": { "tdp": 65, "max_power": 219 },
+      "i7-14700K": { "tdp": 125, "max_power": 253 },
+      "i9-12900": { "tdp": 65, "max_power": 202 },
+      "i9-12900K": { "tdp": 125, "max_power": 241 },
+      "i9-13900": { "tdp": 65, "max_power": 219 },
+      "i9-13900K": { "tdp": 125, "max_power": 253 },
+      "i9-14900": { "tdp": 65, "max_power": 219 },
+      "i9-14900K": { "tdp": 125, "max_power": 253 }
+    },
+    "amd": {
+      "Ryzen 5 5600": { "tdp": 65, "max_power": 88 },
+      "Ryzen 5 5600X": { "tdp": 65, "max_power": 105 },
+      "Ryzen 5 7600": { "tdp": 65, "max_power": 88 },
+      "Ryzen 5 7600X": { "tdp": 105, "max_power": 142 },
+      "Ryzen 7 5700X": { "tdp": 65, "max_power": 105 },
+      "Ryzen 7 5800X": { "tdp": 105, "max_power": 142 },
+      "Ryzen 7 7700": { "tdp": 65, "max_power": 88 },
+      "Ryzen 7 7700X": { "tdp": 105, "max_power": 142 },
+      "Ryzen 7 7800X3D": { "tdp": 120, "max_power": 162 },
+      "Ryzen 9 5900X": { "tdp": 105, "max_power": 142 },
+      "Ryzen 9 5950X": { "tdp": 105, "max_power": 142 },
+      "Ryzen 9 7900": { "tdp": 65, "max_power": 88 },
+      "Ryzen 9 7900X": { "tdp": 170, "max_power": 230 },
+      "Ryzen 9 7950X": { "tdp": 170, "max_power": 230 },
+      "Ryzen 9 7950X3D": { "tdp": 120, "max_power": 162 }
+    }
+  },
+  "gpu": {
+    "nvidia": {
+      "GTX 1650": { "tdp": 75, "max_power": 90 },
+      "GTX 1660": { "tdp": 120, "max_power": 140 },
+      "GTX 1660 Ti": { "tdp": 120, "max_power": 140 },
+      "RTX 3050": { "tdp": 130, "max_power": 150 },
+      "RTX 3060": { "tdp": 170, "max_power": 200 },
+      "RTX 3060 Ti": { "tdp": 200, "max_power": 240 },
+      "RTX 3070": { "tdp": 220, "max_power": 260 },
+      "RTX 3070 Ti": { "tdp": 290, "max_power": 340 },
+      "RTX 3080": { "tdp": 320, "max_power": 380 },
+      "RTX 3080 Ti": { "tdp": 350, "max_power": 420 },
+      "RTX 3090": { "tdp": 350, "max_power": 420 },
+      "RTX 3090 Ti": { "tdp": 450, "max_power": 520 },
+      "RTX 4060": { "tdp": 115, "max_power": 135 },
+      "RTX 4060 Ti": { "tdp": 165, "max_power": 195 },
+      "RTX 4070": { "tdp": 200, "max_power": 240 },
+      "RTX 4070 Ti": { "tdp": 285, "max_power": 340 },
+      "RTX 4080": { "tdp": 320, "max_power": 380 },
+      "RTX 4090": { "tdp": 450, "max_power": 520 }
+    },
+    "amd": {
+      "RX 6500 XT": { "tdp": 107, "max_power": 125 },
+      "RX 6600": { "tdp": 132, "max_power": 155 },
+      "RX 6600 XT": { "tdp": 160, "max_power": 190 },
+      "RX 6650 XT": { "tdp": 180, "max_power": 210 },
+      "RX 6700 XT": { "tdp": 230, "max_power": 270 },
+      "RX 6750 XT": { "tdp": 250, "max_power": 295 },
+      "RX 6800": { "tdp": 250, "max_power": 295 },
+      "RX 6800 XT": { "tdp": 300, "max_power": 355 },
+      "RX 6900 XT": { "tdp": 300, "max_power": 355 },
+      "RX 6950 XT": { "tdp": 335, "max_power": 395 },
+      "RX 7600": { "tdp": 165, "max_power": 195 },
+      "RX 7600 XT": { "tdp": 190, "max_power": 225 },
+      "RX 7700 XT": { "tdp": 245, "max_power": 290 },
+      "RX 7800 XT": { "tdp": 263, "max_power": 315 },
+      "RX 7900 GRE": { "tdp": 260, "max_power": 310 },
+      "RX 7900 XT": { "tdp": 315, "max_power": 375 },
+      "RX 7900 XTX": { "tdp": 355, "max_power": 420 }
+    }
+  },
+  "ram": {
+    "ddr4": {
+      "power_per_gb": 0.4,
+      "max_power_per_gb": 0.6
+    },
+    "ddr5": {
+      "power_per_gb": 0.5,
+      "max_power_per_gb": 0.7
+    }
+  },
+  "storage": {
+    "ssd_2_5": {
+      "idle": 0.5,
+      "load": 3,
+      "max_power": 5
+    },
+    "nvme": {
+      "idle": 1,
+      "load": 5,
+      "max_power": 8
+    },
+    "hdd": {
+      "idle": 3,
+      "load": 8,
+      "max_power": 12
+    }
+  },
+  "cooling": {
+    "stock": {
+      "power": 5,
+      "max_power": 8
+    },
+    "tower": {
+      "power": 8,
+      "max_power": 12
+    },
+    "aio120": {
+      "power": 15,
+      "max_power": 20
+    },
+    "aio240": {
+      "power": 25,
+      "max_power": 35
+    },
+    "aio360": {
+      "power": 35,
+      "max_power": 50
+    },
+    "custom": {
+      "power": 50,
+      "max_power": 80
+    },
+    "case_fan": {
+      "power": 3,
+      "max_power": 5
+    }
+  },
+  "motherboard": {
+    "mini_itx": {
+      "power": 20,
+      "max_power": 30
+    },
+    "micro_atx": {
+      "power": 25,
+      "max_power": 35
+    },
+    "atx": {
+      "power": 30,
+      "max_power": 40
+    },
+    "e_atx": {
+      "power": 35,
+      "max_power": 50
+    }
+  },
+  "peripherals": {
+    "optical_drive": {
+      "idle": 5,
+      "load": 15,
+      "max_power": 25
+    },
+    "network_card": {
+      "power": 5,
+      "max_power": 10
+    },
+    "sound_card": {
+      "power": 8,
+      "max_power": 15
+    },
+    "capture_card": {
+      "power": 20,
+      "max_power": 35
+    },
+    "usb_device": {
+      "power": 2.5,
+      "max_power": 5
+    }
+  },
+  "rgb": {
+    "led_strip_per_meter": {
+      "power": 10,
+      "max_power": 15
+    },
+    "rgb_fan": {
+      "power": 3,
+      "max_power": 5
+    },
+    "rgb_memory": {
+      "power": 2,
+      "max_power": 3
+    }
+  },
+  "psu_efficiency": {
+    "80_plus": 0.80,
+    "80_plus_bronze": 0.82,
+    "80_plus_silver": 0.85,
+    "80_plus_gold": 0.87,
+    "80_plus_platinum": 0.90,
+    "80_plus_titanium": 0.92
+  }
+}
