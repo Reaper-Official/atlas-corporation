@@ -781,7 +781,7 @@
 
             // Affichage des résultats
             updateResults(totalPower, totalMaxPower);
-        }uData[cpuBrand][cpuModel]) {
+        }uData[cpuBrand][cpuModel]; {
                 const cpuPower = cpuData[cpuBrand][cpuModel] * cpuOC;
                 powerBreakdown['CPU'] = Math.round(cpuPower);
                 totalPower += cpuPower;
@@ -867,7 +867,7 @@
 
             // Affichage des résultats
             updateResults(totalPower);
-        }
+        
 
         function updateResults(totalPower) {
             document.getElementById('total-power').textContent = Math.round(totalPower);
