@@ -3,238 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculateur PSU - Puissance d'Alimentation</title>
+    <title>Calculateur d'Alimentation PC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
-            margin: 0;
+            margin: 1500;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --tertiary-dark: #2a2a2a;
+            --accent-orange: #ff6b35;
+            --accent-yellow: #ffb84d;
+            --accent-red: #e74c3c;
+            --accent-green: #27ae60;
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+            --text-subtle: #888888;
+            --border-color: #333333;
+            --card-bg: #1e1e1e;
+            --hover-bg: #2a2a2a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
-        
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 184, 77, 0.03) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .config-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
             overflow: hidden;
         }
-        
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 30px;
-            text-align: center;
+
+        .config-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
         }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+        .results-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            position: sticky;
+            top: 24px;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
+
+        .results-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-yellow));
         }
-        
-        .content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            padding: 30px;
-        }
-        
-        .components-section {
-            display: grid;
-            gap: 25px;
-        }
-        
-        .component-group {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            border: 2px solid #e9ecef;
-            transition: all 0.3s ease;
-        }
-        
-        .component-group:hover {
-            border-color: #3498db;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
-        }
-        
-        .component-group h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.3em;
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-light);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-        
-        .component-group h3::before {
-            content: "⚡";
-            font-size: 1.2em;
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            border-radius: 2px;
         }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
+
+        .component-section {
+            margin-bottom: 32px;
         }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        label {
+
+        .component-section h3 {
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 5px;
-            color: #34495e;
+            color: var(--accent-orange);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        
-        select, input {
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        select:focus, input:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-        }
-        
-        .results-section {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-radius: 15px;
-            padding: 25px;
-            position: sticky;
-            top: 20px;
-            height: fit-content;
-        }
-        
-        .results-section h2 {
-            color: #2c3e50;
+
+        .form-group {
             margin-bottom: 20px;
-            text-align: center;
-            font-size: 1.5em;
         }
-        
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .form-group select option {
+            background: var(--card-bg);
+            color: var(--text-light);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px 12px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .checkbox-item:hover {
+            background: var(--hover-bg);
+            border-color: var(--accent-orange);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
         .power-display {
-            background: white;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .power-value {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .power-label {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .recommendation {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 12px;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
         }
-        
-        .power-item {
+
+        .recommendation h4 {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .recommendation p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .certification-info {
+            background: var(--tertiary-dark);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .certification-info h5 {
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .certification-info p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .breakdown {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .breakdown h4 {
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .breakdown-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
             padding: 8px 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
         }
-        
-        .power-item:last-child {
+
+        .breakdown-item:last-child {
             border-bottom: none;
+            font-weight: 600;
+            color: var(--accent-yellow);
         }
-        
-        .power-value {
-            font-weight: bold;
-            color: #3498db;
+
+        .breakdown-item span:first-child {
+            color: var(--text-muted);
         }
-        
-        .total-power {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
+
+        .breakdown-item span:last-child {
+            color: var(--text-light);
         }
-        
-        .total-power h3 {
-            font-size: 1.3em;
-            margin-bottom: 10px;
+
+        .efficiency-bar {
+            margin-top: 24px;
         }
-        
-        .total-power .value {
-            font-size: 2em;
-            font-weight: bold;
+
+        .efficiency-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
-        
-        .recommendations {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .recommendations h4 {
-            color: #27ae60;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-        
-        .psu-recommendation {
-            background: #e8f5e8;
-            border: 2px solid #27ae60;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        
-        .psu-recommendation strong {
-            color: #1e8449;
-            font-size: 1.1em;
-        }
-        
-        .efficiency-badge {
-            display: inline-block;
-            background: #f39c12;
-            color: white;
-            padding: 4px 8px;
+
+        .efficiency-progress {
+            width: 100%;
+            height: 8px;
+            background: var(--tertiary-dark);
             border-radius: 4px;
-            font-size: 0.9em;
-            margin-left: 10px;
+            overflow: hidden;
         }
-        
-        .error-message {
-            background: #ffe6e6;
-            border: 2px solid #ff6b6b;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            color: #c92a2a;
-            margin: 20px 0;
+
+        .efficiency-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-yellow), var(--accent-green));
+            border-radius: 4px;
+            transition: width 0.5s ease;
         }
-        
+
+        @media (max-width: 1024px) {
+            .calculator-layout {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .results-panel {
+                position: static;
+            }
+        }
+
         @media (max-width: 768px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
             .header h1 {
-                font-size: 2em;
+                font-size: 2.5rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 16px;
+            }
+            
+            .config-panel,
+            .results-panel {
+                padding: 24px;
+            }
+            
+            .power-value {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -242,180 +396,184 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Calculateur PSU</h1>
-            <p>Calculez la puissance d'alimentation nécessaire pour votre configuration PC</p>
+            <h1>⚡ Calculateur d'Alimentation PC</h1>
+            <p>Calculez la puissance d'alimentation nécessaire pour votre configuration PC personnalisée</p>
         </div>
-        
-        <div class="content">
-            <div class="components-section">
-                <!-- CPU Section -->
-                <div class="component-group">
-                    <h3>Processeur (CPU)</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="cpu-brand">Marque</label>
-                            <select id="cpu-brand" onchange="updateCPUModels()">
-                                <option value="">Sélectionner une marque</option>
-                                <option value="intel">Intel</option>
-                                <option value="amd">AMD</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="cpu-model">Modèle</label>
-                            <select id="cpu-model" onchange="calculatePower()">
-                                <option value="">Sélectionner un modèle</option>
-                            </select>
-                        </div>
+
+        <div class="calculator-layout">
+            <div class="config-panel">
+                <div class="section-title">Configuration PC</div>
+
+                <div class="component-section">
+                    <h3>Processeur</h3>
+                    <div class="form-group">
+                        <label for="cpu-brand">Marque du processeur</label>
+                        <select id="cpu-brand">
+                            <option value="intel">Intel</option>
+                            <option value="amd">AMD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpu-tdp">TDP du processeur (W)</label>
+                        <select id="cpu-tdp">
+                            <option value="65">65W (Processeurs basse consommation)</option>
+                            <option value="95">95W (Processeurs milieu de gamme)</option>
+                            <option value="125">125W (Processeurs haut de gamme)</option>
+                            <option value="150">150W (Processeurs très haut de gamme)</option>
+                            <option value="170">170W (Processeurs extrêmes)</option>
+                        </select>
                     </div>
                 </div>
-                
-                <!-- GPU Section -->
-                <div class="component-group">
-                    <h3>Carte Graphique (GPU)</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="gpu-brand">Marque</label>
-                            <select id="gpu-brand" onchange="updateGPUModels()">
-                                <option value="">Sélectionner une marque</option>
-                                <option value="nvidia">NVIDIA</option>
-                                <option value="amd">AMD</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="gpu-model">Modèle</label>
-                            <select id="gpu-model" onchange="calculatePower()">
-                                <option value="">Sélectionner un modèle</option>
-                            </select>
-                        </div>
+
+                <div class="component-section">
+                    <h3>Carte graphique</h3>
+                    <div class="form-group">
+                        <label for="gpu-brand">Marque de la carte graphique</label>
+                        <select id="gpu-brand">
+                            <option value="nvidia">NVIDIA</option>
+                            <option value="amd">AMD</option>
+                            <option value="intel">Intel</option>
+                            <option value="none">Pas de carte graphique dédiée</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gpu-power">Puissance de la carte graphique (W)</label>
+                        <select id="gpu-power">
+                            <option value="0">Pas de GPU dédié</option>
+                            <option value="75">75W (Cartes d'entrée de gamme)</option>
+                            <option value="150">150W (Cartes milieu de gamme)</option>
+                            <option value="220">220W (Cartes haut de gamme)</option>
+                            <option value="300">300W (Cartes très haut de gamme)</option>
+                            <option value="450">450W (Cartes extrêmes)</option>
+                        </select>
                     </div>
                 </div>
-                
-                <!-- RAM Section -->
-                <div class="component-group">
-                    <h3>Mémoire RAM</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="ram-type">Type de RAM</label>
-                            <select id="ram-type" onchange="calculatePower()">
-                                <option value="">Sélectionner le type</option>
-                                <option value="ddr4">DDR4</option>
-                                <option value="ddr5">DDR5</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="ram-capacity">Capacité (GB)</label>
-                            <input type="number" id="ram-capacity" value="16" min="4" max="128" step="4" onchange="calculatePower()">
-                        </div>
+
+                <div class="component-section">
+                    <h3>Mémoire et stockage</h3>
+                    <div class="form-group">
+                        <label for="ram-sticks">Nombre de barrettes RAM</label>
+                        <select id="ram-sticks">
+                            <option value="2">2 barrettes</option>
+                            <option value="4">4 barrettes</option>
+                            <option value="8">8 barrettes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="storage-drives">Nombre de disques de stockage</label>
+                        <select id="storage-drives">
+                            <option value="1">1 disque</option>
+                            <option value="2">2 disques</option>
+                            <option value="3">3 disques</option>
+                            <option value="4">4 disques ou plus</option>
+                        </select>
                     </div>
                 </div>
-                
-                <!-- Storage Section -->
-                <div class="component-group">
-                    <h3>Stockage</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="storage-type">Type de stockage</label>
-                            <select id="storage-type" onchange="calculatePower()">
-                                <option value="">Sélectionner le type</option>
-                                <option value="nvme">NVMe SSD</option>
-                                <option value="ssd_2_5">SSD 2.5"</option>
-                                <option value="hdd">Disque dur (HDD)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="storage-count">Nombre d'unités</label>
-                            <input type="number" id="storage-count" value="1" min="1" max="10" onchange="calculatePower()">
-                        </div>
+
+                <div class="component-section">
+                    <h3>Refroidissement et périphériques</h3>
+                    <div class="form-group">
+                        <label for="cooling-type">Type de refroidissement</label>
+                        <select id="cooling-type">
+                            <option value="air">Refroidissement à air</option>
+                            <option value="aio">Watercooling AIO</option>
+                            <option value="custom">Watercooling custom</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="case-fans">Nombre de ventilateurs de boîtier</label>
+                        <select id="case-fans">
+                            <option value="2">2-3 ventilateurs</option>
+                            <option value="4">4-5 ventilateurs</option>
+                            <option value="6">6+ ventilateurs</option>
+                        </select>
                     </div>
                 </div>
-                
-                <!-- Cooling Section -->
-                <div class="component-group">
-                    <h3>Refroidissement</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="cooling-type">Type de refroidissement</label>
-                            <select id="cooling-type" onchange="calculatePower()">
-                                <option value="stock">Ventirad stock</option>
-                                <option value="tower">Tour de refroidissement</option>
-                                <option value="aio120">AIO 120mm</option>
-                                <option value="aio240">AIO 240mm</option>
-                                <option value="aio360">AIO 360mm</option>
-                                <option value="custom">Watercooling custom</option>
-                            </select>
+
+                <div class="component-section">
+                    <h3>Options supplémentaires</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rgb-lighting">
+                            <label for="rgb-lighting">Éclairage RGB</label>
                         </div>
-                        <div class="form-group">
-                            <label for="case-fans">Ventilateurs de boîtier</label>
-                            <input type="number" id="case-fans" value="3" min="0" max="12" onchange="calculatePower()">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="overclock">
+                            <label for="overclock">Overclocking</label>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Motherboard Section -->
-                <div class="component-group">
-                    <h3>Carte Mère & Périphériques</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="motherboard-size">Taille carte mère</label>
-                            <select id="motherboard-size" onchange="calculatePower()">
-                                <option value="mini_itx">Mini-ITX</option>
-                                <option value="micro_atx">Micro-ATX</option>
-                                <option value="atx">ATX</option>
-                                <option value="e_atx">E-ATX</option>
-                            </select>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="wifi-card">
+                            <label for="wifi-card">Carte WiFi</label>
                         </div>
-                        <div class="form-group">
-                            <label for="usb-devices">Périphériques USB</label>
-                            <input type="number" id="usb-devices" value="4" min="0" max="20" onchange="calculatePower()">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sound-card">
+                            <label for="sound-card">Carte son</label>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="results-section">
-                <h2>Résultats</h2>
+
+            <div class="results-panel">
+                <div class="section-title">Résultats</div>
                 
                 <div class="power-display">
-                    <div class="power-item">
-                        <span>CPU:</span>
-                        <span class="power-value" id="cpu-power">0W</span>
-                    </div>
-                    <div class="power-item">
-                        <span>GPU:</span>
-                        <span class="power-value" id="gpu-power">0W</span>
-                    </div>
-                    <div class="power-item">
-                        <span>RAM:</span>
-                        <span class="power-value" id="ram-power">0W</span>
-                    </div>
-                    <div class="power-item">
-                        <span>Stockage:</span>
-                        <span class="power-value" id="storage-power">0W</span>
-                    </div>
-                    <div class="power-item">
-                        <span>Refroidissement:</span>
-                        <span class="power-value" id="cooling-power">0W</span>
-                    </div>
-                    <div class="power-item">
-                        <span>Carte mère:</span>
-                        <span class="power-value" id="motherboard-power">0W</span>
-                    </div>
-                    <div class="power-item">
-                        <span>Périphériques:</span>
-                        <span class="power-value" id="peripherals-power">0W</span>
+                    <div class="power-value" id="total-power">450</div>
+                    <div class="power-label">Watts estimés</div>
+                </div>
+
+                <div class="recommendation">
+                    <h4>💡 Alimentation recommandée</h4>
+                    <p id="psu-recommendation">Nous recommandons une alimentation de 650W 80+ Gold pour cette configuration.</p>
+                    
+                    <div class="certification-info">
+                        <h5>ℹ️ Pourquoi cette certification ?</h5>
+                        <p id="certification-explanation">Le 80+ Gold est idéal pour les configurations moyennes à haut de gamme, offrant une excellente efficacité énergétique.</p>
                     </div>
                 </div>
-                
-                <div class="total-power">
-                    <h3>Puissance Totale</h3>
-                    <div class="value" id="total-power">0W</div>
-                    <small>Consommation maximale estimée</small>
+
+                <div class="breakdown">
+                    <h4>Détail de la consommation</h4>
+                    <div class="breakdown-item">
+                        <span>Processeur</span>
+                        <span id="cpu-power-display">95W</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Carte graphique</span>
+                        <span id="gpu-power-display">220W</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Mémoire RAM</span>
+                        <span id="ram-power-display">10W</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Stockage</span>
+                        <span id="storage-power-display">15W</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Refroidissement</span>
+                        <span id="cooling-power-display">25W</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Carte mère & autres</span>
+                        <span id="mobo-power-display">50W</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Options</span>
+                        <span id="options-power-display">15W</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span><strong>Total estimé</strong></span>
+                        <span id="total-power-display"><strong>450W</strong></span>
+                    </div>
                 </div>
-                
-                <div class="recommendations">
-                    <h4>Recommandations PSU</h4>
-                    <div id="psu-recommendations">
-                        <p>Sélectionnez vos composants pour voir les recommandations</p>
+
+                <div class="efficiency-bar">
+                    <div class="efficiency-label">
+                        <span>Efficacité de l'alimentation</span>
+                        <span id="efficiency-percentage">69%</span>
+                    </div>
+                    <div class="efficiency-progress">
+                        <div class="efficiency-fill" id="efficiency-fill"></div>
                     </div>
                 </div>
             </div>
@@ -423,43 +581,102 @@
     </div>
 
     <script>
-        // Variable globale pour stocker les données des composants
-        let componentsData = {};
-
-        // Charger les données depuis le fichier JSON
-        async function loadComponentsData() {
-            try {
-                const response = await fetch('compos.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                componentsData = await response.json();
-                
-                // Initialiser l'interface une fois les données chargées
-                initializeInterface();
-            } catch (error) {
-                console.error('Erreur lors du chargement des données:', error);
-                showError('Impossible de charger les données des composants. Vérifiez que le fichier compos.json est présent.');
+        // Fonction pour calculer la puissance totale
+        function calculatePower() {
+            let totalPower = 0;
+            
+            // Récupération des valeurs
+            const cpuTdp = parseInt(document.getElementById('cpu-tdp').value);
+            const gpuPower = parseInt(document.getElementById('gpu-power').value);
+            const ramSticks = parseInt(document.getElementById('ram-sticks').value);
+            const storageDrives = parseInt(document.getElementById('storage-drives').value);
+            const coolingType = document.getElementById('cooling-type').value;
+            const caseFans = parseInt(document.getElementById('case-fans').value);
+            
+            // Options supplémentaires
+            const rgbLighting = document.getElementById('rgb-lighting').checked;
+            const overclock = document.getElementById('overclock').checked;
+            const wifiCard = document.getElementById('wifi-card').checked;
+            const soundCard = document.getElementById('sound-card').checked;
+            
+            // Calcul de chaque composant
+            const cpuPowerConsumption = cpuTdp * (overclock ? 1.2 : 1);
+            const gpuPowerConsumption = gpuPower * (overclock ? 1.15 : 1);
+            const ramPowerConsumption = ramSticks * 5;
+            const storagePowerConsumption = storageDrives * 8;
+            
+            let coolingPowerConsumption = 15;
+            if (coolingType === 'aio') coolingPowerConsumption = 25;
+            if (coolingType === 'custom') coolingPowerConsumption = 40;
+            
+            const fanPowerConsumption = caseFans * 3;
+            const moboPowerConsumption = 50;
+            
+            let optionsPowerConsumption = 0;
+            if (rgbLighting) optionsPowerConsumption += 15;
+            if (wifiCard) optionsPowerConsumption += 10;
+            if (soundCard) optionsPowerConsumption += 5;
+            
+            // Total
+            totalPower = cpuPowerConsumption + gpuPowerConsumption + ramPowerConsumption + 
+                        storagePowerConsumption + coolingPowerConsumption + fanPowerConsumption + 
+                        moboPowerConsumption + optionsPowerConsumption;
+            
+            // Mise à jour de l'affichage
+            document.getElementById('total-power').textContent = Math.round(totalPower);
+            document.getElementById('total-power-display').innerHTML = `<strong>${Math.round(totalPower)}W</strong>`;
+            
+            // Détail des composants
+            document.getElementById('cpu-power-display').textContent = `${Math.round(cpuPowerConsumption)}W`;
+            document.getElementById('gpu-power-display').textContent = `${Math.round(gpuPowerConsumption)}W`;
+            document.getElementById('ram-power-display').textContent = `${ramPowerConsumption}W`;
+            document.getElementById('storage-power-display').textContent = `${storagePowerConsumption}W`;
+            document.getElementById('cooling-power-display').textContent = `${coolingPowerConsumption + fanPowerConsumption}W`;
+            document.getElementById('mobo-power-display').textContent = `${moboPowerConsumption}W`;
+            document.getElementById('options-power-display').textContent = `${optionsPowerConsumption}W`;
+            
+            // Recommandation d'alimentation avec logique de certification améliorée
+            const recommendedPower = Math.ceil(totalPower * 1.4 / 50) * 50; // Marge de 40% arrondie à 50W
+            let certification = "";
+            let certificationColor = "";
+            let explanation = "";
+            
+            if (recommendedPower <= 450) {
+                certification = "80+ Bronze";
+                certificationColor = "#cd7f32";
+                explanation = "Pour les configurations d'entrée de gamme, le 80+ Bronze offre un bon rapport qualité-prix avec une efficacité de 85% à 50% de charge.";
+            } else if (recommendedPower <= 650) {
+                certification = "80+ Gold";
+                certificationColor = "#ffd700";
+                explanation = "Le 80+ Gold est idéal pour les configurations moyennes à haut de gamme, offrant une excellente efficacité énergétique de 90% à 50% de charge.";
+            } else if (recommendedPower <= 850) {
+                certification = "80+ Platinum";
+                certificationColor = "#e5e4e2";
+                explanation = "Pour les configurations puissantes, le 80+ Platinum garantit une efficacité maximale de 92% à 50% de charge et moins de chaleur dissipée.";
+            } else {
+                certification = "80+ Titanium";
+                certificationColor = "#ffb84d";
+                explanation = "Pour les configurations extrêmes, le 80+ Titanium offre la meilleure efficacité énergétique disponible avec 94%+ à 50% de charge, réduisant significativement la facture énergétique.";
             }
+            
+            document.getElementById('psu-recommendation').innerHTML = 
+                `<strong>Alimentation recommandée : <br> <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${recommendedPower}W <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${certification}</span></strong>`;
+            
+            document.getElementById('certification-explanation').textContent = explanation;
+            
+            // Calcul de l'efficacité
+            const efficiency = Math.round((totalPower / recommendedPower) * 100);
+            document.getElementById('efficiency-percentage').textContent = `${efficiency}%`;
+            document.getElementById('efficiency-fill').style.width = `${efficiency}%`;
         }
-
-        // Afficher un message d'erreur
-        function showError(message) {
-            const recommendationsDiv = document.getElementById('psu-recommendations');
-            recommendationsDiv.innerHTML = `
-                <div class="error-message">
-                    <strong>Erreur:</strong> ${message}
-                </div>
-            `;
-        }
-
-        // Initialiser l'interface après le chargement des données
-        function initializeInterface() {
-            // Mettre à jour les sélecteurs par défaut
-            updateCPUModels();
-            updateGPUModels();
-            calculatePower();
-        }
-
-        // Charger les données au chargement de la page
-        document.addEventListener('DOMContentLoaded', loadComponentsData);
+        
+        // Event listeners pour tous les inputs
+        document.querySelectorAll('select, input[type="checkbox"]').forEach(element => {
+            element.addEventListener('change', calculatePower);
+        });
+        
+        // Calcul initial
+        calculatePower();
+    </script>
+</body>
+</html>
