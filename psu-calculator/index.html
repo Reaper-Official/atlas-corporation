@@ -571,295 +571,311 @@
     </div>
 
     <script>
-                // Base de données des composants
-        const cpuDatabase = {
-            intel: [
-                // 12ème génération
-                { name: "Intel Core i5-12400", tdp: 65 },
-                { name: "Intel Core i5-12400F", tdp: 65 },
-                { name: "Intel Core i5-12500", tdp: 65 },
-                { name: "Intel Core i5-12600", tdp: 65 },
-                { name: "Intel Core i5-12600K", tdp: 125 },
-                { name: "Intel Core i5-12600KF", tdp: 125 },
-                { name: "Intel Core i7-12700", tdp: 65 },
-                { name: "Intel Core i7-12700F", tdp: 65 },
-                { name: "Intel Core i7-12700K", tdp: 125 },
-                { name: "Intel Core i7-12700KF", tdp: 125 },
-                { name: "Intel Core i9-12900", tdp: 65 },
-                { name: "Intel Core i9-12900F", tdp: 65 },
-                { name: "Intel Core i9-12900K", tdp: 125 },
-                { name: "Intel Core i9-12900KF", tdp: 125 },
-                { name: "Intel Core i9-12900KS", tdp: 150 },
-                
-                // 13ème génération
-                { name: "Intel Core i5-13400", tdp: 65 },
-                { name: "Intel Core i5-13400F", tdp: 65 },
-                { name: "Intel Core i5-13500", tdp: 65 },
-                { name: "Intel Core i5-13600K", tdp: 125 },
-                { name: "Intel Core i5-13600KF", tdp: 125 },
-                { name: "Intel Core i7-13700", tdp: 65 },
-                { name: "Intel Core i7-13700F", tdp: 65 },
-                { name: "Intel Core i7-13700K", tdp: 125 },
-                { name: "Intel Core i7-13700KF", tdp: 125 },
-                { name: "Intel Core i9-13900", tdp: 65 },
-                { name: "Intel Core i9-13900F", tdp: 65 },
-                { name: "Intel Core i9-13900K", tdp: 125 },
-                { name: "Intel Core i9-13900KF", tdp: 125 },
-                { name: "Intel Core i9-13900KS", tdp: 150 },
-                
-                // 14ème génération
-                { name: "Intel Core i5-14400", tdp: 65 },
-                { name: "Intel Core i5-14400F", tdp: 65 },
-                { name: "Intel Core i5-14500", tdp: 65 },
-                { name: "Intel Core i5-14600K", tdp: 125 },
-                { name: "Intel Core i5-14600KF", tdp: 125 },
-                { name: "Intel Core i7-14700", tdp: 65 },
-                { name: "Intel Core i7-14700F", tdp: 65 },
-                { name: "Intel Core i7-14700K", tdp: 125 },
-                { name: "Intel Core i7-14700KF", tdp: 125 },
-                { name: "Intel Core i9-14900", tdp: 65 },
-                { name: "Intel Core i9-14900F", tdp: 65 },
-                { name: "Intel Core i9-14900K", tdp: 125 },
-                { name: "Intel Core i9-14900KF", tdp: 125 },
-                { name: "Intel Core i9-14900KS", tdp: 150 }
-            ],
-            amd: [
-                // Série 5000
-                { name: "AMD Ryzen 5 5600", tdp: 65 },
-                { name: "AMD Ryzen 5 5600G", tdp: 65 },
-                { name: "AMD Ryzen 5 5600X", tdp: 65 },
-                { name: "AMD Ryzen 7 5700G", tdp: 65 },
-                { name: "AMD Ryzen 7 5700X", tdp: 65 },
-                { name: "AMD Ryzen 7 5800X", tdp: 105 },
-                { name: "AMD Ryzen 7 5800X3D", tdp: 105 },
-                { name: "AMD Ryzen 9 5900X", tdp: 105 },
-                { name: "AMD Ryzen 9 5950X", tdp: 105 },
-                
-                // Série 7000
-                { name: "AMD Ryzen 5 7600", tdp: 65 },
-                { name: "AMD Ryzen 5 7600X", tdp: 105 },
-                { name: "AMD Ryzen 7 7700", tdp: 65 },
-                { name: "AMD Ryzen 7 7700X", tdp: 105 },
-                { name: "AMD Ryzen 7 7800X3D", tdp: 120 },
-                { name: "AMD Ryzen 9 7900", tdp: 65 },
-                { name: "AMD Ryzen 9 7900X", tdp: 170 },
-                { name: "AMD Ryzen 9 7900X3D", tdp: 120 },
-                { name: "AMD Ryzen 9 7950X", tdp: 170 },
-                { name: "AMD Ryzen 9 7950X3D", tdp: 120 },
-                
-                // Série 9000
-                { name: "AMD Ryzen 5 9600X", tdp: 65 },
-                { name: "AMD Ryzen 7 9700X", tdp: 65 },
-                { name: "AMD Ryzen 9 9900X", tdp: 120 },
-                { name: "AMD Ryzen 9 9950X", tdp: 170 }
-            ]
-        };
-
-        const gpuDatabase = {
-            nvidia: [
-                // RTX 2000 Series
-                { name: "GeForce RTX 2060", power: 160 },
-                { name: "GeForce RTX 2060 Super", power: 175 },
-                { name: "GeForce RTX 2070", power: 175 },
-                { name: "GeForce RTX 2070 Super", power: 215 },
-                { name: "GeForce RTX 2080", power: 215 },
-                { name: "GeForce RTX 2080 Super", power: 250 },
-                { name: "GeForce RTX 2080 Ti", power: 250 },
-                
-                // RTX 3000 Series
-                { name: "GeForce RTX 3050", power: 130 },
-                { name: "GeForce RTX 3060", power: 170 },
-                { name: "GeForce RTX 3060 Ti", power: 200 },
-                { name: "GeForce RTX 3070", power: 220 },
-                { name: "GeForce RTX 3070 Ti", power: 290 },
-                { name: "GeForce RTX 3080", power: 320 },
-                { name: "GeForce RTX 3080 Ti", power: 350 },
-                { name: "GeForce RTX 3090", power: 350 },
-                { name: "GeForce RTX 3090 Ti", power: 450 },
-                
-                // RTX 4000 Series
-                { name: "GeForce RTX 4060", power: 115 },
-                { name: "GeForce RTX 4060 Ti", power: 165 },
-                { name: "GeForce RTX 4070", power: 200 },
-                { name: "GeForce RTX 4070 Super", power: 220 },
-                { name: "GeForce RTX 4070 Ti", power: 285 },
-                { name: "GeForce RTX 4070 Ti Super", power: 285 },
-                { name: "GeForce RTX 4080", power: 320 },
-                { name: "GeForce RTX 4080 Super", power: 320 },
-                { name: "GeForce RTX 4090", power: 450 },
-                
-                // RTX 5000 Series
-                { name: "GeForce RTX 5070", power: 250 },
-                { name: "GeForce RTX 5070 Ti", power: 285 },
-                { name: "GeForce RTX 5080", power: 400 },
-                { name: "GeForce RTX 5090", power: 575 }
-            ],
-            amd: [
-                // RX 6000 Series
-                { name: "Radeon RX 6400", power: 53 },
-                { name: "Radeon RX 6500 XT", power: 107 },
-                { name: "Radeon RX 6600", power: 132 },
-                { name: "Radeon RX 6600 XT", power: 160 },
-                { name: "Radeon RX 6650 XT", power: 176 },
-                { name: "Radeon RX 6700 XT", power: 230 },
-                { name: "Radeon RX 6750 XT", power: 250 },
-                { name: "Radeon RX 6800", power: 250 },
-                { name: "Radeon RX 6800 XT", power: 300 },
-                { name: "Radeon RX 6900 XT", power: 300 },
-                { name: "Radeon RX 6950 XT", power: 335 },
-                
-                // RX 7000 Series
-                { name: "Radeon RX 7600", power: 165 },
-                { name: "Radeon RX 7600 XT", power: 190 },
-                { name: "Radeon RX 7700 XT", power: 245 },
-                { name: "Radeon RX 7800 XT", power: 263 },
-                { name: "Radeon RX 7900 GRE", power: 260 },
-                { name: "Radeon RX 7900 XT", power: 300 },
-                { name: "Radeon RX 7900 XTX", power: 355 }
-            ],
-            intel: [
-                // Arc B-Series (B500+)
-                { name: "Arc B580", power: 190 },
-                { name: "Arc B570", power: 150 }
-            ],
-            none: [
-                { name: "Pas de carte graphique dédiée", power: 0 }
-            ]
-        };
-
-        // Fonction pour remplir les options des processeurs
-        function populateCPUOptions() {
-            const cpuBrand = document.getElementById('cpu-brand').value;
-            const cpuModelSelect = document.getElementById('cpu-model');
-            
-            // Vider les options existantes
-            cpuModelSelect.innerHTML = '';
-            
-            // Ajouter les nouvelles options
-            cpuDatabase[cpuBrand].forEach(cpu => {
-                const option = document.createElement('option');
-                option.value = cpu.tdp;
-                option.textContent = `${cpu.name} (${cpu.tdp}W)`;
-                cpuModelSelect.appendChild(option);
-            });
-        }
-
-        // Fonction pour remplir les options des cartes graphiques
-        function populateGPUOptions() {
-            const gpuBrand = document.getElementById('gpu-brand').value;
-            const gpuModelSelect = document.getElementById('gpu-model');
-            
-            // Vider les options existantes
-            gpuModelSelect.innerHTML = '';
-            
-            // Ajouter les nouvelles options
-            gpuDatabase[gpuBrand].forEach(gpu => {
-                const option = document.createElement('option');
-                option.value = gpu.power;
-                option.textContent = `${gpu.name} (${gpu.power}W)`;
-                gpuModelSelect.appendChild(option);
-            });
-        }
-        // Fonction pour calculer la puissance totale
-        function calculatePower() {
-            let totalPower = 0;
-            
-            // Récupération des valeurs
-            const cpuTdp = parseInt(document.getElementById('cpu-tdp').value);
-            const gpuPower = parseInt(document.getElementById('gpu-power').value);
-            const ramSticks = parseInt(document.getElementById('ram-sticks').value);
-            const storageDrives = parseInt(document.getElementById('storage-drives').value);
-            const coolingType = document.getElementById('cooling-type').value;
-            const caseFans = parseInt(document.getElementById('case-fans').value);
-            
-            // Options supplémentaires
-            const rgbLighting = document.getElementById('rgb-lighting').checked;
-            const overclock = document.getElementById('overclock').checked;
-            const wifiCard = document.getElementById('wifi-card').checked;
-            const soundCard = document.getElementById('sound-card').checked;
-            
-            // Calcul de chaque composant
-            const cpuPowerConsumption = cpuTdp * (overclock ? 1.2 : 1);
-            const gpuPowerConsumption = gpuPower * (overclock ? 1.15 : 1);
-            const ramPowerConsumption = ramSticks * 5;
-            const storagePowerConsumption = storageDrives * 8;
-            
-            let coolingPowerConsumption = 15;
-            if (coolingType === 'aio') coolingPowerConsumption = 25;
-            if (coolingType === 'custom') coolingPowerConsumption = 40;
-            
-            const fanPowerConsumption = caseFans * 3;
-            const moboPowerConsumption = 50;
-            
-            let optionsPowerConsumption = 0;
-            if (rgbLighting) optionsPowerConsumption += 15;
-            if (wifiCard) optionsPowerConsumption += 10;
-            if (soundCard) optionsPowerConsumption += 5;
-            
-            // Total
-            totalPower = cpuPowerConsumption + gpuPowerConsumption + ramPowerConsumption + 
-                        storagePowerConsumption + coolingPowerConsumption + fanPowerConsumption + 
-                        moboPowerConsumption + optionsPowerConsumption;
-            
-            // Mise à jour de l'affichage
-            document.getElementById('total-power').textContent = Math.round(totalPower);
-            document.getElementById('total-power-display').innerHTML = `<strong>${Math.round(totalPower)}W</strong>`;
-            
-            // Détail des composants
-            document.getElementById('cpu-power-display').textContent = `${Math.round(cpuPowerConsumption)}W`;
-            document.getElementById('gpu-power-display').textContent = `${Math.round(gpuPowerConsumption)}W`;
-            document.getElementById('ram-power-display').textContent = `${ramPowerConsumption}W`;
-            document.getElementById('storage-power-display').textContent = `${storagePowerConsumption}W`;
-            document.getElementById('cooling-power-display').textContent = `${coolingPowerConsumption + fanPowerConsumption}W`;
-            document.getElementById('mobo-power-display').textContent = `${moboPowerConsumption}W`;
-            document.getElementById('options-power-display').textContent = `${optionsPowerConsumption}W`;
-            
-            // Recommandation d'alimentation avec logique de certification améliorée
-            const recommendedPower = Math.ceil(totalPower * 1.4 / 50) * 50; // Marge de 40% arrondie à 50W
-            let certification = "";
-            let certificationColor = "";
-            let explanation = "";
-            
-            if (recommendedPower <= 450) {
-                certification = "80+ Bronze";
-                certificationColor = "#cd7f32";
-                explanation = "Pour les configurations d'entrée de gamme, le 80+ Bronze offre un bon rapport qualité-prix avec une efficacité de 85% à 50% de charge.";
-            } else if (recommendedPower <= 650) {
-                certification = "80+ Gold";
-                certificationColor = "#ffd700";
-                explanation = "Le 80+ Gold est idéal pour les configurations moyennes à haut de gamme, offrant une excellente efficacité énergétique de 90% à 50% de charge.";
-            } else if (recommendedPower <= 850) {
-                certification = "80+ Platinum";
-                certificationColor = "#e5e4e2";
-                explanation = "Pour les configurations puissantes, le 80+ Platinum garantit une efficacité maximale de 92% à 50% de charge et moins de chaleur dissipée.";
-            } else if (recommendedPower <= 1200) {
-                certification = "80+ Titanium";
-                certificationColor = "#ffb84d";
-                explanation = "Pour les configurations extrêmes, le 80+ Titanium offre la meilleure efficacité énergétique disponible avec 94%+ à 50% de charge, réduisant significativement la facture énergétique.";
-            } else {
-                certification = "80+ Titanium";
-                certificationColor = "#ffb84d";
-                explanation = "Pour les configurations ultra-hautes performances avec GPU 600W+, le 80+ Titanium est indispensable pour gérer efficacement cette consommation extrême tout en minimisant la chaleur et les coûts énergétiques.";
-            }
-            
-            document.getElementById('psu-recommendation').innerHTML = 
-                `<strong>Alimentation recommandée : <br> <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${recommendedPower}W <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${certification}</span></strong>`;
-            
-            document.getElementById('certification-explanation').textContent = explanation;
-            
-            // Calcul de l'efficacité
-            const efficiency = Math.round((totalPower / recommendedPower) * 100);
-            document.getElementById('efficiency-percentage').textContent = `${efficiency}%`;
-            document.getElementById('efficiency-fill').style.width = `${efficiency}%`;
-        }
+        // Base de données des composants
+const cpuDatabase = {
+    intel: [
+        // 12ème génération
+        { name: "Intel Core i5-12400", tdp: 65 },
+        { name: "Intel Core i5-12400F", tdp: 65 },
+        { name: "Intel Core i5-12500", tdp: 65 },
+        { name: "Intel Core i5-12600", tdp: 65 },
+        { name: "Intel Core i5-12600K", tdp: 125 },
+        { name: "Intel Core i5-12600KF", tdp: 125 },
+        { name: "Intel Core i7-12700", tdp: 65 },
+        { name: "Intel Core i7-12700F", tdp: 65 },
+        { name: "Intel Core i7-12700K", tdp: 125 },
+        { name: "Intel Core i7-12700KF", tdp: 125 },
+        { name: "Intel Core i9-12900", tdp: 65 },
+        { name: "Intel Core i9-12900F", tdp: 65 },
+        { name: "Intel Core i9-12900K", tdp: 125 },
+        { name: "Intel Core i9-12900KF", tdp: 125 },
+        { name: "Intel Core i9-12900KS", tdp: 150 },
         
-        // Event listeners pour tous les inputs
-        document.querySelectorAll('select, input[type="checkbox"]').forEach(element => {
-            element.addEventListener('change', calculatePower);
-        });
+        // 13ème génération
+        { name: "Intel Core i5-13400", tdp: 65 },
+        { name: "Intel Core i5-13400F", tdp: 65 },
+        { name: "Intel Core i5-13500", tdp: 65 },
+        { name: "Intel Core i5-13600K", tdp: 125 },
+        { name: "Intel Core i5-13600KF", tdp: 125 },
+        { name: "Intel Core i7-13700", tdp: 65 },
+        { name: "Intel Core i7-13700F", tdp: 65 },
+        { name: "Intel Core i7-13700K", tdp: 125 },
+        { name: "Intel Core i7-13700KF", tdp: 125 },
+        { name: "Intel Core i9-13900", tdp: 65 },
+        { name: "Intel Core i9-13900F", tdp: 65 },
+        { name: "Intel Core i9-13900K", tdp: 125 },
+        { name: "Intel Core i9-13900KF", tdp: 125 },
+        { name: "Intel Core i9-13900KS", tdp: 150 },
         
-        // Calcul initial
-        calculatePower();
+        // 14ème génération
+        { name: "Intel Core i5-14400", tdp: 65 },
+        { name: "Intel Core i5-14400F", tdp: 65 },
+        { name: "Intel Core i5-14500", tdp: 65 },
+        { name: "Intel Core i5-14600K", tdp: 125 },
+        { name: "Intel Core i5-14600KF", tdp: 125 },
+        { name: "Intel Core i7-14700", tdp: 65 },
+        { name: "Intel Core i7-14700F", tdp: 65 },
+        { name: "Intel Core i7-14700K", tdp: 125 },
+        { name: "Intel Core i7-14700KF", tdp: 125 },
+        { name: "Intel Core i9-14900", tdp: 65 },
+        { name: "Intel Core i9-14900F", tdp: 65 },
+        { name: "Intel Core i9-14900K", tdp: 125 },
+        { name: "Intel Core i9-14900KF", tdp: 125 },
+        { name: "Intel Core i9-14900KS", tdp: 150 }
+    ],
+    amd: [
+        // Série 5000
+        { name: "AMD Ryzen 5 5600", tdp: 65 },
+        { name: "AMD Ryzen 5 5600G", tdp: 65 },
+        { name: "AMD Ryzen 5 5600X", tdp: 65 },
+        { name: "AMD Ryzen 7 5700G", tdp: 65 },
+        { name: "AMD Ryzen 7 5700X", tdp: 65 },
+        { name: "AMD Ryzen 7 5800X", tdp: 105 },
+        { name: "AMD Ryzen 7 5800X3D", tdp: 105 },
+        { name: "AMD Ryzen 9 5900X", tdp: 105 },
+        { name: "AMD Ryzen 9 5950X", tdp: 105 },
+        
+        // Série 7000
+        { name: "AMD Ryzen 5 7600", tdp: 65 },
+        { name: "AMD Ryzen 5 7600X", tdp: 105 },
+        { name: "AMD Ryzen 7 7700", tdp: 65 },
+        { name: "AMD Ryzen 7 7700X", tdp: 105 },
+        { name: "AMD Ryzen 7 7800X3D", tdp: 120 },
+        { name: "AMD Ryzen 9 7900", tdp: 65 },
+        { name: "AMD Ryzen 9 7900X", tdp: 170 },
+        { name: "AMD Ryzen 9 7900X3D", tdp: 120 },
+        { name: "AMD Ryzen 9 7950X", tdp: 170 },
+        { name: "AMD Ryzen 9 7950X3D", tdp: 120 },
+        
+        // Série 9000
+        { name: "AMD Ryzen 5 9600X", tdp: 65 },
+        { name: "AMD Ryzen 7 9700X", tdp: 65 },
+        { name: "AMD Ryzen 9 9900X", tdp: 120 },
+        { name: "AMD Ryzen 9 9950X", tdp: 170 }
+    ]
+};
+
+const gpuDatabase = {
+    nvidia: [
+        // RTX 2000 Series
+        { name: "GeForce RTX 2060", power: 160 },
+        { name: "GeForce RTX 2060 Super", power: 175 },
+        { name: "GeForce RTX 2070", power: 175 },
+        { name: "GeForce RTX 2070 Super", power: 215 },
+        { name: "GeForce RTX 2080", power: 215 },
+        { name: "GeForce RTX 2080 Super", power: 250 },
+        { name: "GeForce RTX 2080 Ti", power: 250 },
+        
+        // RTX 3000 Series
+        { name: "GeForce RTX 3050", power: 130 },
+        { name: "GeForce RTX 3060", power: 170 },
+        { name: "GeForce RTX 3060 Ti", power: 200 },
+        { name: "GeForce RTX 3070", power: 220 },
+        { name: "GeForce RTX 3070 Ti", power: 290 },
+        { name: "GeForce RTX 3080", power: 320 },
+        { name: "GeForce RTX 3080 Ti", power: 350 },
+        { name: "GeForce RTX 3090", power: 350 },
+        { name: "GeForce RTX 3090 Ti", power: 450 },
+        
+        // RTX 4000 Series
+        { name: "GeForce RTX 4060", power: 115 },
+        { name: "GeForce RTX 4060 Ti", power: 165 },
+        { name: "GeForce RTX 4070", power: 200 },
+        { name: "GeForce RTX 4070 Super", power: 220 },
+        { name: "GeForce RTX 4070 Ti", power: 285 },
+        { name: "GeForce RTX 4070 Ti Super", power: 285 },
+        { name: "GeForce RTX 4080", power: 320 },
+        { name: "GeForce RTX 4080 Super", power: 320 },
+        { name: "GeForce RTX 4090", power: 450 },
+        
+        // RTX 5000 Series
+        { name: "GeForce RTX 5070", power: 250 },
+        { name: "GeForce RTX 5070 Ti", power: 285 },
+        { name: "GeForce RTX 5080", power: 400 },
+        { name: "GeForce RTX 5090", power: 575 }
+    ],
+    amd: [
+        // RX 6000 Series
+        { name: "Radeon RX 6400", power: 53 },
+        { name: "Radeon RX 6500 XT", power: 107 },
+        { name: "Radeon RX 6600", power: 132 },
+        { name: "Radeon RX 6600 XT", power: 160 },
+        { name: "Radeon RX 6650 XT", power: 176 },
+        { name: "Radeon RX 6700 XT", power: 230 },
+        { name: "Radeon RX 6750 XT", power: 250 },
+        { name: "Radeon RX 6800", power: 250 },
+        { name: "Radeon RX 6800 XT", power: 300 },
+        { name: "Radeon RX 6900 XT", power: 300 },
+        { name: "Radeon RX 6950 XT", power: 335 },
+        
+        // RX 7000 Series
+        { name: "Radeon RX 7600", power: 165 },
+        { name: "Radeon RX 7600 XT", power: 190 },
+        { name: "Radeon RX 7700 XT", power: 245 },
+        { name: "Radeon RX 7800 XT", power: 263 },
+        { name: "Radeon RX 7900 GRE", power: 260 },
+        { name: "Radeon RX 7900 XT", power: 300 },
+        { name: "Radeon RX 7900 XTX", power: 355 }
+    ],
+    intel: [
+        // Arc B-Series (B500+)
+        { name: "Arc B580", power: 190 },
+        { name: "Arc B570", power: 150 }
+    ],
+    none: [
+        { name: "Pas de carte graphique dédiée", power: 0 }
+    ]
+};
+
+// Fonction pour remplir les options des processeurs
+function populateCPUOptions() {
+    const cpuBrand = document.getElementById('cpu-brand').value;
+    const cpuModelSelect = document.getElementById('cpu-model');
+    
+    // Vider les options existantes
+    cpuModelSelect.innerHTML = '';
+    
+    // Ajouter les nouvelles options
+    cpuDatabase[cpuBrand].forEach(cpu => {
+        const option = document.createElement('option');
+        option.value = cpu.tdp;
+        option.textContent = `${cpu.name} (${cpu.tdp}W)`;
+        cpuModelSelect.appendChild(option);
+    });
+    
+    calculatePower(); // Recalculer après changement
+}
+
+// Fonction pour remplir les options des cartes graphiques
+function populateGPUOptions() {
+    const gpuBrand = document.getElementById('gpu-brand').value;
+    const gpuModelSelect = document.getElementById('gpu-model');
+    
+    // Vider les options existantes
+    gpuModelSelect.innerHTML = '';
+    
+    // Ajouter les nouvelles options
+    gpuDatabase[gpuBrand].forEach(gpu => {
+        const option = document.createElement('option');
+        option.value = gpu.power;
+        option.textContent = `${gpu.name} (${gpu.power}W)`;
+        gpuModelSelect.appendChild(option);
+    });
+    
+    calculatePower(); // Recalculer après changement
+}
+
+// Fonction pour calculer la puissance totale
+function calculatePower() {
+    let totalPower = 0;
+    
+    // Récupération des valeurs avec les bons IDs
+    const cpuTdp = parseInt(document.getElementById('cpu-model').value) || 65;
+    const gpuPower = parseInt(document.getElementById('gpu-model').value) || 0;
+    const ramSticks = parseInt(document.getElementById('ram-sticks').value);
+    const storageDrives = parseInt(document.getElementById('storage-drives').value);
+    const coolingType = document.getElementById('cooling-type').value;
+    const caseFans = parseInt(document.getElementById('case-fans').value);
+    
+    // Options supplémentaires
+    const rgbLighting = document.getElementById('rgb-lighting').checked;
+    const overclock = document.getElementById('overclock').checked;
+    const wifiCard = document.getElementById('wifi-card').checked;
+    const soundCard = document.getElementById('sound-card').checked;
+    
+    // Calcul de chaque composant
+    const cpuPowerConsumption = cpuTdp * (overclock ? 1.2 : 1);
+    const gpuPowerConsumption = gpuPower * (overclock ? 1.15 : 1);
+    const ramPowerConsumption = ramSticks * 5;
+    const storagePowerConsumption = storageDrives * 8;
+    
+    let coolingPowerConsumption = 15;
+    if (coolingType === 'aio') coolingPowerConsumption = 25;
+    if (coolingType === 'custom') coolingPowerConsumption = 40;
+    
+    const fanPowerConsumption = caseFans * 3;
+    const moboPowerConsumption = 50;
+    
+    let optionsPowerConsumption = 0;
+    if (rgbLighting) optionsPowerConsumption += 15;
+    if (wifiCard) optionsPowerConsumption += 10;
+    if (soundCard) optionsPowerConsumption += 5;
+    
+    // Total
+    totalPower = cpuPowerConsumption + gpuPowerConsumption + ramPowerConsumption + 
+                storagePowerConsumption + coolingPowerConsumption + fanPowerConsumption + 
+                moboPowerConsumption + optionsPowerConsumption;
+    
+    // Mise à jour de l'affichage
+    document.getElementById('total-power').textContent = Math.round(totalPower);
+    document.getElementById('total-power-display').innerHTML = `<strong>${Math.round(totalPower)}W</strong>`;
+    
+    // Détail des composants
+    document.getElementById('cpu-power-display').textContent = `${Math.round(cpuPowerConsumption)}W`;
+    document.getElementById('gpu-power-display').textContent = `${Math.round(gpuPowerConsumption)}W`;
+    document.getElementById('ram-power-display').textContent = `${ramPowerConsumption}W`;
+    document.getElementById('storage-power-display').textContent = `${storagePowerConsumption}W`;
+    document.getElementById('cooling-power-display').textContent = `${coolingPowerConsumption + fanPowerConsumption}W`;
+    document.getElementById('mobo-power-display').textContent = `${moboPowerConsumption}W`;
+    document.getElementById('options-power-display').textContent = `${optionsPowerConsumption}W`;
+    
+    // Recommandation d'alimentation avec logique de certification améliorée
+    const recommendedPower = Math.ceil(totalPower * 1.4 / 50) * 50; // Marge de 40% arrondie à 50W
+    let certification = "";
+    let certificationColor = "";
+    let explanation = "";
+    
+    if (recommendedPower <= 450) {
+        certification = "80+ Bronze";
+        certificationColor = "#cd7f32";
+        explanation = "Pour les configurations d'entrée de gamme, le 80+ Bronze offre un bon rapport qualité-prix avec une efficacité de 85% à 50% de charge.";
+    } else if (recommendedPower <= 650) {
+        certification = "80+ Gold";
+        certificationColor = "#ffd700";
+        explanation = "Le 80+ Gold est idéal pour les configurations moyennes à haut de gamme, offrant une excellente efficacité énergétique de 90% à 50% de charge.";
+    } else if (recommendedPower <= 850) {
+        certification = "80+ Platinum";
+        certificationColor = "#e5e4e2";
+        explanation = "Pour les configurations puissantes, le 80+ Platinum garantit une efficacité maximale de 92% à 50% de charge et moins de chaleur dissipée.";
+    } else if (recommendedPower <= 1200) {
+        certification = "80+ Titanium";
+        certificationColor = "#ffb84d";
+        explanation = "Pour les configurations extrêmes, le 80+ Titanium offre la meilleure efficacité énergétique disponible avec 94%+ à 50% de charge, réduisant significativement la facture énergétique.";
+    } else {
+        certification = "80+ Titanium";
+        certificationColor = "#ffb84d";
+        explanation = "Pour les configurations ultra-hautes performances avec GPU 600W+, le 80+ Titanium est indispensable pour gérer efficacement cette consommation extrême tout en minimisant la chaleur et les coûts énergétiques.";
+    }
+    
+    document.getElementById('psu-recommendation').innerHTML = 
+        `<strong>Alimentation recommandée : <br> <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${recommendedPower}W <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${certification}</span></strong>`;
+    
+    document.getElementById('certification-explanation').textContent = explanation;
+    
+    // Calcul de l'efficacité
+    const efficiency = Math.round((totalPower / recommendedPower) * 100);
+    document.getElementById('efficiency-percentage').textContent = `${efficiency}%`;
+    document.getElementById('efficiency-fill').style.width = `${efficiency}%`;
+}
+
+// Initialisation quand le DOM est chargé
+document.addEventListener('DOMContentLoaded', function() {
+    // Remplir les options initiales
+    populateCPUOptions();
+    populateGPUOptions();
+    
+    // Event listeners pour changer les marques
+    document.getElementById('cpu-brand').addEventListener('change', populateCPUOptions);
+    document.getElementById('gpu-brand').addEventListener('change', populateGPUOptions);
+    
+    // Event listeners pour tous les autres inputs
+    document.querySelectorAll('select, input[type="checkbox"]').forEach(element => {
+        element.addEventListener('change', calculatePower);
+    });
+    
+    // Calcul initial
+    calculatePower();
+});
     </script>
 </body>
 </html>
