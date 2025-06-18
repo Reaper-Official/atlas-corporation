@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
-            margin: 1500;
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
@@ -442,10 +442,10 @@
                             <option value="0">Pas de GPU dédié</option>
                             <option value="75">75W (Cartes d'Entrée de gamme)</option>
                             <option value="150">150W (Cartes Milieu de gamme)</option>
-                            <option value="220">220W (Cartes SEMI-HAUT de gamme)</option>
+                            <option value="220">220W (Cartes Semi-haut de gamme)</option>
                             <option value="300">300W (Cartes haut de gamme)</option>
-                            <option value="450">450W (Cartes Très Haut de gamme)</option>
-                            <option value="600">600W (Cartes Extrêmes)</option>
+                            <option value="450">450W (Cartes très haut de gamme)</option>
+                            <option value="600">600W (Cartes extrêmes)</option>
                         </select>
                     </div>
                 </div>
@@ -654,10 +654,14 @@
                 certification = "80+ Platinum";
                 certificationColor = "#e5e4e2";
                 explanation = "Pour les configurations puissantes, le 80+ Platinum garantit une efficacité maximale de 92% à 50% de charge et moins de chaleur dissipée.";
-            } else {
+            } else if (recommendedPower <= 1200) {
                 certification = "80+ Titanium";
                 certificationColor = "#ffb84d";
                 explanation = "Pour les configurations extrêmes, le 80+ Titanium offre la meilleure efficacité énergétique disponible avec 94%+ à 50% de charge, réduisant significativement la facture énergétique.";
+            } else {
+                certification = "80+ Titanium";
+                certificationColor = "#ffb84d";
+                explanation = "Pour les configurations ultra-hautes performances avec GPU 600W+, le 80+ Titanium est indispensable pour gérer efficacement cette consommation extrême tout en minimisant la chaleur et les coûts énergétiques.";
             }
             
             document.getElementById('psu-recommendation').innerHTML = 
