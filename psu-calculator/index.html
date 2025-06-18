@@ -733,7 +733,7 @@ const standardPSUWattages = [550, 650, 750, 850, 1000, 1200, 1600, 2200];
 
 // Fonction pour trouver l'alimentation recommandée
 function getRecommendedPSU(totalPower) {
-    const minRequiredPower = totalPower + 150; // Marge de sécurité de 200W
+    const minRequiredPower = totalPower + 100; // Marge de sécurité de 100W
     
     // Trouver la première puissance standard qui dépasse le minimum requis
     for (let wattage of standardPSUWattages) {
