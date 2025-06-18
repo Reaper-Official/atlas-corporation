@@ -727,6 +727,24 @@ const gpuDatabase = {
     ]
 };
 
+// Puissances d'alimentation standard disponibles sur le marché
+const standardPSUWattages = [550, 650, 750, 850, 1000, 1200, 1600, 2200];
+
+// Fonction pour trouver l'alimentation recommandée
+function getRecommendedPSU(totalPower) {
+    const minRequiredPower = totalPower + 200; // Marge de sécurité de 200W
+    
+    // Trouver la première puissance standard qui dépasse le minimum requis
+    for (let wattage of standardPSUWattages) {
+        if (wattage >= minRequiredPower) {
+            return wattage;
+        }
+    }
+    
+    // Si aucune puissance standard ne suffit, retourner la plus élevée
+    return standardPSUWattages[standardPSUWattages.length - 1];
+}
+
 // Fonction pour remplir les options des processeurs
 function populateCPUOptions() {
     const cpuBrand = document.getElementById('cpu-brand').value;
@@ -819,36 +837,32 @@ function calculatePower() {
     document.getElementById('mobo-power-display').textContent = `${moboPowerConsumption}W`;
     document.getElementById('options-power-display').textContent = `${optionsPowerConsumption}W`;
     
-    // Recommandation d'alimentation avec logique de certification améliorée
-    const recommendedPower = Math.ceil(totalPower * 1.4 / 50) * 50; // Marge de 40% arrondie à 50W
+    // Recommandation d'alimentation avec puissances standard du marché
+    const recommendedPower = getRecommendedPSU(totalPower);
     let certification = "";
     let certificationColor = "";
     let explanation = "";
     
-    if (recommendedPower <= 450) {
+    if (recommendedPower <= 650) {
         certification = "80+ Bronze";
         certificationColor = "#cd7f32";
         explanation = "Pour les configurations d'entrée de gamme, le 80+ Bronze offre un bon rapport qualité-prix avec une efficacité de 85% à 50% de charge.";
-    } else if (recommendedPower <= 650) {
+    } else if (recommendedPower <= 750) {
         certification = "80+ Gold";
         certificationColor = "#ffd700";
         explanation = "Le 80+ Gold est idéal pour les configurations moyennes à haut de gamme, offrant une excellente efficacité énergétique de 90% à 50% de charge.";
-    } else if (recommendedPower <= 850) {
+    } else if (recommendedPower <= 1000) {
         certification = "80+ Platinum";
         certificationColor = "#e5e4e2";
         explanation = "Pour les configurations puissantes, le 80+ Platinum garantit une efficacité maximale de 92% à 50% de charge et moins de chaleur dissipée.";
-    } else if (recommendedPower <= 1200) {
-        certification = "80+ Titanium";
-        certificationColor = "#ffb84d";
-        explanation = "Pour les configurations extrêmes, le 80+ Titanium offre la meilleure efficacité énergétique disponible avec 94%+ à 50% de charge, réduisant significativement la facture énergétique.";
     } else {
         certification = "80+ Titanium";
         certificationColor = "#ffb84d";
-        explanation = "Pour les configurations ultra-hautes performances avec GPU 600W+, le 80+ Titanium est indispensable pour gérer efficacement cette consommation extrême tout en minimisant la chaleur et les coûts énergétiques.";
+        explanation = "Pour les configurations extrêmes, le 80+ Titanium offre la meilleure efficacité énergétique disponible avec 94%+ à 50% de charge, réduisant significativement la facture énergétique.";
     }
     
     document.getElementById('psu-recommendation').innerHTML = 
-        `<strong>Alimentation recommandée : <br> <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${recommendedPower}W <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${certification}</span></strong>`;
+        `<strong>Alimentation recommandée : <br> <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${recommendedPower}W ${certification}</span></strong>`;
     
     document.getElementById('certification-explanation').textContent = explanation;
     
