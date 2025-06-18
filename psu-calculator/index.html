@@ -414,13 +414,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="cpu-tdp">TDP du processeur (W)</label>
-                        <select id="cpu-tdp">
-                            <option value="65">65W (Processeurs basse consommation)</option>
-                            <option value="95">95W (Processeurs milieu de gamme)</option>
-                            <option value="125">125W (Processeurs haut de gamme)</option>
-                            <option value="150">150W (Processeurs très haut de gamme)</option>
-                            <option value="170">170W (Processeurs extrêmes)</option>
+                        <label for="cpu-model">Modèle de processeur</label>
+                        <select id="cpu-model">
+                            <!-- Options remplies dynamiquement -->
                         </select>
                     </div>
                 </div>
@@ -437,15 +433,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="gpu-power">Puissance maximale de la carte graphique (W)</label>
-                        <select id="gpu-power">
-                            <option value="0">Pas de GPU dédié</option>
-                            <option value="75">75W (Cartes d'Entrée de gamme)</option>
-                            <option value="150">150W (Cartes Milieu de gamme)</option>
-                            <option value="220">220W (Cartes Semi-haut de gamme)</option>
-                            <option value="300">300W (Cartes haut de gamme)</option>
-                            <option value="450">450W (Cartes très haut de gamme)</option>
-                            <option value="600">600W (Cartes extrêmes)</option>
+                        <label for="gpu-model">Modèle de carte graphique</label>
+                        <select id="gpu-model">
+                            <!-- Options remplies dynamiquement -->
                         </select>
                     </div>
                 </div>
@@ -457,7 +447,6 @@
                         <select id="ram-sticks">
                             <option value="2">2 barrettes</option>
                             <option value="4">4 barrettes</option>
-                            <option value="8">8 barrettes</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -582,6 +571,195 @@
     </div>
 
     <script>
+                // Base de données des composants
+        const cpuDatabase = {
+            intel: [
+                // 12ème génération
+                { name: "Intel Core i5-12400", tdp: 65 },
+                { name: "Intel Core i5-12400F", tdp: 65 },
+                { name: "Intel Core i5-12500", tdp: 65 },
+                { name: "Intel Core i5-12600", tdp: 65 },
+                { name: "Intel Core i5-12600K", tdp: 125 },
+                { name: "Intel Core i5-12600KF", tdp: 125 },
+                { name: "Intel Core i7-12700", tdp: 65 },
+                { name: "Intel Core i7-12700F", tdp: 65 },
+                { name: "Intel Core i7-12700K", tdp: 125 },
+                { name: "Intel Core i7-12700KF", tdp: 125 },
+                { name: "Intel Core i9-12900", tdp: 65 },
+                { name: "Intel Core i9-12900F", tdp: 65 },
+                { name: "Intel Core i9-12900K", tdp: 125 },
+                { name: "Intel Core i9-12900KF", tdp: 125 },
+                { name: "Intel Core i9-12900KS", tdp: 150 },
+                
+                // 13ème génération
+                { name: "Intel Core i5-13400", tdp: 65 },
+                { name: "Intel Core i5-13400F", tdp: 65 },
+                { name: "Intel Core i5-13500", tdp: 65 },
+                { name: "Intel Core i5-13600K", tdp: 125 },
+                { name: "Intel Core i5-13600KF", tdp: 125 },
+                { name: "Intel Core i7-13700", tdp: 65 },
+                { name: "Intel Core i7-13700F", tdp: 65 },
+                { name: "Intel Core i7-13700K", tdp: 125 },
+                { name: "Intel Core i7-13700KF", tdp: 125 },
+                { name: "Intel Core i9-13900", tdp: 65 },
+                { name: "Intel Core i9-13900F", tdp: 65 },
+                { name: "Intel Core i9-13900K", tdp: 125 },
+                { name: "Intel Core i9-13900KF", tdp: 125 },
+                { name: "Intel Core i9-13900KS", tdp: 150 },
+                
+                // 14ème génération
+                { name: "Intel Core i5-14400", tdp: 65 },
+                { name: "Intel Core i5-14400F", tdp: 65 },
+                { name: "Intel Core i5-14500", tdp: 65 },
+                { name: "Intel Core i5-14600K", tdp: 125 },
+                { name: "Intel Core i5-14600KF", tdp: 125 },
+                { name: "Intel Core i7-14700", tdp: 65 },
+                { name: "Intel Core i7-14700F", tdp: 65 },
+                { name: "Intel Core i7-14700K", tdp: 125 },
+                { name: "Intel Core i7-14700KF", tdp: 125 },
+                { name: "Intel Core i9-14900", tdp: 65 },
+                { name: "Intel Core i9-14900F", tdp: 65 },
+                { name: "Intel Core i9-14900K", tdp: 125 },
+                { name: "Intel Core i9-14900KF", tdp: 125 },
+                { name: "Intel Core i9-14900KS", tdp: 150 }
+            ],
+            amd: [
+                // Série 5000
+                { name: "AMD Ryzen 5 5600", tdp: 65 },
+                { name: "AMD Ryzen 5 5600G", tdp: 65 },
+                { name: "AMD Ryzen 5 5600X", tdp: 65 },
+                { name: "AMD Ryzen 7 5700G", tdp: 65 },
+                { name: "AMD Ryzen 7 5700X", tdp: 65 },
+                { name: "AMD Ryzen 7 5800X", tdp: 105 },
+                { name: "AMD Ryzen 7 5800X3D", tdp: 105 },
+                { name: "AMD Ryzen 9 5900X", tdp: 105 },
+                { name: "AMD Ryzen 9 5950X", tdp: 105 },
+                
+                // Série 7000
+                { name: "AMD Ryzen 5 7600", tdp: 65 },
+                { name: "AMD Ryzen 5 7600X", tdp: 105 },
+                { name: "AMD Ryzen 7 7700", tdp: 65 },
+                { name: "AMD Ryzen 7 7700X", tdp: 105 },
+                { name: "AMD Ryzen 7 7800X3D", tdp: 120 },
+                { name: "AMD Ryzen 9 7900", tdp: 65 },
+                { name: "AMD Ryzen 9 7900X", tdp: 170 },
+                { name: "AMD Ryzen 9 7900X3D", tdp: 120 },
+                { name: "AMD Ryzen 9 7950X", tdp: 170 },
+                { name: "AMD Ryzen 9 7950X3D", tdp: 120 },
+                
+                // Série 9000
+                { name: "AMD Ryzen 5 9600X", tdp: 65 },
+                { name: "AMD Ryzen 7 9700X", tdp: 65 },
+                { name: "AMD Ryzen 9 9900X", tdp: 120 },
+                { name: "AMD Ryzen 9 9950X", tdp: 170 }
+            ]
+        };
+
+        const gpuDatabase = {
+            nvidia: [
+                // RTX 2000 Series
+                { name: "GeForce RTX 2060", power: 160 },
+                { name: "GeForce RTX 2060 Super", power: 175 },
+                { name: "GeForce RTX 2070", power: 175 },
+                { name: "GeForce RTX 2070 Super", power: 215 },
+                { name: "GeForce RTX 2080", power: 215 },
+                { name: "GeForce RTX 2080 Super", power: 250 },
+                { name: "GeForce RTX 2080 Ti", power: 250 },
+                
+                // RTX 3000 Series
+                { name: "GeForce RTX 3050", power: 130 },
+                { name: "GeForce RTX 3060", power: 170 },
+                { name: "GeForce RTX 3060 Ti", power: 200 },
+                { name: "GeForce RTX 3070", power: 220 },
+                { name: "GeForce RTX 3070 Ti", power: 290 },
+                { name: "GeForce RTX 3080", power: 320 },
+                { name: "GeForce RTX 3080 Ti", power: 350 },
+                { name: "GeForce RTX 3090", power: 350 },
+                { name: "GeForce RTX 3090 Ti", power: 450 },
+                
+                // RTX 4000 Series
+                { name: "GeForce RTX 4060", power: 115 },
+                { name: "GeForce RTX 4060 Ti", power: 165 },
+                { name: "GeForce RTX 4070", power: 200 },
+                { name: "GeForce RTX 4070 Super", power: 220 },
+                { name: "GeForce RTX 4070 Ti", power: 285 },
+                { name: "GeForce RTX 4070 Ti Super", power: 285 },
+                { name: "GeForce RTX 4080", power: 320 },
+                { name: "GeForce RTX 4080 Super", power: 320 },
+                { name: "GeForce RTX 4090", power: 450 },
+                
+                // RTX 5000 Series
+                { name: "GeForce RTX 5070", power: 250 },
+                { name: "GeForce RTX 5070 Ti", power: 285 },
+                { name: "GeForce RTX 5080", power: 400 },
+                { name: "GeForce RTX 5090", power: 575 }
+            ],
+            amd: [
+                // RX 6000 Series
+                { name: "Radeon RX 6400", power: 53 },
+                { name: "Radeon RX 6500 XT", power: 107 },
+                { name: "Radeon RX 6600", power: 132 },
+                { name: "Radeon RX 6600 XT", power: 160 },
+                { name: "Radeon RX 6650 XT", power: 176 },
+                { name: "Radeon RX 6700 XT", power: 230 },
+                { name: "Radeon RX 6750 XT", power: 250 },
+                { name: "Radeon RX 6800", power: 250 },
+                { name: "Radeon RX 6800 XT", power: 300 },
+                { name: "Radeon RX 6900 XT", power: 300 },
+                { name: "Radeon RX 6950 XT", power: 335 },
+                
+                // RX 7000 Series
+                { name: "Radeon RX 7600", power: 165 },
+                { name: "Radeon RX 7600 XT", power: 190 },
+                { name: "Radeon RX 7700 XT", power: 245 },
+                { name: "Radeon RX 7800 XT", power: 263 },
+                { name: "Radeon RX 7900 GRE", power: 260 },
+                { name: "Radeon RX 7900 XT", power: 300 },
+                { name: "Radeon RX 7900 XTX", power: 355 }
+            ],
+            intel: [
+                // Arc B-Series (B500+)
+                { name: "Arc B580", power: 190 },
+                { name: "Arc B570", power: 150 }
+            ],
+            none: [
+                { name: "Pas de carte graphique dédiée", power: 0 }
+            ]
+        };
+
+        // Fonction pour remplir les options des processeurs
+        function populateCPUOptions() {
+            const cpuBrand = document.getElementById('cpu-brand').value;
+            const cpuModelSelect = document.getElementById('cpu-model');
+            
+            // Vider les options existantes
+            cpuModelSelect.innerHTML = '';
+            
+            // Ajouter les nouvelles options
+            cpuDatabase[cpuBrand].forEach(cpu => {
+                const option = document.createElement('option');
+                option.value = cpu.tdp;
+                option.textContent = `${cpu.name} (${cpu.tdp}W)`;
+                cpuModelSelect.appendChild(option);
+            });
+        }
+
+        // Fonction pour remplir les options des cartes graphiques
+        function populateGPUOptions() {
+            const gpuBrand = document.getElementById('gpu-brand').value;
+            const gpuModelSelect = document.getElementById('gpu-model');
+            
+            // Vider les options existantes
+            gpuModelSelect.innerHTML = '';
+            
+            // Ajouter les nouvelles options
+            gpuDatabase[gpuBrand].forEach(gpu => {
+                const option = document.createElement('option');
+                option.value = gpu.power;
+                option.textContent = `${gpu.name} (${gpu.power}W)`;
+                gpuModelSelect.appendChild(option);
+            });
+        }
         // Fonction pour calculer la puissance totale
         function calculatePower() {
             let totalPower = 0;
