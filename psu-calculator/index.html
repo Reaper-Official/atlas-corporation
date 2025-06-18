@@ -573,6 +573,7 @@
     <script>
        // Base de données des composants
 const cpuDatabase = {
+// Base de données des composants
     intel: [
         // 12ème génération
         { name: "Intel Core i5-12400", tdp: 65 },
@@ -735,14 +736,20 @@ const standardPSUWattages = [650, 750, 850, 1000, 1200, 1600, 2200];
 function getRecommendedPSU(totalPower) {
     const minRequiredPower = totalPower + 100; // Marge de sécurité de 100W
     
+    console.log(`Debug getRecommendedPSU: totalPower=${totalPower}, minRequired=${minRequiredPower}`);
+    console.log(`Standards disponibles:`, standardPSUWattages);
+    
     // Trouver la première puissance standard qui dépasse le minimum requis
     for (let wattage of standardPSUWattages) {
+        console.log(`Comparaison: ${wattage} >= ${minRequiredPower} ?`, wattage >= minRequiredPower);
         if (wattage >= minRequiredPower) {
+            console.log(`Sélectionné: ${wattage}W`);
             return wattage;
         }
     }
     
     // Si aucune puissance standard ne suffit, retourner la plus élevée
+    console.log(`Aucun standard suffisant, retour du max: ${standardPSUWattages[standardPSUWattages.length - 1]}W`);
     return standardPSUWattages[standardPSUWattages.length - 1];
 }
 
@@ -862,6 +869,10 @@ function calculatePower() {
         certificationColor = "#ffb84d";
         explanation = "Pour les configurations extrêmes, le 80+ Titanium offre la meilleure efficacité énergétique disponible avec 94%+ à 50% de charge, réduisant significativement la facture énergétique.";
     }
+    
+    console.log(`Consommation totale: ${totalPower}W`);
+    console.log(`Minimum requis: ${totalPower + 100}W`);
+    console.log(`Alimentation recommandée: ${recommendedPSUWattage}W`);
     
     document.getElementById('psu-recommendation').innerHTML = 
         `<strong>Alimentation recommandée : <br> <span style="color: ${certificationColor}; text-shadow: 0 0 8px ${certificationColor}40;">${recommendedPSUWattage}W ${certification}</span></strong>`;
