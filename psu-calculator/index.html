@@ -839,7 +839,7 @@ function calculatePower() {
     document.getElementById('options-power-display').textContent = `${optionsPowerConsumption}W`;
     
     // Recommandation d'alimentation avec puissances standard du marché
-    const recommendedPower = getRecommendedPSU(totalPower);
+    const recommendedPower = totalPower + 200;
     let certification = "";
     let certificationColor = "";
     let explanation = "";
