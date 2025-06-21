@@ -1329,6 +1329,57 @@
                 this.style.transform = 'translateY(-4px)';
             });
         });
+         const efficiencySelect = document.getElementById('efficiency');
+        const powerButtons = document.querySelectorAll('.power-btn');
+        const result = document.getElementById('result');
+        const consumptionValue = document.getElementById('consumption-value');
+        
+        let selectedPower = 0;
+        let selectedEfficiency = 0;
+
+        // Gestion de la sélection des boutons de puissance
+        powerButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Retirer la classe active de tous les boutons
+                powerButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Ajouter la classe active au bouton cliqué
+                button.classList.add('active');
+                
+                // Stocker la puissance sélectionnée
+                selectedPower = parseInt(button.dataset.power);
+                
+                // Calculer si on a aussi le rendement
+                calculateConsumption();
+            });
+        });
+
+        // Gestion du changement de rendement
+        efficiencySelect.addEventListener('change', (e) => {
+            selectedEfficiency = parseFloat(e.target.value);
+            calculateConsumption();
+        });
+
+        function calculateConsumption() {
+            if (selectedPower > 0 && selectedEfficiency > 0) {
+                // Formule : Consommation à la prise = Puissance de sortie / Rendement
+                const consumption = Math.round(selectedPower / selectedEfficiency);
+                
+                consumptionValue.textContent = consumption.toLocaleString();
+                result.style.display = 'block';
+                
+                // Animation d'apparition
+                result.style.opacity = '0';
+                result.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    result.style.transition = 'all 0.5s ease';
+                    result.style.opacity = '1';
+                    result.style.transform = 'translateY(0)';
+                }, 50);
+            } else {
+                result.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
