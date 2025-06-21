@@ -110,6 +110,142 @@
             font-weight: 600;
             text-align: center;
         }
+        .calculator {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .power-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .power-btn {
+            padding: 10px 8px;
+            border: 2px solid #e1e5e9;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .power-btn:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .power-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .result {
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .result h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .result .value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .result .unit {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .efficiency-info {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .efficiency-info h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .efficiency-info p {
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                padding: 25px;
+            }
+            
+            .power-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
 
         .section {
             background: var(--card-bg);
@@ -1031,7 +1167,53 @@
                 <div class="video-prevention">
                     ⚠️ Preuve documentaire des véritables spécifications des normes 80+
                 </div>
-                
+                <div class="calculator">
+        
+                    <h1>Calculateur de Consommation Alimentation PC</h1>
+        
+        <div class="input-group">
+            <label for="efficiency">Rendement de l'alimentation :</label>
+            <select id="efficiency">
+                <option value="">Sélectionnez le rendement</option>
+                <option value="0.70">70% (Basique)</option>
+                <option value="0.75">75%</option>
+                <option value="0.80">80%</option>
+                <option value="0.82">82% (80+ Bronze)</option>
+                <option value="0.85">85% (80+ Silver)</option>
+                <option value="0.87">87% (80+ Gold)</option>
+                <option value="0.90">90% (80+ Platinum)</option>
+                <option value="0.92">92% (80+ Titanium)</option>
+                <option value="0.94">94% (Haut de gamme)</option>
+                <option value="0.96">96% (Premium)</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Puissance de sortie souhaitée (W) :</label>
+            <div class="power-buttons">
+                <button class="power-btn" data-power="650">650W</button>
+                <button class="power-btn" data-power="750">750W</button>
+                <button class="power-btn" data-power="850">850W</button>
+                <button class="power-btn" data-power="1000">1000W</button>
+                <button class="power-btn" data-power="1200">1200W</button>
+                <button class="power-btn" data-power="1600">1600W</button>
+                <button class="power-btn" data-power="2000">2000W</button>
+                <button class="power-btn" data-power="2200">2200W</button>
+            </div>
+        </div>
+
+        <div id="result" class="result" style="display: none;">
+            <h3>Consommation estimée à la prise</h3>
+            <div class="value" id="consumption-value">0</div>
+            <div class="unit">Watts</div>
+        </div>
+
+        <div class="efficiency-info">
+            <h4>À propos du rendement :</h4>
+            <p>Le rendement indique l'efficacité de l'alimentation. Une alimentation 80+ Gold avec 87% de rendement consommera moins d'électricité qu'une alimentation basique à 70% pour la même puissance de sortie.</p>
+        </div>
+    </div>
+
             </div>
 
 
