@@ -112,6 +112,121 @@
             text-align: center;
         }
         
+        /* Tableau comparatif*/
+
+
+        .table-wrapper {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            transition: all 0.3s ease;
+        }
+
+        .table-wrapper:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 2px solid var(--tertiary-dark);
+            vertical-align: top;
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-red) 100%);
+            color: var(--text-light);
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th:first-child {
+            border-top-left-radius: var(--border-radius);
+            width: 35%;
+        }
+
+        th:nth-child(2) {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-orange) 100%);
+        }
+
+        th:last-child {
+            border-top-right-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-yellow) 100%);
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        tr:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: scale(1.01);
+            transition: all 0.3s ease;
+        }
+
+        td:first-child {
+            font-weight: bold;
+            color: var(--accent-orange);
+            background: rgba(255, 107, 53, 0.05);
+            border-right: 3px solid var(--accent-orange);
+        }
+
+        td:nth-child(2) {
+            border-right: 2px solid var(--tertiary-dark);
+        }
+
+        .highlight-value {
+            color: var(--accent-yellow);
+            font-weight: bold;
+        }
+
+        .source-text {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .performance-good {
+            color: var(--accent-green);
+        }
+
+        .performance-moderate {
+            color: var(--accent-yellow);
+        }
+
+        .performance-poor {
+            color: var(--accent-red);
+        }
+
+        @media (max-width: 768px) {
+            .table-wrapper {
+                padding: 15px;
+            }
+            
+            th, td {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
         /* Calculateur centré */
 .calculator-container {
     display: flex;
@@ -975,6 +1090,88 @@
                             <img src="write-over-time.png">
                             <img src="write-over-tim2e.png">
                         </div>
+                        <div class="container">
+        <h1>Comparaison SSD NVMe vs RAID HDD</h1>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Caractéristique</th>
+                        <th>Kingston NV3 2 To (NVMe SSD)</th>
+                        <th>RAID de 4 HDD (RAID 0, 1, 5 ou 10)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vitesse d'écriture maximale (burst SLC)</td>
+                        <td>
+                            <span class="highlight-value performance-good">≈ 4 500 Mo/s</span><br>
+                            <span class="source-text">(source : image TechPowerUp)</span>
+                        </td>
+                        <td>
+                            <span class="highlight-value performance-moderate">Environ 400–700 Mo/s</span><br>
+                            <span class="source-text">(dépend du RAID, voir ci-dessous)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vitesse d'écriture soutenue après cache</td>
+                        <td>
+                            <span class="highlight-value performance-moderate">100–500 Mo/s</span><br>
+                            <span class="source-text">(dès que le cache SLC est saturé)</span>
+                        </td>
+                        <td>
+                            <strong>RAID 0</strong> : <span class="performance-good">500–700 Mo/s</span><br>
+                            <strong>RAID 5</strong> : <span class="performance-moderate">300–500 Mo/s</span><br>
+                            <strong>RAID 10</strong> : <span class="performance-moderate">400–600 Mo/s</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vitesse moyenne globale</td>
+                        <td>
+                            <span class="highlight-value performance-moderate">307 Mo/s</span><br>
+                            <span class="source-text">(source : image TechPowerUp)</span>
+                        </td>
+                        <td>
+                            <span class="highlight-value performance-good">Environ 500 Mo/s</span><br>
+                            <span class="source-text">(en RAID 0 avec 4 HDD 7200 RPM)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Latence d'accès</td>
+                        <td>
+                            <span class="highlight-value performance-good">Très faible (~0.1 ms)</span>
+                        </td>
+                        <td>
+                            <span class="highlight-value performance-poor">Élevée (~10–15 ms)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Consistance de la vitesse</td>
+                        <td>
+                            <span class="performance-poor">Très variable</span><br>
+                            <span class="source-text">(chute brutale après cache plein)</span>
+                        </td>
+                        <td>
+                            <span class="performance-moderate">Plus stable, mais moins rapide</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Source SSD</td>
+                        <td colspan="2">
+                            <span class="source-text">Graphique TechPowerUp fourni</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sources RAID</td>
+                        <td colspan="2">
+                            <span class="source-text">Tests pratiques, ex: Tom's Hardware, AnandTech, Puget Systems</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
                     </ul>
                 </div>
 
