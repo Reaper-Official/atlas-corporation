@@ -1353,18 +1353,6 @@
             });
         }, observerOptions);
 
-        // Observe all fade-in elements
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(element => {
-                observer.observe(element);
-            });
-
-            // Initial visibility for hero
-            setTimeout(() => {
-                document.querySelector('.hero').classList.add('visible');
-            }, 100);
-        });
 
         // Enhanced hover effects
         document.querySelectorAll('.section').forEach(section => {
