@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions Générales d'Utilisation - Atlas Corporation</title>
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --tertiary-dark: #2a2a2a;
+            --accent-orange: #ff6b35;
+            --accent-yellow: #ffb84d;
+            --accent-red: #e74c3c;
+            --accent-green: #27ae60;
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+            --text-subtle: #888888;
+            --border-color: #333333;
+            --card-bg: #1e1e1e;
+            --hover-bg: #2a2a2a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "⚖️";
+            font-size: 1.2rem;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, var(--accent-orange)10, transparent 70%);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .last-updated {
+            display: inline-block;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            color: var(--accent-yellow);
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: sticky;
+            top: 100px;
+            z-index: 50;
+        }
+
+        .toc h2 {
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .toc a:hover {
+            background: var(--hover-bg);
+            color: var(--accent-orange);
+            transform: translateX(5px);
+        }
+
+        /* Content Sections */
+        .content {
+            display: grid;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
+        }
+
+        .section h2 {
+            color: var(--accent-orange);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section h3 {
+            color: var(--accent-yellow);
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .section ul, .section ol {
+            margin: 1rem 0 1rem 2rem;
+            color: var(--text-muted);
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Special Styling for Important Elements */
+        .highlight-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--accent-orange);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-email {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .warning {
+            border-left: 4px solid var(--accent-red);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            background: rgba(231, 76, 60, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        .info {
+            border-left: 4px solid var(--accent-green);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            background: rgba(39, 174, 96, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            color: var(--text-subtle);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .toc {
+                position: static;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section Icons */
+        .icon-presentation::before { content: "🏢"; }
+        .icon-object::before { content: "🎯"; }
+        .icon-warning::before { content: "⚠️"; }
+        .icon-sources::before { content: "📚"; }
+        .icon-critique::before { content: "💬"; }
+        .icon-rights::before { content: "✉️"; }
+        .icon-legal::before { content: "⚖️"; }
+        .icon-property::before { content: "©️"; }
+        .icon-data::before { content: "🔒"; }
+        .icon-responsibility::before { content: "🛡️"; }
+        .icon-acceptance::before { content: "✅"; }
+        .icon-jurisdiction::before { content: "🏛️"; }
+        .icon-contact::before { content: "📧"; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .section:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+
+        .section:nth-child(odd) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Atlas Corporation</a>
+                <nav class="nav">
+                    <a href="#presentation">Présentation</a>
+                    <a href="#objet">Objet</a>
+                    <a href="#contact-section">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Conditions Générales d'Utilisation</h1>
+                <p>Conditions d'utilisation du site atlas-corporation.fr - Plateforme d'analyse critique de l'écosystème tech francophone</p>
+                <div class="last-updated">Dernière mise à jour : 23 juin 2025</div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="toc">
+                <h2>Sommaire</h2>
+                <div class="toc-grid">
+                    <a href="#presentation">1. Présentation du site</a>
+                    <a href="#objet">2. Objet du site</a>
+                    <a href="#avertissement">3. Avertissement éditorial</a>
+                    <a href="#sources">4. Sources et documentation</a>
+                    <a href="#critique">5. Mentions spécifiques</a>
+                    <a href="#droits">6. Droit de réponse</a>
+                    <a href="#statut">7. Statut juridique</a>
+                    <a href="#propriete">8. Propriété intellectuelle</a>
+                    <a href="#donnees">9. Données personnelles</a>
+                    <a href="#responsabilites">10. Responsabilités</a>
+                    <a href="#acceptation">11. Acceptation des CGU</a>
+                    <a href="#droit">12. Droit applicable</a>
+                    <a href="#contact-section">13. Contact</a>
+                </div>
+            </section>
+
+            <div class="content">
+                <section id="presentation" class="section">
+                    <h2 class="icon-presentation">Présentation du site</h2>
+                    <p>Le site <strong>atlas-corporation.fr</strong> est une plateforme personnelle, indépendante et non commerciale, exploitée à titre individuel par une personne physique souhaitant rester anonyme. Ce choix est motivé par la volonté de préserver une neutralité éditoriale, ainsi que le respect de la vie privée de l'éditeur.</p>
+                    
+                    <div class="info">
+                        <p>Le site n'est ni une entreprise ni une marque, et ne représente aucun groupement économique, aucune structure commerciale, ni aucune entité juridique ou morale immatriculée. Il ne perçoit aucun revenu, et n'a pas vocation à proposer des services marchands, ni à vendre de produits.</p>
+                    </div>
+                </section>
+
+                <section id="objet" class="section">
+                    <h2 class="icon-object">Objet du site</h2>
+                    <p><strong>atlas-corporation.fr</strong> a pour finalité la publication d'analyses critiques, documentées et argumentées portant sur les comportements publics, les productions numériques et les logiques d'influence dans le secteur technologique, notamment dans l'univers francophone.</p>
+                    
+                    <h3>Les sujets traités sont centrés sur :</h3>
+                    <ul>
+                        <li>Les influenceurs tech et leur rôle dans la prescription de produits</li>
+                        <li>Les conflits d'intérêts potentiels dans les tests ou avis sponsorisés</li>
+                        <li>Les pratiques de monétisation opaque ou déguisée</li>
+                        <li>Les biais dans les contenus dits "objectifs"</li>
+                        <li>La vulgarisation technique inexacte ou trompeuse</li>
+                        <li>La culture de la performance ou du placement non déclaré</li>
+                    </ul>
+                    
+                    <p>Ces sujets sont abordés avec un objectif de pédagogie critique, visant à aider les consommateurs, internautes et jeunes audiences à développer une meilleure capacité d'analyse face aux contenus numériques.</p>
+                </section>
+
+                <section id="avertissement" class="section">
+                    <h2 class="icon-warning">Avertissement éditorial</h2>
+                    <div class="highlight-box">
+                        <p>L'ensemble des publications du site relève de la liberté d'opinion et d'expression, protégée par la Déclaration des Droits de l'Homme et du Citoyen (article 11), la Constitution française, la Convention européenne des droits de l'homme (article 10), et la Charte des droits fondamentaux de l'Union européenne.</p>
+                    </div>
+                    
+                    <p>Le site ne pratique ni diffamation, ni incitation à la haine, ni harcèlement, et s'astreint à un devoir d'honnêteté intellectuelle : les critiques émises s'appuient toujours sur des contenus publics, vérifiables et cités.</p>
+                </section>
+
+                <section id="sources" class="section">
+                    <h2 class="icon-sources">Sources et documentation</h2>
+                    <p>L'ensemble des contenus publiés sur atlas-corporation.fr repose sur des sources accessibles publiquement au moment de leur rédaction. Il peut s'agir de :</p>
+                    
+                    <ul>
+                        <li>Vidéos hébergées sur YouTube</li>
+                        <li>Publications sur des réseaux sociaux (Twitter/X, Instagram, TikTok)</li>
+                        <li>Vidéos de tests produits, contenus sponsorisés ou partenariats visibles en ligne</li>
+                        <li>Déclarations dans des interviews, podcasts ou articles</li>
+                        <li>Archives numériques via des services tels que Wayback Machine</li>
+                        <li>Données techniques issues de fabricants, distributeurs ou tests indépendants</li>
+                    </ul>
+                    
+                    <div class="info">
+                        <p>Chaque information est, autant que possible, contextualisée, sourcée et confrontée. Aucune citation privée ou fuite confidentielle n'est utilisée. Il n'y a aucune enquête intrusive ni violation délibérée de données personnelles.</p>
+                    </div>
+                </section>
+
+                <section id="critique" class="section">
+                    <h2 class="icon-critique">Mentions spécifiques sur les pages critiques</h2>
+                    <p>Certaines pages du site, notamment la page "Critique des idiots", exposent des cas concrets de pratiques considérées comme problématiques dans l'écosystème des influenceurs tech francophones. Les noms de certaines chaînes ou personnes publiques y apparaissent, notamment :</p>
+                    
+                    <ul>
+                        <li><strong>Flowup</strong></li>
+                        <li><strong>FrenchHardware</strong></li>
+                        <li><strong>Pax</strong></li>
+                        <li><strong>SoloTech</strong></li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <h3>Ces contenus :</h3>
+                        <ul>
+                            <li>ne sont ni injurieux, ni calomnieux</li>
+                            <li>reposent sur des faits vérifiables et des exemples publics</li>
+                            <li>visent à rétablir un équilibre critique face à des contenus généralement unilatéraux</li>
+                            <li>relèvent d'un intérêt légitime d'analyse médiatique</li>
+                        </ul>
+                        <p>La démarche éditoriale est transparente, accessible et modifiable à la demande.</p>
+                    </div>
+                </section>
+
+                <section id="droits" class="section">
+                    <h2 class="icon-rights">Droit de réponse et demandes de retrait</h2>
+                    <p>Toute personne physique ou morale citée sur le site bénéficie d'un droit de réponse ou de rectification, en vertu de l'article 6 IV de la loi pour la Confiance dans l'économie numérique (LCEN).</p>
+                    
+                    <div class="highlight-box">
+                        <p>Pour exercer ce droit ou demander le retrait d'un contenu, il suffit de formuler une demande claire, motivée et polie par email à l'adresse suivante :</p>
+                        <p class="contact-email">📧 contact@atlas-corporation.fr</p>
+                    </div>
+                    
+                    <h3>L'éditeur s'engage à :</h3>
+                    <ul>
+                        <li>Traiter toute demande avec attention et respect</li>
+                        <li>Fournir un retour écrit sous 15 jours maximum</li>
+                        <li>Apporter, si nécessaire, une modification, un ajout de contexte, un droit de réponse, voire une suppression complète du contenu concerné</li>
+                    </ul>
+                    
+                    <p>Aucune rétention délibérée d'information ne sera pratiquée en cas d'erreur ou d'atteinte non intentionnelle.</p>
+                </section>
+
+                <section id="statut" class="section">
+                    <h2 class="icon-legal">Statut juridique et hébergement</h2>
+                    <ul>
+                        <li><strong>Statut juridique :</strong> le site est un projet personnel non immatriculé, ne constituant ni une société ni une association.</li>
+                        <li><strong>Hébergement :</strong> le site est hébergé par un prestataire situé dans l'Union Européenne, conforme au RGPD et à la législation européenne sur la protection des données.</li>
+                        <li><strong>Propriétaire du nom de domaine :</strong> privé, enregistré sous anonymat via un service de protection WHOIS.</li>
+                    </ul>
+                </section>
+
+                <section id="propriete" class="section">
+                    <h2 class="icon-property">Propriété intellectuelle</h2>
+                    
+                    <h3>8.1 Créations propres</h3>
+                    <p>L'ensemble des contenus rédactionnels originaux, analyses, formulations, titres, critiques et graphismes créés spécifiquement pour le site sont protégés au titre du Code de la propriété intellectuelle. Toute reproduction ou réutilisation sans autorisation expresse est interdite.</p>
+                    
+                    <h3>8.2 Contenus tiers</h3>
+                    <p>Les éléments issus de tiers (captures d'écran, extraits vidéo, citations, logos) sont :</p>
+                    <ul>
+                        <li>utilisés dans le respect du droit de courte citation (article L.122-5 CPI)</li>
+                        <li>intégrés dans un cadre d'analyse, de commentaire ou de parodie</li>
+                        <li>non modifiés de manière trompeuse</li>
+                        <li>accompagnés d'une mention claire de la source</li>
+                    </ul>
+                    <p>Le site ne revendique aucune paternité sur les œuvres tierces.</p>
+                </section>
+
+                <section id="donnees" class="section">
+                    <h2 class="icon-data">Données personnelles</h2>
+                    <div class="info">
+                        <p>Le site ne collecte aucune donnée personnelle automatiquement. Aucune fonctionnalité de profil, d'inscription ou de suivi n'est en place.</p>
+                    </div>
+                    
+                    <h3>Il n'y a :</h3>
+                    <ul>
+                        <li>ni cookies publicitaires</li>
+                        <li>ni traçage de navigation</li>
+                        <li>ni statistiques nominatives</li>
+                    </ul>
+                    
+                    <p>Seuls les emails reçus de manière volontaire par <span class="contact-email">contact@atlas-corporation.fr</span> peuvent contenir des données identifiables (nom, adresse, etc.), qui sont :</p>
+                    <ul>
+                        <li>non stockées dans une base de données</li>
+                        <li>non partagées à des tiers</li>
+                        <li>utilisées uniquement pour répondre aux messages</li>
+                    </ul>
+                    
+                    <p>Conformément au Règlement Général sur la Protection des Données (RGPD), toute personne peut demander la suppression immédiate de ses données transmises.</p>
+                </section>
+
+                <section id="responsabilites" class="section">
+                    <h2 class="icon-responsibility">Responsabilités</h2>
+                    <div class="warning">
+                        <p>Le site est proposé "tel quel", sans garantie de fonctionnement ininterrompu ni d'exhaustivité absolue des informations publiées.</p>
+                    </div>
+                    
+                    <h3>L'éditeur :</h3>
+                    <ul>
+                        <li>ne peut être tenu responsable d'un usage inapproprié ou interprété à tort des contenus du site</li>
+                        <li>n'assume aucun préjudice causé par la lecture, citation ou diffusion externe des textes publiés</li>
+                        <li>décline toute responsabilité en cas de détournement ou citation hors contexte de ses propos</li>
+                    </ul>
+                    
+                    <p>Les utilisateurs restent entièrement responsables de leur propre interprétation des textes et de leurs conséquences.</p>
+                </section>
+
+                <section id="acceptation" class="section">
+                    <h2 class="icon-acceptance">Acceptation des CGU</h2>
+                    <div class="highlight-box">
+                        <p>En naviguant sur atlas-corporation.fr, l'internaute reconnaît :</p>
+                        <ul>
+                            <li>avoir lu et compris les présentes CGU</li>
+                            <li>les accepter sans réserve</li>
+                            <li>s'engager à les respecter durant toute consultation du site</li>
+                        </ul>
+                    </div>
+                    
+                    <p>Ces CGU peuvent être modifiées à tout moment, sans préavis. La version en ligne fait foi.</p>
+                </section>
+
+                <section id="droit" class="section">
+                    <h2 class="icon-jurisdiction">Droit applicable et juridiction compétente</h2>
+                    <p>Les présentes Conditions Générales d'Utilisation sont régies par le droit français, tant pour le fond que pour la forme.</p>
+                    
+                    <p>En cas de litige, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire. À défaut d'accord, les tribunaux compétents seront ceux du ressort du siège de l'hébergeur.</p>
+                </section>
+
+                <section id="contact-section" class="section">
+                    <h2 class="icon-contact">Contact</h2>
+                    <div class="highlight-box">
+                        <p>Pour toute question, demande, ou signalement, veuillez écrire à :</p>
+                        <p class="contact-email">📧 contact@atlas-corporation.fr</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Atlas Corporation - Plateforme d'analyse critique indépendante. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll-based animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
