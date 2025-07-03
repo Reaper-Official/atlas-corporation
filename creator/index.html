@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaper - Expert en CyberDéfense</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header avec animation */
+        .header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%2300d4ff;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%2300d4ff;stop-opacity:0"/></radialGradient></defs><circle cx="500" cy="500" r="400" fill="url(%23a)"/></svg>') no-repeat center;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(0, 212, 255, 0.8); }
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00d4ff, #0ea5e9);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #00d4ff;
+        }
+        
+        /* About Section */
+        .about {
+            background: rgba(30, 41, 59, 0.3);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .quote {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 2rem;
+            border-left: 4px solid #00d4ff;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        
+        .quote-author {
+            text-align: right;
+            margin-top: 1rem;
+            color: #00d4ff;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-card {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+        
+        .skill-card h3 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+        
+        /* Experience Section */
+        .experience {
+            background: rgba(30, 41, 59, 0.3);
+        }
+        
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .experience-card {
+            background: rgba(15, 23, 42, 0.7);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #00d4ff;
+        }
+        
+        .experience-card h3 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-card .company {
+            color: #64748b;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        /* Partners Section */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .partner-card {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .partner-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .partner-card h3 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid #334155;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .contact-info a {
+            color: #00d4ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #0ea5e9;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* Animations d'entrée */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Effet de particules */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00d4ff;
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">REAPER</div>
+            <ul class="nav-links">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#partners">Partenaires</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>REAPER</h1>
+            <p>Expert en CyberDéfense | Blue Team Specialist</p>
+            <a href="#about" class="cta-button">Découvrir mon parcours</a>
+        </div>
+    </section>
+    
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title fade-in">À propos de moi</h2>
+            <div class="about-content fade-in">
+                <div>
+                    <div style="width: 200px; height: 200px; background: linear-gradient(45deg, #00d4ff, #0ea5e9); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);">
+                        🛡️
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>Passionné d'informatique avec une expertise approfondie dans divers domaines technologiques, je me spécialise dans la cybersécurité, plus précisément dans la <strong>Blue Team</strong> ou Équipe de CyberProtection.</p>
+                    
+                    <p>Âgé de bientôt 20 ans, j'ai choisi de me concentrer sur la défense plutôt que sur l'attaque, préférant protéger et piéger les intrus plutôt que de devenir le potentiel piégé.</p>
+                    
+                    <div class="quote">
+                        <p>"Nous n'avons pas le luxe de nous en tenir à la morale. L'histoire n'est pas écrite par ceux qui respectent les règles, mais par ceux qui les brisent."</p>
+                        <div class="quote-author">- Jonathan Irons, CEO Atlas Corporation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Compétences</h2>
+            <div class="skills-grid fade-in">
+                <div class="skill-card">
+                    <h3>🛡️ CyberDéfense</h3>
+                    <p>Spécialiste Blue Team avec expertise dans la détection d'intrusions, l'analyse de malwares, et la réponse aux incidents de sécurité.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🔍 Analyse de Vulnérabilités</h3>
+                    <p>Identification et évaluation des failles de sécurité dans les systèmes d'information et applications web.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🚨 Réponse aux Incidents</h3>
+                    <p>Gestion et coordination des réponses aux incidents de cybersécurité, forensic numérique.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📊 Threat Intelligence</h3>
+                    <p>Analyse des menaces émergentes et mise en place de stratégies de protection proactives.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🔧 Sécurité des Systèmes</h3>
+                    <p>Durcissement des systèmes, configuration sécurisée des infrastructures IT.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>💻 Développement Sécurisé</h3>
+                    <p>Création de solutions sécurisées et audit de code pour identifier les vulnérabilités.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience" class="section experience">
+        <div class="container">
+            <h2 class="section-title fade-in">Formation & Réalisations</h2>
+            <div class="experience-grid fade-in">
+                <div class="experience-card">
+                    <h3>🏆 Cyber-Champion CTF</h3>
+                    <div class="company">Région Île-de-France</div>
+                    <p>8ème place sur 480 participants lors du Capture The Flag organisé par la Région Île-de-France. Une performance qui démontre mes compétences techniques et ma capacité à résoudre des défis complexes de cybersécurité.</p>
+                </div>
+                <div class="experience-card">
+                    <h3>🌐 Créateur de Contenu Tech</h3>
+                    <div class="company">Site Web Personnel</div>
+                    <p>Gestion d'un site web spécialisé en informatique avec plus de 1000 visiteurs uniques par mois. Vulgarisation de concepts techniques complexes pour un public large.</p>
+                </div>
+                <div class="experience-card">
+                    <h3>🎖️ Formation CyberDéfense</h3>
+                    <div class="company">Armée de l'Air & ComCyber</div>
+                    <p>Études en CyberDéfense en partenariat avec ComCyber (Commandement de CyberDéfense). Objectif : devenir Lieutenant dans la section CyberDéfense de l'armée de l'air.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="partners" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Ils me font confiance</h2>
+            <div class="partners-grid fade-in">
+                <div class="partner-card">
+                    <h3>🏢 Yogosha</h3>
+                    <p>Participation active aux programmes de Bug Bounty avec cette entreprise spécialisée en cyberdéfense.</p>
+                </div>
+                <div class="partner-card">
+                    <h3>🇫🇷 ANSSI</h3>
+                    <p>Agence Nationale de la Sécurité des Systèmes d'Information - Découverte d'une faille dans les S.T.A.D des établissements de la Région Île-de-France.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" style="background: rgba(30, 41, 59, 0.3);">
+        <div class="container">
+            <h2 class="section-title fade-in">Objectifs Futurs</h2>
+            <div class="experience-grid fade-in">
+                <div class="experience-card">
+                    <h3>🎯 Court Terme</h3>
+                    <p>Finaliser ma formation et obtenir le grade de Lieutenant dans la section CyberDéfense de l'armée de l'air.</p>
+                </div>
+                <div class="experience-card">
+                    <h3>🚀 Long Terme</h3>
+                    <p>Intégrer des entreprises leaders comme <strong>Thales</strong> ou <strong>Dassault</strong> pour contribuer à la sécurité des systèmes critiques français.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>REAPER</h3>
+                    <p>Expert en CyberDéfense | Blue Team Specialist</p>
+                </div>
+                <div class="contact-info">
+                    <a href="mailto:contact@reaper.fr">📧 Contact</a>
+                    <a href="#" onclick="alert('LinkedIn: Connectez-vous avec moi')">💼 LinkedIn</a>
+                    <a href="#" onclick="alert('GitHub: Découvrez mes projets')">💻 GitHub</a>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+                <p>&copy; 2025 Reaper. Tous droits réservés. | Défendre, Protéger, Sécuriser.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Animation d'entrée pour les éléments
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.5 + 's';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Effet de particules
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            document.getElementById('particles').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+        
+        // Créer des particules régulièrement
+        setInterval(createParticle, 300);
+        
+        // Smooth scrolling pour les liens de navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Effet de parallaxe léger
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
