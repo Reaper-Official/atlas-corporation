@@ -3,1653 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index,follow">
-    <meta name="googlebot" content="index,follow">
-    <title>Analyse Critique : Influenceurs Hardware</title>
+    <title>Hub de Navigation</title>
     <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --tertiary-dark: #2a2a2a;
+            --accent-orange: #ff6b35;
+            --accent-yellow: #ffb84d;
+            --accent-red: #e74c3c;
+            --accent-green: #27ae60;
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+            --text-subtle: #888888;
+            --border-color: #333333;
+            --card-bg: #1e1e1e;
+            --hover-bg: #2a2a2a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-dark: #0a0a0a;
-            --secondary-dark: #1a1a1a;
-            --tertiary-dark: #2d2d2d;
-            --accent-orange: #ff6b35;
-            --accent-red: #cc0000;
-            --accent-yellow: #ffcc00;
-            --accent-green: #ff8800;
-            --text-light: #ffffff;
-            --text-muted: #cccccc;
-            --border-color: #660000;
-            --accent-blue: #0d0faf;
-            --card-bg: rgba(45, 45, 45, 0.95);
-            --border-radius: 16px;
-            --shadow: 0 10px 25px rgba(255, 107, 53, 0.1);
-            --shadow-hover: 0 20px 40px rgba(255, 107, 53, 0.25);
-        }
-        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
             color: var(--text-light);
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
             min-height: 100vh;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 204, 0, 0.05) 0%, transparent 50%);
-            z-index: -1;
-
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
         .container {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .hero {
+            max-width: 1200px;
+            width: 100%;
             text-align: center;
-            margin-bottom: 4rem;
-            padding: 4rem 2rem;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            border: 2px solid rgba(255, 107, 53, 0.2);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow), var(--accent-green));
+        .header {
+            margin-bottom: 60px;
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-red));
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
         }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
+        .header p {
+            font-size: 1.2rem;
             color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .intro-card {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
-            color: var(--primary-dark);
-            padding: 2.5rem;
-            border-radius: var(--border-radius);
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-align: center;
+        .navigation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
-        
-        /* Tableau comparatif*/
 
-
-        .table-wrapper {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
+        .nav-card {
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none;
+            color: inherit;
             backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            overflow-x: auto;
-            transition: all 0.3s ease;
-        }
-
-        .table-wrapper:hover {
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-2px);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 16px;
-        }
-
-        th, td {
-            padding: 20px;
-            text-align: left;
-            border-bottom: 2px solid var(--tertiary-dark);
-            vertical-align: top;
-        }
-
-        th {
-            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-red) 100%);
-            color: var(--text-light);
-            font-weight: bold;
-            font-size: 18px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        th:first-child {
-            border-top-left-radius: var(--border-radius);
-            width: 35%;
-        }
-
-        th:nth-child(2) {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-orange) 100%);
-        }
-
-        th:last-child {
-            border-top-right-radius: var(--border-radius);
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-yellow) 100%);
-        }
-
-        tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        tr:hover {
-            background: rgba(255, 107, 53, 0.1);
-            transform: scale(1.01);
-            transition: all 0.3s ease;
-        }
-
-        td:first-child {
-            font-weight: bold;
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.05);
-            border-right: 3px solid var(--accent-orange);
-        }
-
-        td:nth-child(2) {
-            border-right: 2px solid var(--tertiary-dark);
-        }
-
-        .highlight-value {
-            color: var(--accent-yellow);
-            font-weight: bold;
-        }
-
-        .source-text {
-            font-style: italic;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .performance-good {
-            color: var(--accent-green);
-        }
-
-        .performance-moderate {
-            color: var(--accent-yellow);
-        }
-
-        .performance-poor {
-            color: var(--accent-red);
-        }
-
-        @media (max-width: 768px) {
-            .table-wrapper {
-                padding: 15px;
-            }
-            
-            th, td {
-                padding: 12px;
-                font-size: 14px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-        }
-        /* Calculateur centré */
-.calculator-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem 0;
-    width: 100%;
-}
-
-.calculator {
-    background: linear-gradient(135deg, var(--card-bg), var(--secondary-dark));
-    backdrop-filter: blur(10px);
-    border-radius: var(--border-radius);
-    padding: 40px;
-    box-shadow: var(--shadow);
-    max-width: 500px;
-    width: 100%;
-    border: 1px solid var(--border-color);
-    position: relative;
-    margin: 0 auto;
-    transition: box-shadow 0.3s ease;
-}
-
-.calculator:hover {
-    box-shadow: var(--shadow-hover);
-}
-
-.calculator h1 {
-    text-align: center;
-    color: var(--text-light);
-    margin-bottom: 30px;
-    font-size: 1.8rem;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.input-group {
-    margin-bottom: 25px;
-}
-
-.calculator label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--text-light);
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.calculator select, .calculator input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: var(--secondary-dark);
-    color: var(--text-light);
-}
-
-.calculator select:focus, .calculator input:focus {
-    outline: none;
-    border-color: var(--accent-orange);
-    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
-}
-
-.power-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.power-btn {
-    padding: 10px 8px;
-    border: 2px solid var(--border-color);
-    background: var(--tertiary-dark);
-    color: var(--text-light);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-align: center;
-}
-
-.power-btn:hover {
-    border-color: var(--accent-orange);
-    background: var(--accent-orange);
-    color: var(--text-light);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
-}
-
-.power-btn.active {
-    background: var(--accent-orange);
-    color: var(--text-light);
-    border-color: var(--accent-orange);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
-}
-
-.result {
-    background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
-    color: var(--text-light);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    margin-top: 30px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255, 107, 53, 0.3);
-}
-
-.result h3 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.result .value {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.result .unit {
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
-.efficiency-info {
-    background: var(--card-bg);
-    color: var(--text-light);
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
-    border-left: 4px solid var(--accent-orange);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
-}
-
-.efficiency-info h4 {
-    color: var(--text-light);
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-}
-
-.efficiency-info p {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    line-height: 1.4;
-}
-
-@media (max-width: 480px) {
-    .calculator {
-        padding: 25px;
-        margin: 0 1rem;
-    }
-    
-    .power-buttons {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .calculator h1 {
-        font-size: 1.5rem;
-    }
-}
-
-        .section {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: var(--border-radius);
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--accent-orange);
-            border: 2px solid rgba(255, 107, 53, 0.2);
-        }
-
-        .section:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent-orange);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .section-icon {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-light);
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .section h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent-orange);
-            margin: 2rem 0 1rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-orange);
-        }
-
-        .warning-box {
-            background: linear-gradient(135deg, rgba(255, 204, 0, 0.2), rgba(255, 107, 53, 0.1));
-            border: 2px solid var(--accent-yellow);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-        }
-
-        .warning-box::before {
-            content: '⚠️';
-            font-size: 1.5rem;
-            position: absolute;
-            top: -8px;
-            left: 15px;
-            padding: 0 8px;
-        }
-
-        .warning-box h4 {
-            color: var(--accent-yellow);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .problem-grid {
-            display: grid;
-            gap: 1.5rem;
-            margin: 0rem 0;
-        }
-
-        .problem-card {
-            background: rgba(204, 0, 0, 0.1);
-            border: 2px solid var(--accent-red);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border-left: 4px solid var(--accent-red);
-        }
-
-        .problem-card h4 {
-            color: var(--accent-red);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .problem-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .problem-card li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(204, 0, 0, 0.3);
-            position: relative;
-            padding-left: 1.5rem;
-            color: var(--text-muted);
-        }
-
-        .problem-card li:before {
-            content: '•';
-            color: var(--accent-red);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .problem-card li:last-child {
-            border-bottom: none;
-        }
-
-        .performance-showcase {
-            background: rgba(26, 26, 26, 0.8);
-            border: 2px solid var(--accent-orange);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            font-family: 'Monaco', 'Menlo', monospace;
-            position: relative;
-        }
-
-        .performance-showcase::before {
-            content: 'Performance Test';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--tertiary-dark);
-            padding: 0 10px;
-            font-size: 0.875rem;
-            color: var(--accent-orange);
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-        }
-
-        .perf-highlight {
-            background: var(--accent-orange);
-            color: var(--primary-dark);
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .comparison-card {
-            padding: 1.5rem;
-            border-radius: 12px;
-            color: var(--text-light);
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .comparison-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.1;
-            background: radial-gradient(circle at 30% 30%, white, transparent);
-        }
-
-        .good-practice {
-            background: linear-gradient(135deg, var(--accent-green), #10b981);
-            border-color: var(--accent-green);
-        }
-
-        .bad-practice {
-            background: linear-gradient(135deg, var(--accent-red), #ef4444);
-            border-color: var(--accent-red);
-        }
-
-        .comparison-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .comparison-card h4 {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .comparison-card p {
-            position: relative;
-            z-index: 1;
-        }
-        /* Navbar Styles */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid rgba(255, 107, 53, 0.3);
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-            transform: translateY(-100%);
-        }
-
-        .navbar.visible {
-            transform: translateY(0);
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 10, 0.98);
-            border-bottom-color: var(--accent-orange);
-            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);
-        }
-
-        .navbar-container {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--text-light);
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            font-size: 1.25rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-brand:hover {
-            color: var(--accent-orange);
-            transform: scale(1.05);
-        }
-
-        .navbar-brand-icon {
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: float 2s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .navbar-nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .navbar-nav li {
-            position: relative;
-        }
-
-        .navbar-nav a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .navbar-nav a::before {
+        .nav-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transition: left 0.5s;
         }
 
-        .navbar-nav a:hover::before {
+        .nav-card:hover::before {
             left: 100%;
         }
 
-        .navbar-nav a:hover {
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.1);
-            transform: translateY(-2px);
+        .nav-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-orange);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
         }
 
-        .navbar-nav a.active {
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.15);
-            border: 1px solid rgba(255, 107, 53, 0.3);
+        .nav-card.frenchhardware:hover {
+            border-color: var(--accent-orange);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
         }
 
-        .navbar-mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+        .nav-card.solotech:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 20px 40px rgba(39, 174, 96, 0.2);
         }
 
-        .navbar-mobile-toggle:hover {
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.1);
+        .nav-card.pax:hover {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 20px 40px rgba(255, 184, 77, 0.2);
         }
 
-        .navbar-mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid var(--accent-orange);
-            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
-            padding: 1rem 0;
-        }
-
-        .navbar-mobile-menu.active {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .navbar-mobile-nav {
+        .nav-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            padding: 0 2rem;
-            list-style: none;
-        }
-
-        .navbar-mobile-nav a {
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: var(--text-light);
-        }
-
-        .navbar-mobile-nav a:hover {
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.1);
-        }
-
-        /* Progress Indicator */
-        .navbar-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
-            transition: width 0.3s ease;
-            border-radius: 0 2px 0 0;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar-nav {
-                display: none;
-            }
-
-            .navbar-mobile-toggle {
-                display: block;
-            }
-
-            .navbar-container {
-                padding: 0 1rem;
-            }
-
-            .navbar-brand {
-                font-size: 1.1rem;
-            }
-        }
-        .best-practices-section {
-            background: linear-gradient(135deg, var(--accent-green), var(--accent-orange));
-            color: var(--text-light);
-            padding: 2.5rem;
-            border-radius: var(--border-radius);
-            margin: 3rem 0;
-            box-shadow: var(--shadow);
-        }
-
-        .best-practices-section h3 {
-            color: var(--text-light);
-            border-bottom-color: rgba(255, 255, 255, 0.3);
-            margin-bottom: 1.5rem;
-        }
-
-        .best-practices-list {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .best-practice-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .best-practice-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(5px);
-        }
-
-        .conclusion {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--primary-dark);
-            padding: 3rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-            margin-top: 3rem;
-        }
-
-        .conclusion h2 {
-            color: var(--primary-dark);
-            margin-bottom: 1.5rem;
-            font-family: 'Orbitron', monospace;
-        }
-
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--accent-orange);
-            color: var(--primary-dark);
-            border: none;
+            align-items: center;
+            justify-content: center;
             border-radius: 50%;
-            width: 56px;
-            height: 56px;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-            font-size: 1.25rem;
+            font-size: 2.5rem;
             font-weight: bold;
+            transition: all 0.3s ease;
         }
 
-        .scroll-top.visible {
-            opacity: 1;
-            visibility: visible;
+        .frenchhardware .nav-icon {
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-red));
         }
 
-        .scroll-top:hover {
-            background: var(--accent-yellow);
-            transform: translateY(-4px) scale(1.1);
-            box-shadow: var(--shadow-hover);
+        .solotech .nav-icon {
+            background: linear-gradient(45deg, var(--accent-green), #2ecc71);
         }
 
-        .image-placeholder {
-            background: var(--tertiary-dark);
-            border: 2px dashed var(--accent-orange);
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
+        .pax .nav-icon {
+            background: linear-gradient(45deg, var(--accent-yellow), #f39c12);
+        }
+
+        .nav-card:hover .nav-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .nav-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .nav-description {
+            font-size: 1rem;
             color: var(--text-muted);
-            margin: 1rem 0;
-            font-style: italic;
-        }
-        /* Styles corrigés pour la vidéo */
-        .video-container {
-            background: var(--tertiary-dark);
-            border: 3px solid var(--accent-red);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
+            line-height: 1.6;
         }
 
-        .video-container h4 {
-            color: var(--accent-red);
-            margin-bottom: 1rem;
-            font-size: 3rem;
-        }
-
-        .video-container video {
+        .floating-particles {
+            position: absolute;
             width: 100%;
-            max-width: 800px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
         }
 
-        .video-warning {
-            background: rgba(204, 0, 0, 0.1);
-            color: var(--accent-red);
-            padding: 0.75rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            font-size: 2rem;
-            font-style: italic;
-        }
-        .video-prevention {
-            background: rgba(22, 138, 32, 0.1);
-            color: var(--accent-green);
-            padding: 0.75rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            font-size: 2rem;
-            font-style: italic;
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.3;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .hero {
-                padding: 2rem 1rem;
-            }
-
-            .section {
-                padding: 1.5rem;
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
-            }
-
-            .video-container {
-                padding: 1rem;
-            }
+        .particle:nth-child(2) {
+            background: var(--accent-yellow);
+            animation-delay: -2s;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .hero {
-                padding: 2rem 1rem;
-            }
-
-            .section {
-                padding: 1.5rem;
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
-            }
+        .particle:nth-child(3) {
+            background: var(--accent-green);
+            animation-delay: -4s;
         }
 
-
-
-        /* Animation pour les éléments flottants */
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); }
         }
 
-        .section-icon {
-            animation: float 3s ease-in-out infinite;
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .navigation-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .nav-card {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
-     <nav class="navbar" id="navbar">
-        <div class="navbar-container">
-            <a href="#" class="navbar-brand">
-                <span class="navbar-brand-icon">🔍</span>
-                <span>Analyse Critique</span>
-            </a>
-            
-            <ul class="navbar-nav">
-                <li><a href="#home" class="nav-link active">Accueil</a></li>
-                <li><a href="#frenchhardware" class="nav-link">FrenchHardware</a></li>
-                <li><a href="#solotech" class="nav-link">Solotech</a></li>
-                <li><a href="#pax" class="nav-link">PAX</a></li>
-                <li><a href="#guide" class="nav-link">Guide</a></li>
-                <li><a href="#conclusion" class="nav-link">Conclusion</a></li>
-            </ul>
-            
-            <button class="navbar-mobile-toggle" id="mobile-toggle">
-                ☰
-            </button>
-            
-            <div class="navbar-mobile-menu" id="mobile-menu">
-                <ul class="navbar-mobile-nav">
-                    <li><a href="#home" class="nav-link">Accueil</a></li>
-                    <li><a href="#frenchhardware" class="nav-link">FrenchHardware</a></li>
-                    <li><a href="#solotech" class="nav-link">Solotech</a></li>
-                    <li><a href="#pax" class="nav-link">PAX</a></li>
-                    <li><a href="#guide" class="nav-link">Guide</a></li>
-                    <li><a href="#conclusion" class="nav-link">Conclusion</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="navbar-progress" id="progress-bar"></div>
-    </nav>
+    <div class="floating-particles">
+        <div class="particle" style="left: 10%; top: 20%; animation-duration: 8s;"></div>
+        <div class="particle" style="left: 80%; top: 30%; animation-duration: 6s;"></div>
+        <div class="particle" style="left: 60%; top: 70%; animation-duration: 10s;"></div>
+        <div class="particle" style="left: 30%; top: 80%; animation-duration: 7s;"></div>
+        <div class="particle" style="left: 70%; top: 10%; animation-duration: 9s;"></div>
+    </div>
+
     <div class="container">
-        <header class="hero fade-in">
-            <h1>🔍 Analyse Critique</h1>
-            <p class="hero-subtitle">Décryptage des pratiques douteuses dans l'univers des influenceurs hardware français</p>
-            <br>
-            <p class="hero-subtitle">Note : Tous les contenus affichés ou analysés sur cette page ont été récupérés à partir de sources publiques, <br> notamment les vidéos et publications disponibles sur la chaîne mentionnée en haut de chaque section. <br> Ces éléments sont librement accessibles sur Internet au moment de leur consultation.</p>
-            <br>
-            <p class="hero-subtitle">CGU visibles à ce lien: <a href="https://atlas-corporation.fr/cgu/">CGU de atlas-corporation.fr</a></p>
-            
-        </header>
-
-        <div class="intro-card fade-in">
-            <p>Cette analyse met en lumière les pratiques questionables de certains influenceurs tech français : tests biaisés, recommandations incohérentes et conflits d'intérêts. Une approche critique nécessaire pour aider les consommateurs à faire des choix éclairés.</p>
+        <div class="header">
+            <h1>Hub de Navigation</h1>
+            <p>Choisissez votre destination pour accéder aux différentes plateformes</p>
         </div>
 
-        <section class="section fade-in">
-            <div class="section-header" id="frenchhardware">
-                <div class="section-icon">⚡</div>
-                <div>
-                    <h2>FrenchHardware & FlowUP (& Flowup Benchmark)</h2>
-                    <p style="color: var(--text-secondary);">Double discours et tests orientés</p>
-                </div>
-            </div>
-            
-            <p>Ces influenceurs appliquent des critères de jugement variables selon leurs intérêts commerciaux. Sévères avec certaines marques, ils deviennent soudainement indulgents quand il s'agit de produits qu'ils vendent ou utilisent.</p>
+        <div class="navigation-grid">
+            <a href="frechhardware.html" class="nav-card frenchhardware">
+                <div class="nav-icon">FH</div>
+                <h2 class="nav-title">FrenchHardware</h2>
+                <p class="nav-description">Observez les Influenceurs Hardware se contredisant, donnant des benchs avec Flowup justes Lunaires, met en avant du matériel connu pour ses problèmes, voici FrenchHardware avec Flowup et Flowup BenchMark</p>
+            </a>
 
-            <div class="warning-box">
-                <h4>Problème Principal</h4>
-                <p>Incohérence flagrante entre leurs critères d'évaluation selon qu'ils aient ou non un intérêt dans le produit testé.</p>
-            </div>
+            <a href="solotech.html" class="nav-card solotech">
+                <div class="nav-icon">ST</div>
+                <h2 class="nav-title">SoloTech</h2>
+                <p class="nav-description">Découvrez comment un influenceur peut faire des tests illogiques.</p>
+            </a>
 
-            <h3>SSD aux performances décevantes</h3>
-            
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h4>🔥 Kingston NV2 & NV3</h4>
-                    <ul>
-                        <li>Présentés comme performants et abordables</li>
-                        <li>Vitesses qui chutent drastiquement en utilisation réelle</li>
-                        <li>Peuvent devenir plus lents qu'un SSD SATA classique</li>
-                        <li>Cache SLC rapidement saturé</li>
-                        <div class="image-placeholder">
-                            <img src="write-over-time.png">
-                            <img src="write-over-tim2e.png">
-                        </div>
-                        <div class="container">
-        <h1>Comparaison SSD NVMe vs RAID HDD</h1>
-        
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Caractéristique</th>
-                        <th>Kingston NV3 2 To (NVMe SSD)</th>
-                        <th>RAID de 4 HDD (RAID 0, 1, 5 ou 10)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Vitesse d'écriture maximale (burst SLC)</td>
-                        <td>
-                            <span class="highlight-value performance-good">≈ 4 500 Mo/s</span><br>
-                            <span class="source-text">(source : image TechPowerUp)</span>
-                        </td>
-                        <td>
-                            <span class="highlight-value performance-moderate">Environ 400–700 Mo/s</span><br>
-                            <span class="source-text">(dépend du RAID, voir ci-dessous)</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Vitesse d'écriture soutenue après cache</td>
-                        <td>
-                            <span class="highlight-value performance-moderate">100–500 Mo/s</span><br>
-                            <span class="source-text">(dès que le cache SLC est saturé)</span>
-                        </td>
-                        <td>
-                            <strong>RAID 0</strong> : <span class="performance-good">500–700 Mo/s</span><br>
-                            <strong>RAID 5</strong> : <span class="performance-moderate">300–500 Mo/s</span><br>
-                            <strong>RAID 10</strong> : <span class="performance-moderate">400–600 Mo/s</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Vitesse moyenne globale</td>
-                        <td>
-                            <span class="highlight-value performance-moderate">307 Mo/s</span><br>
-                            <span class="source-text">(source : image TechPowerUp)</span>
-                        </td>
-                        <td>
-                            <span class="highlight-value performance-good">Environ 500 Mo/s</span><br>
-                            <span class="source-text">(en RAID 0 avec 4 HDD 7200 RPM)</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Latence d'accès</td>
-                        <td>
-                            <span class="highlight-value performance-good">Très faible (~0.1 ms)</span>
-                        </td>
-                        <td>
-                            <span class="highlight-value performance-poor">Élevée (~10–15 ms)</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Consistance de la vitesse</td>
-                        <td>
-                            <span class="performance-poor">Très variable</span><br>
-                            <span class="source-text">(chute brutale après cache plein)</span>
-                        </td>
-                        <td>
-                            <span class="performance-moderate">Plus stable, mais moins rapide</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Source SSD</td>
-                        <td colspan="2">
-                            <span class="source-text">Graphique TechPowerUp fourni</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Sources RAID</td>
-                        <td colspan="2">
-                            <span class="source-text">Tests pratiques, ex: Tom's Hardware, AnandTech, Puget Systems</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <div class="problem-card">
-                    <h4>⚠️ Le NV3 est donc une Honte </h4>
-                    Un SSD NVME est rattrapé par des HDD qui sont BEAUCOUPS plus lents
-                </div>
+            <a href="pax.html" class="nav-card pax">
+                <div class="nav-icon">PAX</div>
+                <h2 class="nav-title">PAX</h2>
+                <p class="nav-description">Découvrez PAX et les informations érronées qu'il a sortis</p>
+            </a>
         </div>
     </div>
-                    </ul>
-                </div>
-
-                <div class="problem-card">
-                    <h4>⚠️ Crucial P3 & P3 Plus</h4>
-                    <ul>
-                        <li>Vendus comme alternatives "solides"</li>
-                        <li>Problèmes de stabilité en écriture prolongée</li>
-                        <li>Temps de réponse anormalement élevés</li>
-                        <li>Débits catastrophiques hors cache</li>
-                    </ul> 
-                </div>
-                <div class="performance-showcase">
-                        <div class="image-placeholder">
-                            <img src="IMG_4379.webp.20a1277842fb95f4301ee82bfe06e36e.png">
-                            <br>
-                            <h4>🛑 A titre de visualisation, voici la P3 en COPIE ! C'est AFFREUX ! ! !</h4>
-                            <img src="image.png">
-                        </div>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="performance-showcase">
-                <p><strong>Comparaison Performance :</strong></p>
-                <p>• Disque SATA traditionnel : <span class="perf-highlight">Performances constantes</span></p>
-                <p>• Connexion ADSL : 70 Mbps - Performances stables</p>
-                <p>• Kingston NV3 (NVMe) : <span class="perf-highlight">Seulement 307 Mbps en moyenne</span></p>
-                <div class="image-placeholder">
-                    <h4>⚠️ A titre de comparaison, 2 SSD très réputés dans le marché :</h4>
-                    <img src="write-over-tim3e.png">
-                    <br>
-                    <img src="write-over-timem480pro.png">
-                </div>
-            </div>
-
-            <h3>Corsair : Critique privée, vente publique</h3>
-            
-            <div class="problem-card">
-                <h4>🎯 Problèmes RAM Corsair</h4>
-                <ul>
-                    <li>Changements de composants sans notification</li>
-                    <li>Même référence, composants différents selon la date</li>
-                    <li>Puces variables (Samsung, SK Hynix, Micron)</li>
-                    <li>Profils XMP défaillants</li>
-                    <li>Instabilités et incompatibilités fréquentes</li>
-                </ul>
-                <a href="https://atlas-corporation.fr/ram_corsair/" class="highlight-link" >
-                    La réalité derrière la RAM Corsair
-                
-                <div class="video-container">
-                        <h4>🎥 Contenu problématique identifié</h4>
-                        <video controls preload="metadata" style="max-height: 400px;">
-                            <source src="https://atlas-corporation.fr/videostock/FrHardwareAutoDebunk(1).mp4" type="video/mp4">
-                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                        </video>
-                        <div class="video-warning"> 
-                            ⚠️ Attention : ce contenu présente des informations contradictoires par rapport aux éléments exposés précédemment. <br> Il convient de noter qu'il existe des divergences significatives entre les déclarations formulées par FrenchHardware/Flowup d'une part, <br> et les propos tenus par FrenchHardware lors de son intervention sur RTBF iXPé d'autre part. <br> Ces contradictions soulèvent des questions sur la cohérence du discours et méritent une analyse critique de la part du spectateur. 
-
-                        </div>
-
-            </div>
-            <div class="performance-showcase">
-                <p><strong>Explications simple de leur incompétences</strong></p>
-                <div class="image-placeholder">
-                    <h4>⚠️ Images tiré du Site www.flowup.shop (Screenshots pris le 20/06/2025) </h4>
-                    <img src="FlowupCorsair1.png" style="width: 750px; min-width: 330px;">
-                    <br>
-                    <img src="FlowupCorsair2.png" style="width: 750px; min-width: 330px;">
-                    <br>
-                    <img src="FlowupCorsair3.png" style="width: 750px; min-width: 330px;">
-                    <br>
-                    
-                    </div>
-                </div>
-            </div>
-
-            <h3>Le mythe du watercooling</h3>
-            
-            <div class="comparison-grid">
-                <div class="comparison-card bad-practice">
-                    <h4>❌ Leur Discours</h4>
-                    <p>Les watercoolings sont systématiquement supérieurs aux ventirads dans toutes les situations</p>
-                </div>
-                <div class="comparison-card good-practice">
-                    <h4>✅ La Réalité</h4>
-                    <p>Un ventirad de qualité à 40-50€ surpasse souvent un AIO 120mm vendu 100€+</p>
-                </div>
-            </div>
-            <div class="video-container">
-                        <h4>🎥 Contenu problématique identifié</h4>
-                        <video controls preload="metadata" style="max-height: 400px;">
-                            <source src="https://atlas-corporation.fr/videostock/120mm_tqt(1).mp4" type="video/mp4">
-                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                        </video>
-                        <div class="video-warning"> 
-                            ⚠️ Attention :  FrenchHardware indiquent que les Watercooling DE 120MM sont bof <br>(au vu de la tête de Matis)<br>
-                            <img src="Flowup120mm.png" style="width: 750px; min-width: 330px;">
-                            <br>
-                            <img src="Flowup120mmprove.png" style="width: 750px; min-width: 330px;">
-                        </div>
-
-            <h3>Les Benchmarks trompeurs</h3>
-            
-            <div class="video-container">
-                        <h4>🎥 Contenu problématique identifié</h4>
-                        <video controls preload="metadata" style="max-height: 400px;">
-                            <source src="https://atlas-corporation.fr/videostock/FlowupErrorBenchmark1.mp4" type="video/mp4">
-                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                        </video>
-                        <div class="video-warning"> 
-                            ⚠️ Attention : ce contenu présente des informations contradictoires par rapport aux éléments exposés. <br> Il convient de noter qu'il existe des divergences significatives entre les Benchmarks indiqué en titre de vidéo d'une part, <br> et les composants réelement testé (visible dans la vidéo) d'une autre. <br> Ces contradictions soulèvent des questions sur la cohérence du benchmark et méritent une analyse critique de la part du spectateur. 
-                            <img src="FlowupPageweb.png" style="width: 750px; min-width: 330px;">
-                        </div>
-
-
-                        <video controls preload="metadata" style="max-height: 400px;">
-                            <source src="https://atlas-corporation.fr/videostock/FlowupErrorBench2.mp4" type="video/mp4">
-                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                        </video>
-                        <div class="video-warning"> 
-                            ⚠️ Attention : ce contenu présente des informations contradictoires par rapport aux éléments exposés. <br> Il convient de noter qu'il existe des divergences significatives entre les Benchmarks indiqué en titre de vidéo d'une part, <br> et les composants réelement testé (visible dans la vidéo) d'une autre. <br> Ces contradictions soulèvent des questions sur la cohérence du benchmark et méritent une analyse critique de la part du spectateur. 
-                            <br>
-                            
-                            <img src="FH14700KFbench.png" style="width: 750px; min-width: 330px;">
-                            <br>4,7 Ghz Versus 5,6 Ghz<br>
-                            <img src="CEsiteIntel14700KF.png" style="width: 750px; min-width: 330px;">
-                            <br>
-                            De plus, le processeur nommé en Introduction : <br> le Ryzen 7 7800X3D n'est pas équivalent à celui testé en OCCT : I7 14700KF
-                        </div>
-            </div>
-
-        </section>
-
-        <section class="section fade-in">
-            <div class="section-header" id="solotech">
-                <div class="section-icon">🎯</div>
-                <div>
-                    <h2>Solotech</h2>
-                    <p style="color: var(--text-secondary);">Tests bâclés et incompréhension technique</p>
-                </div>
-            </div>
-            
-            <p>Parfait exemple du pseudo-testeur qui recommande sans comprendre. Met en avant des produits problématiques sans mentionner leurs défauts majeurs.</p>
-
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h4>🚫 Principales Erreurs</h4>
-                    <ul>
-                                                <li>Configuration incorrecte des outils de monitoring:</li>
-                        <li>→ Fait tourner le jeu en arrière-plan lors du test</li>
-                        <li>→ Se fie aveuglément aux FPS donnés par le jeu</li>
-                        <li>→ N'utilise pas MSI Afterburner et RivaTuner (standards du domaine)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="video-container">
-                <h4>🎥 Exemple de mauvaise méthodologie</h4>
-                    <video controls preload="metadata" style="max-height: 400px;">
-                    <source src="https://atlas-corporation.fr/videostock/solotecherrorbench(1).mp4" type="video/mp4">
-                    <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                </video>
-                <div class="video-warning">
-                    ⚠️ Attention : les performances montrées dans cette vidéo sont trompeuses.<br>
-                    Les jeux sont ralentis (ex. : 30 FPS à gauche) car ils tournent en arrière-plan,<br>
-                    ce qui ne reflète pas une utilisation normale avec le jeu actif.<br>
-                    Ce genre de test ne représente pas ce qu’un utilisateur verrait en jouant normalement 😂<br>
-                    (CPU peu utilisé en arrière-plan, puis à 43% pendant le jeu)
-            </div>
-
-
-            </div>
-            <div class="warning-box">
-                <h4>Exemple Concret</h4>
-                <p>Recommande des watercoolings pour 4°C de différence par rapport à des ventirads 20€ moins chers, sans considérer les risques de panne, le bruit, ou la durabilité.</p>
-            </div>
-
-            <div class="comparison-grid">
-                <div class="comparison-card bad-practice">
-                    <h4>🔍 Son Approche</h4>
-                    <p>Relais publicitaire déguisé en expertise technique</p>
-                </div>
-                <div class="comparison-card good-practice">
-                    <h4>✅ Approche Correcte</h4>
-                    <p>Tests méthodiques, analyse des défauts, comparaison coût/bénéfice</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section fade-in">
-            <div class="section-header"id="pax">
-                <div class="section-icon">🌪️</div>
-                <div>
-                    <h2>PAX</h2>
-                    <p style="color: var(--text-secondary);">Méconnaissance des principes physiques et des explications fausses</p>
-                </div>
-            </div>
-
-            <h3>🌊 Incompréhension de l'aérodynamique</h3>
-            
-            <p>PAX semble ignorer les principes fondamentaux de la mécanique des fluides, particulièrement l'effet Venturi et l'importance de la pression statique.</p>
-
-            <div class="warning-box">
-                <h4>Effet Venturi Ignoré</h4>
-                <p>Principe physique fondamental : un fluide accélère en passant dans un espace rétréci, créant une baisse de pression. PAX base ses recommandations uniquement sur le CFM théorique.</p>
-            </div>
-
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h4>⚙️ Erreurs sur la Ventilation</h4>
-                    <ul>
-                        <li>Comparaison uniquement basée sur les RPM</li>
-                        <li>Ignorance de la pression statique</li>
-                        <li>Configurations créant des flux chaotiques</li>
-                        <li>Positionnement inadéquat des ventilateurs</li>
-                    </ul>
-                </div>
-            </div>
-           
-            <h3>⚡ Incompréhension de la NORME 80 +</h3>
-            <div class="problem-grid">
-                <h4>⚠️ Clarification Technique Importante</h4>
-                <p>La vidéo analysée ci-dessous contient des <strong>informations techniques incorrectes</strong> concernant les alimentations PC et les certifications 80+.</p>
-            </div>
-                <div class="problem-grid">
-                    <div class="problem-card">
-                        <h4>⚡ Désinformation sur les Normes 80+</h4>
-                            <ul>
-                                <li>Affirmations fausses sur l'augmentation de performances</li>
-                                <li>Méconnaissance totale des certifications énergétiques</li>
-                                <li>Confusion entre efficacité et puissance délivrée</li>
-                                <li>Risque de destruction des composants selon sa logique</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="warning-box">
-                <h4>Faits vérifiés</h4>
-                <p>La documentation officielle confirme que les normes 80+ concernent exclusivement l'efficacité énergétique et non l'augmentation des performances électriques des composants.</p>
-            </div>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h4>⚙️ Erreurs sur la Ventilation</h4>
-                    <ul>
-                        <li>Comparaison uniquement basée sur les RPM</li>
-                        <li>Ignorance de la pression statique</li>
-                        <li>Configurations créant des flux chaotiques</li>
-                        <li>Positionnement inadéquat des ventilateurs</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="performance-showcase">
-                <h4>📚 Explication des normes 80+</h4>
-                <p>Les <strong>certifications 80+</strong> (Bronze, Silver, Gold, Platinum, Titanium) sont des standards qui évaluent uniquement <strong>l'efficacité énergétique</strong> des alimentations PC. Ces normes mesurent le pourcentage d'énergie effectivement délivrée par rapport à l'énergie consommée depuis le réseau électrique.</p>
-                
-                <p><strong>Point crucial :</strong> Ces certifications n'augmentent en aucun cas la tension, l'intensité ou la puissance délivrée aux composants. Une telle augmentation provoquerait la destruction des composants par surcharge électrique.</p>
-            </div>
-
-            <div class="comparison-grid">
-                <div class="comparison-card bad-practice">
-                    <h4>❌ Affirmation de PAX</h4>
-                    <p>Les normes 80+ augmentent les puissances injectés dans les composants comme les GPU</p>
-                </div>
-                <div class="comparison-card good-practice">
-                    <h4>✅ Réalité Technique</h4>
-                    <p>Les normes 80+ concernent uniquement l'efficacité énergétique, pas l'augmentation de puissance</p>
-                </div>
-            </div>
-
-             <div class="video-container">
-                <h4>🎥 Contenu problématique identifié</h4>
-                <video controls preload="metadata" style="max-height: 400px;">
-                    <source src="https://atlas-corporation.fr/videostock/paxenormedingueries.mp4" type="video/mp4">
-                    <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                </video>
-                <div class="video-warning">
-                    ⚠️ Contenu diffusant des informations techniques erronées sur les normes 80+
-                </div>
-            </div>
-            
-            <div class="image-placeholder">
-                <h4>📊 Documentation officielle</h4>
-                <p> <img src="80plusratings.jpg"></p>
-                <div class="video-prevention">
-                    ⚠️ Preuve documentaire des véritables spécifications des normes 80+
-                </div>
-                <br>
-                <div class="calculator">
-        
-                    <h1>Calculateur de Consommation Alimentation PC</h1>
-        
-        <div class="input-group">
-            <label for="efficiency">Rendement de l'alimentation :</label>
-            <select id="efficiency">
-                <option value="">Sélectionnez le rendement</option>
-                <option value="0.70">70% (Basique)</option>
-                <option value="0.75">75%</option>
-                <option value="0.80">80%</option>
-                <option value="0.82">82% (80+ Bronze)</option>
-                <option value="0.85">85% (80+ Silver)</option>
-                <option value="0.87">87% (80+ Gold)</option>
-                <option value="0.90">90% (80+ Platinum)</option>
-                <option value="0.92">92% (80+ Titanium)</option>
-                <option value="0.96">96% (80+ Ruby (Coming Soon))</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label>Puissance de sortie souhaitée (W) :</label>
-            <div class="power-buttons">
-                <button class="power-btn" data-power="650">650W</button>
-                <button class="power-btn" data-power="750">750W</button>
-                <button class="power-btn" data-power="850">850W</button>
-                <button class="power-btn" data-power="1000">1000W</button>
-                <button class="power-btn" data-power="1200">1200W</button>
-                <button class="power-btn" data-power="1600">1600W</button>
-                <button class="power-btn" data-power="2000">2000W</button>
-                <button class="power-btn" data-power="2200">2200W</button>
-            </div>
-        </div>
-
-        <div id="result" class="result" style="display: none;">
-            <h3>Consommation estimée à la prise</h3>
-            <div class="value" id="consumption-value">0</div>
-            <div class="unit">Watts</div>
-        </div>
-
-        <div class="efficiency-info">
-            <h4>À propos du rendement :</h4>
-            <p>Le rendement indique l'efficacité de l'alimentation. Une alimentation 80+ Gold avec 87% de rendement consommera moins d'électricité qu'une alimentation basique à 70% pour la même puissance de sortie.</p>
-        </div>
-    </div>
-
-            </div>
-
-
-            <h3>Conseils logiciels douteux</h3>
-            
-            <div class="comparison-grid">
-                <div class="comparison-card bad-practice">
-                    <h4>❌ Lossless Scaling</h4>
-                    <p>Ajout de latence et artefacts visuels non mentionnés</p>
-                </div>
-                <div class="comparison-card bad-practice">
-                    <h4>❌ Glary Utilities</h4>
-                    <p>Pseudo-optimiseur remplaçant des fonctions natives Windows</p>
-                </div>
-            </div>
-
-            <div class="warning-box">
-                <h4>Risques des Pseudo-Optimiseurs</h4>
-                <ul style="list-style: disc; margin-left: 1.5rem;">
-                    <li>Suppression de fichiers système essentiels</li>
-                    <li>Désactivation de services critiques</li>
-                    <li>Ajout de publicités intrusives</li>
-                    <li>Dégradation des performances système</li>
-                </ul>
-            </div>
-        </section>
-
-        <div class="best-practices-section fade-in">
-            <h3>✅ Guide pour éviter les pièges</h3>
-            <div class="best-practices-list">
-                <div class="best-practice-item">
-                    <strong>Sources multiples :</strong> Toujours croiser plusieurs avis indépendants avant un achat
-                </div>
-                <div class="best-practice-item">
-                    <strong>Indépendance :</strong> Privilégier les testeurs sans intérêt commercial direct
-                </div>
-                <div class="best-practice-item">
-                    <strong>Tests long terme :</strong> Chercher des retours d'expérience sur plusieurs mois
-                </div>
-                <div class="best-practice-item">
-                    <strong>Méfiance critique :</strong> Questionner les avis trop tranchés sans nuance
-                </div>
-                <div class="best-practice-item">
-                    <strong>Outils natifs :</strong> Utiliser les fonctions Windows plutôt que des optimiseurs tiers
-                </div>
-                <div class="best-practice-item">
-                    <strong>Compréhension technique :</strong> Se former aux bases avant de suivre des conseils complexes
-                </div>
-            </div>
-        </div>
-
-        <div class="conclusion fade-in">
-            <h2>🎯 Conclusion</h2>
-            <p>Ces influenceurs exploitent la confiance de leur audience à des fins commerciales. Leurs recommandations sont souvent biaisées par leurs partenariats et leur manque de rigueur technique.</p>
-            <p><strong>Adoptez une approche critique : vérifiez, comparez, et ne faites jamais confiance à une seule source.</strong></p>
-        </div>
-    </div>
-
-    <button class="scroll-top" onclick="scrollToTop()">↑</button>
-
-    <script>
-        // Scroll to top functionality
-        window.addEventListener('scroll', function() {
-            const scrollTop = document.querySelector('.scroll-top');
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-        });
-
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-
-
-
-
-         const efficiencySelect = document.getElementById('efficiency');
-        const powerButtons = document.querySelectorAll('.power-btn');
-        const result = document.getElementById('result');
-        const consumptionValue = document.getElementById('consumption-value');
-        
-        let selectedPower = 0;
-        let selectedEfficiency = 0;
-
-        // Gestion de la sélection des boutons de puissance
-        powerButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Retirer la classe active de tous les boutons
-                powerButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Ajouter la classe active au bouton cliqué
-                button.classList.add('active');
-                
-                // Stocker la puissance sélectionnée
-                selectedPower = parseInt(button.dataset.power);
-                
-                // Calculer si on a aussi le rendement
-                calculateConsumption();
-            });
-        });
-
-        // Gestion du changement de rendement
-        efficiencySelect.addEventListener('change', (e) => {
-            selectedEfficiency = parseFloat(e.target.value);
-            calculateConsumption();
-        });
-
-        function calculateConsumption() {
-            if (selectedPower > 0 && selectedEfficiency > 0) {
-                // Formule : Consommation à la prise = Puissance de sortie / Rendement
-                const consumption = Math.round(selectedPower / selectedEfficiency);
-                
-                consumptionValue.textContent = consumption.toLocaleString();
-                result.style.display = 'block';
-                
-                // Animation d'apparition
-                result.style.opacity = '0';
-                result.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    result.style.transition = 'all 0.5s ease';
-                    result.style.opacity = '1';
-                    result.style.transform = 'translateY(0)';
-                }, 50);
-            } else {
-                result.style.display = 'none';
-            }
-        }
-    </script>
 </body>
 </html>
