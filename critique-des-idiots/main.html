@@ -216,93 +216,39 @@
     </style>
 </head>
 <body>
-     <nav class="navbar" id="navbar">
-        <div class="navbar-container">
-            <a href="#" class="navbar-brand">
-                <span class="navbar-brand-icon">🔍</span>
-                <span>Analyse Critique : Solotech</span>
-            </a>
-            
-            <ul class="navbar-nav">
-                <li><a href="https://atlas-corporation.fr/critique-des-idiots/main.html" class="nav-link active">Accueil</a></li>
-                <li><a href="https://atlas-corporation.fr/critique-des-idiots/frenchhardware.html" class="nav-link">FrenchHardware</a></li>
-                <li><a href="https://atlas-corporation.fr/critique-des-idiots/solotech.html.html" class="nav-link">Solotech</a></li>
-                <li><a href="https://atlas-corporation.fr/critique-des-idiots/pax.html" class="nav-link">PAX</a></li>
+    <div class="floating-particles">
+        <div class="particle" style="left: 10%; top: 20%; animation-duration: 8s;"></div>
+        <div class="particle" style="left: 80%; top: 30%; animation-duration: 6s;"></div>
+        <div class="particle" style="left: 60%; top: 70%; animation-duration: 10s;"></div>
+        <div class="particle" style="left: 30%; top: 80%; animation-duration: 7s;"></div>
+        <div class="particle" style="left: 70%; top: 10%; animation-duration: 9s;"></div>
+    </div>
 
-            </ul>
-            
-            <button class="navbar-mobile-toggle" id="mobile-toggle">
-                ☰
-            </button>
-            
-            <div class="navbar-mobile-menu" id="mobile-menu">
-               <ul class="navbar-nav">
-					<li><a href="https://atlas-corporation.fr/critique-des-idiots/main.html" class="nav-link active">Accueil</a></li>
-					<li><a href="https://atlas-corporation.fr/critique-des-idiots/frenchhardware.html" class="nav-link">FrenchHardware</a></li>
-					<li><a href="https://atlas-corporation.fr/critique-des-idiots/solotech.html.html" class="nav-link">Solotech</a></li>
-					<li><a href="https://atlas-corporation.fr/critique-des-idiots/pax.html" class="nav-link">PAX</a></li>
-
-				</ul>
-            </div>
-        </div>
-        
-        <div class="navbar-progress" id="progress-bar"></div>
-    </nav>
     <div class="container">
-        <section class="section fade-in">
-            <div class="section-header" id="solotech">
-                <div class="section-icon">🎯</div>
-                <div>
-                    <h2>Solotech</h2>
-                    <p style="color: var(--text-secondary);">Tests bâclés et incompréhension technique</p>
-                </div>
-            </div>
-            
-            <p>Parfait exemple du pseudo-testeur qui recommande sans comprendre. Met en avant des produits problématiques sans mentionner leurs défauts majeurs.</p>
+        <div class="header">
+            <h1>Hub de Navigation</h1>
+            <p>Choisissez votre destination pour accéder aux différentes plateformes</p>
+        </div>
 
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h4>🚫 Principales Erreurs</h4>
-                    <ul>
-                                                <li>Configuration incorrecte des outils de monitoring:</li>
-                        <li>→ Fait tourner le jeu en arrière-plan lors du test</li>
-                        <li>→ Se fie aveuglément aux FPS donnés par le jeu</li>
-                        <li>→ N'utilise pas MSI Afterburner et RivaTuner (standards du domaine)</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="navigation-grid">
+            <a href="frenchhardware.html" class="nav-card frenchhardware">
+                <div class="nav-icon">FH</div>
+                <h2 class="nav-title">FrenchHardware</h2>
+                <p class="nav-description">Observez les Influenceurs Hardware se contredisant, donnant des benchs avec Flowup justes Lunaires, met en avant du matériel connu pour ses problèmes, voici FrenchHardware avec Flowup et Flowup BenchMark</p>
+            </a>
 
-            <div class="video-container">
-                <h4>🎥 Exemple de mauvaise méthodologie</h4>
-                    <video controls preload="metadata" style="max-height: 400px;">
-                    <source src="https://atlas-corporation.fr/videostock/solotecherrorbench(1).mp4" type="video/mp4">
-                    <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                </video>
-                <div class="video-warning">
-                    ⚠️ Attention : les performances montrées dans cette vidéo sont trompeuses.<br>
-                    Les jeux sont ralentis (ex. : 30 FPS à gauche) car ils tournent en arrière-plan,<br>
-                    ce qui ne reflète pas une utilisation normale avec le jeu actif.<br>
-                    Ce genre de test ne représente pas ce qu’un utilisateur verrait en jouant normalement 😂<br>
-                    (CPU peu utilisé en arrière-plan, puis à 43% pendant le jeu)
-            </div>
+            <a href="solotech.html" class="nav-card solotech">
+                <div class="nav-icon">ST</div>
+                <h2 class="nav-title">SoloTech</h2>
+                <p class="nav-description">Découvrez comment un influenceur peut faire des tests illogiques.</p>
+            </a>
 
-
-            </div>
-            <div class="warning-box">
-                <h4>Exemple Concret</h4>
-                <p>Recommande des watercoolings pour 4°C de différence par rapport à des ventirads 20€ moins chers, sans considérer les risques de panne, le bruit, ou la durabilité.</p>
-            </div>
-
-            <div class="comparison-grid">
-                <div class="comparison-card bad-practice">
-                    <h4>🔍 Son Approche</h4>
-                    <p>Relais publicitaire déguisé en expertise technique</p>
-                </div>
-                <div class="comparison-card good-practice">
-                    <h4>✅ Approche Correcte</h4>
-                    <p>Tests méthodiques, analyse des défauts, comparaison coût/bénéfice</p>
-                </div>
-            </div>
-        </section>
+            <a href="pax.html" class="nav-card pax">
+                <div class="nav-icon">PAX</div>
+                <h2 class="nav-title">PAX</h2>
+                <p class="nav-description">Découvrez PAX et les informations érronées qu'il a sortis</p>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
