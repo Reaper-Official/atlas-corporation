@@ -907,6 +907,23 @@
             margin: 1rem 0;
             font-style: italic;
         }
+        .highlight-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            color: var(--primary-dark);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
         /* Styles corrigés pour la vidéo */
         .video-container {
             background: var(--tertiary-dark);
