@@ -62,14 +62,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 clamp(16px, 4vw, 24px);
         }
 
-        /* Header */
+        /* Header - Responsive */
         header {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
-            padding: 1rem 0;
+            padding: clamp(0.75rem, 2vw, 1rem) 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -85,7 +85,7 @@
 
         .logo {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
+            font-size: clamp(1.125rem, 3vw, 1.5rem);
             font-weight: 700;
             color: var(--accent-orange);
             text-decoration: none;
@@ -101,12 +101,12 @@
 
         .logo::before {
             content: "⚡";
-            font-size: 1.5rem;
+            font-size: clamp(1.125rem, 3vw, 1.5rem);
         }
 
         .menu-toggle {
-            width: 44px;
-            height: 44px;
+            width: clamp(40px, 8vw, 44px);
+            height: clamp(40px, 8vw, 44px);
             border: none;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -127,7 +127,7 @@
         }
 
         .hamburger-line {
-            width: 18px;
+            width: clamp(14px, 3vw, 18px);
             height: 2px;
             background: var(--text-light);
             border-radius: 1px;
@@ -135,15 +135,15 @@
         }
 
         .menu-toggle.active .hamburger-line:nth-child(1) {
-            transform: translate(4px, 0px) rotate(38deg)
+            transform: translate(4px, 0px) rotate(38deg);
         }
 
         .menu-toggle.active .hamburger-line:nth-child(2) {
-            transform: translateX(-15px, 150px)
+            transform: translateX(-15px, 150px);
         }
 
         .menu-toggle.active .hamburger-line:nth-child(3) {
-            transform: translate(4px, 0px) rotate(-38deg)
+            transform: translate(4px, 0px) rotate(-38deg);
         }
 
         .menu-overlay {
@@ -168,8 +168,8 @@
         .menu-panel {
             position: fixed;
             top: 0;
-            right: -400px;
-            width: 380px;
+            right: -100%;
+            width: min(380px, 100vw);
             height: 100vh;
             background: var(--card-bg);
             border-left: 1px solid var(--border-color);
@@ -183,18 +183,18 @@
         }
 
         .menu-content {
-            padding: 80px 24px 24px;
+            padding: clamp(60px, 12vw, 80px) clamp(16px, 4vw, 24px) clamp(16px, 4vw, 24px);
         }
 
         .menu-section {
-            margin-bottom: 32px;
+            margin-bottom: clamp(24px, 5vw, 32px);
         }
 
         .menu-section-title {
-            font-size: 14px;
+            font-size: clamp(12px, 2.5vw, 14px);
             font-weight: 600;
             color: var(--accent-orange);
-            margin-bottom: 16px;
+            margin-bottom: clamp(12px, 3vw, 16px);
             text-transform: uppercase;
             letter-spacing: 1px;
             border-bottom: 1px solid var(--border-color);
@@ -219,10 +219,11 @@
 
         .menu-item a {
             display: block;
-            padding: 12px 16px;
+            padding: clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px);
             color: var(--text-light);
             text-decoration: none;
             font-weight: 400;
+            font-size: clamp(14px, 3vw, 16px);
             transition: color 0.3s ease;
             border-radius: 8px;
         }
@@ -235,7 +236,7 @@
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
-            padding: 20px;
+            padding: clamp(16px, 4vw, 20px);
             backdrop-filter: blur(10px);
         }
 
@@ -258,32 +259,29 @@
 
         .highlight-item a {
             display: block;
-            padding: 14px 16px;
+            padding: clamp(12px, 3vw, 14px) clamp(12px, 3vw, 16px);
             color: var(--primary-dark);
             text-decoration: none;
             font-weight: 600;
             text-align: center;
-            font-size: 14px;
-        }
-        .button a {
-            margin: 0 auto;
+            font-size: clamp(12px, 2.5vw, 14px);
         }
 
-        /* Hero Section */
+        /* Hero Section - Responsive */
         .hero {
-            padding: 80px 0 60px;
+            padding: clamp(40px, 10vw, 80px) 0 clamp(30px, 8vw, 60px);
             text-align: center;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: min(800px, 90vw);
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             font-weight: 800;
-            margin-bottom: 24px;
+            margin-bottom: clamp(16px, 4vw, 24px);
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -292,10 +290,10 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             color: var(--text-muted);
-            margin-bottom: 16px;
-            max-width: 600px;
+            margin-bottom: clamp(12px, 3vw, 16px);
+            max-width: min(600px, 90vw);
             margin-left: auto;
             margin-right: auto;
         }
@@ -304,11 +302,12 @@
             display: inline-block;
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
             color: var(--primary-dark);
-            padding: 12px 24px;
+            padding: clamp(10px, 2.5vw, 12px) clamp(16px, 4vw, 24px);
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            margin: 16px 0;
+            font-size: clamp(14px, 3vw, 16px);
+            margin: clamp(12px, 3vw, 16px) 0;
             transition: all 0.3s ease;
         }
 
@@ -317,19 +316,19 @@
             box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
-        /* Tools Section */
+        /* Tools Section - Responsive */
         .tools-section {
-            padding: 80px 0;
+            padding: clamp(40px, 10vw, 80px) 0;
             background: var(--glass-bg);
             border-top: 1px solid var(--border-color);
             backdrop-filter: blur(10px);
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 6vw, 2.5rem);
             font-weight: 700;
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: clamp(12px, 3vw, 16px);
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -337,25 +336,25 @@
         }
 
         .section-subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1.125rem, 4vw, 1.5rem);
             font-weight: 600;
             color: var(--text-light);
-            margin: 48px 0 32px;
+            margin: clamp(24px, 6vw, 48px) 0 clamp(16px, 4vw, 32px);
             text-align: center;
         }
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-bottom: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 90vw), 1fr));
+            gap: clamp(16px, 4vw, 24px);
+            margin-bottom: clamp(16px, 4vw, 32px);
         }
 
         .tool-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 32px 24px;
+            padding: clamp(20px, 5vw, 32px) clamp(16px, 4vw, 24px);
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
@@ -379,14 +378,14 @@
         }
 
         .tool-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 20px;
+            width: clamp(48px, 12vw, 64px);
+            height: clamp(48px, 12vw, 64px);
+            margin: 0 auto clamp(16px, 4vw, 20px);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: clamp(18px, 5vw, 24px);
             color: white;
             position: relative;
         }
@@ -397,17 +396,17 @@
         .windows { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); }
 
         .tool-card h3 {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 3vw, 1.25rem);
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: clamp(6px, 1.5vw, 8px);
             color: var(--text-light);
         }
 
         .tool-card .subtitle {
             color: var(--accent-orange);
             font-weight: 500;
-            margin-bottom: 16px;
-            font-size: 0.875rem;
+            margin-bottom: clamp(12px, 3vw, 16px);
+            font-size: clamp(12px, 2.5vw, 14px);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -415,14 +414,14 @@
         .tool-card p {
             color: var(--text-muted);
             line-height: 1.6;
-            margin-bottom: 24px;
-            font-size: 0.9rem;
+            margin-bottom: clamp(16px, 4vw, 24px);
+            font-size: clamp(14px, 3vw, 16px);
         }
 
         .btn {
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
             color: var(--primary-dark);
-            padding: 12px 24px;
+            padding: clamp(10px, 2.5vw, 12px) clamp(16px, 4vw, 24px);
             border: none;
             border-radius: 8px;
             font-weight: 600;
@@ -430,7 +429,7 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            font-size: 0.875rem;
+            font-size: clamp(12px, 2.5vw, 14px);
         }
 
         .btn:hover {
@@ -438,31 +437,31 @@
             box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
-        /* Footer */
+        /* Footer - Responsive */
         footer {
             background: var(--primary-dark);
             border-top: 1px solid var(--border-color);
-            padding: 48px 0 24px;
+            padding: clamp(32px, 8vw, 48px) 0 clamp(16px, 4vw, 24px);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            margin-bottom: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 90vw), 1fr));
+            gap: clamp(20px, 5vw, 32px);
+            margin-bottom: clamp(20px, 5vw, 32px);
         }
 
         .footer-section h3 {
-            font-size: 1.125rem;
+            font-size: clamp(1rem, 3vw, 1.125rem);
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: clamp(12px, 3vw, 16px);
             color: var(--accent-orange);
         }
 
         .footer-section p, .footer-section li {
             color: var(--text-muted);
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: clamp(6px, 1.5vw, 8px);
+            font-size: clamp(14px, 3vw, 16px);
         }
 
         .footer-section ul {
@@ -473,6 +472,7 @@
             color: var(--text-muted);
             text-decoration: none;
             transition: color 0.3s ease;
+            font-size: clamp(14px, 3vw, 16px);
         }
 
         .footer-section a:hover {
@@ -481,16 +481,17 @@
 
         .social-links {
             display: flex;
-            gap: 12px;
-            margin-top: 16px;
+            gap: clamp(8px, 2vw, 12px);
+            margin-top: clamp(12px, 3vw, 16px);
+            flex-wrap: wrap;
         }
 
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: clamp(36px, 8vw, 40px);
+            height: clamp(36px, 8vw, 40px);
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 8px;
@@ -498,6 +499,7 @@
             color: var(--text-light);
             text-decoration: none;
             backdrop-filter: blur(10px);
+            font-size: clamp(14px, 3vw, 16px);
         }
 
         .social-links a:hover {
@@ -509,10 +511,10 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 24px;
+            padding-top: clamp(16px, 4vw, 24px);
             border-top: 1px solid var(--border-color);
             color: var(--text-subtle);
-            font-size: 0.875rem;
+            font-size: clamp(12px, 2.5vw, 14px);
         }
 
         /* Animations */
@@ -537,18 +539,19 @@
         .tool-card:nth-child(3) { animation-delay: 0.3s; }
         .tool-card:nth-child(4) { animation-delay: 0.4s; }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        /* Responsive Breakpoints */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 30px 0 20px;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .tools-section {
+                padding: 30px 0;
             }
             
             .tools-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
 
             .menu-panel {
@@ -556,24 +559,44 @@
                 right: -100%;
             }
             
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .menu-panel {
+                width: 380px;
+                right: -380px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
             .container {
-                padding: 0 16px;
-            }
-            
-            .hero {
-                padding: 60px 0 40px;
-            }
-            
-            .tools-section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .section-subtitle {
-                font-size: 1.25rem;
+                padding: 0 24px;
             }
         }
 
@@ -603,13 +626,45 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Amélioration de l'accessibilité tactile */
+        @media (hover: none) and (pointer: coarse) {
+            .tool-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .btn:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .highlight-link:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .highlight-item:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+
+        /* Focus visible pour l'accessibilité */
+        .btn:focus-visible,
+        .highlight-link:focus-visible,
+        .menu-item a:focus-visible,
+        .highlight-item a:focus-visible {
+            outline: 2px solid var(--accent-orange);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
             <a href="#" class="logo">Atlas Corporation</a>
-            <button class="menu-toggle" id="menuToggle">
+            <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">
                 <div class="hamburger-line"></div>
                 <div class="hamburger-line"></div>
                 <div class="hamburger-line"></div>
@@ -679,10 +734,10 @@
             <div class="hero-content fade-in">
                 <h1>ATLAS - CORPORATION</h1>
                 <p>Parce que la technologie évolue vite, nous vous donnons les clés pour maîtriser le présent et anticiper l'avenir.</p>
-                <a href="https://atlas-corporation.fr/creator/" class="highlight-link" >
+                <a href="https://atlas-corporation.fr/creator/" class="highlight-link">
                     Découvrir son Créateur
                 </a>
-                <p>Atlas Corporation vous accompagne dans la découverte et l’analyse critique du monde de l’hardware et du software.</p>
+                <p>Atlas Corporation vous accompagne dans la découverte et l'analyse critique du monde de l'hardware et du software.</p>
                 <br>
                 <p>Que vous soyez passionné de nouvelles technologies, professionnel ou simplement curieux, nous mettons à votre disposition notre expertise pour vous aider à comprendre, évaluer et choisir les meilleures solutions informatiques.</p>
                 <br>
@@ -698,31 +753,7 @@
             <h3 class="section-subtitle fade-in">Suite d'outils professionnels</h3>
             <div class="tools-grid">
                 <div class="tool-card">
-                    <div class="tool-icon userdiag">📊</div>
-                    <h3>UserDiag</h3>
-                    <p class="subtitle">Diagnostic système complet</p>
-                    <p>Analyse approfondie de votre système : températures, performances, logiciels potentiellement indésirables et optimisations recommandées.</p>
-                    <a href="https://userdiag.com/" class="btn">Accéder à l'outil</a>
-                </div>
-
-                <div class="tool-card">
-                    <div class="tool-icon userdiag">🔄</div>
-                    <h3>Updates</h3>
-                    <p class="subtitle">Mise à jour automatisée</p>
-                    <p>Script de mise à jour automatique sécurisé pour maintenir votre système à jour avec les derniers correctifs de sécurité.</p>
-                    <a href="https://fichiers.atlas-corporation.fr/updates-windows.bat" class="btn">Télécharger le script</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon userdiag">⚡</div>
-                    <h3>OCCT</h3>
-                    <p class="subtitle">Test de stabilité avancé</p>
-                    <p>Outil de stress-test professionnel pour évaluer la stabilité de votre système sous charge intensive et détecter les problèmes matériels.</p>
-                    <a href="https://ocbase.com/occt/personal" class="btn">Utiliser OCCT</a>
-                </div>
-                <br>
-                <div class="tool-card">
-                    <div class="tool-icon userdiag">🪟</div>
+                    <div class="tool-icon windows">🪟</div>
                     <h3>Windows 11 Optimisé</h3>
                     <p class="subtitle">Système personnalisé</p>
                     <p>Version Windows 11 optimisée, dépourvue de bloatwares, avec une attention particulière à la confidentialité et aux performances.</p>
@@ -740,7 +771,7 @@
                     <a href="https://atlas-corporation.fr/amd-vs-intel/" class="btn">Consulter l'analyse</a>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-icon userdiag">⚙️</div>
+                    <div class="tool-icon updates">⚙️</div>
                     <h3>Guide PC</h3>
                     <p class="subtitle">Configuration système</p>
                     <p>Guide complet sur les différences entre PC pré-assemblés et configurations personnalisées, avec conseils d'achat et d'assemblage.</p>
@@ -749,21 +780,20 @@
             </div>
             <div class="tools-grid">
                 <div class="tool-card">
-                    <div class="tool-icon userdiag">⚙️</div>
+                    <div class="tool-icon occt">⚙️</div>
                     <h3>Suggestion d'Alimentation</h3>
                     <p class="subtitle">Choix d'alimentations selon vos besoins !</p>
                     <p>Page complète destinant à vous aider dans le choix de la certification et du wattage de votre alimentation.</p>
                     <a href="https://atlas-corporation.fr/psu-calculator/" class="btn">Faites votre choix</a>
-
                 </div>
                 <div class="tool-card">
-                    <div class="tool-icon userdiag">ℹ️</div>
+                    <div class="tool-icon windows">ℹ️</div>
                     <h3>Le Monde des Malwares</h3>
                     <p class="subtitle">Explication des malwares</p>
                     <p>Cette page parlera des différents types de Malwares qui existent et explique les plus connus et leurs objectifs !</p>
                     <a href="https://atlas-corporation.fr/malware-world/" class="btn">S'informer !</a>
-                    </div>
                 </div>
+            </div>
         </div>
     </section>
 
@@ -799,7 +829,7 @@
                         <li><a href="https://cyberveille.esante.gouv.fr/alertes-et-vulnerabilites">Veille sécurité</a></li>
                         <li><a href="https://atlas-corporation.fr/partenaires/">Partenaires</a></li>
                         <li><a href="https://atlas-corporation.fr/cgu/" title="CGU">CGU ⚖️</a></li>
-                        <li><a href="https://atlas-corporation.fr/creator/" title="Creator">Découvrir le Créateur </a></li>
+                        <li><a href="https://atlas-corporation.fr/creator/" title="Creator">Découvrir le Créateur</a></li>
                     </ul>
                 </div>
             </div>
@@ -811,105 +841,151 @@
     </footer>
 
     <script>
- const menuToggle = document.getElementById('menuToggle');
-const menuPanel = document.getElementById('menuPanel');
-const menuOverlay = document.getElementById('menuOverlay');
+        const menuToggle = document.getElementById('menuToggle');
+        const menuPanel = document.getElementById('menuPanel');
+        const menuOverlay = document.getElementById('menuOverlay');
 
-function toggleMenu() {
-    menuToggle.classList.toggle('active');
-    menuPanel.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
-    document.body.style.overflow = menuPanel.classList.contains('active') ? 'hidden' : 'auto';
-}
-
-menuToggle.addEventListener('click', toggleMenu);
-menuOverlay.addEventListener('click', toggleMenu);
-
-// Fermer le menu avec Escape
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && menuPanel.classList.contains('active')) {
-        toggleMenu();
-    }
-});
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            menuPanel.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = menuPanel.classList.contains('active') ? 'hidden' : 'auto';
         }
-    });
-});
 
-// Add scroll effect to header - CORRECTION
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (header) {
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(10, 10, 10, 0.98)';
-        } else {
-            header.style.background = 'rgba(10, 10, 10, 0.95)';
-        }
-    }
-});
+        menuToggle.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
 
-// Animation simplifiée au démarrage
-document.addEventListener('DOMContentLoaded', function() {
-    // D'abord, s'assurer que TOUT est visible par défaut
-    document.querySelectorAll('*').forEach(element => {
-        if (element.style.opacity === '0' || element.style.opacity === '') {
-            element.style.opacity = '1';
-        }
-        if (element.style.transform && element.style.transform.includes('translateY')) {
-            element.style.transform = 'none';
-        }
-    });
+        // Fermer le menu avec Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && menuPanel.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
 
-    // Ensuite, appliquer les animations SEULEMENT aux éléments spécifiques qui existent
-    setTimeout(() => {
-        // Intersection Observer pour les animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
-        }, observerOptions);
+        });
 
-        // Observer les cartes d'outils SEULEMENT si elles existent
-        const toolCards = document.querySelectorAll('.tool-card');
-        if (toolCards.length > 0) {
-            toolCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(10, 10, 10, 0.98)';
+                } else {
+                    header.style.background = 'rgba(10, 10, 10, 0.95)';
+                }
+            }
+        });
+
+        // Animation au démarrage optimisée
+        document.addEventListener('DOMContentLoaded', function() {
+            // S'assurer que tout est visible par défaut
+            document.querySelectorAll('*').forEach(element => {
+                if (element.style.opacity === '0' || element.style.opacity === '') {
+                    element.style.opacity = '1';
+                }
+                if (element.style.transform && element.style.transform.includes('translateY')) {
+                    element.style.transform = 'none';
+                }
             });
+
+            // Appliquer les animations après un délai
+            setTimeout(() => {
+                // Intersection Observer pour les animations
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, observerOptions);
+
+                // Observer les cartes d'outils
+                const toolCards = document.querySelectorAll('.tool-card');
+                if (toolCards.length > 0) {
+                    toolCards.forEach(card => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(30px)';
+                        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        observer.observe(card);
+                    });
+                }
+
+                // Observer d'autres éléments avec animation
+                const animateElements = document.querySelectorAll('.animate-on-scroll');
+                if (animateElements.length > 0) {
+                    animateElements.forEach(element => {
+                        element.style.opacity = '0';
+                        element.style.transform = 'translateY(30px)';
+                        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        observer.observe(element);
+                    });
+                }
+            }, 100);
+        });
+
+        // Optimisation des performances pour mobile
+        let ticking = false;
+        function updateOnScroll() {
+            // Code d'optimisation du scroll
+            ticking = false;
         }
 
-        // Observer d'autres éléments avec animation SEULEMENT si ils existent
-        const animateElements = document.querySelectorAll('.animate-on-scroll');
-        if (animateElements.length > 0) {
-            animateElements.forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(30px)';
-                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(element);
-            });
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
         }
-    }, 100);
-});
+
+        window.addEventListener('scroll', requestTick);
+
+        // Gestion du redimensionnement responsive
+        window.addEventListener('resize', function() {
+            // Fermer le menu si ouvert lors du redimensionnement
+            if (window.innerWidth > 768 && menuPanel.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
+        // Amélioration de l'accessibilité
+        document.addEventListener('keydown', function(e) {
+            // Navigation au clavier pour le menu
+            if (e.key === 'Tab' && menuPanel.classList.contains('active')) {
+                const focusableElements = menuPanel.querySelectorAll('a, button');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>
