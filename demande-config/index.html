@@ -680,6 +680,16 @@
                 
                 // Trigger change event for any dependent logic
                 input.dispatchEvent(new Event('change'));
+                
+                // Handle specific field logic
+                if (name === 'color') {
+                    const otherField = document.getElementById('color_other_field');
+                    if (input.value === 'autre') {
+                        otherField.style.display = 'block';
+                    } else {
+                        otherField.style.display = 'none';
+                    }
+                }
             });
         });
         
@@ -710,17 +720,6 @@
                 otherField.style.display = 'none';
                 document.getElementById('country_other_text').required = false;
             }
-        });
-        
-        document.querySelectorAll('input[name="color"]').forEach(function(radio) {
-            radio.addEventListener('change', function() {
-                const otherField = document.getElementById('color_other_field');
-                if (this.value === 'autre') {
-                    otherField.style.display = 'block';
-                } else {
-                    otherField.style.display = 'none';
-                }
-            });
         });
         
         // Handle storage field
