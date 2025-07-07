@@ -131,6 +131,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             color: var(--text-light);
+            position: relative;
         }
         
         .radio-item:hover, .checkbox-item:hover {
@@ -139,13 +140,16 @@
         }
         
         .radio-item input, .checkbox-item input {
-            margin-right: 8px;
-            width: auto;
-            accent-color: var(--accent-orange);
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
         }
         
-        .radio-item input:checked + label, .checkbox-item input:checked + label {
-            color: var(--accent-orange);
+        .radio-item.selected, .checkbox-item.selected {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: var(--text-light);
             font-weight: bold;
         }
         
@@ -264,11 +268,11 @@
                 <div class="question-group">
                     <h3>💳 Avez-vous déjà l'argent ? <span class="required">*</span></h3>
                     <div class="radio-group">
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="oui">
                             <input type="radio" id="money_yes" name="money_available" value="oui" required>
                             <label for="money_yes">Oui</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="non">
                             <input type="radio" id="money_no" name="money_available" value="non">
                             <label for="money_no">Non</label>
                         </div>
@@ -292,29 +296,32 @@
                         <option value="canada">Canada</option>
                         <option value="autre">Autre</option>
                     </select>
+                    <div id="country_other_field" style="display: none; margin-top: 15px;">
+                        <input type="text" id="country_other_text" name="country_other_text" placeholder="Précisez votre pays...">
+                    </div>
                 </div>
                 
                 <!-- Utilisation -->
                 <div class="question-group">
                     <h3>🎮 Quelle sera l'utilisation principale du PC ? <span class="required">*</span></h3>
                     <div class="checkbox-group">
-                        <div class="checkbox-item">
+                        <div class="checkbox-item" data-value="gaming">
                             <input type="checkbox" id="gaming" name="usage" value="gaming">
                             <label for="gaming">Gaming</label>
                         </div>
-                        <div class="checkbox-item">
+                        <div class="checkbox-item" data-value="streaming">
                             <input type="checkbox" id="streaming" name="usage" value="streaming">
                             <label for="streaming">Streaming</label>
                         </div>
-                        <div class="checkbox-item">
+                        <div class="checkbox-item" data-value="montage">
                             <input type="checkbox" id="montage" name="usage" value="montage">
                             <label for="montage">Montage vidéo</label>
                         </div>
-                        <div class="checkbox-item">
+                        <div class="checkbox-item" data-value="graphisme">
                             <input type="checkbox" id="graphisme" name="usage" value="graphisme">
                             <label for="graphisme">Graphisme</label>
                         </div>
-                        <div class="checkbox-item">
+                        <div class="checkbox-item" data-value="bureautique">
                             <input type="checkbox" id="bureautique" name="usage" value="bureautique">
                             <label for="bureautique">Bureautique</label>
                         </div>
@@ -331,15 +338,15 @@
                 <div class="question-group">
                     <h3>📺 Quelle est la résolution de votre écran ? <span class="required">*</span></h3>
                     <div class="radio-group">
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="1080p">
                             <input type="radio" id="res_1080p" name="resolution" value="1080p" required>
                             <label for="res_1080p">1080p (FHD)</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="1440p">
                             <input type="radio" id="res_1440p" name="resolution" value="1440p">
                             <label for="res_1440p">1440p (QHD)</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="2160p">
                             <input type="radio" id="res_2160p" name="resolution" value="2160p">
                             <label for="res_2160p">2160p (UHD/4K)</label>
                         </div>
@@ -364,19 +371,19 @@
                 <div class="question-group">
                     <h3>📏 Quelle taille de PC préférez-vous ? <span class="required">*</span></h3>
                     <div class="radio-group">
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="mini_itx">
                             <input type="radio" id="size_mini" name="pc_size" value="mini_itx" required>
                             <label for="size_mini">Mini ITX (compact)</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="micro_atx">
                             <input type="radio" id="size_micro" name="pc_size" value="micro_atx">
                             <label for="size_micro">Micro ATX (moyen)</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="atx">
                             <input type="radio" id="size_atx" name="pc_size" value="atx">
                             <label for="size_atx">ATX (grand)</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="no_preference">
                             <input type="radio" id="size_no_pref" name="pc_size" value="no_preference">
                             <label for="size_no_pref">Pas de préférence</label>
                         </div>
@@ -392,21 +399,28 @@
                         <option value="2tb">2 TB</option>
                         <option value="plus">Plus de 2 TB</option>
                     </select>
+                    <div id="storage_more_field" style="display: none; margin-top: 15px;">
+                        <input type="number" id="storage_amount" name="storage_amount" placeholder="Capacité en TB" min="3" max="20">
+                        <span style="color: var(--text-muted); margin-left: 10px;">TB</span>
+                    </div>
+                    <div id="nas_warning" style="display: none; margin-top: 15px; padding: 15px; background: var(--glass-bg); border: 1px solid var(--accent-yellow); border-radius: 8px; color: var(--text-muted);">
+                        <strong style="color: var(--accent-yellow);">⚠️ Recommandation :</strong> Pour des besoins de stockage supérieurs à 4 TB, un NAS (Network Attached Storage) serait plus économique et pratique qu'un SSD de cette taille. Nous vous aiderons à créer et configurer une solution NAS adaptée à vos besoins.
+                    </div>
                 </div>
                 
                 <!-- Style d'éclairage -->
                 <div class="question-group">
                     <h3>💡 Style d'éclairage préféré ?</h3>
                     <div class="radio-group">
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="rgb">
                             <input type="radio" id="rgb" name="lighting" value="rgb">
                             <label for="rgb">RGB (coloré)</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="sobre">
                             <input type="radio" id="sobre" name="lighting" value="sobre">
                             <label for="sobre">Sobre (discret)</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="mixte">
                             <input type="radio" id="mixte" name="lighting" value="mixte">
                             <label for="mixte">Mixte</label>
                         </div>
@@ -417,22 +431,25 @@
                 <div class="question-group">
                     <h3>🎨 Couleur des composants préférée ?</h3>
                     <div class="radio-group">
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="noir">
                             <input type="radio" id="color_black" name="color" value="noir">
                             <label for="color_black">Noir</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="blanc">
                             <input type="radio" id="color_white" name="color" value="blanc">
                             <label for="color_white">Blanc</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="mixte">
                             <input type="radio" id="color_mixed" name="color" value="mixte">
                             <label for="color_mixed">Boîtier blanc, composants noirs</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="autre">
                             <input type="radio" id="color_other" name="color" value="autre">
                             <label for="color_other">Autre</label>
                         </div>
+                    </div>
+                    <div id="color_other_field" style="display: none; margin-top: 15px;">
+                        <input type="text" id="color_other_text" name="color_other_text" placeholder="Précisez votre préférence de couleur...">
                     </div>
                 </div>
                 
@@ -440,11 +457,11 @@
                 <div class="question-group">
                     <h3>📶 Le PC sera-t-il connecté en Wi-Fi ? <span class="required">*</span></h3>
                     <div class="radio-group">
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="oui">
                             <input type="radio" id="wifi_yes" name="wifi" value="oui" required>
                             <label for="wifi_yes">Oui</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="non">
                             <input type="radio" id="wifi_no" name="wifi" value="non">
                             <label for="wifi_no">Non (ethernet uniquement)</label>
                         </div>
@@ -455,11 +472,11 @@
                 <div class="question-group">
                     <h3>🌐 Achat international accepté ?</h3>
                     <div class="radio-group">
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="oui">
                             <input type="radio" id="intl_yes" name="international" value="oui">
                             <label for="intl_yes">Oui</label>
                         </div>
-                        <div class="radio-item">
+                        <div class="radio-item" data-value="non">
                             <input type="radio" id="intl_no" name="international" value="non">
                             <label for="intl_no">Non</label>
                         </div>
@@ -522,37 +539,109 @@
             const usageCheckboxes = document.querySelectorAll('input[name="usage"]:checked');
             data.usage = Array.from(usageCheckboxes).map(cb => cb.value);
             
-            // Format result for Discord
-            let result = "```\n📋 DEMANDE DE CONFIGURATION PC\n";
-            result += "=====================================\n\n";
-            result += ` Budget : ${data.budget || 'Non spécifié'}€\n`;
-            result += ` Argent disponible : ${data.money_available || 'Non spécifié'}\n`;
-            result +=  'Date de commande : ${data.order_date || 'Non spécifié'}\n`;
-            result += ` Pays : ${data.country || 'Non spécifié'}\n`;
-            result += ` Utilisation : ${data.usage && data.usage.length > 0 ? data.usage.join(', ') : 'Non spécifié'}\n`;
-            result += ` Jeux/Logiciels : ${data.software || 'Non spécifié'}\n`;
-            result += ` Résolution : ${data.resolution || 'Non spécifié'}\n`;
-            result += ` Taux de rafraîchissement : ${data.refresh_rate || 'Non spécifié'}\n`;
-            result += ` Taille PC : ${data.pc_size || 'Non spécifié'}\n`;
-            result += ` Stockage : ${data.storage || 'Non spécifié'}\n`;
-            result += ` Éclairage : ${data.lighting || 'Non spécifié'}\n`;
-            result += ` Couleur : ${data.color || 'Non spécifié'}\n`;
-            result += ` WiFi : ${data.wifi || 'Non spécifié'}\n`;
-            result += ` Achat international : ${data.international || 'Non spécifié'}\n`;
+            // Handle "autre" fields
+            if (data.country === 'autre' && data.country_other_text) {
+                data.country = data.country_other_text;
+            }
+            if (data.color === 'autre' && data.color_other_text) {
+                data.color = data.color_other_text;
+            }
             
+            // Handle storage formatting
+            let storageText = data.storage;
+            let nasRecommendation = '';
+            if (data.storage === 'plus' && data.storage_amount) {
+                storageText = `${data.storage_amount} TB`;
+                if (parseInt(data.storage_amount) > 4) {
+                    nasRecommendation = '\n\n⚠️ RECOMMANDATION NAS :\nPour un stockage supérieur à 4 TB, un NAS (Network Attached Storage) est vivement recommandé plutôt qu\'un SSD de cette taille. Un NAS offre :\n- Coût par TB bien inférieur\n- Redondance des données (RAID)\n- Accès réseau depuis tous vos appareils\n- Évolutivité (ajout de disques)\n- Sauvegarde automatique\n- Streaming média\nNous vous aiderons à créer et configurer le NAS pour vos besoins spécifiques.';
+                }
+            }
+            
+            // Format result in the exact format requested with line breaks
+            let result = "";
+            result += `1) Mon budget est de : ${data.budget ? data.budget + '€' : 'Non spécifié'}\n`;
+            result += `2) Tu as déjà l'argent ? ${data.money_available || 'Non spécifié'}\n`;
+            result += `3) Quand est prévu la commande du PC ? ${data.order_date || 'Non spécifié'}\n`;
+            result += `4) Tu habites où ? (uniquement le pays) ${data.country || 'Non spécifié'}\n`;
+            result += `5) L'utilisation du PC ? (exemple : gaming, montage, graphisme...) ${data.usage && data.usage.length > 0 ? data.usage.join(', ') : 'Non spécifié'}\n`;
+            result += `6) Tu es en 1080p (FHD) ou 1440p (QHD) ou 2160p (UHD) ? ${data.resolution || 'Non spécifié'}\n`;
+            result += `7) La config doit inclure du wifi (connexion sans fil) ? ${data.wifi || 'Non spécifié'}\n`;
+            
+            // Handle visual preferences
+            let visualPrefs = '';
+            if (data.color && data.lighting) {
+                if (data.color === 'mixte') {
+                    visualPrefs = 'boîtier blanc composant noir';
+                } else if (data.color === 'blanc') {
+                    visualPrefs = 'config blanche';
+                } else if (data.color === 'noir') {
+                    visualPrefs = 'config noire';
+                } else {
+                    visualPrefs = data.color;
+                }
+                
+                if (data.lighting === 'rgb') {
+                    visualPrefs += ', éclairage RGB';
+                } else if (data.lighting === 'sobre') {
+                    visualPrefs += ', éclairage sobre';
+                }
+            } else if (data.color) {
+                if (data.color === 'mixte') {
+                    visualPrefs = 'boîtier blanc composant noir';
+                } else {
+                    visualPrefs = `config ${data.color}`;
+                }
+            } else if (data.lighting) {
+                visualPrefs = `éclairage ${data.lighting}`;
+            }
+            
+            result += `8) Tu as des préférences comme par exemple sur le visuel du PC ou des composants ? ${visualPrefs || 'Non spécifié'}\n`;
+            
+            // Handle site restrictions
+            let siteRestrictions = 'non';
             if (data.site_restrictions && data.site_restrictions.trim()) {
-                result += `🛒 Restrictions sites : ${data.site_restrictions}\n`;
+                siteRestrictions = data.site_restrictions;
+            } else if (data.international === 'non') {
+                siteRestrictions = 'non (achat local uniquement)';
             }
             
+            result += `9) Des restrictions sur les sites ou tu peux commandé ? ${siteRestrictions}\n`;
+            
+            // Handle additional remarks
+            let remarks = '';
+            const additionalInfo = [];
+            
+            if (data.software && data.software.trim()) {
+                additionalInfo.push(`Jeux/logiciels: ${data.software}`);
+            }
+            if (data.refresh_rate && data.refresh_rate !== '') {
+                additionalInfo.push(`Écran ${data.refresh_rate}`);
+            }
+            if (data.pc_size && data.pc_size !== 'no_preference') {
+                additionalInfo.push(`Taille: ${data.pc_size}`);
+            }
+            if (data.storage && data.storage !== '1tb') {
+                if (data.storage === 'plus' && data.storage_amount) {
+                    additionalInfo.push(`Stockage: ${data.storage_amount} TB`);
+                } else {
+                    additionalInfo.push(`Stockage: ${data.storage}`);
+                }
+            }
             if (data.special_requirements && data.special_requirements.trim()) {
-                result += `⚙️ Exigences particulières : ${data.special_requirements}\n`;
+                additionalInfo.push(data.special_requirements);
             }
-            
             if (data.remarks && data.remarks.trim()) {
-                result += `📝 Remarques : ${data.remarks}\n`;
+                additionalInfo.push(data.remarks);
             }
             
-            result += "```";
+            if (additionalInfo.length > 0) {
+                remarks = additionalInfo.join(', ');
+            }
+            
+            result += `10) Autre remarque ? (optionnel) ${remarks || ''}`;
+            
+            // Add NAS recommendation if applicable
+            result += nasRecommendation;
             
             // Copy to clipboard
             navigator.clipboard.writeText(result).then(function() {
@@ -572,6 +661,91 @@
                 // Fallback for older browsers
                 alert('Votre navigateur ne supporte pas la copie automatique. Voici le résumé à copier manuellement :\n\n' + result);
             });
+        });
+        
+        // Handle custom radio/checkbox buttons
+        document.querySelectorAll('.radio-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                const input = this.querySelector('input[type="radio"]');
+                const name = input.name;
+                
+                // Remove selected class from all items with same name
+                document.querySelectorAll(`input[name="${name}"]`).forEach(function(otherInput) {
+                    otherInput.closest('.radio-item').classList.remove('selected');
+                });
+                
+                // Add selected class to clicked item
+                this.classList.add('selected');
+                input.checked = true;
+                
+                // Trigger change event for any dependent logic
+                input.dispatchEvent(new Event('change'));
+            });
+        });
+        
+        document.querySelectorAll('.checkbox-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                const input = this.querySelector('input[type="checkbox"]');
+                
+                if (input.checked) {
+                    input.checked = false;
+                    this.classList.remove('selected');
+                } else {
+                    input.checked = true;
+                    this.classList.add('selected');
+                }
+                
+                // Trigger change event for any dependent logic
+                input.dispatchEvent(new Event('change'));
+            });
+        });
+        
+        // Show/hide "autre" fields
+        document.getElementById('country').addEventListener('change', function() {
+            const otherField = document.getElementById('country_other_field');
+            if (this.value === 'autre') {
+                otherField.style.display = 'block';
+                document.getElementById('country_other_text').required = true;
+            } else {
+                otherField.style.display = 'none';
+                document.getElementById('country_other_text').required = false;
+            }
+        });
+        
+        document.querySelectorAll('input[name="color"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                const otherField = document.getElementById('color_other_field');
+                if (this.value === 'autre') {
+                    otherField.style.display = 'block';
+                } else {
+                    otherField.style.display = 'none';
+                }
+            });
+        });
+        
+        // Handle storage field
+        document.getElementById('storage').addEventListener('change', function() {
+            const moreField = document.getElementById('storage_more_field');
+            const nasWarning = document.getElementById('nas_warning');
+            
+            if (this.value === 'plus') {
+                moreField.style.display = 'block';
+            } else {
+                moreField.style.display = 'none';
+                nasWarning.style.display = 'none';
+            }
+        });
+        
+        // Handle storage amount warning
+        document.getElementById('storage_amount').addEventListener('input', function() {
+            const nasWarning = document.getElementById('nas_warning');
+            const amount = parseInt(this.value);
+            
+            if (amount > 4) {
+                nasWarning.style.display = 'block';
+            } else {
+                nasWarning.style.display = 'none';
+            }
         });
     </script>
 </body>
