@@ -334,28 +334,32 @@
                     <textarea id="software" name="software" rows="3" placeholder="Ex: Fortnite, Call of Duty, Adobe Premiere, Blender..."></textarea>
                 </div>
                 
-                <!-- Résolution écran -->
+                <!-- Résolution écran ACTUEL -->
                 <div class="question-group">
-                    <h3>📺 Quelle est la résolution de votre écran ? <span class="required">*</span></h3>
+                    <h3>📺 Quelle est la résolution de votre écran ACTUEL ? <span class="required">*</span></h3>
                     <div class="radio-group">
                         <div class="radio-item" data-value="1080p">
-                            <input type="radio" id="res_1080p" name="resolution" value="1080p" required>
-                            <label for="res_1080p">1080p (FHD)</label>
+                            <input type="radio" id="current_res_1080p" name="current_resolution" value="1080p" required>
+                            <label for="current_res_1080p">1080p (FHD)</label>
                         </div>
                         <div class="radio-item" data-value="1440p">
-                            <input type="radio" id="res_1440p" name="resolution" value="1440p">
-                            <label for="res_1440p">1440p (QHD)</label>
+                            <input type="radio" id="current_res_1440p" name="current_resolution" value="1440p">
+                            <label for="current_res_1440p">1440p (QHD)</label>
                         </div>
                         <div class="radio-item" data-value="2160p">
-                            <input type="radio" id="res_2160p" name="resolution" value="2160p">
-                            <label for="res_2160p">2160p (UHD/4K)</label>
+                            <input type="radio" id="current_res_2160p" name="current_resolution" value="2160p">
+                            <label for="current_res_2160p">2160p (UHD/4K)</label>
+                        </div>
+                        <div class="radio-item" data-value="pas_ecran">
+                            <input type="radio" id="current_res_none" name="current_resolution" value="pas_ecran">
+                            <label for="current_res_none">Pas d'écran actuellement</label>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Taux de rafraîchissement -->
                 <div class="question-group">
-                    <h3>⚡ Quel est le taux de rafraîchissement de votre écran ?</h3>
+                    <h3>⚡ Quel est le taux de rafraîchissement de votre écran actuel ?</h3>
                     <select id="refresh_rate" name="refresh_rate">
                         <option value="">Je ne sais pas</option>
                         <option value="60hz">60 Hz</option>
@@ -366,6 +370,136 @@
                         <option value="360hz">360 Hz</option>
                     </select>
                 </div>
+                
+                <!-- Nouvel écran -->
+                <div class="question-group">
+                    <h3>🖥️ Voulez-vous un nouvel écran avec le PC ?</h3>
+                    <div class="radio-group">
+                        <div class="radio-item" data-value="oui">
+                            <input type="radio" id="new_screen_yes" name="new_screen" value="oui">
+                            <label for="new_screen_yes">Oui, je veux un nouvel écran</label>
+                        </div>
+                        <div class="radio-item" data-value="non">
+                            <input type="radio" id="new_screen_no" name="new_screen" value="non">
+                            <label for="new_screen_no">Non, je garde mon écran actuel</label>
+                        </div>
+                        <div class="radio-item" data-value="en_plus">
+                            <input type="radio" id="new_screen_additional" name="new_screen" value="en_plus">
+                            <label for="new_screen_additional">Oui, en plus de mon écran actuel (dual screen)</label>
+                        </div>
+                    </div>
+                    <div id="new_screen_specs" style="display: none; margin-top: 15px;">
+                        <h4 style="color: var(--accent-orange); margin-bottom: 10px;">Spécifications de l'écran souhaité :</h4>
+                        <select id="desired_resolution" name="desired_resolution" style="margin-bottom: 10px;">
+                            <option value="">Résolution souhaitée</option>
+                            <option value="1080p">1080p (FHD)</option>
+                            <option value="1440p">1440p (QHD)</option>
+                            <option value="2160p">2160p (UHD/4K)</option>
+                        </select>
+                        <select id="desired_size" name="desired_size" style="margin-bottom: 10px;">
+                            <option value="">Taille d'écran</option>
+                            <option value="24-27">24-27 pouces</option>
+                            <option value="27-32">27-32 pouces</option>
+                            <option value="32+">32 pouces et +</option>
+                            <option value="ultrawide">Ultrawide (21:9)</option>
+                        </select>
+                        <select id="screen_budget" name="screen_budget">
+                            <option value="">Budget écran</option>
+                            <option value="200-400">200-400€</option>
+                            <option value="400-600">400-600€</option>
+                            <option value="600-1000">600-1000€</option>
+                            <option value="1000+">1000€+</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Périphériques -->
+                <div class="question-group">
+                    <h3>🖱️ De quels périphériques avez-vous besoin ?</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item" data-value="aucun">
+                            <input type="checkbox" id="periph_none" name="peripherals" value="aucun">
+                            <label for="periph_none">Aucun (j'ai déjà tout)</label>
+                        </div>
+                        <div class="checkbox-item" data-value="clavier">
+                            <input type="checkbox" id="periph_keyboard" name="peripherals" value="clavier">
+                            <label for="periph_keyboard">Clavier</label>
+                        </div>
+                        <div class="checkbox-item" data-value="souris">
+                            <input type="checkbox" id="periph_mouse" name="peripherals" value="souris">
+                            <label for="periph_mouse">Souris</label>
+                        </div>
+                        <div class="checkbox-item" data-value="casque">
+                            <input type="checkbox" id="periph_headset" name="peripherals" value="casque">
+                            <label for="periph_headset">Casque/Écouteurs</label>
+                        </div>
+                        <div class="checkbox-item" data-value="enceintes">
+                            <input type="checkbox" id="periph_speakers" name="peripherals" value="enceintes">
+                            <label for="periph_speakers">Enceintes</label>
+                        </div>
+                        <div class="checkbox-item" data-value="webcam">
+                            <input type="checkbox" id="periph_webcam" name="peripherals" value="webcam">
+                            <label for="periph_webcam">Webcam</label>
+                        </div>
+                        <div class="checkbox-item" data-value="micro">
+                            <input type="checkbox" id="periph_mic" name="peripherals" value="micro">
+                            <label for="periph_mic">Microphone</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Personnalisations pour budget élevé -->
+                <div class="question-group" id="premium_customizations" style="display: none;">
+                    <h3>✨ Personnalisations Premium (Budget 2500€+)</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 15px;">Avec votre budget, nous pouvons ajouter des touches esthétiques premium :</p>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item" data-value="ventilateurs_rgb">
+                            <input type="checkbox" id="custom_rgb_fans" name="premium_custom" value="ventilateurs_rgb">
+                            <label for="custom_rgb_fans">Ventilateurs RGB esthétiques</label>
+                        </div>
+                        <div class="checkbox-item" data-value="watercooling">
+                            <input type="checkbox" id="custom_watercooling" name="premium_custom" value="watercooling">
+                            <label for="custom_watercooling">Watercooling AIO premium</label>
+                        </div>
+                        <div class="checkbox-item" data-value="cable_management">
+                            <input type="checkbox" id="custom_cables" name="premium_custom" value="cable_management">
+                            <label for="custom_cables">Câbles gainés couleur assortie</label>
+                        </div>
+                        <div class="checkbox-item" data-value="boitier_premium">
+                            <input type="checkbox" id="custom_case" name="premium_custom" value="boitier_premium">
+                            <label for="custom_case">Boîtier premium en verre trempé</label>
+                        </div>
+                        <div class="checkbox-item" data-value="led_strips">
+                            <input type="checkbox" id="custom_led_strips" name="premium_custom" value="led_strips">
+                            <label for="custom_led_strips">Bandes LED internes</label>
+                        </div>
+                        <div class="checkbox-item" data-value="figurines">
+                            <input type="checkbox" id="custom_figurines" name="premium_custom" value="figurines">
+                            <label for="custom_figurines">Figurines/décorations dans le boîtier</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Évolutivité -->
+                <div class="question-group">
+                    <h3>🔄 Évolutivité future</h3>
+                    <div class="radio-group">
+                        <div class="radio-item" data-value="3-5ans">
+                            <input type="radio" id="future_3_5" name="future_upgrade" value="3-5ans">
+                            <label for="future_3_5">Je veux que ça tienne 3-5 ans minimum</label>
+                        </div>
+                        <div class="radio-item" data-value="upgrade_regulier">
+                            <input type="radio" id="future_regular" name="future_upgrade" value="upgrade_regulier">
+                            <label for="future_regular">J'upgrade régulièrement (tous les 2-3 ans)</label>
+                        </div>
+                        <div class="radio-item" data-value="extensible">
+                            <input type="radio" id="future_extensible" name="future_upgrade" value="extensible">
+                            <label for="future_extensible">Je veux pouvoir ajouter des composants facilement</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Taux de rafraîchissement -->
                 
                 <!-- Taille du PC -->
                 <div class="question-group">
@@ -539,6 +673,14 @@
             const usageCheckboxes = document.querySelectorAll('input[name="usage"]:checked');
             data.usage = Array.from(usageCheckboxes).map(cb => cb.value);
             
+            // Handle checkboxes for peripherals
+            const peripheralCheckboxes = document.querySelectorAll('input[name="peripherals"]:checked');
+            data.peripherals = Array.from(peripheralCheckboxes).map(cb => cb.value);
+            
+            // Handle checkboxes for premium customizations
+            const premiumCheckboxes = document.querySelectorAll('input[name="premium_custom"]:checked');
+            data.premium_custom = Array.from(premiumCheckboxes).map(cb => cb.value);
+            
             // Handle "autre" fields
             if (data.country === 'autre' && data.country_other_text) {
                 data.country = data.country_other_text;
@@ -553,7 +695,7 @@
             if (data.storage === 'plus' && data.storage_amount) {
                 storageText = `${data.storage_amount} TB`;
                 if (parseInt(data.storage_amount) > 4) {
-                    nasRecommendation = '\n\n⚠️ RECOMMANDATION NAS :\nPour un stockage supérieur à 4 TB, un NAS (Network Attached Storage) est vivement recommandé plutôt qu\'un SSD de cette taille. Un NAS offre :\n- Coût par TB bien inférieur\n- Redondance des données (RAID)\n- Accès réseau depuis tous vos appareils\n- Évolutivité (ajout de disques)\n- Sauvegarde automatique\n- Streaming média\nNous vous aiderons à créer et configurer le NAS pour vos besoins spécifiques.';
+                    nasRecommendation = '\n\nJe souhaite un NAS pour un stockage sécurisé et évolutif : stockage en réseau pour sauvegardes automatiques, accès depuis tous mes appareils, streaming média, et redondance des données. Configuration NAS requise (rendez-vous vocal nécessaire pour déterminer les besoins exacts et sélectionner les composants adaptés).';
                 }
             }
             
@@ -564,7 +706,7 @@
             result += `3) Quand est prévu la commande du PC ? ${data.order_date || 'Non spécifié'}\n`;
             result += `4) Tu habites où ? (uniquement le pays) ${data.country || 'Non spécifié'}\n`;
             result += `5) L'utilisation du PC ? (exemple : gaming, montage, graphisme...) ${data.usage && data.usage.length > 0 ? data.usage.join(', ') : 'Non spécifié'}\n`;
-            result += `6) Tu es en 1080p (FHD) ou 1440p (QHD) ou 2160p (UHD) ? ${data.resolution || 'Non spécifié'}\n`;
+            result += `6) Tu es en 1080p (FHD) ou 1440p (QHD) ou 2160p (UHD) ? ${data.current_resolution || 'Non spécifié'}\n`;
             result += `7) La config doit inclure du wifi (connexion sans fil) ? ${data.wifi || 'Non spécifié'}\n`;
             
             // Handle visual preferences
@@ -616,6 +758,22 @@
             }
             if (data.refresh_rate && data.refresh_rate !== '') {
                 additionalInfo.push(`Écran ${data.refresh_rate}`);
+            }
+            if (data.new_screen && data.new_screen !== 'non') {
+                let screenInfo = `Nouvel écran: ${data.new_screen}`;
+                if (data.desired_resolution) screenInfo += ` (${data.desired_resolution})`;
+                if (data.desired_size) screenInfo += ` ${data.desired_size}`;
+                if (data.screen_budget) screenInfo += ` budget ${data.screen_budget}`;
+                additionalInfo.push(screenInfo);
+            }
+            if (data.peripherals && data.peripherals.length > 0) {
+                additionalInfo.push(`Périphériques: ${data.peripherals.join(', ')}`);
+            }
+            if (data.premium_custom && data.premium_custom.length > 0) {
+                additionalInfo.push(`Personnalisations: ${data.premium_custom.join(', ')}`);
+            }
+            if (data.future_upgrade) {
+                additionalInfo.push(`Évolutivité: ${data.future_upgrade}`);
             }
             if (data.pc_size && data.pc_size !== 'no_preference') {
                 additionalInfo.push(`Taille: ${data.pc_size}`);
@@ -690,6 +848,15 @@
                         otherField.style.display = 'none';
                     }
                 }
+                
+                if (name === 'new_screen') {
+                    const specsField = document.getElementById('new_screen_specs');
+                    if (input.value === 'oui' || input.value === 'en_plus') {
+                        specsField.style.display = 'block';
+                    } else {
+                        specsField.style.display = 'none';
+                    }
+                }
             });
         });
         
@@ -708,6 +875,18 @@
                 // Trigger change event for any dependent logic
                 input.dispatchEvent(new Event('change'));
             });
+        });
+        
+        // Show premium customizations for high budget
+        document.getElementById('budget').addEventListener('input', function() {
+            const budget = parseInt(this.value);
+            const premiumSection = document.getElementById('premium_customizations');
+            
+            if (budget >= 2500) {
+                premiumSection.style.display = 'block';
+            } else {
+                premiumSection.style.display = 'none';
+            }
         });
         
         // Show/hide "autre" fields
