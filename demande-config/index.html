@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire de Demande PC</title>
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --tertiary-dark: #2a2a2a;
+            --accent-orange: #ff6b35;
+            --accent-yellow: #ffb84d;
+            --accent-red: #e74c3c;
+            --accent-green: #27ae60;
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+            --text-subtle: #888888;
+            --border-color: #333333;
+            --card-bg: #1e1e1e;
+            --hover-bg: #2a2a2a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-dark);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-light);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            color: var(--text-light);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            padding: 40px;
+        }
+        
+        .question-group {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--glass-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-orange);
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .question-group:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.2);
+            background: var(--hover-bg);
+        }
+        
+        .question-group h3 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .required {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+        
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background: var(--secondary-dark);
+            color: var(--text-light);
+        }
+        
+        input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+        }
+        
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            background: var(--secondary-dark);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+        }
+        
+        .radio-item:hover, .checkbox-item:hover {
+            border-color: var(--accent-orange);
+            background: var(--hover-bg);
+        }
+        
+        .radio-item input, .checkbox-item input {
+            margin-right: 8px;
+            width: auto;
+            accent-color: var(--accent-orange);
+        }
+        
+        .radio-item input:checked + label, .checkbox-item input:checked + label {
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            color: var(--text-light);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 40px auto 0;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+        
+        .note {
+            background: var(--glass-bg);
+            border: 1px solid var(--accent-green);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: var(--text-muted);
+            backdrop-filter: blur(5px);
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, var(--accent-green), #2ecc71);
+            color: var(--text-light);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .price-range input {
+            width: 150px;
+        }
+        
+        .price-range span {
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+        
+        option {
+            background: var(--secondary-dark);
+            color: var(--text-light);
+        }
+        
+        select option:hover {
+            background: var(--hover-bg);
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: var(--text-subtle);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .radio-group, .checkbox-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖥️ Questionnaire PC</h1>
+            <p>Configurons votre PC idéal ensemble</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="pcForm">
+                <!-- Budget -->
+                <div class="question-group">
+                    <h3>💰 Quel est votre budget ? <span class="required">*</span></h3>
+                    <div class="price-range">
+                        <input type="number" id="budget" name="budget" placeholder="1400" required>
+                        <span>€</span>
+                    </div>
+                </div>
+                
+                <!-- Disponibilité budget -->
+                <div class="question-group">
+                    <h3>💳 Avez-vous déjà l'argent ? <span class="required">*</span></h3>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="money_yes" name="money_available" value="oui" required>
+                            <label for="money_yes">Oui</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="money_no" name="money_available" value="non">
+                            <label for="money_no">Non</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Date de commande -->
+                <div class="question-group">
+                    <h3>📅 Quand est prévue la commande du PC ? <span class="required">*</span></h3>
+                    <input type="text" id="order_date" name="order_date" placeholder="Fin juillet, dans 3 mois..." required>
+                </div>
+                
+                <!-- Pays -->
+                <div class="question-group">
+                    <h3>🌍 Dans quel pays résidez-vous ? <span class="required">*</span></h3>
+                    <select id="country" name="country" required>
+                        <option value="">Sélectionnez votre pays</option>
+                        <option value="france">France</option>
+                        <option value="belgique">Belgique</option>
+                        <option value="suisse">Suisse</option>
+                        <option value="canada">Canada</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                
+                <!-- Utilisation -->
+                <div class="question-group">
+                    <h3>🎮 Quelle sera l'utilisation principale du PC ? <span class="required">*</span></h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="gaming" name="usage" value="gaming">
+                            <label for="gaming">Gaming</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="streaming" name="usage" value="streaming">
+                            <label for="streaming">Streaming</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="montage" name="usage" value="montage">
+                            <label for="montage">Montage vidéo</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="graphisme" name="usage" value="graphisme">
+                            <label for="graphisme">Graphisme</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bureautique" name="usage" value="bureautique">
+                            <label for="bureautique">Bureautique</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jeux spécifiques -->
+                <div class="question-group">
+                    <h3>🎯 Quels jeux/logiciels utiliserez-vous principalement ?</h3>
+                    <textarea id="software" name="software" rows="3" placeholder="Ex: Fortnite, Call of Duty, Adobe Premiere, Blender..."></textarea>
+                </div>
+                
+                <!-- Résolution écran -->
+                <div class="question-group">
+                    <h3>📺 Quelle est la résolution de votre écran ? <span class="required">*</span></h3>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="res_1080p" name="resolution" value="1080p" required>
+                            <label for="res_1080p">1080p (FHD)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="res_1440p" name="resolution" value="1440p">
+                            <label for="res_1440p">1440p (QHD)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="res_2160p" name="resolution" value="2160p">
+                            <label for="res_2160p">2160p (UHD/4K)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Taux de rafraîchissement -->
+                <div class="question-group">
+                    <h3>⚡ Quel est le taux de rafraîchissement de votre écran ?</h3>
+                    <select id="refresh_rate" name="refresh_rate">
+                        <option value="">Je ne sais pas</option>
+                        <option value="60hz">60 Hz</option>
+                        <option value="75hz">75 Hz</option>
+                        <option value="144hz">144 Hz</option>
+                        <option value="165hz">165 Hz</option>
+                        <option value="240hz">240 Hz</option>
+                        <option value="360hz">360 Hz</option>
+                    </select>
+                </div>
+                
+                <!-- Taille du PC -->
+                <div class="question-group">
+                    <h3>📏 Quelle taille de PC préférez-vous ? <span class="required">*</span></h3>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="size_mini" name="pc_size" value="mini_itx" required>
+                            <label for="size_mini">Mini ITX (compact)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="size_micro" name="pc_size" value="micro_atx">
+                            <label for="size_micro">Micro ATX (moyen)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="size_atx" name="pc_size" value="atx">
+                            <label for="size_atx">ATX (grand)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="size_no_pref" name="pc_size" value="no_preference">
+                            <label for="size_no_pref">Pas de préférence</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stockage -->
+                <div class="question-group">
+                    <h3>💾 Quelle capacité de stockage minimum voulez-vous ?</h3>
+                    <select id="storage" name="storage">
+                        <option value="500gb">500 GB</option>
+                        <option value="1tb">1 TB</option>
+                        <option value="2tb">2 TB</option>
+                        <option value="plus">Plus de 2 TB</option>
+                    </select>
+                </div>
+                
+                <!-- Style d'éclairage -->
+                <div class="question-group">
+                    <h3>💡 Style d'éclairage préféré ?</h3>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="rgb" name="lighting" value="rgb">
+                            <label for="rgb">RGB (coloré)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="sobre" name="lighting" value="sobre">
+                            <label for="sobre">Sobre (discret)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="mixte" name="lighting" value="mixte">
+                            <label for="mixte">Mixte</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Couleur des composants -->
+                <div class="question-group">
+                    <h3>🎨 Couleur des composants préférée ?</h3>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="color_black" name="color" value="noir">
+                            <label for="color_black">Noir</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="color_white" name="color" value="blanc">
+                            <label for="color_white">Blanc</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="color_mixed" name="color" value="mixte">
+                            <label for="color_mixed">Boîtier blanc, composants noirs</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="color_other" name="color" value="autre">
+                            <label for="color_other">Autre</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WiFi -->
+                <div class="question-group">
+                    <h3>📶 Le PC sera-t-il connecté en Wi-Fi ? <span class="required">*</span></h3>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="wifi_yes" name="wifi" value="oui" required>
+                            <label for="wifi_yes">Oui</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="wifi_no" name="wifi" value="non">
+                            <label for="wifi_no">Non (ethernet uniquement)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Achat international -->
+                <div class="question-group">
+                    <h3>🌐 Achat international accepté ?</h3>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="intl_yes" name="international" value="oui">
+                            <label for="intl_yes">Oui</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="intl_no" name="international" value="non">
+                            <label for="intl_no">Non</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Restrictions sites -->
+                <div class="question-group">
+                    <h3>🛒 Restrictions sur les sites de commande ?</h3>
+                    <textarea id="site_restrictions" name="site_restrictions" rows="2" placeholder="Ex: Préférence pour Amazon, éviter certains sites..."></textarea>
+                </div>
+                
+                <!-- Exigences particulières -->
+                <div class="question-group">
+                    <h3>⚙️ Exigences particulières ?</h3>
+                    <textarea id="special_requirements" name="special_requirements" rows="3" placeholder="Ex: Besoin de silence, overclocking, contraintes d'espace..."></textarea>
+                </div>
+                
+                <!-- Remarques -->
+                <div class="question-group">
+                    <h3>📝 Autres remarques ?</h3>
+                    <textarea id="remarks" name="remarks" rows="3" placeholder="Toute information supplémentaire..."></textarea>
+                </div>
+                
+                <div class="note">
+                    <strong>Note :</strong> Plus vous donnez d'informations, plus nous pourrons vous proposer une configuration adaptée à vos besoins !
+                </div>
+                
+                <div class="success-message" id="successMessage">
+                    ✅ Résumé copié dans le presse-papiers ! Vous pouvez maintenant le coller dans Discord.
+                </div>
+                
+                <button type="submit" class="submit-btn">🚀 Valider et copier dans le presse-papiers</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('pcForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Handle regular inputs
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Handle checkboxes for usage
+            const usageCheckboxes = document.querySelectorAll('input[name="usage"]:checked');
+            data.usage = Array.from(usageCheckboxes).map(cb => cb.value);
+            
+            // Format result for Discord
+            let result = "```\n📋 DEMANDE DE CONFIGURATION PC\n";
+            result += "=====================================\n\n";
+            result += ` Budget : ${data.budget || 'Non spécifié'}€\n`;
+            result += ` Argent disponible : ${data.money_available || 'Non spécifié'}\n`;
+            result +=  'Date de commande : ${data.order_date || 'Non spécifié'}\n`;
+            result += ` Pays : ${data.country || 'Non spécifié'}\n`;
+            result += ` Utilisation : ${data.usage && data.usage.length > 0 ? data.usage.join(', ') : 'Non spécifié'}\n`;
+            result += ` Jeux/Logiciels : ${data.software || 'Non spécifié'}\n`;
+            result += ` Résolution : ${data.resolution || 'Non spécifié'}\n`;
+            result += ` Taux de rafraîchissement : ${data.refresh_rate || 'Non spécifié'}\n`;
+            result += ` Taille PC : ${data.pc_size || 'Non spécifié'}\n`;
+            result += ` Stockage : ${data.storage || 'Non spécifié'}\n`;
+            result += ` Éclairage : ${data.lighting || 'Non spécifié'}\n`;
+            result += ` Couleur : ${data.color || 'Non spécifié'}\n`;
+            result += ` WiFi : ${data.wifi || 'Non spécifié'}\n`;
+            result += ` Achat international : ${data.international || 'Non spécifié'}\n`;
+            
+            if (data.site_restrictions && data.site_restrictions.trim()) {
+                result += `🛒 Restrictions sites : ${data.site_restrictions}\n`;
+            }
+            
+            if (data.special_requirements && data.special_requirements.trim()) {
+                result += `⚙️ Exigences particulières : ${data.special_requirements}\n`;
+            }
+            
+            if (data.remarks && data.remarks.trim()) {
+                result += `📝 Remarques : ${data.remarks}\n`;
+            }
+            
+            result += "```";
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(result).then(function() {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }).catch(function() {
+                // Fallback for older browsers
+                alert('Votre navigateur ne supporte pas la copie automatique. Voici le résumé à copier manuellement :\n\n' + result);
+            });
+        });
+    </script>
+</body>
+</html>
