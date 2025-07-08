@@ -62,14 +62,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 clamp(16px, 4vw, 24px);
+            padding: 0 clamp(12px, 3vw, 24px);
         }
 
-        /* Header - Responsive */
+        /* Header - Responsive Optimisé */
         header {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
-            padding: clamp(0.75rem, 2vw, 1rem) 0;
+            padding: clamp(0.5rem, 1.5vw, 1rem) 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -81,17 +81,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            min-height: clamp(48px, 8vw, 64px);
         }
 
         .logo {
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1.125rem, 3vw, 1.5rem);
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             font-weight: 700;
             color: var(--accent-orange);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: clamp(0.25rem, 1vw, 0.5rem);
             transition: color 0.3s ease;
         }
 
@@ -101,24 +102,25 @@
 
         .logo::before {
             content: "⚡";
-            font-size: clamp(1.125rem, 3vw, 1.5rem);
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
         }
 
         .menu-toggle {
-            width: clamp(40px, 8vw, 44px);
-            height: clamp(40px, 8vw, 44px);
+            width: clamp(40px, 6vw, 48px);
+            height: clamp(40px, 6vw, 48px);
             border: none;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 8px;
+            border-radius: clamp(6px, 1.5vw, 8px);
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 3px;
+            gap: clamp(2px, 0.5vw, 3px);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            padding: clamp(8px, 2vw, 12px);
         }
 
         .menu-toggle:hover {
@@ -127,14 +129,14 @@
         }
 
         .hamburger-line {
-            width: clamp(14px, 3vw, 18px);
-            height: 2px;
+            width: clamp(16px, 3vw, 20px);
+            height: clamp(1.5px, 0.3vw, 2px);
             background: var(--text-light);
             border-radius: 1px;
             transition: all 0.3s ease;
         }
 
-        .menu-toggle.active .hamburger-line:nth-child(1) {
+         .menu-toggle.active .hamburger-line:nth-child(1) {
             transform: translate(4px, 0px) rotate(38deg);
         }
 
@@ -169,7 +171,7 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: min(380px, 100vw);
+            width: min(90vw, 420px);
             height: 100vh;
             background: var(--card-bg);
             border-left: 1px solid var(--border-color);
@@ -183,33 +185,33 @@
         }
 
         .menu-content {
-            padding: clamp(60px, 12vw, 80px) clamp(16px, 4vw, 24px) clamp(16px, 4vw, 24px);
+            padding: clamp(60px, 10vw, 80px) clamp(16px, 4vw, 24px) clamp(24px, 6vw, 32px);
         }
 
         .menu-section {
-            margin-bottom: clamp(24px, 5vw, 32px);
+            margin-bottom: clamp(20px, 4vw, 32px);
         }
 
         .menu-section-title {
-            font-size: clamp(12px, 2.5vw, 14px);
+            font-size: clamp(11px, 2.2vw, 14px);
             font-weight: 600;
             color: var(--accent-orange);
-            margin-bottom: clamp(12px, 3vw, 16px);
+            margin-bottom: clamp(10px, 2.5vw, 16px);
             text-transform: uppercase;
             letter-spacing: 1px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
+            padding-bottom: clamp(6px, 1.5vw, 8px);
         }
 
         .menu-items {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: clamp(2px, 0.5vw, 4px);
         }
 
         .menu-item {
-            border-radius: 8px;
+            border-radius: clamp(6px, 1.5vw, 8px);
             transition: all 0.3s ease;
         }
 
@@ -219,13 +221,16 @@
 
         .menu-item a {
             display: block;
-            padding: clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px);
+            padding: clamp(8px, 2vw, 12px) clamp(10px, 2.5vw, 16px);
             color: var(--text-light);
             text-decoration: none;
             font-weight: 400;
-            font-size: clamp(14px, 3vw, 16px);
+            font-size: clamp(13px, 2.8vw, 16px);
             transition: color 0.3s ease;
-            border-radius: 8px;
+            border-radius: clamp(6px, 1.5vw, 8px);
+            min-height: clamp(36px, 8vw, 44px);
+            display: flex;
+            align-items: center;
         }
 
         .menu-item:hover a {
@@ -235,15 +240,15 @@
         .highlight-section {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: clamp(16px, 4vw, 20px);
+            border-radius: clamp(8px, 2vw, 12px);
+            padding: clamp(14px, 3.5vw, 20px);
             backdrop-filter: blur(10px);
         }
 
         .highlight-item {
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            margin-bottom: 12px;
-            border-radius: 8px;
+            margin-bottom: clamp(8px, 2vw, 12px);
+            border-radius: clamp(6px, 1.5vw, 8px);
             transition: all 0.3s ease;
             overflow: hidden;
         }
@@ -259,29 +264,33 @@
 
         .highlight-item a {
             display: block;
-            padding: clamp(12px, 3vw, 14px) clamp(12px, 3vw, 16px);
+            padding: clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 16px);
             color: var(--primary-dark);
             text-decoration: none;
             font-weight: 600;
             text-align: center;
-            font-size: clamp(12px, 2.5vw, 14px);
+            font-size: clamp(11px, 2.2vw, 14px);
+            min-height: clamp(36px, 8vw, 42px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Hero Section - Responsive */
+        /* Hero Section - Responsive Optimisé */
         .hero {
-            padding: clamp(40px, 10vw, 80px) 0 clamp(30px, 8vw, 60px);
+            padding: clamp(30px, 8vw, 80px) 0 clamp(20px, 6vw, 60px);
             text-align: center;
         }
 
         .hero-content {
-            max-width: min(800px, 90vw);
+            max-width: min(90vw, 800px);
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-size: clamp(1.75rem, 6vw, 3.5rem);
             font-weight: 800;
-            margin-bottom: clamp(16px, 4vw, 24px);
+            margin-bottom: clamp(12px, 3vw, 24px);
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -290,25 +299,30 @@
         }
 
         .hero p {
-            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             color: var(--text-muted);
-            margin-bottom: clamp(12px, 3vw, 16px);
-            max-width: min(600px, 90vw);
+            margin-bottom: clamp(10px, 2.5vw, 16px);
+            max-width: min(85vw, 600px);
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.5;
         }
 
         .highlight-link {
             display: inline-block;
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
             color: var(--primary-dark);
-            padding: clamp(10px, 2.5vw, 12px) clamp(16px, 4vw, 24px);
-            border-radius: 8px;
+            padding: clamp(8px, 2vw, 12px) clamp(14px, 3.5vw, 24px);
+            border-radius: clamp(6px, 1.5vw, 8px);
             text-decoration: none;
             font-weight: 600;
-            font-size: clamp(14px, 3vw, 16px);
-            margin: clamp(12px, 3vw, 16px) 0;
+            font-size: clamp(13px, 2.8vw, 16px);
+            margin: clamp(10px, 2.5vw, 16px) 0;
             transition: all 0.3s ease;
+            min-height: clamp(36px, 8vw, 44px);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .highlight-link:hover {
@@ -316,19 +330,19 @@
             box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
-        /* Tools Section - Responsive */
+        /* Tools Section - Responsive Optimisé */
         .tools-section {
-            padding: clamp(40px, 10vw, 80px) 0;
+            padding: clamp(30px, 8vw, 80px) 0;
             background: var(--glass-bg);
             border-top: 1px solid var(--border-color);
             backdrop-filter: blur(10px);
         }
 
         .section-title {
-            font-size: clamp(1.75rem, 6vw, 2.5rem);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             font-weight: 700;
             text-align: center;
-            margin-bottom: clamp(12px, 3vw, 16px);
+            margin-bottom: clamp(10px, 2.5vw, 16px);
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -336,29 +350,33 @@
         }
 
         .section-subtitle {
-            font-size: clamp(1.125rem, 4vw, 1.5rem);
+            font-size: clamp(1rem, 3.5vw, 1.5rem);
             font-weight: 600;
             color: var(--text-light);
-            margin: clamp(24px, 6vw, 48px) 0 clamp(16px, 4vw, 32px);
+            margin: clamp(20px, 5vw, 48px) 0 clamp(12px, 3vw, 32px);
             text-align: center;
         }
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(280px, 90vw), 1fr));
-            gap: clamp(16px, 4vw, 24px);
-            margin-bottom: clamp(16px, 4vw, 32px);
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(12px, 3vw, 24px);
+            margin-bottom: clamp(12px, 3vw, 32px);
         }
 
         .tool-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: clamp(20px, 5vw, 32px) clamp(16px, 4vw, 24px);
+            border-radius: clamp(12px, 3vw, 16px);
+            padding: clamp(16px, 4vw, 32px) clamp(12px, 3vw, 24px);
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            min-height: clamp(200px, 40vw, 280px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .tool-card::before {
@@ -367,7 +385,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: clamp(2px, 0.5vw, 3px);
             background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
         }
 
@@ -378,14 +396,14 @@
         }
 
         .tool-icon {
-            width: clamp(48px, 12vw, 64px);
-            height: clamp(48px, 12vw, 64px);
-            margin: 0 auto clamp(16px, 4vw, 20px);
-            border-radius: 12px;
+            width: clamp(40px, 10vw, 64px);
+            height: clamp(40px, 10vw, 64px);
+            margin: 0 auto clamp(12px, 3vw, 20px);
+            border-radius: clamp(8px, 2vw, 12px);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: clamp(18px, 5vw, 24px);
+            font-size: clamp(16px, 4vw, 24px);
             color: white;
             position: relative;
         }
@@ -396,40 +414,45 @@
         .windows { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); }
 
         .tool-card h3 {
-            font-size: clamp(1rem, 3vw, 1.25rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.25rem);
             font-weight: 600;
-            margin-bottom: clamp(6px, 1.5vw, 8px);
+            margin-bottom: clamp(4px, 1vw, 8px);
             color: var(--text-light);
         }
 
         .tool-card .subtitle {
             color: var(--accent-orange);
             font-weight: 500;
-            margin-bottom: clamp(12px, 3vw, 16px);
-            font-size: clamp(12px, 2.5vw, 14px);
+            margin-bottom: clamp(8px, 2vw, 16px);
+            font-size: clamp(11px, 2.2vw, 14px);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .tool-card p {
             color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: clamp(16px, 4vw, 24px);
-            font-size: clamp(14px, 3vw, 16px);
+            line-height: 1.5;
+            margin-bottom: clamp(12px, 3vw, 24px);
+            font-size: clamp(13px, 2.8vw, 16px);
+            flex-grow: 1;
         }
 
         .btn {
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
             color: var(--primary-dark);
-            padding: clamp(10px, 2.5vw, 12px) clamp(16px, 4vw, 24px);
+            padding: clamp(8px, 2vw, 12px) clamp(14px, 3.5vw, 24px);
             border: none;
-            border-radius: 8px;
+            border-radius: clamp(6px, 1.5vw, 8px);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
             font-size: clamp(12px, 2.5vw, 14px);
+            min-height: clamp(32px, 7vw, 40px);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn:hover {
@@ -437,31 +460,32 @@
             box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
-        /* Footer - Responsive */
+        /* Footer - Responsive Optimisé */
         footer {
             background: var(--primary-dark);
             border-top: 1px solid var(--border-color);
-            padding: clamp(32px, 8vw, 48px) 0 clamp(16px, 4vw, 24px);
+            padding: clamp(24px, 6vw, 48px) 0 clamp(12px, 3vw, 24px);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(200px, 90vw), 1fr));
-            gap: clamp(20px, 5vw, 32px);
-            margin-bottom: clamp(20px, 5vw, 32px);
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(16px, 4vw, 32px);
+            margin-bottom: clamp(16px, 4vw, 32px);
         }
 
         .footer-section h3 {
-            font-size: clamp(1rem, 3vw, 1.125rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.125rem);
             font-weight: 600;
-            margin-bottom: clamp(12px, 3vw, 16px);
+            margin-bottom: clamp(8px, 2vw, 16px);
             color: var(--accent-orange);
         }
 
         .footer-section p, .footer-section li {
             color: var(--text-muted);
-            margin-bottom: clamp(6px, 1.5vw, 8px);
-            font-size: clamp(14px, 3vw, 16px);
+            margin-bottom: clamp(4px, 1vw, 8px);
+            font-size: clamp(13px, 2.8vw, 16px);
+            line-height: 1.5;
         }
 
         .footer-section ul {
@@ -472,7 +496,9 @@
             color: var(--text-muted);
             text-decoration: none;
             transition: color 0.3s ease;
-            font-size: clamp(14px, 3vw, 16px);
+            font-size: clamp(13px, 2.8vw, 16px);
+            display: block;
+            padding: clamp(2px, 0.5vw, 4px) 0;
         }
 
         .footer-section a:hover {
@@ -481,8 +507,8 @@
 
         .social-links {
             display: flex;
-            gap: clamp(8px, 2vw, 12px);
-            margin-top: clamp(12px, 3vw, 16px);
+            gap: clamp(6px, 1.5vw, 12px);
+            margin-top: clamp(8px, 2vw, 16px);
             flex-wrap: wrap;
         }
 
@@ -490,16 +516,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: clamp(36px, 8vw, 40px);
-            height: clamp(36px, 8vw, 40px);
+            width: clamp(32px, 7vw, 40px);
+            height: clamp(32px, 7vw, 40px);
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 8px;
+            border-radius: clamp(6px, 1.5vw, 8px);
             transition: all 0.3s ease;
             color: var(--text-light);
             text-decoration: none;
             backdrop-filter: blur(10px);
-            font-size: clamp(14px, 3vw, 16px);
+            font-size: clamp(12px, 2.5vw, 16px);
         }
 
         .social-links a:hover {
@@ -511,10 +537,10 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: clamp(16px, 4vw, 24px);
+            padding-top: clamp(12px, 3vw, 24px);
             border-top: 1px solid var(--border-color);
             color: var(--text-subtle);
-            font-size: clamp(12px, 2.5vw, 14px);
+            font-size: clamp(11px, 2.2vw, 14px);
         }
 
         /* Animations */
@@ -539,64 +565,132 @@
         .tool-card:nth-child(3) { animation-delay: 0.3s; }
         .tool-card:nth-child(4) { animation-delay: 0.4s; }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 480px) {
+        /* Responsive Breakpoints Optimisés */
+        @media (max-width: 320px) {
+            .container {
+                padding: 0 8px;
+            }
+            
             .hero {
-                padding: 30px 0 20px;
+                padding: 20px 0 15px;
             }
             
             .tools-section {
-                padding: 30px 0;
+                padding: 20px 0;
             }
             
-            .tools-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
+            .tool-card {
+                min-height: 180px;
             }
 
             .menu-panel {
                 width: 100%;
-                right: -100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 25px 0 20px;
+            }
+            
+            .tools-section {
+                padding: 25px 0;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .menu-panel {
+                width: 100%;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 20px;
             }
             
             .social-links {
                 justify-content: center;
+            }
+
+            .tool-card {
+                padding: 16px 12px;
+                min-height: 200px;
             }
         }
 
         @media (min-width: 481px) and (max-width: 768px) {
             .tools-grid {
                 grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 16px;
             }
             
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            .menu-panel {
+                width: min(80vw, 400px);
+            }
+
+            .tool-card {
+                min-height: 220px;
             }
         }
 
         @media (min-width: 769px) and (max-width: 1024px) {
             .tools-grid {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
             }
             
             .menu-panel {
-                width: 380px;
-                right: -380px;
+                width: min(70vw, 420px);
+            }
+
+            .tool-card {
+                min-height: 260px;
             }
         }
 
         @media (min-width: 1025px) {
             .tools-grid {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 24px;
             }
             
             .container {
                 padding: 0 24px;
+            }
+
+            .menu-panel {
+                width: 420px;
+            }
+
+            .tool-card {
+                min-height: 280px;
+            }
+        }
+
+        /* Améliorations pour très grands écrans */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1400px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+
+        /* Améliorations pour écrans ultra-larges */
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1600px;
             }
         }
 
@@ -648,15 +742,78 @@
                 transform: none;
                 box-shadow: none;
             }
+
+            .social-links a:hover {
+                transform: none;
+            }
+
+            /* Amélioration des zones tactiles */
+            .menu-item a {
+                min-height: 44px;
+            }
+
+            .btn {
+                min-height: 44px;
+            }
+
+            .highlight-link {
+                min-height: 44px;
+            }
+
+            .social-links a {
+                width: 44px;
+                height: 44px;
+            }
         }
 
         /* Focus visible pour l'accessibilité */
         .btn:focus-visible,
         .highlight-link:focus-visible,
         .menu-item a:focus-visible,
-        .highlight-item a:focus-visible {
+        .highlight-item a:focus-visible,
+        .social-links a:focus-visible,
+        .menu-toggle:focus-visible {
             outline: 2px solid var(--accent-orange);
             outline-offset: 2px;
+        }
+
+        /* Amélioration de la lisibilité */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Mode sombre forcé */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-muted: #c0c0c0;
+                --text-subtle: #a0a0a0;
+            }
+        }
+
+        /* Optimisation pour l'impression */
+        @media print {
+            .menu-toggle,
+            .menu-panel,
+            .menu-overlay {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .tool-card,
+            .highlight-section {
+                border: 1px solid #ccc !important;
+                break-inside: avoid;
+            }
         }
     </style>
 </head>
@@ -777,8 +934,6 @@
                     <p>Guide complet sur les différences entre PC pré-assemblés et configurations personnalisées, avec conseils d'achat et d'assemblage.</p>
                     <a href="https://atlas-corporation.fr/pc-informations/" class="btn">Lire le guide</a>
                 </div>
-            </div>
-            <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon occt">⚙️</div>
                     <h3>Suggestion d'Alimentation</h3>
