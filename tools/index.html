@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <title>Atlas Corporation - Outils de Test et Diagnostic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --tertiary-dark: #2a2a2a;
+            --accent-orange: #ff6b35;
+            --accent-yellow: #ffb84d;
+            --accent-red: #e74c3c;
+            --accent-green: #27ae60;
+            --accent-blue: #3498db;
+            --accent-purple: #9b59b6;
+            --accent-cyan: #1abc9c;
+            --accent-pink: #e91e63;
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+            --text-subtle: #888888;
+            --border-color: #333333;
+            --card-bg: #1e1e1e;
+            --hover-bg: #2a2a2a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow-light: rgba(255, 107, 53, 0.2);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(52, 152, 219, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(155, 89, 182, 0.03) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+            animation: backgroundFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .container {
+            max-width: min(1400px, 95vw);
+            margin: 0 auto;
+            padding: 0 clamp(16px, 4vw, 32px);
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: clamp(0.75rem, 2vw, 1.2rem) 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.25rem, 3.5vw, 1.8rem);
+            font-weight: 700;
+            color: var(--accent-orange);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo::before {
+            content: "🔧";
+            font-size: clamp(1.25rem, 3.5vw, 1.8rem);
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from { text-shadow: 0 0 5px var(--accent-orange); }
+            to { text-shadow: 0 0 15px var(--accent-orange), 0 0 25px var(--accent-yellow); }
+        }
+
+        .logo:hover {
+            color: var(--accent-yellow);
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(16px, 3vw, 32px);
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: clamp(14px, 2.5vw, 16px);
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+            background: var(--glass-bg);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: clamp(60px, 12vw, 120px) 0 clamp(40px, 10vw, 80px);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 10vw, 4rem);
+            font-weight: 800;
+            margin-bottom: clamp(20px, 5vw, 32px);
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow), var(--accent-blue));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            color: var(--text-muted);
+            margin-bottom: clamp(24px, 6vw, 40px);
+            max-width: min(800px, 90vw);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: clamp(40px, 8vw, 80px) 0;
+        }
+
+        .category {
+            margin-bottom: clamp(60px, 12vw, 100px);
+        }
+
+        .category-title {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: clamp(16px, 4vw, 24px);
+            text-align: center;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        .cpu-tests .category-title { color: var(--accent-red); }
+        .cpu-tests .category-title::after { background: var(--accent-red); }
+
+        .gpu-tests .category-title { color: var(--accent-green); }
+        .gpu-tests .category-title::after { background: var(--accent-green); }
+
+        .memory-tests .category-title { color: var(--accent-blue); }
+        .memory-tests .category-title::after { background: var(--accent-blue); }
+
+        .storage-tests .category-title { color: var(--accent-purple); }
+        .storage-tests .category-title::after { background: var(--accent-purple); }
+
+        .system-tests .category-title { color: var(--accent-cyan); }
+        .system-tests .category-title::after { background: var(--accent-cyan); }
+
+        .monitoring-tools .category-title { color: var(--accent-yellow); }
+        .monitoring-tools .category-title::after { background: var(--accent-yellow); }
+
+        .network-tests .category-title { color: var(--accent-pink); }
+        .network-tests .category-title::after { background: var(--accent-pink); }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 90vw), 1fr));
+            gap: clamp(20px, 5vw, 32px);
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: clamp(24px, 6vw, 32px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .cpu-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-red), #c0392b); }
+        .gpu-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-green), #2ecc71); }
+        .memory-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-blue), #2980b9); }
+        .storage-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-purple), #8e44ad); }
+        .system-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-cyan), #16a085); }
+        .monitoring-tools .tool-card::before { background: linear-gradient(90deg, var(--accent-yellow), var(--accent-orange)); }
+        .network-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-pink), #ad1457); }
+
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .tool-icon {
+            width: clamp(60px, 15vw, 80px);
+            height: clamp(60px, 15vw, 80px);
+            margin: 0 auto clamp(16px, 4vw, 24px);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(24px, 6vw, 32px);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .cpu-icon { background: linear-gradient(135deg, var(--accent-red), #c0392b); }
+        .gpu-icon { background: linear-gradient(135deg, var(--accent-green), #2ecc71); }
+        .memory-icon { background: linear-gradient(135deg, var(--accent-blue), #2980b9); }
+        .storage-icon { background: linear-gradient(135deg, var(--accent-purple), #8e44ad); }
+        .system-icon { background: linear-gradient(135deg, var(--accent-cyan), #16a085); }
+        .monitor-icon { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); }
+        .network-icon { background: linear-gradient(135deg, var(--accent-pink), #ad1457); }
+
+        .tool-card h3 {
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            font-weight: 600;
+            margin-bottom: clamp(8px, 2vw, 12px);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .tool-card .description {
+            color: var(--text-muted);
+            margin-bottom: clamp(12px, 3vw, 16px);
+            font-size: clamp(14px, 3vw, 16px);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .tool-card .features {
+            list-style: none;
+            margin-bottom: clamp(20px, 5vw, 28px);
+        }
+
+        .tool-card .features li {
+            color: var(--text-muted);
+            font-size: clamp(13px, 2.5vw, 15px);
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tool-card .features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .tool-actions {
+            display: flex;
+            gap: clamp(8px, 2vw, 12px);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: clamp(10px, 2.5vw, 14px) clamp(16px, 4vw, 24px);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+            font-size: clamp(12px, 2.5vw, 14px);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            min-width: clamp(80px, 15vw, 120px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            color: var(--primary-dark);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--text-light);
+            border: 2px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: var(--hover-bg);
+            border-color: var(--accent-orange);
+        }
+
+        /* Search and Filter */
+        .search-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: clamp(20px, 5vw, 32px);
+            margin-bottom: clamp(40px, 8vw, 60px);
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 20px);
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: clamp(14px, 3vw, 16px);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-subtle);
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: clamp(8px, 2vw, 12px);
+            margin-top: clamp(16px, 4vw, 24px);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-tag {
+            padding: clamp(6px, 1.5vw, 8px) clamp(12px, 3vw, 16px);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: var(--text-light);
+            font-size: clamp(12px, 2.5vw, 14px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-tag:hover {
+            background: var(--accent-orange);
+            border-color: var(--accent-orange);
+            color: var(--primary-dark);
+        }
+
+        .filter-tag.active {
+            background: var(--accent-orange);
+            border-color: var(--accent-orange);
+            color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border-color);
+            padding: clamp(32px, 8vw, 48px) 0 clamp(16px, 4vw, 24px);
+            text-align: center;
+        }
+
+        .footer-content {
+            color: var(--text-muted);
+            font-size: clamp(14px, 3vw, 16px);
+            margin-bottom: clamp(16px, 4vw, 24px);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: clamp(16px, 4vw, 32px);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tool-card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .tool-card:nth-child(1n) { animation-delay: 0.1s; }
+        .tool-card:nth-child(2n) { animation-delay: 0.2s; }
+        .tool-card:nth-child(3n) { animation-delay: 0.3s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .tool-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Atlas Testing Tools</a>
+            <ul class="nav-links">
+                <li><a href="#search">Recherche</a></li>
+                <li><a href="#cpu">CPU</a></li>
+                <li><a href="#gpu">GPU</a></li>
+                <li><a href="#memory">RAM</a></li>
+                <li><a href="#storage">Stockage</a></li>
+                <li><a href="https://atlas-corporation.fr">Retour Accueil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Outils de Test & Diagnostic</h1>
+            <p>Collection complète d'outils professionnels pour tester, diagnostiquer et optimiser votre système informatique. Tous les liens directs vers les meilleures applications de test.</p>
+        </div>
+    </section>
+
+    <section class="search-section" id="search">
+        <div class="container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Rechercher un outil... (ex: OCCT, UserBenchmark, etc.)" id="searchInput">
+            </div>
+            <div class="filter-tags">
+                <span class="filter-tag active" data-category="all">Tous</span>
+                <span class="filter-tag" data-category="cpu">CPU</span>
+                <span class="filter-tag" data-category="gpu">GPU</span>
+                <span class="filter-tag" data-category="memory">Mémoire</span>
+                <span class="filter-tag" data-category="storage">Stockage</span>
+                <span class="filter-tag" data-category="system">Système</span>
+                <span class="filter-tag" data-category="monitoring">Monitoring</span>
+                <span class="filter-tag" data-category="network">Réseau</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <div class="container">
+            <!-- CPU Tests -->
+            <div class="category cpu-tests" id="cpu" data-category="cpu">
+                <h2 class="category-title">🔥 Tests Processeur (CPU)</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon cpu-icon">🔥</div>
+                        <h3>OCCT</h3>
+                        <p class="description">Outil de référence pour tester la stabilité du CPU, GPU et alimentation</p>
+                        <ul class="features">
+                            <li>Test de stabilité CPU intensif</li>
+                            <li>Monitoring température en temps réel</li>
+                            <li>Test alimentation et GPU inclus</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://www.ocbase.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://www.ocbase.com/download" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
+
+                    <div class="tool-card">
+                        <div class="tool-icon cpu-icon">🏆</div>
+                        <h3>Cinebench R23</h3>
+                        <p class="description">Benchmark de rendu 3D pour évaluer les performances CPU</p>
+                        <ul class="features">
+                            <li>Test single et multi-core</li>
+                            <li>Basé sur Cinema 4D</li>
+                            <li>Comparaison avec base de données</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://www.maxon.net/en/cinebench" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://www.maxon.net/en/downloads" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GPU Tests -->
+            <div class="category gpu-tests" id="gpu" data-category="gpu">
+                <h2 class="category-title">🎮 Tests Carte Graphique (GPU)</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon gpu-icon">🔥</div>
+                        <h3>FurMark</h3>
+                        <p class="description">Test de stress GPU avec rendu de fourrure intensive</p>
+                        <ul class="features">
+                            <li>Test de stabilité GPU</li>
+                            <li>Monitoring température</li>
+                            <li>Test de burn-in</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://geeks3d.com/furmark/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://geeks3d.com/furmark/downloads/" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon gpu-icon">🏁</div>
+                        <h3>3DMark</h3>
+                        <p class="description">Suite de benchmarks 3D professionnelle pour GPU</p>
+                        <ul class="features">
+                            <li>Multiples tests 3D</li>
+                            <li>Comparaison en ligne</li>
+                            <li>Tests DirectX et Vulkan</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://www.3dmark.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://store.steampowered.com/app/223850/3DMark/" target="_blank" rel="noopener" class="btn btn-secondary">Steam</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Tests -->
+            <div class="category memory-tests" id="memory" data-category="memory">
+                <h2 class="category-title">🧠 Tests Mémoire (RAM)</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon memory-icon">🛠️</div>
+                        <h3>MemTest86</h3>
+                        <p class="description">Test de mémoire RAM bootable, le plus fiable</p>
+                        <ul class="features">
+                            <li>Test exhaustif de la RAM</li>
+                            <li>Boot depuis USB</li>
+                            <li>Support UEFI et BIOS</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://www.memtest86.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://www.memtest86.com/download.htm" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon memory-icon">⚡</div>
+                        <h3>HCI MemTest</h3>
+                        <p class="description">Test de mémoire sous Windows, idéal pour overclock RAM</p>
+                        <ul class="features">
+                            <li>Test depuis Windows</li>
+                            <li>Parfait pour overclock</li>
+                            <li>Test rapide et efficace</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://hcidesign.com/memtest/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://hcidesign.com/memtest/download.html" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Storage Tests -->
+            <div class="category storage-tests" id="storage" data-category="storage">
+                <h2 class="category-title">💾 Tests Stockage (SSD/HDD)</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon storage-icon">💨</div>
+                        <h3>CrystalDiskMark</h3>
+                        <p class="description">Benchmark de référence pour tester la vitesse des disques</p>
+                        <ul class="features">
+                            <li>Test séquentiel et aléatoire</li>
+                            <li>Support NVMe et SATA</li>
+                            <li>Interface simple</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://crystalmark.info/en/software/crystaldiskmark/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://crystalmark.info/en/download/#CrystalDiskMark" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon storage-icon">🛡️</div>
+                        <h3>HD Tune</h3>
+                        <p class="description">Diagnostic complet de santé et performance des disques</p>
+                        <ul class="features">
+                            <li>Test de santé du disque</li>
+                            <li>Scan des secteurs défaillants</li>
+                            <li>Monitoring température</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://www.hdtune.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://www.hdtune.com/download.html" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monitoring Tools -->
+            <div class="category monitoring-tools" id="monitoring" data-category="monitoring">
+                <h2 class="category-title">📊 Outils de Monitoring</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon monitor-icon">🌡️</div>
+                        <h3>HWiNFO64</h3>
+                        <p class="description">Monitoring complet des températures et capteurs</p>
+                        <ul class="features">
+                            <li>Toutes les températures</li>
+                            <li>Voltages et fréquences</li>
+                            <li>Logging des données</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://www.hwinfo.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://www.hwinfo.com/download/" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon monitor-icon">📈</div>
+                        <h3>MSI Afterburner</h3>
+                        <p class="description">Overclocking et monitoring GPU avec overlay</p>
+                        <ul class="features">
+                            <li>Overclocking GPU sécurisé</li>
+                            <li>Overlay en jeu</li>
+                            <li>Courbes de ventilateurs</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://www.msi.com/Landing/afterburner/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://www.msi.com/Landing/afterburner/graphics-cards" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon monitor-icon">⚡</div>
+                        <h3>CPU-Z & GPU-Z</h3>
+                        <p class="description">Informations détaillées CPU et GPU</p>
+                        <ul class="features">
+                            <li>Spécifications complètes</li>
+                            <li>Fréquences en temps réel</li>
+                            <li>Validation en ligne</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://www.cpuid.com/softwares/cpu-z.html" target="_blank" rel="noopener" class="btn btn-primary">CPU-Z</a>
+                            <a href="https://www.techpowerup.com/gpuz/" target="_blank" rel="noopener" class="btn btn-secondary">GPU-Z</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Network Tests -->
+            <div class="category network-tests" id="network" data-category="network">
+                <h2 class="category-title">🌐 Tests Réseau</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon network-icon">🚀</div>
+                        <h3>Speedtest by Ookla</h3>
+                        <p class="description">Test de débit internet le plus populaire</p>
+                        <ul class="features">
+                            <li>Test débit download/upload</li>
+                            <li>Mesure de latence</li>
+                            <li>Historique des tests</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://www.speedtest.net/" target="_blank" rel="noopener" class="btn btn-primary">Web</a>
+                            <a href="https://www.speedtest.net/apps" target="_blank" rel="noopener" class="btn btn-secondary">Apps</a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Atlas Corporation. Collection d'outils de test et diagnostic système.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://atlas-corporation.fr">Atlas Corporation</a>
+                <a href="https://atlas-corporation.fr/contact/">Contact</a>
+                <a href="https://atlas-corporation.fr/cgu/">CGU</a>
+                <a href="#search">Retour en haut</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const toolCards = document.querySelectorAll('.tool-card');
+        const categories = document.querySelectorAll('.category');
+        const filterTags = document.querySelectorAll('.filter-tag');
+
+        // Search function
+        function searchTools() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            toolCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('.description').textContent.toLowerCase();
+                const features = Array.from(card.querySelectorAll('.features li'))
+                    .map(li => li.textContent.toLowerCase()).join(' ');
+                
+                const matches = title.includes(searchTerm) || 
+                               description.includes(searchTerm) || 
+                               features.includes(searchTerm);
+                
+                card.style.display = matches ? 'block' : 'none';
+            });
+            
+            // Hide empty categories
+            categories.forEach(category => {
+                const visibleCards = category.querySelectorAll('.tool-card[style*="block"], .tool-card:not([style])');
+                category.style.display = visibleCards.length > 0 ? 'block' : 'none';
+            });
+        }
+
+        // Filter by category
+        function filterByCategory(categoryName) {
+            categories.forEach(category => {
+                if (categoryName === 'all') {
+                    category.style.display = 'block';
+                } else {
+                    const matches = category.dataset.category === categoryName;
+                    category.style.display = matches ? 'block' : 'none';
+                }
+            });
+            
+            // Reset tool cards display
+            toolCards.forEach(card => {
+                card.style.display = 'block';
+            });
+        }
+
+        // Event listeners
+        searchInput.addEventListener('input', searchTools);
+
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Remove active class from all tags
+                filterTags.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tag
+                tag.classList.add('active');
+                
+                // Filter categories
+                const category = tag.dataset.category;
+                filterByCategory(category);
+                
+                // Clear search when filtering
+                searchInput.value = '';
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe tool cards for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            toolCards.forEach((card, index) => {
+                card.style.animationDelay = `${0.1 + (index % 3) * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + K to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            
+            // Escape to clear search
+            if (e.key === 'Escape') {
+                searchInput.value = '';
+                searchTools();
+                searchInput.blur();
+            }
+        });
+    </script>
+</body>
+</html>
