@@ -7,7 +7,11 @@
     <title>Atlas Corporation - Outils de Test et Diagnostic</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
     <style>
+        /* =================================================================
+           VARIABLES CSS & RESET
+           ================================================================= */
         * {
             margin: 0;
             padding: 0;
@@ -15,9 +19,12 @@
         }
 
         :root {
+            /* Couleurs principales */
             --primary-dark: #0a0a0a;
             --secondary-dark: #1a1a1a;
             --tertiary-dark: #2a2a2a;
+            
+            /* Couleurs d'accent */
             --accent-orange: #ff6b35;
             --accent-yellow: #ffb84d;
             --accent-red: #e74c3c;
@@ -26,18 +33,27 @@
             --accent-purple: #9b59b6;
             --accent-cyan: #1abc9c;
             --accent-pink: #e91e63;
+            
+            /* Couleurs de texte */
             --text-light: #ffffff;
             --text-muted: #b0b0b0;
             --text-subtle: #888888;
+            
+            /* Couleurs d'interface */
             --border-color: #333333;
             --card-bg: #1e1e1e;
             --hover-bg: #2a2a2a;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
+            
+            /* Ombres */
             --shadow-light: rgba(255, 107, 53, 0.2);
             --shadow-dark: rgba(0, 0, 0, 0.3);
         }
 
+        /* =================================================================
+           STYLES DE BASE
+           ================================================================= */
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
@@ -48,6 +64,7 @@
             scroll-behavior: smooth;
         }
 
+        /* Arrière-plan animé */
         body::before {
             content: '';
             position: fixed;
@@ -75,7 +92,9 @@
             padding: 0 clamp(16px, 4vw, 32px);
         }
 
-        /* Header */
+        /* =================================================================
+           HEADER & NAVIGATION
+           ================================================================= */
         header {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
@@ -160,7 +179,9 @@
             width: 80%;
         }
 
-        /* Hero Section */
+        /* =================================================================
+           SECTION HERO
+           ================================================================= */
         .hero {
             padding: clamp(60px, 12vw, 120px) 0 clamp(40px, 10vw, 80px);
             text-align: center;
@@ -193,207 +214,9 @@
             margin-right: auto;
         }
 
-        /* Categories Section */
-        .categories-section {
-            padding: clamp(40px, 8vw, 80px) 0;
-        }
-
-        .category {
-            margin-bottom: clamp(60px, 12vw, 100px);
-        }
-
-        .category-title {
-            font-size: clamp(1.8rem, 6vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: clamp(16px, 4vw, 24px);
-            text-align: center;
-            position: relative;
-        }
-
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            border-radius: 2px;
-        }
-
-        .cpu-tests .category-title { color: var(--accent-red); }
-        .cpu-tests .category-title::after { background: var(--accent-red); }
-
-        .gpu-tests .category-title { color: var(--accent-green); }
-        .gpu-tests .category-title::after { background: var(--accent-green); }
-
-        .memory-tests .category-title { color: var(--accent-blue); }
-        .memory-tests .category-title::after { background: var(--accent-blue); }
-
-        .storage-tests .category-title { color: var(--accent-purple); }
-        .storage-tests .category-title::after { background: var(--accent-purple); }
-
-        .system-tests .category-title { color: var(--accent-cyan); }
-        .system-tests .category-title::after { background: var(--accent-cyan); }
-
-        .monitoring-tools .category-title { color: var(--accent-yellow); }
-        .monitoring-tools .category-title::after { background: var(--accent-yellow); }
-
-        .network-tests .category-title { color: var(--accent-pink); }
-        .network-tests .category-title::after { background: var(--accent-pink); }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(320px, 90vw), 1fr));
-            gap: clamp(20px, 5vw, 32px);
-        }
-
-        .tool-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: clamp(24px, 6vw, 32px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-        }
-
-        .cpu-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-red), #c0392b); }
-        .gpu-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-green), #2ecc71); }
-        .memory-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-blue), #2980b9); }
-        .storage-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-purple), #8e44ad); }
-        .system-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-cyan), #16a085); }
-        .monitoring-tools .tool-card::before { background: linear-gradient(90deg, var(--accent-yellow), var(--accent-orange)); }
-        .network-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-pink), #ad1457); }
-
-        .tool-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .tool-icon {
-            width: clamp(60px, 15vw, 80px);
-            height: clamp(60px, 15vw, 80px);
-            margin: 0 auto clamp(16px, 4vw, 24px);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(24px, 6vw, 32px);
-            color: white;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .tool-card:hover .tool-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .cpu-icon { background: linear-gradient(135deg, var(--accent-red), #c0392b); }
-        .gpu-icon { background: linear-gradient(135deg, var(--accent-green), #2ecc71); }
-        .memory-icon { background: linear-gradient(135deg, var(--accent-blue), #2980b9); }
-        .storage-icon { background: linear-gradient(135deg, var(--accent-purple), #8e44ad); }
-        .system-icon { background: linear-gradient(135deg, var(--accent-cyan), #16a085); }
-        .monitor-icon { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); }
-        .network-icon { background: linear-gradient(135deg, var(--accent-pink), #ad1457); }
-
-        .tool-card h3 {
-            font-size: clamp(1.1rem, 4vw, 1.4rem);
-            font-weight: 600;
-            margin-bottom: clamp(8px, 2vw, 12px);
-            color: var(--text-light);
-            text-align: center;
-        }
-
-        .tool-card .description {
-            color: var(--text-muted);
-            margin-bottom: clamp(12px, 3vw, 16px);
-            font-size: clamp(14px, 3vw, 16px);
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .tool-card .features {
-            list-style: none;
-            margin-bottom: clamp(20px, 5vw, 28px);
-        }
-
-        .tool-card .features li {
-            color: var(--text-muted);
-            font-size: clamp(13px, 2.5vw, 15px);
-            margin-bottom: 6px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .tool-card .features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-green);
-            font-weight: bold;
-        }
-
-        .tool-actions {
-            display: flex;
-            gap: clamp(8px, 2vw, 12px);
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: clamp(10px, 2.5vw, 14px) clamp(16px, 4vw, 24px);
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            display: inline-block;
-            font-size: clamp(12px, 2.5vw, 14px);
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-            min-width: clamp(80px, 15vw, 120px);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--primary-dark);
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--glass-bg);
-            color: var(--text-light);
-            border: 2px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px) scale(1.05);
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-        }
-
-        .btn-secondary:hover {
-            background: var(--hover-bg);
-            border-color: var(--accent-orange);
-        }
-
-        /* Search and Filter */
+        /* =================================================================
+           SECTION RECHERCHE
+           ================================================================= */
         .search-section {
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
@@ -451,19 +274,232 @@
             backdrop-filter: blur(10px);
         }
 
-        .filter-tag:hover {
-            background: var(--accent-orange);
-            border-color: var(--accent-orange);
-            color: var(--primary-dark);
-        }
-
+        .filter-tag:hover,
         .filter-tag.active {
             background: var(--accent-orange);
             border-color: var(--accent-orange);
             color: var(--primary-dark);
         }
 
-        /* Footer */
+        /* =================================================================
+           SECTIONS CATÉGORIES
+           ================================================================= */
+        .categories-section {
+            padding: clamp(40px, 8vw, 80px) 0;
+        }
+
+        .category {
+            margin-bottom: clamp(60px, 12vw, 100px);
+        }
+
+        .category-title {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: clamp(16px, 4vw, 24px);
+            text-align: center;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        /* Couleurs spécifiques par catégorie */
+        .cpu-tests .category-title { color: var(--accent-red); }
+        .cpu-tests .category-title::after { background: var(--accent-red); }
+
+        .gpu-tests .category-title { color: var(--accent-green); }
+        .gpu-tests .category-title::after { background: var(--accent-green); }
+
+        .memory-tests .category-title { color: var(--accent-blue); }
+        .memory-tests .category-title::after { background: var(--accent-blue); }
+
+        .storage-tests .category-title { color: var(--accent-purple); }
+        .storage-tests .category-title::after { background: var(--accent-purple); }
+
+        .system-tests .category-title { color: var(--accent-cyan); }
+        .system-tests .category-title::after { background: var(--accent-cyan); }
+
+        .monitoring-tools .category-title { color: var(--accent-yellow); }
+        .monitoring-tools .category-title::after { background: var(--accent-yellow); }
+
+        .network-tests .category-title { color: var(--accent-pink); }
+        .network-tests .category-title::after { background: var(--accent-pink); }
+
+        /* =================================================================
+           GRILLE D'OUTILS
+           ================================================================= */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 90vw), 1fr));
+            gap: clamp(20px, 5vw, 32px);
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: clamp(24px, 6vw, 32px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        /* Bordures colorées par catégorie */
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .cpu-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-red), #c0392b); }
+        .gpu-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-green), #2ecc71); }
+        .memory-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-blue), #2980b9); }
+        .storage-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-purple), #8e44ad); }
+        .system-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-cyan), #16a085); }
+        .monitoring-tools .tool-card::before { background: linear-gradient(90deg, var(--accent-yellow), var(--accent-orange)); }
+        .network-tests .tool-card::before { background: linear-gradient(90deg, var(--accent-pink), #ad1457); }
+
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Icônes des outils */
+        .tool-icon {
+            width: clamp(60px, 15vw, 80px);
+            height: clamp(60px, 15vw, 80px);
+            margin: 0 auto clamp(16px, 4vw, 24px);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(24px, 6vw, 32px);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Couleurs d'icônes par catégorie */
+        .cpu-icon { background: linear-gradient(135deg, var(--accent-red), #c0392b); }
+        .gpu-icon { background: linear-gradient(135deg, var(--accent-green), #2ecc71); }
+        .memory-icon { background: linear-gradient(135deg, var(--accent-blue), #2980b9); }
+        .storage-icon { background: linear-gradient(135deg, var(--accent-purple), #8e44ad); }
+        .system-icon { background: linear-gradient(135deg, var(--accent-cyan), #16a085); }
+        .monitor-icon { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); }
+        .network-icon { background: linear-gradient(135deg, var(--accent-pink), #ad1457); }
+
+        /* Contenu des cartes */
+        .tool-card h3 {
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            font-weight: 600;
+            margin-bottom: clamp(8px, 2vw, 12px);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .tool-card .description {
+            color: var(--text-muted);
+            margin-bottom: clamp(12px, 3vw, 16px);
+            font-size: clamp(14px, 3vw, 16px);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .tool-card .features {
+            list-style: none;
+            margin-bottom: clamp(20px, 5vw, 28px);
+        }
+
+        .tool-card .features li {
+            color: var(--text-muted);
+            font-size: clamp(13px, 2.5vw, 15px);
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tool-card .features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* Actions des cartes */
+        .tool-actions {
+            display: flex;
+            gap: clamp(8px, 2vw, 12px);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* =================================================================
+           BOUTONS
+           ================================================================= */
+        .btn {
+            padding: clamp(10px, 2.5vw, 14px) clamp(16px, 4vw, 24px);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+            font-size: clamp(12px, 2.5vw, 14px);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            min-width: clamp(80px, 15vw, 120px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            color: var(--primary-dark);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--text-light);
+            border: 2px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: var(--hover-bg);
+            border-color: var(--accent-orange);
+        }
+
+        /* =================================================================
+           FOOTER
+           ================================================================= */
         footer {
             background: var(--primary-dark);
             border-top: 1px solid var(--border-color);
@@ -494,7 +530,9 @@
             color: var(--accent-orange);
         }
 
-        /* Animations */
+        /* =================================================================
+           ANIMATIONS
+           ================================================================= */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -506,16 +544,13 @@
             }
         }
 
-        .tool-card {
-            animation: fadeInUp 0.6s ease forwards;
-            opacity: 0;
-        }
-
         .tool-card:nth-child(1n) { animation-delay: 0.1s; }
         .tool-card:nth-child(2n) { animation-delay: 0.2s; }
         .tool-card:nth-child(3n) { animation-delay: 0.3s; }
 
-        /* Responsive */
+        /* =================================================================
+           RESPONSIVE
+           ================================================================= */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -538,7 +573,11 @@
         }
     </style>
 </head>
+
 <body>
+    <!-- =================================================================
+         HEADER & NAVIGATION
+         ================================================================= -->
     <header>
         <nav class="container">
             <a href="#" class="logo">Atlas Testing Tools</a>
@@ -553,6 +592,9 @@
         </nav>
     </header>
 
+    <!-- =================================================================
+         SECTION HERO
+         ================================================================= -->
     <section class="hero">
         <div class="container">
             <h1>Outils de Test & Diagnostic</h1>
@@ -560,6 +602,9 @@
         </div>
     </section>
 
+    <!-- =================================================================
+         SECTION RECHERCHE ET FILTRES
+         ================================================================= -->
     <section class="search-section" id="search">
         <div class="container">
             <div class="search-box">
@@ -578,12 +623,18 @@
         </div>
     </section>
 
+    <!-- =================================================================
+         SECTIONS CATÉGORIES D'OUTILS
+         ================================================================= -->
     <section class="categories-section">
         <div class="container">
-            <!-- CPU Tests -->
+            
+            <!-- Tests Processeur (CPU) -->
             <div class="category cpu-tests" id="cpu" data-category="cpu">
                 <h2 class="category-title">🔥 Tests Processeur (CPU)</h2>
                 <div class="tools-grid">
+                    
+                    <!-- OCCT -->
                     <div class="tool-card">
                         <div class="tool-icon cpu-icon">🔥</div>
                         <h3>OCCT</h3>
@@ -599,7 +650,7 @@
                         </div>
                     </div>
 
-
+                    <!-- Cinebench R23 -->
                     <div class="tool-card">
                         <div class="tool-icon cpu-icon">🏆</div>
                         <h3>Cinebench R23</h3>
@@ -614,13 +665,16 @@
                             <a href="https://www.maxon.net/en/downloads" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
-            <!-- GPU Tests -->
+            <!-- Tests Carte Graphique (GPU) -->
             <div class="category gpu-tests" id="gpu" data-category="gpu">
                 <h2 class="category-title">🎮 Tests Carte Graphique (GPU)</h2>
                 <div class="tools-grid">
+                    
+                    <!-- FurMark -->
                     <div class="tool-card">
                         <div class="tool-icon gpu-icon">🔥</div>
                         <h3>FurMark</h3>
@@ -636,6 +690,7 @@
                         </div>
                     </div>
 
+                    <!-- 3DMark -->
                     <div class="tool-card">
                         <div class="tool-icon gpu-icon">🏁</div>
                         <h3>3DMark</h3>
@@ -650,13 +705,16 @@
                             <a href="https://store.steampowered.com/app/223850/3DMark/" target="_blank" rel="noopener" class="btn btn-secondary">Steam</a>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
-            <!-- Memory Tests -->
+            <!-- Tests Mémoire (RAM) -->
             <div class="category memory-tests" id="memory" data-category="memory">
                 <h2 class="category-title">🧠 Tests Mémoire (RAM)</h2>
                 <div class="tools-grid">
+                    
+                    <!-- MemTest86 -->
                     <div class="tool-card">
                         <div class="tool-icon memory-icon">🛠️</div>
                         <h3>MemTest86</h3>
@@ -672,6 +730,7 @@
                         </div>
                     </div>
 
+                    <!-- HCI MemTest -->
                     <div class="tool-card">
                         <div class="tool-icon memory-icon">⚡</div>
                         <h3>HCI MemTest</h3>
@@ -686,13 +745,16 @@
                             <a href="https://hcidesign.com/memtest/download.html" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
-            <!-- Storage Tests -->
+            <!-- Tests Stockage (SSD/HDD) -->
             <div class="category storage-tests" id="storage" data-category="storage">
                 <h2 class="category-title">💾 Tests Stockage (SSD/HDD)</h2>
                 <div class="tools-grid">
+                    
+                    <!-- CrystalDiskMark -->
                     <div class="tool-card">
                         <div class="tool-icon storage-icon">💨</div>
                         <h3>CrystalDiskMark</h3>
@@ -708,6 +770,7 @@
                         </div>
                     </div>
 
+                    <!-- HD Tune -->
                     <div class="tool-card">
                         <div class="tool-icon storage-icon">🛡️</div>
                         <h3>HD Tune</h3>
@@ -722,13 +785,16 @@
                             <a href="https://www.hdtune.com/download.html" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
-            <!-- Monitoring Tools -->
+            <!-- Outils de Monitoring -->
             <div class="category monitoring-tools" id="monitoring" data-category="monitoring">
                 <h2 class="category-title">📊 Outils de Monitoring</h2>
                 <div class="tools-grid">
+                    
+                    <!-- HWiNFO64 -->
                     <div class="tool-card">
                         <div class="tool-icon monitor-icon">🌡️</div>
                         <h3>HWiNFO64</h3>
@@ -744,6 +810,7 @@
                         </div>
                     </div>
 
+                    <!-- MSI Afterburner -->
                     <div class="tool-card">
                         <div class="tool-icon monitor-icon">📈</div>
                         <h3>MSI Afterburner</h3>
@@ -759,6 +826,7 @@
                         </div>
                     </div>
 
+                    <!-- CPU-Z & GPU-Z -->
                     <div class="tool-card">
                         <div class="tool-icon monitor-icon">⚡</div>
                         <h3>CPU-Z & GPU-Z</h3>
@@ -773,13 +841,16 @@
                             <a href="https://www.techpowerup.com/gpuz/" target="_blank" rel="noopener" class="btn btn-secondary">GPU-Z</a>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
-            <!-- Network Tests -->
+            <!-- Tests Réseau -->
             <div class="category network-tests" id="network" data-category="network">
                 <h2 class="category-title">🌐 Tests Réseau</h2>
                 <div class="tools-grid">
+                    
+                    <!-- Speedtest by Ookla -->
                     <div class="tool-card">
                         <div class="tool-icon network-icon">🚀</div>
                         <h3>Speedtest by Ookla</h3>
@@ -793,12 +864,17 @@
                             <a href="https://www.speedtest.net/" target="_blank" rel="noopener" class="btn btn-primary">Web</a>
                             <a href="https://www.speedtest.net/apps" target="_blank" rel="noopener" class="btn btn-secondary">Apps</a>
                         </div>
-                    </div> 
+                    </div>
+                    
                 </div>
             </div>
+            
         </div>
     </section>
 
+    <!-- =================================================================
+         FOOTER
+         ================================================================= -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -813,14 +889,26 @@
         </div>
     </footer>
 
+    <!-- =================================================================
+         SCRIPTS JAVASCRIPT
+         ================================================================= -->
     <script>
-        // Search functionality
+        // =================================================================
+        // VARIABLES GLOBALES
+        // =================================================================
         const searchInput = document.getElementById('searchInput');
         const toolCards = document.querySelectorAll('.tool-card');
         const categories = document.querySelectorAll('.category');
         const filterTags = document.querySelectorAll('.filter-tag');
 
-        // Search function
+        // =================================================================
+        // FONCTIONS DE RECHERCHE ET FILTRAGE
+        // =================================================================
+        
+        /**
+         * Fonction de recherche dans les outils
+         * Recherche dans le titre, description et fonctionnalités
+         */
         function searchTools() {
             const searchTerm = searchInput.value.toLowerCase();
             
@@ -837,14 +925,14 @@
                 card.style.display = matches ? 'block' : 'none';
             });
             
-            // Hide empty categories
-            categories.forEach(category => {
-                const visibleCards = category.querySelectorAll('.tool-card[style*="block"], .tool-card:not([style])');
-                category.style.display = visibleCards.length > 0 ? 'block' : 'none';
-            });
+            // Masquer les catégories vides
+            updateCategoryVisibility();
         }
 
-        // Filter by category
+        /**
+         * Fonction de filtrage par catégorie
+         * @param {string} categoryName - Nom de la catégorie à afficher
+         */
         function filterByCategory(categoryName) {
             categories.forEach(category => {
                 if (categoryName === 'all') {
@@ -855,32 +943,51 @@
                 }
             });
             
-            // Reset tool cards display
+            // Réinitialiser l'affichage des cartes d'outils
             toolCards.forEach(card => {
                 card.style.display = 'block';
             });
         }
 
-        // Event listeners
+        /**
+         * Met à jour la visibilité des catégories selon les cartes visibles
+         */
+        function updateCategoryVisibility() {
+            categories.forEach(category => {
+                const visibleCards = category.querySelectorAll('.tool-card[style*="block"], .tool-card:not([style])');
+                category.style.display = visibleCards.length > 0 ? 'block' : 'none';
+            });
+        }
+
+        // =================================================================
+        // GESTION DES ÉVÉNEMENTS
+        // =================================================================
+        
+        // Recherche en temps réel
         searchInput.addEventListener('input', searchTools);
 
+        // Gestion des filtres par catégorie
         filterTags.forEach(tag => {
             tag.addEventListener('click', () => {
-                // Remove active class from all tags
+                // Désactiver tous les filtres
                 filterTags.forEach(t => t.classList.remove('active'));
-                // Add active class to clicked tag
+                // Activer le filtre cliqué
                 tag.classList.add('active');
                 
-                // Filter categories
+                // Appliquer le filtre
                 const category = tag.dataset.category;
                 filterByCategory(category);
                 
-                // Clear search when filtering
+                // Effacer la recherche lors du filtrage
                 searchInput.value = '';
             });
         });
 
-        // Smooth scrolling for navigation
+        // =================================================================
+        // NAVIGATION ET EFFETS DE SCROLL
+        // =================================================================
+        
+        // Navigation fluide pour les ancres
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -894,7 +1001,7 @@
             });
         });
 
-        // Header scroll effect
+        // Effet de transparence du header au scroll
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
@@ -906,12 +1013,17 @@
             }
         });
 
-        // Animation on scroll
+        // =================================================================
+        // ANIMATIONS AU SCROLL
+        // =================================================================
+        
+        // Configuration de l'observateur d'intersection
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
+        // Observateur pour les animations au scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -921,28 +1033,37 @@
             });
         }, observerOptions);
 
-        // Observe tool cards for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            toolCards.forEach((card, index) => {
-                card.style.animationDelay = `${0.1 + (index % 3) * 0.1}s`;
-                observer.observe(card);
-            });
-        });
-
-        // Keyboard shortcuts
+        // =================================================================
+        // RACCOURCIS CLAVIER
+        // =================================================================
+        
         document.addEventListener('keydown', (e) => {
-            // Ctrl/Cmd + K to focus search
+            // Ctrl/Cmd + K pour focus sur la recherche
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
                 searchInput.focus();
             }
             
-            // Escape to clear search
+            // Échap pour effacer la recherche
             if (e.key === 'Escape') {
                 searchInput.value = '';
                 searchTools();
                 searchInput.blur();
             }
+        });
+
+        // =================================================================
+        // INITIALISATION
+        // =================================================================
+        
+        // Initialisation des animations au chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            toolCards.forEach((card, index) => {
+                // Délai d'animation échelonné
+                card.style.animationDelay = `${0.1 + (index % 3) * 0.1}s`;
+                // Observer pour l'animation au scroll
+                observer.observe(card);
+            });
         });
     </script>
 </body>
