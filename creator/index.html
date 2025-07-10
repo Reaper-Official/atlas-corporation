@@ -43,11 +43,34 @@
             padding: 1rem 0;
         }
         
+        /* CURVED LOOP Animation pour le logo */
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
             color: #00d4ff;
             text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            position: relative;
+        }
+        
+        .curved-text {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        .curved-text span {
+            position: absolute;
+            left: 50%;
+            transform-origin: 0 60px;
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg) translateX(-50%); }
+            to { transform: rotate(360deg) translateX(-50%); }
         }
         
         .nav-links {
@@ -98,25 +121,55 @@
             z-index: 2;
         }
         
-        .hero h1 {
+        /* DECRYPTED TEXT Animation pour le titre principal */
+        .decrypted-title {
             font-size: 4rem;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, #00d4ff, #0ea5e9);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
+            font-weight: bold;
         }
         
-        @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
-            to { text-shadow: 0 0 30px rgba(0, 212, 255, 0.8); }
+        .decrypted-char {
+            display: inline-block;
+            animation: decrypt 0.1s ease-in-out;
         }
         
-        .hero p {
+        @keyframes decrypt {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* ROTATING TEXT Animation */
+        .rotating-text-container {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+            height: 2em;
+            position: relative;
+        }
+        
+        .rotating-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: rotateText 12s infinite;
+        }
+        
+        .rotating-text:nth-child(1) { animation-delay: 0s; }
+        .rotating-text:nth-child(2) { animation-delay: 4s; }
+        .rotating-text:nth-child(3) { animation-delay: 8s; }
+        
+        @keyframes rotateText {
+            0%, 25% { opacity: 0; transform: translateY(20px); }
+            33.33%, 66.66% { opacity: 1; transform: translateY(0); }
+            75%, 100% { opacity: 0; transform: translateY(-20px); }
         }
         
         .cta-button {
@@ -133,6 +186,40 @@
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        /* SCROLL REVEAL Animation améliorée */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .scroll-reveal-left.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scroll-reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .scroll-reveal-right.revealed {
+            opacity: 1;
+            transform: translateX(0);
         }
         
         /* Sections */
@@ -290,7 +377,7 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
+            .decrypted-title {
                 font-size: 2.5rem;
             }
             
@@ -306,19 +393,9 @@
                 flex-direction: column;
                 text-align: center;
             }
-        }
-        
-        /* Animations d'entrée */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .curved-text {
+                display: none;
             }
         }
         
@@ -365,7 +442,23 @@
     
     <header class="header">
         <nav class="nav container">
-            <div class="logo">REAPER</div>
+            <div class="logo">
+                <div class="curved-text">
+                    <span style="transform: rotate(0deg);">C</span>
+                    <span style="transform: rotate(20deg);">Y</span>
+                    <span style="transform: rotate(40deg);">B</span>
+                    <span style="transform: rotate(60deg);">E</span>
+                    <span style="transform: rotate(80deg);">R</span>
+                    <span style="transform: rotate(100deg);">D</span>
+                    <span style="transform: rotate(120deg);">E</span>
+                    <span style="transform: rotate(140deg);">F</span>
+                    <span style="transform: rotate(160deg);">E</span>
+                    <span style="transform: rotate(180deg);">N</span>
+                    <span style="transform: rotate(200deg);">S</span>
+                    <span style="transform: rotate(220deg);">E</span>
+                </div>
+                REAPER
+            </div>
             <ul class="nav-links">
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#skills">Compétences</a></li>
@@ -378,27 +471,31 @@
     
     <section class="hero">
         <div class="hero-content">
-            <h1>REAPER</h1>
-            <p>Expert en CyberDéfense | Blue Team Specialist</p>
+            <h1 class="decrypted-title" id="decryptedTitle">REAPER</h1>
+            <div class="rotating-text-container">
+                <div class="rotating-text">Expert en CyberDéfense | Blue Team Specialist</div>
+                <div class="rotating-text">Protecteur des Systèmes Critiques</div>
+                <div class="rotating-text">Chasseur de Vulnérabilités</div>
+            </div>
             <a href="#about" class="cta-button">Découvrir mon parcours</a>
         </div>
     </section>
     
     <section id="about" class="section about">
         <div class="container">
-            <h2 class="section-title fade-in">À propos de moi</h2>
-            <div class="about-content fade-in">
-                <div>
+            <h2 class="section-title scroll-reveal">À propos de moi</h2>
+            <div class="about-content">
+                <div class="scroll-reveal-left">
                     <div style="width: 200px; height: 200px; background: linear-gradient(45deg, #00d4ff, #0ea5e9); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);">
                         🛡️
                     </div>
                 </div>
-                <div class="about-text">
+                <div class="about-text scroll-reveal-right">
                     <p>Passionné d'informatique avec une expertise approfondie dans divers domaines technologiques, je me spécialise dans la cybersécurité, plus précisément dans la <strong>Blue Team</strong> ou Équipe de CyberProtection.</p>
                     
                     <p>Âgé de bientôt 20 ans, j'ai choisi de me concentrer sur la défense plutôt que sur l'attaque, préférant protéger et piéger les intrus plutôt que de devenir le potentiel piégé.</p>
                     
-                    <div class="quote">
+                    <div class="quote scroll-reveal">
                         <p>"Nous n'avons pas le luxe de nous en tenir à la morale. L'histoire n'est pas écrite par ceux qui respectent les règles, mais par ceux qui les brisent."</p>
                         <div class="quote-author">- Jonathan Irons, CEO Atlas Corporation (Call Of Duty : Advanced Warfare)</div>
                     </div>
@@ -409,29 +506,29 @@
     
     <section id="skills" class="section">
         <div class="container">
-            <h2 class="section-title fade-in">Compétences</h2>
-            <div class="skills-grid fade-in">
-                <div class="skill-card">
+            <h2 class="section-title scroll-reveal">Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-card scroll-reveal">
                     <h3>🛡️ CyberDéfense</h3>
                     <p>Spécialiste Blue Team avec expertise dans la détection d'intrusions, l'analyse de malwares, et la réponse aux incidents de sécurité.</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card scroll-reveal">
                     <h3>🔍 Analyse de Vulnérabilités</h3>
                     <p>Identification et évaluation des failles de sécurité dans les systèmes d'information et applications web.</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card scroll-reveal">
                     <h3>🚨 Réponse aux Incidents</h3>
                     <p>Gestion et coordination des réponses aux incidents de cybersécurité, forensic numérique.</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card scroll-reveal">
                     <h3>📊 Threat Intelligence</h3>
                     <p>Analyse des menaces émergentes et mise en place de stratégies de protection proactives.</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card scroll-reveal">
                     <h3>🔧 Sécurité des Systèmes</h3>
                     <p>Durcissement des systèmes, configuration sécurisée des infrastructures IT.</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card scroll-reveal">
                     <h3>💻 Développement Sécurisé</h3>
                     <p>Création de solutions sécurisées et audit de code pour identifier les vulnérabilités.</p>
                 </div>
@@ -441,19 +538,19 @@
     
     <section id="experience" class="section experience">
         <div class="container">
-            <h2 class="section-title fade-in">Formation & Réalisations</h2>
-            <div class="experience-grid fade-in">
-                <div class="experience-card">
+            <h2 class="section-title scroll-reveal">Formation & Réalisations</h2>
+            <div class="experience-grid">
+                <div class="experience-card scroll-reveal-left">
                     <h3>🏆 Cyber-Champion CTF</h3>
                     <div class="company">Région Île-de-France</div>
                     <p>8ème place sur 480 participants lors du Capture The Flag organisé par la Région Île-de-France. Une performance qui démontre mes compétences techniques et ma capacité à résoudre des défis complexes de cybersécurité.</p>
                 </div>
-                <div class="experience-card">
+                <div class="experience-card scroll-reveal-right">
                     <h3>🌐 Créateur de Contenu Tech</h3>
                     <div class="company">Site Web Personnel</div>
                     <p>Gestion d'un site web spécialisé en informatique avec plus de 1000 visiteurs uniques par mois. Vulgarisation de concepts techniques complexes pour un public large.</p>
                 </div>
-                <div class="experience-card">
+                <div class="experience-card scroll-reveal-left">
                     <h3>🎖️ Formation CyberDéfense</h3>
                     <div class="company">Armée de l'Air & ComCyber</div>
                     <p>Études en CyberDéfense en partenariat avec ComCyber (Commandement de CyberDéfense). Objectif : devenir Lieutenant dans la section CyberDéfense de l'armée de l'air.</p>
@@ -464,13 +561,13 @@
     
     <section id="partners" class="section">
         <div class="container">
-            <h2 class="section-title fade-in">Ils me font confiance</h2>
-            <div class="partners-grid fade-in">
-                <div class="partner-card">
+            <h2 class="section-title scroll-reveal">Ils me font confiance</h2>
+            <div class="partners-grid">
+                <div class="partner-card scroll-reveal">
                     <h3>🏢 Yogosha</h3>
                     <p>Participation active aux programmes de Bug Bounty avec cette entreprise spécialisée en cyberdéfense.</p>
                 </div>
-                <div class="partner-card">
+                <div class="partner-card scroll-reveal">
                     <h3>🇫🇷 ANSSI</h3>
                     <p>Agence Nationale de la Sécurité des Systèmes d'Information - Découverte d'une faille dans les S.T.A.D des établissements de la Région Île-de-France.</p>
                 </div>
@@ -478,15 +575,15 @@
         </div>
     </section>
     
-    <section class="section" style="background: rgba(30, 41, 59, 0.3);">
+    <section class="section scroll-reveal" style="background: rgba(30, 41, 59, 0.3);">
         <div class="container">
-            <h2 class="section-title fade-in">Objectifs Futurs</h2>
-            <div class="experience-grid fade-in">
-                <div class="experience-card">
+            <h2 class="section-title">Objectifs Futurs</h2>
+            <div class="experience-grid">
+                <div class="experience-card scroll-reveal-left">
                     <h3>🎯 Court Terme</h3>
                     <p>Finaliser ma formation et obtenir le grade de Lieutenant dans la section CyberDéfense de l'Armée Française.</p>
                 </div>
-                <div class="experience-card">
+                <div class="experience-card scroll-reveal-right">
                     <h3>🚀 Long Terme</h3>
                     <p>Intégrer des entreprises leaders comme <strong>Thales</strong> ou <strong>Dassault</strong> pour contribuer à la sécurité des systèmes critiques français.</p>
                 </div>
@@ -494,7 +591,7 @@
         </div>
     </section>
     
-    <footer id="contact" class="footer">
+    <footer id="contact" class="footer scroll-reveal">
         <div class="container">
             <div class="footer-content">
                 <div>
@@ -512,23 +609,55 @@
     </footer>
     
     <script>
-        // Animation d'entrée pour les éléments
+        // DECRYPTED TEXT Animation
+        function decryptText(element, finalText) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+            let iterations = 0;
+            
+            const interval = setInterval(() => {
+                element.innerHTML = finalText
+                    .split('')
+                    .map((letter, index) => {
+                        if (index < iterations) {
+                            return `<span class="decrypted-char">${letter}</span>`;
+                        }
+                        return `<span class="decrypted-char">${chars[Math.floor(Math.random() * chars.length)]}</span>`;
+                    })
+                    .join('');
+                
+                if (iterations >= finalText.length) {
+                    clearInterval(interval);
+                }
+                
+                iterations += 1 / 3;
+            }, 50);
+        }
+        
+        // SCROLL REVEAL Animation améliorée
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = Math.random() * 0.5 + 's';
-                    entry.target.classList.add('fade-in');
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                    }, index * 100);
                 }
             });
         }, observerOptions);
         
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
+        // Observer tous les éléments avec scroll-reveal
+        document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right').forEach(el => {
+            revealObserver.observe(el);
+        });
+        
+        // Déclencher l'animation de décryptage au chargement
+        window.addEventListener('load', () => {
+            const title = document.getElementById('decryptedTitle');
+            decryptText(title, 'REAPER');
         });
         
         // Effet de particules
@@ -565,7 +694,20 @@
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+        
+        // Animation supplémentaire pour les cartes au hover
+        document.querySelectorAll('.skill-card, .partner-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
         });
     </script>
 </body>
