@@ -13,6 +13,7 @@
             --accent-yellow: #ffb84d;
             --accent-red: #e74c3c;
             --accent-green: #27ae60;
+            --accent-blue: #3498db;
             --text-light: #ffffff;
             --text-muted: #b0b0b0;
             --text-subtle: #888888;
@@ -38,7 +39,7 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: var(--card-bg);
             border-radius: 20px;
@@ -210,6 +211,79 @@
             font-weight: bold;
         }
         
+        /* Monitor Configuration Styles */
+        .monitor-container {
+            background: var(--secondary-dark);
+            border: 2px solid var(--accent-blue);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .monitor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .monitor-title {
+            color: var(--accent-blue);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .remove-monitor {
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-monitor:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+        
+        .add-monitor-btn {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .add-monitor-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .monitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .monitor-field {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .monitor-field label {
+            color: var(--text-muted);
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
         option {
             background: var(--secondary-dark);
             color: var(--text-light);
@@ -221,6 +295,17 @@
         
         input::placeholder, textarea::placeholder {
             color: var(--text-subtle);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 30px 0 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
         }
         
         @media (max-width: 768px) {
@@ -243,6 +328,10 @@
             .radio-group, .checkbox-group {
                 flex-direction: column;
             }
+            
+            .monitor-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -255,13 +344,18 @@
         
         <div class="form-container">
             <form id="pcForm">
+                <div class="section-header">💰 BUDGET & TIMING</div>
+                
                 <!-- Budget -->
                 <div class="question-group">
-                    <h3>💰 Quel est votre budget ? <span class="required">*</span></h3>
+                    <h3>💰 Quel est votre budget total ? <span class="required">*</span></h3>
                     <div class="price-range">
                         <input type="number" id="budget" name="budget" placeholder="1400" required>
                         <span>€</span>
                     </div>
+                    <p style="color: var(--text-muted); font-size: 0.9em; margin-top: 10px;">
+                        Budget incluant PC + écran(s) + périphériques si nécessaire
+                    </p>
                 </div>
                 
                 <!-- Disponibilité budget -->
@@ -301,6 +395,8 @@
                     </div>
                 </div>
                 
+                <div class="section-header">🎮 UTILISATION</div>
+                
                 <!-- Utilisation -->
                 <div class="question-group">
                     <h3>🎮 Quelle sera l'utilisation principale du PC ? <span class="required">*</span></h3>
@@ -325,91 +421,238 @@
                             <input type="checkbox" id="bureautique" name="usage" value="bureautique">
                             <label for="bureautique">Bureautique</label>
                         </div>
+                        <div class="checkbox-item" data-value="ia">
+                            <input type="checkbox" id="ia" name="usage" value="ia">
+                            <label for="ia">IA / Machine Learning</label>
+                        </div>
+                        <div class="checkbox-item" data-value="cao">
+                            <input type="checkbox" id="cao" name="usage" value="cao">
+                            <label for="cao">CAO / 3D</label>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Jeux spécifiques -->
                 <div class="question-group">
                     <h3>🎯 Quels jeux/logiciels utiliserez-vous principalement ?</h3>
-                    <textarea id="software" name="software" rows="3" placeholder="Ex: Fortnite, Call of Duty, Adobe Premiere, Blender..."></textarea>
+                    <textarea id="software" name="software" rows="3" placeholder="Ex: Fortnite, Call of Duty, Adobe Premiere, Blender, AutoCAD..."></textarea>
                 </div>
                 
-                <!-- Résolution écran ACTUEL -->
-                <div class="question-group">
-                    <h3>📺 Quelle est la résolution de votre écran ACTUEL ? <span class="required">*</span></h3>
-                    <div class="radio-group">
-                        <div class="radio-item" data-value="1080p">
-                            <input type="radio" id="current_res_1080p" name="current_resolution" value="1080p" required>
-                            <label for="current_res_1080p">1080p (FHD)</label>
-                        </div>
-                        <div class="radio-item" data-value="1440p">
-                            <input type="radio" id="current_res_1440p" name="current_resolution" value="1440p">
-                            <label for="current_res_1440p">1440p (QHD)</label>
-                        </div>
-                        <div class="radio-item" data-value="2160p">
-                            <input type="radio" id="current_res_2160p" name="current_resolution" value="2160p">
-                            <label for="current_res_2160p">2160p (UHD/4K)</label>
-                        </div>
-                        <div class="radio-item" data-value="pas_ecran">
-                            <input type="radio" id="current_res_none" name="current_resolution" value="pas_ecran">
-                            <label for="current_res_none">Pas d'écran actuellement</label>
-                        </div>
-                    </div>
-                </div>
+                <div class="section-header">🖥️ CONFIGURATION ÉCRANS</div>
                 
-                <!-- Taux de rafraîchissement -->
+                <!-- Écrans actuels -->
                 <div class="question-group">
-                    <h3>⚡ Quel est le taux de rafraîchissement de votre écran actuel ?</h3>
-                    <select id="refresh_rate" name="refresh_rate">
-                        <option value="">Je ne sais pas</option>
-                        <option value="60hz">60 Hz</option>
-                        <option value="75hz">75 Hz</option>
-                        <option value="144hz">144 Hz</option>
-                        <option value="165hz">165 Hz</option>
-                        <option value="240hz">240 Hz</option>
-                        <option value="360hz">360 Hz</option>
-                    </select>
-                </div>
-                
-                <!-- Nouvel écran -->
-                <div class="question-group">
-                    <h3>🖥️ Voulez-vous un nouvel écran avec le PC ?</h3>
+                    <h3>📺 Avez-vous déjà des écrans ? <span class="required">*</span></h3>
                     <div class="radio-group">
                         <div class="radio-item" data-value="oui">
-                            <input type="radio" id="new_screen_yes" name="new_screen" value="oui">
-                            <label for="new_screen_yes">Oui, je veux un nouvel écran</label>
+                            <input type="radio" id="has_monitors_yes" name="has_monitors" value="oui" required>
+                            <label for="has_monitors_yes">Oui, j'ai déjà des écrans</label>
                         </div>
                         <div class="radio-item" data-value="non">
-                            <input type="radio" id="new_screen_no" name="new_screen" value="non">
-                            <label for="new_screen_no">Non, je garde mon écran actuel</label>
-                        </div>
-                        <div class="radio-item" data-value="en_plus">
-                            <input type="radio" id="new_screen_additional" name="new_screen" value="en_plus">
-                            <label for="new_screen_additional">Oui, en plus de mon écran actuel (dual screen)</label>
+                            <input type="radio" id="has_monitors_no" name="has_monitors" value="non">
+                            <label for="has_monitors_no">Non, je n'ai pas d'écran</label>
                         </div>
                     </div>
-                    <div id="new_screen_specs" style="display: none; margin-top: 15px;">
-                        <h4 style="color: var(--accent-orange); margin-bottom: 10px;">Spécifications de l'écran souhaité :</h4>
-                        <select id="desired_resolution" name="desired_resolution" style="margin-bottom: 10px;">
-                            <option value="">Résolution souhaitée</option>
-                            <option value="1080p">1080p (FHD)</option>
-                            <option value="1440p">1440p (QHD)</option>
-                            <option value="2160p">2160p (UHD/4K)</option>
-                        </select>
-                        <select id="desired_size" name="desired_size" style="margin-bottom: 10px;">
-                            <option value="">Taille d'écran</option>
-                            <option value="24-27">24-27 pouces</option>
-                            <option value="27-32">27-32 pouces</option>
-                            <option value="32+">32 pouces et +</option>
-                            <option value="ultrawide">Ultrawide (21:9)</option>
-                        </select>
-                        <select id="screen_budget" name="screen_budget">
-                            <option value="">Budget écran</option>
-                            <option value="200-400">200-400€</option>
-                            <option value="400-600">400-600€</option>
-                            <option value="600-1000">600-1000€</option>
-                            <option value="1000+">1000€+</option>
-                        </select>
+                </div>
+                
+                <!-- Section écrans actuels -->
+                <div id="current_monitors_section" style="display: none;">
+                    <div class="question-group">
+                        <h3>📺 Spécifications de vos écrans actuels</h3>
+                        <div class="monitor-grid">
+                            <div class="monitor-field">
+                                <label>Résolution</label>
+                                <select id="current_resolution" name="current_resolution">
+                                    <option value="">Sélectionner</option>
+                                    <option value="1080p">1080p (FHD)</option>
+                                    <option value="1440p">1440p (QHD)</option>
+                                    <option value="2160p">2160p (UHD/4K)</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+                            <div class="monitor-field">
+                                <label>Taux de rafraîchissement</label>
+                                <select id="current_refresh_rate" name="current_refresh_rate">
+                                    <option value="">Je ne sais pas</option>
+                                    <option value="60hz">60 Hz</option>
+                                    <option value="75hz">75 Hz</option>
+                                    <option value="120hz">120 Hz</option>
+                                    <option value="144hz">144 Hz</option>
+                                    <option value="165hz">165 Hz</option>
+                                    <option value="240hz">240 Hz</option>
+                                    <option value="360hz">360 Hz</option>
+                                </select>
+                            </div>
+                            <div class="monitor-field">
+                                <label>Taille</label>
+                                <select id="current_size" name="current_size">
+                                    <option value="">Je ne sais pas</option>
+                                    <option value="21-24">21-24 pouces</option>
+                                    <option value="24-27">24-27 pouces</option>
+                                    <option value="27-32">27-32 pouces</option>
+                                    <option value="32+">32 pouces et +</option>
+                                    <option value="ultrawide">Ultrawide</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nouveaux écrans -->
+                <div class="question-group">
+                    <h3>🆕 Voulez-vous de nouveaux écrans ?</h3>
+                    <div class="radio-group">
+                        <div class="radio-item" data-value="non">
+                            <input type="radio" id="new_monitors_no" name="new_monitors_wanted" value="non">
+                            <label for="new_monitors_no">Non, je garde mes écrans actuels</label>
+                        </div>
+                        <div class="radio-item" data-value="remplacer">
+                            <input type="radio" id="new_monitors_replace" name="new_monitors_wanted" value="remplacer">
+                            <label for="new_monitors_replace">Oui, remplacer mes écrans actuels</label>
+                        </div>
+                        <div class="radio-item" data-value="ajouter">
+                            <input type="radio" id="new_monitors_add" name="new_monitors_wanted" value="ajouter">
+                            <label for="new_monitors_add">Oui, ajouter en plus (multi-écrans)</label>
+                        </div>
+                        <div class="radio-item" data-value="premiere_fois">
+                            <input type="radio" id="new_monitors_first" name="new_monitors_wanted" value="premiere_fois">
+                            <label for="new_monitors_first">Oui, c'est mon premier écran</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Configuration nouveaux écrans -->
+                <div id="new_monitors_section" style="display: none;">
+                    <div class="question-group">
+                        <h3>🖥️ Configuration des nouveaux écrans</h3>
+                        <div id="monitors_container">
+                            <!-- Les écrans seront ajoutés ici dynamiquement -->
+                        </div>
+                        <button type="button" class="add-monitor-btn" onclick="addMonitor()">➕ Ajouter un écran</button>
+                    </div>
+                </div>
+                
+                <div class="section-header">⚙️ SPÉCIFICATIONS TECHNIQUES</div>
+                
+                <!-- Évolutivité -->
+                <div class="question-group">
+                    <h3>🔄 Évolutivité future</h3>
+                    <div class="radio-group">
+                        <div class="radio-item" data-value="3-5ans">
+                            <input type="radio" id="future_3_5" name="future_upgrade" value="3-5ans">
+                            <label for="future_3_5">Je veux que ça tienne 3-5 ans minimum</label>
+                        </div>
+                        <div class="radio-item" data-value="upgrade_regulier">
+                            <input type="radio" id="future_regular" name="future_upgrade" value="upgrade_regulier">
+                            <label for="future_regular">J'upgrade régulièrement (tous les 2-3 ans)</label>
+                        </div>
+                        <div class="radio-item" data-value="extensible">
+                            <input type="radio" id="future_extensible" name="future_upgrade" value="extensible">
+                            <label for="future_extensible">Je veux pouvoir ajouter des composants facilement</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Taille du PC -->
+                <div class="question-group">
+                    <h3>📏 Quelle taille de PC préférez-vous ? <span class="required">*</span></h3>
+                    <div class="radio-group">
+                        <div class="radio-item" data-value="mini_itx">
+                            <input type="radio" id="size_mini" name="pc_size" value="mini_itx" required>
+                            <label for="size_mini">Mini ITX (compact)</label>
+                        </div>
+                        <div class="radio-item" data-value="micro_atx">
+                            <input type="radio" id="size_micro" name="pc_size" value="micro_atx">
+                            <label for="size_micro">Micro ATX (moyen)</label>
+                        </div>
+                        <div class="radio-item" data-value="atx">
+                            <input type="radio" id="size_atx" name="pc_size" value="atx">
+                            <label for="size_atx">ATX (grand)</label>
+                        </div>
+                        <div class="radio-item" data-value="no_preference">
+                            <input type="radio" id="size_no_pref" name="pc_size" value="no_preference">
+                            <label for="size_no_pref">Pas de préférence</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stockage -->
+                <div class="question-group">
+                    <h3>💾 Quelle capacité de stockage minimum voulez-vous ?</h3>
+                    <select id="storage" name="storage">
+                        <option value="500gb">500 GB</option>
+                        <option value="1tb">1 TB</option>
+                        <option value="2tb">2 TB</option>
+                        <option value="plus">Plus de 2 TB</option>
+                    </select>
+                    <div id="storage_more_field" style="display: none; margin-top: 15px;">
+                        <input type="number" id="storage_amount" name="storage_amount" placeholder="Capacité en TB" min="3" max="20">
+                        <span style="color: var(--text-muted); margin-left: 10px;">TB</span>
+                    </div>
+                    <div id="nas_warning" style="display: none; margin-top: 15px; padding: 15px; background: var(--glass-bg); border: 1px solid var(--accent-yellow); border-radius: 8px; color: var(--text-muted);">
+                        <strong style="color: var(--accent-yellow);">⚠️ Recommandation :</strong> Pour des besoins de stockage supérieurs à 4 TB, un NAS (Network Attached Storage) serait plus économique et pratique qu'un SSD de cette taille.
+                    </div>
+                </div>
+                
+                <!-- WiFi -->
+                <div class="question-group">
+                    <h3>📶 Le PC sera-t-il connecté en Wi-Fi ? <span class="required">*</span></h3>
+                    <div class="radio-group">
+                        <div class="radio-item" data-value="oui">
+                            <input type="radio" id="wifi_yes" name="wifi" value="oui" required>
+                            <label for="wifi_yes">Oui</label>
+                        </div>
+                        <div class="radio-item" data-value="non">
+                            <input type="radio" id="wifi_no" name="wifi" value="non">
+                            <label for="wifi_no">Non (ethernet uniquement)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-header">🎨 PERSONNALISATION & PÉRIPHÉRIQUES</div>
+                
+                <!-- Style d'éclairage -->
+                <div class="question-group">
+                    <h3>💡 Style d'éclairage préféré ?</h3>
+                    <div class="radio-group">
+                        <div class="radio-item" data-value="rgb">
+                            <input type="radio" id="rgb" name="lighting" value="rgb">
+                            <label for="rgb">RGB (coloré)</label>
+                        </div>
+                        <div class="radio-item" data-value="sobre">
+                            <input type="radio" id="sobre" name="lighting" value="sobre">
+                            <label for="sobre">Sobre (discret)</label>
+                        </div>
+                        <div class="radio-item" data-value="mixte">
+                            <input type="radio" id="mixte" name="lighting" value="mixte">
+                            <label for="mixte">Mixte</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Couleur des composants -->
+                <div class="question-group">
+                    <h3>🎨 Couleur des composants préférée ?</h3>
+                    <div class="radio-group">
+                        <div class="radio-item" data-value="noir">
+                            <input type="radio" id="color_black" name="color" value="noir">
+                            <label for="color_black">Noir</label>
+                        </div>
+                        <div class="radio-item" data-value="blanc">
+                            <input type="radio" id="color_white" name="color" value="blanc">
+                            <label for="color_white">Blanc</label>
+                        </div>
+                        <div class="radio-item" data-value="mixte">
+                            <input type="radio" id="color_mixed" name="color" value="mixte">
+                            <label for="color_mixed">Boîtier blanc, composants noirs</label>
+                        </div>
+                        <div class="radio-item" data-value="autre">
+                            <input type="radio" id="color_other" name="color" value="autre">
+                            <label for="color_other">Autre</label>
+                        </div>
+                    </div>
+                    <div id="color_other_field" style="display: none; margin-top: 15px;">
+                        <input type="text" id="color_other_text" name="color_other_text" placeholder="Précisez votre préférence de couleur...">
                     </div>
                 </div>
                 
@@ -480,127 +723,7 @@
                     </div>
                 </div>
                 
-                <!-- Évolutivité -->
-                <div class="question-group">
-                    <h3>🔄 Évolutivité future</h3>
-                    <div class="radio-group">
-                        <div class="radio-item" data-value="3-5ans">
-                            <input type="radio" id="future_3_5" name="future_upgrade" value="3-5ans">
-                            <label for="future_3_5">Je veux que ça tienne 3-5 ans minimum</label>
-                        </div>
-                        <div class="radio-item" data-value="upgrade_regulier">
-                            <input type="radio" id="future_regular" name="future_upgrade" value="upgrade_regulier">
-                            <label for="future_regular">J'upgrade régulièrement (tous les 2-3 ans)</label>
-                        </div>
-                        <div class="radio-item" data-value="extensible">
-                            <input type="radio" id="future_extensible" name="future_upgrade" value="extensible">
-                            <label for="future_extensible">Je veux pouvoir ajouter des composants facilement</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Taux de rafraîchissement -->
-                
-                <!-- Taille du PC -->
-                <div class="question-group">
-                    <h3>📏 Quelle taille de PC préférez-vous ? <span class="required">*</span></h3>
-                    <div class="radio-group">
-                        <div class="radio-item" data-value="mini_itx">
-                            <input type="radio" id="size_mini" name="pc_size" value="mini_itx" required>
-                            <label for="size_mini">Mini ITX (compact)</label>
-                        </div>
-                        <div class="radio-item" data-value="micro_atx">
-                            <input type="radio" id="size_micro" name="pc_size" value="micro_atx">
-                            <label for="size_micro">Micro ATX (moyen)</label>
-                        </div>
-                        <div class="radio-item" data-value="atx">
-                            <input type="radio" id="size_atx" name="pc_size" value="atx">
-                            <label for="size_atx">ATX (grand)</label>
-                        </div>
-                        <div class="radio-item" data-value="no_preference">
-                            <input type="radio" id="size_no_pref" name="pc_size" value="no_preference">
-                            <label for="size_no_pref">Pas de préférence</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Stockage -->
-                <div class="question-group">
-                    <h3>💾 Quelle capacité de stockage minimum voulez-vous ?</h3>
-                    <select id="storage" name="storage">
-                        <option value="500gb">500 GB</option>
-                        <option value="1tb">1 TB</option>
-                        <option value="2tb">2 TB</option>
-                        <option value="plus">Plus de 2 TB</option>
-                    </select>
-                    <div id="storage_more_field" style="display: none; margin-top: 15px;">
-                        <input type="number" id="storage_amount" name="storage_amount" placeholder="Capacité en TB" min="3" max="20">
-                        <span style="color: var(--text-muted); margin-left: 10px;">TB</span>
-                    </div>
-                    <div id="nas_warning" style="display: none; margin-top: 15px; padding: 15px; background: var(--glass-bg); border: 1px solid var(--accent-yellow); border-radius: 8px; color: var(--text-muted);">
-                        <strong style="color: var(--accent-yellow);">⚠️ Recommandation :</strong> Pour des besoins de stockage supérieurs à 4 TB, un NAS (Network Attached Storage) serait plus économique et pratique qu'un SSD de cette taille. Nous vous aiderons à créer et configurer une solution NAS adaptée à vos besoins.
-                    </div>
-                </div>
-                
-                <!-- Style d'éclairage -->
-                <div class="question-group">
-                    <h3>💡 Style d'éclairage préféré ?</h3>
-                    <div class="radio-group">
-                        <div class="radio-item" data-value="rgb">
-                            <input type="radio" id="rgb" name="lighting" value="rgb">
-                            <label for="rgb">RGB (coloré)</label>
-                        </div>
-                        <div class="radio-item" data-value="sobre">
-                            <input type="radio" id="sobre" name="lighting" value="sobre">
-                            <label for="sobre">Sobre (discret)</label>
-                        </div>
-                        <div class="radio-item" data-value="mixte">
-                            <input type="radio" id="mixte" name="lighting" value="mixte">
-                            <label for="mixte">Mixte</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Couleur des composants -->
-                <div class="question-group">
-                    <h3>🎨 Couleur des composants préférée ?</h3>
-                    <div class="radio-group">
-                        <div class="radio-item" data-value="noir">
-                            <input type="radio" id="color_black" name="color" value="noir">
-                            <label for="color_black">Noir</label>
-                        </div>
-                        <div class="radio-item" data-value="blanc">
-                            <input type="radio" id="color_white" name="color" value="blanc">
-                            <label for="color_white">Blanc</label>
-                        </div>
-                        <div class="radio-item" data-value="mixte">
-                            <input type="radio" id="color_mixed" name="color" value="mixte">
-                            <label for="color_mixed">Boîtier blanc, composants noirs</label>
-                        </div>
-                        <div class="radio-item" data-value="autre">
-                            <input type="radio" id="color_other" name="color" value="autre">
-                            <label for="color_other">Autre</label>
-                        </div>
-                    </div>
-                    <div id="color_other_field" style="display: none; margin-top: 15px;">
-                        <input type="text" id="color_other_text" name="color_other_text" placeholder="Précisez votre préférence de couleur...">
-                    </div>
-                </div>
-                
-                <!-- WiFi -->
-                <div class="question-group">
-                    <h3>📶 Le PC sera-t-il connecté en Wi-Fi ? <span class="required">*</span></h3>
-                    <div class="radio-group">
-                        <div class="radio-item" data-value="oui">
-                            <input type="radio" id="wifi_yes" name="wifi" value="oui" required>
-                            <label for="wifi_yes">Oui</label>
-                        </div>
-                        <div class="radio-item" data-value="non">
-                            <input type="radio" id="wifi_no" name="wifi" value="non">
-                            <label for="wifi_no">Non (ethernet uniquement)</label>
-                        </div>
-                    </div>
-                </div>
+                <div class="section-header">🛒 CONTRAINTES & PRÉFÉRENCES</div>
                 
                 <!-- Achat international -->
                 <div class="question-group">
@@ -689,6 +812,98 @@
     </div>
     
     <script>
+        let monitorCounter = 0;
+        
+        function addMonitor() {
+            monitorCounter++;
+            const container = document.getElementById('monitors_container');
+            
+            const monitorDiv = document.createElement('div');
+            monitorDiv.className = 'monitor-container';
+            monitorDiv.id = `monitor_${monitorCounter}`;
+            
+            monitorDiv.innerHTML = `
+                <div class="monitor-header">
+                    <span class="monitor-title">🖥️ Écran ${monitorCounter}</span>
+                    <button type="button" class="remove-monitor" onclick="removeMonitor(${monitorCounter})">✕</button>
+                </div>
+                <div class="monitor-grid">
+                    <div class="monitor-field">
+                        <label>Utilisation principale</label>
+                        <select name="monitor_${monitorCounter}_usage">
+                            <option value="gaming">Gaming</option>
+                            <option value="productivite">Productivité</option>
+                            <option value="multimedia">Multimédia</option>
+                            <option value="mixte">Mixte</option>
+                        </select>
+                    </div>
+                    <div class="monitor-field">
+                        <label>Résolution souhaitée</label>
+                        <select name="monitor_${monitorCounter}_resolution">
+                            <option value="1080p">1080p (FHD)</option>
+                            <option value="1440p">1440p (QHD)</option>
+                            <option value="2160p">2160p (UHD/4K)</option>
+                            <option value="ultrawide_1080p">Ultrawide 1080p</option>
+                            <option value="ultrawide_1440p">Ultrawide 1440p</option>
+                        </select>
+                    </div>
+                    <div class="monitor-field">
+                        <label>Taux de rafraîchissement voulu</label>
+                        <select name="monitor_${monitorCounter}_refresh">
+                            <option value="60hz">60 Hz</option>
+                            <option value="75hz">75 Hz</option>
+                            <option value="120hz">120 Hz</option>
+                            <option value="144hz">144 Hz</option>
+                            <option value="165hz">165 Hz</option>
+                            <option value="240hz">240 Hz</option>
+                            <option value="360hz">360 Hz</option>
+                        </select>
+                    </div>
+                    <div class="monitor-field">
+                        <label>Taille souhaitée</label>
+                        <select name="monitor_${monitorCounter}_size">
+                            <option value="21-24">21-24 pouces</option>
+                            <option value="24-27">24-27 pouces</option>
+                            <option value="27-32">27-32 pouces</option>
+                            <option value="32-34">32-34 pouces</option>
+                            <option value="34+">34 pouces et +</option>
+                        </select>
+                    </div>
+                    <div class="monitor-field">
+                        <label>Budget pour cet écran</label>
+                        <select name="monitor_${monitorCounter}_budget">
+                            <option value="150-300">150-300€</option>
+                            <option value="300-500">300-500€</option>
+                            <option value="500-800">500-800€</option>
+                            <option value="800-1200">800-1200€</option>
+                            <option value="1200+">1200€+</option>
+                        </select>
+                    </div>
+                    <div class="monitor-field">
+                        <label>Technologie d'écran</label>
+                        <select name="monitor_${monitorCounter}_tech">
+                            <option value="no_preference">Pas de préférence</option>
+                            <option value="ips">IPS (Rendu Proche)</option>
+                            <option value="va">VA (Très Claire)</option>
+                            <option value="tn">TN (Très Sombre)</option>
+                            <option value="oled">OLED (Rendu Réaliste)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="monitor-field" style="margin-top: 15px;">
+                    <label>Fonctionnalités spéciales souhaitées</label>
+                    <textarea name="monitor_${monitorCounter}_features" rows="2" placeholder="Ex: USB-C, pivot, réglable en hauteur, HDR..."></textarea>
+                </div>
+            `;
+            
+            container.appendChild(monitorDiv);
+        }
+        
+        function removeMonitor(id) {
+            const monitor = document.getElementById(`monitor_${id}`);
+            monitor.remove();
+        }
+        
         document.getElementById('pcForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -729,117 +944,151 @@
                 data.color = data.color_other_text;
             }
             
-            // Handle storage formatting
-            let storageText = data.storage;
-            let nasRecommendation = '';
-            if (data.storage === 'plus' && data.storage_amount) {
-                storageText = `${data.storage_amount} TB`;
-                if (parseInt(data.storage_amount) > 4) {
-                    nasRecommendation = '\n\nJe souhaite un NAS pour un stockage sécurisé et évolutif : stockage en réseau pour sauvegardes automatiques, accès depuis tous mes appareils, streaming média, et redondance des données. Configuration NAS requise (rendez-vous vocal nécessaire pour déterminer les besoins exacts et sélectionner les composants adaptés).';
-                }
-            }
+            // Collect monitor data
+            const monitors = [];
+            const monitorElements = document.querySelectorAll('.monitor-container');
+            monitorElements.forEach((element, index) => {
+                const monitorData = {};
+                const inputs = element.querySelectorAll('select, textarea');
+                inputs.forEach(input => {
+                    const key = input.name.split('_').slice(2).join('_'); // Remove monitor_X_ prefix
+                    monitorData[key] = input.value;
+                });
+                monitors.push(monitorData);
+            });
             
-            // Format result in the exact format requested with line breaks
-            let result = "";
-            result += `1) Mon budget est de : ${data.budget ? data.budget + '€' : 'Non spécifié'}\n`;
-            result += `2) Tu as déjà l'argent ? ${data.money_available || 'Non spécifié'}\n`;
-            result += `3) Quand est prévu la commande du PC ? ${data.order_date || 'Non spécifié'}\n`;
-            result += `4) Tu habites où ? (uniquement le pays) ${data.country || 'Non spécifié'}\n`;
-            result += `5) L'utilisation du PC ? (exemple : gaming, montage, graphisme...) ${data.usage && data.usage.length > 0 ? data.usage.join(', ') : 'Non spécifié'}\n`;
-            result += `6) Tu es en 1080p (FHD) ou 1440p (QHD) ou 2160p (UHD) ? ${data.current_resolution || 'Non spécifié'}\n`;
-            result += `7) La config doit inclure du wifi (connexion sans fil) ? ${data.wifi || 'Non spécifié'}\n`;
+            // Format result in a professional format
+            let result = "═══════════════════════════════════════════════\n";
+            result += "                 📋 DEMANDE DE CONFIGURATION PC\n";
+            result += "═══════════════════════════════════════════════\n\n";
             
-            // Handle visual preferences
-            let visualPrefs = '';
-            if (data.color && data.lighting) {
-                if (data.color === 'mixte') {
-                    visualPrefs = 'boîtier blanc composant noir';
-                } else if (data.color === 'blanc') {
-                    visualPrefs = 'config blanche';
-                } else if (data.color === 'noir') {
-                    visualPrefs = 'config noire';
-                } else {
-                    visualPrefs = data.color;
-                }
-                
-                if (data.lighting === 'rgb') {
-                    visualPrefs += ', éclairage RGB';
-                } else if (data.lighting === 'sobre') {
-                    visualPrefs += ', éclairage sobre';
-                }
-            } else if (data.color) {
-                if (data.color === 'mixte') {
-                    visualPrefs = 'boîtier blanc composant noir';
-                } else {
-                    visualPrefs = `config ${data.color}`;
-                }
-            } else if (data.lighting) {
-                visualPrefs = `éclairage ${data.lighting}`;
-            }
+            // Budget & Timing Section
+            result += "💰 BUDGET & PLANNING\n";
+            result += "─────────────────────\n";
+            result += `Budget total : ${data.budget ? data.budget + '€' : 'Non spécifié'}\n`;
+            result += `Argent disponible : ${data.money_available || 'Non spécifié'}\n`;
+            result += `Date de commande prévue : ${data.order_date || 'Non spécifié'}\n`;
+            result += `Pays de résidence : ${data.country || 'Non spécifié'}\n\n`;
             
-            result += `8) Tu as des préférences comme par exemple sur le visuel du PC ou des composants ? ${visualPrefs || 'Non spécifié'}\n`;
-            
-            // Handle site restrictions
-            let siteRestrictions = 'non';
-            if (data.site_restrictions && data.site_restrictions.trim()) {
-                siteRestrictions = data.site_restrictions;
-            } else if (data.international === 'non') {
-                siteRestrictions = 'non (achat local uniquement)';
-            }
-            
-            result += `9) Des restrictions sur les sites ou tu peux commandé ? ${siteRestrictions}\n`;
-            
-            // Handle additional remarks
-            let remarks = '';
-            const additionalInfo = [];
-            
+            // Usage Section
+            result += "🎮 UTILISATION\n";
+            result += "──────────────\n";
+            result += `Usages principaux : ${data.usage && data.usage.length > 0 ? data.usage.join(', ') : 'Non spécifié'}\n`;
             if (data.software && data.software.trim()) {
-                additionalInfo.push(`Jeux/logiciels: ${data.software}`);
+                result += `Logiciels/jeux spécifiques : ${data.software}\n`;
             }
-            if (data.refresh_rate && data.refresh_rate !== '') {
-                additionalInfo.push(`Écran ${data.refresh_rate}`);
+            result += "\n";
+            
+            // Monitor Configuration Section
+            result += "🖥️ CONFIGURATION ÉCRANS\n";
+            result += "─────────────────────────\n";
+            
+            if (data.has_monitors === 'oui') {
+                result += "Écrans actuels :\n";
+                if (data.current_resolution) result += `  • Résolution : ${data.current_resolution}\n`;
+                if (data.current_refresh_rate) result += `  • Taux de rafraîchissement : ${data.current_refresh_rate}\n`;
+                if (data.current_size) result += `  • Taille : ${data.current_size}\n`;
+                result += "\n";
             }
-            if (data.new_screen && data.new_screen !== 'non') {
-                let screenInfo = `Nouvel écran: ${data.new_screen}`;
-                if (data.desired_resolution) screenInfo += ` (${data.desired_resolution})`;
-                if (data.desired_size) screenInfo += ` ${data.desired_size}`;
-                if (data.screen_budget) screenInfo += ` budget ${data.screen_budget}`;
-                additionalInfo.push(screenInfo);
+            
+            if (data.new_monitors_wanted && data.new_monitors_wanted !== 'non') {
+                result += `Nouveaux écrans souhaités : ${data.new_monitors_wanted}\n`;
+                if (monitors.length > 0) {
+                    result += "Spécifications des nouveaux écrans :\n";
+                    monitors.forEach((monitor, index) => {
+                        result += `  📺 Écran ${index + 1} :\n`;
+                        result += `    • Usage : ${monitor.usage || 'Non spécifié'}\n`;
+                        result += `    • Résolution : ${monitor.resolution || 'Non spécifié'}\n`;
+                        result += `    • Fréquence : ${monitor.refresh || 'Non spécifié'}\n`;
+                        result += `    • Taille : ${monitor.size || 'Non spécifié'}\n`;
+                        result += `    • Budget : ${monitor.budget || 'Non spécifié'}\n`;
+                        if (monitor.tech && monitor.tech !== 'no_preference') {
+                            result += `    • Technologie : ${monitor.tech}\n`;
+                        }
+                        if (monitor.features && monitor.features.trim()) {
+                            result += `    • Fonctionnalités : ${monitor.features}\n`;
+                        }
+                        result += "\n";
+                    });
+                }
+            } else {
+                result += "Nouveaux écrans : Non souhaités\n\n";
             }
-            if (data.peripherals && data.peripherals.length > 0) {
-                additionalInfo.push(`Périphériques: ${data.peripherals.join(', ')}`);
-            }
-            if (data.premium_custom && data.premium_custom.length > 0) {
-                additionalInfo.push(`Personnalisations: ${data.premium_custom.join(', ')}`);
-            }
-            if (data.future_upgrade) {
-                additionalInfo.push(`Évolutivité: ${data.future_upgrade}`);
-            }
+            
+            // Technical Specifications Section
+            result += "⚙️ SPÉCIFICATIONS TECHNIQUES\n";
+            result += "─────────────────────────────\n";
+            result += `Connexion Wi-Fi : ${data.wifi || 'Non spécifié'}\n`;
             if (data.pc_size && data.pc_size !== 'no_preference') {
-                additionalInfo.push(`Taille: ${data.pc_size}`);
+                result += `Taille du PC : ${data.pc_size}\n`;
             }
             if (data.storage && data.storage !== '1tb') {
                 if (data.storage === 'plus' && data.storage_amount) {
-                    additionalInfo.push(`Stockage: ${data.storage_amount} TB`);
+                    result += `Stockage : ${data.storage_amount} TB`;
+                    if (parseInt(data.storage_amount) > 4) {
+                        result += " (NAS recommandé)";
+                    }
+                    result += "\n";
                 } else {
-                    additionalInfo.push(`Stockage: ${data.storage}`);
+                    result += `Stockage : ${data.storage}\n`;
                 }
             }
-            if (data.special_requirements && data.special_requirements.trim()) {
-                additionalInfo.push(data.special_requirements);
+            if (data.future_upgrade) {
+                result += `Évolutivité : ${data.future_upgrade}\n`;
             }
-            if (data.remarks && data.remarks.trim()) {
-                additionalInfo.push(data.remarks);
+            result += "\n";
+            
+            // Customization Section
+            result += "🎨 PERSONNALISATION\n";
+            result += "────────────────────\n";
+            if (data.color) {
+                const colorMap = {
+                    'mixte': 'Boîtier blanc, composants noirs',
+                    'blanc': 'Configuration blanche',
+                    'noir': 'Configuration noire'
+                };
+                result += `Couleur : ${colorMap[data.color] || data.color}\n`;
+            }
+            if (data.lighting) {
+                result += `Éclairage : ${data.lighting}\n`;
+            }
+            if (data.premium_custom && data.premium_custom.length > 0) {
+                result += `Personnalisations premium : ${data.premium_custom.join(', ')}\n`;
+            }
+            result += "\n";
+            
+            // Peripherals Section
+            if (data.peripherals && data.peripherals.length > 0) {
+                result += "🖱️ PÉRIPHÉRIQUES NÉCESSAIRES\n";
+                result += "──────────────────────────────\n";
+                result += `${data.peripherals.join(', ')}\n\n`;
             }
             
-            if (additionalInfo.length > 0) {
-                remarks = additionalInfo.join(', ');
+            // Constraints Section
+            result += "🛒 CONTRAINTES & PRÉFÉRENCES\n";
+            result += "─────────────────────────────\n";
+            result += `Achat international : ${data.international || 'Non spécifié'}\n`;
+            if (data.site_restrictions && data.site_restrictions.trim()) {
+                result += `Restrictions sites : ${data.site_restrictions}\n`;
+            }
+            result += "\n";
+            
+            // Additional Information
+            if ((data.special_requirements && data.special_requirements.trim()) || 
+                (data.remarks && data.remarks.trim())) {
+                result += "📝 INFORMATIONS COMPLÉMENTAIRES\n";
+                result += "─────────────────────────────────\n";
+                if (data.special_requirements && data.special_requirements.trim()) {
+                    result += `Exigences particulières : ${data.special_requirements}\n`;
+                }
+                if (data.remarks && data.remarks.trim()) {
+                    result += `Remarques : ${data.remarks}\n`;
+                }
+                result += "\n";
             }
             
-            result += `10) Autre remarque ? (optionnel) ${remarks || ''}`;
-            
-            // Add NAS recommendation if applicable
-            result += nasRecommendation;
+            result += "═══════════════════════════════════════════════\n";
+            result += "📅 Généré le " + new Date().toLocaleString('fr-FR');
             
             // Copy to clipboard
             navigator.clipboard.writeText(result).then(function() {
@@ -889,12 +1138,25 @@
                     }
                 }
                 
-                if (name === 'new_screen') {
-                    const specsField = document.getElementById('new_screen_specs');
-                    if (input.value === 'oui' || input.value === 'en_plus') {
-                        specsField.style.display = 'block';
+                if (name === 'has_monitors') {
+                    const currentSection = document.getElementById('current_monitors_section');
+                    if (input.value === 'oui') {
+                        currentSection.style.display = 'block';
                     } else {
-                        specsField.style.display = 'none';
+                        currentSection.style.display = 'none';
+                    }
+                }
+                
+                if (name === 'new_monitors_wanted') {
+                    const newSection = document.getElementById('new_monitors_section');
+                    if (input.value !== 'non') {
+                        newSection.style.display = 'block';
+                        // Add first monitor if none exists
+                        if (document.querySelectorAll('.monitor-container').length === 0) {
+                            addMonitor();
+                        }
+                    } else {
+                        newSection.style.display = 'none';
                     }
                 }
             });
