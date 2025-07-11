@@ -458,42 +458,38 @@
                 <!-- Section écrans actuels -->
                 <div id="current_monitors_section" style="display: none;">
                     <div class="question-group">
-                        <h3>📺 Spécifications de vos écrans actuels</h3>
-                        <div class="monitor-grid">
-                            <div class="monitor-field">
-                                <label>Résolution</label>
-                                <select id="current_resolution" name="current_resolution">
-                                    <option value="">Sélectionner</option>
-                                    <option value="1080p">1080p (FHD)</option>
-                                    <option value="1440p">1440p (QHD)</option>
-                                    <option value="2160p">2160p (UHD/4K)</option>
-                                    <option value="autre">Autre</option>
-                                </select>
+                        <h3>📺 Combien d'écrans avez-vous actuellement ?</h3>
+                        <div class="radio-group">
+                            <div class="radio-item" data-value="1">
+                                <input type="radio" id="current_count_1" name="current_monitors_count" value="1">
+                                <label for="current_count_1">1 écran</label>
                             </div>
-                            <div class="monitor-field">
-                                <label>Taux de rafraîchissement</label>
-                                <select id="current_refresh_rate" name="current_refresh_rate">
-                                    <option value="">Je ne sais pas</option>
-                                    <option value="60hz">60 Hz</option>
-                                    <option value="75hz">75 Hz</option>
-                                    <option value="120hz">120 Hz</option>
-                                    <option value="144hz">144 Hz</option>
-                                    <option value="165hz">165 Hz</option>
-                                    <option value="240hz">240 Hz</option>
-                                    <option value="360hz">360 Hz</option>
-                                </select>
+                            <div class="radio-item" data-value="2">
+                                <input type="radio" id="current_count_2" name="current_monitors_count" value="2">
+                                <label for="current_count_2">2 écrans</label>
                             </div>
-                            <div class="monitor-field">
-                                <label>Taille</label>
-                                <select id="current_size" name="current_size">
-                                    <option value="">Je ne sais pas</option>
-                                    <option value="21-24">21-24 pouces</option>
-                                    <option value="24-27">24-27 pouces</option>
-                                    <option value="27-32">27-32 pouces</option>
-                                    <option value="32+">32 pouces et +</option>
-                                    <option value="ultrawide">Ultrawide</option>
-                                </select>
+                            <div class="radio-item" data-value="3">
+                                <input type="radio" id="current_count_3" name="current_monitors_count" value="3">
+                                <label for="current_count_3">3 écrans</label>
                             </div>
+                            <div class="radio-item" data-value="plus">
+                                <input type="radio" id="current_count_more" name="current_monitors_count" value="plus">
+                                <label for="current_count_more">Plus de 3</label>
+                            </div>
+                        </div>
+                        <div id="current_count_more_field" style="display: none; margin-top: 15px;">
+                            <input type="number" id="current_count_number" name="current_count_number" placeholder="Nombre d'écrans" min="4" max="10">
+                            <span style="color: var(--text-muted); margin-left: 10px;">écrans</span>
+                        </div>
+                    </div>
+                    
+                    <div class="question-group" id="current_monitors_details" style="display: none;">
+                        <h3>🔍 Spécifications de vos écrans actuels</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 20px;">
+                            Pour chaque écran, vous pouvez soit donner les références exactes (plus précis) soit les spécifications techniques que vous connaissez.
+                        </p>
+                        <div id="current_monitors_container">
+                            <!-- Les écrans actuels seront ajoutés ici dynamiquement -->
                         </div>
                     </div>
                 </div>
@@ -813,6 +809,7 @@
     
     <script>
         let monitorCounter = 0;
+        let currentMonitorCounter = 0;
         
         function addMonitor() {
             monitorCounter++;
@@ -824,7 +821,7 @@
             
             monitorDiv.innerHTML = `
                 <div class="monitor-header">
-                    <span class="monitor-title">🖥️ Écran ${monitorCounter}</span>
+                    <span class="monitor-title">🖥️ Nouveau Écran ${monitorCounter}</span>
                     <button type="button" class="remove-monitor" onclick="removeMonitor(${monitorCounter})">✕</button>
                 </div>
                 <div class="monitor-grid">
@@ -883,10 +880,10 @@
                         <label>Technologie d'écran</label>
                         <select name="monitor_${monitorCounter}_tech">
                             <option value="no_preference">Pas de préférence</option>
-                            <option value="ips">IPS (Rendu Proche)</option>
-                            <option value="va">VA (Très Claire)</option>
-                            <option value="tn">TN (Très Sombre)</option>
-                            <option value="oled">OLED (Rendu Réaliste)</option>
+                            <option value="ips">IPS (meilleurs angles)</option>
+                            <option value="va">VA (bon contraste)</option>
+                            <option value="tn">TN (très rapide)</option>
+                            <option value="oled">OLED (premium)</option>
                         </select>
                     </div>
                 </div>
@@ -902,6 +899,212 @@
         function removeMonitor(id) {
             const monitor = document.getElementById(`monitor_${id}`);
             monitor.remove();
+        }
+        
+        function addCurrentMonitor() {
+            currentMonitorCounter++;
+            const container = document.getElementById('current_monitors_container');
+            
+            const monitorDiv = document.createElement('div');
+            monitorDiv.className = 'monitor-container';
+            monitorDiv.id = `current_monitor_${currentMonitorCounter}`;
+            monitorDiv.style.borderColor = 'var(--accent-green)';
+            
+            monitorDiv.innerHTML = `
+                <div class="monitor-header">
+                    <span class="monitor-title">📺 Écran Actuel ${currentMonitorCounter}</span>
+                    <button type="button" class="remove-monitor" onclick="removeCurrentMonitor(${currentMonitorCounter})">✕</button>
+                </div>
+                
+                <!-- Choix méthode de saisie -->
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: var(--accent-yellow); margin-bottom: 10px;">Méthode de saisie :</h4>
+                    <div class="radio-group">
+                        <div class="radio-item" data-value="references" onclick="toggleCurrentMonitorInput(${currentMonitorCounter}, 'references')">
+                            <input type="radio" name="current_monitor_${currentMonitorCounter}_input_type" value="references">
+                            <label>🏷️ Références exactes (marque + modèle)</label>
+                        </div>
+                        <div class="radio-item" data-value="specs" onclick="toggleCurrentMonitorInput(${currentMonitorCounter}, 'specs')">
+                            <input type="radio" name="current_monitor_${currentMonitorCounter}_input_type" value="specs">
+                            <label>⚙️ Spécifications techniques</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section références -->
+                <div id="current_monitor_${currentMonitorCounter}_references" style="display: none;">
+                    <div class="monitor-grid">
+                        <div class="monitor-field">
+                            <label>Marque</label>
+                            <input type="text" name="current_monitor_${currentMonitorCounter}_brand" placeholder="Ex: ASUS, Samsung, LG...">
+                        </div>
+                        <div class="monitor-field">
+                            <label>Modèle exact</label>
+                            <input type="text" name="current_monitor_${currentMonitorCounter}_model" placeholder="Ex: VG248QE, LC27G55T...">
+                        </div>
+                    </div>
+                    <div class="monitor-field" style="margin-top: 15px;">
+                        <label>Référence complète (si vous l'avez)</label>
+                        <input type="text" name="current_monitor_${currentMonitorCounter}_full_ref" placeholder="Ex: ASUS VG248QE 24'' 144Hz 1ms">
+                    </div>
+                </div>
+                
+                <!-- Section spécifications -->
+                <div id="current_monitor_${currentMonitorCounter}_specs" style="display: none;">
+                    <div class="monitor-grid">
+                        <div class="monitor-field">
+                            <label>Taille (pouces)</label>
+                            <select name="current_monitor_${currentMonitorCounter}_size">
+                                <option value="">Je ne sais pas</option>
+                                <option value="19">19"</option>
+                                <option value="21.5">21.5"</option>
+                                <option value="24">24"</option>
+                                <option value="25">25"</option>
+                                <option value="27">27"</option>
+                                <option value="28">28"</option>
+                                <option value="32">32"</option>
+                                <option value="34">34" (ultrawide)</option>
+                                <option value="35">35" (ultrawide)</option>
+                                <option value="38">38" (ultrawide)</option>
+                                <option value="autre">Autre taille</option>
+                            </select>
+                        </div>
+                        <div class="monitor-field">
+                            <label>Résolution</label>
+                            <select name="current_monitor_${currentMonitorCounter}_resolution">
+                                <option value="">Je ne sais pas</option>
+                                <option value="1366x768">1366x768 (HD)</option>
+                                <option value="1920x1080">1920x1080 (Full HD)</option>
+                                <option value="2560x1080">2560x1080 (Ultrawide FHD)</option>
+                                <option value="2560x1440">2560x1440 (QHD)</option>
+                                <option value="3440x1440">3440x1440 (Ultrawide QHD)</option>
+                                <option value="3840x2160">3840x2160 (4K UHD)</option>
+                                <option value="autre">Autre résolution</option>
+                            </select>
+                        </div>
+                        <div class="monitor-field">
+                            <label>Taux de rafraîchissement</label>
+                            <select name="current_monitor_${currentMonitorCounter}_refresh">
+                                <option value="">Je ne sais pas</option>
+                                <option value="60hz">60 Hz</option>
+                                <option value="75hz">75 Hz</option>
+                                <option value="120hz">120 Hz</option>
+                                <option value="144hz">144 Hz</option>
+                                <option value="165hz">165 Hz</option>
+                                <option value="240hz">240 Hz</option>
+                                <option value="360hz">360 Hz</option>
+                            </select>
+                        </div>
+                        <div class="monitor-field">
+                            <label>Technologie d'écran</label>
+                            <select name="current_monitor_${currentMonitorCounter}_tech">
+                                <option value="">Je ne sais pas</option>
+                                <option value="tn">TN (rapide)</option>
+                                <option value="ips">IPS (meilleurs angles)</option>
+                                <option value="va">VA (bon contraste)</option>
+                                <option value="oled">OLED</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="monitor-field">
+                            <label>Connectique</label>
+                            <select name="current_monitor_${currentMonitorCounter}_connectors">
+                                <option value="">Je ne sais pas</option>
+                                <option value="hdmi">HDMI uniquement</option>
+                                <option value="dvi">DVI uniquement</option>
+                                <option value="displayport">DisplayPort uniquement</option>
+                                <option value="hdmi_dvi">HDMI + DVI</option>
+                                <option value="hdmi_dp">HDMI + DisplayPort</option>
+                                <option value="complet">HDMI + DVI + DisplayPort</option>
+                                <option value="usb_c">USB-C inclus</option>
+                            </select>
+                        </div>
+                        <div class="monitor-field">
+                            <label>Âge approximatif</label>
+                            <select name="current_monitor_${currentMonitorCounter}_age">
+                                <option value="">Je ne sais pas</option>
+                                <option value="neuf">Neuf (moins de 1 an)</option>
+                                <option value="recent">Récent (1-2 ans)</option>
+                                <option value="moyen">Moyen (3-5 ans)</option>
+                                <option value="ancien">Ancien (plus de 5 ans)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section commune -->
+                <div style="margin-top: 15px;">
+                    <div class="monitor-field">
+                        <label>Usage principal de cet écran</label>
+                        <select name="current_monitor_${currentMonitorCounter}_usage">
+                            <option value="principal">Écran principal</option>
+                            <option value="secondaire">Écran secondaire</option>
+                            <option value="gaming">Dédié gaming</option>
+                            <option value="productivite">Dédié productivité</option>
+                            <option value="multimedia">Dédié multimédia</option>
+                        </select>
+                    </div>
+                    <div class="monitor-field" style="margin-top: 15px;">
+                        <label>État et remarques</label>
+                        <textarea name="current_monitor_${currentMonitorCounter}_notes" rows="2" placeholder="Ex: Excellent état, quelques pixels morts, couleurs un peu ternes..."></textarea>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(monitorDiv);
+        }
+        
+        function removeCurrentMonitor(id) {
+            const monitor = document.getElementById(`current_monitor_${id}`);
+            monitor.remove();
+        }
+        
+        function toggleCurrentMonitorInput(id, type) {
+            const referencesDiv = document.getElementById(`current_monitor_${id}_references`);
+            const specsDiv = document.getElementById(`current_monitor_${id}_specs`);
+            
+            if (type === 'references') {
+                referencesDiv.style.display = 'block';
+                specsDiv.style.display = 'none';
+            } else {
+                referencesDiv.style.display = 'none';
+                specsDiv.style.display = 'block';
+            }
+        }
+        
+        function updateCurrentMonitorsCount() {
+            const selectedCount = document.querySelector('input[name="current_monitors_count"]:checked');
+            const container = document.getElementById('current_monitors_container');
+            const detailsSection = document.getElementById('current_monitors_details');
+            const moreField = document.getElementById('current_count_more_field');
+            
+            if (!selectedCount) return;
+            
+            let count = 0;
+            if (selectedCount.value === 'plus') {
+                moreField.style.display = 'block';
+                const numberInput = document.getElementById('current_count_number');
+                count = parseInt(numberInput.value) || 0;
+            } else {
+                moreField.style.display = 'none';
+                count = parseInt(selectedCount.value);
+            }
+            
+            if (count > 0) {
+                detailsSection.style.display = 'block';
+                
+                // Clear existing monitors
+                container.innerHTML = '';
+                currentMonitorCounter = 0;
+                
+                // Add the required number of monitors
+                for (let i = 0; i < count; i++) {
+                    addCurrentMonitor();
+                }
+            } else {
+                detailsSection.style.display = 'none';
+                container.innerHTML = '';
+            }
         }
         
         document.getElementById('pcForm').addEventListener('submit', function(e) {
@@ -946,7 +1149,7 @@
             
             // Collect monitor data
             const monitors = [];
-            const monitorElements = document.querySelectorAll('.monitor-container');
+            const monitorElements = document.querySelectorAll('#monitors_container .monitor-container');
             monitorElements.forEach((element, index) => {
                 const monitorData = {};
                 const inputs = element.querySelectorAll('select, textarea');
@@ -956,6 +1159,26 @@
                 });
                 monitors.push(monitorData);
             });
+            
+            // Collect current monitors data
+            const currentMonitors = [];
+            const currentMonitorElements = document.querySelectorAll('#current_monitors_container .monitor-container');
+            currentMonitorElements.forEach((element, index) => {
+                const monitorData = {};
+                const inputs = element.querySelectorAll('select, textarea, input[type="text"]');
+                inputs.forEach(input => {
+                    if (input.type === 'radio' && !input.checked) return;
+                    const key = input.name.split('_').slice(3).join('_'); // Remove current_monitor_X_ prefix
+                    monitorData[key] = input.value;
+                });
+                currentMonitors.push(monitorData);
+            });
+            
+            // Handle storage amount warning for current monitors count
+            const currentCountNumber = document.getElementById('current_count_number');
+            if (currentCountNumber && currentCountNumber.style.display !== 'none') {
+                updateCurrentMonitorsCount();
+            }
             
             // Format result in a professional format
             let result = "═══════════════════════════════════════════════\n";
@@ -984,11 +1207,42 @@
             result += "─────────────────────────\n";
             
             if (data.has_monitors === 'oui') {
-                result += "Écrans actuels :\n";
-                if (data.current_resolution) result += `  • Résolution : ${data.current_resolution}\n`;
-                if (data.current_refresh_rate) result += `  • Taux de rafraîchissement : ${data.current_refresh_rate}\n`;
-                if (data.current_size) result += `  • Taille : ${data.current_size}\n`;
-                result += "\n";
+                const monitorCount = data.current_monitors_count === 'plus' ? 
+                    (data.current_count_number || 'plusieurs') : data.current_monitors_count;
+                result += `Nombre d'écrans actuels : ${monitorCount}\n`;
+                
+                if (currentMonitors.length > 0) {
+                    result += "Détails des écrans actuels :\n";
+                    currentMonitors.forEach((monitor, index) => {
+                        result += `  📺 Écran Actuel ${index + 1} :\n`;
+                        
+                        // Check if user provided references or specs
+                        if (monitor.input_type === 'references') {
+                            if (monitor.brand || monitor.model || monitor.full_ref) {
+                                result += "    • Références :\n";
+                                if (monitor.brand) result += `      - Marque : ${monitor.brand}\n`;
+                                if (monitor.model) result += `      - Modèle : ${monitor.model}\n`;
+                                if (monitor.full_ref) result += `      - Référence complète : ${monitor.full_ref}\n`;
+                            }
+                        } else if (monitor.input_type === 'specs') {
+                            result += "    • Spécifications :\n";
+                            if (monitor.size) result += `      - Taille : ${monitor.size}\n`;
+                            if (monitor.resolution) result += `      - Résolution : ${monitor.resolution}\n`;
+                            if (monitor.refresh) result += `      - Taux de rafraîchissement : ${monitor.refresh}\n`;
+                            if (monitor.tech) result += `      - Technologie : ${monitor.tech}\n`;
+                            if (monitor.connectors) result += `      - Connectique : ${monitor.connectors}\n`;
+                            if (monitor.age) result += `      - Âge : ${monitor.age}\n`;
+                        }
+                        
+                        if (monitor.usage) result += `    • Usage : ${monitor.usage}\n`;
+                        if (monitor.notes && monitor.notes.trim()) {
+                            result += `    • État/Remarques : ${monitor.notes}\n`;
+                        }
+                        result += "\n";
+                    });
+                }
+            } else {
+                result += "Écrans actuels : Aucun\n\n";
             }
             
             if (data.new_monitors_wanted && data.new_monitors_wanted !== 'non') {
@@ -996,7 +1250,7 @@
                 if (monitors.length > 0) {
                     result += "Spécifications des nouveaux écrans :\n";
                     monitors.forEach((monitor, index) => {
-                        result += `  📺 Écran ${index + 1} :\n`;
+                        result += `  🆕 Nouvel Écran ${index + 1} :\n`;
                         result += `    • Usage : ${monitor.usage || 'Non spécifié'}\n`;
                         result += `    • Résolution : ${monitor.resolution || 'Non spécifié'}\n`;
                         result += `    • Fréquence : ${monitor.refresh || 'Non spécifié'}\n`;
@@ -1011,8 +1265,8 @@
                         result += "\n";
                     });
                 }
-            } else {
-                result += "Nouveaux écrans : Non souhaités\n\n";
+            } else if (data.has_monitors === 'oui') {
+                result += "Nouveaux écrans : Conservation des écrans actuels\n\n";
             }
             
             // Technical Specifications Section
@@ -1144,6 +1398,22 @@
                         currentSection.style.display = 'block';
                     } else {
                         currentSection.style.display = 'none';
+                        // Clear current monitors data when hiding
+                        document.getElementById('current_monitors_container').innerHTML = '';
+                        document.getElementById('current_monitors_details').style.display = 'none';
+                        currentMonitorCounter = 0;
+                    }
+                }
+                
+                if (name === 'current_monitors_count') {
+                    updateCurrentMonitorsCount();
+                    
+                    // Handle "plus" option
+                    const moreField = document.getElementById('current_count_more_field');
+                    if (input.value === 'plus') {
+                        moreField.style.display = 'block';
+                    } else {
+                        moreField.style.display = 'none';
                     }
                 }
                 
@@ -1226,6 +1496,11 @@
             } else {
                 nasWarning.style.display = 'none';
             }
+        });
+        
+        // Handle storage amount warning for current monitors count
+        document.getElementById('current_count_number').addEventListener('input', function() {
+            updateCurrentMonitorsCount();
         });
     </script>
 </body>
