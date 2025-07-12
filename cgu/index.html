@@ -159,7 +159,7 @@
 
         .toc-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 0.5rem;
         }
 
@@ -249,6 +249,15 @@
             padding: 1.5rem;
             margin: 1.5rem 0;
             backdrop-filter: blur(10px);
+        }
+
+        .contact-info {
+            background: var(--card-bg);
+            border: 2px solid var(--accent-orange);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
         }
 
         .contact-email {
@@ -359,6 +368,20 @@
         .section:nth-child(odd) {
             animation-delay: 0.2s;
         }
+
+        .legal-reference {
+            font-size: 0.9rem;
+            color: var(--text-subtle);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        .company-info {
+            background: var(--tertiary-dark);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
     </style>
 </head>
 <body>
@@ -369,6 +392,7 @@
                 <nav class="nav">
                     <a href="#presentation">Présentation</a>
                     <a href="#objet">Objet</a>
+                    <a href="#donnees">Données</a>
                     <a href="#contact-section">Contact</a>
                 </nav>
             </div>
@@ -380,7 +404,7 @@
             <div class="container">
                 <h1>Conditions Générales d'Utilisation</h1>
                 <p>Conditions d'utilisation du site atlas-corporation.fr - Plateforme d'analyse critique de l'écosystème tech francophone</p>
-                <div class="last-updated">Dernière mise à jour : 23 juin 2025</div>
+                <div class="last-updated">Dernière mise à jour : 12 juillet 2025</div>
             </div>
         </section>
 
@@ -408,6 +432,11 @@
                 <section id="presentation" class="section">
                     <h2 class="icon-presentation">Présentation du site</h2>
                     <p>Le site <strong>atlas-corporation.fr</strong> est une plateforme personnelle, indépendante et non commerciale, exploitée à titre individuel par une personne physique souhaitant rester anonyme. Ce choix est motivé par la volonté de préserver une neutralité éditoriale, ainsi que le respect de la vie privée de l'éditeur.</p>
+                    
+                    <div class="company-info">
+                        <h3>Informations légales</h3>
+                        <p><strong>Email :</strong> <span class="contact-email">contact@atlas-corporation.fr</span></p>
+                    </div>
                     
                     <div class="info">
                         <p>Le site n'est ni une entreprise ni une marque, et ne représente aucun groupement économique, aucune structure commerciale, ni aucune entité juridique ou morale immatriculée. Il ne perçoit aucun revenu, et n'a pas vocation à proposer des services marchands, ni à vendre de produits.</p>
@@ -438,6 +467,10 @@
                     </div>
                     
                     <p>Le site ne pratique ni diffamation, ni incitation à la haine, ni harcèlement, et s'astreint à un devoir d'honnêteté intellectuelle : les critiques émises s'appuient toujours sur des contenus publics, vérifiables et cités.</p>
+                    
+                    <div class="warning">
+                        <p><strong>Important :</strong> Le contenu provient de sources réputées fiables. Toutefois, ces informations et/ou documents sont susceptibles de contenir des inexactitudes techniques et des erreurs typographiques. Nous nous réservons le droit de correction.</p>
+                    </div>
                 </section>
 
                 <section id="sources" class="section">
@@ -460,7 +493,7 @@
 
                 <section id="critique" class="section">
                     <h2 class="icon-critique">Mentions spécifiques sur les pages critiques</h2>
-                    <p>Certaines pages du site, notamment la page "Critique des idiots", exposent des cas concrets de pratiques considérées comme problématiques dans l'écosystème des influenceurs tech francophones. <br> Les noms de certaines chaînes ou personnes publiques y apparaissent, notamment :</p>
+                    <p>Certaines pages du site, notamment la page "Critique des idiots", exposent des cas concrets de pratiques considérées comme problématiques dans l'écosystème des influenceurs tech francophones. Les noms de certaines chaînes ou personnes publiques y apparaissent, notamment :</p>
                     
                     <ul>
                         <li><strong>Flowup</strong></li>
@@ -485,8 +518,12 @@
                     <h2 class="icon-rights">Droit de réponse et demandes de retrait</h2>
                     <p>Toute personne physique ou morale citée sur le site bénéficie d'un droit de réponse ou de rectification, en vertu de l'article 6 IV de la loi pour la Confiance dans l'économie numérique (LCEN).</p>
                     
+                    <div class="legal-reference">
+                        <p>Conformément à la LCEN (Loi pour la Confiance dans l'Économie Numérique) et aux dispositions du RGPD.</p>
+                    </div>
+                    
                     <div class="highlight-box">
-                        <p>Pour exercer ce droit ou demander le retrait d'un contenu, <br> il suffit de formuler une demande claire, motivée et polie par email à l'adresse suivante :</p>
+                        <p>Pour exercer ce droit ou demander le retrait d'un contenu, il suffit de formuler une demande claire, motivée et polie par email à l'adresse suivante :</p>
                         <p class="contact-email">📧 contact@atlas-corporation.fr</p>
                     </div>
                     
@@ -504,8 +541,9 @@
                     <h2 class="icon-legal">Statut juridique et hébergement</h2>
                     <ul>
                         <li><strong>Statut juridique :</strong> le site est un projet personnel non immatriculé, ne constituant ni une société ni une association.</li>
-                        <li><strong>Hébergement :</strong> le site est hébergé par un prestataire situé dans l'Union Européenne, conforme au RGPD et à la législation européenne sur la protection des données.</li>
+                        <li><strong>Hébergement :</strong> le site est hébergé par GitHub Pages (https://github.com), conforme au RGPD et à la législation européenne sur la protection des données.</li>
                         <li><strong>Propriétaire du nom de domaine :</strong> privé, enregistré sous anonymat via un service de protection WHOIS.</li>
+                        <li><strong>Direction de la publication :</strong> Anonyme (email : reaper@etik.com)</li>
                     </ul>
                 </section>
 
@@ -514,6 +552,10 @@
                     
                     <h3>8.1 Créations propres</h3>
                     <p>L'ensemble des contenus rédactionnels originaux, analyses, formulations, titres, critiques et graphismes créés spécifiquement pour le site sont protégés au titre du Code de la propriété intellectuelle. Toute reproduction ou réutilisation sans autorisation expresse est interdite.</p>
+                    
+                    <div class="info">
+                        <p>La structure générale du site atlas-corporation.fr, ainsi que les textes, graphiques, images, sons et vidéos la composant sont la propriété de l'éditeur ou de ses partenaires. Toute utilisation non autorisée est prohibée.</p>
+                    </div>
                     
                     <h3>8.2 Contenus tiers</h3>
                     <p>Les éléments issus de tiers (captures d'écran, extraits vidéo, citations, logos) sont :</p>
@@ -527,16 +569,30 @@
                 </section>
 
                 <section id="donnees" class="section">
-                    <h2 class="icon-data">Données personnelles</h2>
+                    <h2 class="icon-data">Traitement des données personnelles</h2>
+                    
                     <div class="info">
                         <p>Le site ne collecte aucune donnée personnelle automatiquement. Aucune fonctionnalité de profil, d'inscription ou de suivi n'est en place.</p>
                     </div>
+                    
+                    <h3>Cadre réglementaire</h3>
+                    <p>Le cadre réglementaire suivant s'applique : les textes français et européens sur la protection des données (RGPD).</p>
                     
                     <h3>Il n'y a :</h3>
                     <ul>
                         <li>ni cookies publicitaires</li>
                         <li>ni traçage de navigation</li>
                         <li>ni statistiques nominatives</li>
+                        <li>ni commercialisation de vos données personnelles</li>
+                    </ul>
+                    
+                    <h3>Objectifs du traitement</h3>
+                    <p>Nous pouvons traiter les données suivantes :</p>
+                    <ul>
+                        <li>dans le cadre de la fourniture du service et de sa gestion</li>
+                        <li>pour prévenir et lutter contre la fraude informatique (spamming, hacking...)</li>
+                        <li>dans le cadre de l'amélioration continue du service</li>
+                        <li>pour nos communications en réponse aux messages</li>
                     </ul>
                     
                     <p>Seuls les emails reçus de manière volontaire par <span class="contact-email">contact@atlas-corporation.fr</span> peuvent contenir des données identifiables (nom, adresse, etc.), qui sont :</p>
@@ -546,13 +602,20 @@
                         <li>utilisées uniquement pour répondre aux messages</li>
                     </ul>
                     
-                    <p>Conformément au Règlement Général sur la Protection des Données (RGPD), toute personne peut demander la suppression immédiate de ses données transmises.</p>
+                    <h3>Vos droits RGPD</h3>
+                    <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous bénéficiez de droits sur vos données personnelles. Ces droits s'exercent sur simple demande auprès du délégué à la protection des données.</p>
+                    
+                    <div class="contact-info">
+                        <p><strong>Pour exercer ces droits :</strong></p>
+                        <p>7 Rue Bellini<br>92800 Puteaux<br><span class="contact-email">contact@atlas-corporation.fr</span></p>
+                        <p>Réponse sous 30 jours maximum.</p>
+                    </div>
                 </section>
 
                 <section id="responsabilites" class="section">
                     <h2 class="icon-responsibility">Responsabilités</h2>
                     <div class="warning">
-                        <p>Le site est proposé "tel quel", sans garantie de fonctionnement ininterrompu ni d'exhaustivité absolue des informations publiées.</p>
+                        <p>Le site est proposé "tel quel", sans garantie de fonctionnement ininterrompu ni d'exhaustivité absolue des informations publiées. Des interruptions techniques sont possibles dans le cadre de la maintenance.</p>
                     </div>
                     
                     <h3>L'éditeur :</h3>
@@ -562,13 +625,16 @@
                         <li>décline toute responsabilité en cas de détournement ou citation hors contexte de ses propos</li>
                     </ul>
                     
+                    <h3>Mesures de sécurité</h3>
+                    <p>Pour assurer la sécurité et la confidentialité des données, atlas-corporation.fr utilise des réseaux protégés par des dispositifs standards tels que firewall, chiffrement, anonymisation et authentification.</p>
+                    
                     <p>Les utilisateurs restent entièrement responsables de leur propre interprétation des textes et de leurs conséquences.</p>
                 </section>
 
                 <section id="acceptation" class="section">
                     <h2 class="icon-acceptance">Acceptation des CGU</h2>
                     <div class="highlight-box">
-                        <p>En naviguant sur atlas-corporation.fr, l'internaute reconnaît :</p>
+                        <p>L'usage de cette plateforme suppose l'adhésion aux conditions suivantes. En naviguant sur atlas-corporation.fr, l'internaute reconnaît :</p>
                         <ul>
                             <li>avoir lu et compris les présentes CGU</li>
                             <li>les accepter sans réserve</li>
@@ -576,22 +642,28 @@
                         </ul>
                     </div>
                     
-                    <p>Ces CGU peuvent être modifiées à tout moment, sans préavis. La version en ligne fait foi.</p>
+                    <p>Ces CGU peuvent être modifiées à tout moment, sans préavis. Les présentes conditions sont sujettes à révision, les utilisateurs du site atlas-corporation.fr sont donc invités à les consulter de manière régulière. La version en ligne fait foi.</p>
                 </section>
 
                 <section id="droit" class="section">
                     <h2 class="icon-jurisdiction">Droit applicable et juridiction compétente</h2>
-                    <p>Les présentes Conditions Générales d'Utilisation sont régies par le droit français, tant pour le fond que pour la forme.</p>
+                    <p>Les présentes Conditions Générales d'Utilisation sont régies par le droit français, tant pour le fond que pour la forme. La loi française s'applique à tout différend relatif au site.</p>
                     
-                    <p>En cas de litige, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire. À défaut d'accord, les tribunaux compétents seront ceux du ressort du siège de l'hébergeur.</p>
+                    <p>En cas de litige, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire. À défaut d'accord, il est fait attribution exclusive de juridiction aux tribunaux compétents de Paris.</p>
                 </section>
 
                 <section id="contact-section" class="section">
                     <h2 class="icon-contact">Contact</h2>
-                    <div class="highlight-box">
-                        <p>Pour toute question, demande, ou signalement, veuillez écrire à :</p>
+                    <div class="contact-info">
+                        <h3>Informations de contact</h3>
+                        <p><strong>Adresse :</strong><br>
+                        7 Rue Bellini<br>
+                        92800 Puteaux</p>
+                        <p><strong>Téléphone :</strong> 01 25 25 25 25</p>
                         <p class="contact-email">📧 contact@atlas-corporation.fr</p>
                     </div>
+                    
+                    <p>Pour toute question, demande de droit de réponse, signalement, ou demande relative au traitement de vos données personnelles, veuillez nous adresser votre demande à l'adresse ci-dessus en joignant une copie de votre pièce d'identité.</p>
                 </section>
             </div>
         </div>
@@ -639,6 +711,28 @@
             section.style.transform = 'translateY(30px)';
             section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(section);
+        });
+
+        // Highlight current section in navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.toc a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = 'var(--accent-orange)';
+                }
+            });
         });
     </script>
 </body>
