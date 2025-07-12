@@ -608,7 +608,7 @@
     <section class="search-section" id="search">
         <div class="container">
             <div class="search-box">
-                <input type="text" class="search-input" placeholder="Rechercher un outil... (ex: OCCT, UserBenchmark, etc.)" id="searchInput">
+                <input type="text" class="search-input" placeholder="Rechercher un outil... (ex: OCCT, UserBenchmark, UserDiag, etc.)" id="searchInput">
             </div>
             <div class="filter-tags">
                 <span class="filter-tag active" data-category="all">Tous</span>
@@ -616,6 +616,7 @@
                 <span class="filter-tag" data-category="gpu">GPU</span>
                 <span class="filter-tag" data-category="memory">Mémoire</span>
                 <span class="filter-tag" data-category="storage">Stockage</span>
+                <span class="filter-tag" data-category="system">Système</span>
                 <span class="filter-tag" data-category="monitoring">Monitoring</span>
                 <span class="filter-tag" data-category="network">Réseau</span>
             </div>
@@ -633,6 +634,22 @@
                 <h2 class="category-title">🔥 Tests Processeur (CPU)</h2>
                 <div class="tools-grid">
                     
+                    <!-- UserDiag -->
+                    <div class="tool-card">
+                        <div class="tool-icon cpu-icon">🛠️</div>
+                        <h3>UserDiag</h3>
+                        <p class="description">Outil de diagnostic complet français avec tests CPU intégrés</p>
+                        <ul class="features">
+                            <li>Test CPU via moteur Prime95</li>
+                            <li>Diagnostic automatisé 3 niveaux</li>
+                            <li>Rapport complet avec conseils</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://userdiag.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://userdiag.com/download" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
                     <!-- OCCT -->
                     <div class="tool-card">
                         <div class="tool-icon cpu-icon">🔥</div>
@@ -673,6 +690,22 @@
                 <h2 class="category-title">🎮 Tests Carte Graphique (GPU)</h2>
                 <div class="tools-grid">
                     
+                    <!-- UserDiag -->
+                    <div class="tool-card">
+                        <div class="tool-icon gpu-icon">🛠️</div>
+                        <h3>UserDiag</h3>
+                        <p class="description">Test GPU automatisé avec FurMark intégré</p>
+                        <ul class="features">
+                            <li>Test GPU via moteur FurMark</li>
+                            <li>Monitoring temps réel</li>
+                            <li>Détection problèmes GPU</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://userdiag.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://userdiag.com/download" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
                     <!-- FurMark -->
                     <div class="tool-card">
                         <div class="tool-icon gpu-icon">🔥</div>
@@ -713,6 +746,22 @@
                 <h2 class="category-title">🧠 Tests Mémoire (RAM)</h2>
                 <div class="tools-grid">
                     
+                    <!-- UserDiag -->
+                    <div class="tool-card">
+                        <div class="tool-icon memory-icon">🛠️</div>
+                        <h3>UserDiag</h3>
+                        <p class="description">Détection configuration RAM et problèmes mémoire</p>
+                        <ul class="features">
+                            <li>Détection dual/quad channel</li>
+                            <li>Vérification fréquence RAM</li>
+                            <li>Diagnostic problèmes mémoire</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://userdiag.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://userdiag.com/download" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
                     <!-- MemTest86 -->
                     <div class="tool-card">
                         <div class="tool-icon memory-icon">🛠️</div>
@@ -753,6 +802,22 @@
                 <h2 class="category-title">💾 Tests Stockage (SSD/HDD)</h2>
                 <div class="tools-grid">
                     
+                    <!-- UserDiag -->
+                    <div class="tool-card">
+                        <div class="tool-icon storage-icon">🛠️</div>
+                        <h3>UserDiag</h3>
+                        <p class="description">Test stockage avec DiskSpd et informations SMART</p>
+                        <ul class="features">
+                            <li>Test via moteur DiskSpd</li>
+                            <li>Informations SMART du disque</li>
+                            <li>Santé et performances stockage</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://userdiag.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://userdiag.com/download" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
                     <!-- CrystalDiskMark -->
                     <div class="tool-card">
                         <div class="tool-icon storage-icon">💨</div>
@@ -788,11 +853,52 @@
                 </div>
             </div>
 
+            <!-- Tests Système Complet -->
+            <div class="category system-tests" id="system" data-category="system">
+                <h2 class="category-title">⚙️ Tests Système Complet</h2>
+                <div class="tools-grid">
+                    
+                    <!-- UserDiag - Principal -->
+                    <div class="tool-card">
+                        <div class="tool-icon system-icon">🛠️</div>
+                        <h3>UserDiag (Recommandé)</h3>
+                        <p class="description">Diagnostic complet automatisé de tout le système PC</p>
+                        <ul class="features">
+                            <li>Test complet CPU, GPU, RAM, Stockage</li>
+                            <li>3 modes : Rapide, Long, Extrême</li>
+                            <li>Rapport détaillé avec conseils</li>
+                            <li>Outil portable français</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://userdiag.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://userdiag.com/download" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
             <!-- Outils de Monitoring -->
             <div class="category monitoring-tools" id="monitoring" data-category="monitoring">
                 <h2 class="category-title">📊 Outils de Monitoring</h2>
                 <div class="tools-grid">
                     
+                    <!-- UserDiag -->
+                    <div class="tool-card">
+                        <div class="tool-icon monitor-icon">🛠️</div>
+                        <h3>UserDiag</h3>
+                        <p class="description">Monitoring intégré avec HWiNFO pendant les tests</p>
+                        <ul class="features">
+                            <li>Intégration HWiNFO</li>
+                            <li>Temperatures, tensions, fréquences</li>
+                            <li>Monitoring automatique pendant tests</li>
+                        </ul>
+                        <div class="tool-actions">
+                            <a href="https://userdiag.com/" target="_blank" rel="noopener" class="btn btn-primary">Site Officiel</a>
+                            <a href="https://userdiag.com/download" target="_blank" rel="noopener" class="btn btn-secondary">Télécharger</a>
+                        </div>
+                    </div>
+
                     <!-- HWiNFO64 -->
                     <div class="tool-card">
                         <div class="tool-icon monitor-icon">🌡️</div>
