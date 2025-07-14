@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
-    <title>Analyse Critique : Influenceurs Hardware</title>
+    <title>🎭 Analyse Satirique : PAX - Le Physicien Créatif</title>
     <style>
         * {
             margin: 0;
@@ -20,11 +20,13 @@
             --accent-orange: #ff6b35;
             --accent-red: #cc0000;
             --accent-yellow: #ffcc00;
-            --accent-green: #ff8800;
+            --accent-green: #00ff88;
+            --accent-purple: #8b5cf6;
+            --accent-blue: #0d0faf;
+            --accent-cyan: #00ffff;
             --text-light: #ffffff;
             --text-muted: #cccccc;
             --border-color: #660000;
-            --accent-blue: #0d0faf;
             --card-bg: rgba(45, 45, 45, 0.95);
             --border-radius: 16px;
             --shadow: 0 10px 25px rgba(255, 107, 53, 0.1);
@@ -48,9 +50,9 @@
             height: 100%;
             background: 
                 radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 204, 0, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 70%);
             z-index: -1;
-
         }
 
         .container {
@@ -79,32 +81,45 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow), var(--accent-green));
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan), var(--accent-purple), var(--accent-yellow));
+            animation: rainbow 3s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
 
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-red));
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-family: 'Orbitron', monospace;
             text-transform: uppercase;
             letter-spacing: 2px;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(139, 92, 246, 0.8); }
         }
 
         .hero-subtitle {
             font-size: 1.25rem;
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
+            font-style: italic;
         }
 
         .intro-card {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
-            color: var(--primary-dark);
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--text-light);
             padding: 2.5rem;
             border-radius: var(--border-radius);
             margin-bottom: 3rem;
@@ -112,290 +127,14 @@
             font-size: 1.1rem;
             font-weight: 600;
             text-align: center;
-        }
-        
-        /* Tableau comparatif*/
-
-
-        .table-wrapper {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            overflow-x: auto;
-            transition: all 0.3s ease;
+            border: 3px solid var(--accent-yellow);
+            animation: pulse 3s ease-in-out infinite;
         }
 
-        .table-wrapper:hover {
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-2px);
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 16px;
-        }
-
-        th, td {
-            padding: 20px;
-            text-align: left;
-            border-bottom: 2px solid var(--tertiary-dark);
-            vertical-align: top;
-        }
-
-        th {
-            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-red) 100%);
-            color: var(--text-light);
-            font-weight: bold;
-            font-size: 18px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        th:first-child {
-            border-top-left-radius: var(--border-radius);
-            width: 35%;
-        }
-
-        th:nth-child(2) {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-orange) 100%);
-        }
-
-        th:last-child {
-            border-top-right-radius: var(--border-radius);
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-yellow) 100%);
-        }
-
-        tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        tr:hover {
-            background: rgba(255, 107, 53, 0.1);
-            transform: scale(1.01);
-            transition: all 0.3s ease;
-        }
-
-        td:first-child {
-            font-weight: bold;
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.05);
-            border-right: 3px solid var(--accent-orange);
-        }
-
-        td:nth-child(2) {
-            border-right: 2px solid var(--tertiary-dark);
-        }
-
-        .highlight-value {
-            color: var(--accent-yellow);
-            font-weight: bold;
-        }
-
-        .source-text {
-            font-style: italic;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .performance-good {
-            color: var(--accent-green);
-        }
-
-        .performance-moderate {
-            color: var(--accent-yellow);
-        }
-
-        .performance-poor {
-            color: var(--accent-red);
-        }
-
-        @media (max-width: 768px) {
-            .table-wrapper {
-                padding: 15px;
-            }
-            
-            th, td {
-                padding: 12px;
-                font-size: 14px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-        }
-        /* Calculateur centré */
-.calculator-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem 0;
-    width: 100%;
-}
-
-.calculator {
-    background: linear-gradient(135deg, var(--card-bg), var(--secondary-dark));
-    backdrop-filter: blur(10px);
-    border-radius: var(--border-radius);
-    padding: 40px;
-    box-shadow: var(--shadow);
-    max-width: 500px;
-    width: 100%;
-    border: 1px solid var(--border-color);
-    position: relative;
-    margin: 0 auto;
-    transition: box-shadow 0.3s ease;
-}
-
-.calculator:hover {
-    box-shadow: var(--shadow-hover);
-}
-
-.calculator h1 {
-    text-align: center;
-    color: var(--text-light);
-    margin-bottom: 30px;
-    font-size: 1.8rem;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.input-group {
-    margin-bottom: 25px;
-}
-
-.calculator label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--text-light);
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.calculator select, .calculator input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: var(--secondary-dark);
-    color: var(--text-light);
-}
-
-.calculator select:focus, .calculator input:focus {
-    outline: none;
-    border-color: var(--accent-orange);
-    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
-}
-
-.power-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.power-btn {
-    padding: 10px 8px;
-    border: 2px solid var(--border-color);
-    background: var(--tertiary-dark);
-    color: var(--text-light);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-align: center;
-}
-
-.power-btn:hover {
-    border-color: var(--accent-orange);
-    background: var(--accent-orange);
-    color: var(--text-light);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
-}
-
-.power-btn.active {
-    background: var(--accent-orange);
-    color: var(--text-light);
-    border-color: var(--accent-orange);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
-}
-
-.result {
-    background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
-    color: var(--text-light);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    margin-top: 30px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255, 107, 53, 0.3);
-}
-
-.result h3 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.result .value {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.result .unit {
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
-.efficiency-info {
-    background: var(--card-bg);
-    color: var(--text-light);
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
-    border-left: 4px solid var(--accent-orange);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
-}
-
-.efficiency-info h4 {
-    color: var(--text-light);
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-}
-
-.efficiency-info p {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    line-height: 1.4;
-}
-
-@media (max-width: 480px) {
-    .calculator {
-        padding: 25px;
-        margin: 0 1rem;
-    }
-    
-    .power-buttons {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .calculator h1 {
-        font-size: 1.5rem;
-    }
-}
 
         .section {
             background: var(--card-bg);
@@ -405,14 +144,24 @@
             margin-bottom: 3rem;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            border-left: 4px solid var(--accent-orange);
-            border: 2px solid rgba(255, 107, 53, 0.2);
+            border-left: 4px solid var(--accent-cyan);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .section::after {
+            content: '🧪';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 2rem;
+            animation: float 2s ease-in-out infinite;
         }
 
         .section:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--accent-orange);
+            border-color: var(--accent-cyan);
         }
 
         .section-header {
@@ -423,11 +172,18 @@
         }
 
         .section-icon {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
         .section h2 {
@@ -442,48 +198,59 @@
         .section h3 {
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--accent-orange);
+            color: var(--accent-cyan);
             margin: 2rem 0 1rem 0;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-orange);
+            border-bottom: 2px solid var(--accent-cyan);
         }
 
         .warning-box {
-            background: linear-gradient(135deg, rgba(255, 204, 0, 0.2), rgba(255, 107, 53, 0.1));
-            border: 2px solid var(--accent-yellow);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(139, 92, 246, 0.1));
+            border: 3px solid var(--accent-cyan);
             border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
+            padding: 2rem;
+            margin: 2rem 0;
             position: relative;
+            overflow: hidden;
         }
 
         .warning-box::before {
             content: '⚠️';
-            font-size: 1.5rem;
+            font-size: 2rem;
             position: absolute;
-            top: -8px;
-            left: 15px;
-            padding: 0 8px;
+            top: -12px;
+            left: 20px;
         }
 
         .warning-box h4 {
-            color: var(--accent-yellow);
+            color: var(--accent-cyan);
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
         .problem-grid {
             display: grid;
             gap: 1.5rem;
-            margin: 0rem 0;
+            margin: 2rem 0;
         }
 
         .problem-card {
-            background: rgba(204, 0, 0, 0.1);
-            border: 2px solid var(--accent-red);
+            background: linear-gradient(135deg, rgba(204, 0, 0, 0.2), rgba(255, 107, 53, 0.1));
+            border: 3px solid var(--accent-red);
             border-radius: 12px;
-            padding: 1.5rem;
-            border-left: 4px solid var(--accent-red);
+            padding: 2rem;
+            border-left: 6px solid var(--accent-red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '🔬';
+            position: absolute;
+            top: -15px;
+            right: 15px;
+            font-size: 2rem;
         }
 
         .problem-card h4 {
@@ -493,6 +260,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 1.2rem;
         }
 
         .problem-card ul {
@@ -501,19 +269,19 @@
         }
 
         .problem-card li {
-            padding: 0.5rem 0;
+            padding: 0.8rem 0;
             border-bottom: 1px solid rgba(204, 0, 0, 0.3);
             position: relative;
-            padding-left: 1.5rem;
-            color: var(--text-muted);
+            padding-left: 2rem;
+            color: var(--text-light);
+            font-weight: 500;
         }
 
         .problem-card li:before {
-            content: '•';
-            color: var(--accent-red);
-            font-weight: bold;
+            content: '⚛️';
             position: absolute;
             left: 0;
+            font-size: 1.2rem;
         }
 
         .problem-card li:last-child {
@@ -521,51 +289,47 @@
         }
 
         .performance-showcase {
-            background: rgba(26, 26, 26, 0.8);
-            border: 2px solid var(--accent-orange);
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(139, 92, 246, 0.1));
+            border: 3px solid var(--accent-cyan);
+            border-radius: 16px;
             padding: 2rem;
             margin: 2rem 0;
-            font-family: 'Monaco', 'Menlo', monospace;
             position: relative;
+            animation: showcase-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes showcase-glow {
+            from { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+            to { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
         }
 
         .performance-showcase::before {
-            content: 'Performance Test';
+            content: '📚';
             position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--tertiary-dark);
-            padding: 0 10px;
-            font-size: 0.875rem;
-            color: var(--accent-orange);
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-        }
-
-        .perf-highlight {
-            background: var(--accent-orange);
-            color: var(--primary-dark);
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            font-weight: 600;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            padding: 10px;
+            border-radius: 50%;
         }
 
         .comparison-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
             margin: 2rem 0;
         }
 
         .comparison-card {
-            padding: 1.5rem;
-            border-radius: 12px;
+            padding: 2rem;
+            border-radius: 16px;
             color: var(--text-light);
             position: relative;
             overflow: hidden;
-            border: 2px solid transparent;
+            border: 3px solid transparent;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .comparison-card::before {
@@ -579,18 +343,18 @@
             background: radial-gradient(circle at 30% 30%, white, transparent);
         }
 
-        .good-practice {
-            background: linear-gradient(135deg, var(--accent-green), #10b981);
-            border-color: var(--accent-green);
-        }
-
         .bad-practice {
             background: linear-gradient(135deg, var(--accent-red), #ef4444);
             border-color: var(--accent-red);
         }
 
+        .good-practice {
+            background: linear-gradient(135deg, var(--accent-green), #10b981);
+            border-color: var(--accent-green);
+        }
+
         .comparison-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: var(--shadow-hover);
         }
 
@@ -599,231 +363,264 @@
             margin-bottom: 1rem;
             position: relative;
             z-index: 1;
+            font-size: 1.2rem;
         }
 
         .comparison-card p {
             position: relative;
             z-index: 1;
-        }
-        /* Navbar Styles */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid rgba(255, 107, 53, 0.3);
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-            transform: translateY(-100%);
+            font-size: 1rem;
         }
 
-        .navbar.visible {
-            transform: translateY(0);
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 10, 0.98);
-            border-bottom-color: var(--accent-orange);
-            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);
-        }
-
-        .navbar-container {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--text-light);
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            font-size: 1.25rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-brand:hover {
-            color: var(--accent-orange);
-            transform: scale(1.05);
-        }
-
-        .navbar-brand-icon {
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: float 2s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .navbar-nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .navbar-nav li {
-            position: relative;
-        }
-
-        .navbar-nav a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+        .video-container {
+            background: linear-gradient(135deg, var(--tertiary-dark), var(--secondary-dark));
+            border: 4px solid var(--accent-red);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 30px rgba(204, 0, 0, 0.3);
         }
 
-        .navbar-nav a::before {
-            content: '';
+        .video-container::before {
+            content: '🎬';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
-            transition: left 0.5s;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            border: 3px solid var(--accent-red);
+            border-radius: 50%;
+            padding: 10px;
         }
 
-        .navbar-nav a:hover::before {
-            left: 100%;
-        }
-
-        .navbar-nav a:hover {
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .navbar-nav a.active {
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.15);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-        }
-
-        .navbar-mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-light);
+        .video-container h4 {
+            color: var(--accent-red);
+            margin: 2rem 0 1rem 0;
             font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            animation: shake 1s ease-in-out infinite;
         }
 
-        .navbar-mobile-toggle:hover {
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.1);
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
 
-        .navbar-mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid var(--accent-orange);
-            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
-            padding: 1rem 0;
+        .video-container video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--accent-orange);
         }
 
-        .navbar-mobile-menu.active {
+        .video-warning {
+            background: linear-gradient(135deg, rgba(204, 0, 0, 0.3), rgba(255, 107, 53, 0.2));
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid var(--accent-red);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.7; }
+        }
+
+        .video-prevention {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(16, 185, 129, 0.2));
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid var(--accent-green);
+        }
+
+        .calculator {
+            background: linear-gradient(135deg, var(--card-bg), var(--secondary-dark));
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            width: 100%;
+            border: 3px solid var(--accent-cyan);
+            position: relative;
+            margin: 2rem auto;
+            transition: box-shadow 0.3s ease;
+            animation: calculator-glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes calculator-glow {
+            from { border-color: var(--accent-cyan); }
+            to { border-color: var(--accent-purple); }
+        }
+
+        .calculator:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .calculator h1 {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .calculator label {
             display: block;
-            animation: slideDown 0.3s ease;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .navbar-mobile-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            padding: 0 2rem;
-            list-style: none;
-        }
-
-        .navbar-mobile-nav a {
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
+        .calculator select, .calculator input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            text-decoration: none;
+            background: var(--secondary-dark);
             color: var(--text-light);
         }
 
-        .navbar-mobile-nav a:hover {
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.1);
+        .calculator select:focus, .calculator input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.2);
         }
 
-        /* Progress Indicator */
-        .navbar-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
-            transition: width 0.3s ease;
-            border-radius: 0 2px 0 0;
+        .power-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar-nav {
-                display: none;
-            }
-
-            .navbar-mobile-toggle {
-                display: block;
-            }
-
-            .navbar-container {
-                padding: 0 1rem;
-            }
-
-            .navbar-brand {
-                font-size: 1.1rem;
-            }
+        .power-btn {
+            padding: 10px 8px;
+            border: 2px solid var(--border-color);
+            background: var(--tertiary-dark);
+            color: var(--text-light);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
         }
+
+        .power-btn:hover {
+            border-color: var(--accent-cyan);
+            background: var(--accent-cyan);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+        }
+
+        .power-btn.active {
+            background: var(--accent-cyan);
+            color: var(--primary-dark);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
+        }
+
+        .result {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--text-light);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            animation: result-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes result-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+        }
+
+        .result h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .result .value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .result .unit {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .efficiency-info {
+            background: var(--card-bg);
+            color: var(--text-light);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-cyan);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .efficiency-info h4 {
+            color: var(--text-light);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .efficiency-info p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .image-placeholder {
+            background: var(--tertiary-dark);
+            border: 2px dashed var(--accent-cyan);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
         .best-practices-section {
-            background: linear-gradient(135deg, var(--accent-green), var(--accent-orange));
+            background: linear-gradient(135deg, var(--tertiary-dark), var(--secondary-dark));
             color: var(--text-light);
             padding: 2.5rem;
             border-radius: var(--border-radius);
             margin: 3rem 0;
             box-shadow: var(--shadow);
+            border: 2px solid var(--accent-orange);
         }
 
         .best-practices-section h3 {
@@ -859,6 +656,12 @@
             text-align: center;
             box-shadow: var(--shadow);
             margin-top: 3rem;
+            animation: conclusion-shine 5s ease-in-out infinite;
+        }
+
+        @keyframes conclusion-shine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.1); }
         }
 
         .conclusion h2 {
@@ -871,18 +674,18 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: var(--accent-orange);
+            background: var(--accent-cyan);
             color: var(--primary-dark);
             border: none;
             border-radius: 50%;
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             cursor: pointer;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
             opacity: 0;
             visibility: hidden;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
@@ -892,64 +695,33 @@
         }
 
         .scroll-top:hover {
-            background: var(--accent-yellow);
-            transform: translateY(-4px) scale(1.1);
+            background: var(--accent-purple);
+            transform: translateY(-4px) scale(1.1) rotate(360deg);
             box-shadow: var(--shadow-hover);
         }
 
-        .image-placeholder {
-            background: var(--tertiary-dark);
-            border: 2px dashed var(--accent-orange);
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            margin: 1rem 0;
+        /* Touches satiriques subtiles */
+        .satirical-hint {
             font-style: italic;
-        }
-        /* Styles corrigés pour la vidéo */
-        .video-container {
-            background: var(--tertiary-dark);
-            border: 3px solid var(--accent-red);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
+            color: var(--accent-yellow);
+            font-size: 0.9rem;
+            margin-left: 1rem;
         }
 
-        .video-container h4 {
-            color: var(--accent-red);
-            margin-bottom: 1rem;
-            font-size: 3rem;
+        .physics-emoji {
+            display: inline-block;
+            animation: wiggle 2s ease-in-out infinite;
         }
 
-        .video-container video {
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
         }
 
-        .video-warning {
-            background: rgba(204, 0, 0, 0.1);
-            color: var(--accent-red);
-            padding: 0.75rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            font-size: 2rem;
-            font-style: italic;
-        }
-        .video-prevention {
-            background: rgba(22, 138, 32, 0.1);
-            color: var(--accent-green);
-            padding: 0.75rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            font-size: 2rem;
-            font-style: italic;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         @media (max-width: 768px) {
@@ -978,331 +750,273 @@
             .video-container {
                 padding: 1rem;
             }
-        }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
+            .calculator {
+                padding: 25px;
+                margin: 0 1rem;
             }
-
-            .hero {
-                padding: 2rem 1rem;
+            
+            .power-buttons {
+                grid-template-columns: repeat(2, 1fr);
             }
-
-            .section {
-                padding: 1.5rem;
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
-            }
-        }
-
-
-
-        /* Animation pour les éléments flottants */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .section-icon {
-            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
-     <nav class="navbar" id="navbar">
-        <div class="navbar-container">
-            <a href="#" class="navbar-brand">
-                <span class="navbar-brand-icon">🔍</span>
-                <span>Analyse Critique</span>
-            </a>
-            
-            <ul class="navbar-nav">
-                <li><a href="https://atlas-corporation.fr/critique-des-idiots/main.html" class="nav-link active">Accueil</a></li>
-                <li><a href="https://atlas-corporation.fr/critique-des-idiots/frenchhardware.html" class="nav-link">FrenchHardware</a></li>
-                <li><a href="https://atlas-corporation.fr/critique-des-idiots/solotech.html.html" class="nav-link">Solotech</a></li>
-                <li><a href="https://atlas-corporation.fr/critique-des-idiots/pax.html" class="nav-link">PAX</a></li>
-
-            </ul>
-            
-            <button class="navbar-mobile-toggle" id="mobile-toggle">
-                ☰
-            </button>
-            
-            <div class="navbar-mobile-menu" id="mobile-menu">
-               <ul class="navbar-nav">
-					<li><a href="https://atlas-corporation.fr/critique-des-idiots/main.html" class="nav-link active">Accueil</a></li>
-					<li><a href="https://atlas-corporation.fr/critique-des-idiots/frenchhardware.html" class="nav-link">FrenchHardware</a></li>
-					<li><a href="https://atlas-corporation.fr/critique-des-idiots/solotech.html.html" class="nav-link">Solotech</a></li>
-					<li><a href="https://atlas-corporation.fr/critique-des-idiots/pax.html" class="nav-link">PAX</a></li>
-
-				</ul>
-            </div>
-        </div>
-        
-        <div class="navbar-progress" id="progress-bar"></div>
-    </nav>
     <div class="container">
-        <header class="hero fade-in">
-            <h1>🔍 Analyse Critique: PAX</h1>
+        <header class="hero">
+            <h1>🎭 Analyse Critique: PAX</h1>
             <p class="hero-subtitle">Décryptage des pratiques douteuses dans l'univers des influenceurs hardware français</p>
+            <br>
+            <div style="background: linear-gradient(135deg, rgba(255, 204, 0, 0.2), rgba(255, 107, 53, 0.2)); border: 2px solid var(--accent-yellow); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; text-align: center;">
+                <h3 style="color: var(--accent-yellow); margin-bottom: 0.5rem;">🎭 CONTENU SATIRIQUE 🎭</h3>
+                <p style="color: var(--text-light); font-style: italic;">Cette page contient des éléments satiriques et humoristiques pour souligner les erreurs techniques. L'analyse reste factuelle mais est présentée avec ironie.</p>
+            </div>
             <br>
             <p class="hero-subtitle">Note : Tous les contenus affichés ou analysés sur cette page ont été récupérés à partir de sources publiques, <br> notamment les vidéos et publications disponibles sur la chaîne mentionnée en haut de chaque section. <br> Ces éléments sont librement accessibles sur Internet au moment de leur consultation.</p>
             <br>
             <p class="hero-subtitle">CGU visibles à ce lien: <a href="https://atlas-corporation.fr/cgu/">CGU de atlas-corporation.fr</a></p>
-            
         </header>
 
-        <div class="intro-card fade-in">
+        <div class="intro-card">
             <p>Cette analyse met en lumière les pratiques questionables de certains influenceurs tech français : tests biaisés, recommandations incohérentes et conflits d'intérêts. Une approche critique nécessaire pour aider les consommateurs à faire des choix éclairés.</p>
         </div>
-        <section class="section fade-in">
-            <div class="section-header"id="pax">
+
+        <section class="section">
+            <div class="section-header" id="pax">
                 <div class="section-icon">🌪️</div>
                 <div>
                     <h2>PAX</h2>
-                    <p style="color: var(--text-secondary);">Méconnaissance des principes physiques et des explications fausses</p>
+                    <p style="color: var(--text-muted);">Méconnaissance des principes physiques et des explications fausses</p>
                 </div>
             </div>
 
-            <h3>🌊 Incompréhension de l'aérodynamique</h3>
+            <h3>🌊 Incompréhension de l'aérodynamique <span class="physics-emoji">🤔</span></h3>
             
-            <p>PAX semble ignorer les principes fondamentaux de la mécanique des fluides, particulièrement l'effet Venturi et l'importance de la pression statique.</p>
+            <p>PAX semble ignorer les principes fondamentaux de la mécanique des fluides, particulièrement l'effet Venturi et l'importance de la pression statique. <span class="satirical-hint">(qui a besoin de la physique de toute façon ? 😏)</span></p>
 
             <div class="warning-box">
-                <h4>Effet Venturi Ignoré</h4>
-                <p>Principe physique fondamental : un fluide accélère en passant dans un espace rétréci, créant une baisse de pression. PAX base ses recommandations uniquement sur le CFM théorique.</p>
+                <h4>Effet Venturi Ignoré <span class="physics-emoji">🌪️</span></h4>
+                <p>Principe physique fondamental : un fluide accélère en passant dans un espace rétréci, créant une baisse de pression. PAX base ses recommandations uniquement sur le CFM théorique. <span class="satirical-hint">(Einstein doit se retourner dans sa tombe... 🪦)</span></p>
             </div>
 
             <div class="problem-grid">
                 <div class="problem-card">
                     <h4>⚙️ Erreurs sur la Ventilation</h4>
                     <ul>
-                        <li>Comparaison uniquement basée sur les RPM</li>
-                        <li>Ignorance de la pression statique</li>
-                        <li>Configurations créant des flux chaotiques</li>
-                        <li>Positionnement inadéquat des ventilateurs</li>
+                        <li>Comparaison uniquement basée sur les RPM <span class="satirical-hint">(plus ça tourne vite, mieux c'est ! 🌀)</span></li>
+                        <li>Ignorance de la pression statique <span class="satirical-hint">(concept surfait apparemment 🙄)</span></li>
+                        <li>Configurations créant des flux chaotiques <span class="satirical-hint">(le chaos, c'est moderne ! 💨)</span></li>
+                        <li>Positionnement inadéquat des ventilateurs <span class="satirical-hint">(l'art de l'approximation ✨)</span></li>
                     </ul>
                 </div>
             </div>
            
-            <h3>⚡ Incompréhension de la NORME 80 +</h3>
+            <h3>⚡ Incompréhension de la NORME 80+ <span class="physics-emoji">🔌</span></h3>
             <div class="problem-grid">
                 <h4>⚠️ Clarification Technique Importante</h4>
-                <p>La vidéo analysée ci-dessous contient des <strong>informations techniques incorrectes</strong> concernant les alimentations PC et les certifications 80+.</p>
+                <p>La vidéo analysée ci-dessous contient des <strong>informations techniques incorrectes</strong> concernant les alimentations PC et les certifications 80+. <span class="satirical-hint">(spoiler : les normes n'augmentent pas magiquement vos FPS ! 🎮✨)</span></p>
             </div>
-                <div class="problem-grid">
-                    <div class="problem-card">
-                        <h4>⚡ Désinformation sur les Normes 80+</h4>
-                            <ul>
-                                <li>Affirmations fausses sur l'augmentation de performances</li>
-                                <li>Méconnaissance totale des certifications énergétiques</li>
-                                <li>Confusion entre efficacité et puissance délivrée</li>
-                                <li>Risque de destruction des composants selon sa logique</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="warning-box">
-                <h4>Faits vérifiés</h4>
-                <p>La documentation officielle confirme que les normes 80+ concernent exclusivement l'efficacité énergétique et non l'augmentation des performances électriques des composants.</p>
-            </div>
+
             <div class="problem-grid">
                 <div class="problem-card">
-                    <h4>⚙️ Erreurs sur la Ventilation</h4>
+                    <h4>⚡ Désinformation sur les Normes 80+</h4>
                     <ul>
-                        <li>Comparaison uniquement basée sur les RPM</li>
-                        <li>Ignorance de la pression statique</li>
-                        <li>Configurations créant des flux chaotiques</li>
-                        <li>Positionnement inadéquat des ventilateurs</li>
+                        <li>Affirmations fausses sur l'augmentation de performances <span class="satirical-hint">(si seulement c'était si simple ! 😂)</span></li>
+                        <li>Méconnaissance totale des certifications énergétiques <span class="satirical-hint">(qui lit la documentation de toute façon ? 📚)</span></li>
+                        <li>Confusion entre efficacité et puissance délivrée <span class="satirical-hint">(petite nuance, grande différence ! 🤷‍♂️)</span></li>
+                        <li>Risque de destruction des composants selon sa logique <span class="satirical-hint">(RIP GPU si c'était vrai ! 💀)</span></li>
                     </ul>
                 </div>
             </div>
+
+            <div class="warning-box">
+                <h4>Faits vérifiés <span class="physics-emoji">📐</span></h4>
+                <p>La documentation officielle confirme que les normes 80+ concernent exclusivement l'efficacité énergétique et non l'augmentation des performances électriques des composants. <span class="satirical-hint">(quelle surprise ! 😮)</span></p>
+            </div>
+
             <div class="performance-showcase">
-                <h4>📚 Explication des normes 80+</h4>
+                <h4 style="margin-top: 2rem;">📚 Explication des normes 80+ <span class="physics-emoji">⚡</span></h4>
                 <p>Les <strong>certifications 80+</strong> (Bronze, Silver, Gold, Platinum, Titanium) sont des standards qui évaluent uniquement <strong>l'efficacité énergétique</strong> des alimentations PC. Ces normes mesurent le pourcentage d'énergie effectivement délivrée par rapport à l'énergie consommée depuis le réseau électrique.</p>
                 
-                <p><strong>Point crucial :</strong> Ces certifications n'augmentent en aucun cas la tension, l'intensité ou la puissance délivrée aux composants. Une telle augmentation provoquerait la destruction des composants par surcharge électrique.</p>
+                <p><strong>Point crucial :</strong> Ces certifications n'augmentent en aucun cas la tension, l'intensité ou la puissance délivrée aux composants. Une telle augmentation provoquerait la destruction des composants par surcharge électrique. <span class="satirical-hint">(oups ! 💥)</span></p>
             </div>
 
             <div class="comparison-grid">
                 <div class="comparison-card bad-practice">
                     <h4>❌ Affirmation de PAX</h4>
-                    <p>Les normes 80+ augmentent les puissances injectés dans les composants comme les GPU</p>
+                    <p>Les normes 80+ augmentent les puissances injectées dans les composants comme les GPU <span class="satirical-hint">(si seulement ! 🚀)</span></p>
                 </div>
                 <div class="comparison-card good-practice">
                     <h4>✅ Réalité Technique</h4>
-                    <p>Les normes 80+ concernent uniquement l'efficacité énergétique, pas l'augmentation de puissance</p>
+                    <p>Les normes 80+ concernent uniquement l'efficacité énergétique, pas l'augmentation de puissance <span class="satirical-hint">(boring mais vrai ! 😴)</span></p>
                 </div>
             </div>
 
-             <div class="video-container">
-                <h4>🎥 Contenu problématique identifié</h4>
+            <div class="video-container">
+                <h4>🎥 Contenu problématique identifié <span class="physics-emoji">📹</span></h4>
                 <video controls preload="metadata" style="max-height: 400px;">
                     <source src="https://fichiers.atlas-corporation.fr/videostock/paxenormedingueries.mp4" type="video/mp4">
                     <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
                 </video>
                 <div class="video-warning">
-                    ⚠️ Contenu diffusant des informations techniques erronées sur les normes 80+
+                    ⚠️ Contenu diffusant des informations techniques erronées sur les normes 80+ <span class="satirical-hint">(attention aux neurones ! 🧠)</span>
                 </div>
             </div>
             
             <div class="image-placeholder">
-                <h4>📊 Documentation officielle</h4>
-                <p> <img src="80plusratings.jpg"></p>
+                <h4>📊 Documentation officielle <span class="physics-emoji">📋</span></h4>
+                <p><img src="80plusratings.jpg" alt="Documentation 80+"></p>
                 <div class="video-prevention">
-                    ⚠️ Preuve documentaire des véritables spécifications des normes 80+
+                    ⚠️ Preuve documentaire des véritables spécifications des normes 80+ <span class="satirical-hint">(la science triomphe ! 🔬)</span>
                 </div>
                 <br>
                 <div class="calculator">
+                    <h1>Calculateur de Consommation Alimentation PC <span class="physics-emoji">🔌</span></h1>
         
-                    <h1>Calculateur de Consommation Alimentation PC</h1>
-        
-        <div class="input-group">
-            <label for="efficiency">Rendement de l'alimentation :</label>
-            <select id="efficiency">
-                <option value="">Sélectionnez le rendement</option>
-                <option value="0.70">70% (Basique)</option>
-                <option value="0.75">75%</option>
-                <option value="0.80">80%</option>
-                <option value="0.82">82% (80+ Bronze)</option>
-                <option value="0.85">85% (80+ Silver)</option>
-                <option value="0.87">87% (80+ Gold)</option>
-                <option value="0.90">90% (80+ Platinum)</option>
-                <option value="0.92">92% (80+ Titanium)</option>
-                <option value="0.96">96% (80+ Ruby (Coming Soon))</option>
-            </select>
-        </div>
+                    <div class="input-group">
+                        <label for="efficiency">Rendement de l'alimentation :</label>
+                        <select id="efficiency">
+                            <option value="">Sélectionnez le rendement</option>
+                            <option value="0.70">70% (Basique)</option>
+                            <option value="0.75">75%</option>
+                            <option value="0.80">80%</option>
+                            <option value="0.82">82% (80+ Bronze)</option>
+                            <option value="0.85">85% (80+ Silver)</option>
+                            <option value="0.87">87% (80+ Gold)</option>
+                            <option value="0.90">90% (80+ Platinum)</option>
+                            <option value="0.92">92% (80+ Titanium)</option>
+                            <option value="0.96">96% (80+ Ruby - Coming Soon)</option>
+                        </select>
+                        <span class="satirical-hint">*Aucune magie impliquée dans ce calcul ! ✨</span>
+                    </div>
 
-        <div class="input-group">
-            <label>Puissance de sortie souhaitée (W) :</label>
-            <div class="power-buttons">
-                <button class="power-btn" data-power="650">650W</button>
-                <button class="power-btn" data-power="750">750W</button>
-                <button class="power-btn" data-power="850">850W</button>
-                <button class="power-btn" data-power="1000">1000W</button>
-                <button class="power-btn" data-power="1200">1200W</button>
-                <button class="power-btn" data-power="1600">1600W</button>
-                <button class="power-btn" data-power="2000">2000W</button>
-                <button class="power-btn" data-power="2200">2200W</button>
-            </div>
-        </div>
+                    <div class="input-group">
+                        <label>Puissance de sortie souhaitée (W) :</label>
+                        <div class="power-buttons">
+                            <button class="power-btn" data-power="650">650W</button>
+                            <button class="power-btn" data-power="750">750W</button>
+                            <button class="power-btn" data-power="850">850W</button>
+                            <button class="power-btn" data-power="1000">1000W</button>
+                            <button class="power-btn" data-power="1200">1200W</button>
+                            <button class="power-btn" data-power="1600">1600W</button>
+                            <button class="power-btn" data-power="2000">2000W</button>
+                            <button class="power-btn" data-power="2200">2200W</button>
+                        </div>
+                    </div>
 
-        <div id="result" class="result" style="display: none;">
-            <h3>Consommation estimée à la prise</h3>
-            <div class="value" id="consumption-value">0</div>
-            <div class="unit">Watts</div>
-        </div>
+                    <div id="result" class="result" style="display: none;">
+                        <h3>Consommation estimée à la prise</h3>
+                        <div class="value" id="consumption-value">0</div>
+                        <div class="unit">Watts <span class="satirical-hint">(pas de FPS bonus, désolé ! 🎮)</span></div>
+                    </div>
 
-        <div class="efficiency-info">
-            <h4>À propos du rendement :</h4>
-            <p>Le rendement indique l'efficacité de l'alimentation. Une alimentation 80+ Gold avec 87% de rendement consommera moins d'électricité qu'une alimentation basique à 70% pour la même puissance de sortie.</p>
-        </div>
-    </div>
-
+                    <div class="efficiency-info">
+                        <h4>À propos du rendement :</h4>
+                        <p>Le rendement indique l'efficacité de l'alimentation. Une alimentation 80+ Gold avec 87% de rendement consommera moins d'électricité qu'une alimentation basique à 70% pour la même puissance de sortie. <span class="satirical-hint">(c'est tout, pas de miracle ! ⚡)</span></p>
+                    </div>
+                </div>
             </div>
 
-
-            <h3>Conseils logiciels douteux</h3>
+            <h3>💻 Conseils logiciels douteux <span class="physics-emoji">🤖</span></h3>
             
             <div class="comparison-grid">
                 <div class="comparison-card bad-practice">
                     <h4>❌ Lossless Scaling</h4>
-                    <p>Ajout de latence et artefacts visuels non mentionnés</p>
+                    <p>Ajout de latence et artefacts visuels non mentionnés <span class="satirical-hint">(mais ça scale ! 📈)</span></p>
                 </div>
                 <div class="comparison-card bad-practice">
                     <h4>❌ Glary Utilities</h4>
-                    <p>Pseudo-optimiseur remplaçant des fonctions natives Windows</p>
+                    <p>Pseudo-optimiseur remplaçant des fonctions natives Windows <span class="satirical-hint">(Microsoft déteste cette astuce ! 😏)</span></p>
                 </div>
             </div>
 
             <div class="warning-box">
-                <h4>Risques des Pseudo-Optimiseurs</h4>
+                <h4>Risques des Pseudo-Optimiseurs <span class="physics-emoji">💀</span></h4>
                 <ul style="list-style: disc; margin-left: 1.5rem;">
-                    <li>Suppression de fichiers système essentiels</li>
-                    <li>Désactivation de services critiques</li>
-                    <li>Ajout de publicités intrusives</li>
-                    <li>Dégradation des performances système</li>
+                    <li>Suppression de fichiers système essentiels <span class="satirical-hint">(oops ! 🗑️)</span></li>
+                    <li>Désactivation de services critiques <span class="satirical-hint">(qui a besoin de stabilité ? 🙃)</span></li>
+                    <li>Ajout de publicités intrusives <span class="satirical-hint">(gratuité has a price ! 💰)</span></li>
+                    <li>Dégradation des performances système <span class="satirical-hint">(ironie niveau expert ! 🎭)</span></li>
                 </ul>
             </div>
         </section>
 
-        <div class="best-practices-section fade-in">
-            <h3>✅ Guide pour éviter les pièges</h3>
+        <div class="best-practices-section">
+            <h3>✅ Guide pour éviter les pièges <span class="physics-emoji">🛡️</span></h3>
             <div class="best-practices-list">
                 <div class="best-practice-item">
-                    <strong>Sources multiples :</strong> Toujours croiser plusieurs avis indépendants avant un achat
+                    <strong>Sources multiples :</strong> Toujours croiser plusieurs avis indépendants avant un achat <span class="satirical-hint">(la sagesse populaire ! 🤝)</span>
                 </div>
                 <div class="best-practice-item">
-                    <strong>Indépendance :</strong> Privilégier les testeurs sans intérêt commercial direct
+                    <strong>Indépendance :</strong> Privilégier les testeurs sans intérêt commercial direct <span class="satirical-hint">(rareté niveau légendaire ! 🦄)</span>
                 </div>
                 <div class="best-practice-item">
-                    <strong>Tests long terme :</strong> Chercher des retours d'expérience sur plusieurs mois
+                    <strong>Tests long terme :</strong> Chercher des retours d'expérience sur plusieurs mois <span class="satirical-hint">(patience, jeune Padawan ! 🧘‍♂️)</span>
                 </div>
                 <div class="best-practice-item">
-                    <strong>Méfiance critique :</strong> Questionner les avis trop tranchés sans nuance
+                    <strong>Méfiance critique :</strong> Questionner les avis trop tranchés sans nuance <span class="satirical-hint">(le doute, c'est healthy ! 🤨)</span>
                 </div>
                 <div class="best-practice-item">
-                    <strong>Outils natifs :</strong> Utiliser les fonctions Windows plutôt que des optimiseurs tiers
+                    <strong>Outils natifs :</strong> Utiliser les fonctions Windows plutôt que des optimiseurs tiers <span class="satirical-hint">(radical, je sais ! 😱)</span>
                 </div>
                 <div class="best-practice-item">
-                    <strong>Compréhension technique :</strong> Se former aux bases avant de suivre des conseils complexes
+                    <strong>Compréhension technique :</strong> Se former aux bases avant de suivre des conseils complexes <span class="satirical-hint">(qui lit les docs anyway ? 📚)</span>
                 </div>
             </div>
         </div>
 
-        <div class="conclusion fade-in">
-            <h2>🎯 Conclusion</h2>
-            <p>Ces influenceurs exploitent la confiance de leur audience à des fins commerciales. Leurs recommandations sont souvent biaisées par leurs partenariats et leur manque de rigueur technique.</p>
-            <p><strong>Adoptez une approche critique : vérifiez, comparez, et ne faites jamais confiance à une seule source.</strong></p>
+        <div class="conclusion">
+            <h2>🎯 Conclusion <span class="physics-emoji">🎭</span></h2>
+            <p>Ces influenceurs exploitent la confiance de leur audience à des fins commerciales. Leurs recommandations sont souvent biaisées par leurs partenariats et leur manque de rigueur technique. <span style="font-style: italic; color: var(--secondary-dark);">(shocking revelation ! 😲)</span></p>
+            <p><strong>Adoptez une approche critique : vérifiez, comparez, et ne faites jamais confiance à une seule source.</strong> <span style="font-style: italic; color: var(--secondary-dark);">(le bon sens, c'est révolutionnaire ! 🚀)</span></p>
         </div>
     </div>
-        <button class="scroll-top" id="scroll-top">↑</button>
+
+    <button class="scroll-top" id="scroll-top">🧪</button>
 
     <script>
-        // Navigation mobile
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navbar = document.getElementById('navbar');
-        const progressBar = document.getElementById('progress-bar');
-        const scrollTop = document.getElementById('scroll-top');
+        // Calculateur fonctionnel
+        const powerButtons = document.querySelectorAll('.power-btn');
+        const efficiencySelect = document.getElementById('efficiency');
+        const resultDiv = document.getElementById('result');
+        const consumptionValue = document.getElementById('consumption-value');
+        let selectedPower = 0;
 
-        mobileToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
+        powerButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                powerButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                selectedPower = parseInt(button.dataset.power);
+                calculateConsumption();
+            });
         });
 
-        // Scroll effects
+        efficiencySelect.addEventListener('change', calculateConsumption);
+
+        function calculateConsumption() {
+            if (selectedPower && efficiencySelect.value) {
+                const efficiency = parseFloat(efficiencySelect.value);
+                const consumption = Math.round(selectedPower / efficiency);
+                
+                consumptionValue.textContent = consumption;
+                resultDiv.style.display = 'block';
+            }
+        }
+
+        // Scroll to top functionality
+        const scrollTop = document.getElementById('scroll-top');
+
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const maxScroll = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrolled / maxScroll) * 100;
             
-            // Update progress bar
-            progressBar.style.width = scrollPercent + '%';
-            
-            // Show/hide scroll to top button
             if (scrolled > 300) {
                 scrollTop.classList.add('visible');
             } else {
                 scrollTop.classList.remove('visible');
             }
-            
-            // Add scrolled class to navbar
-            if (scrolled > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
         });
 
-        // Scroll to top functionality
         scrollTop.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -1310,24 +1024,23 @@
             });
         });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navbar.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-            }
+        // Easter eggs pour les emojis physiques
+        document.querySelectorAll('.physics-emoji').forEach(emoji => {
+            emoji.addEventListener('click', () => {
+                emoji.style.animation = 'none';
+                setTimeout(() => {
+                    emoji.style.animation = 'wiggle 0.5s ease-in-out 3';
+                }, 10);
+            });
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Easter egg pour les icônes de section
+        document.querySelectorAll('.section-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                icon.style.transform = 'rotate(720deg) scale(1.5)';
+                setTimeout(() => {
+                    icon.style.transform = '';
+                }, 1000);
             });
         });
     </script>
