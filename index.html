@@ -325,7 +325,7 @@
             z-index: 2;
         }
 
-        /* === 14 JUILLET VIDEO SECTION === */
+        /* === 14 JUILLET VIDEO SECTION CORRIGÉE === */
         .celebration-section {
             padding: 60px 0 40px;
             text-align: center;
@@ -416,16 +416,18 @@
             animation: flagBorder 3s ease-in-out infinite;
         }
 
-        .video-iframe {
+        /* === VIDÉO RESPONSIVE CORRIGÉE === */
+        .video-wrapper {
+            position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            position: relative;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            background: var(--bg-secondary);
             border-radius: 18px;
             overflow: hidden;
         }
 
-        .video-iframe source {
+        .video-element {
             position: absolute;
             top: 0;
             left: 0;
@@ -433,6 +435,114 @@
             height: 100%;
             border: none;
             border-radius: 18px;
+            background: var(--bg-secondary);
+        }
+
+        .video-element:focus {
+            outline: 2px solid var(--accent-orange);
+            outline-offset: 2px;
+        }
+
+        /* Fallback pour les navigateurs qui ne supportent pas la vidéo */
+        .video-fallback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            padding: 20px;
+        }
+
+        .video-fallback a {
+            color: var(--accent-orange);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-orange);
+            transition: all 0.3s ease;
+        }
+
+        .video-fallback a:hover {
+            color: var(--accent-yellow);
+            border-color: var(--accent-yellow);
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes tricoloreWave {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes flagColors {
+            0%, 100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes flagBorder {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes videoReveal {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .celebration-section {
+                padding: 40px 0 30px;
+            }
+            
+            .celebration-title {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+            }
+            
+            .video-container {
+                margin: 0 10px;
+            }
+        }
+
+        /* === ACCESSIBILITÉ === */
+        @media (prefers-reduced-motion: reduce) {
+            .celebration-title,
+            .celebration-section::before,
+            .video-container {
+                animation: none !important;
+            }
+            
+            .video-container {
+                transform: scale(1);
+                opacity: 1;
+            }
+            
+            .celebration-subtitle {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* === ENHANCED CHROMA GRID ANIMATION === */
