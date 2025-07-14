@@ -1,63 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas Corporation - Solutions Informatiques</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCBDEXT03"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         
-        // Classification automatique selon la page
-        var currentPath = window.location.pathname.toLowerCase();
-        var pageData = {
-            category: 'unknown',
-            group: 'general',
-            priority: 'medium',
-            businessValue: 5
-        };
-        
-        // PAGES PRIORITAIRES - Classification précise
-        if (currentPath === '/' || currentPath === '/index.html') {
-            pageData = {category: 'homepage', group: 'accueil', priority: 'critical', businessValue: 10};
-        }
-        else if (currentPath.includes('/custom-os/')) {
-            pageData = {category: 'product', group: 'windows_optimise', priority: 'critical', businessValue: 9};
-        }
-        else if (currentPath.includes('/tools/')) {
-            pageData = {category: 'product', group: 'outils', priority: 'critical', businessValue: 9};
-        }
-        else if (currentPath.includes('/creator/')) {
-            pageData = {category: 'landing', group: 'createur', priority: 'critical', businessValue: 8};
-        }
-        else if (currentPath.includes('/psu-calculator/')) {
-            pageData = {category: 'tool', group: 'calculateurs', priority: 'high', businessValue: 7};
-        }
-        else if (currentPath.includes('/amd-vs-intel/')) {
-            pageData = {category: 'guide', group: 'comparatifs', priority: 'high', businessValue: 7};
-        }
-        
         gtag('config', 'G-DLCBDEXT03', {
-            'content_group1': pageData.group,
-            'content_group2': pageData.category,
-            'content_group3': pageData.priority,
-            'custom_map': {
-                'custom_parameter_1': 'business_value'
-            }
+            'content_group1': 'accueil',
+            'content_group2': 'homepage',
+            'content_group3': 'critical'
         });
         
-        // Événement de classification
-        gtag('event', 'priority_page_view', {
-            'page_category': pageData.category,
-            'content_group': pageData.group,
-            'page_priority': pageData.priority,
-            'business_value': pageData.businessValue,
-            'deployment_phase': 'phase_1_critical'
+        gtag('event', 'page_view', {
+            'page_category': 'homepage',
+            'page_priority': 'critical',
+            'business_value': 10
         });
-        
-        // Stockage global pour utilisation dans le comportemental
-        window.AtlasPageData = pageData;
     </script>
-
+    
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
@@ -65,32 +35,10 @@
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "seoh58v3nk");
-        
-        window.addEventListener('load', function() {
-            if (typeof clarity !== 'undefined' && window.AtlasPageData) {
-                clarity('set', 'page_category', window.AtlasPageData.category);
-                clarity('set', 'business_priority', window.AtlasPageData.priority);
-                clarity('set', 'content_group', window.AtlasPageData.group);
-                clarity('set', 'deployment_phase', 'priority_pages');
-            }
-        });
     </script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlas Corporation - Solutions Informatiques</title>
-    <!-- Désactiver Cloudflare Web Analytics temporairement -->
-    <meta name="cf-2fa-verify" content="false">
-    <meta name="cf-beacon" content="false">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
     <style>
-        /* === RESET & VARIABLES === */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* === VARIABLES CSS === */
         :root {
             --bg-primary: #0a0a0a;
             --bg-secondary: #1a1a1a;
@@ -108,9 +56,16 @@
             --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
             --shadow: rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
         }
 
-        /* === BASE STYLES === */
+        /* === RESET === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
@@ -127,7 +82,7 @@
         }
 
         /* === HEADER === */
-        header {
+        .header {
             position: sticky;
             top: 0;
             background: rgba(10, 10, 10, 0.95);
@@ -135,10 +90,10 @@
             border-bottom: 1px solid var(--border);
             z-index: 1000;
             padding: 1rem 0;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        nav {
+        .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -153,16 +108,15 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            position: relative;
         }
 
         .logo::before {
             content: "⚡";
-            animation: energyPulse 2s ease-in-out infinite;
+            animation: pulse 2s ease-in-out infinite;
             filter: drop-shadow(0 0 8px var(--accent-orange));
         }
 
-        .menu-btn {
+        .menu-toggle {
             background: var(--glass);
             border: 1px solid var(--glass-border);
             border-radius: 8px;
@@ -172,10 +126,10 @@
             display: flex;
             flex-direction: column;
             gap: 3px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        .menu-btn:hover {
+        .menu-toggle:hover {
             background: var(--bg-card);
             border-color: var(--accent-orange);
             transform: translateY(-2px);
@@ -189,11 +143,18 @@
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        .menu-btn.active .menu-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .menu-btn.active .menu-line:nth-child(2) { opacity: 0; transform: scale(0); }
-        .menu-btn.active .menu-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+        .menu-toggle.active .menu-line:nth-child(1) { 
+            transform: rotate(45deg) translate(5px, 5px); 
+        }
+        .menu-toggle.active .menu-line:nth-child(2) { 
+            opacity: 0; 
+            transform: scale(0); 
+        }
+        .menu-toggle.active .menu-line:nth-child(3) { 
+            transform: rotate(-45deg) translate(7px, -6px); 
+        }
 
-        /* === MENU PANEL === */
+        /* === MENU MOBILE === */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -204,7 +165,7 @@
             backdrop-filter: blur(10px);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             z-index: 998;
         }
 
@@ -221,8 +182,14 @@
             overflow-y: auto;
         }
 
-        .menu-overlay.active { opacity: 1; visibility: visible; }
-        .menu-panel.active { right: 0; }
+        .menu-overlay.active { 
+            opacity: 1; 
+            visibility: visible; 
+        }
+        
+        .menu-panel.active { 
+            right: 0; 
+        }
 
         .menu-content {
             padding: 80px 24px 32px;
@@ -249,15 +216,7 @@
 
         .menu-item {
             margin-bottom: 4px;
-            opacity: 0;
-            transform: translateX(20px);
-            animation: slideInMenu 0.3s ease forwards;
         }
-
-        .menu-item:nth-child(1) { animation-delay: 0.1s; }
-        .menu-item:nth-child(2) { animation-delay: 0.2s; }
-        .menu-item:nth-child(3) { animation-delay: 0.3s; }
-        .menu-item:nth-child(4) { animation-delay: 0.4s; }
 
         .menu-item a {
             display: block;
@@ -265,24 +224,9 @@
             color: var(--text-primary);
             text-decoration: none;
             border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
-        }
-
-        .menu-item a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .menu-item a:hover::before {
-            left: 100%;
         }
 
         .menu-item a:hover {
@@ -291,42 +235,8 @@
             transform: translateX(8px);
         }
 
-        .menu-highlights {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .highlight-item {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            margin-bottom: 12px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight-item:last-child { margin-bottom: 0; }
-        .highlight-item:hover { 
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
-        }
-
-        .highlight-item a {
-            display: block;
-            padding: 14px 16px;
-            color: var(--bg-primary);
-            text-decoration: none;
-            font-weight: 600;
-            text-align: center;
-            font-size: 14px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* === 14 JUILLET VIDEO SECTION CORRIGÉE === */
-        .celebration-section {
+        /* === SECTION 14 JUILLET === */
+        .celebration {
             padding: 60px 0 40px;
             text-align: center;
             position: relative;
@@ -338,7 +248,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .celebration-section::before {
+        .celebration::before {
             content: '';
             position: absolute;
             top: 0;
@@ -348,7 +258,7 @@
             background: 
                 radial-gradient(circle at 20% 30%, rgba(0, 85, 255, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(255, 0, 64, 0.1) 0%, transparent 50%);
-            animation: flagColors 6s ease-in-out infinite;
+            animation: flagAnimation 6s ease-in-out infinite;
         }
 
         .celebration-title {
@@ -393,35 +303,14 @@
             background: var(--bg-card);
             transform: scale(0.9);
             opacity: 0;
-            animation: videoReveal 1.2s ease 1s forwards;
+            animation: slideInScale 1.2s ease 1s forwards;
         }
 
-        .video-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(
-                45deg,
-                var(--accent-blue),
-                #ffffff,
-                var(--accent-red),
-                var(--accent-blue)
-            );
-            background-size: 400% 400%;
-            border-radius: 22px;
-            z-index: -1;
-            animation: flagBorder 3s ease-in-out infinite;
-        }
-
-        /* === VIDÉO RESPONSIVE CORRIGÉE === */
         .video-wrapper {
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%; /* Ratio 16:9 */
+            padding-bottom: 56.25%; /* 16:9 ratio */
             background: var(--bg-secondary);
             border-radius: 18px;
             overflow: hidden;
@@ -438,226 +327,7 @@
             background: var(--bg-secondary);
         }
 
-        .video-element:focus {
-            outline: 2px solid var(--accent-orange);
-            outline-offset: 2px;
-        }
-
-        /* Fallback pour les navigateurs qui ne supportent pas la vidéo */
-        .video-fallback {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            padding: 20px;
-        }
-
-        .video-fallback a {
-            color: var(--accent-orange);
-            text-decoration: none;
-            border-bottom: 1px solid var(--accent-orange);
-            transition: all 0.3s ease;
-        }
-
-        .video-fallback a:hover {
-            color: var(--accent-yellow);
-            border-color: var(--accent-yellow);
-        }
-
-        /* === ANIMATIONS === */
-        @keyframes tricoloreWave {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes flagColors {
-            0%, 100% {
-                opacity: 0.8;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes flagBorder {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes videoReveal {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            .celebration-section {
-                padding: 40px 0 30px;
-            }
-            
-            .celebration-title {
-                font-size: clamp(1.5rem, 4vw, 2rem);
-            }
-            
-            .video-container {
-                margin: 0 10px;
-            }
-        }
-
-        /* === ACCESSIBILITÉ === */
-        @media (prefers-reduced-motion: reduce) {
-            .celebration-title,
-            .celebration-section::before,
-            .video-container {
-                animation: none !important;
-            }
-            
-            .video-container {
-                transform: scale(1);
-                opacity: 1;
-            }
-            
-            .celebration-subtitle {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* === ENHANCED CHROMA GRID ANIMATION === */
-        .chroma-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 800;
-            font-size: clamp(3rem, 10vw, 6rem);
-            text-align: center;
-            margin: 40px 0;
-            position: relative;
-            perspective: 1000px;
-        }
-
-        .chroma-letter {
-            display: inline-block;
-            background: linear-gradient(
-                45deg, 
-                var(--accent-orange), 
-                var(--accent-yellow), 
-                var(--accent-cyan), 
-                var(--accent-magenta),
-                var(--accent-orange)
-            );
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: chromaFlow 6s ease-in-out infinite;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: all 0.3s ease;
-        }
-
-        .chroma-letter:nth-child(1) { animation-delay: 0s; }
-        .chroma-letter:nth-child(2) { animation-delay: 0.2s; }
-        .chroma-letter:nth-child(3) { animation-delay: 0.4s; }
-        .chroma-letter:nth-child(4) { animation-delay: 0.6s; }
-        .chroma-letter:nth-child(5) { animation-delay: 0.8s; }
-
-        .chroma-letter:hover {
-            transform: rotateY(180deg) scale(1.1);
-            filter: drop-shadow(0 0 20px currentColor);
-        }
-
-        .chroma-letter::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: linear-gradient(
-                225deg, 
-                var(--accent-magenta), 
-                var(--accent-cyan), 
-                var(--accent-yellow), 
-                var(--accent-orange)
-            );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            transform: rotateY(180deg);
-            backface-visibility: hidden;
-        }
-
-        /* === ENHANCED SCROLL REVEAL === */
-        .scroll-reveal {
-            margin: 60px 0;
-            text-align: center;
-            perspective: 1000px;
-        }
-
-        .reveal-word {
-            display: inline-block;
-            margin: 0 12px;
-            opacity: 0;
-            transform: translateY(100px) rotateX(-90deg);
-            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            position: relative;
-            transform-origin: center bottom;
-        }
-
-        .reveal-word.visible {
-            opacity: 1;
-            transform: translateY(0) rotateX(0deg);
-        }
-
-        .reveal-word:nth-child(1) { transition-delay: 0.1s; }
-        .reveal-word:nth-child(2) { transition-delay: 0.2s; }
-        .reveal-word:nth-child(3) { transition-delay: 0.3s; }
-        .reveal-word:nth-child(4) { transition-delay: 0.4s; }
-        .reveal-word:nth-child(5) { transition-delay: 0.5s; }
-
-        .reveal-word::before {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
-            transition: width 0.8s ease;
-            transition-delay: inherit;
-        }
-
-        .reveal-word.visible::before {
-            width: 100%;
-        }
-
-        .reveal-word:hover {
-            color: var(--accent-orange);
-            transform: translateY(-8px) scale(1.05);
-        }
-
-        /* === ENHANCED HERO SECTION === */
+        /* === HERO SECTION === */
         .hero {
             padding: 100px 0 80px;
             text-align: center;
@@ -685,6 +355,46 @@
             margin: 0 auto;
             position: relative;
             z-index: 2;
+        }
+
+        .main-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin: 40px 0;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .title-letter {
+            display: inline-block;
+            background: linear-gradient(
+                45deg, 
+                var(--accent-orange), 
+                var(--accent-yellow), 
+                var(--accent-cyan), 
+                var(--accent-magenta),
+                var(--accent-orange)
+            );
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: chromaFlow 6s ease-in-out infinite;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: var(--transition);
+        }
+
+        .title-letter:nth-child(1) { animation-delay: 0s; }
+        .title-letter:nth-child(2) { animation-delay: 0.2s; }
+        .title-letter:nth-child(3) { animation-delay: 0.4s; }
+        .title-letter:nth-child(4) { animation-delay: 0.6s; }
+        .title-letter:nth-child(5) { animation-delay: 0.8s; }
+
+        .title-letter:hover {
+            transform: rotateY(180deg) scale(1.1);
+            filter: drop-shadow(0 0 20px currentColor);
         }
 
         .hero-description {
@@ -734,18 +444,62 @@
             box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
         }
 
-        /* === ENHANCED TOOLS SECTION === */
+        .tagline {
+            margin: 60px 0 40px;
+            text-align: center;
+            perspective: 1000px;
+        }
+
+        .tagline-word {
+            display: inline-block;
+            margin: 0 12px;
+            opacity: 0;
+            transform: translateY(100px) rotateX(-90deg);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            position: relative;
+            transform-origin: center bottom;
+        }
+
+        .tagline-word.visible {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .tagline-word:nth-child(1) { transition-delay: 0.1s; }
+        .tagline-word:nth-child(2) { transition-delay: 0.2s; }
+        .tagline-word:nth-child(3) { transition-delay: 0.3s; }
+        .tagline-word:nth-child(4) { transition-delay: 0.4s; }
+        .tagline-word:nth-child(5) { transition-delay: 0.5s; }
+
+        .tagline-word::before {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
+            transition: width 0.8s ease;
+            transition-delay: inherit;
+        }
+
+        .tagline-word.visible::before {
+            width: 100%;
+        }
+
+        .tagline-word:hover {
+            color: var(--accent-orange);
+            transform: translateY(-8px) scale(1.05);
+        }
+
+        /* === SECTION OUTILS === */
         .tools-section {
             padding: 100px 0;
             background: var(--glass);
             border-top: 1px solid var(--border);
             position: relative;
-        }
-
-        /* === SPOTLIGHT CARD EFFECT === */
-        .tools-grid {
-            --mouse-x: 0px;
-            --mouse-y: 0px;
         }
 
         .section-title {
@@ -757,7 +511,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            position: relative;
         }
 
         .section-subtitle {
@@ -799,7 +552,6 @@
             overflow: hidden;
             opacity: 0;
             transform: translateY(50px) scale(0.9);
-            background: linear-gradient(135deg, var(--bg-card), rgba(255, 107, 53, 0.02));
         }
 
         .tool-card.visible {
@@ -807,195 +559,10 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Spotlight Card Effect */
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 22px;
-            background: radial-gradient(
-                600px circle at var(--mouse-x) var(--mouse-y),
-                rgba(255, 107, 53, 0.6) 0%,
-                rgba(255, 184, 77, 0.3) 25%,
-                transparent 50%
-            );
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-
-        .tool-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 20px;
-            background: radial-gradient(
-                400px circle at var(--mouse-x) var(--mouse-y),
-                rgba(255, 107, 53, 0.15) 0%,
-                rgba(255, 184, 77, 0.08) 30%,
-                transparent 50%
-            );
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .tools-grid:hover .tool-card::before {
-            opacity: 1;
-        }
-
-        .tool-card:hover::after {
-            opacity: 1;
-        }
-
-        /* === UNIQUE ANIMATIONS FOR GUIDES & ANALYSES === */
-        
-        /* 1. Comparison Card (Intel vs AMD) - Split Animation */
-        .comparison-card {
-            --mouse-x: 50%;
-            --mouse-y: 50%;
-        }
-
-        .comparison-card::before {
-            background: linear-gradient(
-                90deg,
-                #0071c5 0% 48%,
-                transparent 48% 52%,
-                #ed1c24 52% 100%
-            );
-            opacity: 0;
-            transform: scaleX(0);
-            transform-origin: center;
-            transition: all 0.6s ease;
-        }
-
-        .comparison-card::after {
-            background: linear-gradient(
-                45deg,
-                rgba(0, 113, 197, 0.2) 0% 48%,
-                transparent 48% 52%,
-                rgba(237, 28, 36, 0.2) 52% 100%
-            );
-        }
-
-        .comparison-card:hover::before {
-            opacity: 1;
-            transform: scaleX(1);
-        }
-
-        /* 2. Assembly Card (Guide PC) - Building Animation */
-        .assembly-card::before {
-            background: 
-                linear-gradient(45deg, transparent 30%, rgba(46, 204, 113, 0.6) 35%, transparent 40%),
-                linear-gradient(-45deg, transparent 60%, rgba(52, 152, 219, 0.6) 65%, transparent 70%);
-            animation: buildingParts 2s ease-in-out infinite;
-        }
-
-        .assembly-card::after {
-            background: conic-gradient(
-                from 0deg at var(--mouse-x) var(--mouse-y),
-                rgba(46, 204, 113, 0.2) 0deg,
-                rgba(52, 152, 219, 0.2) 90deg,
-                rgba(155, 89, 182, 0.2) 180deg,
-                rgba(230, 126, 34, 0.2) 270deg,
-                rgba(46, 204, 113, 0.2) 360deg
-            );
-        }
-
-        /* 3. Energy Card (PSU Calculator) - Electric Animation */
-        .energy-card::before {
-            background: radial-gradient(
-                600px circle at var(--mouse-x) var(--mouse-y),
-                rgba(241, 196, 15, 0.8) 0%,
-                rgba(243, 156, 18, 0.6) 25%,
-                rgba(230, 126, 34, 0.4) 50%,
-                transparent 70%
-            );
-            animation: electricPulse 1.5s ease-in-out infinite;
-        }
-
-        .energy-card::after {
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(241, 196, 15, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(243, 156, 18, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(230, 126, 34, 0.2) 0%, transparent 50%);
-        }
-
-        .energy-card .tool-icon {
-            animation: energyIcon 2s ease-in-out infinite;
-        }
-
-        /* 4. Security Card (Protection) - Shield Animation */
-        .security-card {
-            overflow: hidden;
-        }
-
-        .security-card::before {
-            background: conic-gradient(
-                from 0deg at var(--mouse-x) var(--mouse-y),
-                rgba(231, 76, 60, 0.8) 0deg,
-                rgba(192, 57, 43, 0.6) 60deg,
-                rgba(155, 89, 182, 0.6) 120deg,
-                rgba(142, 68, 173, 0.6) 180deg,
-                rgba(52, 152, 219, 0.6) 240deg,
-                rgba(41, 128, 185, 0.6) 300deg,
-                rgba(231, 76, 60, 0.8) 360deg
-            );
-            animation: shieldRotate 3s linear infinite;
-            top: -100px;
-            left: -100px;
-            right: -100px;
-            bottom: -100px;
-            border-radius: 120px;
-        }
-
-        .security-card::after {
-            background: radial-gradient(
-                ellipse 600px 500px at var(--mouse-x) var(--mouse-y),
-                rgba(231, 76, 60, 0.3) 0%,
-                rgba(155, 89, 182, 0.2) 40%,
-                transparent 70%
-            );
-            top: -120px;
-            left: -120px;
-            right: -120px;
-            bottom: -120px;
-            border-radius: 140px;
-        }
-
-        .security-card .tool-icon {
-            animation: shieldPulse 2s ease-in-out infinite;
-        }
-
-        /* Disable default spotlight for guides grid */
-        .guides-grid .tool-card::before,
-        .guides-grid .tool-card::after {
-            border-radius: 20px;
-        }
-
-        .guides-grid:hover .tool-card::before {
-            opacity: 1;
-        }
-
         .tool-card:hover {
             transform: translateY(-12px) scale(1.02);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
             border-color: var(--accent-orange);
-        }
-
-        /* Enhanced Spotlight Glow */
-        .tool-card:hover {
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 107, 53, 0.3),
-                0 0 20px rgba(255, 107, 53, 0.2);
         }
 
         .tool-icon {
@@ -1008,8 +575,7 @@
             justify-content: center;
             font-size: 32px;
             color: white;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: var(--transition);
         }
 
         .tool-card:hover .tool-icon {
@@ -1054,7 +620,7 @@
             border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-decoration: none;
             display: inline-block;
             position: relative;
@@ -1082,7 +648,7 @@
         }
 
         /* === FOOTER === */
-        footer {
+        .footer {
             background: var(--bg-primary);
             border-top: 1px solid var(--border);
             padding: 60px 0 30px;
@@ -1116,7 +682,7 @@
         .footer-section a {
             color: var(--text-secondary);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             display: block;
             padding: 6px 0;
             position: relative;
@@ -1158,7 +724,7 @@
             background: var(--glass);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             transform: none;
         }
 
@@ -1181,45 +747,8 @@
             font-size: 14px;
         }
 
-        /* === 14 JUILLET KEYFRAMES === */
-        @keyframes tricoloreWave {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes flagColors {
-            0%, 100% {
-                opacity: 0.8;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes flagBorder {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes videoReveal {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* === KEYFRAMES === */
-        @keyframes energyPulse {
+        /* === ANIMATIONS === */
+        @keyframes pulse {
             0%, 100% { 
                 opacity: 1;
                 transform: scale(1);
@@ -1230,6 +759,45 @@
                 transform: scale(1.1);
                 filter: drop-shadow(0 0 15px var(--accent-orange));
             }
+        }
+
+        @keyframes flagAnimation {
+            0%, 100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes tricoloreWave {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
         }
 
         @keyframes chromaFlow {
@@ -1251,100 +819,76 @@
             }
         }
 
-        @keyframes slideInMenu {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes heroGlow {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(180deg); }
-        }
-
-        @keyframes buildingParts {
-            0%, 100% { 
-                opacity: 0.6;
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% { 
-                opacity: 1;
-                transform: translateY(-5px) rotate(5deg);
-            }
-        }
-
-        @keyframes electricPulse {
-            0%, 100% { 
-                opacity: 0.6;
-                filter: blur(0px);
-            }
-            50% { 
-                opacity: 1;
-                filter: blur(1px);
-            }
-        }
-
-        @keyframes energyIcon {
-            0%, 100% { 
-                transform: scale(1) rotate(0deg);
-                filter: drop-shadow(0 0 10px rgba(241, 196, 15, 0.5));
-            }
-            50% { 
-                transform: scale(1.1) rotate(5deg);
-                filter: drop-shadow(0 0 20px rgba(243, 156, 18, 0.8));
-            }
-        }
-
-        @keyframes shieldRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes shieldPulse {
-            0%, 100% { 
-                transform: scale(1);
-                filter: drop-shadow(0 0 15px rgba(231, 76, 60, 0.6));
-            }
-            50% { 
-                transform: scale(1.05);
-                filter: drop-shadow(0 0 25px rgba(155, 89, 182, 0.8));
-            }
-        }
-
         /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            .container { padding: 0 16px; }
-            .hero { padding: 80px 0 60px; }
-            .tools-section { padding: 80px 0; }
-            .tools-grid { grid-template-columns: 1fr; gap: 20px; }
-            .footer-content { grid-template-columns: 1fr; text-align: center; }
-            .social-links { justify-content: center; }
-            .chroma-title { font-size: clamp(2rem, 8vw, 4rem); }
-            .celebration-section { padding: 40px 0 30px; }
-            .celebration-title { font-size: clamp(1.5rem, 4vw, 2rem); }
+            .container { 
+                padding: 0 16px; 
+            }
+            
+            .hero { 
+                padding: 80px 0 60px; 
+            }
+            
+            .tools-section { 
+                padding: 80px 0; 
+            }
+            
+            .tools-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px; 
+            }
+            
+            .footer-content { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+            }
+            
+            .social-links { 
+                justify-content: center; 
+            }
+            
+            .main-title { 
+                font-size: clamp(2rem, 8vw, 4rem); 
+            }
+            
+            .celebration { 
+                padding: 40px 0 30px; 
+            }
+            
+            .celebration-title { 
+                font-size: clamp(1.5rem, 4vw, 2rem); 
+            }
+            
+            .video-container {
+                margin: 0 10px;
+            }
         }
 
-        /* === ACCESSIBILITY === */
+        /* === ACCESSIBILITÉ === */
         @media (prefers-reduced-motion: reduce) {
-            .chroma-letter { animation: none; }
-            .text-item { animation: none; }
-            .logo::before { animation: none; }
-            .tool-card { transition: none; }
-            .reveal-word { transition: none; }
-            .video-container { animation: none; transform: scale(1); opacity: 1; }
-            .celebration-title { animation: none; }
-            .celebration-section::before { animation: none; }
+            .title-letter,
+            .logo::before,
+            .tool-card,
+            .tagline-word,
+            .video-container,
+            .celebration-title {
+                animation: none !important;
+            }
+            
+            .video-container {
+                transform: scale(1);
+                opacity: 1;
+            }
+            
+            .celebration-subtitle,
+            .hero-description,
+            .cta-button {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        /* === UTILITY === */
+        /* === UTILITAIRES === */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -1355,20 +899,14 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* === PERFORMANCE OPTIMIZATIONS === */
-        .chroma-letter,
-        .tool-card,
-        .menu-item a {
-            will-change: transform;
-        }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
             <a href="#" class="logo">Atlas Corporation</a>
-            <button class="menu-btn" id="menuBtn" aria-label="Menu">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu de navigation">
                 <div class="menu-line"></div>
                 <div class="menu-line"></div>
                 <div class="menu-line"></div>
@@ -1376,6 +914,7 @@
         </nav>
     </header>
 
+    <!-- Menu Mobile -->
     <div class="menu-overlay" id="menuOverlay"></div>
     <div class="menu-panel" id="menuPanel">
         <div class="menu-content">
@@ -1405,61 +944,44 @@
                     <li class="menu-item"><a href="https://atlas-corporation.fr/partenaires/">Partenaires</a></li>
                 </ul>
             </div>
-
-            <div class="menu-section menu-highlights">
-                <h3 class="menu-title">Outils Prioritaires</h3>
-                <div class="highlight-item">
-                    <a href="https://atlas-corporation.fr/custom-os/">Windows 11 Personnalisé</a>
-                </div>
-                <div class="highlight-item">
-                    <a href="https://cyberveille.esante.gouv.fr/alertes-et-vulnerabilites">Surveillance Cyber</a>
-                </div>
-            </div>
         </div>
     </div>
 
+    <!-- Contenu Principal -->
     <main>
-        <!-- 14 Juillet Celebration Section -->
-        <section class="celebration-section">
+        <!-- Section 14 Juillet -->
+        <section class="celebration">
             <div class="container">
                 <h2 class="celebration-title">🇫🇷 Vive la France ! 🇫🇷</h2>
                 <p class="celebration-subtitle">En l'honneur du 14 juillet - Fête Nationale</p>
                 
-                 <video 
-                        class="video-element" 
-                        controls 
-                        preload="metadata"
-                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23001f3f'/%3E%3Ctext x='400' y='200' text-anchor='middle' fill='%23ff6b35' font-size='24'%3E🇫🇷 Vidéo 14 Juillet 🇫🇷%3C/text%3E%3Ctext x='400' y='250' text-anchor='middle' fill='%23b0b0b0' font-size='16'%3ECliquez pour lire%3C/text%3E%3C/svg%3E"
-                        aria-label="Vidéo de célébration du 14 juillet">
-                        
-                        <!-- Source vidéo principale -->
-                        <source src="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.mp4" type="video/mp4">
-                        
-                        <!-- Sources alternatives pour compatibilité -->
-                        <source src="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.webm" type="video/webm">
-                        <source src="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.ogv" type="video/ogg">
-                        
-                        <!-- Fallback pour navigateurs qui ne supportent pas HTML5 video -->
-                        <div class="video-fallback">
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <video 
+                            class="video-element" 
+                            controls 
+                            preload="metadata"
+                            poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23001f3f'/%3E%3Ctext x='400' y='200' text-anchor='middle' fill='%23ff6b35' font-size='24'%3E🇫🇷 Vidéo 14 Juillet 🇫🇷%3C/text%3E%3Ctext x='400' y='250' text-anchor='middle' fill='%23b0b0b0' font-size='16'%3ECliquez pour lire%3C/text%3E%3C/svg%3E"
+                            aria-label="Vidéo de célébration du 14 juillet">
+                            <source src="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.mp4" type="video/mp4">
+                            <source src="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.webm" type="video/webm">
                             <p>Votre navigateur ne supporte pas la lecture vidéo HTML5.</p>
-                            <p><a href="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.mp4" target="_blank" rel="noopener">
-                                Télécharger la vidéo directement
-                            </a></p>
-                        </div>
-                    </video>
+                        </video>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Section Hero -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <!-- Enhanced Chroma Grid Animation -->
-                    <h1 class="chroma-title">
-                        <span class="chroma-letter" data-text="A">A</span>
-                        <span class="chroma-letter" data-text="T">T</span>
-                        <span class="chroma-letter" data-text="L">L</span>
-                        <span class="chroma-letter" data-text="A">A</span>
-                        <span class="chroma-letter" data-text="S">S</span>
+                    <h1 class="main-title">
+                        <span class="title-letter">A</span>
+                        <span class="title-letter">T</span>
+                        <span class="title-letter">L</span>
+                        <span class="title-letter">A</span>
+                        <span class="title-letter">S</span>
                     </h1>
 
                     <p class="hero-description">
@@ -1470,18 +992,18 @@
                         Découvrir notre Créateur
                     </a>
 
-                    <!-- Enhanced Scroll Reveal -->
-                    <div class="scroll-reveal">
-                        <span class="reveal-word">Innovation</span>
-                        <span class="reveal-word">•</span>
-                        <span class="reveal-word">Expertise</span>
-                        <span class="reveal-word">•</span>
-                        <span class="reveal-word">Excellence</span>
+                    <div class="tagline">
+                        <span class="tagline-word">Innovation</span>
+                        <span class="tagline-word">•</span>
+                        <span class="tagline-word">Expertise</span>
+                        <span class="tagline-word">•</span>
+                        <span class="tagline-word">Excellence</span>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Section Outils -->
         <section class="tools-section">
             <div class="container">
                 <h2 class="section-title">Nos Solutions</h2>
@@ -1506,8 +1028,8 @@
                 </div>
                 
                 <h3 class="section-subtitle">Guides & Analyses</h3>
-                <div class="tools-grid guides-grid">
-                    <div class="tool-card comparison-card">
+                <div class="tools-grid">
+                    <div class="tool-card">
                         <div class="tool-icon icon-cpu">🖥️</div>
                         <h3>Intel vs AMD</h3>
                         <p class="tool-subtitle">Comparatif technique</p>
@@ -1515,7 +1037,7 @@
                         <a href="https://atlas-corporation.fr/amd-vs-intel/" class="tool-btn">Comparer</a>
                     </div>
                     
-                    <div class="tool-card assembly-card">
+                    <div class="tool-card">
                         <div class="tool-icon icon-guide">⚙️</div>
                         <h3>Guide PC</h3>
                         <p class="tool-subtitle">Configuration</p>
@@ -1523,7 +1045,7 @@
                         <a href="https://atlas-corporation.fr/pc-informations/" class="tool-btn">Consulter</a>
                     </div>
                     
-                    <div class="tool-card energy-card">
+                    <div class="tool-card">
                         <div class="tool-icon icon-power">⚡</div>
                         <h3>Calculateur PSU</h3>
                         <p class="tool-subtitle">Alimentation</p>
@@ -1531,7 +1053,7 @@
                         <a href="https://atlas-corporation.fr/psu-calculator/" class="tool-btn">Calculer</a>
                     </div>
                     
-                    <div class="tool-card security-card">
+                    <div class="tool-card">
                         <div class="tool-icon icon-security">🛡️</div>
                         <h3>Sécurité & Malwares</h3>
                         <p class="tool-subtitle">Protection</p>
@@ -1543,7 +1065,8 @@
         </section>
     </main>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -1585,645 +1108,483 @@
     </footer>
 
     <script>
-               document.addEventListener('DOMContentLoaded', function() {
-            const video = document.querySelector('.video-element');
-            
-            if (video) {
-                // Gestion d'erreur de chargement vidéo
-                video.addEventListener('error', function(e) {
-                    console.error('Erreur de chargement vidéo:', e);
-                    
-                    // Afficher le fallback en cas d'erreur
-                    const fallback = video.querySelector('.video-fallback');
-                    if (fallback) {
-                        fallback.style.display = 'block';
-                    }
-                    
-                    // Optionnel : Tracking d'erreur
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'video_error', {
-                            'event_category': 'media',
-                            'event_label': 'video_load_failed',
-                            'video_url': video.currentSrc || 'unknown'
-                        });
+        // Configuration et utilitaires
+        const CONFIG = {
+            animationDuration: 300,
+            scrollThreshold: 0.1,
+            debounceDelay: 100
+        };
+
+        // Utilitaire debounce
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Gestion du menu mobile
+        class MobileMenu {
+            constructor() {
+                this.menuToggle = document.getElementById('menuToggle');
+                this.menuPanel = document.getElementById('menuPanel');
+                this.menuOverlay = document.getElementById('menuOverlay');
+                this.isOpen = false;
+                
+                this.init();
+            }
+
+            init() {
+                this.menuToggle?.addEventListener('click', () => this.toggle());
+                this.menuOverlay?.addEventListener('click', () => this.close());
+                
+                // Fermer au clic sur un lien
+                this.menuPanel?.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => this.close());
+                });
+
+                // Fermer avec Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.isOpen) {
+                        this.close();
                     }
                 });
-                
-                // Événements de tracking vidéo (optionnel)
-                video.addEventListener('loadeddata', function() {
-                    console.log('Vidéo chargée avec succès');
-                    
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'video_loaded', {
-                            'event_category': 'media',
-                            'event_label': 'video_loaded_successfully'
-                        });
+
+                // Fermer si redimensionnement vers desktop
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768 && this.isOpen) {
+                        this.close();
                     }
                 });
-                
-                video.addEventListener('play', function() {
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'video_play', {
-                            'event_category': 'media',
-                            'event_label': '14_juillet_video'
-                        });
-                    }
-                });
-                
-                // Vérifier si l'URL de la vidéo est accessible
-                fetch(video.querySelector('source').src, { method: 'HEAD' })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Vidéo non accessible');
-                        }
-                    })
-                    .catch(error => {
-                        console.warn('Problème d\'accès à la vidéo:', error);
-                        // Vous pouvez ici afficher un message d'erreur ou charger une vidéo alternative
+            }
+
+            toggle() {
+                this.isOpen ? this.close() : this.open();
+            }
+
+            open() {
+                this.menuToggle?.classList.add('active');
+                this.menuPanel?.classList.add('active');
+                this.menuOverlay?.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                this.isOpen = true;
+
+                // Tracking
+                this.trackEvent('menu_opened');
+            }
+
+            close() {
+                this.menuToggle?.classList.remove('active');
+                this.menuPanel?.classList.remove('active');
+                this.menuOverlay?.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                this.isOpen = false;
+            }
+
+            trackEvent(action) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', action, {
+                        'event_category': 'navigation',
+                        'event_label': 'mobile_menu'
                     });
-            }
-        });
-        // Enhanced Menu toggle with smooth animations
-        const menuBtn = document.getElementById('menuBtn');
-        const menuPanel = document.getElementById('menuPanel');
-        const menuOverlay = document.getElementById('menuOverlay');
-
-        function toggleMenu() {
-            const isActive = menuPanel.classList.contains('active');
-            
-            menuBtn.classList.toggle('active');
-            menuPanel.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = !isActive ? 'hidden' : 'auto';
-            
-            // Add stagger animation to menu items
-            if (!isActive) {
-                const menuItems = document.querySelectorAll('.menu-item');
-                menuItems.forEach((item, index) => {
-                    item.style.animationDelay = `${0.1 + index * 0.1}s`;
-                });
-            }
-        }
-
-        menuBtn.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', toggleMenu);
-
-        // Close menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && menuPanel.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-
-        // Enhanced Scroll reveal animation with intersection observer
-        function initScrollReveal() {
-            const revealElements = document.querySelectorAll('.reveal-word');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                        }, index * 200); // Increased delay for better effect
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            revealElements.forEach(el => observer.observe(el));
-        }
-
-        // Enhanced Tool cards animation with performance optimization
-        function initToolCards() {
-            const toolCards = document.querySelectorAll('.tool-card');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                        }, index * 200); // Increased stagger for better visual effect
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            });
-
-            toolCards.forEach(card => observer.observe(card));
-        }
-
-        // Spotlight Card Effect
-        function initSpotlightEffect() {
-            const toolsGrid = document.querySelector('.tools-grid');
-            const guidesGrid = document.querySelector('.guides-grid');
-            const toolCards = document.querySelectorAll('.tool-card');
-            
-            let rafId = null;
-            
-            function updateMousePosition(e, grid) {
-                if (rafId) {
-                    cancelAnimationFrame(rafId);
                 }
-                
-                rafId = requestAnimationFrame(() => {
-                    const rect = grid.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    grid.style.setProperty('--mouse-x', `${x}px`);
-                    grid.style.setProperty('--mouse-y', `${y}px`);
-                    
-                    // Update each card's custom properties
-                    const cards = grid.querySelectorAll('.tool-card');
-                    cards.forEach(card => {
-                        const cardRect = card.getBoundingClientRect();
-                        const cardX = e.clientX - cardRect.left;
-                        const cardY = e.clientY - cardRect.top;
-                        
-                        card.style.setProperty('--mouse-x', `${cardX}px`);
-                        card.style.setProperty('--mouse-y', `${cardY}px`);
-                    });
-                });
             }
-            
-            // Handle first tools grid (standard spotlight)
-            if (toolsGrid) {
-                toolsGrid.addEventListener('mousemove', (e) => updateMousePosition(e, toolsGrid), { passive: true });
-                
-                toolsGrid.addEventListener('mouseleave', () => {
-                    if (rafId) cancelAnimationFrame(rafId);
-                    const cards = toolsGrid.querySelectorAll('.tool-card');
-                    cards.forEach(card => {
-                        card.style.setProperty('--mouse-x', '50%');
-                        card.style.setProperty('--mouse-y', '50%');
-                    });
-                });
-            }
-            
-            // Handle guides grid (unique animations)
-            if (guidesGrid) {
-                guidesGrid.addEventListener('mousemove', (e) => updateMousePosition(e, guidesGrid), { passive: true });
-                
-                guidesGrid.addEventListener('mouseleave', () => {
-                    if (rafId) cancelAnimationFrame(rafId);
-                    const cards = guidesGrid.querySelectorAll('.tool-card');
-                    cards.forEach(card => {
-                        card.style.setProperty('--mouse-x', '50%');
-                        card.style.setProperty('--mouse-y', '50%');
-                    });
-                });
-            }
-            
-            // Initialize with center position
-            toolCards.forEach(card => {
-                card.style.setProperty('--mouse-x', '50%');
-                card.style.setProperty('--mouse-y', '50%');
-            });
         }
 
-        // Enhanced fade in elements with improved timing
-        function initFadeInElements() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const observer = new IntersectionObserver((entries) => {
+        // Animations au scroll
+        class ScrollAnimations {
+            constructor() {
+                this.observer = new IntersectionObserver(
+                    this.handleIntersection.bind(this),
+                    {
+                        threshold: CONFIG.scrollThreshold,
+                        rootMargin: '0px 0px -50px 0px'
+                    }
+                );
+                
+                this.init();
+            }
+
+            init() {
+                // Observer pour les cartes d'outils
+                document.querySelectorAll('.tool-card').forEach(card => {
+                    this.observer.observe(card);
+                });
+
+                // Observer pour les mots du tagline
+                document.querySelectorAll('.tagline-word').forEach(word => {
+                    this.observer.observe(word);
+                });
+
+                // Observer pour les éléments fade-in
+                document.querySelectorAll('.fade-in').forEach(element => {
+                    this.observer.observe(element);
+                });
+            }
+
+            handleIntersection(entries) {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
+                        // Délai pour effet de cascade
                         setTimeout(() => {
                             entry.target.classList.add('visible');
                         }, index * 100);
+                        
+                        // Arrêter d'observer cet élément
+                        this.observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            fadeElements.forEach(el => observer.observe(el));
+            }
         }
 
-        // Enhanced header scroll effect with smooth transitions
-        function initHeaderScroll() {
-            const header = document.querySelector('header');
-            let lastScrollY = window.scrollY;
-            
-            window.addEventListener('scroll', () => {
+        // Gestion du header au scroll
+        class HeaderScroll {
+            constructor() {
+                this.header = document.querySelector('.header');
+                this.lastScrollY = window.scrollY;
+                this.scrollThreshold = 100;
+                
+                this.init();
+            }
+
+            init() {
+                window.addEventListener('scroll', 
+                    debounce(this.handleScroll.bind(this), CONFIG.debounceDelay),
+                    { passive: true }
+                );
+            }
+
+            handleScroll() {
                 const currentScrollY = window.scrollY;
                 
-                if (currentScrollY > 100) {
-                    header.style.background = 'rgba(10, 10, 10, 0.98)';
-                    header.style.backdropFilter = 'blur(30px)';
+                // Changement de transparence
+                if (currentScrollY > this.scrollThreshold) {
+                    this.header.style.background = 'rgba(10, 10, 10, 0.98)';
+                    this.header.style.backdropFilter = 'blur(30px)';
                 } else {
-                    header.style.background = 'rgba(10, 10, 10, 0.95)';
-                    header.style.backdropFilter = 'blur(20px)';
+                    this.header.style.background = 'rgba(10, 10, 10, 0.95)';
+                    this.header.style.backdropFilter = 'blur(20px)';
                 }
-                
-                // Hide/show header on scroll direction
-                if (currentScrollY > lastScrollY && currentScrollY > 200) {
-                    header.style.transform = 'translateY(-100%)';
+
+                // Masquer/afficher selon direction
+                if (currentScrollY > this.lastScrollY && currentScrollY > 200) {
+                    this.header.style.transform = 'translateY(-100%)';
                 } else {
-                    header.style.transform = 'translateY(0)';
+                    this.header.style.transform = 'translateY(0)';
                 }
-                
-                lastScrollY = currentScrollY;
-            }, { passive: true });
-        }
 
-        // Enhanced chroma letters with hover effects
-        function initChromaLetters() {
-            const chromaLetters = document.querySelectorAll('.chroma-letter');
-            
-            chromaLetters.forEach((letter, index) => {
-                letter.addEventListener('mouseenter', () => {
-                    letter.style.animationPlayState = 'paused';
-                });
-                
-                letter.addEventListener('mouseleave', () => {
-                    letter.style.animationPlayState = 'running';
-                });
-            });
-        }
-
-        // Performance optimization with requestAnimationFrame
-        let ticking = false;
-        let lastScrollY = 0;
-
-        function updateOnScroll() {
-            lastScrollY = window.scrollY;
-            ticking = false;
-        }
-
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateOnScroll);
-                ticking = true;
+                this.lastScrollY = currentScrollY;
             }
         }
 
-        // Smooth scroll for anchor links
-        function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Initialize all enhanced features
-        document.addEventListener('DOMContentLoaded', () => {
-            initScrollReveal();
-            initToolCards();
-            initFadeInElements();
-            initHeaderScroll();
-            initChromaLetters();
-            initSmoothScroll();
-            initSpotlightEffect();
-            
-            // Add loading animation completion
-            document.body.classList.add('loaded');
-        });
-
-        // Enhanced responsive menu handling
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && menuPanel.classList.contains('active')) {
-                toggleMenu();
+        // Tracking des interactions
+        class InteractionTracker {
+            constructor() {
+                this.init();
             }
-        });
 
-        // Optimized scroll listener
-        window.addEventListener('scroll', requestTick, { passive: true });
-
-        // Add touch support for mobile devices
-        let touchStartY = 0;
-        let touchEndY = 0;
-
-        document.addEventListener('touchstart', e => {
-            touchStartY = e.changedTouches[0].screenY;
-        }, { passive: true });
-
-        document.addEventListener('touchend', e => {
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
-        }, { passive: true });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartY - touchEndY;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                // Add swipe-based interactions if needed
-                console.log(diff > 0 ? 'Swiped up' : 'Swiped down');
-            }
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            var pageData = window.AtlasPageData;
-            if (!pageData) return;
-            
-            console.log('🎯 Atlas Priority Page Tracking activé:', pageData.category);
-            
-            // 1. TRACKING DES INTERACTIONS CRITIQUES
-            // =======================================
-            
-            // Tous les clics sur éléments importants
-            document.addEventListener('click', function(e) {
-                var target = e.target.closest('a, button, .cta-button, .tool-btn, [class*="btn"]');
-                if (!target) return;
-                
-                var clickInfo = {
-                    element: target.tagName.toLowerCase(),
-                    text: target.textContent?.trim().substring(0, 50) || '',
-                    href: target.href || '',
-                    className: target.className
-                };
-                
-                // Classification du clic selon la page
-                var clickType = 'general_click';
-                var clickValue = 1;
-                
-                // Page d'accueil
-                if (pageData.category === 'homepage') {
-                    if (clickInfo.href.includes('/custom-os/')) {
-                        clickType = 'homepage_to_product';
-                        clickValue = 8;
-                    } else if (clickInfo.href.includes('/tools/')) {
-                        clickType = 'homepage_to_tools';
-                        clickValue = 8;
-                    } else if (clickInfo.href.includes('/creator/')) {
-                        clickType = 'homepage_to_creator';
-                        clickValue = 7;
-                    }
-                }
-                
-                // Pages produits
-                else if (pageData.category === 'product') {
-                    if (clickInfo.text.toLowerCase().includes('télécharger') || 
-                        clickInfo.text.toLowerCase().includes('download')) {
-                        clickType = 'product_download';
-                        clickValue = 10;
-                    } else if (clickInfo.className.includes('cta')) {
-                        clickType = 'product_cta';
-                        clickValue = 9;
-                    }
-                }
-                
-                // Landing créateur
-                else if (pageData.category === 'landing') {
-                    if (clickInfo.className.includes('cta')) {
-                        clickType = 'landing_conversion';
-                        clickValue = 9;
-                    }
-                }
-                
-                // Outils/calculateurs
-                else if (pageData.category === 'tool') {
-                    if (clickInfo.text.toLowerCase().includes('calculer') || 
-                        clickInfo.text.toLowerCase().includes('résultat')) {
-                        clickType = 'tool_usage';
-                        clickValue = 8;
-                    }
-                }
-                
-                // Détection liens externes
-                if (clickInfo.href && !clickInfo.href.includes('atlas-corporation.fr') && clickInfo.href.startsWith('http')) {
-                    clickType = 'external_referral';
-                    clickValue = 3;
-                }
-                
-                // Envoi GA4
-                gtag('event', 'priority_click', {
-                    'event_category': 'priority_interaction',
-                    'event_label': clickType,
-                    'click_type': clickType,
-                    'click_text': clickInfo.text,
-                    'click_value': clickValue,
-                    'page_category': pageData.category,
-                    'page_priority': pageData.priority,
-                    'business_value': pageData.businessValue
+            init() {
+                // Tracking des clics sur les boutons CTA
+                document.querySelectorAll('.cta-button, .tool-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        this.trackClick(e.target);
+                    });
                 });
+
+                // Tracking des clics sur les liens du menu
+                document.querySelectorAll('.menu-item a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        this.trackMenuClick(e.target);
+                    });
+                });
+
+                // Tracking du scroll profond
+                this.trackScrollDepth();
+            }
+
+            trackClick(element) {
+                const text = element.textContent?.trim().substring(0, 50) || '';
+                const href = element.href || '';
                 
-                // Clarity
-                if (typeof clarity !== 'undefined') {
-                    clarity('event', 'priority_click', {
-                        'type': clickType,
-                        'value': clickValue,
-                        'page_type': pageData.category
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'cta_click', {
+                        'event_category': 'engagement',
+                        'event_label': text,
+                        'link_url': href
                     });
                 }
-            });
-            
-            // 2. TRACKING DU SCROLL POUR PAGES PRIORITAIRES
-            // =============================================
-            
-            var scrollMilestones = [25, 50, 75, 90];
-            var scrollTracked = [];
-            
-            window.addEventListener('scroll', debounce(function() {
-                var scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+            }
+
+            trackMenuClick(element) {
+                const text = element.textContent?.trim() || '';
                 
-                scrollMilestones.forEach(function(milestone) {
-                    if (scrollPercent >= milestone && scrollTracked.indexOf(milestone) === -1) {
-                        scrollTracked.push(milestone);
-                        
-                        gtag('event', 'priority_scroll', {
-                            'event_category': 'priority_engagement',
-                            'event_label': milestone + '_percent',
-                            'scroll_depth': milestone,
-                            'page_category': pageData.category,
-                            'page_priority': pageData.priority,
-                            'business_value': pageData.businessValue
-                        });
-                        
-                        // Scroll critique sur pages importantes
-                        if (milestone >= 75 && pageData.priority === 'critical') {
-                            if (typeof clarity !== 'undefined') {
-                                clarity('event', 'critical_page_deep_scroll', {
-                                    'depth': milestone,
-                                    'page_type': pageData.category
-                                });
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'menu_click', {
+                        'event_category': 'navigation',
+                        'event_label': text
+                    });
+                }
+            }
+
+            trackScrollDepth() {
+                const milestones = [25, 50, 75, 90];
+                const tracked = [];
+
+                window.addEventListener('scroll', 
+                    debounce(() => {
+                        const scrollPercent = Math.round(
+                            (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
+                        );
+
+                        milestones.forEach(milestone => {
+                            if (scrollPercent >= milestone && !tracked.includes(milestone)) {
+                                tracked.push(milestone);
+                                
+                                if (typeof gtag !== 'undefined') {
+                                    gtag('event', 'scroll_depth', {
+                                        'event_category': 'engagement',
+                                        'event_label': `${milestone}_percent`,
+                                        'value': milestone
+                                    });
+                                }
                             }
+                        });
+                    }, 500),
+                    { passive: true }
+                );
+            }
+        }
+
+        // Gestion de la vidéo
+        class VideoManager {
+            constructor() {
+                this.video = document.querySelector('.video-element');
+                this.init();
+            }
+
+            init() {
+                if (!this.video) return;
+
+                // Gestion des erreurs
+                this.video.addEventListener('error', (e) => {
+                    console.error('Erreur de chargement vidéo:', e);
+                    this.trackVideoEvent('video_error', 'load_failed');
+                });
+
+                // Tracking des événements vidéo
+                this.video.addEventListener('loadeddata', () => {
+                    this.trackVideoEvent('video_loaded', 'success');
+                });
+
+                this.video.addEventListener('play', () => {
+                    this.trackVideoEvent('video_play', '14_juillet');
+                });
+
+                this.video.addEventListener('ended', () => {
+                    this.trackVideoEvent('video_completed', '14_juillet');
+                });
+            }
+
+            trackVideoEvent(action, label) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', action, {
+                        'event_category': 'media',
+                        'event_label': label
+                    });
+                }
+            }
+        }
+
+        // Amélioration de l'accessibilité
+        class AccessibilityEnhancer {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                // Navigation au clavier
+                this.setupKeyboardNavigation();
+                
+                // Focus visible pour les interactions clavier
+                this.setupFocusManagement();
+                
+                // Réduction des animations si demandée
+                this.respectMotionPreferences();
+            }
+
+            setupKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                    // Raccourcis clavier
+                    if (e.ctrlKey || e.metaKey) {
+                        switch(e.key) {
+                            case 'm':
+                                e.preventDefault();
+                                document.getElementById('menuToggle')?.click();
+                                break;
                         }
                     }
                 });
-            }, 300));
-            
-            // 3. TRACKING TEMPOREL RENFORCÉ
-            // ==============================
-            
-            var timeIntervals = [15, 30, 60, 120, 300]; // secondes
-            var timeTracked = [];
-            var startTime = Date.now();
-            var isVisible = !document.hidden;
-            
-            document.addEventListener('visibilitychange', function() {
-                isVisible = !document.hidden;
-            });
-            
-            timeIntervals.forEach(function(interval) {
-                setTimeout(function() {
-                    if (isVisible && timeTracked.indexOf(interval) === -1) {
-                        timeTracked.push(interval);
-                        
-                        gtag('event', 'priority_time_engagement', {
-                            'event_category': 'priority_engagement',
-                            'event_label': interval + '_seconds',
-                            'engagement_time': interval,
-                            'page_category': pageData.category,
-                            'page_priority': pageData.priority,
-                            'business_value': pageData.businessValue
-                        });
-                        
-                        // Engagement exceptionnel sur pages critiques
-                        if (interval >= 120 && pageData.priority === 'critical') {
-                            if (typeof clarity !== 'undefined') {
-                                clarity('event', 'exceptional_engagement', {
-                                    'duration': interval,
-                                    'page_type': pageData.category
-                                });
-                            }
-                        }
-                    }
-                }, interval * 1000);
-            });
-            
-            // 4. DÉTECTION D'ERREURS SUR PAGES CRITIQUES
-            // ===========================================
-            
-            window.addEventListener('error', function(e) {
-                gtag('event', 'priority_page_error', {
-                    'event_category': 'critical_technical_issue',
-                    'event_label': 'javascript_error',
-                    'error_message': e.message?.substring(0, 100),
-                    'page_category': pageData.category,
-                    'page_priority': pageData.priority,
-                    'severity': pageData.priority === 'critical' ? 'high' : 'medium',
-                    'non_interaction': true
-                });
-            });
-            
-            // 5. PERFORMANCE DES PAGES PRIORITAIRES
-            // ======================================
-            
-            window.addEventListener('load', function() {
-                setTimeout(function() {
-                    var navigation = performance.getEntriesByType('navigation')[0];
-                    var loadTime = Math.round(navigation.loadEventEnd - navigation.fetchStart);
-                    
-                    gtag('event', 'priority_page_performance', {
-                        'event_category': 'priority_performance',
-                        'event_label': 'load_time',
-                        'load_time': loadTime,
-                        'page_category': pageData.category,
-                        'page_priority': pageData.priority,
-                        'business_value': pageData.businessValue
-                    });
-                    
-                    // Alerte performance sur pages critiques
-                    if (loadTime > 3000 && pageData.priority === 'critical') {
-                        gtag('event', 'critical_performance_issue', {
-                            'event_category': 'critical_technical_issue',
-                            'event_label': 'slow_critical_page',
-                            'load_time': loadTime,
-                            'page_category': pageData.category,
-                            'severity': 'high',
-                            'non_interaction': true
-                        });
-                    }
-                }, 1000);
-            });
-            
-            // 6. API SIMPLIFIÉE POUR PAGES PRIORITAIRES
-            // ==========================================
-            
-            window.AtlasTracking = {
-                trackConversion: function(conversionName, value) {
-                    value = value || pageData.businessValue;
-                    
-                    gtag('event', 'priority_conversion', {
-                        'event_category': 'conversion',
-                        'event_label': conversionName,
-                        'conversion_value': value,
-                        'page_category': pageData.category,
-                        'page_priority': pageData.priority,
-                        'currency': 'EUR'
-                    });
-                    
-                    if (typeof clarity !== 'undefined') {
-                        clarity('event', 'conversion', {
-                            'type': conversionName,
-                            'value': value,
-                            'page_priority': pageData.priority
-                        });
-                    }
-                },
-                
-                trackError: function(errorType, errorMessage) {
-                    gtag('event', 'priority_custom_error', {
-                        'event_category': 'priority_technical_issue',
-                        'event_label': errorType,
-                        'error_details': errorMessage,
-                        'page_category': pageData.category,
-                        'page_priority': pageData.priority
-                    });
-                },
-                
-                getPageData: function() {
-                    return pageData;
-                }
-            };
-            
-            // Fonction utilitaire
-            function debounce(func, wait) {
-                var timeout;
-                return function executedFunction() {
-                    var later = function() {
-                        clearTimeout(timeout);
-                        func();
-                    };
-                    clearTimeout(timeout);
-                    timeout = setTimeout(later, wait);
-                };
             }
-            
-        });
-        // Add keyboard navigation support
-        document.addEventListener('keydown', (e) => {
-            // Add keyboard shortcuts for better accessibility
-            if (e.ctrlKey || e.metaKey) {
-                switch(e.key) {
-                    case 'm':
-                        e.preventDefault();
-                        toggleMenu();
-                        break;
-                }
-            }
-        });
 
-        // Preload critical images for better performance
-        function preloadImages() {
-            const imageUrls = [
-                // Add any critical image URLs here
-            ];
-            
-            imageUrls.forEach(url => {
-                const img = new Image();
-                img.src = url;
-            });
+            setupFocusManagement() {
+                // Améliorer la visibilité du focus
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        document.body.classList.add('keyboard-navigation');
+                    }
+                });
+
+                document.addEventListener('mousedown', () => {
+                    document.body.classList.remove('keyboard-navigation');
+                });
+            }
+
+            respectMotionPreferences() {
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                
+                if (prefersReducedMotion) {
+                    document.documentElement.style.setProperty('--transition', 'none');
+                    
+                    // Désactiver les animations CSS
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        *, *::before, *::after {
+                            animation-duration: 0.01ms !important;
+                            animation-iteration-count: 1 !important;
+                            transition-duration: 0.01ms !important;
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
         }
 
-        // Call preload when page loads
-        window.addEventListener('load', preloadImages);
+        // Optimisation des performances
+        class PerformanceOptimizer {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                // Preload des images critiques
+                this.preloadCriticalImages();
+                
+                // Lazy loading des images non critiques
+                this.setupLazyLoading();
+                
+                // Tracking des performances
+                this.trackPerformance();
+            }
+
+            preloadCriticalImages() {
+                // Ajouter ici les URLs des images critiques si nécessaire
+                const criticalImages = [];
+                
+                criticalImages.forEach(url => {
+                    const img = new Image();
+                    img.src = url;
+                });
+            }
+
+            setupLazyLoading() {
+                if ('IntersectionObserver' in window) {
+                    const imageObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const img = entry.target;
+                                if (img.dataset.src) {
+                                    img.src = img.dataset.src;
+                                    img.removeAttribute('data-src');
+                                }
+                                observer.unobserve(img);
+                            }
+                        });
+                    });
+
+                    document.querySelectorAll('img[data-src]').forEach(img => {
+                        imageObserver.observe(img);
+                    });
+                }
+            }
+
+            trackPerformance() {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const navigation = performance.getEntriesByType('navigation')[0];
+                        const loadTime = Math.round(navigation.loadEventEnd - navigation.fetchStart);
+                        
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'page_performance', {
+                                'event_category': 'performance',
+                                'event_label': 'load_time',
+                                'value': loadTime
+                            });
+                        }
+                        
+                        // Alerte si performance dégradée
+                        if (loadTime > 3000) {
+                            console.warn(`Page load time: ${loadTime}ms - Consider optimization`);
+                        }
+                    }, 1000);
+                });
+            }
+        }
+
+        // Initialisation de l'application
+        class App {
+            constructor() {
+                this.components = {};
+                this.init();
+            }
+
+            init() {
+                // Attendre que le DOM soit chargé
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => {
+                        this.initializeComponents();
+                    });
+                } else {
+                    this.initializeComponents();
+                }
+            }
+
+            initializeComponents() {
+                try {
+                    // Initialiser tous les composants
+                    this.components.mobileMenu = new MobileMenu();
+                    this.components.scrollAnimations = new ScrollAnimations();
+                    this.components.headerScroll = new HeaderScroll();
+                    this.components.interactionTracker = new InteractionTracker();
+                    this.components.videoManager = new VideoManager();
+                    this.components.accessibilityEnhancer = new AccessibilityEnhancer();
+                    this.components.performanceOptimizer = new PerformanceOptimizer();
+                    
+                    // Marquer l'application comme chargée
+                    document.body.classList.add('app-loaded');
+                    
+                    console.log('Atlas Corporation - Application initialisée avec succès');
+                } catch (error) {
+                    console.error('Erreur lors de l\'initialisation:', error);
+                    
+                    // Tracking d'erreur
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'app_error', {
+                            'event_category': 'technical',
+                            'event_label': 'initialization_failed',
+                            'value': 1
+                        });
+                    }
+                }
+            }
+        }
+
+        // Démarrer l'application
+        new App();
     </script>
 </body>
 </html>
