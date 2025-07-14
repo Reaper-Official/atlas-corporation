@@ -1458,6 +1458,64 @@
     </footer>
 
     <script>
+               document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-element');
+            
+            if (video) {
+                // Gestion d'erreur de chargement vidéo
+                video.addEventListener('error', function(e) {
+                    console.error('Erreur de chargement vidéo:', e);
+                    
+                    // Afficher le fallback en cas d'erreur
+                    const fallback = video.querySelector('.video-fallback');
+                    if (fallback) {
+                        fallback.style.display = 'block';
+                    }
+                    
+                    // Optionnel : Tracking d'erreur
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'video_error', {
+                            'event_category': 'media',
+                            'event_label': 'video_load_failed',
+                            'video_url': video.currentSrc || 'unknown'
+                        });
+                    }
+                });
+                
+                // Événements de tracking vidéo (optionnel)
+                video.addEventListener('loadeddata', function() {
+                    console.log('Vidéo chargée avec succès');
+                    
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'video_loaded', {
+                            'event_category': 'media',
+                            'event_label': 'video_loaded_successfully'
+                        });
+                    }
+                });
+                
+                video.addEventListener('play', function() {
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'video_play', {
+                            'event_category': 'media',
+                            'event_label': '14_juillet_video'
+                        });
+                    }
+                });
+                
+                // Vérifier si l'URL de la vidéo est accessible
+                fetch(video.querySelector('source').src, { method: 'HEAD' })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Vidéo non accessible');
+                        }
+                    })
+                    .catch(error => {
+                        console.warn('Problème d\'accès à la vidéo:', error);
+                        // Vous pouvez ici afficher un message d'erreur ou charger une vidéo alternative
+                    });
+            }
+        });
         // Enhanced Menu toggle with smooth animations
         const menuBtn = document.getElementById('menuBtn');
         const menuPanel = document.getElementById('menuPanel');
