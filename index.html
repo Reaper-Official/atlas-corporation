@@ -1425,11 +1425,28 @@
                 <h2 class="celebration-title">🇫🇷 Vive la France ! 🇫🇷</h2>
                 <p class="celebration-subtitle">En l'honneur du 14 juillet - Fête Nationale</p>
                 
-                <div class="video-container">
-                    <div class="video-iframe">
+                 <video 
+                        class="video-element" 
+                        controls 
+                        preload="metadata"
+                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23001f3f'/%3E%3Ctext x='400' y='200' text-anchor='middle' fill='%23ff6b35' font-size='24'%3E🇫🇷 Vidéo 14 Juillet 🇫🇷%3C/text%3E%3Ctext x='400' y='250' text-anchor='middle' fill='%23b0b0b0' font-size='16'%3ECliquez pour lire%3C/text%3E%3C/svg%3E"
+                        aria-label="Vidéo de célébration du 14 juillet">
+                        
+                        <!-- Source vidéo principale -->
                         <source src="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.mp4" type="video/mp4">
-                    </div>
-                </div>
+                        
+                        <!-- Sources alternatives pour compatibilité -->
+                        <source src="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.webm" type="video/webm">
+                        <source src="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.ogv" type="video/ogg">
+                        
+                        <!-- Fallback pour navigateurs qui ne supportent pas HTML5 video -->
+                        <div class="video-fallback">
+                            <p>Votre navigateur ne supporte pas la lecture vidéo HTML5.</p>
+                            <p><a href="https://fichiers.atlas-corporation.fr/videostock/14juilletvideo.mp4" target="_blank" rel="noopener">
+                                Télécharger la vidéo directement
+                            </a></p>
+                        </div>
+                    </video>
             </div>
         </section>
 
