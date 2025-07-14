@@ -2,13 +2,80 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCBDEXT03"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        // Classification automatique selon la page
+        var currentPath = window.location.pathname.toLowerCase();
+        var pageData = {
+            category: 'unknown',
+            group: 'general',
+            priority: 'medium',
+            businessValue: 5
+        };
+        
+        // PAGES PRIORITAIRES - Classification précise
+        if (currentPath === '/' || currentPath === '/index.html') {
+            pageData = {category: 'homepage', group: 'accueil', priority: 'critical', businessValue: 10};
+        }
+        else if (currentPath.includes('/custom-os/')) {
+            pageData = {category: 'product', group: 'windows_optimise', priority: 'critical', businessValue: 9};
+        }
+        else if (currentPath.includes('/tools/')) {
+            pageData = {category: 'product', group: 'outils', priority: 'critical', businessValue: 9};
+        }
+        else if (currentPath.includes('/creator/')) {
+            pageData = {category: 'landing', group: 'createur', priority: 'critical', businessValue: 8};
+        }
+        else if (currentPath.includes('/psu-calculator/')) {
+            pageData = {category: 'tool', group: 'calculateurs', priority: 'high', businessValue: 7};
+        }
+        else if (currentPath.includes('/amd-vs-intel/')) {
+            pageData = {category: 'guide', group: 'comparatifs', priority: 'high', businessValue: 7};
+        }
+        
+        gtag('config', 'G-DLCBDEXT03', {
+            'content_group1': pageData.group,
+            'content_group2': pageData.category,
+            'content_group3': pageData.priority,
+            'custom_map': {
+                'custom_parameter_1': 'business_value'
+            }
+        });
+        
+        // Événement de classification
+        gtag('event', 'priority_page_view', {
+            'page_category': pageData.category,
+            'content_group': pageData.group,
+            'page_priority': pageData.priority,
+            'business_value': pageData.businessValue,
+            'deployment_phase': 'phase_1_critical'
+        });
+        
+        // Stockage global pour utilisation dans le comportemental
+        window.AtlasPageData = pageData;
+    </script>
+
+    <!-- Microsoft Clarity -->
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "segl6n2z7e");
-</script>
+        })(window, document, "clarity", "script", "seoh58v3nk");
+        
+        window.addEventListener('load', function() {
+            if (typeof clarity !== 'undefined' && window.AtlasPageData) {
+                clarity('set', 'page_category', window.AtlasPageData.category);
+                clarity('set', 'business_priority', window.AtlasPageData.priority);
+                clarity('set', 'content_group', window.AtlasPageData.group);
+                clarity('set', 'deployment_phase', 'priority_pages');
+            }
+        });
+    </script>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -560,7 +627,277 @@ exit
                 }
             });
         }, observerOptions);
-
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var pageData = window.AtlasPageData;
+            if (!pageData) return;
+            
+            console.log('🎯 Atlas Priority Page Tracking activé:', pageData.category);
+            
+            // 1. TRACKING DES INTERACTIONS CRITIQUES
+            // =======================================
+            
+            // Tous les clics sur éléments importants
+            document.addEventListener('click', function(e) {
+                var target = e.target.closest('a, button, .cta-button, .tool-btn, [class*="btn"]');
+                if (!target) return;
+                
+                var clickInfo = {
+                    element: target.tagName.toLowerCase(),
+                    text: target.textContent?.trim().substring(0, 50) || '',
+                    href: target.href || '',
+                    className: target.className
+                };
+                
+                // Classification du clic selon la page
+                var clickType = 'general_click';
+                var clickValue = 1;
+                
+                // Page d'accueil
+                if (pageData.category === 'homepage') {
+                    if (clickInfo.href.includes('/custom-os/')) {
+                        clickType = 'homepage_to_product';
+                        clickValue = 8;
+                    } else if (clickInfo.href.includes('/tools/')) {
+                        clickType = 'homepage_to_tools';
+                        clickValue = 8;
+                    } else if (clickInfo.href.includes('/creator/')) {
+                        clickType = 'homepage_to_creator';
+                        clickValue = 7;
+                    }
+                }
+                
+                // Pages produits
+                else if (pageData.category === 'product') {
+                    if (clickInfo.text.toLowerCase().includes('télécharger') || 
+                        clickInfo.text.toLowerCase().includes('download')) {
+                        clickType = 'product_download';
+                        clickValue = 10;
+                    } else if (clickInfo.className.includes('cta')) {
+                        clickType = 'product_cta';
+                        clickValue = 9;
+                    }
+                }
+                
+                // Landing créateur
+                else if (pageData.category === 'landing') {
+                    if (clickInfo.className.includes('cta')) {
+                        clickType = 'landing_conversion';
+                        clickValue = 9;
+                    }
+                }
+                
+                // Outils/calculateurs
+                else if (pageData.category === 'tool') {
+                    if (clickInfo.text.toLowerCase().includes('calculer') || 
+                        clickInfo.text.toLowerCase().includes('résultat')) {
+                        clickType = 'tool_usage';
+                        clickValue = 8;
+                    }
+                }
+                
+                // Détection liens externes
+                if (clickInfo.href && !clickInfo.href.includes('atlas-corporation.fr') && clickInfo.href.startsWith('http')) {
+                    clickType = 'external_referral';
+                    clickValue = 3;
+                }
+                
+                // Envoi GA4
+                gtag('event', 'priority_click', {
+                    'event_category': 'priority_interaction',
+                    'event_label': clickType,
+                    'click_type': clickType,
+                    'click_text': clickInfo.text,
+                    'click_value': clickValue,
+                    'page_category': pageData.category,
+                    'page_priority': pageData.priority,
+                    'business_value': pageData.businessValue
+                });
+                
+                // Clarity
+                if (typeof clarity !== 'undefined') {
+                    clarity('event', 'priority_click', {
+                        'type': clickType,
+                        'value': clickValue,
+                        'page_type': pageData.category
+                    });
+                }
+            });
+            
+            // 2. TRACKING DU SCROLL POUR PAGES PRIORITAIRES
+            // =============================================
+            
+            var scrollMilestones = [25, 50, 75, 90];
+            var scrollTracked = [];
+            
+            window.addEventListener('scroll', debounce(function() {
+                var scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+                
+                scrollMilestones.forEach(function(milestone) {
+                    if (scrollPercent >= milestone && scrollTracked.indexOf(milestone) === -1) {
+                        scrollTracked.push(milestone);
+                        
+                        gtag('event', 'priority_scroll', {
+                            'event_category': 'priority_engagement',
+                            'event_label': milestone + '_percent',
+                            'scroll_depth': milestone,
+                            'page_category': pageData.category,
+                            'page_priority': pageData.priority,
+                            'business_value': pageData.businessValue
+                        });
+                        
+                        // Scroll critique sur pages importantes
+                        if (milestone >= 75 && pageData.priority === 'critical') {
+                            if (typeof clarity !== 'undefined') {
+                                clarity('event', 'critical_page_deep_scroll', {
+                                    'depth': milestone,
+                                    'page_type': pageData.category
+                                });
+                            }
+                        }
+                    }
+                });
+            }, 300));
+            
+            // 3. TRACKING TEMPOREL RENFORCÉ
+            // ==============================
+            
+            var timeIntervals = [15, 30, 60, 120, 300]; // secondes
+            var timeTracked = [];
+            var startTime = Date.now();
+            var isVisible = !document.hidden;
+            
+            document.addEventListener('visibilitychange', function() {
+                isVisible = !document.hidden;
+            });
+            
+            timeIntervals.forEach(function(interval) {
+                setTimeout(function() {
+                    if (isVisible && timeTracked.indexOf(interval) === -1) {
+                        timeTracked.push(interval);
+                        
+                        gtag('event', 'priority_time_engagement', {
+                            'event_category': 'priority_engagement',
+                            'event_label': interval + '_seconds',
+                            'engagement_time': interval,
+                            'page_category': pageData.category,
+                            'page_priority': pageData.priority,
+                            'business_value': pageData.businessValue
+                        });
+                        
+                        // Engagement exceptionnel sur pages critiques
+                        if (interval >= 120 && pageData.priority === 'critical') {
+                            if (typeof clarity !== 'undefined') {
+                                clarity('event', 'exceptional_engagement', {
+                                    'duration': interval,
+                                    'page_type': pageData.category
+                                });
+                            }
+                        }
+                    }
+                }, interval * 1000);
+            });
+            
+            // 4. DÉTECTION D'ERREURS SUR PAGES CRITIQUES
+            // ===========================================
+            
+            window.addEventListener('error', function(e) {
+                gtag('event', 'priority_page_error', {
+                    'event_category': 'critical_technical_issue',
+                    'event_label': 'javascript_error',
+                    'error_message': e.message?.substring(0, 100),
+                    'page_category': pageData.category,
+                    'page_priority': pageData.priority,
+                    'severity': pageData.priority === 'critical' ? 'high' : 'medium',
+                    'non_interaction': true
+                });
+            });
+            
+            // 5. PERFORMANCE DES PAGES PRIORITAIRES
+            // ======================================
+            
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    var navigation = performance.getEntriesByType('navigation')[0];
+                    var loadTime = Math.round(navigation.loadEventEnd - navigation.fetchStart);
+                    
+                    gtag('event', 'priority_page_performance', {
+                        'event_category': 'priority_performance',
+                        'event_label': 'load_time',
+                        'load_time': loadTime,
+                        'page_category': pageData.category,
+                        'page_priority': pageData.priority,
+                        'business_value': pageData.businessValue
+                    });
+                    
+                    // Alerte performance sur pages critiques
+                    if (loadTime > 3000 && pageData.priority === 'critical') {
+                        gtag('event', 'critical_performance_issue', {
+                            'event_category': 'critical_technical_issue',
+                            'event_label': 'slow_critical_page',
+                            'load_time': loadTime,
+                            'page_category': pageData.category,
+                            'severity': 'high',
+                            'non_interaction': true
+                        });
+                    }
+                }, 1000);
+            });
+            
+            // 6. API SIMPLIFIÉE POUR PAGES PRIORITAIRES
+            // ==========================================
+            
+            window.AtlasTracking = {
+                trackConversion: function(conversionName, value) {
+                    value = value || pageData.businessValue;
+                    
+                    gtag('event', 'priority_conversion', {
+                        'event_category': 'conversion',
+                        'event_label': conversionName,
+                        'conversion_value': value,
+                        'page_category': pageData.category,
+                        'page_priority': pageData.priority,
+                        'currency': 'EUR'
+                    });
+                    
+                    if (typeof clarity !== 'undefined') {
+                        clarity('event', 'conversion', {
+                            'type': conversionName,
+                            'value': value,
+                            'page_priority': pageData.priority
+                        });
+                    }
+                },
+                
+                trackError: function(errorType, errorMessage) {
+                    gtag('event', 'priority_custom_error', {
+                        'event_category': 'priority_technical_issue',
+                        'event_label': errorType,
+                        'error_details': errorMessage,
+                        'page_category': pageData.category,
+                        'page_priority': pageData.priority
+                    });
+                },
+                
+                getPageData: function() {
+                    return pageData;
+                }
+            };
+            
+            // Fonction utilitaire
+            function debounce(func, wait) {
+                var timeout;
+                return function executedFunction() {
+                    var later = function() {
+                        clearTimeout(timeout);
+                        func();
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+            
+        });
         // Observer toutes les cartes
         document.querySelectorAll('.feature-card, .step').forEach(card => {
             card.style.opacity = '0';
