@@ -2,95 +2,275 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "segl6n2z7e");
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlas OS vs Windows 11 - Comparaison</title>
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "segl6n2z7e");
+    </script>
+    <title>Atlas OS vs Windows 11 - Comparaison - Atlas Corporation</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
+        /* === VARIABLES CSS === */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #1e1e1e;
+            --accent-orange: #ff6b35;
+            --accent-yellow: #ffb84d;
+            --accent-cyan: #00f5ff;
+            --accent-magenta: #ff00f5;
+            --accent-blue: #0055ff;
+            --accent-red: #ff0040;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-pink: #f472b6;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888888;
+            --border: #333333;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: rgba(0, 0, 0, 0.3);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* === RESET === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-dark: #0a0a0a;
-            --secondary-dark: #1a1a1a;
-            --tertiary-dark: #2d2d2d;
-            --accent-orange: #ff6b35;
-            --accent-red: #cc0000;
-            --accent-yellow: #ffcc00;
-            --accent-green: #ff8800;
-            --text-light: #ffffff;
-            --text-muted: #cccccc;
-            --border-color: #660000;
-        }
-
         body {
-            font-family: 'Roboto Condensed', sans-serif;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(ellipse at top, #1a1a2e 0%, #16213e 25%, #0f0f0f 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
-            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
         }
 
-        body::before {
-            content: '';
+        /* === BACKGROUND EFFECTS === */
+        .bg-effects {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 204, 0, 0.05) 0%, transparent 50%);
+            pointer-events: none;
             z-index: -1;
+            overflow: hidden;
         }
 
-        /* Menu Styles */
-        .menu-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-yellow) 100%);
-            color: var(--primary-dark);
-            border: none;
-            width: 50px;
-            height: 50px;
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
             border-radius: 50%;
-            cursor: pointer;
-            z-index: 1001;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .gradient-orbs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: morphing 20s ease-in-out infinite;
+        }
+
+        .orb:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
+            top: 60%;
+            right: 15%;
+            animation-delay: -7s;
+        }
+
+        .orb:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(45deg, var(--accent-magenta), var(--accent-purple));
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -14s;
+        }
+
+        /* === HEADER === */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(30px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 107, 53, 0.1) 50%, 
+                transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .header:hover::before {
+            opacity: 1;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--accent-orange);
+            text-decoration: none;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-            transition: all 0.3s ease;
-            font-weight: bold;
+            gap: 0.8rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .logo::before {
+            content: "⚔️";
+            font-size: 1.8rem;
+            animation: battlePulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px var(--accent-orange));
+            display: inline-block;
+            transform-origin: center;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px var(--accent-orange);
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 14px;
+            cursor: pointer;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
         .menu-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+            background: rgba(255, 107, 53, 0.2);
+            border-color: var(--accent-orange);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
+        .menu-line {
+            width: 22px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--text-primary), var(--accent-orange));
+            border-radius: 2px;
+            transition: all 0.4s var(--elastic);
+        }
+
+        .menu-toggle.active .menu-line:nth-child(1) { 
+            transform: rotate(45deg) translate(6px, 6px); 
+            background: var(--accent-orange);
+        }
+        .menu-toggle.active .menu-line:nth-child(2) { 
+            opacity: 0; 
+            transform: scale(0) rotate(180deg); 
+        }
+        .menu-toggle.active .menu-line:nth-child(3) { 
+            transform: rotate(-45deg) translate(8px, -7px); 
+            background: var(--accent-orange);
+        }
+
+        /* === NAVIGATION MENU === */
         .menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 998;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            z-index: 998;
         }
 
         .menu-overlay.active {
@@ -101,15 +281,18 @@
         .menu-panel {
             position: fixed;
             top: 0;
-            left: -350px;
-            width: 350px;
+            left: -100%;
+            width: min(380px, 80vw);
             height: 100vh;
-            background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--tertiary-dark) 100%);
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 30, 0.95), 
+                rgba(40, 40, 40, 0.95));
+            backdrop-filter: blur(30px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            transition: left 0.5s var(--elastic);
             z-index: 999;
-            transition: left 0.3s ease;
             overflow-y: auto;
-            box-shadow: 3px 0 15px rgba(255, 107, 53, 0.3);
-            border-right: 3px solid var(--accent-orange);
+            box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
         }
 
         .menu-panel.active {
@@ -117,23 +300,35 @@
         }
 
         .menu-content {
-            padding: 80px 25px 25px;
-            color: var(--text-light);
+            padding: 100px 25px 40px;
         }
 
         .menu-section {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .menu-section-title {
+            font-family: 'Orbitron', monospace;
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--accent-orange);
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--accent-orange);
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--accent-orange);
+            padding-bottom: 12px;
+            position: relative;
+        }
+
+        .menu-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30%;
+            height: 2px;
+            background: var(--accent-cyan);
+            animation: shimmer 2s ease-in-out infinite;
         }
 
         .menu-items {
@@ -145,28 +340,50 @@
         }
 
         .menu-item a {
-            color: var(--text-muted);
-            text-decoration: none;
             display: block;
-            padding: 10px 15px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            background: rgba(255, 107, 53, 0.1);
+            padding: 16px 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+        }
+
+        .menu-item a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 107, 53, 0.1), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+
+        .menu-item a:hover::before {
+            left: 100%;
         }
 
         .menu-item a:hover {
-            background: rgba(255, 107, 53, 0.2);
+            background: rgba(255, 107, 53, 0.1);
             color: var(--accent-orange);
-            transform: translateX(5px);
+            transform: translateX(12px) scale(1.02);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
         }
 
         .highlight-section {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 204, 0, 0.1));
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 53, 0.1), 
+                rgba(255, 184, 77, 0.1));
             border: 2px solid var(--accent-orange);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
         }
 
         .highlight-section .menu-section-title {
@@ -175,126 +392,180 @@
         }
 
         .highlight-item {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .highlight-item a {
-            color: var(--primary-dark);
-            text-decoration: none;
-            display: block;
-            padding: 12px 15px;
-            border-radius: 6px;
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, 
+                var(--accent-orange), 
+                var(--accent-yellow));
+            color: var(--bg-primary);
             font-weight: 600;
             text-align: center;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
         .highlight-item a:hover {
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-orange));
-            transform: translateX(5px);
+            background: linear-gradient(135deg, 
+                var(--accent-red), 
+                var(--accent-orange));
+            color: var(--text-primary);
+            transform: translateX(0) scale(1.05);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(15px);
-            border-radius: 16px;
-            box-shadow: 0 25px 50px rgba(255, 107, 53, 0.15);
-            overflow: hidden;
-            border: 2px solid rgba(255, 107, 53, 0.2);
+            padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        .header {
-            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-yellow) 100%);
-            color: var(--primary-dark);
+        /* === MAIN HEADER === */
+        .main-header {
             text-align: center;
-            padding: 40px 20px;
+            margin: 60px 0;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 30, 0.8), 
+                rgba(40, 40, 50, 0.6));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
         }
 
-        .header::before {
+        .main-header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="2" fill="rgba(0,0,0,0.1)"/><circle cx="20" cy="20" r="1" fill="rgba(0,0,0,0.08)"/><circle cx="60" cy="20" r="1.5" fill="rgba(0,0,0,0.06)"/></svg>');
-            animation: sparkle 15s infinite linear;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--accent-orange), 
+                var(--accent-yellow), 
+                var(--accent-cyan), 
+                var(--accent-magenta));
+            background-size: 300% 100%;
+            animation: battleFlow 3s ease-in-out infinite;
         }
 
-        @keyframes sparkle {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-160px); }
-        }
-
-        .header h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        .main-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            background: linear-gradient(135deg, 
+                var(--accent-orange), 
+                var(--accent-yellow), 
+                var(--accent-cyan));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShimmer 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
         }
 
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 2;
-            font-weight: 300;
+        .main-description {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 400;
         }
 
+        /* === SCROLL HINT === */
+        .scroll-hint {
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 12px;
+            padding: 15px 20px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* === TABLE CONTAINER === */
+        .table-container {
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 30, 0.8), 
+                rgba(40, 40, 50, 0.6));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* === COMPARISON TABLE === */
         .comparison-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
             margin: 0;
+            min-width: 800px;
         }
 
         .comparison-table th {
-            background: var(--secondary-dark);
-            color: var(--text-light);
-            padding: 25px 20px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 30px 25px;
             text-align: left;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             position: sticky;
             top: 0;
             z-index: 10;
             border-bottom: 2px solid var(--accent-orange);
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .comparison-table th:first-child {
-            background: linear-gradient(135deg, var(--accent-red) 0%, #8b0000 100%);
+            background: linear-gradient(135deg, 
+                var(--accent-red), 
+                #8b0000);
             width: 22%;
+            color: var(--text-primary);
         }
 
         .comparison-table th:nth-child(2) {
-            background: linear-gradient(135deg, var(--accent-orange) 0%, #e55a2b 100%);
+            background: linear-gradient(135deg, 
+                var(--accent-orange), 
+                #e55a2b);
             width: 39%;
-            color: var(--primary-dark);
+            color: var(--bg-primary);
         }
 
         .comparison-table th:nth-child(3) {
-            background: linear-gradient(135deg, var(--accent-yellow) 0%, #e6b800 100%);
+            background: linear-gradient(135deg, 
+                var(--accent-yellow), 
+                #e6b800);
             width: 39%;
-            color: var(--primary-dark);
+            color: var(--bg-primary);
         }
 
         .comparison-table td {
-            padding: 25px 20px;
-            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             vertical-align: top;
             line-height: 1.7;
-            font-size: 0.95rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(26, 26, 26, 0.8);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: rgba(26, 26, 26, 0.6);
         }
 
         .comparison-table tbody tr:hover {
@@ -304,7 +575,7 @@
         }
 
         .comparison-table tbody tr:nth-child(even) {
-            background: rgba(45, 45, 45, 0.5);
+            background: rgba(45, 45, 45, 0.4);
         }
 
         .comparison-table tbody tr:nth-child(even):hover {
@@ -314,21 +585,31 @@
         .criteria-cell {
             font-weight: 700;
             color: var(--accent-orange);
-            background: linear-gradient(135deg, var(--tertiary-dark) 0%, var(--secondary-dark) 100%) !important;
-            border-right: 5px solid var(--accent-red);
-            font-size: 1rem;
+            background: linear-gradient(135deg, 
+                rgba(45, 45, 45, 0.8), 
+                rgba(30, 30, 30, 0.8)) !important;
+            border-right: 4px solid var(--accent-red);
+            font-size: 1.1rem;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .atlas-cell {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%) !important;
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 53, 0.1), 
+                rgba(255, 107, 53, 0.05)) !important;
             border-left: 4px solid var(--accent-orange);
         }
 
         .windows-cell {
-            background: linear-gradient(135deg, rgba(255, 204, 0, 0.1) 0%, rgba(255, 204, 0, 0.05) 100%) !important;
+            background: linear-gradient(135deg, 
+                rgba(255, 184, 77, 0.1), 
+                rgba(255, 184, 77, 0.05)) !important;
             border-left: 4px solid var(--accent-yellow);
         }
 
+        /* === STATUS STYLES === */
         .pro {
             color: var(--accent-green);
             font-weight: 600;
@@ -344,93 +625,158 @@
             font-weight: 500;
         }
 
+        /* === BADGES === */
         .badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--accent-yellow) 0%, var(--accent-green) 100%);
-            color: var(--primary-dark);
-            padding: 4px 12px;
+            background: linear-gradient(135deg, 
+                var(--accent-yellow), 
+                var(--accent-green));
+            color: var(--bg-primary);
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
             margin: 2px 4px 2px 0;
-            box-shadow: 0 2px 8px rgba(255, 204, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 184, 77, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .performance-highlight {
-            background: linear-gradient(135deg, var(--accent-green) 0%, #e6a000 100%);
-            color: var(--primary-dark);
-            padding: 8px 16px;
+            background: linear-gradient(135deg, 
+                var(--accent-green), 
+                #20b2aa);
+            color: white;
+            padding: 10px 18px;
             border-radius: 25px;
             font-weight: 700;
             font-size: 0.9rem;
             display: inline-block;
-            margin: 4px 0;
-            box-shadow: 0 4px 12px rgba(255, 136, 0, 0.4);
+            margin: 6px 0;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .warning {
-            background: linear-gradient(135deg, var(--accent-red) 0%, #990000 100%);
-            color: var(--text-light);
-            padding: 6px 12px;
+            background: linear-gradient(135deg, 
+                var(--accent-red), 
+                #990000);
+            color: var(--text-primary);
+            padding: 8px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
             display: inline-block;
             margin: 2px 0;
-            box-shadow: 0 3px 10px rgba(204, 0, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 0, 64, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
+        /* === SUMMARY SECTION === */
         .summary-section {
-            background: linear-gradient(135deg, var(--tertiary-dark) 0%, var(--secondary-dark) 100%);
-            padding: 40px 30px;
-            margin: 0;
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 30, 0.8), 
+                rgba(40, 40, 50, 0.6));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .summary-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--accent-green), 
+                var(--accent-cyan), 
+                var(--accent-magenta));
+            background-size: 300% 100%;
+            animation: summaryFlow 4s ease-in-out infinite;
         }
 
         .summary-title {
+            font-family: 'Orbitron', monospace;
             color: var(--accent-orange);
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 2px;
+            background: linear-gradient(135deg, 
+                var(--accent-orange), 
+                var(--accent-yellow));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShimmer 4s ease-in-out infinite;
         }
 
         .summary-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
         }
 
         .summary-card {
             background: rgba(26, 26, 26, 0.8);
             backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.1);
-            border-left: 6px solid var(--accent-orange);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid rgba(255, 107, 53, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 6px;
+            background: linear-gradient(180deg, 
+                var(--accent-orange), 
+                var(--accent-yellow));
+        }
+
+        .summary-card.atlas::before {
+            background: linear-gradient(180deg, 
+                var(--accent-orange), 
+                var(--accent-red));
+        }
+
+        .summary-card.windows::before {
+            background: linear-gradient(180deg, 
+                var(--accent-yellow), 
+                var(--accent-green));
         }
 
         .summary-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
-        }
-
-        .summary-card.atlas {
-            border-left-color: var(--accent-orange);
-        }
-
-        .summary-card.windows {
-            border-left-color: var(--accent-yellow);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 107, 53, 0.3);
         }
 
         .summary-card h3 {
-            font-size: 1.4rem;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.6rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--accent-orange);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -441,86 +787,297 @@
         }
 
         .summary-card p {
-            line-height: 1.6;
-            color: var(--text-muted);
+            line-height: 1.7;
+            color: var(--text-secondary);
             margin-bottom: 15px;
+            font-size: 1.05rem;
         }
 
-        .recommendation {
-            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-yellow) 100%);
-            color: var(--primary-dark);
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 1.1rem;
+        .summary-card strong {
+            color: var(--text-primary);
             font-weight: 600;
-            line-height: 1.6;
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
         }
 
+        /* === RECOMMENDATION === */
+        .recommendation {
+            background: linear-gradient(135deg, 
+                var(--accent-orange), 
+                var(--accent-yellow));
+            color: var(--bg-primary);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.7;
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 30px,
+                rgba(255, 255, 255, 0.05) 30px,
+                rgba(255, 255, 255, 0.05) 60px
+            );
+            animation: slidePattern 15s linear infinite;
+        }
+
+        .recommendation strong {
+            position: relative;
+            z-index: 2;
+            font-size: 1.3rem;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes battlePulse {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+                filter: drop-shadow(0 0 15px var(--accent-orange));
+            }
+            50% { 
+                opacity: 0.8;
+                transform: scale(1.2) rotate(180deg);
+                filter: drop-shadow(0 0 30px var(--accent-red));
+            }
+        }
+
+        @keyframes titleShimmer {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes battleFlow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes summaryFlow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes slidePattern {
+            0% {
+                transform: translateX(-60px);
+            }
+            100% {
+                transform: translateX(60px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { left: 0; width: 30%; }
+            50% { left: 35%; width: 60%; }
+            100% { left: 70%; width: 30%; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) rotate(0deg);
+                opacity: 0.6;
+            }
+            33% {
+                transform: translateY(-20px) translateX(10px) rotate(120deg);
+                opacity: 1;
+            }
+            66% {
+                transform: translateY(10px) translateX(-5px) rotate(240deg);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes morphing {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                border-radius: 50%;
+            }
+            33% {
+                transform: scale(1.1) rotate(120deg);
+                border-radius: 30% 70% 60% 40%;
+            }
+            66% {
+                transform: scale(0.9) rotate(240deg);
+                border-radius: 60% 40% 30% 70%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(40px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .container {
+                padding: 15px;
             }
-            
-            .header h1 {
-                font-size: 2.2rem;
+
+            .main-header {
+                padding: 50px 25px;
+                margin: 40px 0;
             }
-            
-            .header p {
-                font-size: 1rem;
+
+            .main-title {
+                font-size: 2.5rem;
             }
-            
+
+            .main-description {
+                font-size: 1.1rem;
+            }
+
             .comparison-table th,
             .comparison-table td {
-                padding: 15px 12px;
+                padding: 20px 15px;
                 font-size: 0.9rem;
             }
-            
+
+            .summary-section {
+                padding: 40px 25px;
+                margin: 40px 0;
+            }
+
             .summary-cards {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
-            
-            .container {
-                border-radius: 8px;
+
+            .summary-card {
+                padding: 30px 20px;
+            }
+
+            .recommendation {
+                padding: 25px 20px;
+                font-size: 1.1rem;
             }
 
             .menu-panel {
-                width: 300px;
-                left: -300px;
+                width: min(320px, 85vw);
+                left: -320px;
             }
 
-            .menu-toggle {
-                width: 45px;
-                height: 45px;
-                font-size: 16px;
+            .menu-content {
+                padding: 80px 20px 30px;
+            }
+
+            .table-container {
+                border-radius: 16px;
             }
         }
 
-        .scroll-hint {
-            background: var(--secondary-dark);
-            color: var(--text-light);
-            text-align: center;
-            padding: 12px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-bottom: 2px solid var(--accent-orange);
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 40px 20px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 15px 10px;
+                font-size: 0.85rem;
+            }
+
+            .summary-title {
+                font-size: 1.8rem;
+            }
+
+            .summary-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .summary-card p {
+                font-size: 1rem;
+            }
         }
 
-        .table-container {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+        /* === SCROLL BEHAVIOR === */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* === ACCESSIBILITY === */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* === FOCUS STYLES === */
+        body.keyboard-navigation *:focus {
+            outline: 2px solid var(--accent-orange);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <!-- Menu Toggle Button -->
-    <button class="menu-toggle" id="menuToggle">☰</button>
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="stars"></div>
+        <div class="floating-particles"></div>
+        <div class="gradient-orbs">
+            <div class="orb"></div>
+            <div class="orb"></div>
+            <div class="orb"></div>
+        </div>
+    </div>
 
-    <!-- Menu Overlay -->
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="https://atlas-corporation.fr" class="logo">
+                <div>
+                    <div>Atlas Corporation</div>
+                    <div class="logo-subtitle">Atlas OS vs Windows</div>
+                </div>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu de navigation">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Menu Mobile -->
     <div class="menu-overlay" id="menuOverlay"></div>
-
-    <!-- Menu Panel -->
     <div class="menu-panel" id="menuPanel">
         <div class="menu-content">
             <div class="menu-section">
@@ -572,224 +1129,489 @@
         </div>
     </div>
 
-    <div class="container">
-        <header class="header">
-            <h1>🖥️ Atlas OS vs Windows 11</h1>
-            <p>Analyse comparative complète pour votre décision</p>
-        </header>
+    <!-- Contenu Principal -->
+    <main>
+        <div class="container">
+            <div class="main-header fade-in">
+                <h1 class="main-title">🖥️ Atlas OS vs Windows 11</h1>
+                <p class="main-description">
+                    Analyse comparative complète pour votre décision éclairée
+                </p>
+            </div>
 
-        <div class="scroll-hint">
-            📱 Défilez horizontalement pour voir toutes les colonnes sur mobile
-        </div>
+            <div class="scroll-hint fade-in">
+                📱 Défilez horizontalement pour voir toutes les colonnes sur mobile
+            </div>
 
-        <div class="table-container">
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>🎯 Critères</th>
-                        <th>🔷 Atlas OS</th>
-                        <th>🟢 Windows 11</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="criteria-cell">Nature du système</td>
-                        <td class="atlas-cell">
-                            <span class="badge">Version modifiée</span> de Windows obtenue via des scripts (Atlas Playbook + AME Wizard). 
-                            <br><span class="con">Pas un OS indépendant</span>, mais un Windows "allégé"
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Système complet officiel</span> fourni et supporté par Microsoft avec l'ensemble des fonctionnalités et services prévus
-                        </td>
-                    </tr>
+            <div class="table-container fade-in">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>🎯 Critères</th>
+                            <th>🔷 Atlas OS</th>
+                            <th>🟢 Windows 11</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="criteria-cell">Nature du système</td>
+                            <td class="atlas-cell">
+                                <span class="badge">Version modifiée</span> de Windows obtenue via des scripts (Atlas Playbook + AME Wizard). 
+                                <br><span class="con">Pas un OS indépendant</span>, mais un Windows "allégé"
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Système complet officiel</span> fourni et supporté par Microsoft avec l'ensemble des fonctionnalités et services prévus
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Installation</td>
-                        <td class="atlas-cell">
-                            <span class="warning">Réinstallation complète requise</span> via ISO officielle + exécution de scripts. 
-                            Processus technique relativement "fermé"
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Installation guidée simple</span> par Media Creation Tool. 
-                            Processus accessible à tous avec possibilité de personnalisation
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Installation</td>
+                            <td class="atlas-cell">
+                                <span class="warning">Réinstallation complète requise</span> via ISO officielle + exécution de scripts. 
+                                Processus technique relativement "fermé"
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Installation guidée simple</span> par Media Creation Tool. 
+                                Processus accessible à tous avec possibilité de personnalisation
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Réversibilité</td>
-                        <td class="atlas-cell">
-                            <span class="con">Modifications largement irréversibles</span> - réinstallation Windows complète nécessaire pour revenir à l'état stock
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Retour à l'état d'origine garanti</span> par Microsoft. 
-                            Modifications ajustables ou inversées manuellement
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Réversibilité</td>
+                            <td class="atlas-cell">
+                                <span class="con">Modifications largement irréversibles</span> - réinstallation Windows complète nécessaire pour revenir à l'état stock
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Retour à l'état d'origine garanti</span> par Microsoft. 
+                                Modifications ajustables ou inversées manuellement
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Sécurité</td>
-                        <td class="atlas-cell">
-                            <span class="warning">Désactive protections essentielles</span> (Windows Defender, restauration système, mitigations Spectre/Meltdown). 
-                            <span class="con">Risque accru sans mises à jour automatiques</span>
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Fonctionnalités de sécurité activées par défaut</span> (Defender, mises à jour régulières, restauration système). 
-                            Support officiel et correctifs continus
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Sécurité</td>
+                            <td class="atlas-cell">
+                                <span class="warning">Désactive protections essentielles</span> (Windows Defender, restauration système, mitigations Spectre/Meltdown). 
+                                <span class="con">Risque accru sans mises à jour automatiques</span>
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Fonctionnalités de sécurité activées par défaut</span> (Defender, mises à jour régulières, restauration système). 
+                                Support officiel et correctifs continus
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Performance Gaming</td>
-                        <td class="atlas-cell">
-                            <span class="performance-highlight">Optimisé pour le gaming</span>
-                            <br>• Libère ~1 à 1,5 GB de RAM au démarrage
-                            <br>• <span class="pro">VALORANT: 217 → 366 FPS</span>
-                            <br>• Baisse de latence sur matériel ancien
-                        </td>
-                        <td class="windows-cell">
-                            Utilisation plus élevée des ressources sur matériel modeste. 
-                            <span class="neutral">Différence marginale sur matériel moderne</span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Performance Gaming</td>
+                            <td class="atlas-cell">
+                                <span class="performance-highlight">Optimisé pour le gaming</span>
+                                <br>• Libère ~1 à 1,5 GB de RAM au démarrage
+                                <br>• <span class="pro">VALORANT: 217 → 366 FPS</span>
+                                <br>• Baisse de latence sur matériel ancien
+                            </td>
+                            <td class="windows-cell">
+                                Utilisation plus élevée des ressources sur matériel modeste. 
+                                <span class="neutral">Différence marginale sur matériel moderne</span>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Bloatware</td>
-                        <td class="atlas-cell">
-                            <span class="pro">Supprime ou désactive</span> nombreuses applications préinstallées, services de tracking et télémétrie
-                        </td>
-                        <td class="windows-cell">
-                            <span class="con">Nombreuses applications préinstallées</span> (bloatware, publicité intégrée, collecte de données) 
-                            qui peuvent alourdir le système
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Bloatware</td>
+                            <td class="atlas-cell">
+                                <span class="pro">Supprime ou désactive</span> nombreuses applications préinstallées, services de tracking et télémétrie
+                            </td>
+                            <td class="windows-cell">
+                                <span class="con">Nombreuses applications préinstallées</span> (bloatware, publicité intégrée, collecte de données) 
+                                qui peuvent alourdir le système
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Personnalisation</td>
-                        <td class="atlas-cell">
-                            Ensemble <span class="neutral">standardisé de modifications</span> via playbook. 
-                            Granularité inférieure à l'ajustement manuel complet
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Contrôle complet</span> sur chaque service via outils natifs (Services, Registre). 
-                            Scripts débloat personnalisés possibles
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Personnalisation</td>
+                            <td class="atlas-cell">
+                                Ensemble <span class="neutral">standardisé de modifications</span> via playbook. 
+                                Granularité inférieure à l'ajustement manuel complet
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Contrôle complet</span> sur chaque service via outils natifs (Services, Registre). 
+                                Scripts débloat personnalisés possibles
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Compatibilité</td>
-                        <td class="atlas-cell">
-                            <span class="con">Impact possible sur compatibilité</span> avec applications Microsoft, services UWP, outils de sécurité. 
-                            <span class="badge">Usage gaming/matériel ancien recommandé</span>
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Haute compatibilité</span> avec l'ensemble des logiciels et services Microsoft. 
-                            Adapté à usage polyvalent (bureautique, multimédia, professionnel)
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Compatibilité</td>
+                            <td class="atlas-cell">
+                                <span class="con">Impact possible sur compatibilité</span> avec applications Microsoft, services UWP, outils de sécurité. 
+                                <span class="badge">Usage gaming/matériel ancien recommandé</span>
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Haute compatibilité</span> avec l'ensemble des logiciels et services Microsoft. 
+                                Adapté à usage polyvalent (bureautique, multimédia, professionnel)
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Interface</td>
-                        <td class="atlas-cell">
-                            Fonctionnalités désactivées (animations, Cortana, intégration Edge). 
-                            <span class="neutral">Interface plus "brute" mais réactive</span>
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Interface complète</span> avec tous les éléments de confort et fonctionnalités intégrées. 
-                            Équilibre performance/ergonomie
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Interface</td>
+                            <td class="atlas-cell">
+                                Fonctionnalités désactivées (animations, Cortana, intégration Edge). 
+                                <span class="neutral">Interface plus "brute" mais réactive</span>
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Interface complète</span> avec tous les éléments de confort et fonctionnalités intégrées. 
+                                Équilibre performance/ergonomie
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Mises à jour</td>
-                        <td class="atlas-cell">
-                            <span class="warning">Mises à jour contournées</span> pour éviter réintroduction de fonctionnalités. 
-                            <span class="con">Risque d'incompatibilités</span> lors des mises à jour majeures
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Windows Update continu et testé</span> par Microsoft. 
-                            Accès aux dernières fonctionnalités et correctifs de sécurité
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Mises à jour</td>
+                            <td class="atlas-cell">
+                                <span class="warning">Mises à jour contournées</span> pour éviter réintroduction de fonctionnalités. 
+                                <span class="con">Risque d'incompatibilités</span> lors des mises à jour majeures
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Windows Update continu et testé</span> par Microsoft. 
+                                Accès aux dernières fonctionnalités et correctifs de sécurité
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Support</td>
-                        <td class="atlas-cell">
-                            <span class="neutral">Support communautaire uniquement</span> (forums, Discord, Reddit). 
-                            <span class="con">Pas de support Microsoft officiel</span>
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Support officiel Microsoft</span> via centres d'aide, documentation. 
-                            Écosystème de partenaires et solutions de dépannage
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="criteria-cell">Support</td>
+                            <td class="atlas-cell">
+                                <span class="neutral">Support communautaire uniquement</span> (forums, Discord, Reddit). 
+                                <span class="con">Pas de support Microsoft officiel</span>
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Support officiel Microsoft</span> via centres d'aide, documentation. 
+                                Écosystème de partenaires et solutions de dépannage
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="criteria-cell">Stabilité</td>
-                        <td class="atlas-cell">
-                            <span class="warning">Risque accru</span> (vulnérabilités, infections, exploits). 
-                            <span class="con">Modifications irréversibles</span> avec comportements inattendus possibles
-                        </td>
-                        <td class="windows-cell">
-                            <span class="pro">Système complet et mis à jour</span> intégrant mécanismes de sécurité robustes et outils de restauration
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        <tr>
+                            <td class="criteria-cell">Stabilité</td>
+                            <td class="atlas-cell">
+                                <span class="warning">Risque accru</span> (vulnérabilités, infections, exploits). 
+                                <span class="con">Modifications irréversibles</span> avec comportements inattendus possibles
+                            </td>
+                            <td class="windows-cell">
+                                <span class="pro">Système complet et mis à jour</span> intégrant mécanismes de sécurité robustes et outils de restauration
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <section class="summary-section">
-            <h2 class="summary-title">📊 Synthèse & Recommandations</h2>
-            
-            <div class="summary-cards">
-                <div class="summary-card atlas">
-                    <h3>🔷 Atlas OS</h3>
-                    <p><strong>Pour qui :</strong> Gamers expérimentés et passionnés cherchant à maximiser les performances, particulièrement sur du matériel ancien ou modeste.</p>
-                    <p><strong>Avantages :</strong> Gains de performance significatifs, suppression du bloatware, optimisation gaming poussée.</p>
-                    <p><strong>Inconvénients :</strong> Compromis importants sur la sécurité, compatibilité réduite, support uniquement communautaire.</p>
-                </div>
+            <section class="summary-section fade-in">
+                <h2 class="summary-title">📊 Synthèse & Recommandations</h2>
                 
-                <div class="summary-card windows">
-                    <h3>🟢 Windows 11</h3>
-                    <p><strong>Pour qui :</strong> Tous types d'utilisateurs pour usage général, professionnel, bureautique, multimédia.</p>
-                    <p><strong>Avantages :</strong> Sécurité garantie, compatibilité maximale, support officiel, stabilité à long terme.</p>
-                    <p><strong>Inconvénients :</strong> Plus lourd en ressources, présence de bloatware, télémétrie active.</p>
+                <div class="summary-cards">
+                    <div class="summary-card atlas">
+                        <h3>🔷 Atlas OS</h3>
+                        <p><strong>Pour qui :</strong> Gamers expérimentés et passionnés cherchant à maximiser les performances, particulièrement sur du matériel ancien ou modeste.</p>
+                        <p><strong>Avantages :</strong> Gains de performance significatifs, suppression du bloatware, optimisation gaming poussée.</p>
+                        <p><strong>Inconvénients :</strong> Compromis importants sur la sécurité, compatibilité réduite, support uniquement communautaire.</p>
+                    </div>
+                    
+                    <div class="summary-card windows">
+                        <h3>🟢 Windows 11</h3>
+                        <p><strong>Pour qui :</strong> Tous types d'utilisateurs pour usage général, professionnel, bureautique, multimédia.</p>
+                        <p><strong>Avantages :</strong> Sécurité garantie, compatibilité maximale, support officiel, stabilité à long terme.</p>
+                        <p><strong>Inconvénients :</strong> Plus lourd en ressources, présence de bloatware, télémétrie active.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="recommendation">
-                <strong>💡 Notre recommandation :</strong> 
-                Choisissez Atlas OS uniquement si vous êtes un utilisateur expérimenté, prioritairement gamer, 
-                et prêt à accepter les risques de sécurité. Pour tous les autres usages, 
-                Windows 11 standard demeure la solution la plus sûre et polyvalente.
-            </div>
-        </section>
-    </div>
+                <div class="recommendation">
+                    <strong>💡 Notre recommandation :</strong> 
+                    Choisissez Atlas OS uniquement si vous êtes un utilisateur expérimenté, prioritairement gamer, 
+                    et prêt à accepter les risques de sécurité. Pour tous les autres usages, 
+                    Windows 11 standard demeure la solution la plus sûre et polyvalente.
+                </div>
+            </section>
+        </div>
+    </main>
 
     <script>
-        // Menu functionality
-        const menuToggle = document.getElementById('menuToggle');
-        const menuPanel = document.getElementById('menuPanel');
-        const menuOverlay = document.getElementById('menuOverlay');
+        // Configuration
+        const CONFIG = {
+            animationDuration: 400,
+            scrollThreshold: 0.15,
+            debounceDelay: 100,
+            particleCount: 15,
+            starCount: 40
+        };
 
-        function toggleMenu() {
-            menuPanel.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
+        // Utilitaire debounce
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
         }
 
-        function closeMenu() {
-            menuPanel.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        }
-
-        menuToggle.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', closeMenu);
-
-        // Close menu on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeMenu();
+        // Générateur d'effets de background
+        class BackgroundEffects {
+            constructor() {
+                this.stars = document.querySelector('.stars');
+                this.particles = document.querySelector('.floating-particles');
+                this.init();
             }
-        });
+
+            init() {
+                this.createStars();
+                this.createParticles();
+            }
+
+            createStars() {
+                for (let i = 0; i < CONFIG.starCount; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.width = (Math.random() * 3 + 1) + 'px';
+                    star.style.height = star.style.width;
+                    star.style.animationDelay = Math.random() * 3 + 's';
+                    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    this.stars.appendChild(star);
+                }
+            }
+
+            createParticles() {
+                for (let i = 0; i < CONFIG.particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 15 + 's';
+                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    this.particles.appendChild(particle);
+                }
+            }
+        }
+
+        // Gestion du menu mobile
+        class MobileMenu {
+            constructor() {
+                this.menuToggle = document.getElementById('menuToggle');
+                this.menuPanel = document.getElementById('menuPanel');
+                this.menuOverlay = document.getElementById('menuOverlay');
+                this.isOpen = false;
+                
+                this.init();
+            }
+
+            init() {
+                this.menuToggle?.addEventListener('click', () => this.toggle());
+                this.menuOverlay?.addEventListener('click', () => this.close());
+                
+                // Fermer au clic sur un lien
+                this.menuPanel?.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        setTimeout(() => this.close(), 150);
+                    });
+                });
+
+                // Fermer avec Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.isOpen) {
+                        this.close();
+                    }
+                });
+
+                // Gestion responsive
+                window.addEventListener('resize', debounce(() => {
+                    if (window.innerWidth > 768 && this.isOpen) {
+                        this.close();
+                    }
+                }, 100));
+            }
+
+            toggle() {
+                this.isOpen ? this.close() : this.open();
+            }
+
+            open() {
+                this.menuToggle?.classList.add('active');
+                this.menuPanel?.classList.add('active');
+                this.menuOverlay?.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                this.isOpen = true;
+            }
+
+            close() {
+                this.menuToggle?.classList.remove('active');
+                this.menuPanel?.classList.remove('active');
+                this.menuOverlay?.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                this.isOpen = false;
+            }
+        }
+
+        // Animations au scroll
+        class ScrollAnimations {
+            constructor() {
+                this.observer = new IntersectionObserver(
+                    this.handleIntersection.bind(this),
+                    {
+                        threshold: CONFIG.scrollThreshold,
+                        rootMargin: '0px 0px -80px 0px'
+                    }
+                );
+                
+                this.init();
+            }
+
+            init() {
+                const elements = [
+                    ...document.querySelectorAll('.main-header'),
+                    ...document.querySelectorAll('.table-container'),
+                    ...document.querySelectorAll('.summary-section'),
+                    ...document.querySelectorAll('.scroll-hint'),
+                    ...document.querySelectorAll('.fade-in')
+                ];
+
+                elements.forEach(element => {
+                    this.observer.observe(element);
+                });
+            }
+
+            handleIntersection(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        this.observer.unobserve(entry.target);
+                    }
+                });
+            }
+        }
+
+        // Gestion du header
+        class HeaderManager {
+            constructor() {
+                this.header = document.querySelector('.header');
+                this.lastScrollY = window.scrollY;
+                this.init();
+            }
+
+            init() {
+                window.addEventListener('scroll', 
+                    debounce(this.handleScroll.bind(this), CONFIG.debounceDelay),
+                    { passive: true }
+                );
+            }
+
+            handleScroll() {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    this.header.style.background = 'rgba(10, 10, 10, 0.98)';
+                    this.header.style.backdropFilter = 'blur(40px) saturate(200%)';
+                } else {
+                    this.header.style.background = 'rgba(10, 10, 10, 0.95)';
+                    this.header.style.backdropFilter = 'blur(30px) saturate(200%)';
+                }
+
+                this.lastScrollY = currentScrollY;
+            }
+        }
+
+        // Effets d'interaction
+        class InteractionEffects {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupHoverEffects();
+                this.setupParallax();
+            }
+
+            setupHoverEffects() {
+                // Effet magnétique sur les cartes de résumé
+                document.querySelectorAll('.summary-card').forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        
+                        card.style.transform = `translateY(-8px) scale(1.02) rotateX(${y * 0.01}deg) rotateY(${x * 0.01}deg)`;
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = '';
+                    });
+                });
+            }
+
+            setupParallax() {
+                window.addEventListener('mousemove', debounce((e) => {
+                    const mouseX = e.clientX / window.innerWidth;
+                    const mouseY = e.clientY / window.innerHeight;
+                    
+                    // Parallax des orbes
+                    document.querySelectorAll('.orb').forEach((orb, index) => {
+                        const speed = (index + 1) * 0.5;
+                        const x = (mouseX - 0.5) * speed * 20;
+                        const y = (mouseY - 0.5) * speed * 20;
+                        orb.style.transform = `translate(${x}px, ${y}px)`;
+                    });
+                }, 50));
+            }
+        }
+
+        // Initialisation de l'application
+        class App {
+            constructor() {
+                this.components = {};
+                this.init();
+            }
+
+            init() {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => {
+                        this.initializeComponents();
+                    });
+                } else {
+                    this.initializeComponents();
+                }
+            }
+
+            initializeComponents() {
+                try {
+                    this.components.backgroundEffects = new BackgroundEffects();
+                    this.components.mobileMenu = new MobileMenu();
+                    this.components.scrollAnimations = new ScrollAnimations();
+                    this.components.headerManager = new HeaderManager();
+                    this.components.interactionEffects = new InteractionEffects();
+                    
+                    // Animation d'entrée
+                    document.body.style.opacity = '1';
+                    
+                    console.log('🚀 Atlas Corporation - Comparaison Atlas OS vs Windows chargée!');
+                    
+                } catch (error) {
+                    console.error('❌ Erreur lors de l\'initialisation:', error);
+                }
+            }
+        }
+
+        // Démarrer l'application
+        new App();
+
+        // Message de bienvenue
+        console.log(`
+        ╔═══════════════════════════════════════╗
+        ║   ATLAS CORPORATION - COMPARAISON     ║
+        ║       Atlas OS vs Windows 11          ║
+        ╚═══════════════════════════════════════╝
+        
+        ⚔️ Comparatif détaillé et objectif
+        🎨 Design moderne et interactif
+        🚀 Performance optimisée
+        📱 Interface responsive
+        `);
     </script>
 </body>
 </html>
