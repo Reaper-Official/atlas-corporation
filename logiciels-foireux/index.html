@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "segl6n2z7e");
-    </script>
-    <title>⚠️ Optimisations Avancées : Entre Mythe et Réalité - Atlas Corporation</title>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <title>🚫 STOP aux Fausses Optimisations Windows - Atlas Corporation</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
@@ -41,11 +36,11 @@
             --elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
             
             /* Danger levels */
-            --danger-max: #ff0000;
-            --danger-high: #ff3333;
-            --danger-medium: #ff6600;
+            --danger-max: #8b0000;
+            --danger-high: #ff4500;
+            --danger-medium: #ffa500;
             --danger-low: #ffaa00;
-            --danger-no: #10b981;
+            --safe-green: #10b981;
         }
 
         /* === RESET === */
@@ -202,9 +197,9 @@
         }
 
         .logo::before {
-            content: "⚡";
+            content: "🛡️";
             font-size: 1.8rem;
-            animation: energyPulse 2s ease-in-out infinite;
+            animation: shieldPulse 2s ease-in-out infinite;
             filter: drop-shadow(0 0 15px var(--accent-orange));
             display: inline-block;
             transform-origin: center;
@@ -213,6 +208,13 @@
         .logo:hover {
             transform: scale(1.05);
             text-shadow: 0 0 20px var(--accent-orange);
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 1px;
         }
 
         .menu-toggle {
@@ -322,12 +324,6 @@
             box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
         }
 
-        .nav-item.active {
-            background: var(--accent-orange);
-            color: var(--bg-primary);
-            box-shadow: 0 0 12px var(--accent-orange);
-        }
-
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -379,12 +375,12 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, 
+                var(--accent-red), 
                 var(--accent-orange), 
                 var(--accent-yellow), 
-                var(--accent-cyan), 
-                var(--accent-magenta));
+                var(--accent-red));
             background-size: 300% 100%;
-            animation: gradientFlow 3s ease-in-out infinite;
+            animation: dangerFlow 3s ease-in-out infinite;
         }
 
         .main-title {
@@ -395,14 +391,14 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             background: linear-gradient(135deg, 
+                var(--accent-red), 
                 var(--accent-orange), 
-                var(--accent-yellow), 
-                var(--accent-cyan));
+                var(--accent-yellow));
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: titleShimmer 4s ease-in-out infinite;
+            animation: warningShimmer 4s ease-in-out infinite;
             text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
         }
 
@@ -418,16 +414,16 @@
         /* === WARNING BOX === */
         .warning-box {
             background: linear-gradient(135deg, 
-                rgba(255, 26, 26, 0.2), 
-                rgba(204, 0, 0, 0.15));
-            border: 2px solid var(--danger-max);
+                rgba(139, 0, 0, 0.3), 
+                rgba(220, 53, 69, 0.2));
+            border: 2px solid var(--accent-red);
             border-radius: 20px;
             padding: 40px;
             margin: 50px 0;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
-            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(255, 0, 64, 0.3);
         }
 
         .warning-box::before {
@@ -479,6 +475,31 @@
             text-shadow: 0 0 10px var(--accent-orange);
         }
 
+        /* === FRIENDS SECTION === */
+        .friends-section {
+            background: linear-gradient(135deg, 
+                rgba(255, 165, 0, 0.2), 
+                rgba(255, 140, 0, 0.15));
+            border: 2px solid var(--accent-yellow);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.3);
+        }
+
+        .friends-section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+        }
+
         /* === CATEGORY SECTIONS === */
         .category {
             margin: 60px 0;
@@ -507,9 +528,9 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             background: linear-gradient(135deg, 
-                var(--accent-orange), 
-                var(--accent-yellow));
-            color: var(--bg-primary);
+                var(--accent-red), 
+                var(--accent-orange));
+            color: white;
             padding: 25px 35px;
             margin: 0;
             position: relative;
@@ -529,8 +550,8 @@
                 var(--accent-yellow));
         }
 
-        /* === OPTIMIZATION ITEMS === */
-        .optimization-item {
+        /* === SOFTWARE ITEMS === */
+        .software-item {
             background: rgba(26, 26, 26, 0.6);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding: 40px;
@@ -538,22 +559,22 @@
             transition: var(--transition);
         }
 
-        .optimization-item:hover {
+        .software-item:hover {
             background: rgba(40, 40, 50, 0.8);
             border-left: 4px solid var(--accent-orange);
             transform: translateX(10px);
         }
 
-        .optimization-item:last-child {
+        .software-item:last-child {
             border-bottom: none;
             border-radius: 0 0 24px 24px;
         }
 
-        .optimization-name {
+        .software-name {
             font-family: 'Orbitron', monospace;
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--accent-orange);
+            color: var(--accent-red);
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -563,69 +584,6 @@
             font-size: 1.3em;
             margin-right: 12px;
             filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-        }
-
-        /* === DANGER LEVELS === */
-        .danger-level {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .danger-level::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.2), 
-                transparent);
-            transition: left 0.6s ease;
-        }
-
-        .danger-level:hover::before {
-            left: 100%;
-        }
-
-        .danger-extreme {
-            background: var(--danger-max);
-            color: white;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-            animation: dangerPulse 2s ease-in-out infinite;
-        }
-
-        .danger-high {
-            background: var(--danger-high);
-            color: white;
-            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
-        }
-
-        .danger-medium {
-            background: var(--danger-medium);
-            color: var(--bg-primary);
-            box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
-        }
-
-        .danger-low {
-            background: var(--danger-low);
-            color: var(--bg-primary);
-            box-shadow: 0 0 15px rgba(255, 170, 0, 0.4);
-        }
-
-        .danger-no {
-            background: var(--danger-no);
-            color: white;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
         }
 
         /* === REASON SECTIONS === */
@@ -682,10 +640,10 @@
             color: var(--accent-orange);
         }
 
-        /* === REALITY CHECK === */
-        .reality-check {
+        /* === ALTERNATIVE BOX === */
+        .alternative {
             background: linear-gradient(135deg, 
-                var(--accent-green), 
+                var(--safe-green), 
                 #20b2aa);
             color: white;
             padding: 20px 25px;
@@ -698,74 +656,33 @@
             box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
         }
 
-        .reality-check::before {
-            content: '💡 ';
+        .alternative::before {
+            content: '✅ ';
             font-size: 1.3rem;
             margin-right: 10px;
             filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
         }
 
-        /* === COMPARISON TABLE === */
-        .comparison-table {
-            width: 100%;
-            max-width: 900px;
-            margin: 30px auto;
-            border-collapse: collapse;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            background: rgba(30, 30, 30, 0.8);
-            backdrop-filter: blur(10px);
+        /* === GRID LAYOUT === */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 0;
         }
 
-        .comparison-header {
-            background: linear-gradient(135deg, 
-                var(--accent-orange), 
-                var(--accent-yellow));
-            color: var(--bg-primary);
-            text-align: center;
-            padding: 25px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .grid .software-item {
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .comparison-row {
-            display: flex;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .comparison-promise,
-        .comparison-reality {
-            flex: 1;
-            padding: 20px;
-            text-align: left;
-            font-size: 1.05rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .comparison-promise {
-            background: rgba(190, 44, 18, 0.3);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .comparison-reality {
-            background: rgba(9, 134, 40, 0.3);
-        }
-
-        .comparison-row:hover .comparison-promise,
-        .comparison-row:hover .comparison-reality {
-            transform: scale(1.02);
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+        .grid .software-item:last-child,
+        .grid .software-item:nth-child(even) {
+            border-right: none;
         }
 
         /* === CONCLUSION === */
         .conclusion {
             background: linear-gradient(135deg, 
-                var(--accent-green), 
+                var(--safe-green), 
                 #228b22);
             color: white;
             padding: 60px 50px;
@@ -817,7 +734,7 @@
         }
 
         /* === ANIMATIONS === */
-        @keyframes energyPulse {
+        @keyframes shieldPulse {
             0%, 100% { 
                 opacity: 1;
                 transform: scale(1) rotate(0deg);
@@ -825,12 +742,12 @@
             }
             50% { 
                 opacity: 0.8;
-                transform: scale(1.2) rotate(180deg);
-                filter: drop-shadow(0 0 30px var(--accent-orange));
+                transform: scale(1.2) rotate(10deg);
+                filter: drop-shadow(0 0 30px var(--accent-red));
             }
         }
 
-        @keyframes titleShimmer {
+        @keyframes warningShimmer {
             0%, 100% {
                 background-position: 0% 50%;
             }
@@ -839,7 +756,7 @@
             }
         }
 
-        @keyframes gradientFlow {
+        @keyframes dangerFlow {
             0%, 100% {
                 background-position: 0% 50%;
             }
@@ -854,15 +771,6 @@
             }
             100% {
                 transform: translateX(60px);
-            }
-        }
-
-        @keyframes dangerPulse {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
             }
         }
 
@@ -916,6 +824,10 @@
             animation: fadeIn 0.8s ease-out forwards;
         }
 
+        .pulse {
+            animation: shieldPulse 3s ease-in-out infinite;
+        }
+
         /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .container {
@@ -940,15 +852,16 @@
                 padding: 20px 25px;
             }
 
-            .optimization-item {
+            .software-item {
                 padding: 25px 20px;
             }
 
-            .optimization-name {
+            .software-name {
                 font-size: 1.3rem;
             }
 
             .warning-box,
+            .friends-section,
             .conclusion {
                 padding: 30px 20px;
             }
@@ -957,13 +870,13 @@
                 padding: 15px 20px;
             }
 
-            .comparison-table {
-                font-size: 0.9rem;
+            .grid {
+                grid-template-columns: 1fr;
             }
 
-            .comparison-promise,
-            .comparison-reality {
-                padding: 15px;
+            .grid .software-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             }
 
             .nav-menu {
@@ -977,7 +890,7 @@
                 padding: 40px 20px;
             }
 
-            .optimization-item {
+            .software-item {
                 padding: 20px 15px;
             }
 
@@ -1001,23 +914,6 @@
         /* === SCROLL BEHAVIOR === */
         html {
             scroll-behavior: smooth;
-        }
-
-        section:target {
-            animation: fadeInGlow 1s ease forwards;
-        }
-
-        @keyframes fadeInGlow {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-                box-shadow: none;
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-                box-shadow: 0 0 20px rgba(255, 136, 0, 0.3);
-            }
         }
 
         /* === ACCESSIBILITY === */
@@ -1051,7 +947,12 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <a href="https://atlas-corporation.fr" class="logo">Atlas Corporation</a>
+            <a href="https://atlas-corporation.fr" class="logo">
+                <div>
+                    <div>Atlas Corporation</div>
+                    <div class="logo-subtitle">Logiciels Foireux</div>
+                </div>
+            </a>
             <button class="menu-toggle" id="menuToggle" aria-label="Menu de navigation">
                 <div class="menu-line"></div>
                 <div class="menu-line"></div>
@@ -1063,36 +964,26 @@
     <!-- Menu Mobile -->
     <div class="menu-overlay" id="menuOverlay"></div>
     <div class="nav-menu" id="navMenu">
-        <a href="#start" class="nav-item">Présentation</a>
-        <a href="#technical" class="nav-item">Technique</a>
+        <a href="#cleaners" class="nav-item">Nettoyeurs</a>
+        <a href="#boosters" class="nav-item">Boosters</a>
         <a href="#security" class="nav-item">Sécurité</a>
-        <a href="#marketing" class="nav-item">Marketing</a>
-        <a href="#hardware" class="nav-item">Matériel</a>
-        <a href="#system" class="nav-item">Système</a>
-        <a href="#network" class="nav-item">Réseau</a>
-        <a href="#performance" class="nav-item">Performance</a>
-        <a href="#snite" class="nav-item">Optis. Payantes</a>
-        <a href="#fin" class="nav-item">Vérité</a>
+        <a href="#gaming" class="nav-item">Gaming</a>
+        <a href="#conclusion" class="nav-item">Conclusion</a>
     </div>
 
     <!-- Contenu Principal -->
     <main>
         <div class="container">
-            <div class="main-header fade-in" id="start">
-                <h1 class="main-title">⚠️ Optimisations Avancées : Mythe vs Réalité</h1>
+            <div class="main-header fade-in">
+                <h1 class="main-title">🚫 Les Faux Outils d'Aide PC</h1>
                 <p class="main-description">
-                    Découvrez pourquoi ces optimisations "avancées" sont souvent dangereuses, inutiles ou obsolètes. 
-                    La vérité technique derrière les tweaks populaires.
+                    Découvrez pourquoi ces logiciels et des personnes prétendument "optimisateurs" détruisent votre PC au lieu de l'améliorer, 
+                    et quelles sont les meilleures alternatives.
                 </p>
             </div>
 
             <div class="warning-box fade-in">
-                <h2><span class="emoji">🧠</span> La Réalité Technique</h2>
-                <p><strong>Tu ne peux pas défier la physique.</strong> Les CPUs modernes, Windows et les pilotes sont déjà optimisés par des équipes d'ingénieurs. Ces "tweaks miracles" relèvent souvent du <strong>placebo technique</strong> ou peuvent carrément <strong>détruire la stabilité</strong> de ton système.</p>
-            </div>
-
-            <div class="warning-box fade-in">
-                <h2><span class="emoji">🧠</span> Les Erreurs à ne pas faire :</h2>
+                <h2><span class="emoji">🚫</span> Les Erreurs à ne pas faire</h2>
                 <p><strong>Voici des diagnostiques mettant en avant les erreurs à ne pas faire</strong><br> 
                     <a href="https://userdiag.com/id/hZNiiWJ0S6" target="_blank">Diagnostique 1</a><br> 
                     <a href="https://userdiag.com/id/KMxJabakiu" target="_blank">Diagnostique 2</a><br> 
@@ -1100,476 +991,234 @@
                 </p>
             </div>
 
-            <div class="category fade-in" id="technical">
+            <div class="warning-box pulse fade-in">
+                <h2><span class="emoji">⚠️</span> Attention Important</h2>
+                <p>Si votre PC contient un ou plusieurs logiciels ci-dessous, privilégiez une <strong>réinstallation propre de Windows</strong> plutôt que de chercher des solutions miracles qui, bien souvent, ne font qu'aggraver les choses.</p>
+            </div>
+
+            <div class="friends-section fade-in">
+                <h2><span class="emoji">❌</span> Les Amis Bien Intentionnés</h2>
+                <div class="reason-section">
+                    <div class="reason-title">🔴 Pourquoi ce n'est pas toujours une bonne idée ?</div>
+                    <div class="reason-content">
+                        <p>Ils veulent aider, mais donnent parfois des conseils qui ne sont plus d'actualité :</p>
+                        <ul>
+                            <li><em>"Installe ce logiciel, il va accélérer ton PC !"</em> → En réalité, Windows gère déjà ça tout seul.</li>
+                            <li><em>"Supprime ce fichier, ça sert à rien !"</em> → Oups... c'était un fichier système important.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="alternative">
+                    <strong>Alternative recommandée :</strong> Toujours vérifier les conseils avant d'agir et privilégier les outils intégrés de Windows.
+                </div>
+            </div>
+
+            <div class="category fade-in" id="cleaners">
                 <div class="category-title">
-                    <span class="emoji">🔧</span> Raisons Techniques : Pourquoi Ces Optimisations Sont Inutiles
+                    <span class="emoji">🛑</span> Les Soi-disant Nettoyeurs et Optimisateurs
                 </div>
 
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🖥️</span> Windows Est Déjà Fortement Optimisé
+                <div class="software-item">
+                    <div class="software-name">
+                        <span class="emoji">🛑</span> CCleaner
                     </div>
-                    <div class="danger-level danger-low">Obsolète</div>
                     <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est déjà fait ?</div>
+                        <div class="reason-title">Pourquoi c'est inutile ?</div>
                         <div class="reason-content">
-                            Windows (surtout les versions récentes comme 10/11) est conçu pour s'adapter à une large gamme de matériels et cas d'usage. Microsoft travaille avec les fabricants (Intel, AMD, NVIDIA...) pour que l'OS utilise automatiquement les bons réglages et pilotes. Modifier ces paramètres revient souvent à casser volontairement une configuration stable.
+                            Autrefois utile, ce logiciel est aujourd'hui redondant. Windows intègre déjà un Assistant de stockage qui supprime les fichiers temporaires et inutiles. Le nettoyage du registre est inefficace et peut supprimer des clés essentielles.
                         </div>
                     </div>
-                    <div class="reality-check">
-                        Réalité : Microsoft optimise Windows depuis des décennies avec des milliers d'ingénieurs
+                    <div class="reason-section">
+                        <div class="reason-title">Pourquoi c'est risqué ?</div>
+                        <div class="reason-content">
+                            • A déjà été utilisé pour diffuser des malwares (2017)<br>
+                            • Fonctionne en arrière-plan, consommant des ressources<br>
+                            • Peut effacer des fichiers système critiques
+                        </div>
+                    </div>
+                    <div class="alternative">
+                        Alternative : Utiliser l'Assistant de stockage intégré à Windows
                     </div>
                 </div>
 
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">📊</span> Effets Placebo et Gains Insignifiants
+                <div class="software-item">
+                    <div class="software-name">
+                        <span class="emoji">🛑</span> IOBit Advanced SystemCare / Glary Utilities
                     </div>
-                    <div class="danger-level danger-medium">Trompeur</div>
                     <div class="reason-section">
-                        <div class="reason-title">La Vérité Sur Les Gains</div>
+                        <div class="reason-title">Pourquoi c'est inutile ?</div>
                         <div class="reason-content">
-                            Les "gains" de 8-10% sont souvent mesurés dans des benchmarks synthétiques, pas dans des situations réelles. En usage réel (jeux, bureautique, montage), les gains sont souvent indétectables à l'œil nu. De nombreux tests indépendants ont montré que ces optimisations donnent moins de 1 à 2% de gain réel, souvent avec des effets secondaires négatifs.
+                            Ces logiciels font des optimisations déjà prises en charge par Windows. Suppression de fichiers temporaires, gestion des services... tout est déjà géré efficacement par le système.
                         </div>
                     </div>
-                    <div class="reality-check">
-                        Réalité : Gains réels quasi-inexistants, risques bien réels
+                    <div class="reason-section">
+                        <div class="reason-title">Pourquoi c'est risqué ?</div>
+                        <div class="reason-content">
+                            • Peuvent supprimer des fichiers nécessaires<br>
+                            • Peuvent désactiver des services vitaux<br>
+                            • Contiennent souvent des publicités
+                        </div>
+                    </div>
+                    <div class="alternative">
+                        Alternative : Laisser Windows gérer son propre entretien
+                    </div>
+                </div>
+            </div>
+
+            <div class="category fade-in" id="boosters">
+                <div class="category-title">
+                    <span class="emoji">⚡</span> Les Faux Boosters de Performance
+                </div>
+
+                <div class="software-item">
+                    <div class="software-name">
+                        <span class="emoji">🛑</span> RAMMap / RAM Booster / Superfetch Disabler
+                    </div>
+                    <div class="reason-section">
+                        <div class="reason-title">Pourquoi c'est inutile ?</div>
+                        <div class="reason-content">
+                            Windows gère automatiquement la mémoire vive de façon optimale. Forcer la libération de RAM ne fait qu'effacer des caches utiles, ralentissant le chargement des applications.
+                        </div>
+                    </div>
+                    <div class="alternative">
+                        Alternative : Ne pas toucher à la gestion de la RAM, Windows s'en charge
+                    </div>
+                </div>
+
+                <div class="software-item">
+                    <div class="software-name">
+                        <span class="emoji">🛑</span> Smart Game Booster
+                    </div>
+                    <div class="reason-section">
+                        <div class="reason-title">Pourquoi c'est inutile ?</div>
+                        <div class="reason-content">
+                            Ce logiciel tente d'optimiser les performances en fermant des processus en arrière-plan. Windows alloue déjà intelligemment les ressources.
+                        </div>
+                    </div>
+                    <div class="alternative">
+                        Alternative : Activer le Mode Jeu de Windows dans les paramètres
+                    </div>
+                </div>
+
+                <div class="software-item">
+                    <div class="software-name">
+                        <span class="emoji">🛑</span> ParkControl
+                    </div>
+                    <div class="reason-section">
+                        <div class="reason-title">Pourquoi c'est inutile ?</div>
+                        <div class="reason-content">
+                            Force les cœurs du processeur à rester actifs en permanence, mais n'apporte aucun gain de performances pour un usage classique.
+                        </div>
+                    </div>
+                    <div class="reason-section">
+                        <div class="reason-title">Pourquoi c'est risqué ?</div>
+                        <div class="reason-content">
+                            • Augmente la consommation d'énergie et la chauffe<br>
+                            • Peut réduire la durée de vie du CPU
+                        </div>
+                    </div>
+                    <div class="alternative">
+                        Alternative : Utiliser les profils d'alimentation Windows
+                    </div>
+                </div>
+
+                <div class="software-item">
+                    <div class="software-name">
+                        <span class="emoji">🛑</span> TCP Optimizer / DNS Jumper
+                    </div>
+                    <div class="reason-section">
+                        <div class="reason-title">Pourquoi c'est inutile ?</div>
+                        <div class="reason-content">
+                            Windows ajuste déjà automatiquement les paramètres réseau et TCP/IP. Modifier manuellement son DNS dans Windows est plus simple et sécurisé.
+                        </div>
+                    </div>
+                    <div class="reason-section">
+                        <div class="reason-title">Pourquoi c'est risqué ?</div>
+                        <div class="reason-content">
+                            • Peut causer de l'instabilité réseau<br>
+                            • Peut exposer à des DNS non fiables<br>
+                            • Peut augmenter la latence
+                        </div>
+                    </div>
+                    <div class="alternative">
+                        Alternative : Changer manuellement les DNS (Cloudflare 1.1.1.1, Google 8.8.8.8)
                     </div>
                 </div>
             </div>
 
             <div class="category fade-in" id="security">
                 <div class="category-title">
-                    <span class="emoji">🛡️</span> Raisons de Sécurité et de Fiabilité
+                    <span class="emoji">🔒</span> Sécurité et Pilotes à Éviter
                 </div>
 
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">💀</span> Scripts Obscurs = Danger Absolu
+                <div class="software-item">
+                    <div class="software-name">
+                        <span class="emoji">🛑</span> Avast, Norton & Antivirus Tiers
                     </div>
-                    <div class="danger-level danger-extreme">Critique</div>
                     <div class="reason-section">
-                        <div class="reason-title">Les Vrais Risques</div>
+                        <div class="reason-title">Pourquoi c'est problématique ?</div>
                         <div class="reason-content">
-                            Vous exécutez des scripts faits par un inconnu avec des droits d'administrateur sur votre machine. Ces scripts peuvent contenir :
-                            <ul>
-                                <li>des backdoors (portes dérobées)</li>
-                                <li>des logiciels de surveillance (keyloggers, miners)</li>
-                                <li>des modifications profondes du système non détectables facilement</li>
-                            </ul>
+                            • <strong>Avast :</strong> Ralentit le PC, collecte et revend vos données, spam de notifications<br>
+                            • <strong>Norton :</strong> Très gourmand en ressources, renouvellements automatiques coûteux<br>
+                            • Faux positifs fréquents, difficiles à désinstaller
                         </div>
                     </div>
-                    <div class="reality-check">
-                        Réalité : Vous donnez un accès total à votre système à des inconnus
+                    <div class="alternative">
+                        Alternative : Windows Defender (Microsoft Defender), léger et efficace
                     </div>
                 </div>
 
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🔥</span> Modifications BIOS = Haut Risque
+                <div class="software-item">
+                    <div class="software-name">
+                        <span class="emoji">🛑</span> TousLesDrivers / DriversCloud / DriverBooster
                     </div>
-                    <div class="danger-level danger-extreme">Terrain Miné</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est critique ?</div>
-                        <div class="reason-content">
-                            Le BIOS gère l'allumage et la stabilité de l'ensemble du PC. Mal configurer le BIOS peut : rendre le PC instable, l'empêcher de démarrer (brick), annuler la garantie constructeur, nécessiter une réinitialisation matérielle (clear CMOS).
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Un mauvais réglage BIOS peut transformer votre PC en brique
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">💣</span> Incompatibilités à Venir
-                    </div>
-                    <div class="danger-level danger-high">Problématique</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Conséquences à Long Terme</div>
-                        <div class="reason-content">
-                            Après ce genre d'optimisation : les mises à jour Windows peuvent échouer, certains logiciels (antivirus, pilotes GPU) peuvent buguer, vous risquez de devoir réinstaller complètement Windows pour revenir en arrière.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Ces modifications cassent la compatibilité future
-                    </div>
-                </div>
-            </div>
-
-            <div class="category fade-in" id="marketing">
-                <div class="category-title">
-                    <span class="emoji">🏬</span> Marketing Trompeur
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🧪</span> Marketing Manipulateur : Benchmark = Outil Manipulable
-                    </div>
-                    <div class="danger-level danger-extreme">Illusions Marketing</div>
-
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi faire attention aux faux gains ?</div>
-                        <div class="reason-content">
-                            Un score 3DMark ou UserBenchmark peut facilement être gonflé artificiellement en arrêtant les processus en arrière-plan, baissant la résolution, ou changeant la priorité des tâches. Cela ne reflète aucune amélioration réelle de votre expérience utilisateur. Les optimisations génériques sont vendues comme "sur mesure" alors que l'auteur utilise probablement des réglages génériques recyclés.
-                        </div>
-                    </div>
-
-                    <div class="reality-check">
-                        Réalité : Les chiffres ne veulent rien dire sans contexte réel
-                    </div>
-
-                    <div class="comparison-table fade-in">
-                        <div class="comparison-header">
-                            Ce qu'ils promettent VS Ce qui se passe en réalité
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">🎯 Gain de FPS massif</div>
-                            <div class="comparison-reality">📉 1-2 FPS au mieux</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">🛡️ Stabilité absolue</div>
-                            <div class="comparison-reality">💥 Bugs, instabilité fréquente</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">🎯 Réglages sur mesure</div>
-                            <div class="comparison-reality">🔄 Scripts génériques recyclés</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">↩️ Réversible & sûr</div>
-                            <div class="comparison-reality">⚠️ Très difficile à annuler, risqué</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">💰 Économie de matériel</div>
-                            <div class="comparison-reality">❌ Faux : le hardware limite les perfs</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="category fade-in" id="hardware">
-                <div class="category-title">
-                    <span class="emoji">🔧</span> Optimisations Matériel Dangereuses
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🧮</span> Optimisation BIOS & Timings RAM
-                    </div>
-                    <div class="danger-level danger-extreme">Terrain Miné</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est très technique ?</div>
-                        <div class="reason-content">
-                            Le BIOS contrôle tous les paramètres bas niveau de la carte mère. Optimiser les timings RAM peut améliorer les perfs, mais si tu n'as pas une bonne RAM ou si tu comprends rien aux valeurs primaires/secondaires/tertiaires, tu vas surtout rendre ta machine instable. Ce n'est pas un terrain de jeu pour amateur.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Nécessite une compréhension approfondie de l'architecture système
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">⚡</span> Overclocking / Undervolting (OC/UV)
-                    </div>
-                    <div class="danger-level danger-high">Risque Élevé</div>
                     <div class="reason-section">
                         <div class="reason-title">Pourquoi c'est risqué ?</div>
                         <div class="reason-content">
-                            L'overclocking peut apporter des gains, mais s'il est mal maîtrisé (fréquences trop hautes, tensions mal réglées), ça crée de l'instabilité ou endommage le matériel. L'undervolting demande aussi de tester soigneusement. Dans 90% des cas, les gens copient des réglages sans comprendre et foutent tout en l'air.
+                            Installent souvent des pilotes non officiels ou inadaptés, pouvant provoquer des bugs, instabilités et même rendre Windows inutilisable au démarrage.
                         </div>
                     </div>
-                    <div class="reality-check">
-                        Réalité : Seuls les experts devraient s'y aventurer, avec monitoring constant
-                    </div>
-
-                    <div class="danger-level danger-high">Très Risqué</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est dangereux ?</div>
-                        <div class="reason-content">
-                            Ces réglages dépendent fortement du silicium exact, du système de refroidissement, de l'alimentation, etc. Les appliquer sans connaissance précise du matériel peut causer : instabilité, BSOD (blue screen), usure prématurée, pertes de données.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Chaque processeur est unique, impossible à optimiser à distance
+                    <div class="alternative">
+                        Alternative : Télécharger les pilotes sur les sites officiels (Intel, NVIDIA, AMD) ou via Windows Update
                     </div>
                 </div>
             </div>
 
-            <div class="category fade-in" id="system">
+            <div class="category fade-in" id="gaming">
                 <div class="category-title">
-                    <span class="emoji">🖥️</span> Optimisations Système Inutiles
+                    <span class="emoji">🎮</span> Logiciels de Gestion Gourmands
                 </div>
 
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">💾</span> Optimisation CPU/GPU
-                    </div>
-                    <div class="danger-level danger-low">Redondant</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est déjà fait ?</div>
+                <div class="grid">
+                    <div class="software-item">
+                        <div class="software-name">
+                            <span class="emoji">🛑</span> Corsair iCUE
+                        </div>
                         <div class="reason-content">
-                            Windows, les pilotes NVIDIA/AMD et les CPUs modernes optimisent déjà les performances de manière dynamique. À moins d'un usage extrême (benchmarking, encodage, rendu 3D), tu gagnes peu. Et encore une fois, mal fait = instable.
+                            Très exigeant en ressources, souvent sujet à des bugs, ralentit le système et engendre des conflits RGB.
+                        </div>
+                        <div class="alternative">
+                            Alternative : OpenRGB ou SignalRGB, plus légers
                         </div>
                     </div>
-                    <div class="reality-check">
-                        Réalité : Les fabricants ont déjà optimisé ces composants
-                    </div>
-                </div>
 
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">💽</span> Optimisation SSD
-                    </div>
-                    <div class="danger-level danger-low">Absurde</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est absurde ?</div>
-                        <div class="reason-content">
-                            Les SSD modernes (NVMe, SATA) ont déjà un firmware optimisé. Croire que tu peux doubler les performances en "tweakant" un réglage Windows, c'est ignorer que le goulot d'étranglement est rarement là. Tu ne vas pas défier la physique ou la norme NVMe 1.4 avec un script PowerShell.
+                    <div class="software-item">
+                        <div class="software-name">
+                            <span class="emoji">🛑</span> Razer Cortex
                         </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Les SSD sont optimisés au niveau firmware
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">📝</span> Optimisation Registre
-                    </div>
-                    <div class="danger-level danger-extreme">Très Mauvaise Idée</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est dangereux ?</div>
                         <div class="reason-content">
-                            Modifier le registre sans savoir ce qu'on fait est le moyen le plus rapide de rendre Windows instable, voire inutilisable. C'est un composant critique. Les "tweaks de registre" à la chaîne, trouvés sur Reddit ou YouTube, finissent souvent par casser des fonctions système.
+                            Les "boosts" de performance sont insignifiants. Windows gère déjà très bien l'allocation des ressources.
                         </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Le registre est le cœur de Windows, ne pas toucher !
+                        <div class="alternative">
+                            Alternative : Utiliser le Gestionnaire des tâches Windows
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="category fade-in" id="network">
-                <div class="category-title">
-                    <span class="emoji">🌐</span> Optimisations Réseau Dangereuses
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">📡</span> Optimisation Paquets TCP
-                    </div>
-                    <div class="danger-level danger-high">Dangereux</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est dangereux ?</div>
-                        <div class="reason-content">
-                            Modifier le comportement de la pile réseau TCP/IP (taille des buffers, Nagle, RWIN, MTU, etc.) sans en comprendre les implications peut dégrader ta connexion. Tu ne vas pas "booster ton ping" comme dans les vidéos TikTok, tu risques juste de rendre certains services inaccessibles.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Windows gère déjà optimalement la pile TCP/IP
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">⚡</span> Optimisation Latence
-                    </div>
-                    <div class="danger-level danger-low">Bullshit Marketing</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est du marketing ?</div>
-                        <div class="reason-content">
-                            Réduire la latence de 1-2 ms (au niveau input ou DPC latency) n'a aucun effet perceptible pour l'utilisateur lambda. C'est pertinent pour un musicien pro qui fait de l'audio en temps réel avec une interface externe. Pas pour jouer à Fortnite…
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Les gains sont imperceptibles pour l'usage normal
-                    </div>
-                </div>
-            </div>
-
-            <div class="category fade-in" id="performance">
-                <div class="category-title">
-                    <span class="emoji">🎮</span> Mythes de Performance
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">📊</span> Optimisation des 1% Low
-                    </div>
-                    <div class="danger-level danger-low">Abus de Langage</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est un mythe ?</div>
-                        <div class="reason-content">
-                            Le concept de "1% low FPS" est une mesure de la stabilité, pas une chose qu'on "optimise" directement. Tu peux améliorer les perfs globales, mais faire grimper les "1% low" magiquement avec une ligne de commande, c'est juste du mythe.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : C'est une métrique, pas quelque chose qu'on "tweak"
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🎯</span> Stabilité des FPS
-                    </div>
-                    <div class="danger-level danger-medium">Dépendant du Jeu</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est limité ?</div>
-                        <div class="reason-content">
-                            Certains jeux sont mal codés, mal optimisés, ou utilisent des moteurs vieillissants. Aucune optimisation système ne corrigera un moteur Unity ou Unreal Engine mal implémenté. À part attendre des patchs ou limiter les FPS via RTSS, t'as pas beaucoup de leviers.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Le problème vient souvent du jeu, pas du système
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">⚙️</span> Optimisation Kernel & Scheduler
-                    </div>
-                    <div class="danger-level danger-extreme">Terrain Miné</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est un terrain miné ?</div>
-                        <div class="reason-content">
-                            Toucher au noyau de Windows (scheduler, priorité des threads, délais d'interruptions) sans être dev système, c'est comme bricoler un moteur de F1 avec une clé à molette rouillée. C'est super risqué, et ça peut dégrader les perfs ou rendre ton OS instable pour zéro gain visible.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Microsoft optimise cela depuis des décennies
-                    </div>
-                </div>
-            </div>
-
-            <div class="category fade-in" id="snite">
-                <div class="category-title">
-                    <span class="emoji">💸</span> Optimisations Payantes : Arnaque Premium
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🎯</span> Optimisation Standard – Peu Cher
-                    </div>
-                    <div class="danger-level danger-high">Arnaque Totale</div>
-                    <div class="reason-section">
-                        <div class="reason-title">📂 Formatage complet + tutoriel</div>
-                        <div class="reason-content">
-                            <strong>Ce que ça veut dire vraiment :</strong> Ils te font réinstaller Windows toi-même, avec un tuto, puis t'aident vaguement en cas de galère. Tu payes X€ pour… faire le travail toi-même ? Tu peux faire exactement la même chose gratuitement avec l'ISO officiel de Windows et le Media Creation Tool ou <a href="https://atlas-corporation.fr/custom-os/" target="_blank">Windows 11 Personnalisé</a> par Atlas-Corporation.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">⚙️ Optimisation de Windows</div>
-                        <div class="reason-content">
-                            Vague et flou. Probablement des tweaks du registre, services désactivés, modifications du plan d'alimentation... en gros, les mêmes scripts douteux qui circulent sur TikTok. Risque : instabilité, bugs d'interface, problèmes logiciels.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🎮 Réglages avancés du panneau NVIDIA</div>
-                        <div class="reason-content">
-                            LOL. C'est juste cocher/décocher des options déjà publiques, comme activer le mode performance, désactiver la synchro verticale, ou forcer certains paramètres. Ça prend littéralement 2 minutes, sans connaissance technique.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🚀 Overclocking CPU (si applicable)</div>
-                        <div class="reason-content">
-                            <strong>Très risqué fait à distance.</strong> L'overclocking demande des tests de stabilité, de température, de tension… tu ne fais pas ça via Discord en suivant une recette. Si mal fait : plantages, surchauffe, durée de vie réduite du CPU.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Tu payes 50€ pour faire le travail toi-même avec des risques énormes
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🚀</span> Optimisation Avancée – Plus Cher
-                    </div>
-                    <div class="danger-level danger-extreme">Arnaque Premium</div>
-                    <div class="reason-section">
-                        <div class="reason-title">🤖 Scripts avancés</div>
-                        <div class="reason-content">
-                            Scripts PowerShell/registry basiques, trouvés sur GitHub et appliqués sans adaptation. Si tu n'as pas de problème de base, ces scripts ne servent à rien, voire peuvent empirer ta stabilité.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🛡️ Suivi exclusif avec accompagnement personnalisé</div>
-                        <div class="reason-content">
-                            Tu payes plus, donc tu as un peu plus d'attention. Ça reste une boîte Discord, pas un service pro encadré. Aucun SLA, aucun engagement légal.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🌟 Fonctionnalités supplémentaires</div>
-                        <div class="reason-content">
-                            Encore une fois, aucune précision. "Fonctionnalités", c'est un mot vide pour justifier 30€ de plus.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🔥 Accès prioritaire aux nouveautés</div>
-                        <div class="reason-content">
-                            Des "nouveautés" de tweaks Windows ? C'est pas une app avec un changelog, c'est une collection de réglages faits à la main. Tu veux la version 1.7 de "désactiver Cortana" ?
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Service Discord avec des conditions abusives et aucune garantie
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">⚠️</span> Conditions Abusives
-                    </div>
-                    <div class="danger-level danger-extreme">Fuite Immédiate</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Les Conditions Réelles</div>
-                        <div class="reason-content">
-                            <ul>
-                                <li>Tu n'as <strong>aucun recours</strong> si ça casse quelque chose</li>
-                                <li>Si tu touches toi-même ton PC après ? <strong>Suivi annulé</strong></li>
-                                <li><strong>Aucun remboursement</strong></li>
-                                <li>Ils peuvent <strong>refuser ton PC</strong> sans justification claire</li>
-                            </ul>
-                            C'est un service qui t'impose des conditions de type "on fait ce qu'on veut, et si ça foire, c'est toi le problème".
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🧢 "Optimisations comme les pros / streamers"</div>
-                        <div class="reason-content">
-                            <strong>Mythe marketing.</strong> Les streamers ont des machines puissantes et surtout bien configurées, pas sur-optimisées par des scripts. Ils bossent avec des constructeurs ou des techniciens spécialisés, pas des serveurs Discord.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Ils ne sont pas développeurs, pas certifiés Microsoft, ni experts hardware
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">✅</span> Ce que tu devrais faire à la place (GRATUITEMENT)
-                    </div>
-                    <div class="danger-level danger-no">Solution Réelle</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Les Vraies Solutions</div>
-                        <div class="reason-content">
-                            <ul>
-                                <li><strong>Réinstaller proprement Windows</strong> via l'outil Microsoft ou de Atlas-Corporation</li>
-                                <li><strong>Mettre à jour tous les pilotes</strong> (avec les applications des fournisseurs EX: AMD, Nvidia, Intel, etc ..) et non via des logiciels problématiques <a href="https://atlas-corporation.fr/logiciels-foireux/#security" target="_blank">comme listé ici !</a></li>
-                                <li><strong>Installer tes jeux/programmes</strong></li>
-                                <li><strong>Utiliser NVIDIA Control Panel</strong> toi-même (2 min)</li>
-                                <li><strong>Suivre un vrai guide overclocking</strong> si tu veux tester, mais pas à l'aveugle</li>
-                                <li><strong>Ne touche pas au registre, au kernel, aux IRQ ou aux paquets TCP</strong> si tu ne sais pas coder en C</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Résumé : Tu paies 50 à 80€ pour réinstaller toi-même Windows, appliquer des tweaks visibles sur tous les forums, te faire overclocker à l'aveugle, utiliser des scripts sans support réel, et risquer bugs, instabilité, pertes de données.
-                    </div>
-                </div>
-            </div>
-
-            <div class="conclusion fade-in" id="fin">
-                <h2><span class="emoji">💡</span> La Vérité sur l'Optimisation</h2>
-                <p>Tu veux des perfs ? Mets à jour tes pilotes, prends un bon SSD, ajoute de la RAM, et optimise dans les jeux. Le reste, c'est du théâtre. Ces "optimisations avancées" sont le fruit de la culture du bidouillage aveugle : des scripts trouvés sur des forums obscurs, appliqués sans comprendre. La vérité, c'est que ces réglages sont risqués, inefficaces ou obsolètes.</p>
+            <div class="conclusion fade-in" id="conclusion">
+                <h2><span class="emoji">✨</span> Windows Sait Déjà Tout Faire</h2>
+                <p>Ces logiciels promettent des améliorations de performances, mais Windows gère déjà ces aspects de manière intelligente. La plupart du temps, ces outils apportent plus de problèmes que de bénéfices. Faites confiance aux outils intégrés de Microsoft et aux solutions officielles des fabricants.</p>
             </div>
         </div>
     </main>
@@ -1713,6 +1362,7 @@
                 const elements = [
                     ...document.querySelectorAll('.category'),
                     ...document.querySelectorAll('.warning-box'),
+                    ...document.querySelectorAll('.friends-section'),
                     ...document.querySelectorAll('.main-header'),
                     ...document.querySelectorAll('.conclusion'),
                     ...document.querySelectorAll('.fade-in')
@@ -1734,29 +1384,17 @@
             }
         }
 
-        // Navigation active
-        class ActiveNavigation {
+        // Smooth scroll pour les liens internes
+        class SmoothScroll {
             constructor() {
-                this.navItems = document.querySelectorAll('.nav-item');
-                this.sections = Array.from(this.navItems).map(item => {
-                    const href = item.getAttribute('href');
-                    return href ? document.querySelector(href) : null;
-                }).filter(Boolean);
-                
                 this.init();
             }
 
             init() {
-                // Highlight au scroll
-                window.addEventListener('scroll', debounce(() => {
-                    this.highlightActiveSection();
-                }, 100));
-
-                // Smooth scroll
-                this.navItems.forEach(item => {
-                    item.addEventListener('click', (e) => {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
                         e.preventDefault();
-                        const target = document.querySelector(item.getAttribute('href'));
+                        const target = document.querySelector(anchor.getAttribute('href'));
                         if (target) {
                             target.scrollIntoView({
                                 behavior: 'smooth',
@@ -1764,22 +1402,6 @@
                             });
                         }
                     });
-                });
-            }
-
-            highlightActiveSection() {
-                const scrollPos = window.scrollY + 150;
-                
-                this.sections.forEach((section, index) => {
-                    if (section) {
-                        const top = section.offsetTop;
-                        const bottom = top + section.offsetHeight;
-                        
-                        if (scrollPos >= top && scrollPos <= bottom) {
-                            this.navItems.forEach(item => item.classList.remove('active'));
-                            this.navItems[index]?.classList.add('active');
-                        }
-                    }
                 });
             }
         }
@@ -1880,14 +1502,14 @@
                     this.components.backgroundEffects = new BackgroundEffects();
                     this.components.mobileMenu = new MobileMenu();
                     this.components.scrollAnimations = new ScrollAnimations();
-                    this.components.activeNavigation = new ActiveNavigation();
+                    this.components.smoothScroll = new SmoothScroll();
                     this.components.headerManager = new HeaderManager();
                     this.components.interactionEffects = new InteractionEffects();
                     
                     // Animation d'entrée
                     document.body.style.opacity = '1';
                     
-                    console.log('🚀 Atlas Corporation - Page Optimisations chargée!');
+                    console.log('🚀 Atlas Corporation - Logiciels Foireux chargée!');
                     
                 } catch (error) {
                     console.error('❌ Erreur lors de l\'initialisation:', error);
@@ -1901,14 +1523,14 @@
         // Message de bienvenue
         console.log(`
         ╔═══════════════════════════════════════╗
-        ║      ATLAS CORPORATION - OPTIS        ║
-        ║         Débunk Complet                ║
+        ║    ATLAS CORPORATION - SÉCURITÉ       ║
+        ║      Guide des Logiciels Foireux      ║
         ╚═══════════════════════════════════════╝
         
-        ⚠️ Page éducative sur les optimisations
+        🛡️ Protection contre les faux outils
         🎨 Design moderne et interactif
         🚀 Performance optimisée
-        📱 Responsive design
+        📱 Interface responsive
         `);
     </script>
 </body>
