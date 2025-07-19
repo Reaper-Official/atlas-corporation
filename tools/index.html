@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlas Corporation - Solutions Informatiques de l'Espace</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Atlas Corporation - Solutions Informatiques</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
+        /* === VARIABLES CSS === */
         :root {
             --bg-primary: #0a0a0a;
             --bg-secondary: #1a1a1a;
@@ -24,11 +27,19 @@
             --text-secondary: #b0b0b0;
             --text-muted: #888888;
             --border: #333333;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: rgba(0, 0, 0, 0.3);
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* === RESET === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -40,7 +51,7 @@
             position: relative;
         }
 
-        /* Background Effects */
+        /* === BACKGROUND EFFECTS === */
         .bg-effects {
             position: fixed;
             top: 0;
@@ -123,15 +134,15 @@
             animation-delay: -14s;
         }
 
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             position: relative;
             z-index: 1;
         }
 
-        /* Header */
+        /* === HEADER === */
         .header {
             position: sticky;
             top: 0;
@@ -158,9 +169,15 @@
             transition: opacity 0.3s ease;
         }
 
-        .header:hover::before { opacity: 1; }
+        .header:hover::before {
+            opacity: 1;
+        }
 
-        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
         .logo {
             font-family: 'Orbitron', monospace;
@@ -176,7 +193,7 @@
         }
 
         .logo::before {
-            content: "🚀";
+            content: "⚡";
             font-size: 1.8rem;
             animation: energyPulse 2s ease-in-out infinite;
             filter: drop-shadow(0 0 15px var(--accent-orange));
@@ -189,7 +206,9 @@
             text-shadow: 0 0 20px var(--accent-orange);
         }
 
-        .logo:hover::before { animation: energyBurst 0.6s ease-out; }
+        .logo:hover::before {
+            animation: energyBurst 0.6s ease-out;
+        }
 
         .menu-toggle {
             background: rgba(255, 255, 255, 0.1);
@@ -217,7 +236,9 @@
             transition: left 0.6s ease;
         }
 
-        .menu-toggle:hover::before { left: 100%; }
+        .menu-toggle:hover::before {
+            left: 100%;
+        }
 
         .menu-toggle:hover {
             background: rgba(255, 107, 53, 0.2);
@@ -247,7 +268,7 @@
             background: var(--accent-orange);
         }
 
-        /* Menu Mobile */
+        /* === MENU MOBILE === */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -266,7 +287,7 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: min(500px, 90vw);
+            width: min(450px, 90vw);
             height: 100vh;
             background: linear-gradient(135deg, 
                 rgba(30, 30, 30, 0.95), 
@@ -279,11 +300,22 @@
             box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
         }
 
-        .menu-overlay.active { opacity: 1; visibility: visible; }
-        .menu-panel.active { right: 0; }
+        .menu-overlay.active { 
+            opacity: 1; 
+            visibility: visible; 
+        }
+        
+        .menu-panel.active { 
+            right: 0; 
+        }
 
-        .menu-content { padding: 100px 32px 40px; }
-        .menu-section { margin-bottom: 40px; }
+        .menu-content {
+            padding: 100px 32px 40px;
+        }
+
+        .menu-section {
+            margin-bottom: 40px;
+        }
 
         .menu-title {
             font-family: 'Orbitron', monospace;
@@ -309,8 +341,13 @@
             animation: shimmer 2s ease-in-out infinite;
         }
 
-        .menu-items { list-style: none; }
-        .menu-item { margin-bottom: 8px; }
+        .menu-items {
+            list-style: none;
+        }
+
+        .menu-item {
+            margin-bottom: 8px;
+        }
 
         .menu-item a {
             display: block;
@@ -338,7 +375,9 @@
             transition: left 0.5s ease;
         }
 
-        .menu-item a:hover::before { left: 100%; }
+        .menu-item a:hover::before {
+            left: 100%;
+        }
 
         .menu-item a:hover {
             background: rgba(255, 107, 53, 0.1);
@@ -347,7 +386,7 @@
             box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
         }
 
-        /* Celebration Section */
+        /* === SECTION 14 JUILLET === */
         .celebration {
             padding: 80px 0 60px;
             text-align: center;
@@ -454,7 +493,7 @@
             background: var(--bg-secondary);
         }
 
-        /* Hero Section */
+        /* === HERO SECTION === */
         .hero {
             padding: 120px 0 100px;
             text-align: center;
@@ -576,7 +615,20 @@
             transition: left 0.8s ease;
         }
 
-        .cta-button:hover::before { left: 100%; }
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 53, 0.1), 
+                rgba(255, 184, 77, 0.1));
+            border-radius: 14px;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
 
         .cta-button:hover {
             transform: translateY(-6px) scale(1.05);
@@ -584,6 +636,7 @@
                 0 20px 50px rgba(255, 107, 53, 0.5),
                 0 0 0 1px rgba(255, 255, 255, 0.1);
             background-position: 100% 100%;
+            animation: buttonPulse 0.6s ease;
         }
 
         .tagline {
@@ -632,7 +685,9 @@
             border-radius: 2px;
         }
 
-        .tagline-word.visible::before { width: 100%; }
+        .tagline-word.visible::before {
+            width: 100%;
+        }
 
         .tagline-word:hover {
             color: var(--accent-orange);
@@ -640,7 +695,7 @@
             text-shadow: 0 0 30px var(--accent-orange);
         }
 
-        /* Tools Section */
+        /* === SECTION OUTILS === */
         .tools-section {
             padding: 120px 0;
             background: rgba(255, 255, 255, 0.02);
@@ -749,7 +804,9 @@
             transition: opacity 0.5s ease;
         }
 
-        .tool-card:hover::before { opacity: 1; }
+        .tool-card:hover::before {
+            opacity: 1;
+        }
 
         .tool-card.visible {
             opacity: 1;
@@ -793,24 +850,51 @@
             transition: opacity 0.5s ease;
         }
 
-        .tool-card:hover .tool-icon::before { opacity: 1; }
+        .tool-card:hover .tool-icon::before {
+            opacity: 1;
+        }
 
         .tool-card:hover .tool-icon {
             transform: scale(1.15) rotateY(180deg);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
-        /* Icon Colors */
-        .icon-windows { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange), #e74c3c); }
-        .icon-tools { background: linear-gradient(135deg, var(--accent-orange), #e74c3c, var(--accent-red)); }
-        .icon-cpu { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple)); }
-        .icon-guide { background: linear-gradient(135deg, var(--accent-green), #2ecc71, #27ae60); }
-        .icon-power { background: linear-gradient(135deg, var(--accent-red), #e74c3c, #c0392b); }
-        .icon-security { background: linear-gradient(135deg, var(--accent-magenta), var(--accent-purple), var(--accent-pink)); }
-        .icon-memory { background: linear-gradient(135deg, var(--accent-pink), var(--accent-magenta), var(--accent-purple)); }
-        .icon-config { background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan), var(--accent-green)); }
-        .icon-images { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange), var(--accent-red)); }
-        .icon-debunk { background: linear-gradient(135deg, var(--accent-red), var(--accent-magenta), var(--accent-purple)); }
+        .icon-windows { 
+            background: linear-gradient(135deg, 
+                var(--accent-yellow), 
+                var(--accent-orange), 
+                #e74c3c); 
+        }
+        .icon-tools { 
+            background: linear-gradient(135deg, 
+                var(--accent-orange), 
+                #e74c3c, 
+                var(--accent-red)); 
+        }
+        .icon-cpu { 
+            background: linear-gradient(135deg, 
+                var(--accent-cyan), 
+                var(--accent-blue), 
+                var(--accent-purple)); 
+        }
+        .icon-guide { 
+            background: linear-gradient(135deg, 
+                var(--accent-green), 
+                #2ecc71, 
+                #27ae60); 
+        }
+        .icon-power { 
+            background: linear-gradient(135deg, 
+                var(--accent-red), 
+                #e74c3c, 
+                #c0392b); 
+        }
+        .icon-security { 
+            background: linear-gradient(135deg, 
+                var(--accent-magenta), 
+                var(--accent-purple), 
+                var(--accent-pink)); 
+        }
 
         .tool-card h3 {
             font-family: 'Orbitron', monospace;
@@ -877,7 +961,9 @@
             transition: left 0.8s ease;
         }
 
-        .tool-btn:hover::before { left: 100%; }
+        .tool-btn:hover::before {
+            left: 100%;
+        }
 
         .tool-btn:hover {
             transform: translateY(-4px) scale(1.05);
@@ -887,7 +973,7 @@
             background-position: 100% 100%;
         }
 
-        /* Footer */
+        /* === FOOTER === */
         .footer {
             background: linear-gradient(135deg, 
                 var(--bg-primary), 
@@ -950,7 +1036,9 @@
             font-size: 1.05rem;
         }
 
-        .footer-section ul { list-style: none; }
+        .footer-section ul {
+            list-style: none;
+        }
 
         .footer-section a {
             color: var(--text-secondary);
@@ -975,7 +1063,9 @@
             transition: width 0.4s ease;
         }
 
-        .footer-section a:hover::before { width: 100%; }
+        .footer-section a:hover::before {
+            width: 100%;
+        }
 
         .footer-section a:hover {
             color: var(--accent-orange);
@@ -1004,7 +1094,9 @@
             font-size: 1.2rem;
         }
 
-        .social-links a::before { display: none; }
+        .social-links a::before {
+            display: none;
+        }
 
         .social-links a:hover {
             background: var(--accent-orange);
@@ -1024,7 +1116,7 @@
             z-index: 2;
         }
 
-        /* Animations */
+        /* === ANIMATIONS === */
         @keyframes energyPulse {
             0%, 100% { 
                 opacity: 1;
@@ -1045,59 +1137,123 @@
         }
 
         @keyframes patrioticFlow {
-            0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.8; }
-            33% { transform: rotate(120deg) scale(1.1); opacity: 1; }
-            66% { transform: rotate(240deg) scale(0.9); opacity: 0.9; }
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+            33% {
+                transform: rotate(120deg) scale(1.1);
+                opacity: 1;
+            }
+            66% {
+                transform: rotate(240deg) scale(0.9);
+                opacity: 0.9;
+            }
         }
 
         @keyframes tricoloreWave {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes videoReveal {
-            to { opacity: 1; transform: scale(1) rotateX(0deg); }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg);
+            }
         }
 
         @keyframes heroFlow {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            33% { transform: rotate(120deg) scale(1.1); }
-            66% { transform: rotate(240deg) scale(0.9); }
+            0%, 100% { 
+                transform: rotate(0deg) scale(1); 
+            }
+            33% { 
+                transform: rotate(120deg) scale(1.1); 
+            }
+            66% { 
+                transform: rotate(240deg) scale(0.9); 
+            }
         }
 
         @keyframes rainbowFlow {
-            0%, 100% { background-position: 0% 50%; transform: scale(1); }
-            25% { background-position: 100% 50%; transform: scale(1.05); }
-            50% { background-position: 100% 100%; transform: scale(1); }
-            75% { background-position: 0% 100%; transform: scale(0.95); }
+            0%, 100% { 
+                background-position: 0% 50%;
+                transform: scale(1);
+            }
+            25% {
+                background-position: 100% 50%;
+                transform: scale(1.05);
+            }
+            50% { 
+                background-position: 100% 100%;
+                transform: scale(1);
+            }
+            75% {
+                background-position: 0% 100%;
+                transform: scale(0.95);
+            }
         }
 
         @keyframes buttonReveal {
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes buttonPulse {
+            0% { transform: translateY(-6px) scale(1.05); }
+            50% { transform: translateY(-8px) scale(1.08); }
+            100% { transform: translateY(-6px) scale(1.05); }
         }
 
         @keyframes titleShimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         @keyframes underlineGlow {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 107, 53, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.8); }
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+            }
         }
 
         @keyframes sectionFlow {
-            0%, 100% { transform: rotate(0deg); opacity: 0.5; }
-            50% { transform: rotate(180deg); opacity: 0.8; }
+            0%, 100% { 
+                transform: rotate(0deg); 
+                opacity: 0.5;
+            }
+            50% { 
+                transform: rotate(180deg); 
+                opacity: 0.8;
+            }
         }
 
         @keyframes footerFlow {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(180deg); }
+            0%, 100% { 
+                transform: rotate(0deg); 
+            }
+            50% { 
+                transform: rotate(180deg); 
+            }
         }
 
         @keyframes twinkle {
@@ -1106,15 +1262,33 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.6; }
-            33% { transform: translateY(-20px) translateX(10px) rotate(120deg); opacity: 1; }
-            66% { transform: translateY(10px) translateX(-5px) rotate(240deg); opacity: 0.8; }
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) rotate(0deg);
+                opacity: 0.6;
+            }
+            33% {
+                transform: translateY(-20px) translateX(10px) rotate(120deg);
+                opacity: 1;
+            }
+            66% {
+                transform: translateY(10px) translateX(-5px) rotate(240deg);
+                opacity: 0.8;
+            }
         }
 
         @keyframes morphing {
-            0%, 100% { transform: scale(1) rotate(0deg); border-radius: 50%; }
-            33% { transform: scale(1.1) rotate(120deg); border-radius: 30% 70% 60% 40%; }
-            66% { transform: scale(0.9) rotate(240deg); border-radius: 60% 40% 30% 70%; }
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                border-radius: 50%;
+            }
+            33% {
+                transform: scale(1.1) rotate(120deg);
+                border-radius: 30% 70% 60% 40%;
+            }
+            66% {
+                transform: scale(0.9) rotate(240deg);
+                border-radius: 60% 40% 30% 70%;
+            }
         }
 
         @keyframes shimmer {
@@ -1123,23 +1297,61 @@
             100% { left: 70%; width: 30%; }
         }
 
-        /* Responsive */
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            .container { padding: 0 16px; }
-            .hero { padding: 100px 0 80px; }
-            .tools-section { padding: 100px 0; }
-            .tools-grid { grid-template-columns: 1fr; gap: 30px; }
-            .footer-content { grid-template-columns: 1fr; text-align: center; }
-            .social-links { justify-content: center; }
-            .main-title { font-size: clamp(2.5rem, 10vw, 5rem); }
-            .celebration { padding: 60px 0 40px; }
-            .video-container { margin: 0 10px; transform: scale(0.9); }
-            .video-container:hover { transform: scale(0.95); }
-            .tool-card { padding: 40px 25px; }
-            .menu-panel { width: min(380px, 90vw); }
+            .container { 
+                padding: 0 16px; 
+            }
+            
+            .hero { 
+                padding: 100px 0 80px; 
+            }
+            
+            .tools-section { 
+                padding: 100px 0; 
+            }
+            
+            .tools-grid { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+            }
+            
+            .footer-content { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+            }
+            
+            .social-links { 
+                justify-content: center; 
+            }
+            
+            .main-title { 
+                font-size: clamp(2.5rem, 10vw, 5rem); 
+            }
+            
+            .celebration { 
+                padding: 60px 0 40px; 
+            }
+            
+            .video-container {
+                margin: 0 10px;
+                transform: scale(0.9);
+            }
+
+            .video-container:hover {
+                transform: scale(0.95);
+            }
+            
+            .tool-card {
+                padding: 40px 25px;
+            }
+
+            .menu-panel {
+                width: min(380px, 90vw);
+            }
         }
 
-        /* Accessibility */
+        /* === ACCESSIBILITÉ === */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -1167,6 +1379,7 @@
             }
         }
 
+        /* === UTILITAIRES === */
         .fade-in {
             opacity: 0;
             transform: translateY(40px);
@@ -1178,6 +1391,7 @@
             transform: translateY(0);
         }
 
+        /* Style focus pour navigation clavier */
         body.keyboard-navigation *:focus {
             outline: 2px solid var(--accent-orange);
             outline-offset: 2px;
@@ -1213,41 +1427,42 @@
     <div class="menu-panel" id="menuPanel">
         <div class="menu-content">
             <div class="menu-section">
-                <h3 class="menu-title">🚀 Navigation Principale</h3>
+                <h3 class="menu-title">Navigation</h3>
                 <ul class="menu-items">
-                    <li class="menu-item"><a href="https://atlas-corporation.fr">🏠 Accueil</a></li>
-                    <li class="menu-item"><a href="https://atlas-corporation.fr/creator/">👨‍💻 Créateur</a></li>
-                    <li class="menu-item"><a href="https://atlas-corporation.fr/custom-os">💻 Windows Personnalisé</a></li>
-                    <li class="menu-item"><a href="https://atlas-corporation.fr/tools">🔧 Boîte à Outils</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr">Accueil</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr/creator/">Créateur</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr/custom-os">Mon Windows Personnalisé</a></li>
                 </ul>
             </div>
             
             <div class="menu-section">
-                <h3 class="menu-title">🛡️ Sécurité & Analyses</h3>
+                <h3 class="menu-title">Analyse & Débunk</h3>
                 <ul class="menu-items">
-                    <li class="menu-item"><a href="https://atlas-corporation.fr/malware-world/">🔐 Sécurité & Malwares</a></li>
-                    <li class="menu-item"><a href="https://atlas-corporation.fr/critique-des-idiots/">🎭 Critique Influenceurs</a></li>
-                    <li class="menu-item"><a href="https://atlas-corporation.fr/logiciels-foireux/">💩 Logiciels à éviter</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr/critique-des-idiots/">Influenceurs Tech</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr/logiciels-foireux/">Logiciels à éviter</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr/atlas-os-vs-windows/">Atlas OS vs Windows</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr/optimisations">Optimisations</a></li>
                 </ul>
             </div>
 
             <div class="menu-section">
-                <h3 class="menu-title">📚 Ressources</h3>
+                <h3 class="menu-title">Ressources</h3>
                 <ul class="menu-items">
-                    <li class="menu-item"><a href="https://atlas-corporation.fr/bonnes-pratiques/">✅ Bonnes Pratiques</a></li>
-                    <li class="menu-item"><a href="https://atlas-corporation.fr/infos-utiles/">💡 Infos Utiles</a></li>
-                    <li class="menu-item"><a href="https://atlas-corporation.fr/partenaires/">🤝 Partenaires</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr/bonnes-pratiques/">Bonnes pratiques</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr/infos-utiles/">Infos pratiques</a></li>
+                    <li class="menu-item"><a href="https://atlas-corporation.fr/partenaires/">Partenaires</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
+    <!-- Contenu Principal -->
     <main>
         <!-- Section 14 Juillet -->
         <section class="celebration">
             <div class="container">
                 <h2 class="celebration-title">🇫🇷 Vive la France ! 🇫🇷</h2>
-                <p class="celebration-subtitle">En l'honneur du 14 juillet - Fête Nationale Française</p>
+                <p class="celebration-subtitle">En l'honneur du 14 juillet - Fête Nationale</p>
                 
                 <div class="video-container">
                     <div class="video-wrapper">
@@ -1266,7 +1481,7 @@
             </div>
         </section>
 
-        <!-- Hero Section -->
+        <!-- Section Hero -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
@@ -1279,11 +1494,11 @@
                     </h1>
 
                     <p class="hero-description">
-                        🚀 Solutions informatiques révolutionnaires pour maîtriser le présent et façonner l'avenir technologique avec excellence et innovation spatiale.
+                        Solutions informatiques révolutionnaires pour maîtriser le présent et façonner l'avenir technologique avec excellence et innovation.
                     </p>
 
                     <a href="https://atlas-corporation.fr/creator/" class="cta-button">
-                        🌟 Découvrir notre Créateur
+                        Découvrir notre Créateur
                     </a>
 
                     <div class="tagline">
@@ -1297,19 +1512,19 @@
             </div>
         </section>
 
-        <!-- Section Solutions Principales -->
+        <!-- Section Outils -->
         <section class="tools-section">
             <div class="container">
-                <h2 class="section-title">🌌 Solutions de l'Espace</h2>
+                <h2 class="section-title">Nos Solutions</h2>
                 
-                <h3 class="section-subtitle">🛠️ Solutions Principales</h3>
+                <h3 class="section-subtitle">Outils Professionnels</h3>
                 <div class="tools-grid">
                     <div class="tool-card">
                         <div class="tool-icon icon-windows">🪟</div>
                         <h3>Windows 11 Optimisé</h3>
                         <p class="tool-subtitle">Système personnalisé</p>
                         <p>Version ultra-optimisée sans bloatwares, conçue pour des performances maximales et une confidentialité renforcée.</p>
-                        <a href="https://atlas-corporation.fr/custom-os/" class="tool-btn">🚀 Explorer</a>
+                        <a href="https://atlas-corporation.fr/custom-os/" class="tool-btn">Explorer</a>
                     </div>
                     
                     <div class="tool-card">
@@ -1317,34 +1532,26 @@
                         <h3>Boîte à Outils</h3>
                         <p class="tool-subtitle">Suite complète</p>
                         <p>Collection premium d'outils professionnels pour l'analyse approfondie et la maintenance système avancée.</p>
-                        <a href="https://atlas-corporation.fr/tools/" class="tool-btn">🔍 Découvrir</a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-icon icon-config">⚙️</div>
-                        <h3>Configuration PC</h3>
-                        <p class="tool-subtitle">Service personnalisé</p>
-                        <p>Demandez une configuration PC sur mesure adaptée à vos besoins spécifiques et votre budget.</p>
-                        <a href="https://atlas-corporation.fr/demande-config/" class="tool-btn">📝 Demander</a>
+                        <a href="https://atlas-corporation.fr/tools/" class="tool-btn">Découvrir</a>
                     </div>
                 </div>
                 
-                <h3 class="section-subtitle">💻 Hardware & Composants</h3>
+                <h3 class="section-subtitle">Guides & Analyses</h3>
                 <div class="tools-grid">
                     <div class="tool-card">
                         <div class="tool-icon icon-cpu">🖥️</div>
                         <h3>Intel vs AMD</h3>
                         <p class="tool-subtitle">Comparatif technique</p>
                         <p>Analyse technique détaillée et benchmarks pour choisir le processeur parfaitement adapté à vos besoins spécifiques.</p>
-                        <a href="https://atlas-corporation.fr/amd-vs-intel/" class="tool-btn">⚔️ Comparer</a>
+                        <a href="https://atlas-corporation.fr/amd-vs-intel/" class="tool-btn">Comparer</a>
                     </div>
                     
                     <div class="tool-card">
-                        <div class="tool-icon icon-guide">💡</div>
+                        <div class="tool-icon icon-guide">⚙️</div>
                         <h3>Guide PC</h3>
                         <p class="tool-subtitle">Configuration</p>
                         <p>Guide complet et conseils d'expert pour l'assemblage optimal et le choix précis de composants PC haute performance.</p>
-                        <a href="https://atlas-corporation.fr/pc-informations/" class="tool-btn">📖 Consulter</a>
+                        <a href="https://atlas-corporation.fr/pc-informations/" class="tool-btn">Consulter</a>
                     </div>
                     
                     <div class="tool-card">
@@ -1352,101 +1559,15 @@
                         <h3>Calculateur PSU</h3>
                         <p class="tool-subtitle">Alimentation</p>
                         <p>Outil de calcul précis pour déterminer la puissance d'alimentation optimale selon votre configuration système.</p>
-                        <a href="https://atlas-corporation.fr/psu-calculator/" class="tool-btn">🔋 Calculer</a>
+                        <a href="https://atlas-corporation.fr/psu-calculator/" class="tool-btn">Calculer</a>
                     </div>
-
+                    
                     <div class="tool-card">
-                        <div class="tool-icon icon-memory">🧠</div>
-                        <h3>RAM Corsair</h3>
-                        <p class="tool-subtitle">Mémoire</p>
-                        <p>Page décrivant les soucis liés à la RAM  Corsair.</p>
-                        <a href="https://atlas-corporation.fr/ram_corsair/" class="tool-btn">💾 Explorer</a>
-                    </div>
-                </div>
-
-                <h3 class="section-subtitle">🛡️ Sécurité & Débunkage</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon icon-security">🔐</div>
+                        <div class="tool-icon icon-security">🛡️</div>
                         <h3>Sécurité & Malwares</h3>
                         <p class="tool-subtitle">Protection</p>
                         <p>Guide expert complet sur les menaces informatiques modernes et stratégies de prévention avancées.</p>
-                        <a href="https://atlas-corporation.fr/malware-world/" class="tool-btn">🛡️ Protéger</a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-icon icon-debunk">🎭</div>
-                        <h3>Critique Influenceurs</h3>
-                        <p class="tool-subtitle">Analyse critique</p>
-                        <p>Analyses objectives et débunkage des conseils tech douteux propagés par certains influenceurs.</p>
-                        <a href="https://atlas-corporation.fr/critique-des-idiots/" class="tool-btn">🎯 Analyser</a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-icon icon-debunk">💩</div>
-                        <h3>Logiciels à Éviter</h3>
-                        <p class="tool-subtitle">Liste noire</p>
-                        <p>Compilation des logiciels problématiques, malwares déguisés et applications nuisibles à éviter absolument.</p>
-                        <a href="https://atlas-corporation.fr/logiciels-foireux/" class="tool-btn">⚠️ Éviter</a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-icon icon-debunk">⚔️</div>
-                        <h3>Atlas OS vs Windows</h3>
-                        <p class="tool-subtitle">Comparatif détaillé</p>
-                        <p>Analyse approfondie comparant Atlas OS et Windows standard, avantages et inconvénients réels.</p>
-                        <a href="https://atlas-corporation.fr/atlas-os-vs-windows/" class="tool-btn">🔍 Comparer</a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-icon icon-debunk">📊</div>
-                        <h3>Débunk Optimisations</h3>
-                        <p class="tool-subtitle">Mythes & réalités</p>
-                        <p>Démystification des optimisations système bidons et présentation des vraies améliorations efficaces.</p>
-                        <a href="https://atlas-corporation.fr/optimisations/" class="tool-btn">🔬 Débunker</a>
-                    </div>
-                </div>
-
-                <h3 class="section-subtitle">📚 Ressources & Documentation</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon icon-guide">✅</div>
-                        <h3>Bonnes Pratiques</h3>
-                        <p class="tool-subtitle">Méthodes éprouvées</p>
-                        <p>Compilation des meilleures pratiques pour l'utilisation, la maintenance et l'optimisation de vos systèmes.</p>
-                        <a href="https://atlas-corporation.fr/bonnes-pratiques/" class="tool-btn">📋 Appliquer</a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-icon icon-guide">💡</div>
-                        <h3>Infos Utiles</h3>
-                        <p class="tool-subtitle">Base de connaissances</p>
-                        <p>Informations pratiques, astuces techniques et conseils d'experts pour optimiser votre expérience informatique.</p>
-                        <a href="https://atlas-corporation.fr/infos-utiles/" class="tool-btn">📚 Consulter</a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-icon icon-images">🖼️</div>
-                        <h3>Galerie Images</h3>
-                        <p class="tool-subtitle">Ressources visuelles</p>
-                        <p>Collection d'images, captures d'écran et ressources visuelles utilisées sur le site Atlas Corporation.</p>
-                        <a href="https://atlas-corporation.fr/img/" class="tool-btn">🎨 Parcourir</a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-icon icon-guide">🤝</div>
-                        <h3>Partenaires</h3>
-                        <p class="tool-subtitle">Réseau professionnel</p>
-                        <p>Découvrez nos partenaires de confiance et les collaborations techniques qui enrichissent notre écosystème.</p>
-                        <a href="https://atlas-corporation.fr/partenaires/" class="tool-btn">🌐 Découvrir</a>
-                    </div>
-
-                    <div class="tool-card">
-                        <div class="tool-icon icon-security">⚖️</div>
-                        <h3>Conditions Générales</h3>
-                        <p class="tool-subtitle">Légal</p>
-                        <p>Consultez les conditions générales d'utilisation et les mentions légales du site Atlas Corporation.</p>
-                        <a href="https://atlas-corporation.fr/cgu/" class="tool-btn">📜 Lire</a>
+                        <a href="https://atlas-corporation.fr/malware-world/" class="tool-btn">Protéger</a>
                     </div>
                 </div>
             </div>
@@ -1458,54 +1579,54 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>🚀 Atlas Corporation</h3>
-                    <p>Solutions informatiques de pointe et expertise technique premium pour la sécurité, l'optimisation et l'innovation de vos systèmes technologiques dans l'espace numérique.</p>
+                    <h3>Atlas Corporation</h3>
+                    <p>Solutions informatiques de pointe et expertise technique premium pour la sécurité, l'optimisation et l'innovation de vos systèmes technologiques.</p>
                     <div class="social-links">
                         <a href="mailto:reaper@etik.com" title="Email">📧</a>
-                        <a href="https://reaper.cloudline.fr" title="Site Personnel">🌐</a>
+                        <a href="https://reaper.cloudline.fr" title="Site">🌐</a>
                         <a href="https://portfolio.atlas-corporation.fr/" title="Portfolio">💼</a>
                         <a href="https://atlas-corporation.fr/cgu/" title="CGU">⚖️</a>
                     </div>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>⚡ Services Principaux</h3>
+                    <h3>Services</h3>
                     <ul>
-                        <li><a href="https://atlas-corporation.fr/custom-os/">💻 Windows Optimisé</a></li>
-                        <li><a href="https://atlas-corporation.fr/tools/">🔧 Boîte à Outils</a></li>
-                        <li><a href="https://atlas-corporation.fr/malware-world/">🛡️ Sécurité & Malwares</a></li>
-                        <li><a href="https://atlas-corporation.fr/demande-config/">⚙️ Configuration PC</a></li>
+                        <li><a href="https://atlas-corporation.fr/bonnes-pratiques">Diagnostic système avancé</a></li>
+                        <li><a href="https://atlas-corporation.fr/infos-utiles/">Maintenance préventive</a></li>
+                        <li><a href="https://atlas-corporation.fr/optimisations/">Optimisation performance</a></li>
+                        <li><a href="https://atlas-corporation.fr/custom-os/">Personnalisation système</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>🔬 Analyses & Support</h3>
+                    <h3>Ressources</h3>
                     <ul>
-                        <li><a href="https://atlas-corporation.fr/creator/">👨‍💻 À Propos du Créateur</a></li>
-                        <li><a href="https://atlas-corporation.fr/bonnes-pratiques/">✅ Bonnes Pratiques</a></li>
-                        <li><a href="https://atlas-corporation.fr/infos-utiles/">💡 Informations Utiles</a></li>
-                        <li><a href="https://cyberveille.esante.gouv.fr/alertes-et-vulnerabilites">🔍 Veille Cybersécurité</a></li>
+                        <li><a href="https://atlas-corporation.fr/critique-des-idiots/">Analyses critiques expertes</a></li>
+                        <li><a href="https://atlas-corporation.fr/logiciels-foireux/">Logiciels déconseillés</a></li>
+                        <li><a href="https://cyberveille.esante.gouv.fr/alertes-et-vulnerabilites">Veille sécurité cyber</a></li>
+                        <li><a href="https://atlas-corporation.fr/partenaires/">Partenaires technologiques</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Atlas Corporation 🚀 Leadership en expertise technique et innovation technologique spatiale.</p>
+                <p>&copy; 2025 Atlas Corporation. Leadership en expertise technique et innovation technologique.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Configuration
+        // Configuration et utilitaires
         const CONFIG = {
             animationDuration: 400,
             scrollThreshold: 0.15,
             debounceDelay: 100,
-            particleCount: 25,
-            starCount: 60
+            particleCount: 20,
+            starCount: 50
         };
 
-        // Utilitaire debounce
+        // Utilitaire debounce amélioré
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -1558,13 +1679,14 @@
             }
         }
 
-        // Gestion du menu mobile
+        // Gestion du menu mobile améliorée
         class MobileMenu {
             constructor() {
                 this.menuToggle = document.getElementById('menuToggle');
                 this.menuPanel = document.getElementById('menuPanel');
                 this.menuOverlay = document.getElementById('menuOverlay');
                 this.isOpen = false;
+                this.touchStartY = 0;
                 
                 this.init();
             }
@@ -1573,7 +1695,21 @@
                 this.menuToggle?.addEventListener('click', () => this.toggle());
                 this.menuOverlay?.addEventListener('click', () => this.close());
                 
-                // Fermer au clic sur un lien
+                // Support swipe pour fermer
+                this.menuPanel?.addEventListener('touchstart', (e) => {
+                    this.touchStartY = e.touches[0].clientY;
+                }, { passive: true });
+
+                this.menuPanel?.addEventListener('touchmove', (e) => {
+                    const touchY = e.touches[0].clientY;
+                    const deltaY = touchY - this.touchStartY;
+                    
+                    if (deltaY > 100) {
+                        this.close();
+                    }
+                }, { passive: true });
+                
+                // Fermer au clic sur un lien avec animation
                 this.menuPanel?.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
                         setTimeout(() => this.close(), 150);
@@ -1586,6 +1722,13 @@
                         this.close();
                     }
                 });
+
+                // Gestion responsive
+                window.addEventListener('resize', debounce(() => {
+                    if (window.innerWidth > 768 && this.isOpen) {
+                        this.close();
+                    }
+                }, 100));
             }
 
             toggle() {
@@ -1598,6 +1741,18 @@
                 this.menuOverlay?.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 this.isOpen = true;
+
+                // Animation séquentielle des items du menu
+                const menuItems = this.menuPanel?.querySelectorAll('.menu-item');
+                menuItems?.forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateX(50px)';
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateX(0)';
+                    }, index * 50);
+                });
             }
 
             close() {
@@ -1606,10 +1761,16 @@
                 this.menuOverlay?.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 this.isOpen = false;
+
+                // Reset des items
+                const menuItems = this.menuPanel?.querySelectorAll('.menu-item');
+                menuItems?.forEach(item => {
+                    item.style.transition = 'none';
+                });
             }
         }
 
-        // Animations au scroll
+        // Animations au scroll améliorées
         class ScrollAnimations {
             constructor() {
                 this.observer = new IntersectionObserver(
@@ -1624,6 +1785,7 @@
             }
 
             init() {
+                // Observer pour tous les éléments animables
                 const elements = [
                     ...document.querySelectorAll('.tool-card'),
                     ...document.querySelectorAll('.tagline-word'),
@@ -1634,24 +1796,67 @@
                 elements.forEach(element => {
                     this.observer.observe(element);
                 });
+
+                // Animation spéciale pour les lettres du titre
+                this.animateTitleLetters();
             }
 
             handleIntersection(entries) {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
+                        // Délai en cascade pour un effet plus fluide
                         const delay = entry.target.classList.contains('tool-card') ? index * 150 : 0;
                         
                         setTimeout(() => {
                             entry.target.classList.add('visible');
+                            
+                            // Animation spéciale pour les cartes d'outils
+                            if (entry.target.classList.contains('tool-card')) {
+                                this.animateToolCard(entry.target);
+                            }
                         }, delay);
                         
                         this.observer.unobserve(entry.target);
                     }
                 });
             }
+
+            animateToolCard(card) {
+                const icon = card.querySelector('.tool-icon');
+                const title = card.querySelector('h3');
+                const subtitle = card.querySelector('.tool-subtitle');
+                const description = card.querySelector('p:not(.tool-subtitle)');
+                const button = card.querySelector('.tool-btn');
+
+                // Animation séquentielle des éléments de la carte
+                [icon, title, subtitle, description, button].forEach((element, index) => {
+                    if (element) {
+                        element.style.opacity = '0';
+                        element.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            element.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                            element.style.opacity = '1';
+                            element.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            }
+
+            animateTitleLetters() {
+                const letters = document.querySelectorAll('.title-letter');
+                letters.forEach((letter, index) => {
+                    letter.style.opacity = '0';
+                    letter.style.transform = 'translateY(100px) rotateX(-90deg)';
+                    setTimeout(() => {
+                        letter.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        letter.style.opacity = '1';
+                        letter.style.transform = 'translateY(0) rotateX(0deg)';
+                    }, index * 200);
+                });
+            }
         }
 
-        // Gestion du header
+        // Gestion avancée du header
         class HeaderManager {
             constructor() {
                 this.header = document.querySelector('.header');
@@ -1667,11 +1872,19 @@
                     debounce(this.handleScroll.bind(this), CONFIG.debounceDelay),
                     { passive: true }
                 );
+
+                // Parallax subtil du header
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * -0.5;
+                    this.header.style.transform = `translateY(${this.isHidden ? '-100%' : rate * 0.1 + 'px'})`;
+                }, { passive: true });
             }
 
             handleScroll() {
                 const currentScrollY = window.scrollY;
                 
+                // Changement de style selon le scroll
                 if (currentScrollY > this.scrollThreshold) {
                     this.header.style.background = 'rgba(10, 10, 10, 0.98)';
                     this.header.style.backdropFilter = 'blur(40px) saturate(200%)';
@@ -1682,6 +1895,7 @@
                     this.header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
                 }
 
+                // Masquer/afficher avec inertie
                 if (Math.abs(currentScrollY - this.lastScrollY) > 5) {
                     if (currentScrollY > this.lastScrollY && currentScrollY > 300) {
                         this.hideHeader();
@@ -1708,6 +1922,251 @@
             }
         }
 
+        // Gestionnaire d'interactions avancé
+        class InteractionManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupParallaxEffects();
+                this.setupHoverEffects();
+                this.setupClickEffects();
+                this.setupKeyboardShortcuts();
+            }
+
+            setupParallaxEffects() {
+                window.addEventListener('mousemove', debounce((e) => {
+                    const mouseX = e.clientX / window.innerWidth;
+                    const mouseY = e.clientY / window.innerHeight;
+                    
+                    // Parallax des orbes de background
+                    document.querySelectorAll('.orb').forEach((orb, index) => {
+                        const speed = (index + 1) * 0.5;
+                        const x = (mouseX - 0.5) * speed * 20;
+                        const y = (mouseY - 0.5) * speed * 20;
+                        orb.style.transform = `translate(${x}px, ${y}px)`;
+                    });
+
+                    // Parallax des particules
+                    document.querySelectorAll('.particle').forEach((particle, index) => {
+                        const speed = (index % 3 + 1) * 0.3;
+                        const x = (mouseX - 0.5) * speed * 15;
+                        const y = (mouseY - 0.5) * speed * 15;
+                        particle.style.transform = `translate(${x}px, ${y}px)`;
+                    });
+                }, 50));
+            }
+
+            setupHoverEffects() {
+                // Effet magnétique sur les boutons
+                document.querySelectorAll('.tool-btn, .cta-button').forEach(button => {
+                    button.addEventListener('mouseenter', () => {
+                        button.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    });
+
+                    button.addEventListener('mousemove', (e) => {
+                        const rect = button.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        
+                        button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
+                    });
+
+                    button.addEventListener('mouseleave', () => {
+                        button.style.transform = 'translate(0, 0) scale(1)';
+                    });
+                });
+
+                // Effet de lueur sur les cartes
+                document.querySelectorAll('.tool-card').forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        card.style.setProperty('--mouse-x', x + 'px');
+                        card.style.setProperty('--mouse-y', y + 'px');
+                        
+                        // Gradient de lueur qui suit la souris
+                        card.style.background = `
+                            radial-gradient(300px circle at ${x}px ${y}px, 
+                                rgba(255, 107, 53, 0.1), 
+                                transparent 40%),
+                            linear-gradient(135deg, 
+                                rgba(30, 30, 30, 0.8), 
+                                rgba(40, 40, 50, 0.6))
+                        `;
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        card.style.background = `
+                            linear-gradient(135deg, 
+                                rgba(30, 30, 30, 0.8), 
+                                rgba(40, 40, 50, 0.6))
+                        `;
+                    });
+                });
+            }
+
+            setupClickEffects() {
+                // Effet de ripple sur les clics
+                document.addEventListener('click', (e) => {
+                    if (e.target.closest('.tool-btn, .cta-button, .menu-item a')) {
+                        this.createRipple(e);
+                    }
+                });
+            }
+
+            createRipple(e) {
+                const button = e.target.closest('.tool-btn, .cta-button, .menu-item a');
+                if (!button) return;
+
+                const ripple = document.createElement('span');
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+
+                button.style.position = 'relative';
+                button.style.overflow = 'hidden';
+                button.appendChild(ripple);
+
+                setTimeout(() => ripple.remove(), 600);
+            }
+
+            setupKeyboardShortcuts() {
+                document.addEventListener('keydown', (e) => {
+                    // Navigation rapide
+                    if (e.altKey) {
+                        switch(e.key) {
+                            case '1':
+                                e.preventDefault();
+                                document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case '2':
+                                e.preventDefault();
+                                document.querySelector('.tools-section').scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case '3':
+                                e.preventDefault();
+                                document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
+                                break;
+                        }
+                    }
+                });
+            }
+        }
+
+        // Gestion de la performance
+        class PerformanceManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.optimizeAnimations();
+                this.setupLazyLoading();
+                this.monitorPerformance();
+            }
+
+            optimizeAnimations() {
+                // Réduire les animations si les performances sont faibles
+                const fpsMeter = new FPSMeter();
+                
+                setTimeout(() => {
+                    if (fpsMeter.averageFPS < 30) {
+                        document.documentElement.style.setProperty('--transition', 'all 0.2s ease');
+                        console.warn('Performance optimization: Reduced animation complexity');
+                    }
+                }, 3000);
+            }
+
+            setupLazyLoading() {
+                if ('IntersectionObserver' in window) {
+                    const imageObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const img = entry.target;
+                                if (img.dataset.src) {
+                                    img.src = img.dataset.src;
+                                    img.removeAttribute('data-src');
+                                    imageObserver.unobserve(img);
+                                }
+                            }
+                        });
+                    });
+
+                    document.querySelectorAll('img[data-src]').forEach(img => {
+                        imageObserver.observe(img);
+                    });
+                }
+            }
+
+            monitorPerformance() {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = performance.timing;
+                        const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+                        
+                        if (loadTime > 3000) {
+                            console.warn(`Page load time: ${loadTime}ms - Consider optimization`);
+                        } else {
+                            console.log(`Page loaded in ${loadTime}ms - Good performance!`);
+                        }
+                    }, 1000);
+                });
+            }
+        }
+
+        // Mesureur de FPS simple
+        class FPSMeter {
+            constructor() {
+                this.fps = 0;
+                this.frames = 0;
+                this.startTime = Date.now();
+                this.frameHistory = [];
+                this.measure();
+            }
+
+            measure() {
+                this.frames++;
+                const now = Date.now();
+                
+                if (now - this.startTime >= 1000) {
+                    this.fps = Math.round((this.frames * 1000) / (now - this.startTime));
+                    this.frameHistory.push(this.fps);
+                    
+                    if (this.frameHistory.length > 5) {
+                        this.frameHistory.shift();
+                    }
+                    
+                    this.frames = 0;
+                    this.startTime = now;
+                }
+                
+                requestAnimationFrame(() => this.measure());
+            }
+
+            get averageFPS() {
+                if (this.frameHistory.length === 0) return 60;
+                return this.frameHistory.reduce((a, b) => a + b, 0) / this.frameHistory.length;
+            }
+        }
+
         // Initialisation de l'application
         class App {
             constructor() {
@@ -1727,17 +2186,32 @@
 
             initializeComponents() {
                 try {
+                    // Initialiser tous les composants dans l'ordre optimal
                     this.components.backgroundEffects = new BackgroundEffects();
                     this.components.mobileMenu = new MobileMenu();
                     this.components.headerManager = new HeaderManager();
                     this.components.scrollAnimations = new ScrollAnimations();
+                    this.components.interactionManager = new InteractionManager();
+                    this.components.performanceManager = new PerformanceManager();
                     
+                    // Marquer l'application comme chargée
                     document.body.classList.add('app-loaded');
                     
+                    // Style personnalisé pour le ripple
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes ripple {
+                            to {
+                                transform: scale(4);
+                                opacity: 0;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
                     console.log('🚀 Atlas Corporation - Application chargée avec succès!');
-                    console.log('💫 Tous les effets visuels spatiaux sont actifs');
+                    console.log('💫 Tous les effets visuels sont actifs');
                     console.log('⚡ Performance optimisée');
-                    console.log('🌌 Style spatial activé');
                     
                 } catch (error) {
                     console.error('❌ Erreur lors de l\'initialisation:', error);
@@ -1748,22 +2222,24 @@
         // Démarrer l'application
         new App();
 
+        // Message de bienvenue dans la console
         console.log(`
         ╔═══════════════════════════════════════╗
         ║          ATLAS CORPORATION            ║
         ║      Solutions Informatiques          ║
         ║           Premium                     ║
-        ║         🚀 Space Edition 🚀          ║
         ╚═══════════════════════════════════════╝
         
-        🎨 Design spatial moderne avec effets visuels avancés
-        🚀 Performance optimisée pour l'espace
-        📱 Responsive design galactique
-        ♿ Accessibilité universelle
+        🎨 Design moderne avec effets visuels avancés
+        🚀 Performance optimisée
+        📱 Responsive design
+        ♿ Accessibilité complète
         🎯 UX/UI exceptionnelle
-        🌌 Navigation intuitive
         
-        🌟 Explorez l'univers Atlas Corporation!
+        Shortcuts:
+        Alt+1: Accueil
+        Alt+2: Outils 
+        Alt+3: Footer
         `);
     </script>
 </body>
