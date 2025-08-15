@@ -173,6 +173,70 @@
             font-weight: 500;
         }
 
+        /* Navigation styles */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-tab {
+            flex: 1 1 auto; /* Allow items to grow and shrink */
+            min-width: 150px; /* Minimum width before wrapping */
+            text-align: center;
+        }
+
+        .nav-tab button {
+            background: var(--secondary);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%; /* Make button fill its container */
+        }
+
+        .nav-tab button:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .nav-tab button.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-yellow));
+            color: var(--primary);
+            border-color: var(--accent);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .tab-content {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block; /* Shown when active */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .contradiction-card {
             background: var(--glass);
             backdrop-filter: blur(20px);
@@ -727,6 +791,16 @@
             .hero {
                 padding: 3rem 2rem;
             }
+
+            .nav-tabs {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-tab button {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
         }
 
         /* Nouveaux styles pour les sections ajoutées/modifiées */
@@ -889,716 +963,735 @@
             <p>Alors là Grand Prince. La révérence, Messieurs FrenchHardware vous avez eu l'honneur de vous auto-terminer sur place et je vous en remercie</p>
         </div>
 
-        <div class="contradiction-card">
-            <div class="contradiction-header">
-                <div class="contradiction-icon">🎪</div>
-                <div>
-                    <h2 class="contradiction-title">Le Grand Cirque des SSD de Merde</h2>
-                    <p>Quand un NVMe devient plus lent que tes vieux HDD du grenier... 💀</p>
-                </div>
-            </div>
+        <nav class="nav-tabs">
+            <div class="nav-tab"><button data-tab="ssd">SSD de Merde</button></div>
+            <div class="nav-tab"><button data-tab="corsair">Corsair Hypocrisie</button></div>
+            <div class="nav-tab"><button data-tab="watercooling">Watercooling 120mm</button></div>
+            <div class="nav-tab"><button data-tab="pc-influenceurs">PC Influenceurs</button></div>
+            <div class="nav-tab"><button data-tab="benchmarks">Benchmarks "Créatifs"</button></div>
+            <div class="nav-tab"><button data-tab="video-doute">Vidéo du Doute</button></div>
+            <div class="nav-tab"><button data-tab="intel-discord">Intel & Discord</button></div>
+            <div class="nav-tab"><button data-tab="analyse-video">Flowup Scam ?</button></div>
 
-            <div class="ssd-disaster">
-                <h3>🔥 Kingston NV3 & NV2 : Les "Fusées" qui Rampent</h3>
-                <p><strong>FlowUp :</strong> "SSD NVMe ultra-performants !" 🚀</p>
-                <p><strong>La réalité :</strong> Plus lents qu'un RAID de HDD d'il y a 20 ans ! 🐌</p>
-                
-                <div class="roast-box">
-                    <h4>🎯 DIRECT AU BUT :</h4>
-                    <p style="font-size: 1.2rem;">Vendre du NVMe qui va moins vite qu'un HDD, c'est du GÉNIE ! 🧠</p>
-                </div>
-                
-                <div class="image-section">
-                    <h4>📊 Les Preuves du Carnage :</h4>
-                    <div style="text-align: center; margin: 1rem 0;">
-                        <img src="https://atlas-corporation.fr/img/write-over-time.png" alt="Performance Kingston NV3">
-                        <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
-                            💀 Kingston NV3 : L'effondrement en direct !
-                        </p>
-                    </div>
-                    <div style="text-align: center; margin: 1rem 0;">
-                        <img src="https://atlas-corporation.fr/img/write-over-tim2e.png" alt="Performance Kingston NV2">
-                        <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
-                            🤮 Kingston NV2 : Moins pire que le NV3 !
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="performance-chart">
-                    <div class="chart-bar">
-                        <div class="bar bar-nvme"></div>
-                        <div class="bar-label">Kingston NV3<br>(NVMe 2024)<br>307 Mo/s 💩</div>
-                    </div>
-                    <div class="chart-bar">
-                        <div class="bar bar-raid"></div>
-                        <div class="bar-label">RAID HDD<br>(Technologie 2005)<br>500+ Mo/s 👑</div>
-                    </div>
-                    <div class="chart-bar">
-                        <div class="bar bar-sata"></div>
-                        <div class="bar-label">SSD SATA<br>(Stable)<br>400+ Mo/s ✅</div>
+        </nav>
+
+        <div id="ssd" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🎪</div>
+                    <div>
+                        <h2 class="contradiction-title">Le Grand Cirque des SSD de Merde</h2>
+                        <p>Quand un NVMe devient plus lent que tes vieux HDD du grenier... 💀</p>
                     </div>
                 </div>
 
-                <div class="meme-section">
-                    <h3>🏆 RECORD BATTU !</h3>
-                    <p style="font-size: 1.3rem;">Premier SSD NVMe à perdre contre la technologie du siècle dernier !</p>
-                    <p><em>🎖️ Médaille d'or de la régression technologique</em></p>
-                </div>
-
-                <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(15px); border: 2px solid var(--accent-red); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
-                    <h4>🤡 Et maintenant... Le Crucial P3 !</h4>
-                    <div style="text-align: center; margin: 1rem 0;">
-                        <img src="https://atlas-corporation.fr/img/p3stability.png" alt="Crucial P3 benchmark" class="benchmark-image">
-                        <p style="color: white; font-weight: bold;">Crucial P3 : "Regardez comme je suis LENT !" 🐌</p>
-                    </div>
-                    <div style="text-align: center; margin: 1rem 0;">
-                        <img src="https://atlas-corporation.fr/img/p3reality.png" alt="Crucial P3 copie Windows" class="benchmark-image">
-                        <p style="color: white; font-weight: bold; font-size: 1.2rem;">
-                            🚨 COPIE DE 40 GO SUR P3 : VOUS ALLEZ ATTENDRE LONGTEMPS ! 
-                        <img src="https://atlas-corporation.fr/img/p3flowupshow.png" alt="Crucial P3 copie Windows" class="benchmark-image">
-                        <p style="color: white; font-weight: bold; font-size: 1.2rem;">
-                            🚨 ET FLOWUP EN MET ! 
-                        </p>
-                    </div>
-                </div>
-
-                <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3)); backdrop-filter: blur(15px); color: white; padding: 2rem; border-radius: 15px; margin: 2rem 0; border: 2px solid var(--accent-green);">
-                    <h4>💎 Pour comparaison, des VRAIS SSD performants :</h4>
-                    <div class="image-grid">
-                        <img src="https://atlas-corporation.fr/img/write-over-tim3e.png" alt="KC3000 performance" class="benchmark-image">
-                        <p style="font-weight: bold;">KC3000 : Voilà ce que ça donne quand c'est BIEN fait !</p>
-                        <img src="https://atlas-corporation.fr/img/write-over-timem480pro.png" alt="M480 PRO performance" class="benchmark-image">
-                        <p style="font-weight: bold;">MSI M480 PRO 2Tb : La VRAIE performance NVMe !</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="contradiction-card">
-            <div class="contradiction-header">
-                <div class="contradiction-icon">🎭</div>
-                <div>
-                    <h2 class="contradiction-title">Corsair : L'Art du Foutage de Gueule</h2>
-                    <p>Niveau EXPERT en double discours ! 🥇</p>
-                </div>
-            </div>
-
-            <div class="roast-box">
-                <h3>🎯 LE RÉSUMÉ :</h3>
-                <p style="font-size: 1.2rem;">Critiquer Corsair en interview puis le vendre sur sa boutique...</p>
-                <p><strong>C'est du GÉNIE commercial ou de l'incompétence ? 🤔</strong></p>
-            </div>
-
-            <div class="corsair-hypocrisy">
-                <div class="hypocrisy-card private-opinion">
-                    <h3>🤐 En PRIVÉ (RTBF)</h3>
-                    <ul>
-                        <li>💀 Corsair change les composants sans prévenir</li>
-                        <li>🎲 Même référence = composants aléatoires</li>
-                        <li>💥 Profils XMP qui plantent</li>
-                        <li>🔥 Instabilités en permanence</li>
-                    </ul>
-                </div>
-                <div class="hypocrisy-card public-action">
-                    <h3>💰 En PUBLIC (FlowUp Shop)</h3>
-                    <ul>
-                        <li>✨ "RAM Corsair de qualité"</li>
-                        <li>🎯 "Produits sélectionnés avec soin"</li>
-                        <li>👍 Recommandations positives</li>
-                        <li>🤐 Zéro mention des problèmes</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(20px); border: 3px solid var(--accent-yellow); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-                <h4>🎥 FrenchHardware se DEBUNK lui-même en DIRECT !</h4>
-                <div style="text-align: center; margin: 1rem 0;">
-                    <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px;">
-                        <source src="https://fichiers.atlas-corporation.fr/videostock/FrHardwareAutoDebunk(1).mp4" type="video/mp4">
-                        <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                    </video>
-                    <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
-                        🤡 AUTO-DÉBUNKAGE LEVEL 9000 ! ILS SE CONTREDISENT EUX-MÊMES !
-                    </p>
-                </div>
-            </div>
-
-            <div style="background: linear-gradient(135deg, var(--accent), var(--accent-yellow)); color: var(--primary); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
-                <h4>📸 LES PREUVES sur FlowUp Shop (Screenshots du 20/06/2025) :</h4>
-                <div class="image-grid">
-                    <img src="https://atlas-corporation.fr/img/FlowupCorsair1.png" alt="FlowUp Corsair 1" class="corsair-image">
-                    <img src="https://atlas-corporation.fr/img/FlowupCorsair2.png" alt="FlowUp Corsair 2" class="corsair-image">
-                    <img src="https://atlas-corporation.fr/img/FlowupCorsair3.png" alt="FlowUp Corsair 3" class="corsair-image">
-                </div>
-                <div class="meme-section" style="margin: 1rem 0;">
-                    <p style="font-size: 1.3rem; font-weight: bold;">
-                        🎪 "CORSAIR C'EST DE LA MERDE... MAIS ON VOUS EN VEND QUAND MÊME !" 
-                    </p>
-                </div>
-            </div>
-
-            <div class="vs-container">
-                <div class="vs-side vs-left">
-                    <h4>🎤 Ce qu'ils DISENT</h4>
-                    <p>"Corsair c'est problématique"</p>
-                    <p>"Composants changeants"</p>
-                    <p>"Instabilités fréquentes"</p>
-                </div>
-                <div class="vs-divider">🆚</div>
-                <div class="vs-side vs-right">
-                    <h4>💰 Ce qu'ils VENDENT</h4>
-                    <p>"RAM Corsair de qualité !"</p>
-                    <p>"Sélection rigoureuse"</p>
-                    <p>"Performances garanties"</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="contradiction-card">
-            <div class="contradiction-header">
-                <div class="contradiction-icon">🌊</div>
-                <div>
-                    <h2 class="contradiction-title">Watercooling 120mm : "C'est BOF mais on en vend !"</h2>
-                    <p>La physique, c'est relatif selon le porte-monnaie ! 💸</p>
-                </div>
-            </div>
-
-            <div class="roast-box">
-                <h3>🧠 LA LOGIQUE FLOWUP :</h3>
-                <p style="font-size: 1.2rem;">Step 1: "Les AIO 120mm c'est bof"</p>
-                <p style="font-size: 1.2rem;">Step 2: *en vend sur leur boutique*</p>
-                <p style="font-size: 1.2rem;">Step 3: PROFIT ! 💰</p>
-            </div>
-
-            <div class="watercooling-logic">
-                <h3>🎭 La Contradiction en Images et Vidéos :</h3>
-                
-                <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(20px); border: 2px solid var(--accent-red); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
-                    <h4>🎥 FrenchHardware : "Les AIO 120mm sont BOF" :</h4>
-                    <div style="text-align: center; margin: 1rem 0;">
-                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px;">
-                            <source src="https://fichiers.atlas-corporation.fr/videostock/120mm_tqt(1).mp4" type="video/mp4">
-                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                        </video>
-                        <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
-                            🤔 "Les AIO 120mm c'est bof..." (Regardez la tête de Matis qui dit tout !) 
-                        </p>
-                    </div>
-                </div>
-
-                <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3)); backdrop-filter: blur(20px); color: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; border: 2px solid var(--accent-green);">
-                    <h4>💰 FlowUp Shop : "Mais on vous en vend quand même !"</h4>
-                    <div class="image-grid">
-                        <img src="https://atlas-corporation.fr/img/Flowup120mm.png" alt="FlowUp AIO 120mm" class="flowup-image">
-                        <p style="font-weight: bold;">PC avec AIO 120mm en vente chez FlowUp ! 🤡</p>
-                        <img src="https://atlas-corporation.fr/img/Flowup120mmprove.png" alt="FlowUp AIO 120mm preuve" class="flowup-image">
-                        <p style="font-weight: bold;">PREUVE que c'est bien un AIO 120mm !</p>
-                        <img src="https://atlas-corporation.fr/img/120mmflowup.png" alt="Flowup PC 120 mm" class="flowup-image">
-                        <p style="font-weight: bold;"> Un autre PC où de VISU on voit le 120mm !</p>
-                    </div>
-                    <div class="meme-section" style="margin: 1rem 0;">
-                        <p style="font-size: 1.3rem; font-weight: bold;">
-                            🎪 "C'EST BOF MAIS ACHETEZ-EN QUAND MÊME !" 
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="price-comparison">
-                    <div class="price-item expensive">
-                        <h4>💸 AIO 120mm FlowUp</h4>
-                        <p>100€+</p>
-                        <p>Performances moyennes</p>
-                        <p>Risque de fuite</p>
-                        <p style="color: var(--accent-red); font-weight: bold;">⚠️ "C'est BOF" - FrenchHardware</p>
-                    </div>
-                    <div class="price-item cheap">
-                        <h4>🏆 Ventirad de qualité</h4>
-                        <p>40-50€</p>
-                        <p>Meilleures performances</p>
-                        <p>Fiabilité à 100%</p>
-                        <p style="color: var(--accent-green); font-weight: bold;">✅ Physique respectée</p>
-                    </div>
-                </div>
-                
-                <div class="meme-section">
-                    <h3>🎓 COURS DE PHYSIQUE GRATUIT :</h3>
-                    <p>Radiateur 120mm = Surface d'échange LIMITÉE</p>
-                    <p>Gros ventirad = Plus de surface = Meilleur refroidissement</p>
-                    <p style="font-size: 1.2rem; font-weight: bold;">
-                        🤷‍♂️ Mais bon, pourquoi respecter la physique quand on peut VENDRE ?
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="contradiction-card">
-            <div class="contradiction-header">
-                <div class="contradiction-icon">🎮</div>
-                <div>
-                    <h2 class="contradiction-title">PC Influenceurs : Quand le Marketing Rencontre la Réalité</h2>
-                    <p>L'art de faire foirer un PC en direct devant des millions de viewers ! 📺</p>
-                </div>
-            </div>
-
-            <div class="roast-box">
-                <h3>🎯 MISSION IMPOSSIBLE :</h3>
-                <p style="font-size: 1.2rem;">Livrer un PC qui fonctionne correctement à un influenceur...</p>
-                <p><strong>🤡 Spoiler : MISSION FAILED !</strong></p>
-            </div>
-
-            <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(20px); border: 3px solid var(--accent-red); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-                <h4>🎬 INOXTAG : Le PC qui dit NON en direct !</h4>
-                <div style="text-align: center; margin: 1rem 0;">
-                    <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px;">
-                        <source src="https://fichiers.atlas-corporation.fr/videostock/Inoxtagpcpreuve.mp4" type="video/mp4">
-                        <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                    </video>
-                    <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
-                        🚨 LIVE DEVANT DES MILLIONS : "Ça marche pas..." 
-                    </p>
-                </div>
-                
-                <div class="meme-section" style="margin: 2rem 0;">
-                    <h4>📺 CONTEXTE :</h4>
-                    <p style="font-size: 1.1rem;">PC fourni par FlowUp à Inoxtag qui commence à avoir des problèmes de performance</p>
-                    <p style="font-size: 1.2rem; font-weight: bold;">
-                        🎪 Résultat : FAIL en direct devant toute la France !
-                    </p>
-                </div>
-            </div>
-
-            <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(231, 76, 60, 0.3)); backdrop-filter: blur(20px); border: 3px solid var(--accent-yellow); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-                <h4>🔧 DIAGNOSTIC : Quand l'Installation Défie la Physique</h4>
-                <div style="text-align: center; margin: 1rem 0;">
-                    <img src="https://atlas-corporation.fr/img/pcinoxtagmur.png" alt="PC Inoxtag problème pompe" style="max-width: 100%; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
-                    <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
-                        💀 ERREUR CRITIQUE : La pompe au point le plus HAUT de la loop !
-                    </p>
-                </div>
-                
-                <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3)); backdrop-filter: blur(20px); color: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; border: 2px solid var(--accent-green);">
-                    <h4>🎓 COURS DE PHYSIQUE ILLUSTRÉ :</h4>
-                    <div style="text-align: center; margin: 1rem 0;">
-                        <img src="https://atlas-corporation.fr/img/aioexplications.jpg" alt="Explication AIO installation correcte" style="max-width: 100%; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
-                        <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
-                            📚 RÈGLE D'OR : Le point le plus HAUT ne doit JAMAIS être la pompe !
-                        </p>
-                    </div>
-                    <div class="meme-section" style="margin: 1rem 0;">
-                        <p style="font-size: 1.1rem; font-weight: bold;">
-                            🧠 L'AIR REMONTE, LA POMPE SOUFFRE, LES PERFORMANCES CHUTENT !
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="vs-container" style="margin: 2rem 0;">
-                    <div class="vs-side vs-left">
-                        <h4>🚫 CE QU'IL FAUT PAS FAIRE</h4>
-                        <p>Pompe au point le plus haut</p>
-                        <p>Air dans le circuit</p>
-                        <p>Performances dégradées</p>
-                        <p>Usure prématurée</p>
-                    </div>
-                    <div class="vs-divider">⚠️</div>
-                    <div class="vs-side vs-right">
-                        <h4>✅ INSTALLATION CORRECTE</h4>
-                        <p>Pompe en point bas</p>
-                        <p>Réservoir au point haut</p>
-                        <p>Circulation optimale</p>
-                        <p>Fiabilité maximale</p>
-                    </div>
-                </div>
-
-                <div class="benchmark-fail">
-                    <h4>🎓 COURS DE PHYSIQUE GRATUIT #2 :</h4>
-                    <p style="font-size: 1.1rem; font-weight: bold;">L'air remonte TOUJOURS vers le haut !</p>
-                    <p>Pompe en haut = Air dans la pompe = Cavitation = Performance dégradée</p>
-                    <div class="meme-section" style="margin: 1rem 0;">
-                        <p style="font-size: 1.3rem; font-weight: bold;">
-                            🤷‍♂️ Mais bon, pourquoi respecter la physique... ENCORE ?
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="roast-box">
-                <h3>🏆 RÉSULTAT FINAL :</h3>
-                <p style="font-size: 1.2rem;">PC qui se dégrade progressivement chez l'influenceur</p>
-                <p style="font-size: 1.2rem;">Problèmes de performance en direct</p>
-                <p style="font-size: 1.4rem; font-weight: bold;">
-                    🎭 MARKETING FAIL LEVEL : OVER 9000 !
-                </p>
-                <p style="font-size: 1.1rem;">
-                    💡 Pro tip : Avant de livrer un PC, vérifiez qu'il fonctionne... ET qu'il va continuer à fonctionner !
-                </p>
-            </div>
-
-            <div style="background: linear-gradient(135deg, var(--accent), var(--accent-yellow)); color: var(--primary); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
-                <h4>🎯 MORAL DE L'HISTOIRE :</h4>
-                <p style="font-size: 1.2rem; font-weight: bold;">
-                    Livrer un PC mal assemblé à un influenceur = Publicité négative GRATUITE !
-                </p>
-                <p style="font-size: 1.1rem;">
-                    🎪 Rien de mieux qu'un FAIL en direct pour promouvoir sa marque !
-                </p>
-            </div>
-        </div>
-
-        <div class="contradiction-card">
-            <div class="contradiction-header">
-                <div class="contradiction-icon">📊</div>
-                <div>
-                    <h2 class="contradiction-title">Benchmarks "Créatifs" : L'Art de Tester n'importe quoi</h2>
-                    <p>Quand la précision devient optionnelle ! 🎨</p>
-                </div>
-            </div>
-
-            <div class="roast-box">
-                <h3>🎯 INNOVATION FLOWUP :</h3>
-                <p style="font-size: 1.2rem;">Pourquoi tester ce qu'on annonce quand on peut tester AUTRE CHOSE ?</p>
-                <p><strong>🧠 Big Brain Time ! Personne n'y avait pensé !</strong></p>
-            </div>
-
-            <div class="benchmark-fail">
-                <h3>🎭 Masterclass en Précision Technique</h3>
-                <div class="vs-container">
-                    <div class="vs-side vs-left">
-                        <h4>📢 TITRE annoncé</h4>
-                        <p>"Test du Ryzen 7800X3D"</p>
-                    </div>
-                    <div class="vs-divider">≠</div>
-                    <div class="vs-side vs-right">
-                        <h4>🔧 CPU réellement testé</h4>
-                        <p>"Intel 14700KF"</p>
-                    </div>
-                </div>
-                <p style="font-size: 1.1rem; font-weight: bold;"><em>🎨 Plot twist : C'est de l'ART CONCEPTUEL !</em></p>
-
-                <div style="background: var(--glass); backdrop-filter: blur(20px); border: 3px solid var(--accent-yellow); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-                    <h4>🎥 LES PREUVES VIDEO de leurs "erreurs" :</h4>
+                <div class="ssd-disaster">
+                    <h3>🔥 Kingston NV3 & NV2 : Les "Fusées" qui Rampent</h3>
+                    <p><strong>FlowUp :</strong> "SSD NVMe ultra-performants !" 🚀</p>
+                    <p><strong>La réalité :</strong> Plus lents qu'un RAID de HDD d'il y a 20 ans ! 🐌</p>
                     
-                    <div style="margin: 2rem 0; border: 2px solid var(--accent-red); border-radius: 15px; padding: 1.5rem; background: rgba(231, 76, 60, 0.1);">
-                        <h5>📊 Benchmark Fail #1 : Le Grand N'importe Quoi</h5>
-                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px; margin: 1rem 0;">
-                            <source src="https://fichiers.atlas-corporation.fr/videostock/FlowupErrorBenchmark1.mp4" type="video/mp4">
-                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                        </video>
+                    <div class="roast-box">
+                        <h4>🎯 DIRECT AU BUT :</h4>
+                        <p style="font-size: 1.2rem;">Vendre du NVMe qui va moins vite qu'un HDD, c'est du GÉNIE ! 🧠</p>
+                    </div>
+                    
+                    <div class="image-section">
+                        <h4>📊 Les Preuves du Carnage :</h4>
                         <div style="text-align: center; margin: 1rem 0;">
-                            <img src="https://atlas-corporation.fr/img/flowuppcdebunkbench.png" alt="FlowUp Tests Biaisés Bench" class="flowup-image">
-                            <p style="color: var(--accent-yellow); font-weight: bold; font-size: 1.1rem;">
-                                ⚠️ C'est LEUR VIDÉO sur LEUR SITE ! Incohérence 100% assumée !
+                            <img src="https://atlas-corporation.fr/img/write-over-time.png" alt="Performance Kingston NV3">
+                            <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
+                                💀 Kingston NV3 : L'effondrement en direct !
                             </p>
                         </div>
                         <div style="text-align: center; margin: 1rem 0;">
-                            <img src="https://atlas-corporation.fr/img/FlowupPageweb.png" alt="Page web FlowUp" class="benchmark-image">
+                            <img src="https://atlas-corporation.fr/img/write-over-tim2e.png" alt="Performance Kingston NV2">
+                            <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
+                                🤮 Kingston NV2 : Moins pire que le NV3 !
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-chart">
+                        <div class="chart-bar">
+                            <div class="bar bar-nvme"></div>
+                            <div class="bar-label">Kingston NV3<br>(NVMe 2024)<br>307 Mo/s 💩</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar bar-raid"></div>
+                            <div class="bar-label">RAID HDD<br>(Technologie 2005)<br>500+ Mo/s 👑</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar bar-sata"></div>
+                            <div class="bar-label">SSD SATA<br>(Stable)<br>400+ Mo/s ✅</div>
                         </div>
                     </div>
 
-                    <div style="margin: 2rem 0; border: 2px solid var(--accent-red); border-radius: 15px; padding: 1.5rem; background: rgba(231, 76, 60, 0.1);">
-                        <h5>📊 Benchmark Fail #2 : Ça Continue ! 🎪</h5>
-                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px; margin: 1rem 0;">
-                            <source src="https://fichiers.atlas-corporation.fr/videostock/FlowupErrorBench2.mp4" type="video/mp4">
+                    <div class="meme-section">
+                        <h3>🏆 RECORD BATTU !</h3>
+                        <p style="font-size: 1.3rem;">Premier SSD NVMe à perdre contre la technologie du siècle dernier !</p>
+                        <p><em>🎖️ Médaille d'or de la régression technologique</em></p>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(15px); border: 2px solid var(--accent-red); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                        <h4>🤡 Et maintenant... Le Crucial P3 !</h4>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <img src="https://atlas-corporation.fr/img/p3stability.png" alt="Crucial P3 benchmark" class="benchmark-image">
+                            <p style="color: white; font-weight: bold;">Crucial P3 : "Regardez comme je suis LENT !" 🐌</p>
+                        </div>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <img src="https://atlas-corporation.fr/img/p3reality.png" alt="Crucial P3 copie Windows" class="benchmark-image">
+                            <p style="color: white; font-weight: bold; font-size: 1.2rem;">
+                                🚨 COPIE DE 40 GO SUR P3 : VOUS ALLEZ ATTENDRE LONGTEMPS ! 
+                            <img src="https://atlas-corporation.fr/img/p3flowupshow.png" alt="Crucial P3 copie Windows" class="benchmark-image">
+                            <p style="color: white; font-weight: bold; font-size: 1.2rem;">
+                                🚨 ET FLOWUP EN MET ! 
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3)); backdrop-filter: blur(15px); color: white; padding: 2rem; border-radius: 15px; margin: 2rem 0; border: 2px solid var(--accent-green);">
+                        <h4>💎 Pour comparaison, des VRAIS SSD performants :</h4>
+                        <div class="image-grid">
+                            <img src="https://atlas-corporation.fr/img/write-over-tim3e.png" alt="KC3000 performance" class="benchmark-image">
+                            <p style="font-weight: bold;">KC3000 : Voilà ce que ça donne quand c'est BIEN fait !</p>
+                            <img src="https://atlas-corporation.fr/img/write-over-timem480pro.png" alt="M480 PRO performance" class="benchmark-image">
+                            <p style="font-weight: bold;">MSI M480 PRO 2Tb : La VRAIE performance NVMe !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="corsair" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🎭</div>
+                    <div>
+                        <h2 class="contradiction-title">Corsair : L'Art du Foutage de Gueule</h2>
+                        <p>Niveau EXPERT en double discours ! 🥇</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🎯 LE RÉSUMÉ :</h3>
+                    <p style="font-size: 1.2rem;">Critiquer Corsair en interview puis le vendre sur sa boutique...</p>
+                    <p><strong>C'est du GÉNIE commercial ou de l'incompétence ? 🤔</strong></p>
+                </div>
+
+                <div class="corsair-hypocrisy">
+                    <div class="hypocrisy-card private-opinion">
+                        <h3>🤐 En PRIVÉ (RTBF)</h3>
+                        <ul>
+                            <li>💀 Corsair change les composants sans prévenir</li>
+                            <li>🎲 Même référence = composants aléatoires</li>
+                            <li>💥 Profils XMP qui plantent</li>
+                            <li>🔥 Instabilités en permanence</li>
+                        </ul>
+                    </div>
+                    <div class="hypocrisy-card public-action">
+                        <h3>💰 En PUBLIC (FlowUp Shop)</h3>
+                        <ul>
+                            <li>✨ "RAM Corsair de qualité"</li>
+                            <li>🎯 "Produits sélectionnés avec soin"</li>
+                            <li>👍 Recommandations positives</li>
+                            <li>🤐 Zéro mention des problèmes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(20px); border: 3px solid var(--accent-yellow); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
+                    <h4>🎥 FrenchHardware se DEBUNK lui-même en DIRECT !</h4>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px;">
+                            <source src="https://fichiers.atlas-corporation.fr/videostock/FrHardwareAutoDebunk(1).mp4" type="video/mp4">
                             <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
                         </video>
-                        <div class="image-placeholder">
-                            <h5>📊 Benchmark 14700KF</h5>
+                        <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                            🤡 AUTO-DÉBUNKAGE LEVEL 9000 ! ILS SE CONTREDISENT EUX-MÊMES !
+                        </p>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--accent), var(--accent-yellow)); color: var(--primary); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+                    <h4>📸 LES PREUVES sur FlowUp Shop (Screenshots du 20/06/2025) :</h4>
+                    <div class="image-grid">
+                        <img src="https://atlas-corporation.fr/img/FlowupCorsair1.png" alt="FlowUp Corsair 1" class="corsair-image">
+                        <img src="https://atlas-corporation.fr/img/FlowupCorsair2.png" alt="FlowUp Corsair 2" class="corsair-image">
+                        <img src="https://atlas-corporation.fr/img/FlowupCorsair3.png" alt="FlowUp Corsair 3" class="corsair-image">
+                    </div>
+                    <div class="meme-section" style="margin: 1rem 0;">
+                        <p style="font-size: 1.3rem; font-weight: bold;">
+                            🎪 "CORSAIR C'EST DE LA MERDE... MAIS ON VOUS EN VEND QUAND MÊME !" 
+                        </p>
+                    </div>
+                </div>
+
+                <div class="vs-container">
+                    <div class="vs-side vs-left">
+                        <h4>🎤 Ce qu'ils DISENT</h4>
+                        <p>"Corsair c'est problématique"</p>
+                        <p>"Composants changeants"</p>
+                        <p>"Instabilités fréquentes"</p>
+                    </div>
+                    <div class="vs-divider">🆚</div>
+                    <div class="vs-side vs-right">
+                        <h4>💰 Ce qu'ils VENDENT</h4>
+                        <p>"RAM Corsair de qualité !"</p>
+                        <p>"Sélection rigoureuse"</p>
+                        <p>"Performances garanties"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="watercooling" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🌊</div>
+                    <div>
+                        <h2 class="contradiction-title">Watercooling 120mm : "C'est BOF mais on en vend !"</h2>
+                        <p>La physique, c'est relatif selon le porte-monnaie ! 💸</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🧠 LA LOGIQUE FLOWUP :</h3>
+                    <p style="font-size: 1.2rem;">Step 1: "Les AIO 120mm c'est bof"</p>
+                    <p style="font-size: 1.2rem;">Step 2: *en vend sur leur boutique*</p>
+                    <p style="font-size: 1.2rem;">Step 3: PROFIT ! 💰</p>
+                </div>
+
+                <div class="watercooling-logic">
+                    <h3>🎭 La Contradiction en Images et Vidéos :</h3>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(20px); border: 2px solid var(--accent-red); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+                        <h4>🎥 FrenchHardware : "Les AIO 120mm sont BOF" :</h4>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px;">
+                                <source src="https://fichiers.atlas-corporation.fr/videostock/120mm_tqt(1).mp4" type="video/mp4">
+                                <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                            </video>
+                            <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                                🤔 "Les AIO 120mm c'est bof..." (Regardez la tête de Matis qui dit tout !) 
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3)); backdrop-filter: blur(20px); color: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; border: 2px solid var(--accent-green);">
+                        <h4>💰 FlowUp Shop : "Mais on vous en vend quand même !"</h4>
+                        <div class="image-grid">
+                            <img src="https://atlas-corporation.fr/img/Flowup120mm.png" alt="FlowUp AIO 120mm" class="flowup-image">
+                            <p style="font-weight: bold;">PC avec AIO 120mm en vente chez FlowUp ! 🤡</p>
+                            <img src="https://atlas-corporation.fr/img/Flowup120mmprove.png" alt="FlowUp AIO 120mm preuve" class="flowup-image">
+                            <p style="font-weight: bold;">PREUVE que c'est bien un AIO 120mm !</p>
+                            <img src="https://atlas-corporation.fr/img/120mmflowup.png" alt="Flowup PC 120 mm" class="flowup-image">
+                            <p style="font-weight: bold;"> Un autre PC où de VISU on voit le 120mm !</p>
+                        </div>
+                        <div class="meme-section" style="margin: 1rem 0;">
+                            <p style="font-size: 1.3rem; font-weight: bold;">
+                                🎪 "C'EST BOF MAIS ACHETEZ-EN QUAND MÊME !" 
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="price-comparison">
+                        <div class="price-item expensive">
+                            <h4>💸 AIO 120mm FlowUp</h4>
+                            <p>100€+</p>
+                            <p>Performances moyennes</p>
+                            <p>Risque de fuite</p>
+                            <p style="color: var(--accent-red); font-weight: bold;">⚠️ "C'est BOF" - FrenchHardware</p>
+                        </div>
+                        <div class="price-item cheap">
+                            <h4>🏆 Ventirad de qualité</h4>
+                            <p>40-50€</p>
+                            <p>Meilleures performances</p>
+                            <p>Fiabilité à 100%</p>
+                            <p style="color: var(--accent-green); font-weight: bold;">✅ Physique respectée</p>
+                        </div>
+                    </div>
+                    
+                    <div class="meme-section">
+                        <h3>🎓 COURS DE PHYSIQUE GRATUIT :</h3>
+                        <p>Radiateur 120mm = Surface d'échange LIMITÉE</p>
+                        <p>Gros ventirad = Plus de surface = Meilleur refroidissement</p>
+                        <p style="font-size: 1.2rem; font-weight: bold;">
+                            🤷‍♂️ Mais bon, pourquoi respecter la physique quand on peut VENDRE ?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pc-influenceurs" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🎮</div>
+                    <div>
+                        <h2 class="contradiction-title">PC Influenceurs : Quand le Marketing Rencontre la Réalité</h2>
+                        <p>L'art de faire foirer un PC en direct devant des millions de viewers ! 📺</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🎯 MISSION IMPOSSIBLE :</h3>
+                    <p style="font-size: 1.2rem;">Livrer un PC qui fonctionne correctement à un influenceur...</p>
+                    <p><strong>🤡 Spoiler : MISSION FAILED !</strong></p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(20px); border: 3px solid var(--accent-red); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
+                    <h4>🎬 INOXTAG : Le PC qui dit NON en direct !</h4>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px;">
+                            <source src="https://fichiers.atlas-corporation.fr/videostock/Inoxtagpcpreuve.mp4" type="video/mp4">
+                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                        </video>
+                        <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                            🚨 LIVE DEVANT DES MILLIONS : "Ça marche pas..." 
+                        </p>
+                    </div>
+                    
+                    <div class="meme-section" style="margin: 2rem 0;">
+                        <h4>📺 CONTEXTE :</h4>
+                        <p style="font-size: 1.1rem;">PC fourni par FlowUp à Inoxtag qui commence à avoir des problèmes de performance</p>
+                        <p style="font-size: 1.2rem; font-weight: bold;">
+                            🎪 Résultat : FAIL en direct devant toute la France !
+                        </p>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(231, 76, 60, 0.3)); backdrop-filter: blur(20px); border: 3px solid var(--accent-yellow); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
+                    <h4>🔧 DIAGNOSTIC : Quand l'Installation Défie la Physique</h4>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <img src="https://atlas-corporation.fr/img/pcinoxtagmur.png" alt="PC Inoxtag problème pompe" style="max-width: 100%; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
+                        <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                            💀 ERREUR CRITIQUE : La pompe au point le plus HAUT de la loop !
+                        </p>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3)); backdrop-filter: blur(20px); color: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; border: 2px solid var(--accent-green);">
+                        <h4>🎓 COURS DE PHYSIQUE ILLUSTRÉ :</h4>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <img src="https://atlas-corporation.fr/img/aioexplications.jpg" alt="Explication AIO installation correcte" style="max-width: 100%; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
+                            <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                                📚 RÈGLE D'OR : Le point le plus HAUT ne doit JAMAIS être la pompe !
+                            </p>
+                        </div>
+                        <div class="meme-section" style="margin: 1rem 0;">
+                            <p style="font-size: 1.1rem; font-weight: bold;">
+                                🧠 L'AIR REMONTE, LA POMPE SOUFFRE, LES PERFORMANCES CHUTENT !
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="vs-container" style="margin: 2rem 0;">
+                        <div class="vs-side vs-left">
+                            <h4>🚫 CE QU'IL FAUT PAS FAIRE</h4>
+                            <p>Pompe au point le plus haut</p>
+                            <p>Air dans le circuit</p>
+                            <p>Performances dégradées</p>
+                            <p>Usure prématurée</p>
+                        </div>
+                        <div class="vs-divider">⚠️</div>
+                        <div class="vs-side vs-right">
+                            <h4>✅ INSTALLATION CORRECTE</h4>
+                            <p>Pompe en point bas</p>
+                            <p>Réservoir au point haut</p>
+                            <p>Circulation optimale</p>
+                            <p>Fiabilité maximale</p>
+                        </div>
+                    </div>
+
+                    <div class="benchmark-fail">
+                        <h4>🎓 COURS DE PHYSIQUE GRATUIT #2 :</h4>
+                        <p style="font-size: 1.1rem; font-weight: bold;">L'air remonte TOUJOURS vers le haut !</p>
+                        <p>Pompe en haut = Air dans la pompe = Cavitation = Performance dégradée</p>
+                        <div class="meme-section" style="margin: 1rem 0;">
+                            <p style="font-size: 1.3rem; font-weight: bold;">
+                                🤷‍♂️ Mais bon, pourquoi respecter la physique... ENCORE ?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🏆 RÉSULTAT FINAL :</h3>
+                    <p style="font-size: 1.2rem;">PC qui se dégrade progressivement chez l'influenceur</p>
+                    <p style="font-size: 1.2rem;">Problèmes de performance en direct</p>
+                    <p style="font-size: 1.4rem; font-weight: bold;">
+                        🎭 MARKETING FAIL LEVEL : OVER 9000 !
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        💡 Pro tip : Avant de livrer un PC, vérifiez qu'il fonctionne... ET qu'il va continuer à fonctionner !
+                    </p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--accent), var(--accent-yellow)); color: var(--primary); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+                    <h4>🎯 MORAL DE L'HISTOIRE :</h4>
+                    <p style="font-size: 1.2rem; font-weight: bold;">
+                        Livrer un PC mal assemblé à un influenceur = Publicité négative GRATUITE !
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        🎪 Rien de mieux qu'un FAIL en direct pour promouvoir sa marque !
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="benchmarks" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">📊</div>
+                    <div>
+                        <h2 class="contradiction-title">Benchmarks "Créatifs" : L'Art de Tester n'importe quoi</h2>
+                        <p>Quand la précision devient optionnelle ! 🎨</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🎯 INNOVATION FLOWUP :</h3>
+                    <p style="font-size: 1.2rem;">Pourquoi tester ce qu'on annonce quand on peut tester AUTRE CHOSE ?</p>
+                    <p><strong>🧠 Big Brain Time ! Personne n'y avait pensé !</strong></p>
+                </div>
+
+                <div class="benchmark-fail">
+                    <h3>🎭 Masterclass en Précision Technique</h3>
+                    <div class="vs-container">
+                        <div class="vs-side vs-left">
+                            <h4>📢 TITRE annoncé</h4>
+                            <p>"Test du Ryzen 7800X3D"</p>
+                        </div>
+                        <div class="vs-divider">≠</div>
+                        <div class="vs-side vs-right">
+                            <h4>🔧 CPU réellement testé</h4>
+                            <p>"Intel 14700KF"</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 1.1rem; font-weight: bold;"><em>🎨 Plot twist : C'est de l'ART CONCEPTUEL !</em></p>
+
+                    <div style="background: var(--glass); backdrop-filter: blur(20px); border: 3px solid var(--accent-yellow); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
+                        <h4>🎥 LES PREUVES VIDEO de leurs "erreurs" :</h4>
+                        
+                        <div style="margin: 2rem 0; border: 2px solid var(--accent-red); border-radius: 15px; padding: 1.5rem; background: rgba(231, 76, 60, 0.1);">
+                            <h5>📊 Benchmark Fail #1 : Le Grand N'importe Quoi</h5>
+                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px; margin: 1rem 0;">
+                                <source src="https://fichiers.atlas-corporation.fr/videostock/FlowupErrorBenchmark1.mp4" type="video/mp4">
+                                <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                            </video>
                             <div style="text-align: center; margin: 1rem 0;">
-                                <img src="https://atlas-corporation.fr/img/FH14700KFbench.png" alt="Benchmark 14700KF" class="benchmark-image">
-                                <div class="meme-section" style="margin: 1rem 0;">
-                                    <p style="font-size: 1.2rem; font-weight: bold;">
-                                        🤯 BONUS FAIL : 4,7 GHz au lieu de 5,6 GHz !
-                                    </p>
-                                    <p>Même processeur, mauvaises fréquences ! 🎯</p>
-                                </div>
-                                <img src="https://atlas-corporation.fr/img/CEsiteIntel14700KF.png" alt="Spec Intel 14700KF" class="benchmark-image">
-                                <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
-                                    💀 Intel dit 5,6 GHz, FlowUp teste à 4,7 GHz... FAIL COMPLET !
+                                <img src="https://atlas-corporation.fr/img/flowuppcdebunkbench.png" alt="FlowUp Tests Biaisés Bench" class="flowup-image">
+                                <p style="color: var(--accent-yellow); font-weight: bold; font-size: 1.1rem;">
+                                    ⚠️ C'est LEUR VIDÉO sur LEUR SITE ! Incohérence 100% assumée !
                                 </p>
-                                <div class="roast-box" style="margin: 1rem 0;">
-                                    <p style="font-size: 1.1rem;">
-                                        🎭 RAPPEL : Introduction = Ryzen 7800X3D, Test OCCT = Intel 14700KF sous-clocké
+                            </div>
+                            <div style="text-align: center; margin: 1rem 0;">
+                                <img src="https://atlas-corporation.fr/img/FlowupPageweb.png" alt="Page web FlowUp" class="benchmark-image">
+                            </div>
+                        </div>
+
+                        <div style="margin: 2rem 0; border: 2px solid var(--accent-red); border-radius: 15px; padding: 1.5rem; background: rgba(231, 76, 60, 0.1);">
+                            <h5>📊 Benchmark Fail #2 : Ça Continue ! 🎪</h5>
+                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px; margin: 1rem 0;">
+                                <source src="https://fichiers.atlas-corporation.fr/videostock/FlowupErrorBench2.mp4" type="video/mp4">
+                                <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                            </video>
+                            <div class="image-placeholder">
+                                <h5>📊 Benchmark 14700KF</h5>
+                                <div style="text-align: center; margin: 1rem 0;">
+                                    <img src="https://atlas-corporation.fr/img/FH14700KFbench.png" alt="Benchmark 14700KF" class="benchmark-image">
+                                    <div class="meme-section" style="margin: 1rem 0;">
+                                        <p style="font-size: 1.2rem; font-weight: bold;">
+                                            🤯 BONUS FAIL : 4,7 GHz au lieu de 5,6 GHz !
+                                        </p>
+                                        <p>Même processeur, mauvaises fréquences ! 🎯</p>
+                                    </div>
+                                    <img src="https://atlas-corporation.fr/img/CEsiteIntel14700KF.png" alt="Spec Intel 14700KF" class="benchmark-image">
+                                    <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
+                                        💀 Intel dit 5,6 GHz, FlowUp teste à 4,7 GHz... FAIL COMPLET !
                                     </p>
-                                    <p><strong>🏆 TRIPLE FAIL COMBO !</strong></p>
+                                    <div class="roast-box" style="margin: 1rem 0;">
+                                        <p style="font-size: 1.1rem;">
+                                            🎭 RAPPEL : Introduction = Ryzen 7800X3D, Test OCCT = Intel 14700KF sous-clocké
+                                        </p>
+                                        <p><strong>🏆 TRIPLE FAIL COMBO !</strong></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="meme-section">
-                <h3>🏅 PRIX D'EXCELLENCE EN INCOMPÉTENCE</h3>
-                <p style="font-size: 1.2rem;">Mention TRÈS spéciale pour avoir réinventé les benchmarks !</p>
-                <p>🎨 Qui a dit qu'il fallait tester le BON processeur à la BONNE fréquence ?</p>
-                <p><strong>🤡 Innovation FlowUp : "L'important c'est de faire du contenu !"</strong></p>
+                <div class="meme-section">
+                    <h3>🏅 PRIX D'EXCELLENCE EN INCOMPÉTENCE</h3>
+                    <p style="font-size: 1.2rem;">Mention TRÈS spéciale pour avoir réinventé les benchmarks !</p>
+                    <p>🎨 Qui a dit qu'il fallait tester le BON processeur à la BONNE fréquence ?</p>
+                    <p><strong>🤡 Innovation FlowUp : "L'important c'est de faire du contenu !"</strong></p>
+                </div>
             </div>
         </div>
 
-        <!-- Nouvelle section pour la critique de la vidéo YouTube -->
-        <div class="contradiction-card">
-            <div class="contradiction-header">
-                <div class="contradiction-icon">📺</div>
-                <div>
-                    <h2 class="contradiction-title">La Vidéo du Doute : Quand l'Expertise Prend l'Eau</h2>
-                    <p>Une masterclass en contradictions et choix douteux ! 🤦‍♂️</p>
+        <div id="video-doute" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">📺</div>
+                    <div>
+                        <h2 class="contradiction-title">La Vidéo du Doute : Quand l'Expertise Prend l'Eau</h2>
+                        <p>Une masterclass en contradictions et choix douteux ! 🤦‍♂️</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="roast-box">
-                <h3>🎯 LE SCÉNARIO PARFAIT POUR UN DÉBUNKAGE :</h3>
-                <p style="font-size: 1.2rem;">Quand chaque phrase et chaque composant sont une invitation à la critique !</p>
-                <p><strong>Préparez le pop-corn, ça va être croustillant ! 🍿</strong></p>
-            </div>
-
-            <div class="video-container">
-				<video controls style="max-width: 100%; max-height: 400px; border-radius: 15px; margin: 1rem 0;">
-                            <source src="https://fichiers.atlas-corporation.fr/videostock/pcanymedebunk.mp4" type="video/mp4">
-                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                        </video>
-               
-                <p style="color: var(--text-muted); margin-top: 1rem;">La vidéo en question : "Le PC de Rêve" ou "Le Cauchemar de la Cohérence" ?</p>
-            </div>
-
-            <div class="ssd-disaster">
-                <h3>🤯 RAM Corsair : Le "On Sait que c'est de la Merde, mais on Met Quand Même"</h3>
-                <p><strong>Leur aveu :</strong> "Corsair a eu des soucis..." 😬</p>
-                <p><strong>Leur action :</strong> "...mais on vous en met quand même dans votre PC à 6000€ !" 💸</p>
                 <div class="roast-box">
-                    <h4>🎯 LA LOGIQUE IMPARABLE :</h4>
-                    <p style="font-size: 1.2rem;">Connaître les problèmes d'un produit, le dire, et l'installer quand même. C'est ça, la confiance client ! 🤡</p>
+                    <h3>🎯 LE SCÉNARIO PARFAIT POUR UN DÉBUNKAGE :</h3>
+                    <p style="font-size: 1.2rem;">Quand chaque phrase et chaque composant sont une invitation à la critique !</p>
+                    <p><strong>Préparez le pop-corn, ça va être croustillant ! 🍿</strong></p>
+                </div>
+
+                <div class="video-container">
+                    <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px; margin: 1rem 0;">
+                                <source src="https://fichiers.atlas-corporation.fr/videostock/pcanymedebunk.mp4" type="video/mp4">
+                                <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                            </video>
+                
+                    <p style="color: var(--text-muted); margin-top: 1rem;">La vidéo en question : "Le PC de Rêve" ou "Le Cauchemar de la Cohérence" ?</p>
+                </div>
+
+                <div class="ssd-disaster">
+                    <h3>🤯 RAM Corsair : Le "On Sait que c'est de la Merde, mais on Met Quand Même"</h3>
+                    <p><strong>Leur aveu :</strong> "Corsair a eu des soucis..." 😬</p>
+                    <p><strong>Leur action :</strong> "...mais on vous en met quand même dans votre PC à 6000€ !" 💸</p>
+                    <div class="roast-box">
+                        <h4>🎯 LA LOGIQUE IMPARABLE :</h4>
+                        <p style="font-size: 1.2rem;">Connaître les problèmes d'un produit, le dire, et l'installer quand même. C'est ça, la confiance client ! 🤡</p>
+                    </div>
+                </div>
+
+                <div class="benchmark-fail">
+                    <h3>🗣️ Mathis et l'Art de la Contradiction Instantanée</h3>
+                    <div class="vs-container">
+                        <div class="vs-side vs-left">
+                            <h4>🎤 Phrase #1 (4:55)</h4>
+                            <p>"Tu auras jamais de blue screens !" ✅</p>
+                        </div>
+                        <div class="vs-divider">🔄</div>
+                        <div class="vs-side vs-right">
+                            <h4>🎤 Phrase #2 (5:02)</h4>
+                            <p>"Ça peut toujours arriver..." 💀</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 1.1rem; font-weight: bold;"><em>C'est pas de l'incohérence, c'est de la POÉSIE ! 🎭</em></p>
+                    <div class="meme-section">
+                        <p style="font-size: 1.3rem;">"Je suis sûr à 100%... enfin, à 50%... non, à 0% en fait."</p>
+                        <p><em>Le niveau de fiabilité des affirmations.</em></p>
+                    </div>
+                </div>
+
+                <div class="watercooling-logic">
+                    <h3>💰 La RTX 5080 dans un PC à 6000€+ : Le Choix Économique... pour EUX !</h3>
+                    <p><strong>Le budget :</strong> 6000€ ou plus pour un créateur de contenu. 🤑</p>
+                    <p><strong>La carte :</strong> Une RTX 5080. 🤔</p>
+                    <p><strong>La question :</strong> Pourquoi pas une RTX 5090 pour ce prix ? 🤷‍♂️</p>
+                    <div class="roast-box">
+                        <h4>🎯 LE CALCUL EST SIMPLE :</h4>
+                        <p style="font-size: 1.2rem;">Quand le budget permet le top du top, mais qu'on met le "presque top"... C'est pour qui le profit ? 💸</p>
+                        <p><em>"On respecte le budget... le nôtre !"</em></p>
+                    </div>
+                </div>
+
+                <div class="ssd-disaster">
+                    <h3>👻 Le Processeur Fantôme : Quand le CPU n'Existe Pas !</h3>
+                    <p><strong>Leur annonce :</strong> Un processeur qui n'existe pas sur le marché. 🤯</p>
+                    <p><strong>La preuve :</strong> Une simple recherche Google suffit à les démasquer. 🕵️‍♂️</p>
+                    <div class="roast-box">
+                        <h4>🎯 LE DÉTAIL QUI TUE :</h4>
+                        <p style="font-size: 1.2rem;">Citer un composant inexistant, c'est le summum de la préparation et de l'expertise ! 🤡</p>
+                        <p><em>"On invente les specs pour que ça sonne bien !"</em></p>
+                    </div>
+                </div>
+
+                <div class="benchmark-fail">
+                    <h3>📉 RAM 8000MHz : L'Instabilité au Service du "Hype"</h3>
+                    <p><strong>Leur choix :</strong> Des barrettes de RAM à 8000MHz. 🚀</p>
+                    <p><strong>La réalité :</strong> Très peu fiables, pas du tout recommandables pour le grand public. ⚠️</p>
+                    <div class="roast-box">
+                        <h4>🎯 LE CONSEIL D'AMI :</h4>
+                        <p style="font-size: 1.2rem;">Mettre de la RAM instable dans un PC client, c'est s'assurer des retours SAV... ou des blue screens, Gauthier ! 😉</p>
+                        <p><em>"La stabilité ? C'est pour les faibles !"</em></p>
+                    </div>
+                </div>
+
+                <div class="meme-section">
+                    <h3>🏆 PRIX SPÉCIAL DE LA VIDÉO LA PLUS DÉBUNKABLE</h3>
+                    <p style="font-size: 1.3rem;">Chaque minute est une mine d'or pour la critique !</p>
+                    <p><strong>Merci FrenchHardware pour ce contenu... involontairement hilarant ! 😂</strong></p>
                 </div>
             </div>
+        </div>
 
-            <div class="benchmark-fail">
-                <h3>🗣️ Mathis et l'Art de la Contradiction Instantanée</h3>
+        <div id="intel-discord" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🤝</div>
+                    <div>
+                        <h2 class="contradiction-title">Intel & Discord : Quand la Pub Fait Fuir la Communauté</h2>
+                        <p>L'art de la promotion forcée et de la purge de membres ! 📉</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🎯 LA STRATÉGIE "GÉNIALE" :</h3>
+                    <p style="font-size: 1.2rem;">Faire de la pub pour Intel avec des sondages bidons et bannir les mécontents.</p>
+                    <p><strong>Résultat : Moins de membres, plus de doutes ! 🤔</strong></p>
+                </div>
+
+                <div class="watercooling-logic">
+                    <h3>📊 La Collab Intel : Des Sondages "Représentatifs" ?</h3>
+                    <p><strong>Leur objectif :</strong> Promouvoir les "super processeurs" Intel via des sondages Discord. 📈</p>
+                    <p><strong>La réalité :</strong> Sur un serveur de 43 000 membres, les sondages atteignent un maximum de 900 votants, et parfois seulement 52 ! 📉</p>
+                    <div class="roast-box">
+                        <h4>🎯 LE CALCUL EST SIMPLE :</h4>
+                        <p style="font-size: 1.2rem;">Moins de 2% de participation sur le plus gros sondage, et à peine 0.1% sur le plus petit. C'est ça, la "représentativité" ? 🤡</p>
+                        <p><em>"Nos sondages sont aussi fiables que nos SSD Kingston !"</em></p>
+                    </div>
+                </div>
+
+                <div class="ssd-disaster">
+                    <h3>🚫 Rayko et les Purges Discord : La Liberté d'Expression, C'est Non !</h3>
+                    <p><strong>L'action de Rayko :</strong> Publicité massive pour FlowUp, bannissant quiconque ose contredire ou critiquer. ⛔</p>
+                    <p><strong>La conséquence :</strong> Perte d'environ 2000 membres suite à ces "purges". 📉</p>
+                    <div class="roast-box">
+                        <h4>🎯 LA GESTION DE COMMUNAUTÉ "EXPERT" :</h4>
+                        <p style="font-size: 1.2rem;">Faire fuir 2000 membres pour maintenir une image parfaite, c'est une stratégie... audacieuse ! 🤦‍♂️</p>
+                        <p><em>"La critique ? Connais pas !"</em></p>
+                    </div>
+                </div>
+
                 <div class="vs-container">
                     <div class="vs-side vs-left">
-                        <h4>🎤 Phrase #1 (4:55)</h4>
-                        <p>"Tu auras jamais de blue screens !" ✅</p>
+                        <h4>📢 Ce qu'ils VEULENT</h4>
+                        <p>Sondages "validant" Intel</p>
+                        <p>Communauté unie et positive</p>
+                        <p>Image de marque impeccable</p>
                     </div>
-                    <div class="vs-divider">🔄</div>
+                    <div class="vs-divider">❌</div>
                     <div class="vs-side vs-right">
-                        <h4>🎤 Phrase #2 (5:02)</h4>
-                        <p>"Ça peut toujours arriver..." 💀</p>
+                        <h4>📉 Ce qu'ils OBTIENNENT</h4>
+                        <p>Sondages non représentatifs</p>
+                        <p>Purges et perte de membres</p>
+                        <p>Réputation entachée</p>
                     </div>
                 </div>
-                <p style="font-size: 1.1rem; font-weight: bold;"><em>C'est pas de l'incohérence, c'est de la POÉSIE ! 🎭</em></p>
+
                 <div class="meme-section">
-                    <p style="font-size: 1.3rem;">"Je suis sûr à 100%... enfin, à 50%... non, à 0% en fait."</p>
-                    <p><em>Le niveau de fiabilité des affirmations.</em></p>
+                    <h3>🏆 PRIX DE LA GESTION DE COMMUNAUTÉ "INNOVANTE"</h3>
+                    <p style="font-size: 1.3rem;">Félicitations pour avoir transformé un Discord en chambre d'écho !</p>
+                    <p><strong>🤡 Qui a besoin de membres quand on a des processeurs Intel à vendre ?</strong></p>
                 </div>
-            </div>
-
-            <div class="watercooling-logic">
-                <h3>💰 La RTX 5080 dans un PC à 6000€+ : Le Choix Économique... pour EUX !</h3>
-                <p><strong>Le budget :</strong> 6000€ ou plus pour un créateur de contenu. 🤑</p>
-                <p><strong>La carte :</strong> Une RTX 5080. 🤔</p>
-                <p><strong>La question :</strong> Pourquoi pas une RTX 5090 pour ce prix ? 🤷‍♂️</p>
-                <div class="roast-box">
-                    <h4>🎯 LE CALCUL EST SIMPLE :</h4>
-                    <p style="font-size: 1.2rem;">Quand le budget permet le top du top, mais qu'on met le "presque top"... C'est pour qui le profit ? 💸</p>
-                    <p><em>"On respecte le budget... le nôtre !"</em></p>
-                </div>
-            </div>
-
-            <div class="ssd-disaster">
-                <h3>👻 Le Processeur Fantôme : Quand le CPU n'Existe Pas !</h3>
-                <p><strong>Leur annonce :</strong> Un processeur qui n'existe pas sur le marché. 🤯</p>
-                <p><strong>La preuve :</strong> Une simple recherche Google suffit à les démasquer. 🕵️‍♂️</p>
-                <div class="roast-box">
-                    <h4>🎯 LE DÉTAIL QUI TUE :</h4>
-                    <p style="font-size: 1.2rem;">Citer un composant inexistant, c'est le summum de la préparation et de l'expertise ! 🤡</p>
-                    <p><em>"On invente les specs pour que ça sonne bien !"</em></p>
-                </div>
-            </div>
-
-            <div class="benchmark-fail">
-                <h3>📉 RAM 8000MHz : L'Instabilité au Service du "Hype"</h3>
-                <p><strong>Leur choix :</strong> Des barrettes de RAM à 8000MHz. 🚀</p>
-                <p><strong>La réalité :</strong> Très peu fiables, pas du tout recommandables pour le grand public. ⚠️</p>
-                <div class="roast-box">
-                    <h4>🎯 LE CONSEIL D'AMI :</h4>
-                    <p style="font-size: 1.2rem;">Mettre de la RAM instable dans un PC client, c'est s'assurer des retours SAV... ou des blue screens, Gauthier ! 😉</p>
-                    <p><em>"La stabilité ? C'est pour les faibles !"</em></p>
-                </div>
-            </div>
-
-            <div class="meme-section">
-                <h3>🏆 PRIX SPÉCIAL DE LA VIDÉO LA PLUS DÉBUNKABLE</h3>
-                <p style="font-size: 1.3rem;">Chaque minute est une mine d'or pour la critique !</p>
-                <p><strong>Merci FrenchHardware pour ce contenu... involontairement hilarant ! 😂</strong></p>
             </div>
         </div>
-        <!-- Fin de la nouvelle section -->
 
-        <!-- Nouvelle section pour la collaboration Intel et la gestion de communauté -->
-        <div class="contradiction-card">
-            <div class="contradiction-header">
-                <div class="contradiction-icon">🤝</div>
-                <div>
-                    <h2 class="contradiction-title">Intel & Discord : Quand la Pub Fait Fuir la Communauté</h2>
-                    <p>L'art de la promotion forcée et de la purge de membres ! 📉</p>
-                </div>
-            </div>
-
-            <div class="roast-box">
-                <h3>🎯 LA STRATÉGIE "GÉNIALE" :</h3>
-                <p style="font-size: 1.2rem;">Faire de la pub pour Intel avec des sondages bidons et bannir les mécontents.</p>
-                <p><strong>Résultat : Moins de membres, plus de doutes ! 🤔</strong></p>
-            </div>
-
-            <div class="watercooling-logic">
-                <h3>📊 La Collab Intel : Des Sondages "Représentatifs" ?</h3>
-                <p><strong>Leur objectif :</strong> Promouvoir les "super processeurs" Intel via des sondages Discord. 📈</p>
-                <p><strong>La réalité :</strong> Sur un serveur de 43 000 membres, les sondages atteignent un maximum de 900 votants, et parfois seulement 59 ! 📉</p>
-                <div class="roast-box">
-                    <h4>🎯 LE CALCUL EST SIMPLE :</h4>
-                    <p style="font-size: 1.2rem;">Moins de 2% de participation sur le plus gros sondage, et à peine 0.1% sur le plus petit. C'est ça, la "représentativité" ? 🤡</p>
-                    <img src="https://atlas-corporation.fr/img/59votants.png" alt="Ban Massifs FH" class="benchmark-image">
-                    <img src="https://atlas-corporation.fr/img/900votants.png" alt="Ban Massifs FH" class="benchmark-image">
-                                    
-                    <p><em>"Nos sondages sont aussi fiables que nos SSD Kingston NV !"</em></p>
-                </div>
-            </div>
-
-            <div class="ssd-disaster">
-                <h3>🚫 Rayko et les Purges Discord : La Liberté d'Expression, C'est Non !</h3>
-                <p><strong>L'action de Rayko :</strong> Publicité massive pour FlowUp, bannissant quiconque ose contredire ou critiquer. ⛔</p>
-                <p><strong>La conséquence :</strong> Perte d'environ 2000 membres suite à ces "purges". 📉</p>
-                <img src="https://atlas-corporation.fr/img/txtraykopub.jpg" alt="ayko Pub" class="benchmark-image">
-                                <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
-                                    💀 Le message de Rayko
-                                
-                <img src="https://atlas-corporation.fr/img/preuvebanmassif.png" alt="Ban Massifs FH" class="benchmark-image">
-                                <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
-                                    Preuves des Bans Massifs (les pseudos en blanc indique qu'ils sont bannis du serveur Discord)
-                <div class="roast-box">
-                    <h4>🎯 LA GESTION DE COMMUNAUTÉ "EXPERT" :</h4>
-                    <p style="font-size: 1.2rem;">Faire fuir 2000 membres pour maintenir une image parfaite, c'est une stratégie... audacieuse ! 🤦‍♂️</p>
-                    <p><em>"La critique ? Connais pas !"</em></p>
-                </div>
-            </div>
-
-            <div class="vs-container">
-                <div class="vs-side vs-left">
-                    <h4>📢 Ce qu'ils VEULENT</h4>
-                    <p>Sondages "validant" Intel</p>
-                    <p>Communauté unie et positive</p>
-                    <p>Image de marque impeccable</p>
-                </div>
-                <div class="vs-divider">❌</div>
-                <div class="vs-side vs-right">
-                    <h4>📉 Ce qu'ils OBTIENNENT</h4>
-                    <p>Sondages non représentatifs</p>
-                    <p>Purges et perte de membres</p>
-                    <p>Réputation entachée</p>
-                </div>
-            </div>
-
-            <div class="meme-section">
-                <h3>🏆 PRIX DE LA GESTION DE COMMUNAUTÉ "INNOVANTE"</h3>
-                <p style="font-size: 1.3rem;">Félicitations pour avoir transformé un Discord en chambre d'écho !</p>
-                <p><strong>🤡 Qui a besoin de membres quand on a des processeurs Intel à vendre ?</strong></p>
-            </div>
-        </div>
-        <!-- Fin de la nouvelle section -->
-
-        <div class="content-section">
-            <h2>🎥 Vidéo d'Analyse</h2>
-            
-            <div class="video-disclaimer">
-                <strong>Note :</strong> Regardez la vidéo ci-dessous pour une explication plus détaillée et explicite des problèmes identifiés. Cette analyse est indépendante et nous ne sommes pas partenaires avec l'auteur de la vidéo.
-            </div>
-
-            <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/3Q9HImILXxI" 
-                    title="Analyse FlowUp" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <p><em>Cette vidéo présente une analyse détaillée des pratiques de FlowUp. Nous recommandons vivement de la visionner pour comprendre l'ampleur des problèmes identifiés.</em></p>
-        </div>
-
-        <div class="content-section">
-            <h2>🚨 Problèmes Identifiés</h2>
-            
-            <div class="critique-points">
-                <h3>Points Critiques Majeurs</h3>
+        <div id="analyse-video" class="tab-content">
+            <div class="content-section">
+                <h2>🎥 Vidéo d'Analyse</h2>
                 
-                <div class="point">
-                    <h4>1. Composants Délibérément Surpayés</h4>
-                    <p>FlowUp a intentionnellement sélectionné des composants <span class="highlight">"overpriced"</span> (prix supérieurs au marché actuel). Cette pratique semble viser à gonfler artificiellement le prix final des configurations.</p>
+                <div class="video-disclaimer">
+                    <strong>Note :</strong> Regardez la vidéo ci-dessous pour une explication plus détaillée et explicite des problèmes identifiés. Cette analyse est indépendante et nous ne sommes pas partenaires avec l'auteur de la vidéo.
                 </div>
 
-                <div class="point">
-                    <h4>2. Choix de Processeur Inadéquat</h4>
-                    <p>Le choix du <strong>9950X3D</strong> pour justifier un PC à 8000€ est particulièrement problématique :</p>
-                    <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                        <li>Moins performant que le <strong>9950X</strong> en rendu</li>
-                        <li>Moins performant que le <strong>9800X3D</strong> pour les jeux vidéos</li>
-                        <li>Choix qui semble fait uniquement pour justifier un prix élevé</li>
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/3Q9HImILXxI" 
+                        title="Analyse FlowUp" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <p><em>Cette vidéo présente une analyse détaillée des pratiques de FlowUp. Nous recommandons vivement de la visionner pour comprendre l'ampleur des problèmes identifiés.</em></p>
+				
+				<div class="content-section">
+                <h2>🚨 Problèmes Identifiés</h2>
+                
+                <div class="critique-points">
+                    <h3>Points Critiques Majeurs</h3>
+                    
+                    <div class="point">
+                        <h4>1. Composants Délibérément Surpayés</h4>
+                        <p>FlowUp a intentionnellement sélectionné des composants <span class="highlight">"overpriced"</span> (prix supérieurs au marché actuel). Cette pratique semble viser à gonfler artificiellement le prix final des configurations.</p>
+                    </div>
+
+                    <div class="point">
+                        <h4>2. Choix de Processeur Inadéquat</h4>
+                        <p>Le choix du <strong>9950X3D</strong> pour justifier un PC à 8000€ est particulièrement problématique :</p>
+                        <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                            <li>Moins performant que le <strong>9950X</strong> en rendu</li>
+                            <li>Moins performant que le <strong>9800X3D</strong> pour les jeux vidéos</li>
+                            <li>Choix qui semble fait uniquement pour justifier un prix élevé</li>
+                        </ul>
+                    </div>
+
+                    <div class="point">
+                        <h4>3. Délais de Livraison Non Respectés</h4>
+                        <p>
+                            <span class="delivery-issue">Délai annoncé :</span> 14 jours ouvrés maximum<br>
+                            <span class="delivery-issue">Délai réel :</span> 75 jours de livraison<br>
+                            <em>Soit plus de 5 fois le délai promis !</em>
+                        </p>
+                    </div>
+                </div>
+            </div>	
+            </div>
+			<div class="content-section">
+                <h2>📊 Analyse des Pratiques</h2>
+                
+                <div class="warning-box">
+                    <h3><span class="warning-icon">⚠️</span> Pratiques Commerciales Douteuses</h3>
+                    <p>Les éléments identifiés suggèrent une stratégie commerciale problématique :</p>
+                    <ul style="margin-left: 2rem; margin-top: 1rem;">
+                        <li>Majoration excessive des prix</li>
+                        <li>Sélection de composants inadaptés pour justifier des tarifs élevés</li>
+                        <li>Non-respect des engagements de livraison</li>
+                        <li>Manque de transparence sur les choix techniques</li>
                     </ul>
                 </div>
 
-                <div class="point">
-                    <h4>3. Délais de Livraison Non Respectés</h4>
-                    <p>
-                        <span class="delivery-issue">Délai annoncé :</span> 14 jours ouvrés maximum<br>
-                        <span class="delivery-issue">Délai réel :</span> 75 jours de livraison<br>
-                        <em>Soit plus de 5 fois le délai promis !</em>
-                    </p>
+                <div class="specs-comparison">
+                    <div class="spec-card">
+                        <h4>Processeur Choisi</h4>
+                        <p><strong>9950X3D</strong></p>
+                        <p class="price-issue">❌ Moins bon en rendu que le 9950X</p>
+                        <p class="price-issue">❌ Moins bon en gaming que le 9800X3D</p>
+                        <p class="price-issue">❌ Prix gonflé</p>
+                    </div>
+                    
+                    <div class="spec-card">
+                        <h4>Alternatives Recommandées</h4>
+                        <p><strong>Pour le rendu :</strong> 9950X</p>
+                        <p><strong>Pour le gaming :</strong> 9800X3D</p>
+                        <p style="color: #28a745;">✅ Meilleures performances</p>
+                        <p style="color: #28a745;">✅ Meilleur rapport qualité/prix</p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="content-section">
-            <h2>📊 Analyse des Pratiques</h2>
-            
-            <div class="warning-box">
-                <h3><span class="warning-icon">⚠️</span> Pratiques Commerciales Douteuses</h3>
-                <p>Les éléments identifiés suggèrent une stratégie commerciale problématique :</p>
-                <ul style="margin-left: 2rem; margin-top: 1rem;">
-                    <li>Majoration excessive des prix</li>
-                    <li>Sélection de composants inadaptés pour justifier des tarifs élevés</li>
-                    <li>Non-respect des engagements de livraison</li>
-                    <li>Manque de transparence sur les choix techniques</li>
+			<div class="content-section">
+                <h2>💡 Recommandations</h2>
+                <p>Suite à cette analyse, nous recommandons aux consommateurs de :</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem; line-height: 2;">
+                    <li><strong>Comparer les prix</strong> avec d'autres assembleurs</li>
+                    <li><strong>Vérifier la pertinence</strong> des composants choisis</li>
+                    <li><strong>Demander des garanties écrites</strong> sur les délais de livraison</li>
+                    <li><strong>Consulter des avis indépendants</strong> avant tout achat</li>
+                    <li><strong>Privilégier la transparence</strong> dans le choix des composants</li>
                 </ul>
             </div>
-
-            <div class="specs-comparison">
-                <div class="spec-card">
-                    <h4>Processeur Choisi</h4>
-                    <p><strong>9950X3D</strong></p>
-                    <p class="price-issue">❌ Moins bon en rendu que le 9950X</p>
-                    <p class="price-issue">❌ Moins bon en gaming que le 9800X3D</p>
-                    <p class="price-issue">❌ Prix gonflé</p>
-                </div>
-                
-                <div class="spec-card">
-                    <h4>Alternatives Recommandées</h4>
-                    <p><strong>Pour le rendu :</strong> 9950X</p>
-                    <p><strong>Pour le gaming :</strong> 9800X3D</p>
-                    <p style="color: #28a745;">✅ Meilleures performances</p>
-                    <p style="color: #28a745;">✅ Meilleur rapport qualité/prix</p>
-                </div>
-            </div>
+			
         </div>
 
-        <div class="content-section">
-            <h2>💡 Recommandations</h2>
-            <p>Suite à cette analyse, nous recommandons aux consommateurs de :</p>
-            <ul style="margin-left: 2rem; margin-top: 1rem; line-height: 2;">
-                <li><strong>Comparer les prix</strong> avec d'autres assembleurs</li>
-                <li><strong>Vérifier la pertinence</strong> des composants choisis</li>
-                <li><strong>Demander des garanties écrites</strong> sur les délais de livraison</li>
-                <li><strong>Consulter des avis indépendants</strong> avant tout achat</li>
-                <li><strong>Privilégier la transparence</strong> dans le choix des composants</li>
-            </ul>
-        </div>
+        
+
+        
+
+        
 
         <div class="conclusion">
             <h2>🎉 EN CONCLUSION : BRAVO LES ARTISTES !</h2>
@@ -1662,7 +1755,7 @@
             }
         }
 
-        // Animation des cartes au survol
+        // Animation des cartes au survol (maintenue pour les cartes visibles)
         document.querySelectorAll('.contradiction-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 card.style.transform = 'translateY(-10px)';
@@ -1673,7 +1766,7 @@
             });
         });
 
-        // Effet de parallaxe léger
+        // Effet de parallaxe léger (maintenu pour le hero)
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const parallax = document.querySelector('.hero');
@@ -1681,7 +1774,7 @@
             parallax.style.transform = `translateY(${speed}px)`;
         });
 
-        // Animation des barres de performance au scroll
+        // Animation des barres de performance au scroll (maintenue pour les cartes visibles)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1727,6 +1820,39 @@
             };
             setTimeout(typeWriter, 1000);
         }
+
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.nav-tab button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            function showTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                tabButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+
+                document.getElementById(tabId).classList.add('active');
+                document.querySelector(`.nav-tab button[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    showTab(tabId);
+                });
+            });
+
+            // Show the first tab by default or based on URL hash
+            const initialTab = window.location.hash ? window.location.hash.substring(1) : 'ssd'; // Default to 'ssd'
+            if (document.getElementById(initialTab)) {
+                showTab(initialTab);
+            } else {
+                showTab('ssd'); // Fallback if hash is invalid
+            }
+        });
     </script>
 </body>
 </html>
