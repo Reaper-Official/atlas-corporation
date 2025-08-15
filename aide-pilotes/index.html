@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide des Pilotes - Où télécharger les bons drivers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .warning-bg {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+        }
+        .success-bg {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .driver-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <img src="https://www.gigabyte.com/Image/b3bd47e66bd8d092a701b7f7872ba13b/Product/38816/webp/2000" alt="Gigabyte B650 Eagle AX motherboard with white and black PCB, AMD B650 chipset, multiple RAM slots, PCIe slots, and integrated WiFi antenna connectors, professional product photography on white background" class="mx-auto mb-4 rounded-lg shadow-lg" />
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    <i class="fas fa-download mr-3"></i>Guide des Pilotes
+                </h1>
+                <p class="text-xl md:text-2xl opacity-90">Téléchargez les bons drivers aux bons endroits</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Alert Section -->
+    <section class="py-6">
+        <div class="container mx-auto px-4">
+            <div class="warning-bg text-white rounded-lg p-6 mb-8 shadow-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-triangle text-3xl mr-4 pulse-animation"></i>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">⚠️ ATTENTION - Évitez ces sites !</h3>
+                        <p class="text-lg">Ne téléchargez JAMAIS vos pilotes depuis des sites comme "TousLesDrivers", "DriverPack" ou autres sites génériques. Ils contiennent souvent des malwares !</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="success-bg text-white rounded-lg p-6 shadow-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-shield-alt text-3xl mr-4"></i>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">✅ LA BONNE MÉTHODE</h3>
+                        <p class="text-lg">Téléchargez uniquement depuis le site officiel du fabricant de votre carte mère ou de vos composants !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drivers Types Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+                <i class="fas fa-list-ul mr-3 text-blue-600"></i>Quels pilotes télécharger ?
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- LAN Driver -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                    <div class="text-center">
+                        <i class="fas fa-ethernet driver-icon text-blue-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilote LAN (Ethernet)</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Connexion internet par câble</p>
+                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Oui, si pas de WiFi</p>
+                            <p class="text-gray-600"><strong>Priorité :</strong> Haute</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WLAN + Bluetooth -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                    <div class="text-center">
+                        <i class="fas fa-wifi driver-icon text-green-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">WLAN + Bluetooth</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> WiFi et Bluetooth</p>
+                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Si vous utilisez le WiFi</p>
+                            <p class="text-gray-600"><strong>Priorité :</strong> Haute</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphics Driver -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                    <div class="text-center">
+                        <i class="fas fa-desktop driver-icon text-purple-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilote Graphique</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Affichage et performances</p>
+                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Oui</p>
+                            <p class="text-gray-600"><strong>Priorité :</strong> Très haute</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audio Driver -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                    <div class="text-center">
+                        <i class="fas fa-volume-up driver-icon text-red-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilote Audio</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Son et microphone</p>
+                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Oui</p>
+                            <p class="text-gray-600"><strong>Priorité :</strong> Haute</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USB Driver -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                    <div class="text-center">
+                        <i class="fab fa-usb driver-icon text-orange-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilotes USB</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Ports USB 3.0/3.1/3.2</p>
+                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Recommandé</p>
+                            <p class="text-gray-600"><strong>Priorité :</strong> Moyenne</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chipset Driver -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                    <div class="text-center">
+                        <i class="fas fa-microchip driver-icon text-teal-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilote Chipset</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Communication entre composants</p>
+                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Oui</p>
+                            <p class="text-gray-600"><strong>Priorité :</strong> Très haute</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where to Download -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+                <i class="fas fa-map-marker-alt mr-3 text-green-600"></i>Où télécharger vos pilotes ?
+            </h2>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Primary Source -->
+                <div class="bg-gradient-to-r from-green-400 to-green-600 text-white rounded-lg p-8 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-star mr-3"></i>SOURCE PRINCIPALE
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-green-200"></i>
+                            <p><strong>Site du fabricant de votre carte mère</strong><br>
+                            ASUS, MSI, Gigabyte, ASRock, etc.</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-green-200"></i>
+                            <p><strong>Section Support/Téléchargements</strong><br>
+                            Cherchez votre modèle exact</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-green-200"></i>
+                            <p><strong>Pilotes les plus récents</strong><br>
+                            Toujours à jour et sécurisés</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Sources -->
+                <div class="bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg p-8 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-plus-circle mr-3"></i>SOURCES COMPLÉMENTAIRES
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-200"></i>
+                            <p><strong>Site du fabricant GPU</strong><br>
+                            NVIDIA GeForce ou AMD Radeon</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-200"></i>
+                            <p><strong>Windows Update</strong><br>
+                            Pour les pilotes de base</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-200"></i>
+                            <p><strong>Gestionnaire de périphériques</strong><br>
+                            Pour identifier les composants</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step by Step Guide -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+                <i class="fas fa-list-ol mr-3 text-purple-600"></i>Guide étape par étape
+            </h2>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-6">
+                    <!-- Step 1 -->
+                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
+                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">1</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Identifiez votre carte mère</h3>
+                            <p class="text-gray-600">Utilisez Userdiag ou regardez sur la carte mère elle-même pour connaître le modèle exact.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
+                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">2</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Allez sur le site officiel</h3>
+                            <p class="text-gray-600">Rendez-vous sur le site du fabricant (ASUS, MSI, Gigabyte, etc.) et cherchez la section Support.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
+                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">3</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Recherchez votre modèle</h3>
+                            <p class="text-gray-600">Tapez le nom exact de votre carte mère dans la barre de recherche du site.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
+                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">4</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Téléchargez dans l'ordre</h3>
+                            <p class="text-gray-600">1. Chipset → 2. LAN/WLAN → 3. Audio → 4. USB → 5. Autres selon vos besoins.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
+                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">5</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Installez et redémarrez</h3>
+                            <p class="text-gray-600">Installez chaque pilote un par un et redémarrez entre chaque installation si demandé.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Manufacturers -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+                <i class="fas fa-building mr-3 text-blue-600"></i>Liens des fabricants populaires
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- ASUS -->
+                <div class="bg-white-800 text-black rounded-lg p-6 text-center card-hover cursor-pointer" onclick="openLink('https://www.asus.com/support/')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/ASUS_Logo.svg/langfr-330px-ASUS_Logo.svg.png" alt="ASUS official logo with blue and white corporate branding, clean typography with stylized A symbol, professional technology company design" class="mx-auto mb-4" />
+                    <h3 class="text-lg font-bold">ASUS</h3>
+                    <p class="text-sm text-gray-300">asus.com/support/</p>
+                </div>
+
+                <!-- MSI -->
+                <div class="bg-red-600 text-white rounded-lg p-6 text-center card-hover cursor-pointer" onclick="openLink('https://www.msi.com/support/')">
+                    <img src="https://storage-asset.msi.com/frontend/imgs/logo.png" alt="MSI gaming logo featuring red and black dragon shield emblem with bold MSI lettering, gaming-focused brand design with metallic accents" class="mx-auto mb-4" />
+                    <h3 class="text-lg font-bold">MSI</h3>
+                    <p class="text-sm text-red-200">msi.com/support/</p>
+                </div>
+
+                <!-- Gigabyte -->
+                <div class="bg-orange-500 text-white rounded-lg p-10 text-center card-hover cursor-pointer" onclick="openLink('https://www.gigabyte.com/Support')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Gigabyte_Technology_logo_20080107.svg/langfr-250px-Gigabyte_Technology_logo_20080107.svg.png" alt="MSI gaming logo featuring red and black dragon shield emblem with bold MSI lettering, gaming-focused brand design with metallic accents" class="mx-auto mb-4" />                
+					<h3 class="text-lg font-bold">Gigabyte</h3>
+                    <p class="text-sm text-orange-200">gigabyte.com/Support</p>
+                </div>
+
+                <!-- ASRock -->
+                <div class="bg-blue-600 text-white rounded-lg p-6 text-center card-hover cursor-pointer" onclick="openLink('https://www.asrock.com/support/')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/ASRock_logo.svg/langfr-250px-ASRock_logo.svg.png" alt="ASRock logo with blue gradient and modern geometric design elements, clean corporate typography with stylized rock formation symbol" class="mx-auto mb-4" />
+                    <h3 class="text-lg font-bold">ASRock</h3>
+                    <p class="text-sm text-blue-200">asrock.com/support/</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg mb-4">
+                <i class="fas fa-lightbulb mr-2"></i>
+                Conseil : Créez un dossier "Pilotes" sur votre bureau pour sauvegarder tous vos drivers !
+            </p>
+            <p class="text-sm opacity-75">
+                Toujours télécharger depuis les sources officielles pour votre sécurité
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const cards = document.querySelectorAll('.card-hover');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                observer.observe(card);
+            });
+
+            // Add click effect to manufacturer cards
+            const manufacturerCards = document.querySelectorAll('[onclick]');
+            manufacturerCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
