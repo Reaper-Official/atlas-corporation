@@ -728,6 +728,149 @@
                 padding: 3rem 2rem;
             }
         }
+
+        /* Nouveaux styles pour les sections ajoutées/modifiées */
+        .content-section {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .content-section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .video-disclaimer {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(155, 89, 182, 0.2));
+            border: 2px solid var(--accent-blue);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .video-container iframe:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+        }
+
+        .critique-points .point {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(231, 76, 60, 0.1));
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .critique-points .point h4 {
+            color: var(--accent-yellow);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .highlight {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        .delivery-issue {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(241, 196, 15, 0.2), rgba(231, 76, 60, 0.2));
+            border: 2px solid var(--accent-yellow);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .warning-box h3 {
+            color: var(--accent-yellow);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .warning-icon {
+            font-size: 2rem;
+            color: var(--accent-yellow);
+        }
+
+        .specs-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .spec-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .spec-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .spec-card p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-issue {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        /* Responsive adjustments for new sections */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 2rem;
+            }
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+            .specs-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1350,6 +1493,103 @@
         </div>
         <!-- Fin de la nouvelle section -->
 
+        <div class="content-section">
+            <h2>🎥 Vidéo d'Analyse</h2>
+            
+            <div class="video-disclaimer">
+                <strong>Note :</strong> Regardez la vidéo ci-dessous pour une explication plus détaillée et explicite des problèmes identifiés. Cette analyse est indépendante et nous ne sommes pas partenaires avec l'auteur de la vidéo.
+            </div>
+
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/3Q9HImILXxI" 
+                    title="Analyse FlowUp" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <p><em>Cette vidéo présente une analyse détaillée des pratiques de FlowUp. Nous recommandons vivement de la visionner pour comprendre l'ampleur des problèmes identifiés.</em></p>
+        </div>
+
+        <div class="content-section">
+            <h2>🚨 Problèmes Identifiés</h2>
+            
+            <div class="critique-points">
+                <h3>Points Critiques Majeurs</h3>
+                
+                <div class="point">
+                    <h4>1. Composants Délibérément Surpayés</h4>
+                    <p>FlowUp a intentionnellement sélectionné des composants <span class="highlight">"overpriced"</span> (prix supérieurs au marché actuel). Cette pratique semble viser à gonfler artificiellement le prix final des configurations.</p>
+                </div>
+
+                <div class="point">
+                    <h4>2. Choix de Processeur Inadéquat</h4>
+                    <p>Le choix du <strong>9950X3D</strong> pour justifier un PC à 8000€ est particulièrement problématique :</p>
+                    <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                        <li>Moins performant que le <strong>9950X</strong> en rendu</li>
+                        <li>Moins performant que le <strong>9800X3D</strong> pour les jeux vidéos</li>
+                        <li>Choix qui semble fait uniquement pour justifier un prix élevé</li>
+                    </ul>
+                </div>
+
+                <div class="point">
+                    <h4>3. Délais de Livraison Non Respectés</h4>
+                    <p>
+                        <span class="delivery-issue">Délai annoncé :</span> 14 jours ouvrés maximum<br>
+                        <span class="delivery-issue">Délai réel :</span> 75 jours de livraison<br>
+                        <em>Soit plus de 5 fois le délai promis !</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>📊 Analyse des Pratiques</h2>
+            
+            <div class="warning-box">
+                <h3><span class="warning-icon">⚠️</span> Pratiques Commerciales Douteuses</h3>
+                <p>Les éléments identifiés suggèrent une stratégie commerciale problématique :</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li>Majoration excessive des prix</li>
+                    <li>Sélection de composants inadaptés pour justifier des tarifs élevés</li>
+                    <li>Non-respect des engagements de livraison</li>
+                    <li>Manque de transparence sur les choix techniques</li>
+                </ul>
+            </div>
+
+            <div class="specs-comparison">
+                <div class="spec-card">
+                    <h4>Processeur Choisi</h4>
+                    <p><strong>9950X3D</strong></p>
+                    <p class="price-issue">❌ Moins bon en rendu que le 9950X</p>
+                    <p class="price-issue">❌ Moins bon en gaming que le 9800X3D</p>
+                    <p class="price-issue">❌ Prix gonflé</p>
+                </div>
+                
+                <div class="spec-card">
+                    <h4>Alternatives Recommandées</h4>
+                    <p><strong>Pour le rendu :</strong> 9950X</p>
+                    <p><strong>Pour le gaming :</strong> 9800X3D</p>
+                    <p style="color: #28a745;">✅ Meilleures performances</p>
+                    <p style="color: #28a745;">✅ Meilleur rapport qualité/prix</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>💡 Recommandations</h2>
+            <p>Suite à cette analyse, nous recommandons aux consommateurs de :</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem; line-height: 2;">
+                <li><strong>Comparer les prix</strong> avec d'autres assembleurs</li>
+                <li><strong>Vérifier la pertinence</strong> des composants choisis</li>
+                <li><strong>Demander des garanties écrites</strong> sur les délais de livraison</li>
+                <li><strong>Consulter des avis indépendants</strong> avant tout achat</li>
+                <li><strong>Privilégier la transparence</strong> dans le choix des composants</li>
+            </ul>
+        </div>
+
         <div class="conclusion">
             <h2>🎉 EN CONCLUSION : BRAVO LES ARTISTES !</h2>
             <p style="font-size: 1.3rem; margin: 1rem 0;">FrenchHardware/FlowUp nous enseigne que :</p>
@@ -1366,7 +1606,7 @@
                 <li>✅ Vendre des RAM à problèmes en connaissance de cause = TRANSPARENCE (ou pas)</li>
                 <li>✅ Citer un processeur inexistant = EXPERTISE AVANCÉE</li>
                 <li>✅ Contredire ses propres paroles en 2 secondes = MAÎTRISE DE L'ORATOIRE</li>
-                <li>✅ Les sondages Discord à 2% de participation sont "preuves" de "l'intéret" que portent les membres envers ces sondages</li>
+                <li>✅ Les sondages Discord à 2% de participation sont "fiables"</li>
                 <li>✅ Bannir les critiques = Excellente gestion de communauté</li>
             </ul>
             
