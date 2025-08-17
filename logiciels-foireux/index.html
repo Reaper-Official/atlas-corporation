@@ -7,671 +7,446 @@
     <meta name="googlebot" content="index,follow">
     <title>🚫 STOP aux Fausses Optimisations Windows - Atlas Corporation</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
+    
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* === VARIABLES CSS === */
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-card: #1e1e1e;
-            --accent-orange: #ff6b35;
-            --accent-yellow: #ffb84d;
-            --accent-cyan: #00f5ff;
-            --accent-magenta: #ff00f5;
-            --accent-blue: #0055ff;
-            --accent-red: #ff0040;
-            --accent-purple: #8b5cf6;
-            --accent-green: #10b981;
-            --accent-pink: #f472b6;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --text-muted: #888888;
-            --border: #333333;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --shadow: rgba(0, 0, 0, 0.3);
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            /* Colors */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
             
-            /* Danger levels */
-            --danger-max: #8b0000;
-            --danger-high: #ff4500;
-            --danger-medium: #ffa500;
-            --danger-low: #ffaa00;
-            --safe-green: #10b981;
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Layout */
+            --sidebar-width: 320px;
+            --header-height: 64px;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        /* === RESET === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(ellipse at top, #1a1a2e 0%, #16213e 25%, #0f0f0f 100%);
-            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 16px;
             line-height: 1.6;
-            min-height: 100vh;
+            color: var(--gray-900);
+            background: var(--white);
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* === BACKGROUND EFFECTS === */
-        .bg-effects {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-        }
-
-        .star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle 3s ease-in-out infinite;
-        }
-
-        .floating-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
-            border-radius: 50%;
-            animation: float 15s ease-in-out infinite;
-            opacity: 0.6;
-        }
-
-        .gradient-orbs {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.3;
-            animation: morphing 20s ease-in-out infinite;
-        }
-
-        .orb:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .orb:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
-            top: 60%;
-            right: 15%;
-            animation-delay: -7s;
-        }
-
-        .orb:nth-child(3) {
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(45deg, var(--accent-magenta), var(--accent-purple));
-            bottom: 20%;
-            left: 20%;
-            animation-delay: -14s;
-        }
-
-        /* === HEADER === */
+        /* Header */
         .header {
+            height: var(--header-height);
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
             position: sticky;
             top: 0;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(30px) saturate(200%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: var(--transition);
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 107, 53, 0.1) 50%, 
-                transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .header:hover::before {
-            opacity: 1;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
         }
 
         .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: var(--accent-orange);
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            position: relative;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--gray-900);
+            font-weight: 800;
+            font-size: 1.25rem;
             transition: var(--transition);
-        }
-
-        .logo::before {
-            content: "🛡️";
-            font-size: 1.8rem;
-            animation: shieldPulse 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px var(--accent-orange));
-            display: inline-block;
-            transform-origin: center;
         }
 
         .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 20px var(--accent-orange);
+            color: var(--accent);
+            transform: scale(1.02);
         }
 
-        .logo-subtitle {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        .menu-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 14px;
-            cursor: pointer;
-            color: var(--text-primary);
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.75rem;
             display: flex;
-            flex-direction: column;
-            gap: 4px;
-            transition: var(--transition);
-            position: relative;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-bounce);
             overflow: hidden;
         }
 
-        .menu-toggle:hover {
-            background: rgba(255, 107, 53, 0.2);
-            border-color: var(--accent-orange);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        .logo-icon img {
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: contain;
         }
 
-        .menu-line {
-            width: 22px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--text-primary), var(--accent-orange));
-            border-radius: 2px;
-            transition: all 0.4s var(--elastic);
+        .logo:hover .logo-icon {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: var(--shadow-lg);
         }
 
-        .menu-toggle.active .menu-line:nth-child(1) { 
-            transform: rotate(45deg) translate(6px, 6px); 
-            background: var(--accent-orange);
-        }
-        .menu-toggle.active .menu-line:nth-child(2) { 
-            opacity: 0; 
-            transform: scale(0) rotate(180deg); 
-        }
-        .menu-toggle.active .menu-line:nth-child(3) { 
-            transform: rotate(-45deg) translate(8px, -7px); 
-            background: var(--accent-orange);
-        }
-
-        /* === NAVIGATION MENU === */
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: min(350px, 80vw);
-            height: 100vh;
-            background: linear-gradient(135deg, 
-                rgba(30, 30, 30, 0.95), 
-                rgba(40, 40, 40, 0.95));
-            backdrop-filter: blur(30px);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            transition: right 0.5s var(--elastic);
-            z-index: 999;
-            overflow-y: auto;
-            box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
-            padding: 100px 20px 40px;
-        }
-
-        .nav-menu.active {
-            right: 0;
-        }
-
-        .nav-item {
-            display: block;
-            color: var(--text-primary);
+        .header-cta {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
             text-decoration: none;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            padding: 16px 20px;
-            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.875rem;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 8px;
+            box-shadow: var(--shadow-sm);
         }
 
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 107, 53, 0.1), 
-                transparent);
-            transition: left 0.5s ease;
-        }
-
-        .nav-item:hover::before {
-            left: 100%;
-        }
-
-        .nav-item:hover {
-            background: rgba(255, 107, 53, 0.1);
-            color: var(--accent-orange);
-            transform: translateX(12px) scale(1.02);
-            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
-        }
-
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            z-index: 998;
-        }
-
-        .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .header-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative;
-            z-index: 1;
         }
 
-        /* === MAIN HEADER === */
-        .main-header {
-            text-align: center;
-            margin: 60px 0;
-            padding: 80px 40px;
-            background: linear-gradient(135deg, 
-                rgba(30, 30, 30, 0.8), 
-                rgba(40, 40, 50, 0.6));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
         }
 
-        .main-header::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, 
-                var(--accent-red), 
-                var(--accent-orange), 
-                var(--accent-yellow), 
-                var(--accent-red));
-            background-size: 300% 100%;
-            animation: dangerFlow 3s ease-in-out infinite;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%);
+            transform: skewX(-15deg) translateX(20%);
         }
 
-        .main-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 560px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-badge-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background: var(--error);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 900;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, 
-                var(--accent-red), 
-                var(--accent-orange), 
-                var(--accent-yellow));
-            background-size: 200% 200%;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--error) 0%, var(--warning) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: warningShimmer 4s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
         }
 
-        .main-description {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            font-weight: 400;
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
         }
 
-        /* === WARNING BOX === */
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 480px;
+            height: 320px;
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: var(--shadow-xl);
+            transition: var(--transition);
+        }
+
+        .hero-image:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        /* Warning Section */
+        .warning-section {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
         .warning-box {
-            background: linear-gradient(135deg, 
-                rgba(139, 0, 0, 0.3), 
-                rgba(220, 53, 69, 0.2));
-            border: 2px solid var(--accent-red);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 50px 0;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 40px rgba(255, 0, 64, 0.3);
-        }
-
-        .warning-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 20px,
-                rgba(255, 255, 255, 0.05) 20px,
-                rgba(255, 255, 255, 0.05) 40px
-            );
-            animation: slidePattern 10s linear infinite;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border: 2px solid var(--error);
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
         }
 
         .warning-box h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 2;
-            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
         }
 
         .warning-box p {
-            font-size: 1.1rem;
-            position: relative;
-            z-index: 2;
-            font-weight: 500;
-            color: var(--text-primary);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--gray-700);
+            margin-bottom: 1rem;
         }
 
         .warning-box a {
-            color: var(--accent-cyan);
+            color: var(--accent);
             text-decoration: none;
             font-weight: 600;
-            transition: var(--transition);
         }
 
         .warning-box a:hover {
-            color: var(--accent-orange);
-            text-shadow: 0 0 10px var(--accent-orange);
+            text-decoration: underline;
         }
 
-        /* === FRIENDS SECTION === */
-        .friends-section {
-            background: linear-gradient(135deg, 
-                rgba(255, 165, 0, 0.2), 
-                rgba(255, 140, 0, 0.15));
-            border: 2px solid var(--accent-yellow);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 50px 0;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.3);
+        /* Categories Section */
+        .categories {
+            padding: 6rem 2rem;
+            background: var(--gray-50);
         }
 
-        .friends-section h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-primary);
+        .categories-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* === CATEGORY SECTIONS === */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
         .category {
-            margin: 60px 0;
-            background: linear-gradient(135deg, 
-                rgba(30, 30, 30, 0.8), 
-                rgba(40, 40, 50, 0.6));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+            margin-bottom: 4rem;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
             overflow: hidden;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             transition: var(--transition);
+            box-shadow: var(--shadow);
         }
 
         .category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 107, 53, 0.3);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gray-300);
         }
 
         .category-title {
-            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, var(--error) 0%, var(--warning) 100%);
+            color: white;
+            padding: 2rem;
+            margin: 0;
             font-size: 1.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, 
-                var(--accent-red), 
-                var(--accent-orange));
-            color: white;
-            padding: 25px 35px;
-            margin: 0;
-            position: relative;
-            border-bottom: 3px solid var(--accent-red);
+            letter-spacing: 1px;
         }
 
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                var(--accent-red), 
-                var(--accent-orange), 
-                var(--accent-yellow));
-        }
-
-        /* === SOFTWARE ITEMS === */
         .software-item {
-            background: rgba(26, 26, 26, 0.6);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            position: relative;
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
             transition: var(--transition);
         }
 
         .software-item:hover {
-            background: rgba(40, 40, 50, 0.8);
-            border-left: 4px solid var(--accent-orange);
-            transform: translateX(10px);
+            background: var(--gray-50);
+            transform: translateX(5px);
         }
 
         .software-item:last-child {
             border-bottom: none;
-            border-radius: 0 0 24px 24px;
         }
 
         .software-name {
-            font-family: 'Orbitron', monospace;
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--accent-red);
-            margin-bottom: 20px;
+            color: var(--error);
+            margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .emoji {
-            font-size: 1.3em;
-            margin-right: 12px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-        }
-
-        /* === REASON SECTIONS === */
         .reason-section {
-            margin: 25px 0;
-            background: rgba(0, 0, 0, 0.4);
-            border-left: 4px solid var(--accent-red);
-            border-radius: 0 12px 12px 0;
-            padding: 20px 25px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .reason-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, 
-                var(--accent-red), 
-                var(--accent-orange), 
-                var(--accent-yellow));
+            margin: 1.5rem 0;
+            background: var(--gray-50);
+            border-left: 4px solid var(--error);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
         }
 
         .reason-title {
-            font-family: 'Orbitron', monospace;
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--accent-yellow);
-            margin-bottom: 15px;
+            color: var(--warning);
+            margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .reason-content {
-            color: var(--text-primary);
+            color: var(--gray-700);
             line-height: 1.7;
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
 
         .reason-content ul {
-            margin: 15px 0;
-            padding-left: 25px;
+            margin: 1rem 0;
+            padding-left: 1.5rem;
         }
 
         .reason-content li {
-            margin-bottom: 8px;
-            position: relative;
+            margin-bottom: 0.5rem;
         }
 
-        .reason-content li::marker {
-            color: var(--accent-orange);
-        }
-
-        /* === ALTERNATIVE BOX === */
         .alternative {
-            background: linear-gradient(135deg, 
-                var(--safe-green), 
-                #20b2aa);
+            background: linear-gradient(135deg, var(--success) 0%, #20b2aa 100%);
             color: white;
-            padding: 20px 25px;
-            margin-top: 25px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
             font-weight: 600;
-            border-left: 4px solid #006400;
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
         }
 
         .alternative::before {
             content: '✅ ';
             font-size: 1.3rem;
-            margin-right: 10px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            margin-right: 0.5rem;
         }
 
-        /* === GRID LAYOUT === */
+        /* Grid Layout */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 0;
         }
 
         .grid .software-item {
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid var(--gray-200);
         }
 
         .grid .software-item:last-child,
@@ -679,48 +454,40 @@
             border-right: none;
         }
 
-        /* === CONCLUSION === */
-        .conclusion {
-            background: linear-gradient(135deg, 
-                var(--safe-green), 
-                #228b22);
-            color: white;
-            padding: 60px 50px;
-            margin: 80px 0;
-            text-align: center;
-            border: 3px solid #006400;
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4);
+        /* Friends Section */
+        .friends-section {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+            border: 2px solid var(--warning);
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
         }
 
-        .conclusion::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 30px,
-                rgba(255, 255, 255, 0.05) 30px,
-                rgba(255, 255, 255, 0.05) 60px
-            );
-            animation: slidePattern 15s linear infinite;
+        .friends-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+        }
+
+        /* Conclusion */
+        .conclusion {
+            background: linear-gradient(135deg, var(--success) 0%, #228b22 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-xl);
         }
 
         .conclusion h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            position: relative;
-            z-index: 2;
         }
 
         .conclusion p {
@@ -728,146 +495,46 @@
             line-height: 1.8;
             max-width: 900px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2;
             font-weight: 500;
         }
 
-        /* === ANIMATIONS === */
-        @keyframes shieldPulse {
-            0%, 100% { 
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-                filter: drop-shadow(0 0 15px var(--accent-orange));
-            }
-            50% { 
-                opacity: 0.8;
-                transform: scale(1.2) rotate(10deg);
-                filter: drop-shadow(0 0 30px var(--accent-red));
-            }
-        }
-
-        @keyframes warningShimmer {
+        /* Animations */
+        @keyframes pulse {
             0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes dangerFlow {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes slidePattern {
-            0% {
-                transform: translateX(-60px);
-            }
-            100% {
-                transform: translateX(60px);
-            }
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) translateX(0px) rotate(0deg);
-                opacity: 0.6;
-            }
-            33% {
-                transform: translateY(-20px) translateX(10px) rotate(120deg);
+                transform: scale(1);
                 opacity: 1;
             }
-            66% {
-                transform: translateY(10px) translateX(-5px) rotate(240deg);
-                opacity: 0.8;
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
             }
         }
 
-        @keyframes morphing {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-                border-radius: 50%;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            33% {
-                transform: scale(1.1) rotate(120deg);
-                border-radius: 30% 70% 60% 40%;
-            }
-            66% {
-                transform: scale(0.9) rotate(240deg);
-                border-radius: 60% 40% 30% 70%;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(40px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
         .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .pulse {
-            animation: shieldPulse 3s ease-in-out infinite;
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
             }
 
-            .main-header {
-                padding: 50px 25px;
-                margin: 40px 0;
-            }
-
-            .main-title {
-                font-size: 2.5rem;
-            }
-
-            .main-description {
-                font-size: 1.1rem;
-            }
-
-            .category-title {
-                font-size: 1.5rem;
-                padding: 20px 25px;
-            }
-
-            .software-item {
-                padding: 25px 20px;
-            }
-
-            .software-name {
-                font-size: 1.3rem;
-            }
-
-            .warning-box,
-            .friends-section,
-            .conclusion {
-                padding: 30px 20px;
-            }
-
-            .reason-section {
-                padding: 15px 20px;
+            .hero-visual {
+                order: -1;
             }
 
             .grid {
@@ -876,128 +543,102 @@
 
             .grid .software-item {
                 border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            }
-
-            .nav-menu {
-                width: min(300px, 85vw);
-                padding: 80px 15px 30px;
+                border-bottom: 1px solid var(--gray-200);
             }
         }
 
-        @media (max-width: 480px) {
-            .main-header {
-                padding: 40px 20px;
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .categories {
+                padding: 4rem 1rem;
+            }
+
+            .warning-section {
+                padding: 3rem 1rem;
+            }
+
+            .container {
+                padding: 0 15px;
             }
 
             .software-item {
-                padding: 20px 15px;
+                padding: 1.5rem;
             }
 
-            .reason-section {
-                padding: 12px 15px;
+            .warning-box,
+            .friends-section {
+                padding: 2rem 1.5rem;
             }
-
-            .conclusion {
-                padding: 40px 20px;
-            }
-
-            .conclusion h2 {
-                font-size: 1.8rem;
-            }
-
-            .conclusion p {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* === SCROLL BEHAVIOR === */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* === ACCESSIBILITY === */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* === FOCUS STYLES === */
-        body.keyboard-navigation *:focus {
-            outline: 2px solid var(--accent-orange);
-            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <!-- Background Effects -->
-    <div class="bg-effects">
-        <div class="stars"></div>
-        <div class="floating-particles"></div>
-        <div class="gradient-orbs">
-            <div class="orb"></div>
-            <div class="orb"></div>
-            <div class="orb"></div>
-        </div>
-    </div>
-
     <!-- Header -->
     <header class="header">
-        <nav class="nav">
-            <a href="https://atlas-corporation.fr" class="logo">
-                <div>
-                    <div>Atlas Corporation</div>
-                    <div class="logo-subtitle">Logiciels Foireux</div>
-                </div>
-            </a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menu de navigation">
-                <div class="menu-line"></div>
-                <div class="menu-line"></div>
-                <div class="menu-line"></div>
-            </button>
-        </nav>
+        <a href="https://atlas-corporation.fr" class="logo">
+            <div class="logo-icon">
+                <img src="https://atlas-corporation.fr/favicon.ico" alt="Atlas Corporation">
+            </div>
+            <span>Atlas Corporation</span>
+        </a>
+        <a href="https://atlas-corporation.fr" class="header-cta">
+            🚀 Accéder au site principal
+        </a>
     </header>
 
-    <!-- Menu Mobile -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-    <div class="nav-menu" id="navMenu">
-        <a href="#cleaners" class="nav-item">Nettoyeurs</a>
-        <a href="#boosters" class="nav-item">Boosters</a>
-        <a href="#security" class="nav-item">Sécurité</a>
-        <a href="#gaming" class="nav-item">Gaming</a>
-        <a href="#conclusion" class="nav-item">Conclusion</a>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <div class="hero-badge-dot"></div>
+                    <span>Guide de sécurité informatique</span>
+                </div>
 
-    <!-- Contenu Principal -->
-    <main>
-        <div class="container">
-            <div class="main-header fade-in">
-                <h1 class="main-title">🚫 Les Faux Outils d'Aide PC</h1>
-                <p class="main-description">
-                    Découvrez pourquoi ces logiciels et des personnes prétendument "optimisateurs" détruisent votre PC au lieu de l'améliorer, 
-                    et quelles sont les meilleures alternatives.
+                <h1 class="hero-title">
+                    🚫 <span class="highlight">STOP aux Fausses</span> Optimisations
+                </h1>
+
+                <p class="hero-description">
+                    Découvrez pourquoi ces logiciels prétendument "optimisateurs" détruisent votre PC au lieu de l'améliorer, et quelles sont les meilleures alternatives recommandées par Atlas Corporation.
                 </p>
             </div>
 
+            <div class="hero-visual">
+                <div class="hero-image">
+                    <img src="https://atlas-corporation.fr/favicon.ico" alt="Atlas Corporation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Warning Section -->
+    <section class="warning-section">
+        <div class="container">
             <div class="warning-box fade-in">
-                <h2><span class="emoji">🚫</span> Les Erreurs à ne pas faire</h2>
-                <p><strong>Voici des diagnostiques mettant en avant les erreurs à ne pas faire</strong><br> 
-                    <a href="https://userdiag.com/id/hZNiiWJ0S6" target="_blank">Diagnostique 1</a><br> 
-                    <a href="https://userdiag.com/id/KMxJabakiu" target="_blank">Diagnostique 2</a><br> 
+                <h2><span>🚫</span> Les Erreurs à ne pas faire</h2>
+                <p><strong>Voici des diagnostiques mettant en avant les erreurs à ne pas faire</strong></p>
+                <p>
+                    <a href="https://userdiag.com/id/hZNiiWJ0S6" target="_blank">Diagnostique 1</a> | 
+                    <a href="https://userdiag.com/id/KMxJabakiu" target="_blank">Diagnostique 2</a> | 
                     <a href="https://userdiag.com/id/W9SMCBUkeH" target="_blank">Diagnostique 3</a>
                 </p>
             </div>
 
-            <div class="warning-box pulse fade-in">
-                <h2><span class="emoji">⚠️</span> Attention Important</h2>
+            <div class="warning-box fade-in">
+                <h2><span>⚠️</span> Attention Important</h2>
                 <p>Si votre PC contient un ou plusieurs logiciels ci-dessous, privilégiez une <strong>réinstallation propre de Windows</strong> plutôt que de chercher des solutions miracles qui, bien souvent, ne font qu'aggraver les choses.</p>
             </div>
 
             <div class="friends-section fade-in">
-                <h2><span class="emoji">❌</span> Les Amis Bien Intentionnés</h2>
+                <h2><span>❌</span> Les Amis Bien Intentionnés</h2>
                 <div class="reason-section">
                     <div class="reason-title">🔴 Pourquoi ce n'est pas toujours une bonne idée ?</div>
                     <div class="reason-content">
@@ -1012,15 +653,28 @@
                     <strong>Alternative recommandée :</strong> Toujours vérifier les conseils avant d'agir et privilégier les outils intégrés de Windows.
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="category fade-in" id="cleaners">
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="categories-container">
+            <div class="section-header">
+                <h2 class="section-title">Logiciels à éviter absolument</h2>
+                <p class="section-subtitle">
+                    Ces logiciels promettent des améliorations mais causent plus de problèmes qu'ils n'en résolvent
+                </p>
+            </div>
+
+            <!-- Cleaners -->
+            <div class="category fade-in">
                 <div class="category-title">
-                    <span class="emoji">🛑</span> Les Soi-disant Nettoyeurs et Optimisateurs
+                    <span>🛑</span> Les Soi-disant Nettoyeurs et Optimisateurs
                 </div>
 
                 <div class="software-item">
                     <div class="software-name">
-                        <span class="emoji">🛑</span> CCleaner
+                        <span>🛑</span> CCleaner
                     </div>
                     <div class="reason-section">
                         <div class="reason-title">Pourquoi c'est inutile ?</div>
@@ -1043,7 +697,7 @@
 
                 <div class="software-item">
                     <div class="software-name">
-                        <span class="emoji">🛑</span> IOBit Advanced SystemCare / Glary Utilities
+                        <span>🛑</span> IOBit Advanced SystemCare / Glary Utilities
                     </div>
                     <div class="reason-section">
                         <div class="reason-title">Pourquoi c'est inutile ?</div>
@@ -1065,95 +719,48 @@
                 </div>
             </div>
 
-            <div class="category fade-in" id="boosters">
+            <!-- Boosters -->
+            <div class="category fade-in">
                 <div class="category-title">
-                    <span class="emoji">⚡</span> Les Faux Boosters de Performance
+                    <span>⚡</span> Les Faux Boosters de Performance
                 </div>
 
-                <div class="software-item">
-                    <div class="software-name">
-                        <span class="emoji">🛑</span> RAMMap / RAM Booster / Superfetch Disabler
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est inutile ?</div>
+                <div class="grid">
+                    <div class="software-item">
+                        <div class="software-name">
+                            <span>🛑</span> RAMMap / RAM Booster
+                        </div>
                         <div class="reason-content">
                             Windows gère automatiquement la mémoire vive de façon optimale. Forcer la libération de RAM ne fait qu'effacer des caches utiles, ralentissant le chargement des applications.
                         </div>
+                        <div class="alternative">
+                            Alternative : Ne pas toucher à la gestion de la RAM, Windows s'en charge
+                        </div>
                     </div>
-                    <div class="alternative">
-                        Alternative : Ne pas toucher à la gestion de la RAM, Windows s'en charge
-                    </div>
-                </div>
 
-                <div class="software-item">
-                    <div class="software-name">
-                        <span class="emoji">🛑</span> Smart Game Booster
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est inutile ?</div>
+                    <div class="software-item">
+                        <div class="software-name">
+                            <span>🛑</span> Smart Game Booster
+                        </div>
                         <div class="reason-content">
                             Ce logiciel tente d'optimiser les performances en fermant des processus en arrière-plan. Windows alloue déjà intelligemment les ressources.
                         </div>
-                    </div>
-                    <div class="alternative">
-                        Alternative : Activer le Mode Jeu de Windows dans les paramètres
-                    </div>
-                </div>
-
-                <div class="software-item">
-                    <div class="software-name">
-                        <span class="emoji">🛑</span> ParkControl
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est inutile ?</div>
-                        <div class="reason-content">
-                            Force les cœurs du processeur à rester actifs en permanence, mais n'apporte aucun gain de performances pour un usage classique.
+                        <div class="alternative">
+                            Alternative : Activer le Mode Jeu de Windows dans les paramètres
                         </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est risqué ?</div>
-                        <div class="reason-content">
-                            • Augmente la consommation d'énergie et la chauffe<br>
-                            • Peut réduire la durée de vie du CPU
-                        </div>
-                    </div>
-                    <div class="alternative">
-                        Alternative : Utiliser les profils d'alimentation Windows
-                    </div>
-                </div>
-
-                <div class="software-item">
-                    <div class="software-name">
-                        <span class="emoji">🛑</span> TCP Optimizer / DNS Jumper
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est inutile ?</div>
-                        <div class="reason-content">
-                            Windows ajuste déjà automatiquement les paramètres réseau et TCP/IP. Modifier manuellement son DNS dans Windows est plus simple et sécurisé.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est risqué ?</div>
-                        <div class="reason-content">
-                            • Peut causer de l'instabilité réseau<br>
-                            • Peut exposer à des DNS non fiables<br>
-                            • Peut augmenter la latence
-                        </div>
-                    </div>
-                    <div class="alternative">
-                        Alternative : Changer manuellement les DNS (Cloudflare 1.1.1.1, Google 8.8.8.8)
                     </div>
                 </div>
             </div>
 
-            <div class="category fade-in" id="security">
+            <!-- Security -->
+            <div class="category fade-in">
                 <div class="category-title">
-                    <span class="emoji">🔒</span> Sécurité et Pilotes à Éviter
+                    <span>🔒</span> Sécurité et Pilotes à Éviter
                 </div>
 
                 <div class="software-item">
                     <div class="software-name">
-                        <span class="emoji">🛑</span> Avast, Norton & Antivirus Tiers
+                        <span>🛑</span> Avast, Norton & Antivirus Tiers
                     </div>
                     <div class="reason-section">
                         <div class="reason-title">Pourquoi c'est problématique ?</div>
@@ -1170,7 +777,7 @@
 
                 <div class="software-item">
                     <div class="software-name">
-                        <span class="emoji">🛑</span> TousLesDrivers / DriversCloud / DriverBooster
+                        <span>🛑</span> TousLesDrivers / DriversCloud / DriverBooster
                     </div>
                     <div class="reason-section">
                         <div class="reason-title">Pourquoi c'est risqué ?</div>
@@ -1184,15 +791,16 @@
                 </div>
             </div>
 
-            <div class="category fade-in" id="gaming">
+            <!-- Gaming -->
+            <div class="category fade-in">
                 <div class="category-title">
-                    <span class="emoji">🎮</span> Logiciels de Gestion Gourmands
+                    <span>🎮</span> Logiciels de Gestion Gourmands
                 </div>
 
                 <div class="grid">
                     <div class="software-item">
                         <div class="software-name">
-                            <span class="emoji">🛑</span> Corsair iCUE
+                            <span>🛑</span> Corsair iCUE
                         </div>
                         <div class="reason-content">
                             Très exigeant en ressources, souvent sujet à des bugs, ralentit le système et engendre des conflits RGB.
@@ -1204,7 +812,7 @@
 
                     <div class="software-item">
                         <div class="software-name">
-                            <span class="emoji">🛑</span> Razer Cortex
+                            <span>🛑</span> Razer Cortex
                         </div>
                         <div class="reason-content">
                             Les "boosts" de performance sont insignifiants. Windows gère déjà très bien l'allocation des ressources.
@@ -1215,323 +823,36 @@
                     </div>
                 </div>
             </div>
-
-            <div class="conclusion fade-in" id="conclusion">
-                <h2><span class="emoji">✨</span> Windows Sait Déjà Tout Faire</h2>
-                <p>Ces logiciels promettent des améliorations de performances, mais Windows gère déjà ces aspects de manière intelligente. La plupart du temps, ces outils apportent plus de problèmes que de bénéfices. Faites confiance aux outils intégrés de Microsoft et aux solutions officielles des fabricants.</p>
-            </div>
         </div>
-    </main>
+    </section>
+
+    <div class="container">
+        <!-- Conclusion -->
+        <div class="conclusion fade-in">
+            <h2><span>✨</span> Windows Sait Déjà Tout Faire</h2>
+            <p>Ces logiciels promettent des améliorations de performances, mais Windows gère déjà ces aspects de manière intelligente. La plupart du temps, ces outils apportent plus de problèmes que de bénéfices. Faites confiance aux outils intégrés de Microsoft et aux solutions officielles des fabricants.</p>
+        </div>
+    </div>
 
     <script>
-        // Configuration
-        const CONFIG = {
-            animationDuration: 400,
-            scrollThreshold: 0.15,
-            debounceDelay: 100,
-            particleCount: 15,
-            starCount: 40
-        };
-
-        // Utilitaire debounce
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Générateur d'effets de background
-        class BackgroundEffects {
-            constructor() {
-                this.stars = document.querySelector('.stars');
-                this.particles = document.querySelector('.floating-particles');
-                this.init();
-            }
-
-            init() {
-                this.createStars();
-                this.createParticles();
-            }
-
-            createStars() {
-                for (let i = 0; i < CONFIG.starCount; i++) {
-                    const star = document.createElement('div');
-                    star.className = 'star';
-                    star.style.left = Math.random() * 100 + '%';
-                    star.style.top = Math.random() * 100 + '%';
-                    star.style.width = (Math.random() * 3 + 1) + 'px';
-                    star.style.height = star.style.width;
-                    star.style.animationDelay = Math.random() * 3 + 's';
-                    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    this.stars.appendChild(star);
+        // Animation des éléments au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
-            }
+            });
+        }, { threshold: 0.1 });
 
-            createParticles() {
-                for (let i = 0; i < CONFIG.particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.top = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 15 + 's';
-                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                    this.particles.appendChild(particle);
-                }
-            }
-        }
+        document.querySelectorAll('.fade-in').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
 
-        // Gestion du menu mobile
-        class MobileMenu {
-            constructor() {
-                this.menuToggle = document.getElementById('menuToggle');
-                this.navMenu = document.getElementById('navMenu');
-                this.menuOverlay = document.getElementById('menuOverlay');
-                this.isOpen = false;
-                
-                this.init();
-            }
-
-            init() {
-                this.menuToggle?.addEventListener('click', () => this.toggle());
-                this.menuOverlay?.addEventListener('click', () => this.close());
-                
-                // Fermer au clic sur un lien
-                this.navMenu?.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        setTimeout(() => this.close(), 150);
-                    });
-                });
-
-                // Fermer avec Escape
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && this.isOpen) {
-                        this.close();
-                    }
-                });
-
-                // Gestion responsive
-                window.addEventListener('resize', debounce(() => {
-                    if (window.innerWidth > 768 && this.isOpen) {
-                        this.close();
-                    }
-                }, 100));
-            }
-
-            toggle() {
-                this.isOpen ? this.close() : this.open();
-            }
-
-            open() {
-                this.menuToggle?.classList.add('active');
-                this.navMenu?.classList.add('active');
-                this.menuOverlay?.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                this.isOpen = true;
-            }
-
-            close() {
-                this.menuToggle?.classList.remove('active');
-                this.navMenu?.classList.remove('active');
-                this.menuOverlay?.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                this.isOpen = false;
-            }
-        }
-
-        // Animations au scroll
-        class ScrollAnimations {
-            constructor() {
-                this.observer = new IntersectionObserver(
-                    this.handleIntersection.bind(this),
-                    {
-                        threshold: CONFIG.scrollThreshold,
-                        rootMargin: '0px 0px -80px 0px'
-                    }
-                );
-                
-                this.init();
-            }
-
-            init() {
-                const elements = [
-                    ...document.querySelectorAll('.category'),
-                    ...document.querySelectorAll('.warning-box'),
-                    ...document.querySelectorAll('.friends-section'),
-                    ...document.querySelectorAll('.main-header'),
-                    ...document.querySelectorAll('.conclusion'),
-                    ...document.querySelectorAll('.fade-in')
-                ];
-
-                elements.forEach(element => {
-                    this.observer.observe(element);
-                });
-            }
-
-            handleIntersection(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                        this.observer.unobserve(entry.target);
-                    }
-                });
-            }
-        }
-
-        // Smooth scroll pour les liens internes
-        class SmoothScroll {
-            constructor() {
-                this.init();
-            }
-
-            init() {
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const target = document.querySelector(anchor.getAttribute('href'));
-                        if (target) {
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    });
-                });
-            }
-        }
-
-        // Gestion du header
-        class HeaderManager {
-            constructor() {
-                this.header = document.querySelector('.header');
-                this.lastScrollY = window.scrollY;
-                this.init();
-            }
-
-            init() {
-                window.addEventListener('scroll', 
-                    debounce(this.handleScroll.bind(this), CONFIG.debounceDelay),
-                    { passive: true }
-                );
-            }
-
-            handleScroll() {
-                const currentScrollY = window.scrollY;
-                
-                if (currentScrollY > 100) {
-                    this.header.style.background = 'rgba(10, 10, 10, 0.98)';
-                    this.header.style.backdropFilter = 'blur(40px) saturate(200%)';
-                } else {
-                    this.header.style.background = 'rgba(10, 10, 10, 0.95)';
-                    this.header.style.backdropFilter = 'blur(30px) saturate(200%)';
-                }
-
-                this.lastScrollY = currentScrollY;
-            }
-        }
-
-        // Effets d'interaction
-        class InteractionEffects {
-            constructor() {
-                this.init();
-            }
-
-            init() {
-                this.setupHoverEffects();
-                this.setupParallax();
-            }
-
-            setupHoverEffects() {
-                // Effet magnétique sur les cartes
-                document.querySelectorAll('.category').forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left - rect.width / 2;
-                        const y = e.clientY - rect.top - rect.height / 2;
-                        
-                        card.style.transform = `translateY(-5px) rotateX(${y * 0.01}deg) rotateY(${x * 0.01}deg)`;
-                    });
-
-                    card.addEventListener('mouseleave', () => {
-                        card.style.transform = '';
-                    });
-                });
-            }
-
-            setupParallax() {
-                window.addEventListener('mousemove', debounce((e) => {
-                    const mouseX = e.clientX / window.innerWidth;
-                    const mouseY = e.clientY / window.innerHeight;
-                    
-                    // Parallax des orbes
-                    document.querySelectorAll('.orb').forEach((orb, index) => {
-                        const speed = (index + 1) * 0.5;
-                        const x = (mouseX - 0.5) * speed * 20;
-                        const y = (mouseY - 0.5) * speed * 20;
-                        orb.style.transform = `translate(${x}px, ${y}px)`;
-                    });
-                }, 50));
-            }
-        }
-
-        // Initialisation de l'application
-        class App {
-            constructor() {
-                this.components = {};
-                this.init();
-            }
-
-            init() {
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', () => {
-                        this.initializeComponents();
-                    });
-                } else {
-                    this.initializeComponents();
-                }
-            }
-
-            initializeComponents() {
-                try {
-                    this.components.backgroundEffects = new BackgroundEffects();
-                    this.components.mobileMenu = new MobileMenu();
-                    this.components.scrollAnimations = new ScrollAnimations();
-                    this.components.smoothScroll = new SmoothScroll();
-                    this.components.headerManager = new HeaderManager();
-                    this.components.interactionEffects = new InteractionEffects();
-                    
-                    // Animation d'entrée
-                    document.body.style.opacity = '1';
-                    
-                    console.log('🚀 Atlas Corporation - Logiciels Foireux chargée!');
-                    
-                } catch (error) {
-                    console.error('❌ Erreur lors de l\'initialisation:', error);
-                }
-            }
-        }
-
-        // Démarrer l'application
-        new App();
-
-        // Message de bienvenue
-        console.log(`
-        ╔═══════════════════════════════════════╗
-        ║    ATLAS CORPORATION - SÉCURITÉ       ║
-        ║      Guide des Logiciels Foireux      ║
-        ╚═══════════════════════════════════════╝
-        
-        🛡️ Protection contre les faux outils
-        🎨 Design moderne et interactif
-        🚀 Performance optimisée
-        📱 Interface responsive
-        `);
+        console.log('🚀 Logiciels Foireux - Page chargée avec style Landing Page Atlas Corporation!');
     </script>
 </body>
 </html>
