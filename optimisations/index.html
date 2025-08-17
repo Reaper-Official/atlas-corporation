@@ -3,180 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "segl6n2z7e");
-    </script>
     <title>⚠️ Optimisations Avancées : Entre Mythe et Réalité - Atlas Corporation</title>
+    <meta name="description" content="Guide critique des optimisations PC : découvrez pourquoi ces tweaks sont souvent dangereux, inutiles ou obsolètes.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* === VARIABLES CSS === */
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-card: #1e1e1e;
-            --accent-orange: #ff6b35;
-            --accent-yellow: #ffb84d;
-            --accent-cyan: #00f5ff;
-            --accent-magenta: #ff00f5;
-            --accent-blue: #0055ff;
-            --accent-red: #ff0040;
-            --accent-purple: #8b5cf6;
-            --accent-green: #10b981;
-            --accent-pink: #f472b6;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --text-muted: #888888;
-            --border: #333333;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --shadow: rgba(0, 0, 0, 0.3);
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            /* Colors */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --accent-light: #fcd34d;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
             
-            /* Danger levels */
-            --danger-max: #ff0000;
-            --danger-high: #ff3333;
-            --danger-medium: #ff6600;
-            --danger-low: #ffaa00;
-            --danger-no: #10b981;
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Layout */
+            --header-height: 64px;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* === RESET === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(ellipse at top, #1a1a2e 0%, #16213e 25%, #0f0f0f 100%);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* === BACKGROUND EFFECTS === */
-        .bg-effects {
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23fcd34d" opacity="0.1"/><circle cx="75" cy="75" r="0.5" fill="%23f59e0b" opacity="0.1"/><circle cx="50" cy="10" r="0.8" fill="%23d97706" opacity="0.05"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
             pointer-events: none;
             z-index: -1;
-            overflow: hidden;
         }
 
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-        }
-
-        .star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle 3s ease-in-out infinite;
-        }
-
-        .floating-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
-            border-radius: 50%;
-            animation: float 15s ease-in-out infinite;
-            opacity: 0.6;
-        }
-
-        .gradient-orbs {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.3;
-            animation: morphing 20s ease-in-out infinite;
-        }
-
-        .orb:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .orb:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
-            top: 60%;
-            right: 15%;
-            animation-delay: -7s;
-        }
-
-        .orb:nth-child(3) {
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(45deg, var(--accent-magenta), var(--accent-purple));
-            bottom: 20%;
-            left: 20%;
-            animation-delay: -14s;
-        }
-
-        /* === HEADER === */
+        /* Header */
         .header {
             position: sticky;
             top: 0;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(30px) saturate(200%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--gray-200);
             z-index: 1000;
-            padding: 1rem 0;
             transition: var(--transition);
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 107, 53, 0.1) 50%, 
-                transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .header:hover::before {
-            opacity: 1;
         }
 
         .nav {
@@ -185,1731 +107,888 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 1rem 2rem;
+            height: var(--header-height);
         }
 
         .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: var(--accent-orange);
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            position: relative;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--gray-900);
+            font-weight: 800;
+            font-size: 1.25rem;
             transition: var(--transition);
-        }
-
-        .logo::before {
-            content: "⚡";
-            font-size: 1.8rem;
-            animation: energyPulse 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px var(--accent-orange));
-            display: inline-block;
-            transform-origin: center;
         }
 
         .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 20px var(--accent-orange);
+            color: var(--accent);
+            transform: scale(1.02);
         }
 
-        .menu-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 14px;
-            cursor: pointer;
-            color: var(--text-primary);
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.75rem;
             display: flex;
-            flex-direction: column;
-            gap: 4px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
         }
 
-        .menu-toggle:hover {
-            background: rgba(255, 107, 53, 0.2);
-            border-color: var(--accent-orange);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
-        }
-
-        .menu-line {
-            width: 22px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--text-primary), var(--accent-orange));
-            border-radius: 2px;
-            transition: all 0.4s var(--elastic);
-        }
-
-        .menu-toggle.active .menu-line:nth-child(1) { 
-            transform: rotate(45deg) translate(6px, 6px); 
-            background: var(--accent-orange);
-        }
-        .menu-toggle.active .menu-line:nth-child(2) { 
-            opacity: 0; 
-            transform: scale(0) rotate(180deg); 
-        }
-        .menu-toggle.active .menu-line:nth-child(3) { 
-            transform: rotate(-45deg) translate(8px, -7px); 
-            background: var(--accent-orange);
-        }
-
-        /* === NAVIGATION MENU === */
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: min(350px, 80vw);
-            height: 100vh;
-            background: linear-gradient(135deg, 
-                rgba(30, 30, 30, 0.95), 
-                rgba(40, 40, 40, 0.95));
-            backdrop-filter: blur(30px);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            transition: right 0.5s var(--elastic);
-            z-index: 999;
-            overflow-y: auto;
-            box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
-            padding: 100px 20px 40px;
-        }
-
-        .nav-menu.active {
-            right: 0;
-        }
-
-        .nav-item {
-            display: block;
-            color: var(--text-primary);
+        .header-cta {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
             text-decoration: none;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            padding: 16px 20px;
-            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.875rem;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 8px;
+            box-shadow: var(--shadow-sm);
         }
 
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 107, 53, 0.1), 
-                transparent);
-            transition: left 0.5s ease;
+        .header-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
-        .nav-item:hover::before {
-            left: 100%;
-        }
-
-        .nav-item:hover {
-            background: rgba(255, 107, 53, 0.1);
-            color: var(--accent-orange);
-            transform: translateX(12px) scale(1.02);
-            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
-        }
-
-        .nav-item.active {
-            background: var(--accent-orange);
-            color: var(--bg-primary);
-            box-shadow: 0 0 12px var(--accent-orange);
-        }
-
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            z-index: 998;
-        }
-
-        .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
+            padding: 0 2rem;
         }
 
-        /* === MAIN HEADER === */
-        .main-header {
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #fffbeb 0%, var(--white) 100%);
             text-align: center;
-            margin: 60px 0;
-            padding: 80px 40px;
-            background: linear-gradient(135deg, 
-                rgba(30, 30, 30, 0.8), 
-                rgba(40, 40, 50, 0.6));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid var(--gray-200);
         }
 
-        .main-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, 
-                var(--accent-orange), 
-                var(--accent-yellow), 
-                var(--accent-cyan), 
-                var(--accent-magenta));
-            background-size: 300% 100%;
-            animation: gradientFlow 3s ease-in-out infinite;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
         }
 
-        .main-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 900;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, 
-                var(--accent-orange), 
-                var(--accent-yellow), 
-                var(--accent-cyan));
-            background-size: 200% 200%;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: titleShimmer 4s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
         }
 
-        .main-description {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            font-weight: 400;
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 2rem;
         }
 
-        /* === WARNING BOX === */
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 3rem 0;
+            background: var(--gray-50);
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .nav-item {
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            transition: var(--transition);
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-item:hover {
+            background: var(--white);
+            color: var(--gray-900);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Warning Box */
         .warning-box {
-            background: linear-gradient(135deg, 
-                rgba(255, 26, 26, 0.2), 
-                rgba(204, 0, 0, 0.15));
-            border: 2px solid var(--danger-max);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 50px 0;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border: 2px solid var(--error);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--error);
         }
 
-        .warning-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 20px,
-                rgba(255, 255, 255, 0.05) 20px,
-                rgba(255, 255, 255, 0.05) 40px
-            );
-            animation: slidePattern 10s linear infinite;
-        }
-
-        .warning-box h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
+        .warning-title {
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 2;
-            color: var(--text-primary);
+            color: var(--error);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .warning-box p {
-            font-size: 1.1rem;
-            position: relative;
-            z-index: 2;
-            font-weight: 500;
-            color: var(--text-primary);
+        .warning-content {
+            color: var(--gray-700);
+            line-height: 1.7;
         }
 
-        .warning-box a {
-            color: var(--accent-cyan);
+        .warning-content a {
+            color: var(--accent);
             text-decoration: none;
             font-weight: 600;
-            transition: var(--transition);
         }
 
-        .warning-box a:hover {
-            color: var(--accent-orange);
-            text-shadow: 0 0 10px var(--accent-orange);
+        .warning-content a:hover {
+            text-decoration: underline;
         }
 
-        /* === CATEGORY SECTIONS === */
+        /* Category Cards */
         .category {
-            margin: 60px 0;
-            background: linear-gradient(135deg, 
-                rgba(30, 30, 30, 0.8), 
-                rgba(40, 40, 50, 0.6));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1.5rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition-slow);
             overflow: hidden;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            transition: var(--transition);
         }
 
         .category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 107, 53, 0.3);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent);
         }
 
         .category-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, 
-                var(--accent-orange), 
-                var(--accent-yellow));
-            color: var(--bg-primary);
-            padding: 25px 35px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
             margin: 0;
-            position: relative;
-            border-bottom: 3px solid var(--accent-red);
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                var(--accent-red), 
-                var(--accent-orange), 
-                var(--accent-yellow));
-        }
-
-        /* === OPTIMIZATION ITEMS === */
+        /* Optimization Items */
         .optimization-item {
-            background: rgba(26, 26, 26, 0.6);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            position: relative;
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
             transition: var(--transition);
         }
 
         .optimization-item:hover {
-            background: rgba(40, 40, 50, 0.8);
-            border-left: 4px solid var(--accent-orange);
+            background: var(--gray-50);
             transform: translateX(10px);
+            border-left: 4px solid var(--accent);
         }
 
         .optimization-item:last-child {
             border-bottom: none;
-            border-radius: 0 0 24px 24px;
         }
 
         .optimization-name {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--accent-orange);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .emoji {
-            font-size: 1.3em;
-            margin-right: 12px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-        }
-
-        /* === DANGER LEVELS === */
+        /* Danger Levels */
         .danger-level {
             display: inline-block;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .danger-level::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.2), 
-                transparent);
-            transition: left 0.6s ease;
-        }
-
-        .danger-level:hover::before {
-            left: 100%;
+            letter-spacing: 0.5px;
         }
 
         .danger-extreme {
-            background: var(--danger-max);
+            background: var(--error);
             color: white;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-            animation: dangerPulse 2s ease-in-out infinite;
         }
 
         .danger-high {
-            background: var(--danger-high);
+            background: #ff6b35;
             color: white;
-            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
         }
 
         .danger-medium {
-            background: var(--danger-medium);
-            color: var(--bg-primary);
-            box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
+            background: var(--warning);
+            color: white;
         }
 
         .danger-low {
-            background: var(--danger-low);
-            color: var(--bg-primary);
-            box-shadow: 0 0 15px rgba(255, 170, 0, 0.4);
+            background: #fbbf24;
+            color: var(--gray-900);
         }
 
         .danger-no {
-            background: var(--danger-no);
+            background: var(--success);
             color: white;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
         }
 
-        /* === REASON SECTIONS === */
+        /* Reason Section */
         .reason-section {
-            margin: 25px 0;
-            background: rgba(0, 0, 0, 0.4);
-            border-left: 4px solid var(--accent-red);
-            border-radius: 0 12px 12px 0;
-            padding: 20px 25px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .reason-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, 
-                var(--accent-red), 
-                var(--accent-orange), 
-                var(--accent-yellow));
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent);
         }
 
         .reason-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--accent-yellow);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
         }
 
         .reason-content {
-            color: var(--text-primary);
+            color: var(--gray-700);
             line-height: 1.7;
-            font-size: 1.05rem;
         }
 
         .reason-content ul {
-            margin: 15px 0;
-            padding-left: 25px;
+            margin: 1rem 0;
+            padding-left: 1.5rem;
         }
 
         .reason-content li {
-            margin-bottom: 8px;
-            position: relative;
+            margin-bottom: 0.5rem;
         }
 
-        .reason-content li::marker {
-            color: var(--accent-orange);
-        }
-
-        /* === REALITY CHECK === */
+        /* Reality Check */
         .reality-check {
-            background: linear-gradient(135deg, 
-                var(--accent-green), 
-                #20b2aa);
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
             color: white;
-            padding: 20px 25px;
-            margin-top: 25px;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
             font-weight: 600;
-            border-left: 4px solid #006400;
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .reality-check::before {
-            content: '💡 ';
-            font-size: 1.3rem;
-            margin-right: 10px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            content: '💡';
+            font-size: 1.25rem;
         }
 
-        /* === COMPARISON TABLE === */
+        /* Comparison Table */
         .comparison-table {
             width: 100%;
-            max-width: 900px;
-            margin: 30px auto;
+            margin: 2rem 0;
             border-collapse: collapse;
-            border-radius: 16px;
+            border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            background: rgba(30, 30, 30, 0.8);
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            background: var(--white);
         }
 
         .comparison-header {
-            background: linear-gradient(135deg, 
-                var(--accent-orange), 
-                var(--accent-yellow));
-            color: var(--bg-primary);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
             text-align: center;
-            padding: 25px;
-            font-size: 1.3rem;
+            padding: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .comparison-row {
             display: flex;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .comparison-promise,
         .comparison-reality {
             flex: 1;
-            padding: 20px;
-            text-align: left;
-            font-size: 1.05rem;
+            padding: 1.5rem;
             font-weight: 500;
-            transition: var(--transition);
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .comparison-promise {
-            background: rgba(190, 44, 18, 0.3);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(239, 68, 68, 0.1);
+            border-right: 1px solid var(--gray-200);
+            color: var(--gray-700);
         }
 
         .comparison-reality {
-            background: rgba(9, 134, 40, 0.3);
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--gray-700);
         }
 
-        .comparison-row:hover .comparison-promise,
-        .comparison-row:hover .comparison-reality {
-            transform: scale(1.02);
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        /* === CONCLUSION === */
+        /* Conclusion */
         .conclusion {
-            background: linear-gradient(135deg, 
-                var(--accent-green), 
-                #228b22);
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
             color: white;
-            padding: 60px 50px;
-            margin: 80px 0;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
             text-align: center;
-            border: 3px solid #006400;
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4);
-        }
-
-        .conclusion::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 30px,
-                rgba(255, 255, 255, 0.05) 30px,
-                rgba(255, 255, 255, 0.05) 60px
-            );
-            animation: slidePattern 15s linear infinite;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-xl);
         }
 
         .conclusion h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 1.5rem;
         }
 
         .conclusion p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            max-width: 900px;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            max-width: 800px;
             margin: 0 auto;
+        }
+
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .summary-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .summary-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .summary-card h3 {
+            color: var(--gray-900);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .summary-card p {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Key Points */
+        .key-points {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .key-points h3 {
+            color: var(--gray-900);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .points-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .points-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-200);
             position: relative;
-            z-index: 2;
-            font-weight: 500;
+            padding-left: 2.5rem;
+            color: var(--gray-700);
         }
 
-        /* === ANIMATIONS === */
-        @keyframes energyPulse {
-            0%, 100% { 
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-                filter: drop-shadow(0 0 15px var(--accent-orange));
-            }
-            50% { 
-                opacity: 0.8;
-                transform: scale(1.2) rotate(180deg);
-                filter: drop-shadow(0 0 30px var(--accent-orange));
-            }
+        .points-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            font-size: 1.125rem;
         }
 
-        @keyframes titleShimmer {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
+        .points-list li:last-child {
+            border-bottom: none;
         }
 
-        @keyframes gradientFlow {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes slidePattern {
-            0% {
-                transform: translateX(-60px);
-            }
-            100% {
-                transform: translateX(60px);
-            }
-        }
-
-        @keyframes dangerPulse {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
-            }
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) translateX(0px) rotate(0deg);
-                opacity: 0.6;
-            }
-            33% {
-                transform: translateY(-20px) translateX(10px) rotate(120deg);
-                opacity: 1;
-            }
-            66% {
-                transform: translateY(10px) translateX(-5px) rotate(240deg);
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes morphing {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-                border-radius: 50%;
-            }
-            33% {
-                transform: scale(1.1) rotate(120deg);
-                border-radius: 30% 70% 60% 40%;
-            }
-            66% {
-                transform: scale(0.9) rotate(240deg);
-                border-radius: 60% 40% 30% 70%;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(40px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        /* === RESPONSIVE === */
+        /* Responsive Design */
         @media (max-width: 768px) {
             .container {
-                padding: 0 15px;
+                padding: 0 1rem;
             }
 
-            .main-header {
-                padding: 50px 25px;
-                margin: 40px 0;
+            .nav {
+                padding: 1rem;
             }
 
-            .main-title {
-                font-size: 2.5rem;
+            .hero {
+                padding: 3rem 0;
             }
 
-            .main-description {
-                font-size: 1.1rem;
+            .nav-menu {
+                flex-direction: column;
+                align-items: stretch;
             }
 
-            .category-title {
-                font-size: 1.5rem;
-                padding: 20px 25px;
+            .nav-item {
+                text-align: center;
             }
 
             .optimization-item {
-                padding: 25px 20px;
+                padding: 1.5rem;
             }
 
-            .optimization-name {
-                font-size: 1.3rem;
-            }
-
-            .warning-box,
-            .conclusion {
-                padding: 30px 20px;
-            }
-
-            .reason-section {
-                padding: 15px 20px;
-            }
-
-            .comparison-table {
-                font-size: 0.9rem;
+            .comparison-row {
+                flex-direction: column;
             }
 
             .comparison-promise,
             .comparison-reality {
-                padding: 15px;
+                border-right: none;
+                border-bottom: 1px solid var(--gray-200);
             }
 
-            .nav-menu {
-                width: min(300px, 85vw);
-                padding: 80px 15px 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-header {
-                padding: 40px 20px;
-            }
-
-            .optimization-item {
-                padding: 20px 15px;
-            }
-
-            .reason-section {
-                padding: 12px 15px;
+            .summary-grid {
+                grid-template-columns: 1fr;
             }
 
             .conclusion {
-                padding: 40px 20px;
+                padding: 2rem 1rem;
             }
-
-            .conclusion h2 {
-                font-size: 1.8rem;
-            }
-
-            .conclusion p {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* === SCROLL BEHAVIOR === */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        section:target {
-            animation: fadeInGlow 1s ease forwards;
-        }
-
-        @keyframes fadeInGlow {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-                box-shadow: none;
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-                box-shadow: 0 0 20px rgba(255, 136, 0, 0.3);
-            }
-        }
-
-        /* === ACCESSIBILITY === */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* === FOCUS STYLES === */
-        body.keyboard-navigation *:focus {
-            outline: 2px solid var(--accent-orange);
-            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <!-- Background Effects -->
-    <div class="bg-effects">
-        <div class="stars"></div>
-        <div class="floating-particles"></div>
-        <div class="gradient-orbs">
-            <div class="orb"></div>
-            <div class="orb"></div>
-            <div class="orb"></div>
-        </div>
-    </div>
-
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <a href="https://atlas-corporation.fr" class="logo">Atlas Corporation</a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menu de navigation">
-                <div class="menu-line"></div>
-                <div class="menu-line"></div>
-                <div class="menu-line"></div>
-            </button>
+            <a href="https://atlas-corporation.fr" class="logo">
+                <div class="logo-icon">⚡</div>
+                <span>Atlas Corporation</span>
+            </a>
+            <a href="https://atlas-corporation.fr" class="header-cta">
+                🏠 Site Principal
+            </a>
         </nav>
     </header>
 
-    <!-- Menu Mobile -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-    <div class="nav-menu" id="navMenu">
-        <a href="#start" class="nav-item">Présentation</a>
-        <a href="#technical" class="nav-item">Technique</a>
-        <a href="#security" class="nav-item">Sécurité</a>
-        <a href="#marketing" class="nav-item">Marketing</a>
-        <a href="#hardware" class="nav-item">Matériel</a>
-        <a href="#system" class="nav-item">Système</a>
-        <a href="#network" class="nav-item">Réseau</a>
-        <a href="#performance" class="nav-item">Performance</a>
-        <a href="#snite" class="nav-item">Optis. Payantes</a>
-        <a href="#fin" class="nav-item">Vérité</a>
-    </div>
-
-    <!-- Contenu Principal -->
-    <main>
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <div class="main-header fade-in" id="start">
-                <h1 class="main-title">⚠️ Optimisations Avancées : Mythe vs Réalité</h1>
-                <p class="main-description">
-                    Découvrez pourquoi ces optimisations "avancées" sont souvent dangereuses, inutiles ou obsolètes. 
-                    La vérité technique derrière les tweaks populaires.
-                </p>
+            <div class="hero-badge">
+                
+                <span>Guide technique critique</span>
+            </div>
+			<div>
+                
+                <span><img src="https://atlas-corporation.fr/favicon.ico" alt="Atlas Corporation"></span>
             </div>
 
-            <div class="warning-box fade-in">
-                <h2><span class="emoji">🧠</span> La Réalité Technique</h2>
+            <h1 class="hero-title">
+                Optimisations <span class="highlight">Avancées</span> : Mythe vs Réalité
+            </h1>
+
+            <p class="hero-description">
+                Découvrez pourquoi ces optimisations "avancées" sont souvent dangereuses, inutiles ou obsolètes. 
+                La vérité technique derrière les tweaks populaires.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Navigation Menu -->
+        <div class="nav-menu">
+            <a href="#technical" class="nav-item">Raisons Techniques</a>
+            <a href="#security" class="nav-item">Sécurité</a>
+            <a href="#marketing" class="nav-item">Marketing Trompeur</a>
+            <a href="#hardware" class="nav-item">Hardware Dangereux</a>
+            <a href="#system" class="nav-item">Système Inutile</a>
+            <a href="#network" class="nav-item">Réseau Dangereux</a>
+            <a href="#performance" class="nav-item">Mythes Performance</a>
+            <a href="#paid" class="nav-item">Arnaques Payantes</a>
+        </div>
+
+        <!-- Warning Boxes -->
+        <div class="warning-box">
+            <h2 class="warning-title">
+                <span>🧠</span>
+                La Réalité Technique
+            </h2>
+            <div class="warning-content">
                 <p><strong>Tu ne peux pas défier la physique.</strong> Les CPUs modernes, Windows et les pilotes sont déjà optimisés par des équipes d'ingénieurs. Ces "tweaks miracles" relèvent souvent du <strong>placebo technique</strong> ou peuvent carrément <strong>détruire la stabilité</strong> de ton système.</p>
             </div>
+        </div>
 
-            <div class="warning-box fade-in">
-                <h2><span class="emoji">🧠</span> Les Erreurs à ne pas faire :</h2>
-                <p><strong>Voici des diagnostiques mettant en avant les erreurs à ne pas faire</strong><br> 
-                    <a href="https://userdiag.com/id/hZNiiWJ0S6" target="_blank">Diagnostique 1</a><br> 
-                    <a href="https://userdiag.com/id/KMxJabakiu" target="_blank">Diagnostique 2</a><br> 
+        <div class="warning-box">
+            <h2 class="warning-title">
+                <span>🧠</span>
+                Les Erreurs à ne pas faire
+            </h2>
+            <div class="warning-content">
+                <p><strong>Voici des diagnostiques mettant en avant les erreurs à ne pas faire :</strong></p>
+                <p>
+                    <a href="https://userdiag.com/id/hZNiiWJ0S6" target="_blank">Diagnostique 1</a> | 
+                    <a href="https://userdiag.com/id/KMxJabakiu" target="_blank">Diagnostique 2</a> | 
                     <a href="https://userdiag.com/id/W9SMCBUkeH" target="_blank">Diagnostique 3</a>
                 </p>
             </div>
+        </div>
 
-            <div class="category fade-in" id="technical">
-                <div class="category-title">
-                    <span class="emoji">🔧</span> Raisons Techniques : Pourquoi Ces Optimisations Sont Inutiles
+        <!-- Technical Reasons -->
+        <div class="category" id="technical">
+            <h2 class="category-title">
+                <span>🔧</span>
+                Raisons Techniques : Pourquoi Ces Optimisations Sont Inutiles
+            </h2>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span>🖥️</span>
+                    Windows Est Déjà Fortement Optimisé
                 </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🖥️</span> Windows Est Déjà Fortement Optimisé
-                    </div>
-                    <div class="danger-level danger-low">Obsolète</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est déjà fait ?</div>
-                        <div class="reason-content">
-                            Windows (surtout les versions récentes comme 10/11) est conçu pour s'adapter à une large gamme de matériels et cas d'usage. Microsoft travaille avec les fabricants (Intel, AMD, NVIDIA...) pour que l'OS utilise automatiquement les bons réglages et pilotes. Modifier ces paramètres revient souvent à casser volontairement une configuration stable.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Microsoft optimise Windows depuis des décennies avec des milliers d'ingénieurs
+                <div class="danger-level danger-low">Obsolète</div>
+                <div class="reason-section">
+                    <div class="reason-title">Pourquoi c'est déjà fait ?</div>
+                    <div class="reason-content">
+                        Windows (surtout les versions récentes comme 10/11) est conçu pour s'adapter à une large gamme de matériels et cas d'usage. Microsoft travaille avec les fabricants (Intel, AMD, NVIDIA...) pour que l'OS utilise automatiquement les bons réglages et pilotes. Modifier ces paramètres revient souvent à casser volontairement une configuration stable.
                     </div>
                 </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">📊</span> Effets Placebo et Gains Insignifiants
-                    </div>
-                    <div class="danger-level danger-medium">Trompeur</div>
-                    <div class="reason-section">
-                        <div class="reason-title">La Vérité Sur Les Gains</div>
-                        <div class="reason-content">
-                            Les "gains" de 8-10% sont souvent mesurés dans des benchmarks synthétiques, pas dans des situations réelles. En usage réel (jeux, bureautique, montage), les gains sont souvent indétectables à l'œil nu. De nombreux tests indépendants ont montré que ces optimisations donnent moins de 1 à 2% de gain réel, souvent avec des effets secondaires négatifs.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Gains réels quasi-inexistants, risques bien réels
-                    </div>
+                <div class="reality-check">
+                    Microsoft optimise Windows depuis des décennies avec des milliers d'ingénieurs
                 </div>
             </div>
 
-            <div class="category fade-in" id="security">
-                <div class="category-title">
-                    <span class="emoji">🛡️</span> Raisons de Sécurité et de Fiabilité
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span>📊</span>
+                    Effets Placebo et Gains Insignifiants
                 </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">💀</span> Scripts Obscurs = Danger Absolu
-                    </div>
-                    <div class="danger-level danger-extreme">Critique</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Les Vrais Risques</div>
-                        <div class="reason-content">
-                            Vous exécutez des scripts faits par un inconnu avec des droits d'administrateur sur votre machine. Ces scripts peuvent contenir :
-                            <ul>
-                                <li>des backdoors (portes dérobées)</li>
-                                <li>des logiciels de surveillance (keyloggers, miners)</li>
-                                <li>des modifications profondes du système non détectables facilement</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Vous donnez un accès total à votre système à des inconnus
+                <div class="danger-level danger-medium">Trompeur</div>
+                <div class="reason-section">
+                    <div class="reason-title">La Vérité Sur Les Gains</div>
+                    <div class="reason-content">
+                        Les "gains" de 8-10% sont souvent mesurés dans des benchmarks synthétiques, pas dans des situations réelles. En usage réel (jeux, bureautique, montage), les gains sont souvent indétectables à l'œil nu. De nombreux tests indépendants ont montré que ces optimisations donnent moins de 1 à 2% de gain réel, souvent avec des effets secondaires négatifs.
                     </div>
                 </div>
+                <div class="reality-check">
+                    Gains réels quasi-inexistants, risques bien réels
+                </div>
+            </div>
+        </div>
 
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🔥</span> Modifications BIOS = Haut Risque
-                    </div>
-                    <div class="danger-level danger-extreme">Terrain Miné</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est critique ?</div>
-                        <div class="reason-content">
-                            Le BIOS gère l'allumage et la stabilité de l'ensemble du PC. Mal configurer le BIOS peut : rendre le PC instable, l'empêcher de démarrer (brick), annuler la garantie constructeur, nécessiter une réinitialisation matérielle (clear CMOS).
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Un mauvais réglage BIOS peut transformer votre PC en brique
+        <!-- Security -->
+        <div class="category" id="security">
+            <h2 class="category-title">
+                <span>🛡️</span>
+                Raisons de Sécurité et de Fiabilité
+            </h2>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span>💀</span>
+                    Scripts Obscurs = Danger Absolu
+                </div>
+                <div class="danger-level danger-extreme">Critique</div>
+                <div class="reason-section">
+                    <div class="reason-title">Les Vrais Risques</div>
+                    <div class="reason-content">
+                        Vous exécutez des scripts faits par un inconnu avec des droits d'administrateur sur votre machine. Ces scripts peuvent contenir :
+                        <ul>
+                            <li>des backdoors (portes dérobées)</li>
+                            <li>des logiciels de surveillance (keyloggers, miners)</li>
+                            <li>des modifications profondes du système non détectables facilement</li>
+                        </ul>
                     </div>
                 </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">💣</span> Incompatibilités à Venir
-                    </div>
-                    <div class="danger-level danger-high">Problématique</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Conséquences à Long Terme</div>
-                        <div class="reason-content">
-                            Après ce genre d'optimisation : les mises à jour Windows peuvent échouer, certains logiciels (antivirus, pilotes GPU) peuvent buguer, vous risquez de devoir réinstaller complètement Windows pour revenir en arrière.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Ces modifications cassent la compatibilité future
-                    </div>
+                <div class="reality-check">
+                    Vous donnez un accès total à votre système à des inconnus
                 </div>
             </div>
 
-            <div class="category fade-in" id="marketing">
-                <div class="category-title">
-                    <span class="emoji">🏬</span> Marketing Trompeur
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span>🔥</span>
+                    Modifications BIOS = Haut Risque
+                </div>
+                <div class="danger-level danger-extreme">Terrain Miné</div>
+                <div class="reason-section">
+                    <div class="reason-title">Pourquoi c'est critique ?</div>
+                    <div class="reason-content">
+                        Le BIOS gère l'allumage et la stabilité de l'ensemble du PC. Mal configurer le BIOS peut : rendre le PC instable, l'empêcher de démarrer (brick), annuler la garantie constructeur, nécessiter une réinitialisation matérielle (clear CMOS).
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Un mauvais réglage BIOS peut transformer votre PC en brique
+                </div>
+            </div>
+        </div>
+
+        <!-- Marketing -->
+        <div class="category" id="marketing">
+            <h2 class="category-title">
+                <span>🏬</span>
+                Marketing Trompeur
+            </h2>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span>🧪</span>
+                    Benchmark = Outil Manipulable
+                </div>
+                <div class="danger-level danger-extreme">Illusions Marketing</div>
+                <div class="reason-section">
+                    <div class="reason-title">Pourquoi faire attention aux faux gains ?</div>
+                    <div class="reason-content">
+                        Un score 3DMark ou UserBenchmark peut facilement être gonflé artificiellement en arrêtant les processus en arrière-plan, baissant la résolution, ou changeant la priorité des tâches. Cela ne reflète aucune amélioration réelle de votre expérience utilisateur.
+                    </div>
+                </div>
+                <div class="reality-check">
+                    Les chiffres ne veulent rien dire sans contexte réel
                 </div>
 
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🧪</span> Marketing Manipulateur : Benchmark = Outil Manipulable
+                <div class="comparison-table">
+                    <div class="comparison-header">
+                        Ce qu'ils promettent VS Ce qui se passe en réalité
                     </div>
-                    <div class="danger-level danger-extreme">Illusions Marketing</div>
-
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi faire attention aux faux gains ?</div>
-                        <div class="reason-content">
-                            Un score 3DMark ou UserBenchmark peut facilement être gonflé artificiellement en arrêtant les processus en arrière-plan, baissant la résolution, ou changeant la priorité des tâches. Cela ne reflète aucune amélioration réelle de votre expérience utilisateur. Les optimisations génériques sont vendues comme "sur mesure" alors que l'auteur utilise probablement des réglages génériques recyclés.
-                        </div>
+                    <div class="comparison-row">
+                        <div class="comparison-promise">🎯 Gain de FPS massif</div>
+                        <div class="comparison-reality">📉 1-2 FPS au mieux</div>
                     </div>
-
-                    <div class="reality-check">
-                        Réalité : Les chiffres ne veulent rien dire sans contexte réel
+                    <div class="comparison-row">
+                        <div class="comparison-promise">🛡️ Stabilité absolue</div>
+                        <div class="comparison-reality">💥 Bugs, instabilité fréquente</div>
                     </div>
-
-                    <div class="comparison-table fade-in">
-                        <div class="comparison-header">
-                            Ce qu'ils promettent VS Ce qui se passe en réalité
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">🎯 Gain de FPS massif</div>
-                            <div class="comparison-reality">📉 1-2 FPS au mieux</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">🛡️ Stabilité absolue</div>
-                            <div class="comparison-reality">💥 Bugs, instabilité fréquente</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">🎯 Réglages sur mesure</div>
-                            <div class="comparison-reality">🔄 Scripts génériques recyclés</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">↩️ Réversible & sûr</div>
-                            <div class="comparison-reality">⚠️ Très difficile à annuler, risqué</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="comparison-promise">💰 Économie de matériel</div>
-                            <div class="comparison-reality">❌ Faux : le hardware limite les perfs</div>
-                        </div>
+                    <div class="comparison-row">
+                        <div class="comparison-promise">🎯 Réglages sur mesure</div>
+                        <div class="comparison-reality">🔄 Scripts génériques recyclés</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-promise">↩️ Réversible & sûr</div>
+                        <div class="comparison-reality">⚠️ Très difficile à annuler, risqué</div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="category fade-in" id="hardware">
-                <div class="category-title">
-                    <span class="emoji">🔧</span> Optimisations Matériel Dangereuses
+        <!-- Paid Optimizations -->
+        <div class="category" id="paid">
+            <h2 class="category-title">
+                <span>💸</span>
+                Optimisations Payantes : Arnaque Premium
+            </h2>
+
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span>🎯</span>
+                    Optimisation Standard – Peu Cher
                 </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🧮</span> Optimisation BIOS & Timings RAM
-                    </div>
-                    <div class="danger-level danger-extreme">Terrain Miné</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est très technique ?</div>
-                        <div class="reason-content">
-                            Le BIOS contrôle tous les paramètres bas niveau de la carte mère. Optimiser les timings RAM peut améliorer les perfs, mais si tu n'as pas une bonne RAM ou si tu comprends rien aux valeurs primaires/secondaires/tertiaires, tu vas surtout rendre ta machine instable. Ce n'est pas un terrain de jeu pour amateur.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Nécessite une compréhension approfondie de l'architecture système
+                <div class="danger-level danger-high">Arnaque Totale</div>
+                <div class="reason-section">
+                    <div class="reason-title">📂 Ce que ça veut dire vraiment</div>
+                    <div class="reason-content">
+                        <p><strong>Formatage complet + tutoriel :</strong> Ils te font réinstaller Windows toi-même, avec un tuto, puis t'aident vaguement en cas de galère. Tu payes pour... faire le travail toi-même ?</p>
+                        <p><strong>Optimisation de Windows :</strong> Vague et flou. Probablement des tweaks du registre, services désactivés, modifications du plan d'alimentation.</p>
+                        <p><strong>Réglages NVIDIA :</strong> C'est juste cocher/décocher des options déjà publiques. Ça prend 2 minutes.</p>
                     </div>
                 </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">⚡</span> Overclocking / Undervolting (OC/UV)
-                    </div>
-                    <div class="danger-level danger-high">Risque Élevé</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est risqué ?</div>
-                        <div class="reason-content">
-                            L'overclocking peut apporter des gains, mais s'il est mal maîtrisé (fréquences trop hautes, tensions mal réglées), ça crée de l'instabilité ou endommage le matériel. L'undervolting demande aussi de tester soigneusement. Dans 90% des cas, les gens copient des réglages sans comprendre et foutent tout en l'air.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Seuls les experts devraient s'y aventurer, avec monitoring constant
-                    </div>
-
-                    <div class="danger-level danger-high">Très Risqué</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est dangereux ?</div>
-                        <div class="reason-content">
-                            Ces réglages dépendent fortement du silicium exact, du système de refroidissement, de l'alimentation, etc. Les appliquer sans connaissance précise du matériel peut causer : instabilité, BSOD (blue screen), usure prématurée, pertes de données.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Chaque processeur est unique, impossible à optimiser à distance
-                    </div>
+                <div class="reality-check">
+                    Tu payes 50€ pour faire le travail toi-même avec des risques énormes
                 </div>
             </div>
 
-            <div class="category fade-in" id="system">
-                <div class="category-title">
-                    <span class="emoji">🖥️</span> Optimisations Système Inutiles
+            <div class="optimization-item">
+                <div class="optimization-name">
+                    <span>✅</span>
+                    Ce que tu devrais faire à la place (GRATUITEMENT)
                 </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">💾</span> Optimisation CPU/GPU
-                    </div>
-                    <div class="danger-level danger-low">Redondant</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est déjà fait ?</div>
-                        <div class="reason-content">
-                            Windows, les pilotes NVIDIA/AMD et les CPUs modernes optimisent déjà les performances de manière dynamique. À moins d'un usage extrême (benchmarking, encodage, rendu 3D), tu gagnes peu. Et encore une fois, mal fait = instable.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Les fabricants ont déjà optimisé ces composants
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">💽</span> Optimisation SSD
-                    </div>
-                    <div class="danger-level danger-low">Absurde</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est absurde ?</div>
-                        <div class="reason-content">
-                            Les SSD modernes (NVMe, SATA) ont déjà un firmware optimisé. Croire que tu peux doubler les performances en "tweakant" un réglage Windows, c'est ignorer que le goulot d'étranglement est rarement là. Tu ne vas pas défier la physique ou la norme NVMe 1.4 avec un script PowerShell.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Les SSD sont optimisés au niveau firmware
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">📝</span> Optimisation Registre
-                    </div>
-                    <div class="danger-level danger-extreme">Très Mauvaise Idée</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est dangereux ?</div>
-                        <div class="reason-content">
-                            Modifier le registre sans savoir ce qu'on fait est le moyen le plus rapide de rendre Windows instable, voire inutilisable. C'est un composant critique. Les "tweaks de registre" à la chaîne, trouvés sur Reddit ou YouTube, finissent souvent par casser des fonctions système.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Le registre est le cœur de Windows, ne pas toucher !
+                <div class="danger-level danger-no">Solution Réelle</div>
+                <div class="reason-section">
+                    <div class="reason-title">Les Vraies Solutions</div>
+                    <div class="reason-content">
+                        <ul>
+                            <li><strong>Réinstaller proprement Windows</strong> via l'outil Microsoft ou de Atlas-Corporation</li>
+                            <li><strong>Mettre à jour tous les pilotes</strong> avec les applications des fournisseurs</li>
+                            <li><strong>Installer tes jeux/programmes</strong></li>
+                            <li><strong>Utiliser NVIDIA Control Panel</strong> toi-même (2 min)</li>
+                            <li><strong>Ne touche pas au registre, au kernel, aux IRQ</strong> si tu ne sais pas coder en C</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="category fade-in" id="network">
-                <div class="category-title">
-                    <span class="emoji">🌐</span> Optimisations Réseau Dangereuses
-                </div>
+        <!-- Key Points Summary -->
+        <div class="key-points">
+            <h3>
+                <span>🧠</span>
+                Points Clés à Retenir
+            </h3>
+            <ul class="points-list">
+                <li>Windows est déjà fortement optimisé par Microsoft</li>
+                <li>Les gains réels sont souvent inexistants (1-2%)</li>
+                <li>Les scripts inconnus sont un risque de sécurité majeur</li>
+                <li>Les benchmarks peuvent être facilement manipulés</li>
+                <li>Les optimisations payantes sont souvent des arnaques</li>
+                <li>La physique et la stabilité passent avant les "tweaks"</li>
+                <li>Toujours privilégier les solutions officielles</li>
+            </ul>
+        </div>
 
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">📡</span> Optimisation Paquets TCP
-                    </div>
-                    <div class="danger-level danger-high">Dangereux</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est dangereux ?</div>
-                        <div class="reason-content">
-                            Modifier le comportement de la pile réseau TCP/IP (taille des buffers, Nagle, RWIN, MTU, etc.) sans en comprendre les implications peut dégrader ta connexion. Tu ne vas pas "booster ton ping" comme dans les vidéos TikTok, tu risques juste de rendre certains services inaccessibles.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Windows gère déjà optimalement la pile TCP/IP
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">⚡</span> Optimisation Latence
-                    </div>
-                    <div class="danger-level danger-low">Bullshit Marketing</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est du marketing ?</div>
-                        <div class="reason-content">
-                            Réduire la latence de 1-2 ms (au niveau input ou DPC latency) n'a aucun effet perceptible pour l'utilisateur lambda. C'est pertinent pour un musicien pro qui fait de l'audio en temps réel avec une interface externe. Pas pour jouer à Fortnite…
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Les gains sont imperceptibles pour l'usage normal
-                    </div>
-                </div>
+        <!-- Summary Cards -->
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h3>
+                    <span>🛡️</span>
+                    Sécurité Avant Tout
+                </h3>
+                <p>Ne jamais exécuter de scripts inconnus avec des droits administrateur. Votre sécurité vaut plus que quelques FPS hypothétiques.</p>
             </div>
 
-            <div class="category fade-in" id="performance">
-                <div class="category-title">
-                    <span class="emoji">🎮</span> Mythes de Performance
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">📊</span> Optimisation des 1% Low
-                    </div>
-                    <div class="danger-level danger-low">Abus de Langage</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est un mythe ?</div>
-                        <div class="reason-content">
-                            Le concept de "1% low FPS" est une mesure de la stabilité, pas une chose qu'on "optimise" directement. Tu peux améliorer les perfs globales, mais faire grimper les "1% low" magiquement avec une ligne de commande, c'est juste du mythe.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : C'est une métrique, pas quelque chose qu'on "tweak"
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🎯</span> Stabilité des FPS
-                    </div>
-                    <div class="danger-level danger-medium">Dépendant du Jeu</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est limité ?</div>
-                        <div class="reason-content">
-                            Certains jeux sont mal codés, mal optimisés, ou utilisent des moteurs vieillissants. Aucune optimisation système ne corrigera un moteur Unity ou Unreal Engine mal implémenté. À part attendre des patchs ou limiter les FPS via RTSS, t'as pas beaucoup de leviers.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Le problème vient souvent du jeu, pas du système
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">⚙️</span> Optimisation Kernel & Scheduler
-                    </div>
-                    <div class="danger-level danger-extreme">Terrain Miné</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Pourquoi c'est un terrain miné ?</div>
-                        <div class="reason-content">
-                            Toucher au noyau de Windows (scheduler, priorité des threads, délais d'interruptions) sans être dev système, c'est comme bricoler un moteur de F1 avec une clé à molette rouillée. C'est super risqué, et ça peut dégrader les perfs ou rendre ton OS instable pour zéro gain visible.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Microsoft optimise cela depuis des décennies
-                    </div>
-                </div>
+            <div class="summary-card">
+                <h3>
+                    <span>⚡</span>
+                    Performance Réelle
+                </h3>
+                <p>Pour de vraies améliorations : SSD, RAM supplémentaire, meilleur GPU. Le hardware fait la différence, pas les tweaks logiciels.</p>
             </div>
 
-            <div class="category fade-in" id="snite">
-                <div class="category-title">
-                    <span class="emoji">💸</span> Optimisations Payantes : Arnaque Premium
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🎯</span> Optimisation Standard – Peu Cher
-                    </div>
-                    <div class="danger-level danger-high">Arnaque Totale</div>
-                    <div class="reason-section">
-                        <div class="reason-title">📂 Formatage complet + tutoriel</div>
-                        <div class="reason-content">
-                            <strong>Ce que ça veut dire vraiment :</strong> Ils te font réinstaller Windows toi-même, avec un tuto, puis t'aident vaguement en cas de galère. Tu payes X€ pour… faire le travail toi-même ? Tu peux faire exactement la même chose gratuitement avec l'ISO officiel de Windows et le Media Creation Tool ou <a href="https://atlas-corporation.fr/custom-os/" target="_blank">Windows 11 Personnalisé</a> par Atlas-Corporation.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">⚙️ Optimisation de Windows</div>
-                        <div class="reason-content">
-                            Vague et flou. Probablement des tweaks du registre, services désactivés, modifications du plan d'alimentation... en gros, les mêmes scripts douteux qui circulent sur TikTok. Risque : instabilité, bugs d'interface, problèmes logiciels.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🎮 Réglages avancés du panneau NVIDIA</div>
-                        <div class="reason-content">
-                            LOL. C'est juste cocher/décocher des options déjà publiques, comme activer le mode performance, désactiver la synchro verticale, ou forcer certains paramètres. Ça prend littéralement 2 minutes, sans connaissance technique.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🚀 Overclocking CPU (si applicable)</div>
-                        <div class="reason-content">
-                            <strong>Très risqué fait à distance.</strong> L'overclocking demande des tests de stabilité, de température, de tension… tu ne fais pas ça via Discord en suivant une recette. Si mal fait : plantages, surchauffe, durée de vie réduite du CPU.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Tu payes 50€ pour faire le travail toi-même avec des risques énormes
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">🚀</span> Optimisation Avancée – Plus Cher
-                    </div>
-                    <div class="danger-level danger-extreme">Arnaque Premium</div>
-                    <div class="reason-section">
-                        <div class="reason-title">🤖 Scripts avancés</div>
-                        <div class="reason-content">
-                            Scripts PowerShell/registry basiques, trouvés sur GitHub et appliqués sans adaptation. Si tu n'as pas de problème de base, ces scripts ne servent à rien, voire peuvent empirer ta stabilité.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🛡️ Suivi exclusif avec accompagnement personnalisé</div>
-                        <div class="reason-content">
-                            Tu payes plus, donc tu as un peu plus d'attention. Ça reste une boîte Discord, pas un service pro encadré. Aucun SLA, aucun engagement légal.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🌟 Fonctionnalités supplémentaires</div>
-                        <div class="reason-content">
-                            Encore une fois, aucune précision. "Fonctionnalités", c'est un mot vide pour justifier 30€ de plus.
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🔥 Accès prioritaire aux nouveautés</div>
-                        <div class="reason-content">
-                            Des "nouveautés" de tweaks Windows ? C'est pas une app avec un changelog, c'est une collection de réglages faits à la main. Tu veux la version 1.7 de "désactiver Cortana" ?
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Service Discord avec des conditions abusives et aucune garantie
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">⚠️</span> Conditions Abusives
-                    </div>
-                    <div class="danger-level danger-extreme">Fuite Immédiate</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Les Conditions Réelles</div>
-                        <div class="reason-content">
-                            <ul>
-                                <li>Tu n'as <strong>aucun recours</strong> si ça casse quelque chose</li>
-                                <li>Si tu touches toi-même ton PC après ? <strong>Suivi annulé</strong></li>
-                                <li><strong>Aucun remboursement</strong></li>
-                                <li>Ils peuvent <strong>refuser ton PC</strong> sans justification claire</li>
-                            </ul>
-                            C'est un service qui t'impose des conditions de type "on fait ce qu'on veut, et si ça foire, c'est toi le problème".
-                        </div>
-                    </div>
-                    <div class="reason-section">
-                        <div class="reason-title">🧢 "Optimisations comme les pros / streamers"</div>
-                        <div class="reason-content">
-                            <strong>Mythe marketing.</strong> Les streamers ont des machines puissantes et surtout bien configurées, pas sur-optimisées par des scripts. Ils bossent avec des constructeurs ou des techniciens spécialisés, pas des serveurs Discord.
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Réalité : Ils ne sont pas développeurs, pas certifiés Microsoft, ni experts hardware
-                    </div>
-                </div>
-
-                <div class="optimization-item">
-                    <div class="optimization-name">
-                        <span class="emoji">✅</span> Ce que tu devrais faire à la place (GRATUITEMENT)
-                    </div>
-                    <div class="danger-level danger-no">Solution Réelle</div>
-                    <div class="reason-section">
-                        <div class="reason-title">Les Vraies Solutions</div>
-                        <div class="reason-content">
-                            <ul>
-                                <li><strong>Réinstaller proprement Windows</strong> via l'outil Microsoft ou de Atlas-Corporation</li>
-                                <li><strong>Mettre à jour tous les pilotes</strong> (avec les applications des fournisseurs EX: AMD, Nvidia, Intel, etc ..) et non via des logiciels problématiques <a href="https://atlas-corporation.fr/logiciels-foireux/#security" target="_blank">comme listé ici !</a></li>
-                                <li><strong>Installer tes jeux/programmes</strong></li>
-                                <li><strong>Utiliser NVIDIA Control Panel</strong> toi-même (2 min)</li>
-                                <li><strong>Suivre un vrai guide overclocking</strong> si tu veux tester, mais pas à l'aveugle</li>
-                                <li><strong>Ne touche pas au registre, au kernel, aux IRQ ou aux paquets TCP</strong> si tu ne sais pas coder en C</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="reality-check">
-                        Résumé : Tu paies 50 à 80€ pour réinstaller toi-même Windows, appliquer des tweaks visibles sur tous les forums, te faire overclocker à l'aveugle, utiliser des scripts sans support réel, et risquer bugs, instabilité, pertes de données.
-                    </div>
-                </div>
+            <div class="summary-card">
+                <h3>
+                    <span>💰</span>
+                    Économies Intelligentes
+                </h3>
+                <p>Évitez les services d'optimisation payants. Investissez cet argent dans du vrai matériel qui apportera des gains mesurables.</p>
             </div>
+        </div>
 
-            <div class="conclusion fade-in" id="fin">
-                <h2><span class="emoji">💡</span> La Vérité sur l'Optimisation</h2>
-                <p>Tu veux des perfs ? Mets à jour tes pilotes, prends un bon SSD, ajoute de la RAM, et optimise dans les jeux. Le reste, c'est du théâtre. Ces "optimisations avancées" sont le fruit de la culture du bidouillage aveugle : des scripts trouvés sur des forums obscurs, appliqués sans comprendre. La vérité, c'est que ces réglages sont risqués, inefficaces ou obsolètes.</p>
-            </div>
+        <!-- Conclusion -->
+        <div class="conclusion">
+            <h2>💡 La Vérité sur l'Optimisation</h2>
+            <p>Tu veux des perfs ? Mets à jour tes pilotes, prends un bon SSD, ajoute de la RAM, et optimise dans les jeux. Le reste, c'est du théâtre. Ces "optimisations avancées" sont le fruit de la culture du bidouillage aveugle : des scripts trouvés sur des forums obscurs, appliqués sans comprendre. La vérité, c'est que ces réglages sont risqués, inefficaces ou obsolètes.</p>
         </div>
     </main>
 
     <script>
-        // Configuration
-        const CONFIG = {
-            animationDuration: 400,
-            scrollThreshold: 0.15,
-            debounceDelay: 100,
-            particleCount: 15,
-            starCount: 40
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.backdropFilter = 'blur(30px) saturate(200%)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+            }
+        });
+
+        // Card hover effects
+        document.querySelectorAll('.category, .summary-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        // Utilitaire debounce
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Générateur d'effets de background
-        class BackgroundEffects {
-            constructor() {
-                this.stars = document.querySelector('.stars');
-                this.particles = document.querySelector('.floating-particles');
-                this.init();
-            }
-
-            init() {
-                this.createStars();
-                this.createParticles();
-            }
-
-            createStars() {
-                for (let i = 0; i < CONFIG.starCount; i++) {
-                    const star = document.createElement('div');
-                    star.className = 'star';
-                    star.style.left = Math.random() * 100 + '%';
-                    star.style.top = Math.random() * 100 + '%';
-                    star.style.width = (Math.random() * 3 + 1) + 'px';
-                    star.style.height = star.style.width;
-                    star.style.animationDelay = Math.random() * 3 + 's';
-                    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    this.stars.appendChild(star);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
-            }
+            });
+        }, observerOptions);
 
-            createParticles() {
-                for (let i = 0; i < CONFIG.particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.top = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 15 + 's';
-                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                    this.particles.appendChild(particle);
-                }
-            }
-        }
+        // Apply fade-in animation
+        document.querySelectorAll('.category, .warning-box, .key-points, .summary-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
 
-        // Gestion du menu mobile
-        class MobileMenu {
-            constructor() {
-                this.menuToggle = document.getElementById('menuToggle');
-                this.navMenu = document.getElementById('navMenu');
-                this.menuOverlay = document.getElementById('menuOverlay');
-                this.isOpen = false;
-                
-                this.init();
-            }
-
-            init() {
-                this.menuToggle?.addEventListener('click', () => this.toggle());
-                this.menuOverlay?.addEventListener('click', () => this.close());
-                
-                // Fermer au clic sur un lien
-                this.navMenu?.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        setTimeout(() => this.close(), 150);
-                    });
-                });
-
-                // Fermer avec Escape
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && this.isOpen) {
-                        this.close();
-                    }
-                });
-
-                // Gestion responsive
-                window.addEventListener('resize', debounce(() => {
-                    if (window.innerWidth > 768 && this.isOpen) {
-                        this.close();
-                    }
-                }, 100));
-            }
-
-            toggle() {
-                this.isOpen ? this.close() : this.open();
-            }
-
-            open() {
-                this.menuToggle?.classList.add('active');
-                this.navMenu?.classList.add('active');
-                this.menuOverlay?.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                this.isOpen = true;
-            }
-
-            close() {
-                this.menuToggle?.classList.remove('active');
-                this.navMenu?.classList.remove('active');
-                this.menuOverlay?.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                this.isOpen = false;
-            }
-        }
-
-        // Animations au scroll
-        class ScrollAnimations {
-            constructor() {
-                this.observer = new IntersectionObserver(
-                    this.handleIntersection.bind(this),
-                    {
-                        threshold: CONFIG.scrollThreshold,
-                        rootMargin: '0px 0px -80px 0px'
-                    }
-                );
-                
-                this.init();
-            }
-
-            init() {
-                const elements = [
-                    ...document.querySelectorAll('.category'),
-                    ...document.querySelectorAll('.warning-box'),
-                    ...document.querySelectorAll('.main-header'),
-                    ...document.querySelectorAll('.conclusion'),
-                    ...document.querySelectorAll('.fade-in')
-                ];
-
-                elements.forEach(element => {
-                    this.observer.observe(element);
-                });
-            }
-
-            handleIntersection(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                        this.observer.unobserve(entry.target);
-                    }
-                });
-            }
-        }
-
-        // Navigation active
-        class ActiveNavigation {
-            constructor() {
-                this.navItems = document.querySelectorAll('.nav-item');
-                this.sections = Array.from(this.navItems).map(item => {
-                    const href = item.getAttribute('href');
-                    return href ? document.querySelector(href) : null;
-                }).filter(Boolean);
-                
-                this.init();
-            }
-
-            init() {
-                // Highlight au scroll
-                window.addEventListener('scroll', debounce(() => {
-                    this.highlightActiveSection();
-                }, 100));
-
-                // Smooth scroll
-                this.navItems.forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const target = document.querySelector(item.getAttribute('href'));
-                        if (target) {
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    });
-                });
-            }
-
-            highlightActiveSection() {
-                const scrollPos = window.scrollY + 150;
-                
-                this.sections.forEach((section, index) => {
-                    if (section) {
-                        const top = section.offsetTop;
-                        const bottom = top + section.offsetHeight;
-                        
-                        if (scrollPos >= top && scrollPos <= bottom) {
-                            this.navItems.forEach(item => item.classList.remove('active'));
-                            this.navItems[index]?.classList.add('active');
-                        }
-                    }
-                });
-            }
-        }
-
-        // Gestion du header
-        class HeaderManager {
-            constructor() {
-                this.header = document.querySelector('.header');
-                this.lastScrollY = window.scrollY;
-                this.init();
-            }
-
-            init() {
-                window.addEventListener('scroll', 
-                    debounce(this.handleScroll.bind(this), CONFIG.debounceDelay),
-                    { passive: true }
-                );
-            }
-
-            handleScroll() {
-                const currentScrollY = window.scrollY;
-                
-                if (currentScrollY > 100) {
-                    this.header.style.background = 'rgba(10, 10, 10, 0.98)';
-                    this.header.style.backdropFilter = 'blur(40px) saturate(200%)';
-                } else {
-                    this.header.style.background = 'rgba(10, 10, 10, 0.95)';
-                    this.header.style.backdropFilter = 'blur(30px) saturate(200%)';
-                }
-
-                this.lastScrollY = currentScrollY;
-            }
-        }
-
-        // Effets d'interaction
-        class InteractionEffects {
-            constructor() {
-                this.init();
-            }
-
-            init() {
-                this.setupHoverEffects();
-                this.setupParallax();
-            }
-
-            setupHoverEffects() {
-                // Effet magnétique sur les cartes
-                document.querySelectorAll('.category').forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left - rect.width / 2;
-                        const y = e.clientY - rect.top - rect.height / 2;
-                        
-                        card.style.transform = `translateY(-5px) rotateX(${y * 0.01}deg) rotateY(${x * 0.01}deg)`;
-                    });
-
-                    card.addEventListener('mouseleave', () => {
-                        card.style.transform = '';
-                    });
-                });
-            }
-
-            setupParallax() {
-                window.addEventListener('mousemove', debounce((e) => {
-                    const mouseX = e.clientX / window.innerWidth;
-                    const mouseY = e.clientY / window.innerHeight;
-                    
-                    // Parallax des orbes
-                    document.querySelectorAll('.orb').forEach((orb, index) => {
-                        const speed = (index + 1) * 0.5;
-                        const x = (mouseX - 0.5) * speed * 20;
-                        const y = (mouseY - 0.5) * speed * 20;
-                        orb.style.transform = `translate(${x}px, ${y}px)`;
-                    });
-                }, 50));
-            }
-        }
-
-        // Initialisation de l'application
-        class App {
-            constructor() {
-                this.components = {};
-                this.init();
-            }
-
-            init() {
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', () => {
-                        this.initializeComponents();
-                    });
-                } else {
-                    this.initializeComponents();
-                }
-            }
-
-            initializeComponents() {
-                try {
-                    this.components.backgroundEffects = new BackgroundEffects();
-                    this.components.mobileMenu = new MobileMenu();
-                    this.components.scrollAnimations = new ScrollAnimations();
-                    this.components.activeNavigation = new ActiveNavigation();
-                    this.components.headerManager = new HeaderManager();
-                    this.components.interactionEffects = new InteractionEffects();
-                    
-                    // Animation d'entrée
-                    document.body.style.opacity = '1';
-                    
-                    console.log('🚀 Atlas Corporation - Page Optimisations chargée!');
-                    
-                } catch (error) {
-                    console.error('❌ Erreur lors de l\'initialisation:', error);
-                }
-            }
-        }
-
-        // Démarrer l'application
-        new App();
-
-        // Message de bienvenue
-        console.log(`
-        ╔═══════════════════════════════════════╗
-        ║      ATLAS CORPORATION - OPTIS        ║
-        ║         Débunk Complet                ║
-        ╚═══════════════════════════════════════╝
-        
-        ⚠️ Page éducative sur les optimisations
-        🎨 Design moderne et interactif
-        🚀 Performance optimisée
-        📱 Responsive design
-        `);
+        console.log('⚡ Optimisations Guide - Atlas Corporation');
     </script>
 </body>
 </html>
