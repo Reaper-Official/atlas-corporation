@@ -600,7 +600,105 @@
             margin-bottom: 1rem;
             font-size: 1.25rem;
         }
+.home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            color: #333;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
 
+        .home-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border-color: #667eea;
+        }
+
+        .home-button:hover::before {
+            left: 100%;
+        }
+
+        .home-button:active {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .home-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        /* Critique Points */
+        .critique-points .point {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(249, 115, 22, 0.05));
+            border: 1px solid var(--roast-orange);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .critique-points .point:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .critique-points .point h4 {
+            color: var(--roast-orange);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Utility Classes */
+        .highlight {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+
+        .delivery-issue {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+
+        .price-issue {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -664,6 +762,15 @@
 			<div>
                 <span><img src="https://atlas-corporation.fr/favicon.ico" alt="Atlas Corporation"></span>
                 
+            </div>
+            <div class="center-container">
+            
+                <a href="https://atlas-corporation.fr" class="home-button">
+                    <svg class="home-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
+                    </svg>
+                    Retour à l'accueil
+                </a>
             </div>
             <h1 class="hero-title">
                 <span class="highlight">PAX</span> : Le Physicien Créatif
