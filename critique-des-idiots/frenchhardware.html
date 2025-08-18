@@ -15,91 +15,75 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrenchHardware : Masterclass en Incohérence 😂</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            /* Colors - Atlas Corporation Style */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Special colors for roasting */
+            --roast-red: #ef4444;
+            --roast-orange: #f97316;
+            --roast-yellow: #eab308;
+            --roast-green: #22c55e;
+            --roast-purple: #a855f7;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #0a0a0a;
-            --secondary: #1a1a1a;
-            --tertiary: #2d2d2d;
-            --accent: #ff6b35;
-            --accent-red: #e74c3c;
-            --accent-green: #2ecc71;
-            --accent-yellow: #f1c40f;
-            --accent-blue: #3498db;
-            --accent-purple: #9b59b6;
-            --text: #ffffff;
-            --text-muted: #cccccc;
-            --border: #444;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(156, 89, 182, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(52, 152, 219, 0.05) 0%, transparent 50%),
-                linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--tertiary) 100%);
-            color: var(--text);
+            font-family: var(--font-sans);
+            font-size: 16px;
             line-height: 1.6;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.03"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
         }
 
         .container {
@@ -109,55 +93,43 @@
             position: relative;
         }
 
+        /* Hero Section - Atlas Style */
         .hero {
-            text-align: center;
-            background: 
-                linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(231, 76, 60, 0.2));
-                backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            color: white;
-            padding: 5rem 3rem;
-            border-radius: 30px;
-            margin-bottom: 4rem;
-            box-shadow: 
-                0 25px 50px rgba(255, 107, 53, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .hero::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
+            right: 0;
+            width: 60%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%);
+            transform: skewX(-15deg) translateX(20%);
         }
 
         .hero h1 {
-            font-family: 'Orbitron', monospace;
             font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 900;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff, #ff6b35, #e74c3c, #fff);
+            background: linear-gradient(135deg, var(--roast-red), var(--roast-orange), var(--roast-yellow));
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: gradient-shift 4s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
             position: relative;
             z-index: 1;
+            letter-spacing: -0.025em;
         }
 
         @keyframes gradient-shift {
@@ -167,69 +139,75 @@
 
         .hero-subtitle {
             font-size: 1.4rem;
-            opacity: 0.9;
+            color: var(--gray-600);
             position: relative;
             z-index: 1;
             font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* Navigation styles */
+        /* Navigation Tabs - Atlas Style */
         .nav-tabs {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 1rem;
-            margin-bottom: 3rem;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
+            margin: 3rem 0;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
             padding: 1.5rem;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .nav-tab {
-            flex: 1 1 auto; /* Allow items to grow and shrink */
-            min-width: 150px; /* Minimum width before wrapping */
+            flex: 1 1 auto;
+            min-width: 150px;
             text-align: center;
         }
 
         .nav-tab button {
-            background: var(--secondary);
-            color: var(--text);
-            border: 1px solid var(--border);
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border: 2px solid var(--gray-300);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.875rem;
             font-weight: 600;
-            transition: all 0.3s ease;
-            width: 100%; /* Make button fill its container */
+            transition: var(--transition);
+            width: 100%;
+            font-family: var(--font-sans);
         }
 
         .nav-tab button:hover {
             background: var(--accent);
-            color: var(--primary);
+            color: var(--white);
             border-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .nav-tab button.active {
-            background: linear-gradient(135deg, var(--accent), var(--accent-yellow));
-            color: var(--primary);
+            background: var(--accent);
+            color: var(--white);
             border-color: var(--accent);
-            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.5);
-            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
         }
 
+        /* Tab Content */
         .tab-content {
-            display: none; /* Hidden by default */
+            display: none;
             animation: fadeIn 0.5s ease-out;
         }
 
         .tab-content.active {
-            display: block; /* Shown when active */
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -237,17 +215,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .contradiction-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
+        /* Content Cards - Atlas Style */
+        .contradiction-card, .content-section {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
             padding: 3rem;
             margin: 3rem 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: var(--transition-slow);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         .contradiction-card::before {
@@ -256,8 +234,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-yellow), var(--accent-green), var(--accent-blue));
+            height: 4px;
+            background: linear-gradient(90deg, var(--roast-red), var(--roast-orange), var(--roast-yellow));
             background-size: 200% 100%;
             animation: border-flow 3s linear infinite;
         }
@@ -267,12 +245,10 @@
             100% { background-position: 200% 0; }
         }
 
-        .contradiction-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 
-                0 30px 60px rgba(255, 107, 53, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            border-color: var(--accent);
+        .contradiction-card:hover, .content-section:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gray-300);
         }
 
         .contradiction-header {
@@ -283,9 +259,17 @@
         }
 
         .contradiction-icon {
-            font-size: 4rem;
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, var(--roast-red) 0%, var(--roast-orange) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: white;
+            box-shadow: var(--shadow-md);
             animation: float-icon 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.5));
         }
 
         @keyframes float-icon {
@@ -296,15 +280,54 @@
         }
 
         .contradiction-title {
-            font-family: 'Orbitron', monospace;
             font-size: 2.2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent), var(--accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--gray-900);
+            flex: 1;
         }
 
+        /* Roast Box - Special Styling */
+        .roast-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(249, 115, 22, 0.1));
+            border: 3px solid var(--roast-orange);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { 
+                box-shadow: var(--shadow-lg);
+                border-color: var(--roast-orange);
+            }
+            50% { 
+                box-shadow: var(--shadow-2xl);
+                border-color: var(--roast-red);
+            }
+        }
+
+        .roast-box::before {
+            content: '🔥';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            padding: 0 15px;
+            border-radius: 50%;
+            animation: fire-dance 1.5s ease-in-out infinite;
+        }
+
+        @keyframes fire-dance {
+            0%, 100% { transform: translateX(-50%) rotate(-10deg); }
+            50% { transform: translateX(-50%) rotate(10deg); }
+        }
+
+        /* VS Container - Atlas Style */
         .vs-container {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -315,55 +338,58 @@
 
         .vs-side {
             padding: 2rem;
-            border-radius: 20px;
+            border-radius: 1rem;
             text-align: center;
             position: relative;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            border: 2px solid;
         }
 
         .vs-side:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         .vs-left {
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3));
-            border: 2px solid var(--accent-red);
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            border-color: var(--roast-red);
+            color: var(--gray-900);
         }
 
         .vs-right {
-            background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3));
-            border: 2px solid var(--accent-green);
-            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            border-color: var(--success);
+            color: var(--gray-900);
         }
 
         .vs-divider {
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--accent), var(--accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+            color: var(--roast-orange);
             animation: pulse-vs 2s infinite;
         }
 
         @keyframes pulse-vs {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5)); }
-            50% { transform: scale(1.2); filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.8)); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Disaster Sections */
+        .ssd-disaster, .benchmark-fail, .watercooling-logic {
+            background: var(--white);
+            border: 3px solid var(--roast-red);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-lg);
         }
 
         .benchmark-fail {
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.2), rgba(142, 68, 173, 0.2));
-            backdrop-filter: blur(20px);
-            border: 3px dashed var(--accent-yellow);
-            padding: 3rem;
-            border-radius: 25px;
-            margin: 3rem 0;
+            border-style: dashed;
+            border-color: var(--roast-yellow);
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.05), rgba(239, 68, 68, 0.05));
             text-align: center;
             position: relative;
-            box-shadow: 0 20px 40px rgba(241, 196, 15, 0.2);
         }
 
         .benchmark-fail::before {
@@ -374,6 +400,7 @@
             transform: translateX(-50%);
             font-size: 3rem;
             padding: 0 15px;
+            background: var(--white);
             border-radius: 50%;
             animation: bounce-clown 2s infinite;
         }
@@ -383,27 +410,17 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        .ssd-disaster {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 3px solid var(--accent-red);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.3);
-        }
-
+        /* Performance Chart */
         .performance-chart {
             display: flex;
             justify-content: space-around;
             align-items: end;
             height: 250px;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
             padding: 2rem;
             margin: 2rem 0;
-            border: 1px solid var(--glass-border);
         }
 
         .chart-bar {
@@ -415,49 +432,49 @@
 
         .bar {
             width: 80px;
-            border-radius: 10px 10px 0 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0.5rem 0.5rem 0 0;
+            transition: var(--transition);
             position: relative;
-            background: linear-gradient(180deg, currentColor, rgba(255,255,255,0.1));
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-md);
         }
 
         .bar:hover {
             transform: translateY(-10px);
-            filter: brightness(1.2);
+            box-shadow: var(--shadow-lg);
         }
 
         .bar-nvme {
             height: 60px;
-            color: var(--accent-red);
+            background: var(--roast-red);
         }
 
         .bar-raid {
             height: 140px;
-            color: var(--accent-green);
+            background: var(--success);
         }
 
         .bar-sata {
             height: 100px;
-            color: var(--accent-yellow);
+            background: var(--roast-yellow);
         }
 
         .bar-label {
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             text-align: center;
-            color: var(--text);
+            color: var(--gray-700);
             font-weight: 600;
         }
 
+        /* Meme Section */
         .meme-section {
-            background: linear-gradient(135deg, var(--accent), var(--accent-yellow), var(--accent-green));
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--roast-orange), var(--roast-yellow), var(--success));
+            color: var(--white);
             padding: 3rem;
-            border-radius: 20px;
+            border-radius: 1rem;
             margin: 3rem 0;
             text-align: center;
             font-weight: 600;
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+            box-shadow: var(--shadow-xl);
             position: relative;
             overflow: hidden;
         }
@@ -483,6 +500,7 @@
             z-index: 1;
         }
 
+        /* Hypocrisy Cards */
         .corsair-hypocrisy {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -492,283 +510,242 @@
 
         .hypocrisy-card {
             padding: 2rem;
-            border-radius: 20px;
+            border-radius: 1rem;
             border: 3px solid;
-            backdrop-filter: blur(15px);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
         }
 
         .hypocrisy-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         .private-opinion {
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3));
-            border-color: var(--accent-red);
-            color: white;
-            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.3);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            border-color: var(--roast-red);
+            color: var(--gray-900);
         }
 
         .public-action {
-            background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3));
-            border-color: var(--accent-green);
-            color: white;
-            box-shadow: 0 15px 35px rgba(46, 204, 113, 0.3);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            border-color: var(--success);
+            color: var(--gray-900);
         }
 
-        .watercooling-logic {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 3px solid var(--accent);
-            border-radius: 25px;
-            padding: 3rem;
-            margin: 3rem 0;
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
-        }
-
+        /* Price Comparison */
         .price-comparison {
             display: flex;
             justify-content: space-around;
             margin: 2rem 0;
             padding: 2rem;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
             gap: 2rem;
         }
 
         .price-item {
             text-align: center;
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 1rem;
             flex: 1;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: 2px solid;
         }
 
         .price-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         .expensive {
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3));
-            border-color: var(--accent-red);
-            color: white;
-            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.3);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            border-color: var(--roast-red);
+            color: var(--gray-900);
         }
 
         .cheap {
-            background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3));
-            border-color: var(--accent-green);
-            color: white;
-            box-shadow: 0 15px 35px rgba(46, 204, 113, 0.3);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            border-color: var(--success);
+            color: var(--gray-900);
         }
 
-        .conclusion {
-            background: 
-                linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(142, 68, 173, 0.1)),
-                var(--glass);
-            backdrop-filter: blur(25px);
-            border: 3px solid var(--accent);
-            border-radius: 30px;
-            padding: 4rem;
-            text-align: center;
-            margin: 4rem 0;
-            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.4);
-            position: relative;
-        }
-
-        .image-section img {
+        /* Image Sections */
+        .image-section img, .flowup-image, .corsair-image, .benchmark-image {
             max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-            margin: 1rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-            display: block;
             width: 100%;
+            height: auto;
             object-fit: contain;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            margin: 1rem 0;
         }
 
-        .image-section img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+        .image-section img:hover, .flowup-image:hover, .corsair-image:hover, .benchmark-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-xl);
         }
 
-        /* Spécifique pour les images FlowUp */
-        .flowup-image,
-        .corsair-image,
-        .benchmark-image {
-            max-width: 100% !important;
-            width: 100% !important;
-            height: auto !important;
-            object-fit: contain !important;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
+        /* Video Containers */
         .video-container {
             text-align: center;
             margin: 2rem 0;
         }
 
-        .video-container video {
+        .video-container video, .video-container iframe {
             max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
         }
 
-        .video-container video:hover {
+        .video-container video:hover, .video-container iframe:hover {
             transform: scale(1.02);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+            box-shadow: var(--shadow-xl);
         }
 
-        /* Règle générale pour toutes les images */
-        img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        /* Container pour les grilles d'images */
-        .image-grid {
-            display: grid;
-            gap: 1rem;
-            margin: 1rem 0;
-            overflow: hidden;
-        }
-
-        .image-grid img {
+        .video-container iframe {
             width: 100%;
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 10px;
+            aspect-ratio: 16 / 9;
         }
 
-        /* Assurer que tous les conteneurs ne débordent pas */
-        .contradiction-card,
-        .ssd-disaster,
-        .watercooling-logic,
-        .benchmark-fail,
-        .roast-box {
-            overflow: hidden;
-        }
-
-        /* Responsive pour les petits écrans */
-        @media (max-width: 768px) {
-            .image-grid img {
-                margin: 0.5rem 0;
-            }
-            
-            .image-section img {
-                margin: 0.5rem;
-            }
-        }
-
-        .roast-box {
-            background: 
-                linear-gradient(135deg, rgba(142, 68, 173, 0.3), rgba(231, 76, 60, 0.3)),
-                var(--glass);
-            backdrop-filter: blur(20px);
-            border: 3px solid var(--accent-yellow);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 3rem 0;
+        /* Video Disclaimer */
+        .video-disclaimer {
+            background: linear-gradient(135d, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
+            border: 2px solid var(--accent);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            color: var(--gray-600);
             text-align: center;
+        }
+
+        /* Conclusion */
+        .conclusion {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(168, 85, 247, 0.05));
+            border: 3px solid var(--accent);
+            border-radius: 1rem;
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-xl);
             position: relative;
-            box-shadow: 0 20px 40px rgba(241, 196, 15, 0.3);
-            animation: glow-pulse 3s ease-in-out infinite;
         }
 
-        @keyframes glow-pulse {
-            0%, 100% { 
-                box-shadow: 0 20px 40px rgba(241, 196, 15, 0.3);
-                border-color: var(--accent-yellow);
-            }
-            50% { 
-                box-shadow: 0 25px 50px rgba(241, 196, 15, 0.5);
-                border-color: var(--accent);
-            }
-        }
-
-        .roast-box::before {
-            content: '🔥';
-            position: absolute;
-            top: -22px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 3rem;
-            padding: 0 15px;
-            border-radius: 50%;
-            animation: fire-dance 1.5s ease-in-out infinite;
-        }
-
-        @keyframes fire-dance {
-            0%, 100% { transform: translateX(-50%) rotate(0deg); }
-            50% { transform: translateX(-50%) rotate(10deg); }
-        }
-
+        /* Disclaimer */
         .disclaimer {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 2px solid var(--accent-yellow);
-            border-radius: 15px;
+            background: var(--gray-50);
+            border: 2px solid var(--roast-yellow);
+            border-radius: 1rem;
             padding: 2rem;
             margin: 3rem 0;
             font-size: 0.95rem;
-            color: var(--text-muted);
+            color: var(--gray-600);
         }
 
-        /* Image placeholder pour les images cassées */
-        .image-placeholder {
-            background: linear-gradient(135deg, var(--secondary), var(--tertiary));
-            border: 2px dashed var(--accent);
-            border-radius: 10px;
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(239, 68, 68, 0.1));
+            border: 2px solid var(--roast-yellow);
+            border-radius: 1rem;
             padding: 2rem;
+            margin-bottom: 2rem;
             text-align: center;
-            color: var(--text-muted);
-            margin: 1rem 0;
         }
 
-        /* Video placeholder */
-        .video-placeholder {
-            background: linear-gradient(135deg, var(--secondary), var(--tertiary));
-            border: 2px dashed var(--accent-red);
-            border-radius: 15px;
-            padding: 3rem;
-            text-align: center;
-            color: var(--text-muted);
-            margin: 1rem 0;
-            min-height: 200px;
+        .warning-box h3 {
+            color: var(--roast-yellow);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
+            gap: 1rem;
         }
 
-        /* Scrollbar personnalisée */
-        ::-webkit-scrollbar {
-            width: 12px;
+        .warning-icon {
+            font-size: 2rem;
+            color: var(--roast-yellow);
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--primary);
+        /* Specs Comparison */
+        .specs-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--accent), var(--accent-yellow));
-            border-radius: 6px;
+        .spec-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, var(--accent-yellow), var(--accent));
+        .spec-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
-        @media (max-width: 768px) {
+        .spec-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .spec-card p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-700);
+        }
+
+        /* Critique Points */
+        .critique-points .point {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(249, 115, 22, 0.05));
+            border: 1px solid var(--roast-orange);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .critique-points .point:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .critique-points .point h4 {
+            color: var(--roast-orange);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Utility Classes */
+        .highlight {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+
+        .delivery-issue {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+
+        .price-issue {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
             .vs-container, .corsair-hypocrisy {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -784,14 +761,6 @@
                 gap: 1rem;
             }
 
-            .contradiction-card {
-                padding: 2rem;
-            }
-
-            .hero {
-                padding: 3rem 2rem;
-            }
-
             .nav-tabs {
                 flex-direction: column;
                 padding: 1rem;
@@ -803,157 +772,50 @@
             }
         }
 
-        /* Nouveaux styles pour les sections ajoutées/modifiées */
-        .content-section {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 3rem;
-            margin: 3rem 0;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .content-section h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .video-disclaimer {
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(155, 89, 182, 0.2));
-            border: 2px solid var(--accent-blue);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            font-size: 1rem;
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-        }
-
-        .video-container iframe:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
-        }
-
-        .critique-points .point {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(231, 76, 60, 0.1));
-            border: 1px solid var(--accent);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .critique-points .point h4 {
-            color: var(--accent-yellow);
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .highlight {
-            color: var(--accent-red);
-            font-weight: bold;
-        }
-
-        .delivery-issue {
-            color: var(--accent-red);
-            font-weight: bold;
-        }
-
-        .warning-box {
-            background: linear-gradient(135deg, rgba(241, 196, 15, 0.2), rgba(231, 76, 60, 0.2));
-            border: 2px solid var(--accent-yellow);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .warning-box h3 {
-            color: var(--accent-yellow);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .warning-icon {
-            font-size: 2rem;
-            color: var(--accent-yellow);
-        }
-
-        .specs-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .spec-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .spec-card h4 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .spec-card p {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .price-issue {
-            color: var(--accent-red);
-            font-weight: bold;
-        }
-
-        /* Responsive adjustments for new sections */
         @media (max-width: 768px) {
-            .content-section {
+            .contradiction-card, .content-section {
                 padding: 2rem;
             }
-            .content-section h2 {
-                font-size: 1.8rem;
+
+            .hero {
+                padding: 3rem 2rem;
             }
+
             .specs-comparison {
                 grid-template-columns: 1fr;
             }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-400);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-500);
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
-    
     <div class="container">
         <header class="hero">
-            <h1>🎭 FrenchHardware : Masterclass en Incohérence</h1>
-            <p class="hero-subtitle">Quand l'influence tech rencontre l'art du foutage de gueule professionnel</p>
+            <div>
+                <h1>🎭 FrenchHardware : Masterclass en Incohérence</h1>
+                <p class="hero-subtitle">Quand l'influence tech rencontre l'art du foutage de gueule professionnel</p>
+            </div>
         </header>
 
         <div class="roast-box">
@@ -964,15 +826,16 @@
         </div>
 
         <nav class="nav-tabs">
+			
             <div class="nav-tab"><button data-tab="ssd">SSD de Merde</button></div>
             <div class="nav-tab"><button data-tab="corsair">Corsair Hypocrisie</button></div>
             <div class="nav-tab"><button data-tab="watercooling">Watercooling 120mm</button></div>
             <div class="nav-tab"><button data-tab="pc-influenceurs">PC Influenceurs</button></div>
             <div class="nav-tab"><button data-tab="benchmarks">Benchmarks "Créatifs"</button></div>
+			
             <div class="nav-tab"><button data-tab="video-doute">Vidéo du Doute</button></div>
             <div class="nav-tab"><button data-tab="intel-discord">Intel & Discord</button></div>
             <div class="nav-tab"><button data-tab="analyse-video">Flowup Scam ?</button></div>
-
         </nav>
 
         <div id="ssd" class="tab-content">
@@ -999,13 +862,13 @@
                         <h4>📊 Les Preuves du Carnage :</h4>
                         <div style="text-align: center; margin: 1rem 0;">
                             <img src="https://atlas-corporation.fr/img/write-over-time.png" alt="Performance Kingston NV3">
-                            <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
+                            <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
                                 💀 Kingston NV3 : L'effondrement en direct !
                             </p>
                         </div>
                         <div style="text-align: center; margin: 1rem 0;">
                             <img src="https://atlas-corporation.fr/img/write-over-tim2e.png" alt="Performance Kingston NV2">
-                            <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
+                            <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
                                 🤮 Kingston NV2 : Moins pire que le NV3 !
                             </p>
                         </div>
@@ -1032,24 +895,25 @@
                         <p><em>🎖️ Médaille d'or de la régression technologique</em></p>
                     </div>
 
-                    <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(15px); border: 2px solid var(--accent-red); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border: 2px solid var(--roast-red); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
                         <h4>🤡 Et maintenant... Le Crucial P3 !</h4>
                         <div style="text-align: center; margin: 1rem 0;">
                             <img src="https://atlas-corporation.fr/img/p3stability.png" alt="Crucial P3 benchmark" class="benchmark-image">
-                            <p style="color: white; font-weight: bold;">Crucial P3 : "Regardez comme je suis LENT !" 🐌</p>
+                            <p style="color: var(--gray-900); font-weight: bold;">Crucial P3 : "Regardez comme je suis LENT !" 🐌</p>
                         </div>
                         <div style="text-align: center; margin: 1rem 0;">
                             <img src="https://atlas-corporation.fr/img/p3reality.png" alt="Crucial P3 copie Windows" class="benchmark-image">
-                            <p style="color: white; font-weight: bold; font-size: 1.2rem;">
+                            <p style="color: var(--gray-900); font-weight: bold; font-size: 1.2rem;">
                                 🚨 COPIE DE 40 GO SUR P3 : VOUS ALLEZ ATTENDRE LONGTEMPS ! 
+                            </p>
                             <img src="https://atlas-corporation.fr/img/p3flowupshow.png" alt="Crucial P3 copie Windows" class="benchmark-image">
-                            <p style="color: white; font-weight: bold; font-size: 1.2rem;">
+                            <p style="color: var(--gray-900); font-weight: bold; font-size: 1.2rem;">
                                 🚨 ET FLOWUP EN MET ! 
                             </p>
                         </div>
                     </div>
 
-                    <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3)); backdrop-filter: blur(15px); color: white; padding: 2rem; border-radius: 15px; margin: 2rem 0; border: 2px solid var(--accent-green);">
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1)); color: var(--gray-900); padding: 2rem; border-radius: 1rem; margin: 2rem 0; border: 2px solid var(--success);">
                         <h4>💎 Pour comparaison, des VRAIS SSD performants :</h4>
                         <div class="image-grid">
                             <img src="https://atlas-corporation.fr/img/write-over-tim3e.png" alt="KC3000 performance" class="benchmark-image">
@@ -1099,20 +963,20 @@
                     </div>
                 </div>
 
-                <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(20px); border: 3px solid var(--accent-yellow); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
+                <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border: 3px solid var(--roast-yellow); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
                     <h4>🎥 FrenchHardware se DEBUNK lui-même en DIRECT !</h4>
                     <div style="text-align: center; margin: 1rem 0;">
-                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px;">
+                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem;">
                             <source src="https://fichiers.atlas-corporation.fr/videostock/FrHardwareAutoDebunk(1).mp4" type="video/mp4">
                             <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
                         </video>
-                        <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                        <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
                             🤡 AUTO-DÉBUNKAGE LEVEL 9000 ! ILS SE CONTREDISENT EUX-MÊMES !
                         </p>
                     </div>
                 </div>
 
-                <div style="background: linear-gradient(135deg, var(--accent), var(--accent-yellow)); color: var(--primary); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+                <div style="background: linear-gradient(135deg, var(--roast-orange), var(--roast-yellow)); color: var(--white); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
                     <h4>📸 LES PREUVES sur FlowUp Shop (Screenshots du 20/06/2025) :</h4>
                     <div class="image-grid">
                         <img src="https://atlas-corporation.fr/img/FlowupCorsair1.png" alt="FlowUp Corsair 1" class="corsair-image">
@@ -1164,20 +1028,20 @@
                 <div class="watercooling-logic">
                     <h3>🎭 La Contradiction en Images et Vidéos :</h3>
                     
-                    <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(20px); border: 2px solid var(--accent-red); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+                    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border: 2px solid var(--roast-red); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
                         <h4>🎥 FrenchHardware : "Les AIO 120mm sont BOF" :</h4>
                         <div style="text-align: center; margin: 1rem 0;">
-                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px;">
+                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem;">
                                 <source src="https://fichiers.atlas-corporation.fr/videostock/120mm_tqt(1).mp4" type="video/mp4">
                                 <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
                             </video>
-                            <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                            <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
                                 🤔 "Les AIO 120mm c'est bof..." (Regardez la tête de Matis qui dit tout !) 
                             </p>
                         </div>
                     </div>
 
-                    <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3)); backdrop-filter: blur(20px); color: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; border: 2px solid var(--accent-green);">
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1)); color: var(--gray-900); padding: 2rem; border-radius: 1rem; margin: 2rem 0; border: 2px solid var(--success);">
                         <h4>💰 FlowUp Shop : "Mais on vous en vend quand même !"</h4>
                         <div class="image-grid">
                             <img src="https://atlas-corporation.fr/img/Flowup120mm.png" alt="FlowUp AIO 120mm" class="flowup-image">
@@ -1200,14 +1064,14 @@
                             <p>100€+</p>
                             <p>Performances moyennes</p>
                             <p>Risque de fuite</p>
-                            <p style="color: var(--accent-red); font-weight: bold;">⚠️ "C'est BOF" - FrenchHardware</p>
+                            <p style="color: var(--roast-red); font-weight: bold;">⚠️ "C'est BOF" - FrenchHardware</p>
                         </div>
                         <div class="price-item cheap">
                             <h4>🏆 Ventirad de qualité</h4>
                             <p>40-50€</p>
                             <p>Meilleures performances</p>
                             <p>Fiabilité à 100%</p>
-                            <p style="color: var(--accent-green); font-weight: bold;">✅ Physique respectée</p>
+                            <p style="color: var(--success); font-weight: bold;">✅ Physique respectée</p>
                         </div>
                     </div>
                     
@@ -1239,14 +1103,14 @@
                     <p><strong>🤡 Spoiler : MISSION FAILED !</strong></p>
                 </div>
 
-                <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3)); backdrop-filter: blur(20px); border: 3px solid var(--accent-red); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
+                <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border: 3px solid var(--roast-red); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
                     <h4>🎬 INOXTAG : Le PC qui dit NON en direct !</h4>
                     <div style="text-align: center; margin: 1rem 0;">
-                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px;">
+                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem;">
                             <source src="https://fichiers.atlas-corporation.fr/videostock/Inoxtagpcpreuve.mp4" type="video/mp4">
                             <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
                         </video>
-                        <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                        <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
                             🚨 LIVE DEVANT DES MILLIONS : "Ça marche pas..." 
                         </p>
                     </div>
@@ -1260,20 +1124,20 @@
                     </div>
                 </div>
 
-                <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(231, 76, 60, 0.3)); backdrop-filter: blur(20px); border: 3px solid var(--accent-yellow); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
+                <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1)); border: 3px solid var(--roast-yellow); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
                     <h4>🔧 DIAGNOSTIC : Quand l'Installation Défie la Physique</h4>
                     <div style="text-align: center; margin: 1rem 0;">
-                        <img src="https://atlas-corporation.fr/img/pcinoxtagmur.png" alt="PC Inoxtag problème pompe" style="max-width: 100%; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
-                        <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                        <img src="https://atlas-corporation.fr/img/pcinoxtagmur.png" alt="PC Inoxtag problème pompe" style="max-width: 100%; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                        <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
                             💀 ERREUR CRITIQUE : La pompe au point le plus HAUT de la loop !
                         </p>
                     </div>
                     
-                    <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3)); backdrop-filter: blur(20px); color: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; border: 2px solid var(--accent-green);">
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1)); color: var(--gray-900); padding: 2rem; border-radius: 1rem; margin: 2rem 0; border: 2px solid var(--success);">
                         <h4>🎓 COURS DE PHYSIQUE ILLUSTRÉ :</h4>
                         <div style="text-align: center; margin: 1rem 0;">
-                            <img src="https://atlas-corporation.fr/img/aioexplications.jpg" alt="Explication AIO installation correcte" style="max-width: 100%; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
-                            <p style="color: white; font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                            <img src="https://atlas-corporation.fr/img/aioexplications.jpg" alt="Explication AIO installation correcte" style="max-width: 100%; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                            <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
                                 📚 RÈGLE D'OR : Le point le plus HAUT ne doit JAMAIS être la pompe !
                             </p>
                         </div>
@@ -1326,7 +1190,7 @@
                     </p>
                 </div>
 
-                <div style="background: linear-gradient(135deg, var(--accent), var(--accent-yellow)); color: var(--primary); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+                <div style="background: linear-gradient(135deg, var(--roast-orange), var(--roast-yellow)); color: var(--white); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
                     <h4>🎯 MORAL DE L'HISTOIRE :</h4>
                     <p style="font-size: 1.2rem; font-weight: bold;">
                         Livrer un PC mal assemblé à un influenceur = Publicité négative GRATUITE !
@@ -1369,18 +1233,18 @@
                     </div>
                     <p style="font-size: 1.1rem; font-weight: bold;"><em>🎨 Plot twist : C'est de l'ART CONCEPTUEL !</em></p>
 
-                    <div style="background: var(--glass); backdrop-filter: blur(20px); border: 3px solid var(--accent-yellow); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
+                    <div style="background: var(--white); border: 3px solid var(--roast-yellow); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
                         <h4>🎥 LES PREUVES VIDEO de leurs "erreurs" :</h4>
                         
-                        <div style="margin: 2rem 0; border: 2px solid var(--accent-red); border-radius: 15px; padding: 1.5rem; background: rgba(231, 76, 60, 0.1);">
+                        <div style="margin: 2rem 0; border: 2px solid var(--roast-red); border-radius: 1rem; padding: 1.5rem; background: rgba(239, 68, 68, 0.05);">
                             <h5>📊 Benchmark Fail #1 : Le Grand N'importe Quoi</h5>
-                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px; margin: 1rem 0;">
+                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem; margin: 1rem 0;">
                                 <source src="https://fichiers.atlas-corporation.fr/videostock/FlowupErrorBenchmark1.mp4" type="video/mp4">
                                 <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
                             </video>
                             <div style="text-align: center; margin: 1rem 0;">
                                 <img src="https://atlas-corporation.fr/img/flowuppcdebunkbench.png" alt="FlowUp Tests Biaisés Bench" class="flowup-image">
-                                <p style="color: var(--accent-yellow); font-weight: bold; font-size: 1.1rem;">
+                                <p style="color: var(--roast-yellow); font-weight: bold; font-size: 1.1rem;">
                                     ⚠️ C'est LEUR VIDÉO sur LEUR SITE ! Incohérence 100% assumée !
                                 </p>
                             </div>
@@ -1389,13 +1253,13 @@
                             </div>
                         </div>
 
-                        <div style="margin: 2rem 0; border: 2px solid var(--accent-red); border-radius: 15px; padding: 1.5rem; background: rgba(231, 76, 60, 0.1);">
+                        <div style="margin: 2rem 0; border: 2px solid var(--roast-red); border-radius: 1rem; padding: 1.5rem; background: rgba(239, 68, 68, 0.05);">
                             <h5>📊 Benchmark Fail #2 : Ça Continue ! 🎪</h5>
-                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px; margin: 1rem 0;">
+                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem; margin: 1rem 0;">
                                 <source src="https://fichiers.atlas-corporation.fr/videostock/FlowupErrorBench2.mp4" type="video/mp4">
                                 <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
                             </video>
-                            <div class="image-placeholder">
+                            <div style="border: 2px dashed var(--accent); border-radius: 1rem; padding: 2rem; background: var(--gray-50);">
                                 <h5>📊 Benchmark 14700KF</h5>
                                 <div style="text-align: center; margin: 1rem 0;">
                                     <img src="https://atlas-corporation.fr/img/FH14700KFbench.png" alt="Benchmark 14700KF" class="benchmark-image">
@@ -1406,7 +1270,7 @@
                                         <p>Même processeur, mauvaises fréquences ! 🎯</p>
                                     </div>
                                     <img src="https://atlas-corporation.fr/img/CEsiteIntel14700KF.png" alt="Spec Intel 14700KF" class="benchmark-image">
-                                    <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
+                                    <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
                                         💀 Intel dit 5,6 GHz, FlowUp teste à 4,7 GHz... FAIL COMPLET !
                                     </p>
                                     <div class="roast-box" style="margin: 1rem 0;">
@@ -1447,22 +1311,17 @@
                 </div>
 
                 <div class="video-container">
-                    <video controls style="max-width: 100%; max-height: 400px; border-radius: 15px; margin: 1rem 0;">
-                                <source src="https://fichiers.atlas-corporation.fr/videostock/pcanymedebunk.mp4" type="video/mp4">
-                                <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                            </video>
-                
-                    <p style="color: var(--text-muted); margin-top: 1rem;">La vidéo en question : "Le PC de Rêve" ou "Le Cauchemar de la Cohérence" ?</p>
+                    <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem; margin: 1rem 0;">
+                        <source src="https://fichiers.atlas-corporation.fr/videostock/pcanymedebunk.mp4" type="video/mp4">
+                        <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                    </video>
+                    <p style="color: var(--gray-500); margin-top: 1rem;">La vidéo en question : "Le PC de Rêve" ou "Le Cauchemar de la Cohérence" ?</p>
                 </div>
 
                 <div class="ssd-disaster">
                     <h3>🤯 RAM Corsair : Le "On Sait que c'est de la Merde, mais on Met Quand Même"</h3>
                     <p><strong>Leur aveu :</strong> "Corsair a eu des soucis..." 😬</p>
                     <p><strong>Leur action :</strong> "...mais on vous en met quand même dans votre PC à 6000€ !" 💸</p>
-                    </br>
-                    <p><strong>Même Jensen Huang (Patron de Nvidia) est chokbar (c'est faux,il a pas réagi mais c'est la probable réaction au massacre crée par FrenchHardware) </strong> </p>
-
-                    <p><img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcSwpZwTzXjdtuZI3Kjl6P_IGq1y1Wq_trHKppmlQRZBnYiNG9g1irA0nGzkNfx_kfqfzB0lh2sshIRqxyE" alt="Spec Intel 14700KF" class="benchmark-image"> </p>
                     <div class="roast-box">
                         <h4>🎯 LA LOGIQUE IMPARABLE :</h4>
                         <p style="font-size: 1.2rem;">Connaître les problèmes d'un produit, le dire, et l'installer quand même. C'est ça, la confiance client ! 🤡</p>
@@ -1493,8 +1352,10 @@
                     <h3>💰 La RTX 5080 dans un PC à 6000€+ : Le Choix Économique... pour EUX !</h3>
                     <p><strong>Le budget :</strong> 6000€ ou plus pour un créateur de contenu. 🤑</p>
                     <p><strong>La carte :</strong> Une RTX 5080. 🤔</p>
-                    <p><strong>La question :</strong> Pourquoi pas une RTX 5090 pour ce prix ? 🤷‍♂️</p>
+					<p><strong>Même Jensen Huang (Patron de Nvidia) est chokbar (c'est faux,il a pas réagi mais c'est la probable réaction au massacre crée par FrenchHardware) </strong> </p>
 
+                    <p><img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcSwpZwTzXjdtuZI3Kjl6P_IGq1y1Wq_trHKppmlQRZBnYiNG9g1irA0nGzkNfx_kfqfzB0lh2sshIRqxyE" alt="Spec Intel 14700KF" class="benchmark-image"> </p>
+                    <p><strong>La question :</strong> Pourquoi pas une RTX 5090 pour ce prix ? 🤷‍♂️</p>
                     <div class="roast-box">
                         <h4>🎯 LE CALCUL EST SIMPLE :</h4>
                         <p style="font-size: 1.2rem;">Quand le budget permet le top du top, mais qu'on met le "presque top"... C'est pour qui le profit ? 💸</p>
@@ -1503,7 +1364,7 @@
                 </div>
 
                 <div class="ssd-disaster">
-                    <h3>👻 Le Processeur Fantôme : Quand le CPU n'Existe Pas !</h3>
+                    <h3>💻 Le Processeur Fantôme : Quand le CPU n'Existe Pas !</h3>
                     <p><strong>Leur annonce :</strong> Un processeur qui n'existe pas sur le marché. 🤯</p>
                     <p><strong>La preuve :</strong> Une simple recherche Google suffit à les démasquer. 🕵️‍♂️</p>
                     <div class="roast-box">
@@ -1541,68 +1402,66 @@
                         <p>L'art de la promotion forcée et de la purge de membres ! 📉</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="roast-box">
-                <h3>🎯 LA STRATÉGIE "GÉNIALE" :</h3>
-                <p style="font-size: 1.2rem;">Faire de la pub pour Intel avec des sondages bidons et bannir les mécontents.</p>
-                <p><strong>Résultat : Moins de membres, plus de doutes ! 🤔</strong></p>
-            </div>
-
-            <div class="watercooling-logic">
-                <h3>📊 La Collab Intel : Des Sondages "Représentatifs" ?</h3>
-                <p><strong>Leur objectif :</strong> Promouvoir les "super processeurs" Intel via des sondages Discord. 📈</p>
-                <p><strong>La réalité :</strong> Sur un serveur de 43 000 membres, les sondages atteignent un maximum de 900 votants, et parfois seulement 59 ! 📉</p>
                 <div class="roast-box">
-                    <h4>🎯 LE CALCUL EST SIMPLE :</h4>
-                    <p style="font-size: 1.2rem;">Moins de 2% de participation sur le plus gros sondage, et à peine 0.1% sur le plus petit. C'est ça, la "représentativité" ? 🤡</p>
-                    <img src="https://atlas-corporation.fr/img/59votants.png" alt="Ban Massifs FH" class="benchmark-image">
-                    <img src="https://atlas-corporation.fr/img/900votants.png" alt="Ban Massifs FH" class="benchmark-image">
-                                    
-                    <p><em>"Nos sondages sont aussi fiables que nos SSD Crucial P3 !"</em></p>
+                    <h3>🎯 LA STRATÉGIE "GÉNIALE" :</h3>
+                    <p style="font-size: 1.2rem;">Faire de la pub pour Intel avec des sondages bidons et bannir les mécontents.</p>
+                    <p><strong>Résultat : Moins de membres, plus de doutes ! 🤔</strong></p>
                 </div>
-            </div>
 
-            <div class="ssd-disaster">
-                <h3>🚫 Rayko et les Purges Discord : La Liberté d'Expression, C'est Non !</h3>
-                <p><strong>L'action de Rayko :</strong> Publicité massive pour FlowUp, bannissant quiconque ose contredire ou critiquer. ⛔</p>
-                <p><strong>La conséquence :</strong> Perte d'environ 2000 membres suite à ces "purges". 📉</p>
-                <img src="https://atlas-corporation.fr/img/txtraykopub.jpg" alt="ayko Pub" class="benchmark-image">
-                                <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
-                                    💀 Le message de Rayko
-                                
-                <img src="https://atlas-corporation.fr/img/preuvebanmassif.png" alt="Ban Massifs FH" class="benchmark-image">
-                                <p style="color: var(--accent-red); font-weight: bold; font-size: 1.1rem;">
-                                    Preuves des Bans Massifs (les pseudos en blanc indique qu'ils sont bannis du serveur Discord)
-                <div class="roast-box">
-                    <h4>🎯 LA GESTION DE COMMUNAUTÉ "EXPERT" :</h4>
-                    <p style="font-size: 1.2rem;">Faire fuir 2000 membres pour maintenir une image parfaite, c'est une stratégie... audacieuse ! 🤦‍♂️</p>
-                    <p><em>"La critique ? Connais pas !"</em></p>
+                <div class="watercooling-logic">
+                    <h3>📊 La Collab Intel : Des Sondages "Représentatifs" ?</h3>
+                    <p><strong>Leur objectif :</strong> Promouvoir les "super processeurs" Intel via des sondages Discord. 📈</p>
+                    <p><strong>La réalité :</strong> Sur un serveur de 43 000 membres, les sondages atteignent un maximum de 900 votants, et parfois seulement 59 ! 📉</p>
+                    <div class="roast-box">
+                        <h4>🎯 LE CALCUL EST SIMPLE :</h4>
+                        <p style="font-size: 1.2rem;">Moins de 2% de participation sur le plus gros sondage, et à peine 0.1% sur le plus petit. C'est ça, la "représentativité" ? 🤡</p>
+                        <img src="https://atlas-corporation.fr/img/59votants.png" alt="Ban Massifs FH" class="benchmark-image">
+                        <img src="https://atlas-corporation.fr/img/900votants.png" alt="Ban Massifs FH" class="benchmark-image">
+                        <p><em>"Nos sondages sont aussi fiables que nos SSD Crucial P3 !"</em></p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="vs-container">
-                <div class="vs-side vs-left">
-                    <h4>📢 Ce qu'ils VEULENT</h4>
-                    <p>Sondages "validant" Intel</p>
-                    <p>Communauté unie et positive</p>
-                    <p>Image de marque impeccable</p>
+                <div class="ssd-disaster">
+                    <h3>🚫 Rayko et les Purges Discord : La Liberté d'Expression, C'est Non !</h3>
+                    <p><strong>L'action de Rayko :</strong> Publicité massive pour FlowUp, bannissant quiconque ose contredire ou critiquer. ⛔</p>
+                    <p><strong>La conséquence :</strong> Perte d'environ 2000 membres suite à ces "purges". 📉</p>
+                    <img src="https://atlas-corporation.fr/img/txtraykopub.jpg" alt="Rayko Pub" class="benchmark-image">
+                    <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
+                        💀 Le message de Rayko
+                    </p>
+                    <img src="https://atlas-corporation.fr/img/preuvebanmassif.png" alt="Ban Massifs FH" class="benchmark-image">
+                    <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
+                        Preuves des Bans Massifs (les pseudos en blanc indique qu'ils sont bannis du serveur Discord)
+                    </p>
+                    <div class="roast-box">
+                        <h4>🎯 LA GESTION DE COMMUNAUTÉ "EXPERT" :</h4>
+                        <p style="font-size: 1.2rem;">Faire fuir 2000 membres pour maintenir une image parfaite, c'est une stratégie... audacieuse ! 🤦‍♂️</p>
+                        <p><em>"La critique ? Connais pas !"</em></p>
+                    </div>
                 </div>
-                <div class="vs-divider">❌</div>
-                <div class="vs-side vs-right">
-                    <h4>📉 Ce qu'ils OBTIENNENT</h4>
-                    <p>Sondages non représentatifs</p>
-                    <p>Purges et perte de membres</p>
-                    <p>Réputation entachée</p>
-                </div>
-            </div>
 
-            <div class="meme-section">
-                <h3>🏆 PRIX DE LA GESTION DE COMMUNAUTÉ "INNOVANTE"</h3>
-                <p style="font-size: 1.3rem;">Félicitations pour avoir transformé un Discord en chambre d'écho !</p>
-                <p><strong>🤡 Qui a besoin de membres quand on a des processeurs Intel à vendre ?</strong></p>
-            </div>
-        </div>
+                <div class="vs-container">
+                    <div class="vs-side vs-left">
+                        <h4>📢 Ce qu'ils VEULENT</h4>
+                        <p>Sondages "validant" Intel</p>
+                        <p>Communauté unie et positive</p>
+                        <p>Image de marque impeccable</p>
+                    </div>
+                    <div class="vs-divider">❌</div>
+                    <div class="vs-side vs-right">
+                        <h4>📉 Ce qu'ils OBTIENNENT</h4>
+                        <p>Sondages non représentatifs</p>
+                        <p>Purges et perte de membres</p>
+                        <p>Réputation entachée</p>
+                    </div>
+                </div>
+
+                <div class="meme-section">
+                    <h3>🏆 PRIX DE LA GESTION DE COMMUNAUTÉ "INNOVANTE"</h3>
+                    <p style="font-size: 1.3rem;">Félicitations pour avoir transformé un Discord en chambre d'écho !</p>
+                    <p><strong>🤡 Qui a besoin de membres quand on a des processeurs Intel à vendre ?</strong></p>
+                </div>
             </div>
         </div>
 
@@ -1625,8 +1484,9 @@
                 </div>
 
                 <p><em>Cette vidéo présente une analyse détaillée des pratiques de FlowUp. Nous recommandons vivement de la visionner pour comprendre l'ampleur des problèmes identifiés.</em></p>
-				
-				<div class="content-section">
+            </div>
+                
+            <div class="content-section">
                 <h2>🚨 Problèmes Identifiés</h2>
                 
                 <div class="critique-points">
@@ -1656,9 +1516,9 @@
                         </p>
                     </div>
                 </div>
-            </div>	
             </div>
-			<div class="content-section">
+
+            <div class="content-section">
                 <h2>📊 Analyse des Pratiques</h2>
                 
                 <div class="warning-box">
@@ -1685,12 +1545,13 @@
                         <h4>Alternatives Recommandées</h4>
                         <p><strong>Pour le rendu :</strong> 9950X</p>
                         <p><strong>Pour le gaming :</strong> 9800X3D</p>
-                        <p style="color: #28a745;">✅ Meilleures performances</p>
-                        <p style="color: #28a745;">✅ Meilleur rapport qualité/prix</p>
+                        <p style="color: var(--success);">✅ Meilleures performances</p>
+                        <p style="color: var(--success);">✅ Meilleur rapport qualité/prix</p>
                     </div>
                 </div>
             </div>
-			<div class="content-section">
+
+            <div class="content-section">
                 <h2>💡 Recommandations</h2>
                 <p>Suite à cette analyse, nous recommandons aux consommateurs de :</p>
                 <ul style="margin-left: 2rem; margin-top: 1rem; line-height: 2;">
@@ -1701,14 +1562,7 @@
                     <li><strong>Privilégier la transparence</strong> dans le choix des composants</li>
                 </ul>
             </div>
-			
         </div>
-
-        
-
-        
-
-        
 
         <div class="conclusion">
             <h2>🎉 EN CONCLUSION : BRAVO LES ARTISTES !</h2>
@@ -1756,88 +1610,6 @@
     </div>
 
     <script>
-        // Création des particules flottantes
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const colors = ['#ff6b35', '#e74c3c', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6'];
-            
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Animation des cartes au survol (maintenue pour les cartes visibles)
-        document.querySelectorAll('.contradiction-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Effet de parallaxe léger (maintenu pour le hero)
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero');
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
-        });
-
-        // Animation des barres de performance au scroll (maintenue pour les cartes visibles)
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const bars = entry.target.querySelectorAll('.bar');
-                    bars.forEach((bar, index) => {
-                        setTimeout(() => {
-                            bar.style.transform = 'translateY(-5px)';
-                            bar.style.filter = 'brightness(1.2)';
-                            setTimeout(() => {
-                                bar.style.transform = 'translateY(0)';
-                                bar.style.filter = 'brightness(1)';
-                            }, 300);
-                        }, index * 200);
-                    });
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.performance-chart').forEach(chart => {
-            observer.observe(chart);
-        });
-
-        // Initialisation
-        createParticles();
-
-        // Effet de typing sur le titre
-        const title = document.querySelector('.hero h1');
-        if (title) {
-            const text = title.textContent;
-            title.textContent = '';
-            let i = 0;
-            const typeWriter = () => {
-                if (i < text.length) {
-                    title.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
-                }
-            };
-            setTimeout(typeWriter, 1000);
-        }
-
         // Tab functionality
         document.addEventListener('DOMContentLoaded', () => {
             const tabButtons = document.querySelectorAll('.nav-tab button');
@@ -1863,12 +1635,63 @@
             });
 
             // Show the first tab by default or based on URL hash
-            const initialTab = window.location.hash ? window.location.hash.substring(1) : 'ssd'; // Default to 'ssd'
+            const initialTab = window.location.hash ? window.location.hash.substring(1) : 'ssd';
             if (document.getElementById(initialTab)) {
                 showTab(initialTab);
             } else {
-                showTab('ssd'); // Fallback if hash is invalid
+                showTab('ssd');
             }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Card hover effects
+        document.querySelectorAll('.contradiction-card, .content-section').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Performance chart animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.bar');
+                    bars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            bar.style.transform = 'translateY(-5px)';
+                            setTimeout(() => {
+                                bar.style.transform = 'translateY(0)';
+                            }, 300);
+                        }, index * 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.performance-chart').forEach(chart => {
+            observer.observe(chart);
         });
     </script>
 </body>
