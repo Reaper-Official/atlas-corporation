@@ -3,24 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analyse des Erreurs Mémoire RAM - Bit-Flip Detection</title>
+    <title>Simulateur Éducatif de Malwares - Atlas Corporation</title>
+    <meta name="description" content="Atlas Corporation - Simulateur éducatif pour comprendre les mécanismes des malwares">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-dark: #0a0a0a;
-            --secondary-dark: #1a1a1a;
-            --tertiary-dark: #2a2a2a;
-            --accent-orange: #ff6b35;
-            --accent-yellow: #ffb84d;
-            --accent-red: #e74c3c;
-            --accent-green: #27ae60;
-            --text-light: #ffffff;
-            --text-muted: #b0b0b0;
-            --text-subtle: #888888;
-            --border-color: #333333;
-            --card-bg: #1e1e1e;
-            --hover-bg: #2a2a2a;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            /* Colors */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Layout */
+            --header-height: 64px;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         * {
@@ -29,29 +64,109 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
-            min-height: 100vh;
-            color: var(--text-light);
+            font-family: var(--font-sans);
+            font-size: 16px;
             line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 20px auto;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+        /* Top Header */
+        .top-header {
+            height: var(--header-height);
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--gray-900);
+            font-weight: 800;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .header-logo:hover {
+            color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .header-logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-bounce);
             overflow: hidden;
-            border: 1px solid var(--glass-border);
         }
 
+        .header-logo:hover .header-logo-icon {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--text-light);
-            padding: 80px 40px;
+            padding: 4rem 2rem 6rem;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -60,770 +175,956 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 30px,
-                rgba(255,255,255,0.08) 30px,
-                rgba(255,255,255,0.08) 60px
-            );
-            animation: slide 40s linear infinite;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 50%, rgba(59, 130, 246, 0.02) 100%);
+            transform: skewX(-12deg) translateX(15%);
+            z-index: 1;
         }
 
-        @keyframes slide {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .hero h1 {
-            font-size: 4em;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 2;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .hero .subtitle {
-            font-size: 1.4em;
-            opacity: 0.95;
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
+        .hero-container {
+            max-width: 1200px;
             margin: 0 auto;
-            font-weight: 300;
+            position: relative;
+            z-index: 2;
         }
 
-        .warning-banner {
-            background: linear-gradient(135deg, var(--accent-red), #c0392b);
-            color: var(--text-light);
-            padding: 25px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.2em;
-            animation: pulse 2s infinite;
-            border-bottom: 5px solid var(--accent-red);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-badge-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background: var(--warning);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--error);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--success);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .malware-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: var(--transition-slow);
+            height: fit-content;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .malware-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+            transform: scaleX(0);
+            transition: var(--transition-slow);
+        }
+
+        .malware-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .malware-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gray-300);
+        }
+
+        .malware-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .malware-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-btn {
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .control-btn:hover {
+            background: var(--gray-200);
+            border-color: var(--gray-300);
+        }
+
+        .control-btn.active {
+            background: var(--error);
+            color: var(--white);
+            border-color: var(--error);
+            animation: pulse-btn 2s infinite;
+        }
+
+        @keyframes pulse-btn {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .simulation-area {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            min-height: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .method-explanation {
+            background: var(--gray-50);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .method-explanation h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .method-explanation p {
+            line-height: 1.6;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        .log-area {
+            background: var(--gray-900);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            height: 100px;
+            overflow-y: auto;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            color: var(--success);
+        }
+
+        .log-entry {
+            margin: 2px 0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: var(--font-mono);
+        }
+
+        .log-entry.success { 
+            background: rgba(16, 185, 129, 0.1); 
+            color: var(--success); 
+        }
+        .log-entry.warning { 
+            background: rgba(245, 158, 11, 0.1); 
+            color: var(--warning); 
+        }
+        .log-entry.error { 
+            background: rgba(239, 68, 68, 0.1); 
+            color: var(--error); 
+        }
+        .log-entry.info { 
+            background: rgba(59, 130, 246, 0.1); 
+            color: var(--accent); 
+        }
+
+        /* Animations spécifiques aux malwares */
+        .virus-file {
+            position: absolute;
+            font-size: 1.5rem;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            color: var(--gray-400);
+        }
+
+        .virus-file.infected {
+            color: var(--error);
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+
+        .worm-network {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            height: 100%;
+        }
+
+        .network-node {
+            background: var(--gray-200);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            color: var(--gray-500);
+        }
+
+        .network-node.infected {
+            background: var(--error);
+            color: var(--white);
+            animation: networkPulse 1s infinite;
+        }
+
+        @keyframes networkPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .trojan-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .trojan-disguise {
+            font-size: 2rem;
+            color: var(--success);
+        }
+
+        .trojan-payload {
+            font-size: 2rem;
+            color: var(--error);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .trojan-payload.revealed {
+            opacity: 1;
+            animation: reveal 2s ease-in-out;
+        }
+
+        @keyframes reveal {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 2rem 1rem 4rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .top-header {
+                padding: 0 1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.02); }
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
         }
 
-        .content {
-            padding: 80px 60px;
-            background: var(--secondary-dark);
+        /* Focus states for accessibility */
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
 
-        .section {
-            margin-bottom: 80px;
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 60px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-color);
-            border-left: 10px solid var(--accent-orange);
-            transition: all 0.5s ease;
-            position: relative;
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
             overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow), var(--accent-red));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .section:hover::before {
-            opacity: 1;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.7);
-            background: var(--hover-bg);
-        }
-
-        .section h2 {
-            color: var(--accent-orange);
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .error-example {
-            background: linear-gradient(135deg, var(--tertiary-dark), var(--secondary-dark));
-            color: var(--text-light);
-            padding: 40px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border: 3px solid var(--accent-red);
-            box-shadow: 0 20px 40px rgba(231, 76, 60, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .error-example::before {
-            content: '⚠️ ERREUR CRITIQUE';
-            position: absolute;
-            top: -12px;
-            left: 30px;
-            background: linear-gradient(135deg, var(--accent-red), #c0392b);
-            color: var(--text-light);
-            padding: 8px 20px;
-            border-radius: 15px;
-            font-size: 0.9em;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
-        }
-
-        .error-header {
-            font-size: 1.4em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: var(--accent-red);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .address-line {
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
-            margin: 15px 0;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            border-left: 4px solid var(--accent-red);
-            color: var(--text-muted);
-        }
-
-        .binary-analysis {
-            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
-            padding: 30px;
-            border-radius: 15px;
-            margin: 25px 0;
-            border: 2px solid var(--accent-orange);
-            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.2);
-        }
-
-        .binary-line {
-            font-family: 'Courier New', monospace;
-            font-size: 1.05em;
-            margin: 12px 0;
-            padding: 8px;
-            letter-spacing: 1px;
-        }
-
-        .binary-expected {
-            color: var(--accent-green);
-            background: rgba(39, 174, 96, 0.1);
-            border-radius: 5px;
-            padding: 8px;
-        }
-
-        .binary-actual {
-            color: var(--accent-red);
-            background: rgba(231, 76, 60, 0.1);
-            border-radius: 5px;
-            padding: 8px;
-        }
-
-        .bit-flip-indicator {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 1.3em;
-            font-weight: bold;
-            color: var(--accent-orange);
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .error-logs {
-            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
-            color: var(--accent-red);
-            padding: 40px;
-            border-radius: 20px;
-            font-family: 'Courier New', monospace;
-            margin: 30px 0;
-            overflow-x: auto;
-            border: 3px solid var(--accent-orange);
-            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.4);
-            font-size: 0.9em;
-            line-height: 1.6;
-            max-height: 600px;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .error-logs::before {
-            content: '📊 LOGS MEMTEST86+ - ERREURS DÉTECTÉES';
-            position: absolute;
-            top: -15px;
-            left: 30px;
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--text-light);
-            padding: 10px 25px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        .error-logs::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        .error-logs::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        .error-logs::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
-            border-radius: 10px;
-            border: 2px solid transparent;
-            background-clip: padding-box;
-        }
-
-        .error-line {
-            color: var(--accent-red);
-            font-weight: 500;
-            padding: 8px 0;
-            border-left: 3px solid transparent;
-            padding-left: 15px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .error-line:hover {
-            border-left-color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.1);
-            transform: translateX(5px);
-        }
-
-        .error-line:nth-child(odd) {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        .video-container {
-            margin: 30px 0;
-            text-align: center;
-            background: rgba(30, 41, 59, 0.8);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #475569;
-        }
-
-        .video-link {
-            display: inline-block;
-            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
-        }
-
-        .video-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(220, 38, 38, 0.4);
-        }
-        
-        .stats-grid {
+        /* Additional malware-specific styles */
+        .ransomware-files {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            height: 100%;
         }
 
-        .stat-card {
-            background: linear-gradient(135deg, var(--card-bg), var(--tertiary-dark));
-            color: var(--text-light);
-            padding: 40px;
-            border-radius: 20px;
+        .file-icon {
+            font-size: 1.5rem;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 0.5rem;
+            background: var(--gray-200);
+            transition: all 0.5s ease;
+            color: var(--gray-500);
         }
 
-        .stat-card::before {
-            content: '';
+        .file-icon.encrypted {
+            background: var(--error);
+            color: var(--white);
+            animation: encrypt 0.5s ease-in-out;
+        }
+
+        @keyframes encrypt {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(90deg); }
+            100% { transform: rotateY(0deg); }
+        }
+
+        .botnet-display {
+            position: relative;
+            height: 100%;
+        }
+
+        .bot-device {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+            font-size: 1.2rem;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            color: var(--gray-400);
         }
 
-        .stat-card:hover::before {
-            transform: translateX(100%);
+        .bot-device.controlled {
+            color: var(--error);
+            animation: controlled 2s infinite;
         }
 
-        .stat-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.3);
-            border-color: var(--accent-orange);
-        }
-
-        .stat-number {
-            font-size: 3em;
-            font-weight: 900;
-            margin-bottom: 15px;
-            color: var(--accent-yellow);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 2;
-        }
-
-        .stat-label {
-            font-size: 1.2em;
-            opacity: 0.9;
-            font-weight: 500;
-            position: relative;
-            z-index: 2;
-            color: var(--text-muted);
-        }
-
-        .critical-alert {
-            background: linear-gradient(135deg, var(--accent-red), #c0392b);
-            color: var(--text-light);
-            padding: 40px;
-            border-radius: 25px;
-            margin: 40px 0;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(231, 76, 60, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .critical-alert::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 20px,
-                rgba(255, 255, 255, 0.1) 20px,
-                rgba(255, 255, 255, 0.1) 40px
-            );
-            animation: move 3s linear infinite;
-        }
-
-        @keyframes move {
-            0% { transform: translateX(-40px); }
-            100% { transform: translateX(40px); }
-        }
-
-        .critical-alert h3 {
-            color: var(--text-light);
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            position: relative;
-            z-index: 2;
-        }
-
-        .critical-alert p {
-            position: relative;
-            z-index: 2;
-            font-size: 1.1em;
-        }
-
-        .pulse-dot {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            background: var(--accent-red);
-            border-radius: 50%;
-            margin-right: 15px;
-            animation: pulse-dot 1.5s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.6); }
-        }
-
-        .impact-section {
-            background: linear-gradient(135deg, var(--card-bg), var(--tertiary-dark));
-            color: var(--text-light);
-            padding: 40px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border-left: 8px solid var(--accent-orange);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
-            border: 1px solid var(--border-color);
-        }
-
-        .impact-section h3 {
-            color: var(--accent-orange);
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            font-weight: 700;
-        }
-
-        .impact-section p {
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .impact-section p strong {
-            color: var(--text-light);
-        }
-
-        .emoji {
-            font-size: 1.5em;
-            margin-right: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.8em;
-            }
-            
-            .content {
-                padding: 50px 30px;
-            }
-            
-            .section {
-                padding: 40px 30px;
-                margin-bottom: 60px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .container {
-                margin: 10px;
-                border-radius: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 50px 25px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2em;
-            }
-            
-            .content {
-                padding: 40px 20px;
-            }
-            
-            .section {
-                padding: 30px 20px;
-            }
+        @keyframes controlled {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
-            <h1>🔍 Analyse des Erreurs Mémoire RAM</h1>
-            <div class="subtitle">Détection et analyse des bit-flips - Corruption d'authentification Windows</div>
-        </div>
+    <!-- Top Header -->
+    <header class="top-header">
+        <a href="#" class="header-logo">
+            <div class="header-logo-icon">
+                🛡️
+            </div>
+            <span>Atlas Corporation - Cyber Security</span>
+        </a>
+        <nav class="header-nav">
+            <a href="#" class="nav-link">Accueil</a>
+            <a href="#types" class="nav-link">Types</a>
+            <a href="#demo" class="nav-link">Démo</a>
+            <a href="https://atlas-corporation.fr" class="nav-link">Site Principal</a>
+        </nav>
+    </header>
 
-        <div class="warning-banner">
-            <span class="pulse-dot"></span>
-            DÉFAILLANCE CRITIQUE CONFIRMÉE : 28 erreurs mémoire détectées en 57 secondes
-        </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                <span>Simulateur éducatif de sécurité</span>
+            </div>
 
-        <div class="content">
-            <div class="section">
-                <h2><span class="emoji">🔍</span>Exemples d'Erreurs Typiques</h2>
-                
-                <div class="critical-alert">
-                    <h3>⚠️ ANALYSE CRITIQUE</h3>
-                    <p>Les erreurs suivantes démontrent une défaillance matérielle grave avec corruption des données d'authentification Windows</p>
+            <h1 class="hero-title">
+                Comprendre les <span class="highlight">Malwares</span> pour mieux s'en protéger
+            </h1>
+
+            <p class="hero-description">
+                Atlas Corporation vous propose un simulateur éducatif interactif pour comprendre les mécanismes d'infection des malwares. 
+                Découvrez comment ces menaces opèrent dans un environnement sécurisé et apprenez à vous en protéger.
+            </p>
+
+            <div class="controls">
+                <button class="btn btn-primary" onclick="startAllSimulations()">🚀 Démarrer Toutes les Simulations</button>
+                <button class="btn btn-secondary" onclick="resetAllSimulations()">🔄 Réinitialiser Tout</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content" id="demo">
+        <div class="container">
+            <!-- VIRUS -->
+            <div class="malware-card" data-type="virus">
+                <div class="malware-header">
+                    <div class="malware-title">🦠 VIRUS</div>
+                    <button class="control-btn" onclick="toggleSimulation('virus')">Démarrer Infection</button>
                 </div>
+                <div class="simulation-area" id="virus-sim"></div>
+                <div class="method-explanation">
+                    <h4>Méthode d'infection :</h4>
+                    <p>Le virus s'attache à des fichiers exécutables et se réplique quand ces fichiers sont lancés. Il se propage de fichier en fichier, corrompant progressivement le système.</p>
+                </div>
+                <div class="log-area" id="virus-log">
+                    <div class="log-entry success">Système sécurisé</div>
+                </div>
+            </div>
 
-                <div class="error-example">
-                    <div class="error-header">
-                        🚨 Erreur MemTest86+ Détectée
+            <!-- WORM -->
+            <div class="malware-card" data-type="worm">
+                <div class="malware-header">
+                    <div class="malware-title">🐛 VER (WORM)</div>
+                    <button class="control-btn" onclick="toggleSimulation('worm')">Démarrer Propagation</button>
+                </div>
+                <div class="simulation-area" id="worm-sim">
+                    <div class="worm-network"></div>
+                </div>
+                <div class="method-explanation">
+                    <h4>Méthode d'infection :</h4>
+                    <p>Contrairement aux virus, les vers se propagent automatiquement via le réseau sans intervention humaine. Ils exploitent les vulnérabilités réseau pour infecter d'autres machines.</p>
+                </div>
+                <div class="log-area" id="worm-log">
+                    <div class="log-entry success">Réseau sécurisé</div>
+                </div>
+            </div>
+
+            <!-- TROJAN -->
+            <div class="malware-card" data-type="trojan">
+                <div class="malware-header">
+                    <div class="malware-title">🐎 CHEVAL DE TROIE</div>
+                    <button class="control-btn" onclick="toggleSimulation('trojan')">Activer Cheval de Troie</button>
+                </div>
+                <div class="simulation-area" id="trojan-sim">
+                    <div class="trojan-container">
+                        <div class="trojan-disguise">📱 App Légitime</div>
+                        <div class="trojan-payload">💀 Payload Malveillant</div>
                     </div>
-                    <div class="address-line">
-                        <strong>Address:</strong> 0x14F6C880<br>
-                        <strong>Expected:</strong> 0x24D3A13C → <strong>Actual:</strong> 0x24D3A134
+                </div>
+                <div class="method-explanation">
+                    <h4>Méthode d'infection :</h4>
+                    <p>Se déguise en logiciel légitime pour tromper l'utilisateur. Une fois installé, il active son payload malveillant caché et crée une porte dérobée pour l'attaquant.</p>
+                </div>
+                <div class="log-area" id="trojan-log">
+                    <div class="log-entry success">Aucune application suspecte</div>
+                </div>
+            </div>
+
+            <!-- RANSOMWARE -->
+            <div class="malware-card" data-type="ransomware">
+                <div class="malware-header">
+                    <div class="malware-title">🔐 RANSOMWARE</div>
+                    <button class="control-btn" onclick="toggleSimulation('ransomware')">Démarrer Chiffrement</button>
+                </div>
+                <div class="simulation-area" id="ransomware-sim">
+                    <div class="ransomware-files"></div>
+                </div>
+                <div class="method-explanation">
+                    <h4>Méthode d'infection :</h4>
+                    <p>Chiffre les fichiers de la victime et demande une rançon pour la clé de déchiffrement. Se propage souvent via des emails malveillants ou des vulnérabilités réseau.</p>
+                </div>
+                <div class="log-area" id="ransomware-log">
+                    <div class="log-entry success">Fichiers non chiffrés</div>
+                </div>
+            </div>
+
+            <!-- BOTNET -->
+            <div class="malware-card" data-type="botnet">
+                <div class="malware-header">
+                    <div class="malware-title">🤖 BOTNET</div>
+                    <button class="control-btn" onclick="toggleSimulation('botnet')">Créer Botnet</button>
+                </div>
+                <div class="simulation-area" id="botnet-sim">
+                    <div class="botnet-display"></div>
+                </div>
+                <div class="method-explanation">
+                    <h4>Méthode d'infection :</h4>
+                    <p>Réseau de machines infectées contrôlées à distance par un "botmaster". Utilisé pour des attaques DDoS, spam, minage de cryptomonnaies ou vol de données.</p>
+                </div>
+                <div class="log-area" id="botnet-log">
+                    <div class="log-entry success">Aucun bot détecté</div>
+                </div>
+            </div>
+
+            <!-- SPYWARE -->
+            <div class="malware-card" data-type="spyware">
+                <div class="malware-header">
+                    <div class="malware-title">👁️ SPYWARE</div>
+                    <button class="control-btn" onclick="toggleSimulation('spyware')">Activer Surveillance</button>
+                </div>
+                <div class="simulation-area" id="spyware-sim">
+                    <div style="display: flex; flex-direction: column; gap: 5px; height: 100%;">
+                        <div class="monitor-section" style="height: 20px; background: var(--gray-200); border-radius: 3px; overflow: hidden; position: relative;"></div>
+                        <div class="monitor-section" style="height: 20px; background: var(--gray-200); border-radius: 3px; overflow: hidden; position: relative;"></div>
+                        <div class="monitor-section" style="height: 20px; background: var(--gray-200); border-radius: 3px; overflow: hidden; position: relative;"></div>
                     </div>
+                </div>
+                <div class="method-explanation">
+                    <h4>Méthode d'infection :</h4>
+                    <p>Se cache dans le système pour surveiller secrètement les activités de l'utilisateur : frappes clavier, mots de passe, emails, historique de navigation.</p>
+                </div>
+                <div class="log-area" id="spyware-log">
+                    <div class="log-entry success">Aucune surveillance détectée</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // État global des simulations
+        const simulations = {
+            virus: { active: false, interval: null },
+            worm: { active: false, interval: null },
+            trojan: { active: false, interval: null },
+            ransomware: { active: false, interval: null },
+            botnet: { active: false, interval: null },
+            spyware: { active: false, interval: null }
+        };
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeAllSimulations();
+        });
+
+        function initializeAllSimulations() {
+            initializeVirus();
+            initializeWorm();
+            initializeRansomware();
+            initializeBotnet();
+        }
+
+        // ===== VIRUS =====
+        function initializeVirus() {
+            const container = document.getElementById('virus-sim');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 9; i++) {
+                const file = document.createElement('div');
+                file.className = 'virus-file';
+                file.innerHTML = '📄';
+                file.style.left = `${(i % 3) * 80 + 20}px`;
+                file.style.top = `${Math.floor(i / 3) * 60 + 20}px`;
+                file.setAttribute('data-infected', 'false');
+                container.appendChild(file);
+            }
+        }
+
+        function startVirus() {
+            addLog('virus-log', 'Virus détecté - Début d\'infection', 'error');
+            const files = document.querySelectorAll('#virus-sim .virus-file');
+            let infectedCount = 0;
+            
+            simulations.virus.interval = setInterval(() => {
+                if (infectedCount < files.length) {
+                    const file = files[infectedCount];
+                    file.classList.add('infected');
+                    file.innerHTML = '🦠';
+                    file.setAttribute('data-infected', 'true');
+                    addLog('virus-log', `Fichier ${infectedCount + 1} infecté`, 'error');
+                    infectedCount++;
+                } else {
+                    addLog('virus-log', 'Tous les fichiers corrompus!', 'error');
+                    clearInterval(simulations.virus.interval);
+                    simulations.virus.active = false;
+                }
+            }, 800);
+        }
+
+        // ===== WORM =====
+        function initializeWorm() {
+            const container = document.querySelector('#worm-sim .worm-network');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 8; i++) {
+                const node = document.createElement('div');
+                node.className = 'network-node';
+                node.innerHTML = '💻';
+                node.setAttribute('data-infected', i === 0 ? 'true' : 'false');
+                if (i === 0) node.classList.add('infected');
+                container.appendChild(node);
+            }
+        }
+
+        function startWorm() {
+            addLog('worm-log', 'Ver détecté - Propagation réseau', 'error');
+            const nodes = document.querySelectorAll('#worm-sim .network-node');
+            let currentInfected = 1;
+            
+            simulations.worm.interval = setInterval(() => {
+                if (currentInfected < nodes.length) {
+                    const node = nodes[currentInfected];
+                    node.classList.add('infected');
+                    node.setAttribute('data-infected', 'true');
+                    addLog('worm-log', `Nœud ${currentInfected + 1} compromis`, 'error');
+                    currentInfected++;
+                } else {
+                    addLog('worm-log', 'Réseau entièrement infecté!', 'error');
+                    clearInterval(simulations.worm.interval);
+                    simulations.worm.active = false;
+                }
+            }, 1200);
+        }
+
+        // ===== TROJAN =====
+        function startTrojan() {
+            addLog('trojan-log', 'Application installée...', 'info');
+            setTimeout(() => {
+                const payload = document.querySelector('#trojan-sim .trojan-payload');
+                payload.classList.add('revealed');
+                addLog('trojan-log', 'Payload malveillant activé!', 'error');
+                addLog('trojan-log', 'Porte dérobée créée', 'error');
+                addLog('trojan-log', 'Données sensibles accessibles', 'error');
+                simulations.trojan.active = false;
+            }, 2000);
+        }
+
+        // ===== RANSOMWARE =====
+        function initializeRansomware() {
+            const container = document.querySelector('#ransomware-sim .ransomware-files');
+            container.innerHTML = '';
+            
+            const fileIcons = ['📄', '📷', '📊', '📋', '📁', '💾'];
+            for (let i = 0; i < 6; i++) {
+                const file = document.createElement('div');
+                file.className = 'file-icon';
+                file.innerHTML = fileIcons[i];
+                file.setAttribute('data-encrypted', 'false');
+                container.appendChild(file);
+            }
+        }
+
+        function startRansomware() {
+            addLog('ransomware-log', 'Ransomware activé - Chiffrement...', 'error');
+            const files = document.querySelectorAll('#ransomware-sim .file-icon');
+            let encryptedCount = 0;
+            
+            simulations.ransomware.interval = setInterval(() => {
+                if (encryptedCount < files.length) {
+                    const file = files[encryptedCount];
+                    file.classList.add('encrypted');
+                    file.innerHTML = '🔒';
+                    file.setAttribute('data-encrypted', 'true');
+                    addLog('ransomware-log', `Fichier ${encryptedCount + 1} chiffré`, 'error');
+                    encryptedCount++;
+                } else {
+                    addLog('ransomware-log', '💰 RANÇON DEMANDÉE: 0.5 BTC', 'error');
+                    clearInterval(simulations.ransomware.interval);
+                    simulations.ransomware.active = false;
+                }
+            }, 1000);
+        }
+
+        // ===== BOTNET =====
+        function initializeBotnet() {
+            const container = document.querySelector('#botnet-sim .botnet-display');
+            const oldBots = container.querySelectorAll('.bot-device');
+            oldBots.forEach(bot => bot.remove());
+            
+            for (let i = 0; i < 12; i++) {
+                const bot = document.createElement('div');
+                bot.className = 'bot-device';
+                bot.innerHTML = '📱';
+                bot.style.left = `${Math.random() * 80 + 10}%`;
+                bot.style.top = `${Math.random() * 80 + 10}%`;
+                bot.setAttribute('data-controlled', 'false');
+                container.appendChild(bot);
+            }
+        }
+
+        function startBotnet() {
+            addLog('botnet-log', 'Recrutement de bots...', 'warning');
+            const bots = document.querySelectorAll('#botnet-sim .bot-device');
+            let controlledCount = 0;
+            
+            simulations.botnet.interval = setInterval(() => {
+                if (controlledCount < bots.length) {
+                    const bot = bots[controlledCount];
+                    bot.classList.add('controlled');
+                    bot.setAttribute('data-controlled', 'true');
+                    addLog('botnet-log', `Bot ${controlledCount + 1} recruté`, 'error');
+                    controlledCount++;
+                } else {
+                    addLog('botnet-log', 'Botnet opérationnel - Attaque DDoS!', 'error');
+                    clearInterval(simulations.botnet.interval);
+                    simulations.botnet.active = false;
+                }
+            }, 600);
+        }
+
+        // ===== SPYWARE =====
+        function startSpyware() {
+            addLog('spyware-log', 'Surveillance activée', 'error');
+            const sections = document.querySelectorAll('#spyware-sim .monitor-section');
+            
+            simulations.spyware.interval = setInterval(() => {
+                sections.forEach(section => {
+                    const stream = document.createElement('div');
+                    stream.style.cssText = `
+                        position: absolute;
+                        top: 0;
+                        width: 10px;
+                        height: 100%;
+                        background: var(--error);
+                        animation: streamMove 1s linear forwards;
+                        left: ${Math.random() * 90}%;
+                    `;
+                    section.appendChild(stream);
                     
-                    <div class="binary-analysis">
-                        <h4 style="color: #ff6b6b; margin-bottom: 20px;">📊 Analyse Binaire Détaillée</h4>
-                        <div class="binary-line binary-expected">
-                            <strong>Expected:</strong> 0010 0100 1101 0011 1010 0001 0011 1100
-                        </div>
-                        <div class="binary-line binary-actual">
-                            <strong>Actual:</strong>&nbsp;&nbsp;&nbsp;0010 0100 1101 0011 1010 0001 0011 0100
-                        </div>
-                        <div class="bit-flip-indicator">
-                            🎯 Bit-flip détecté (Bit #3 corrompu)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="impact-section">
-                    <h3>💥 Impact Critique</h3>
-                    <p><strong>Zone d'impact :</strong> Données d'authentification Windows</p>
-                    <p><strong>Conséquence 1 :</strong> Corruption des hachages de mots de passe et tokens de sécurité</p>
-                    <p><strong>Conséquence 2 :</strong> Plantage du PC</p>
-                    <p><strong>Résultat 1 :</strong> Impossibilité de connexion même avec les bons identifiants</p>
-                    <p><strong>Résultat 2 :</strong> Impossible d'utiliser le PC</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">28</div>
-                        <div class="stat-label">Erreurs Détectées</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">57</div>
-                        <div class="stat-label">Secondes de Test</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">30</div>
-                        <div class="stat-label">Erreurs/Minute</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Défaillance Confirmée</div>
-                    </div>
-                </div>
-            </div>
-	   <div class="section">
-                <h2><span class="emoji">📱</span>Analyse Corsair - Qualité des Puces RAM</h2>
+                    setTimeout(() => stream.remove(), 1000);
+                });
                 
-                <div class="critical-alert">
-                    <h3>🎯 CORSAIR et la Loterie des Puces IC</h3>
-                    <p>Corsair, comme tous les assembleurs, ne fabrique pas ses propres puces mémoire. Ils achètent des lots mixtes auprès de Samsung, SK Hynix et Micron, créant une "loterie silicium" pour les consommateurs.</p>
-                </div>
-                    <div class="video-container">
-                        <a href="https://atlas-corporation.fr/videostock/FrHardwareAutoDebunk(1).mp4" class="video-link" target="_blank">
-                        🎥 Voir la vidéo 
-                        </a>
-                    </div>
-                <div class="error-example">
-                    <div class="error-header">
-                        ⚙️ Hiérarchie des Puces DDR5
-                    </div>
-                    <div class="address-line">
-                        <strong>A-die :</strong> Excellent overclocking, stabilité maximale<br>
-                        <strong>M-die :</strong> Overclocking modéré, qualité correcte<br>
-                        <strong>C-die :</strong> Performances limitées, entrée de gamme<br>
-                        <strong>Puces Micron/Nanya :</strong> Qualité variable selon les révisions
-                    </div>
-                </div>
+                const dataTypes = ['Email', 'Mot de passe', 'Carte bancaire', 'Navigation'];
+                const randomData = dataTypes[Math.floor(Math.random() * dataTypes.length)];
+                addLog('spyware-log', `${randomData} capturé`, 'error');
+            }, 2000);
+        }
 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">0%</div>
-                        <div class="stat-label">Contrôle Corsair sur les IC</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Dépendance aux fonderies</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">50%</div>
-                        <div class="stat-label">Chance d'avoir de bonnes puces</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Variations de performance</div>
-                    </div>
-                </div>
-
-                <div class="impact-section">
-                    <h3>🔧 Processus d'Assemblage Corsair</h3>
-                    <p><strong>1. Réception des lots :</strong> Corsair reçoit des puces mélangées (A-die, M-die, C-die)</p>
-                    <p><strong>2. Binning (tri) :</strong> Test des performances de chaque puce individuellement</p>
-                    <p><strong>3. Classification :</strong> Répartition selon les gammes de produits</p>
-                    <p><strong>4. Dominator Platinum :</strong> Priorité aux meilleures puces (A-die, M-die top)</p>
-                    <p><strong>5. Vengeance LPX :</strong> Puces moyennes et entrée de gamme</p>
-                    <p><strong>6. Problème :</strong> Même dans le haut de gamme, qualité variable possible</p>
-                </div>
-
-                <div class="error-example">
-                    <div class="error-header">
-                        🎲 Impact sur la Stabilité
-                    </div>
-                    <div class="address-line">
-                        <strong>Scénario A :</strong> Kit Corsair avec Samsung A-die → Stabilité parfaite<br>
-                        <strong>Scénario B :</strong> Kit Corsair identique avec Samsung C-die → Erreurs RAM<br>
-                        <strong>Résultat :</strong> Même référence, performances drastiquement différentes<br>
-                        <strong>Diagnostic :</strong> Impossible à prévoir sans test approfondi
-                    </div>
-                </div>
-
-                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@hardware.hub/video/7424906280126483745" data-video-id="7424906280126483745" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@hardware.hub" href="https://www.tiktok.com/@hardware.hub?refer=embed">@hardware.hub</a> Les Rams CORSAIR, pourquoi ?!  <a title="techtok" target="_blank" href="https://www.tiktok.com/tag/techtok?refer=embed">#techtok</a> <a target="_blank" title="♬ son original - Hardware Hub" href="https://www.tiktok.com/music/son-original-7424906289781820192?refer=embed">♬ son original - Hardware Hub</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-
-                <div class="critical-alert">
-                    <h3>🔍 CONCLUSION TECHNIQUE</h3>
-                    <p>Les erreurs RAM détectées dans cette analyse peuvent être directement liées à la qualité des puces IC utilisées. 
-                    Un kit Corsair avec des puces C-die ou des révisions Micron défaillantes peut générer exactement ce type d'erreurs. 
-                    La "loterie silicium" explique pourquoi certains utilisateurs n'ont aucun problème tandis que d'autres subissent des défaillances critiques.</p>
-                </div>
-            </div>
-
-
-
-		
-            <div class="section">
-                <h2><span class="emoji">📋</span>Logs Complets - Toutes les Erreurs MEM ERROR</h2>
+        // ===== CONTRÔLES =====
+        function toggleSimulation(type) {
+            const sim = simulations[type];
+            const btn = document.querySelector(`[data-type="${type}"] .control-btn`);
+            
+            if (sim.active) {
+                stopSimulation(type);
+                btn.textContent = getStartButtonText(type);
+                btn.classList.remove('active');
+            } else {
+                sim.active = true;
+                btn.textContent = 'Arrêter';
+                btn.classList.add('active');
                 
-                <div class="error-logs">
-<div class="error-line">2025-05-27 09:31:39 - [MEM ERROR - Data] Test: 8, CPU: 6, Address: 14F6C880, Expected: 24D3A13C, Actual: 24D3A134</div>
-<div class="error-line">2025-05-27 09:31:43 - [MEM ERROR - Data] Test: 8, CPU: 10, Address: 25936800, Expected: A74BE7AC, Actual: A74BE7A4</div>
-<div class="error-line">2025-05-27 09:31:43 - [MEM ERROR - Data] Test: 8, CPU: 6, Address: 2D5A9080, Expected: 2D43A314, Actual: 2D43A31C</div>
-<div class="error-line">2025-05-27 09:31:44 - [MEM ERROR - Data] Test: 8, CPU: 0, Address: 4F5D1040, Expected: 731CBCEB, Actual: 731CBCE3</div>
-<div class="error-line">2025-05-27 09:31:50 - [MEM ERROR - Data] Test: 8, CPU: 6, Address: 5CF63740, Expected: CF44FBAC, Actual: CF44FBA4</div>
-<div class="error-line">2025-05-27 09:31:50 - [MEM ERROR - Data] Test: 8, CPU: 10, Address: 53A517C0, Expected: 35277533, Actual: 3527753B</div>
-<div class="error-line">2025-05-27 09:31:50 - [MEM ERROR - Data] Test: 8, CPU: 6, Address: 5D5F1240, Expected: 2BACB54B, Actual: 2BACB543</div>
-<div class="error-line">2025-05-27 09:31:51 - [MEM ERROR - Data] Test: 8, CPU: 4, Address: 79784180, Expected: 3210FB94, Actual: 3210FB9C</div>
-<div class="error-line">2025-05-27 09:31:51 - [MEM ERROR - Data] Test: 8, CPU: 4, Address: 7A53B280, Expected: 2ECD3DD4, Actual: 2ECD3DDC</div>
-<div class="error-line">2025-05-27 09:31:51 - [MEM ERROR - Data] Test: 8, CPU: 0, Address: 80A2D680, Expected: 3DE8A12B, Actual: 3DE8A123</div>
-<div class="error-line">2025-05-27 09:32:01 - [MEM ERROR - Data] Test: 8, CPU: 2, Address: AA099CC0, Expected: CAD7516B, Actual: CAD75163</div>
-<div class="error-line">2025-05-27 09:32:01 - [MEM ERROR - Data] Test: 8, CPU: 2, Address: AC4DA6B8, Expected: DA1D6114, Actual: DA1D611C</div>
-<div class="error-line">2025-05-27 09:32:05 - [MEM ERROR - Data] Test: 8, CPU: 2, Address: 11302E000, Expected: 43AAD94C, Actual: 43AAD944</div>
-<div class="error-line">2025-05-27 09:32:05 - [MEM ERROR - Data] Test: 8, CPU: 4, Address: 10CE00400, Expected: F1DA25B3, Actual: F1DA25BB</div>
-<div class="error-line">2025-05-27 09:32:05 - [MEM ERROR - Data] Test: 8, CPU: 6, Address: 1094E8180, Expected: BB0A1953, Actual: BB0A195B</div>
-<div class="error-line">2025-05-27 09:32:12 - [MEM ERROR - Data] Test: 8, CPU: 8, Address: 1372BC280, Expected: 94FCBA63, Actual: 94FCBA6B</div>
-<div class="error-line">2025-05-27 09:32:12 - [MEM ERROR - Data] Test: 8, CPU: 0, Address: 1478C8AC0, Expected: 615F6AD3, Actual: 615F6ADB</div>
-<div class="error-line">2025-05-27 09:32:16 - [MEM ERROR - Data] Test: 8, CPU: 8, Address: 14FE8D540, Expected: 238AD514, Actual: 238AD51C</div>
-<div class="error-line">2025-05-27 09:32:16 - [MEM ERROR - Data] Test: 8, CPU: 10, Address: 149A0DFC0, Expected: D85D55BB, Actual: D85D55B3</div>
-<div class="error-line">2025-05-27 09:32:17 - [MEM ERROR - Data] Test: 8, CPU: 4, Address: 16DD59440, Expected: DEA503AC, Actual: DEA503A4</div>
-<div class="error-line">2025-05-27 09:32:17 - [MEM ERROR - Data] Test: 8, CPU: 0, Address: 1778D3240, Expected: 65AE6F2C, Actual: 65AE6F24</div>
-<div class="error-line">2025-05-27 09:32:20 - [MEM ERROR - Data] Test: 8, CPU: 6, Address: 1691058C0, Expected: A88A4E14, Actual: A88A4E1C</div>
-<div class="error-line">2025-05-27 09:32:20 - [MEM ERROR - Data] Test: 8, CPU: 2, Address: 172959000, Expected: 0B29569B, Actual: 0B295693</div>
-<div class="error-line">2025-05-27 09:32:20 - [MEM ERROR - Data] Test: 8, CPU: 6, Address: 16AB0F1C0, Expected: 8BF5B5AB, Actual: 8BF5B5A3</div>
-<div class="error-line">2025-05-27 09:32:23 - [MEM ERROR - Data] Test: 8, CPU: 0, Address: 18E5D4478, Expected: D7A8705C, Actual: D7A87054</div>
-<div class="error-line">2025-05-27 09:32:35 - [MEM ERROR - Data] Test: 8, CPU: 6, Address: 1C981FF00, Expected: A35FD7C3, Actual: A35FD7CB</div>
-<div class="error-line">2025-05-27 09:32:35 - [MEM ERROR - Data] Test: 8, CPU: 2, Address: 1D3028100, Expected: DC754AFB, Actual: DC754AF3</div>
-<div class="error-line">2025-05-27 09:32:36 - [MEM ERROR - Data] Test: 8, CPU: 0, Address: 1EEBF2CC0, Expected: 77BFA804, Actual: 77BFA80C</div>
-                </div>
+                switch(type) {
+                    case 'virus': startVirus(); break;
+                    case 'worm': startWorm(); break;
+                    case 'trojan': startTrojan(); break;
+                    case 'ransomware': startRansomware(); break;
+                    case 'botnet': startBotnet(); break;
+                    case 'spyware': startSpyware(); break;
+                }
+            }
+        }
 
-                <div class="critical-alert">
-                    <h3>🔴 CONCLUSION TECHNIQUE</h3>
-                    <p>Les 28 erreurs détectées confirment une défaillance matérielle critique de la RAM. 
-                    Chaque erreur représente un bit-flip affectant potentiellement les données d'authentification Windows, 
-                    expliquant l'impossibilité de connexion au système.</p>
-                </div>
-            </div>
+        function getStartButtonText(type) {
+            const texts = {
+                virus: 'Démarrer Infection',
+                worm: 'Démarrer Propagation',
+                trojan: 'Activer Cheval de Troie',
+                ransomware: 'Démarrer Chiffrement',
+                botnet: 'Créer Botnet',
+                spyware: 'Activer Surveillance'
+            };
+            return texts[type];
+        }
 
-            <div class="section">
-                <h2><span class="emoji">🔐</span>Impact sur le Code PIN Windows</h2>
+        function stopSimulation(type) {
+            const sim = simulations[type];
+            if (sim.interval) {
+                clearInterval(sim.interval);
+                sim.interval = null;
+            }
+            sim.active = false;
+        }
+
+        function startAllSimulations() {
+            Object.keys(simulations).forEach(type => {
+                if (!simulations[type].active) {
+                    toggleSimulation(type);
+                }
+            });
+        }
+
+        function resetAllSimulations() {
+            Object.keys(simulations).forEach(type => {
+                stopSimulation(type);
+                const btn = document.querySelector(`[data-type="${type}"] .control-btn`);
+                btn.textContent = getStartButtonText(type);
+                btn.classList.remove('active');
                 
-                                    <div class="error-example">
-                        <div class="error-header">
-                            🧠 Stockage en RAM des Données PIN
-                        </div>
-                        <div class="address-line">
-                            <strong>Processus :</strong> Winlogon.exe + LSA (Local Security Authority) + TPM 2.0<br>
-                            <strong>Zone mémoire :</strong> Espace utilisateur protégé + Kernel space<br>
-                            <strong>Données sensibles :</strong> Hachages PIN, tokens de session, clés de chiffrement
-                        </div>
-                        
-                        <div class="binary-analysis">
-                            <h4 style="color: #ff6b6b; margin-bottom: 20px;">🔍 Corruption des Données PIN</h4>
-                            <div class="binary-line binary-expected">
-                                <strong>PIN Hash (correct) :</strong> A74BE7AC → Vérification PIN réussie
-                            </div>
-                            <div class="binary-line binary-actual">
-                                <strong>PIN Hash (corrompu) :</strong> A74BE7A4 → ÉCHEC authentification
-                            </div>
-                            <div class="bit-flip-indicator">
-                                🎯 Un seul bit-flip suffit à rendre le PIN invalide
-                            </div>
-                        </div>
-                    </div>
+                // Reset des logs
+                const log = document.getElementById(`${type}-log`);
+                log.innerHTML = '<div class="log-entry success">Système sécurisé</div>';
+            });
+            
+            // Réinitialiser les simulations
+            initializeAllSimulations();
+            
+            // Reset du trojan
+            const trojanPayload = document.querySelector('#trojan-sim .trojan-payload');
+            if (trojanPayload) trojanPayload.classList.remove('revealed');
+        }
 
-                    <div class="impact-section">
-                        <h3>⚡ Processus d'Authentification PIN Détaillé</h3>
-                        <p><strong>1. Saisie du PIN :</strong> L'utilisateur tape son code PIN sur l'écran de verrouillage</p>
-                        <p><strong>2. Hachage en RAM :</strong> Windows calcule le hachage du PIN et le stocke temporairement en mémoire</p>
-                        <p><strong>3. Comparaison :</strong> Le système compare ce hachage avec celui stocké de manière sécurisée</p>
-                        <p><strong>4. PROBLÈME :</strong> Si la RAM est défaillante, le hachage calculé est corrompu</p>
-                        <p><strong>5. Résultat :</strong> Même avec le bon PIN, l'authentification échoue systématiquement</p>
-                    </div>
+        function addLog(logId, message, type) {
+            const log = document.getElementById(logId);
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+            
+            // Limiter le nombre d'entrées (max 50)
+            if (log.children.length > 50) {
+                log.removeChild(log.firstChild);
+            }
+        }
 
-                    <div class="error-example">
-                        <div class="error-header">
-                            🔄 Cycle d'Échec Continu
-                        </div>
-                        <div class="address-line">
-                            <strong>Scénario typique :</strong><br>
-                            → Utilisateur saisit le PIN correct (ex: 1234)<br>
-                            → Windows calcule le hachage en RAM défaillante<br>
-                            → Bit-flip corrompt le hachage (1 bit change sur 32)<br>
-                            → La comparaison échoue<br>
-                            → Message "PIN incorrect" affiché<br>
-                            → L'utilisateur ressaie → Même problème à l'infini
-                        </div>
-                    </div>
+        // Ajout de l'animation CSS pour les streams
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes streamMove {
+                0% { transform: translateX(-10px); }
+                100% { transform: translateX(100px); }
+            }
+        `;
+        document.head.appendChild(style);
 
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number">1</div>
-                            <div class="stat-label">Bit suffit pour bloquer</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">32</div>
-                            <div class="stat-label">Bits dans un hachage</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">3.125%</div>
-                            <div class="stat-label">Probabilité corruption/bit</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">∞</div>
-                            <div class="stat-label">Tentatives inutiles</div>
-                        </div>
-                    </div>
-
-                    <div class="critical-alert">
-                        <h3>🚨 DIAGNOSTIC CONFIRMÉ</h3>
-                        <p>Les 28 erreurs RAM détectées expliquent parfaitement l'impossibilité de connexion Windows. 
-                        La corruption des données PIN en mémoire rend l'authentification impossible, même avec le code correct. 
-                        <strong>Solution unique : Remplacement de la RAM défaillante.</strong></p>
-                    </div>
-                </div>
-        </div>
-    </div>
-	
+    </script>
 </body>
 </html>
