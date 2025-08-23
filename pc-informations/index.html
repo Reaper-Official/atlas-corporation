@@ -4,20 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PC Préassemblé vs PC Monté Soi-même - Guide Complet 2025</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-dark: #0a0a0a;
-            --secondary-dark: #1a1a1a;
-            --tertiary-dark: #2d2d2d;
-            --accent-orange: #ff6b35;
-            --accent-red: #cc0000;
-            --accent-yellow: #ffcc00;
-            --accent-green: #ff8800;
-            --text-light: #ffffff;
-            --text-muted: #cccccc;
-            --border-color: #660000;
-            --success-color: #4CAF50;
-            --danger-color: #f44336;
+            /* Colors */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         * {
@@ -25,16 +55,23 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body {
-            font-family: 'Roboto Condensed', sans-serif;
-            line-height: 1.6;
-            color: var(--text-light);
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
-            min-height: 100vh;
-            position: relative;
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Background Pattern */
         body::before {
             content: '';
             position: fixed;
@@ -42,34 +79,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.05) 0%, transparent 50%),
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 100px,
-                    rgba(255, 255, 255, 0.01) 100px,
-                    rgba(255, 255, 255, 0.01) 101px
-                );
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23f3f4f6" opacity="0.3"/><circle cx="75" cy="75" r="0.5" fill="%23e5e7eb" opacity="0.4"/><circle cx="50" cy="10" r="0.8" fill="%23d1d5db" opacity="0.2"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
             z-index: -1;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 2rem;
         }
-        
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
         }
@@ -78,80 +103,101 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow), var(--accent-orange));
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+            transform: skewX(-15deg) translateX(20%);
         }
-        
-        .hero h1 {
-            font-family: 'Orbitron', monospace;
-            font-size: 3em;
-            margin-bottom: 20px;
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.025em;
         }
-        
-        .hero .subtitle {
-            font-size: 1.3em;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            line-height: 1.8;
+
+        .hero-title .emoji {
+            margin-right: 1rem;
         }
-        
+
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .quick-nav {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 1rem;
             flex-wrap: wrap;
+            margin-top: 2rem;
         }
-        
+
         .nav-btn {
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--primary-dark);
-            padding: 12px 24px;
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 0.75rem;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-sm);
         }
-        
+
         .nav-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
-            background: linear-gradient(45deg, var(--accent-yellow), var(--accent-orange));
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
-        
+
+        /* Section Styling */
         .section {
-            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
-            margin-bottom: 30px;
-            border-radius: 15px;
+            background: var(--white);
+            margin: 2rem auto;
+            border-radius: 1.5rem;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+            max-width: 1200px;
         }
-        
+
         .section-header {
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--primary-dark);
-            padding: 20px 30px;
-            font-size: 1.8em;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 2rem 2.5rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 2px;
             position: relative;
         }
 
@@ -161,286 +207,333 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
         }
-        
+
         .section-content {
-            padding: 30px;
+            padding: 2.5rem;
         }
-        
+
+        /* Table Styling */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            background: var(--primary-dark);
-            border-radius: 10px;
+            margin: 1.5rem 0;
+            background: var(--white);
+            border-radius: 0.75rem;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
         }
-        
+
         .comparison-table th,
         .comparison-table td {
-            padding: 15px;
+            padding: 1rem 1.5rem;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-light);
+            border-bottom: 1px solid var(--gray-200);
         }
-        
+
         .comparison-table th {
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--primary-dark);
-            font-weight: 700;
-            font-family: 'Orbitron', monospace;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            font-weight: 600;
+            font-size: 0.875rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.05em;
         }
-        
-        .comparison-table tr:nth-child(even) {
-            background-color: var(--secondary-dark);
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
         }
-        
+
         .comparison-table tr:hover {
-            background-color: var(--tertiary-dark);
-            transform: scale(1.01);
-            transition: all 0.3s ease;
+            background-color: var(--gray-50);
         }
-        
+
+        /* Pros and Cons Grid */
         .pros-cons {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 30px 0;
+            gap: 2rem;
+            margin: 2rem 0;
         }
-        
+
         .pros, .cons {
-            background: var(--secondary-dark);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 2px solid var(--border-color);
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
         }
-        
+
         .pros {
-            border-left: 5px solid var(--success-color);
+            border-left: 4px solid var(--success);
         }
-        
+
         .cons {
-            border-left: 5px solid var(--danger-color);
+            border-left: 4px solid var(--error);
         }
-        
+
         .pros h3 {
-            color: var(--success-color);
-            margin-bottom: 15px;
-            font-size: 1.4em;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
         }
-        
+
         .cons h3 {
-            color: var(--danger-color);
-            margin-bottom: 15px;
-            font-size: 1.4em;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--error);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
         }
-        
+
+        .pros ul, .cons ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pros li, .cons li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .pros li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .cons li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--error);
+            font-weight: bold;
+        }
+
+        /* Feature Grid */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
-        
+
         .feature-card {
-            background: var(--secondary-dark);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: 2px solid var(--border-color);
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition-slow);
+            border: 1px solid var(--gray-200);
         }
-        
+
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
-            border-color: var(--accent-orange);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
         }
-        
+
         .feature-card h4 {
-            color: var(--accent-orange);
-            margin-bottom: 15px;
-            font-size: 1.3em;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
         }
-        
+
+        /* Calculator */
         .price-calculator {
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-yellow));
-            color: var(--primary-dark);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            border: 2px solid var(--accent-red);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
         }
-        
+
         .calculator-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
         }
-        
+
         .calc-input {
-            padding: 10px;
-            border: 2px solid var(--primary-dark);
-            border-radius: 8px;
-            font-size: 1em;
-            background: var(--text-light);
-            color: var(--primary-dark);
+            padding: 0.75rem;
+            border: 2px solid transparent;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: var(--white);
+            color: var(--gray-900);
+            transition: var(--transition);
         }
-        
+
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--accent-hover);
+        }
+
         .calc-result {
-            background: rgba(0,0,0,0.2);
-            padding: 15px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
             text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            border: 2px solid var(--primary-dark);
+            font-size: 1.125rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
-        
+
+        /* Warranty Info */
         .warranty-info {
-            background: linear-gradient(45deg, var(--accent-yellow), var(--accent-green));
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            color: var(--primary-dark);
-            border: 2px solid var(--accent-red);
+            background: linear-gradient(135deg, var(--warning) 0%, #fcd34d 100%);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 1.5rem 0;
+            color: var(--gray-900);
+            border: 1px solid rgba(245, 158, 11, 0.3);
         }
-        
+
         .warranty-info h4 {
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
-        
+
+        /* Decision Helper */
         .decision-helper {
-            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
-            padding: 30px;
-            border-radius: 15px;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 1rem;
             text-align: center;
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow);
         }
-        
+
         .decision-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 1rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
-        
+
         .decision-btn {
-            padding: 15px 30px;
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 25px;
-            font-size: 1.1em;
-            font-weight: bold;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
-        
+
         .prebuilt-btn {
-            background: linear-gradient(45deg, var(--danger-color), var(--accent-orange));
+            background: linear-gradient(135deg, var(--error) 0%, #fca5a5 100%);
             color: white;
         }
-        
+
         .diy-btn {
-            background: linear-gradient(45deg, var(--success-color), var(--accent-green));
+            background: linear-gradient(135deg, var(--success) 0%, #6ee7b7 100%);
             color: white;
         }
-        
+
         .decision-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
-        
+
         .recommendation {
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 10px;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
             display: none;
         }
-        
+
         .show-prebuilt {
-            background: rgba(244, 67, 54, 0.2);
-            border-left: 4px solid var(--danger-color);
-            border: 1px solid var(--danger-color);
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.2);
         }
-        
+
         .show-diy {
-            background: rgba(76, 175, 80, 0.2);
-            border-left: 4px solid var(--success-color);
-            border: 1px solid var(--success-color);
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
-        /* Éléments flottants décoratifs */
-        .floating-element {
-            position: fixed;
-            font-size: 1.5rem;
-            opacity: 0.1;
-            pointer-events: none;
-            z-index: 1;
-            animation: float 8s ease-in-out infinite;
+        .recommendation ul {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            list-style: none;
+            padding: 0;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
-            25% { transform: translateY(-30px) rotate(90deg); opacity: 0.2; }
-            50% { transform: translateY(-60px) rotate(180deg); opacity: 0.15; }
-            75% { transform: translateY(-30px) rotate(270deg); opacity: 0.2; }
+        .recommendation li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
         }
-        
+
+        .recommendation li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2em;
+            .hero {
+                padding: 4rem 1rem 2rem;
             }
-            
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
             .pros-cons {
                 grid-template-columns: 1fr;
             }
-            
+
             .decision-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .comparison-table {
-                font-size: 0.9em;
+                font-size: 0.875rem;
             }
-            
+
             .comparison-table th,
             .comparison-table td {
-                padding: 10px 8px;
+                padding: 0.75rem 0.5rem;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
-            <h1>🖥️ PC Préassemblé vs PC Monté Soi-même</h1>
-            <p class="subtitle">Guide complet 2025 pour faire le bon choix selon vos besoins</p>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Guide complet 2025</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="emoji">🖥️</span> PC Préassemblé vs PC Monté Soi-même
+            </h1>
+            <p class="hero-description">
+                Guide complet pour faire le bon choix selon vos besoins, votre budget et votre niveau technique
+            </p>
             <div class="quick-nav">
                 <a href="#comparison" class="nav-btn">📊 Comparaison</a>
                 <a href="#advantages" class="nav-btn">✅ Avantages DIY</a>
@@ -448,7 +541,9 @@
                 <a href="#decision" class="nav-btn">🎯 Outil de Décision</a>
             </div>
         </div>
+    </div>
 
+    <div class="container">
         <div class="section" id="comparison">
             <div class="section-header">
                 📊 Comparaison Détaillée
@@ -571,7 +666,7 @@
                     </div>
                     
                     <div class="cons">
-                        <h3>❌ Inconvénients à Considérer</h3>
+                        <h3>⌚ Inconvénients à Considérer</h3>
                         <ul>
                             <li>Temps d'apprentissage et de montage (2-3h maximum)</li>
                             <li>Risque d'incompatibilité si mal informé</li>
@@ -640,7 +735,7 @@
                         <h4>🛒 PC Préassemblé recommandé pour vous</h4>
                         <p><strong>Profil :</strong> Vous recherchez la simplicité et le gain de temps.</p>
                         <p><strong>Conseils :</strong></p>
-                        <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+                        <ul>
                             <li>Privilégiez les marques reconnues (ASUS, MSI, Lenovo, etc ...)</li>
                             <li>Vérifiez les avis sur les modèles spécifiques</li>
                             <li>Assurez-vous de l'évolutivité (slots libres, alimentation suffisante)</li>
@@ -653,19 +748,18 @@
                         <h4>🔧 Montage DIY recommandé pour vous</h4>
                         <p><strong>Profil :</strong> Vous voulez optimiser votre investissement et apprendre.</p>
                         <p><strong>Plan d'action :</strong></p>
-                        <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+                        <ul>
                             <li>Définissez votre budget et usage principal</li>
                             <li>Consultez des guides récents (Hardware Hub, Hardware Unboxed, TechPowerUp, Tom's Hardware)</li>
                             <li>Vérifiez les compatibilités sur PCPartPicker</li>
                             <li>Commencez par une config équilibrée, pas extreme</li>
                             <li>Préparez-vous 4-6h pour le premier montage</li>
-                            <li>Rejoignez des communautés d'entraide comme : <a href="https://hardware-hub.fr" class="partner-url" target="_blank" rel="noopener">
-                                     Hardware Hub </li>
+                            <li>Rejoignez des communautés d'entraide comme : <a href="https://hardware-hub.fr" class="partner-url" target="_blank" rel="noopener">Hardware Hub</a></li>
                         </ul>
                     </div>
                 </div>
                 
-                <div style="margin-top: 40px; text-align: center; font-size: 1.1em;">
+                <div style="margin-top: 2.5rem; text-align: center; font-size: 1.125rem; padding: 2rem; background: var(--gray-50); border-radius: 1rem; border: 1px solid var(--gray-200);">
                     <p><strong>💡 Conseil final :</strong> Il n'y a pas de mauvais choix, seulement des choix adaptés à vos besoins, budget et envies du moment !</p>
                 </div>
             </div>
@@ -711,11 +805,11 @@
         // Add some interactive animations
         document.querySelectorAll('.feature-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) rotateY(5deg)';
+                this.style.transform = 'translateY(-8px)';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) rotateY(0)';
+                this.style.transform = 'translateY(0)';
             });
         });
     </script>
