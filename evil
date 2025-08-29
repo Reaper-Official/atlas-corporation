@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choisissez votre damnation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Chiller&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000000;
+            min-height: 100vh;
+            font-family: 'Butcherman', cursive;
+            overflow: hidden;
+            cursor: none;
+            user-select: none;
+        }
+
+        .glitch-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #000000, #0a0000, #1a0000);
+            animation: backgroundGlitch 0.2s infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundGlitch {
+            0%, 85% { filter: hue-rotate(0deg) contrast(1) brightness(0.3); }
+            86% { filter: hue-rotate(90deg) contrast(3) brightness(1.5); }
+            87% { filter: hue-rotate(270deg) contrast(0.5) brightness(0.8); }
+            88% { filter: hue-rotate(180deg) contrast(2) brightness(0.2); }
+            100% { filter: hue-rotate(0deg) contrast(1) brightness(0.3); }
+        }
+
+        .static-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.03) 2px,
+                rgba(255, 255, 255, 0.03) 4px
+            );
+            animation: static 0.03s infinite;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @keyframes static {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+            25% { transform: translate(-2px, 1px) rotate(1deg); opacity: 0.3; }
+            50% { transform: translate(1px, -1px) rotate(-1deg); opacity: 0.2; }
+            75% { transform: translate(-1px, 2px) rotate(0.5deg); opacity: 0.4; }
+            100% { transform: translate(2px, -2px) rotate(-0.5deg); opacity: 0.1; }
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-screen {
+            text-align: center;
+            color: #ff0000;
+            text-shadow: 0 0 30px #ff0000;
+            animation: introDistortion 2s infinite alternate;
+        }
+
+        @keyframes introDistortion {
+            0% { 
+                transform: scale(1) skew(0deg);
+                filter: brightness(1);
+            }
+            100% { 
+                transform: scale(1.02) skew(-0.5deg);
+                filter: brightness(1.3) saturate(1.5);
+            }
+        }
+
+        .scary-title {
+            font-family: 'Nosifer', cursive;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            margin-bottom: 1rem;
+            animation: titleHorror 1.5s infinite;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        @keyframes titleHorror {
+            0%, 90% { 
+                transform: translate(0) scale(1);
+                text-shadow: 0 0 30px #ff0000;
+                filter: hue-rotate(0deg);
+            }
+            91% { 
+                transform: translate(-8px, 4px) scale(1.1);
+                text-shadow: 8px 0 #00ff00, -8px 0 #0000ff, 0 0 50px #ff0000;
+                filter: hue-rotate(180deg);
+            }
+            93% { 
+                transform: translate(6px, -2px) scale(0.95);
+                text-shadow: -6px 0 #ff00ff, 6px 0 #ffff00, 0 0 40px #ff0000;
+                filter: hue-rotate(90deg);
+            }
+            95% { 
+                transform: translate(-4px, 3px) scale(1.05);
+                text-shadow: 4px 0 #00ffff, -4px 0 #ff0000, 0 0 60px #ff0000;
+                filter: hue-rotate(270deg);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 3rem;
+            color: #cc0000;
+            animation: subtitleFloat 3s ease-in-out infinite;
+            font-family: 'Chiller', cursive;
+        }
+
+        @keyframes subtitleFloat {
+            0%, 100% { 
+                transform: translateY(0) rotateZ(0deg);
+                opacity: 0.9;
+            }
+            50% { 
+                transform: translateY(-10px) rotateZ(1deg);
+                opacity: 1;
+                text-shadow: 0 0 20px #cc0000;
+            }
+        }
+
+        .name-selection {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .name-button {
+            background: linear-gradient(135deg, #1a0000, #330000, #1a0000);
+            border: 3px solid #ff0000;
+            color: #ff3333;
+            padding: 2rem 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            font-family: 'Butcherman', cursive;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 
+                inset 0 0 20px rgba(255, 0, 0, 0.2),
+                0 0 20px rgba(255, 0, 0, 0.3);
+            animation: buttonBreathing 2s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .name-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.4), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .name-button:hover {
+            transform: scale(1.05) rotateZ(-1deg);
+            box-shadow: 
+                inset 0 0 30px rgba(255, 0, 0, 0.5),
+                0 0 40px rgba(255, 0, 0, 0.8);
+            border-color: #ff6666;
+            background: linear-gradient(135deg, #330000, #660000, #330000);
+        }
+
+        .name-button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes buttonBreathing {
+            0%, 100% { 
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% { 
+                transform: scale(1.02);
+                filter: brightness(1.2);
+            }
+        }
+
+        .warning-text {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            color: #666;
+            margin-top: 2rem;
+            animation: warningPulse 1.5s infinite;
+            font-style: italic;
+        }
+
+        @keyframes warningPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; color: #ff0000; }
+        }
+
+        .nightmare-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000000;
+            z-index: 1000;
+        }
+
+        .nightmare-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+            color: #ff0000;
+        }
+
+        .trapped-message {
+            font-family: 'Nosifer', cursive;
+            font-size: clamp(2rem, 6vw, 4rem);
+            margin-bottom: 2rem;
+            animation: trapMessage 0.3s infinite;
+            text-transform: uppercase;
+        }
+
+        @keyframes trapMessage {
+            0%, 94% { 
+                transform: translate(0) rotateZ(0deg);
+                text-shadow: 0 0 40px #ff0000;
+                filter: hue-rotate(0deg) brightness(1);
+            }
+            95% { 
+                transform: translate(-15px, 8px) rotateZ(-2deg);
+                text-shadow: 15px 0 #00ff00, -15px 0 #0000ff, 0 0 60px #ff0000;
+                filter: hue-rotate(120deg) brightness(2);
+            }
+            96% { 
+                transform: translate(12px, -5px) rotateZ(1.5deg);
+                text-shadow: -12px 0 #ff00ff, 12px 0 #ffff00, 0 0 50px #ff0000;
+                filter: hue-rotate(240deg) brightness(1.5);
+            }
+            97% { 
+                transform: translate(-8px, 3px) rotateZ(-1deg);
+                text-shadow: 8px 0 #00ffff, -8px 0 #ff0000, 0 0 70px #ff0000;
+                filter: hue-rotate(180deg) brightness(2.5);
+            }
+        }
+
+        .personal-message {
+            font-size: clamp(1.3rem, 4vw, 2.2rem);
+            margin: 3rem 0;
+            animation: messageDistort 1.5s ease-in-out infinite;
+            line-height: 1.4;
+            font-weight: bold;
+        }
+
+        @keyframes messageDistort {
+            0%, 70% { 
+                transform: scaleX(1) scaleY(1) skewX(0deg);
+                letter-spacing: normal;
+                filter: brightness(1);
+            }
+            75% { 
+                transform: scaleX(1.2) scaleY(0.8) skewX(-3deg);
+                letter-spacing: 8px;
+                filter: brightness(1.8);
+            }
+            80% { 
+                transform: scaleX(0.8) scaleY(1.3) skewX(2deg);
+                letter-spacing: -3px;
+                filter: brightness(0.6);
+            }
+            85% { 
+                transform: scaleX(1.1) scaleY(0.9) skewX(-1deg);
+                letter-spacing: 5px;
+                filter: brightness(1.4);
+            }
+        }
+
+        .countdown-container {
+            margin: 3rem 0;
+        }
+
+        .countdown {
+            font-family: 'Chiller', cursive;
+            font-size: clamp(4rem, 10vw, 8rem);
+            color: #ff0000;
+            animation: countdownIntensity 0.8s infinite;
+            text-shadow: 0 0 50px #ff0000;
+        }
+
+        @keyframes countdownIntensity {
+            0% { 
+                transform: scale(1) rotateZ(0deg);
+                text-shadow: 0 0 50px #ff0000;
+                color: #ff0000;
+            }
+            25% { 
+                transform: scale(1.3) rotateZ(-2deg);
+                text-shadow: 0 0 80px #ff0000, 0 0 120px #ff0000;
+                color: #ffffff;
+            }
+            50% { 
+                transform: scale(1.5) rotateZ(1deg);
+                text-shadow: 0 0 100px #ff0000, 0 0 150px #ff0000, 0 0 200px #ff0000;
+                color: #ffff00;
+            }
+            75% { 
+                transform: scale(1.2) rotateZ(-1deg);
+                text-shadow: 0 0 90px #ff0000, 0 0 130px #ff0000;
+                color: #ff6666;
+            }
+            100% { 
+                transform: scale(1) rotateZ(0deg);
+                text-shadow: 0 0 50px #ff0000;
+                color: #ff0000;
+            }
+        }
+
+        .demon-eyes {
+            position: fixed;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, #ff0000 30%, #000000 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 30px #ff0000, inset 0 0 10px #330000;
+            animation: eyeHunt 4s infinite ease-in-out;
+            z-index: 500;
+        }
+
+        @keyframes eyeHunt {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1);
+                opacity: 0.8;
+                box-shadow: 0 0 30px #ff0000;
+            }
+            20% { 
+                transform: translate(150px, 80px) scale(1.8);
+                opacity: 1;
+                box-shadow: 0 0 60px #ff0000, 0 0 90px #ff0000;
+            }
+            40% { 
+                transform: translate(-120px, -60px) scale(0.6);
+                opacity: 0.6;
+                box-shadow: 0 0 20px #ff0000;
+            }
+            60% { 
+                transform: translate(200px, -100px) scale(1.4);
+                opacity: 0.9;
+                box-shadow: 0 0 50px #ff0000, 0 0 80px #ff0000;
+            }
+            80% { 
+                transform: translate(-80px, 120px) scale(1.1);
+                opacity: 0.7;
+                box-shadow: 0 0 40px #ff0000;
+            }
+        }
+
+        .blood-splatter {
+            position: fixed;
+            color: #8b0000;
+            font-family: 'Nosifer', cursive;
+            font-size: clamp(1rem, 3vw, 2rem);
+            animation: bloodFall 5s linear infinite;
+            pointer-events: none;
+            z-index: 300;
+        }
+
+        @keyframes bloodFall {
+            0% { 
+                top: -100px;
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: rotate(180deg) scale(1.2);
+            }
+            100% { 
+                top: calc(100vh + 100px);
+                opacity: 0;
+                transform: rotate(360deg) scale(0.5);
+            }
+        }
+
+        .system-error {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.95);
+            color: #00ff00;
+            padding: 1rem 1.5rem;
+            border: 2px solid #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            animation: systemGlitch 0.5s infinite;
+            z-index: 2000;
+            max-width: 300px;
+        }
+
+        @keyframes systemGlitch {
+            0%, 90% { 
+                transform: translate(0);
+                filter: brightness(1);
+            }
+            91% { 
+                transform: translate(-3px, 1px);
+                filter: brightness(1.5) hue-rotate(90deg);
+            }
+            95% { 
+                transform: translate(2px, -1px);
+                filter: brightness(0.8) hue-rotate(180deg);
+            }
+        }
+
+        .fake-buttons {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 2000;
+        }
+
+        .fake-close, .fake-minimize {
+            width: 30px;
+            height: 30px;
+            margin-left: 5px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: inline-block;
+            animation: buttonGlow 1s infinite alternate;
+            transition: all 0.2s ease;
+        }
+
+        .fake-minimize {
+            background: #ffaa00;
+        }
+
+        .fake-close:hover, .fake-minimize:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        @keyframes buttonGlow {
+            0% { box-shadow: 0 0 10px currentColor; }
+            100% { box-shadow: 0 0 25px currentColor, 0 0 40px currentColor; }
+        }
+
+        .fullscreen-lock {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            background: #000000 !important;
+        }
+
+        @media (max-width: 768px) {
+            .name-selection {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 300px;
+            }
+            
+            .name-button {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glitch-bg"></div>
+    <div class="static-overlay"></div>
+    
+    <div class="container">
+        <div class="intro-screen" id="introScreen">
+            <h1 class="scary-title">CONTRAT INFERNAL</h1>
+            <p class="subtitle">Une de vous doit être sacrifiée...</p>
+            
+            <div class="name-selection">
+                <button class="name-button" data-name="OCÉANNE">OCÉANNE</button>
+                <button class="name-button" data-name="APOLLINE">APOLLINE</button>
+                <button class="name-button" data-name="ROMANE">ROMANE</button>
+                <button class="name-button" data-name="VALENTINE">VALENTINE</button>
+            </div>
+            
+            <p class="warning-text">Choisissez celle qui sera damnée pour l'éternité...</p>
+        </div>
+    </div>
+
+    <div class="nightmare-screen" id="nightmareScreen">
+        <div class="nightmare-content">
+            <h1 class="trapped-message">PIÉGÉE À JAMAIS</h1>
+            <p class="personal-message" id="personalMessage"></p>
+            <div class="countdown-container">
+                <div class="countdown" id="countdown">∞</div>
+            </div>
+            <p style="font-size: 1.5rem; color: #666; margin-top: 2rem; animation: pulse 2s infinite;">
+                Il n'y a plus d'échappatoire...
+            </p>
+        </div>
+    </div>
+
+    <div class="fake-buttons" id="fakeButtons" style="display: none;">
+        <button class="fake-minimize" id="fakeMinimize">−</button>
+        <button class="fake-close" id="fakeClose">×</button>
+    </div>
+    
+    <div class="system-error" id="systemError" style="display: none;">
+        <div>ERREUR CRITIQUE SYSTÈME</div>
+        <div>Connexion verrouillée</div>
+        <div>Fermeture impossible</div>
+        <div>Âme capturée: <span id="capturedSoul"></span></div>
+    </div>
+
+    <script>
+        let chosenName = '';
+        let isTrapped = false;
+        let nightmareActive = false;
+        let messageInterval;
+        let effectsInterval;
+
+        // Messages spécifiques et terrifiants pour chaque nom
+        const personalizedHorror = {
+            'OCÉANNE': [
+                "Tes larmes ne sauveront pas l'océan de tes cauchemars, OCÉANNE",
+                "Chaque vague que tu verras portera ton nom, OCÉANNE",
+                "L'eau salée de tes pleurs nous nourrit, OCÉANNE",
+                "Tu as coulé dans nos abysses, OCÉANNE",
+                "Tes rêves d'océan sont maintenant un maréage de terreur, OCÉANNE",
+                "Nous connaissons tes peurs les plus profondes, OCÉANNE",
+                "Tu ne reverras jamais la surface, OCÉANNE",
+                "Chaque goutte d'eau sera un rappel de ta damnation, OCÉANNE"
+            ],
+            'APOLLINE': [
+                "Ta lumière s'est éteinte à jamais, APOLLINE",
+                "Apollon ne peut plus te protéger maintenant, APOLLINE", 
+                "Ton éclat doré s'est transformé en ténèbres, APOLLINE",
+                "Tu pensais être une déesse, mais tu n'es qu'une mortelle piégée, APOLLINE",
+                "Ton nom résonne dans l'obscurité éternelle, APOLLINE",
+                "La beauté se fane dans les limbes, APOLLINE",
+                "Tes prières ne seront plus jamais entendues, APOLLINE",
+                "Tu es notre prisonnière pour l'éternité, APOLLINE"
+            ],
+            'ROMANE': [
+                "L'empire de tes rêves s'effondre, ROMANE",
+                "Tu n'as plus aucune conquête possible, ROMANE",
+                "Ton règne se termine dans la terreur, ROMANE",
+                "Les légions des damnés t'accueillent, ROMANE",
+                "Ta force légendaire ne peut rien contre nous, ROMANE",
+                "Tu es maintenant esclave de tes propres cauchemars, ROMANE",
+                "Toute ta fierté s'évapore dans l'épouvante, ROMANE",
+                "Tu appartiens aux ombres maintenant, ROMANE"
+            ],
+            'VALENTINE': [
+                "L'amour ne peut plus te sauver, VALENTINE",
+                "Ton cœur appartient maintenant aux ténèbres, VALENTINE",
+                "Chaque battement de cœur résonne notre victoire, VALENTINE",
+                "Saint-Valentin ne répond plus à tes appels, VALENTINE",
+                "Ton amour s'est transformé en pure épouvante, VALENTINE",
+                "Tu es condamnée à aimer tes propres cauchemars, VALENTINE",
+                "Nous avons brisé ton cœur pour l'éternité, VALENTINE",
+                "Ton nom est gravé dans la pierre tombale de l'espoir, VALENTINE"
+            ]
+        };
+
+        // Éléments DOM
+        const introScreen = document.getElementById('introScreen');
+        const nightmareScreen = document.getElementById('nightmareScreen');
+        const personalMessage = document.getElementById('personalMessage');
+        const nameButtons = document.querySelectorAll('.name-button');
+        const fakeButtons = document.getElementById('fakeButtons');
+        const fakeClose = document.getElementById('fakeClose');
+        const fakeMinimize = document.getElementById('fakeMinimize');
+        const systemError = document.getElementById('systemError');
+        const capturedSoul = document.getElementById('capturedSoul');
+
+        // Prévention d'échappatoire totale
+        function lockdown() {
+            // Désactiver toutes les touches d'échappement
+            document.addEventListener('keydown', function(e) {
+                if (isTrapped) {
+                    // Bloquer TOUT
+                    if (e.key === 'F5' || 
+                        (e.ctrlKey && (e.key === 'r' || e.key === 'R')) ||
+                        (e.ctrlKey && (e.key === 'w' || e.key === 'W')) ||
+                        (e.altKey && e.key === 'F4') ||
+                        e.key === 'Escape' ||
+                        (e.ctrlKey && e.key === 'Tab') ||
+                        (e.altKey && e.key === 'Tab') ||
+                        e.key === 'F11' ||
+                        (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                        
+                        e.preventDefault();
+                        e.stopPropagation();
+                        createIntenseFlash();
+                        showMockMessage();
+                        return false;
+                    }
+                }
+            }, true);
+
+            // Prévenir fermeture fenêtre/onglet
+            window.addEventListener('beforeunload', function(e) {
+                if (isTrapped) {
+                    e.preventDefault();
+                    e.returnValue = `${chosenName} ne peut pas s'échapper !`;
+                    return `${chosenName} est piégée pour l'éternité !`;
+                }
+            });
+
+            // Prévenir clic droit
+            document.addEventListener('contextmenu', function(e) {
+                if (isTrapped) {
+                    e.preventDefault();
+                    createIntenseFlash();
+                }
+            }, true);
+
+            // Surveillance focus - ramener de force
+            window.addEventListener('blur', function() {
+                if (isTrapped) {
+                    setTimeout(() => {
+                        window.focus();
+                    }, 100);
+                    showSystemError();
+                }
+            });
+
+            // Prévenir sélection de texte
+            document.addEventListener('selectstart', function(e) {
+                if (isTrapped) {
+                    e.preventDefault();
+                }
+            });
+        }
+
+        // Flash intense de terreur
+        function createIntenseFlash() {
+            const flash = document.createElement('div');
+            flash.style = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: radial-gradient(circle, #ff0000, #000000);
+                z-index: 50000;
+                opacity: 0.9;
+                pointer-events: none;
+                animation: flashIntense 0.3s ease-out;
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes flashIntense {
+                    0% { opacity: 0.9; transform: scale(1); }
+                    50% { opacity: 1; transform: scale(1.1); }
+                    100% { opacity: 0; transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(flash);
+            
+            setTimeout(() => {
+                if (flash.parentNode) flash.remove();
+                if (style.parentNode) style.remove();
+            }, 300);
+
+            // Vibration si possible
+            if (navigator.vibrate) {
+                navigator.vibrate([300, 100, 300, 100, 500]);
+            }
+        }
+
+        // Message de mock
+        function showMockMessage() {
+            personalMessage.textContent = `Tu pensais vraiment pouvoir fuir, ${chosenName} ? PATHÉTIQUE !`;
+            setTimeout(() => {
+                if (nightmareActive) {
+                    startRotatingMessages();
+                }
+            }, 3000);
+        }
+
+        // Erreur système
+        function showSystemError() {
+            systemError.style.display = 'block';
+            capturedSoul.textContent = chosenName;
+            
+            setTimeout(() => {
+                systemError.style.display = 'none';
+            }, 5000);
+        }
+
+        // Créer yeux démoniaques nombreux
+        function spawnDemonEyes() {
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const eye = document.createElement('div');
+                    eye.className = 'demon-eyes';
+                    eye.style.left = Math.random() * window.innerWidth + 'px';
+                    eye.style.top = Math.random() * window.innerHeight + 'px';
+                    eye.style.animationDelay = Math.random() * 2 + 's';
+                    eye.style.animationDuration = (3 + Math.random() * 3) + 's';
+                    document.body.appendChild(eye);
+                    
+                    setTimeout(() => {
+                        if (eye.parentNode) eye.remove();
+                    }, 12000);
+                }, Math.random() * 8000);
+            }
+        }
+
+        // Pluie de sang
+        function createBloodRain() {
+            const bloodWords = ['DAMNÉE', 'PIÉGÉE', 'SOUFFRANCE', 'ENFER', 'ÉTERNITÉ', 'CAUCHEMAR', 'TERREUR'];
+            
+            effectsInterval = setInterval(() => {
+                if (nightmareActive) {
+                    const blood = document.createElement('div');
+                    blood.className = 'blood-splatter';
+                    blood.textContent = bloodWords[Math.floor(Math.random() * bloodWords.length)];
+                    blood.style.left = Math.random() * window.innerWidth + 'px';
+                    blood.style.fontSize = (Math.random() * 40 + 15) + 'px';
+                    blood.style.animationDuration = (3 + Math.random() * 4) + 's';
+                    document.body.appendChild(blood);
+                    
+                    setTimeout(() => {
+                        if (blood.parentNode) blood.remove();
+                    }, 7000);
+                }
+            }, 800);
+        }
+
+        // Messages rotatifs personnalisés
+        function startRotatingMessages() {
+            const messages = personalizedHorror[chosenName];
+            let messageIndex = 0;
+            
+            messageInterval = setInterval(() => {
+                if (nightmareActive) {
+                    personalMessage.style.opacity = '0';
+                    personalMessage.style.transform = 'scale(0.8)';
+                    
+                    setTimeout(() => {
+                        personalMessage.textContent = messages[messageIndex % messages.length];
+                        personalMessage.style.opacity = '1';
+                        personalMessage.style.transform = 'scale(1)';
+                        messageIndex++;
+                        
+                        // Flash aléatoire intense
+                        if (Math.random() < 0.4) {
+                            createIntenseFlash();
+                        }
+                    }, 600);
+                }
+            }, 4500);
+        }
+
+        // Faux boutons de fermeture
+        function setupFakeButtons() {
+            setTimeout(() => {
+                fakeButtons.style.display = 'block';
+            }, 8000);
+            
+            fakeClose.addEventListener('click', function() {
+                createIntenseFlash();
+                showMockMessage();
+                personalMessage.textContent = `La fermeture est IMPOSSIBLE, ${chosenName} ! Tu es PIÉGÉE !`;
+            });
+            
+            fakeMinimize.addEventListener('click', function() {
+                createIntenseFlash();
+                personalMessage.textContent = `Tu ne peux pas te cacher de nous, ${chosenName} !`;
+            });
+        }
+
+        // Tentative de plein écran forcé
+        function forceFullscreen() {
+            try {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                }
+            } catch(e) {
+                // Silencieux si échoue
+            }
+        }
+
+        // Activation du cauchemar
+        function activateNightmare(selectedName) {
+            chosenName = selectedName;
+            isTrapped = true;
+            nightmareActive = true;
+            
+            // Transition brutale
+            introScreen.style.display = 'none';
+            nightmareScreen.style.display = 'block';
+            nightmareScreen.classList.add('fullscreen-lock');
+            
+            // Forcer plein écran
+            forceFullscreen();
+            
+            // Message initial personnalisé
+            const initialMessages = {
+                'OCÉANNE': "L'océan de tes larmes commence maintenant, OCÉANNE...",
+                'APOLLINE': "Ta lumière divine s'éteint à jamais, APOLLINE...",
+                'ROMANE': "Ton empire s'effondre dans les flammes, ROMANE...",
+                'VALENTINE': "Ton cœur battra maintenant pour l'enfer, VALENTINE..."
+            };
+            
+            personalMessage.textContent = initialMessages[chosenName];
+            
+            // Démarrer tous les effets de terreur
+            setTimeout(() => {
+                spawnDemonEyes();
+                createBloodRain();
+                startRotatingMessages();
+                setupFakeButtons();
+                showSystemError();
+            }, 2000);
+            
+            // Titre de fenêtre dynamique personnalisé
+            let titleIndex = 0;
+            const titles = [
+                `${chosenName} - DAMNÉE`,
+                'AUCUNE ÉCHAPPATOIRE',
+                `${chosenName} - PIÉGÉE`,
+                'BIENVENUE EN ENFER',
+                `${chosenName} NOUS APPARTIENT`,
+                'FERMETURE IMPOSSIBLE',
+                `${chosenName} - PRISONNIÈRE`
+            ];
+            
+            setInterval(() => {
+                document.title = titles[titleIndex % titles.length];
+                titleIndex++;
+            }, 2500);
+            
+            // Désactiver toute interaction
+            document.body.style.userSelect = 'none';
+            document.body.style.webkitUserSelect = 'none';
+            document.body.style.pointerEvents = 'none';
+            nightmareScreen.style.pointerEvents = 'all';
+            fakeButtons.style.pointerEvents = 'all';
+        }
+
+        // Surveillance continue - empêcher toute fuite
+        function continuousSurveillance() {
+            setInterval(() => {
+                if (isTrapped) {
+                    // Forcer l'affichage du cauchemar
+                    if (nightmareScreen.style.display !== 'block') {
+                        nightmareScreen.style.display = 'block';
+                        nightmareScreen.classList.add('fullscreen-lock');
+                    }
+                    
+                    // Empêcher scroll
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Garder le focus
+                    if (!document.hasFocus()) {
+                        window.focus();
+                    }
+                }
+            }, 500);
+        }
+
+        // Effects sonores simulés
+        function playHorrorSound(type) {
+            const sounds = {
+                scream: () => console.log("😱 CRIS DE TERREUR"),
+                chains: () => console.log("⛓️ CHAÎNES QUI S'ENTRECHOQUENT"),
+                whisper: () => console.log("👻 CHUCHOTEMENTS DÉMONIAQUES"),
+                heartbeat: () => console.log("💓 BATTEMENTS DE CŒUR PANIQUÉS")
+            };
+            
+            if (sounds[type]) sounds[type]();
+        }
+
+        // Event listeners pour les boutons de noms
+        nameButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const name = this.getAttribute('data-name');
+                
+                // Effet visuel de sélection
+                this.style.background = 'linear-gradient(135deg, #660000, #ff0000, #660000)';
+                this.style.transform = 'scale(1.1) rotateZ(-2deg)';
+                this.style.boxShadow = '0 0 50px rgba(255, 0, 0, 1)';
+                
+                // Sons d'horreur
+                playHorrorSound('chains');
+                
+                setTimeout(() => {
+                    playHorrorSound('scream');
+                    activateNightmare(name);
+                }, 1500);
+            });
+            
+            // Effets au survol
+            button.addEventListener('mouseenter', function() {
+                playHorrorSound('whisper');
+                this.style.cursor = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\'><circle cx=\'10\' cy=\'10\' r=\'8\' fill=\'red\' opacity=\'0.8\'/><text x=\'10\' y=\'15\' text-anchor=\'middle\' fill=\'white\' font-size=\'12\'>💀</text></svg>"), auto';
+            });
+        });
+
+        // Initialisation au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            lockdown();
+            continuousSurveillance();
+            
+            // Effet d'entrée dramatique
+            setTimeout(() => {
+                document.body.style.filter = 'brightness(0.1)';
+                setTimeout(() => {
+                    document.body.style.filter = 'brightness(1)';
+                    document.body.style.transition = 'filter 0.5s ease';
+                }, 150);
+            }, 800);
+            
+            // Message d'avertissement initial
+            setTimeout(() => {
+                playHorrorSound('heartbeat');
+            }, 2000);
+        });
+
+        // Empêcher la fermeture par tous les moyens
+        window.addEventListener('pagehide', function(e) {
+            if (isTrapped) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        window.addEventListener('visibilitychange', function() {
+            if (isTrapped && document.visibilityState === 'hidden') {
+                // Tenter de ramener le focus
+                setTimeout(() => {
+                    window.focus();
+                    if (document.documentElement.requestFullscreen) {
+                        document.documentElement.requestFullscreen().catch(() => {});
+                    }
+                }, 100);
+            }
+        });
+
+        // Message final de désespoir
+        setTimeout(() => {
+            if (isTrapped) {
+                console.log(`%c${chosenName} - IL N'Y A PLUS D'ESPOIR`, 'color: red; font-size: 20px; font-weight: bold;');
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
