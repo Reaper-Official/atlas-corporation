@@ -138,26 +138,6 @@
             color: white;
         }
 
-        .app-icon {
-            background: linear-gradient(45deg, #fd79a8, #e84393);
-            color: white;
-        }
-
-        .script-icon {
-            background: linear-gradient(45deg, #fdcb6e, #e17055);
-            color: white;
-        }
-
-        .iso-icon {
-            background: linear-gradient(45deg, #a29bfe, #6c5ce7);
-            color: white;
-        }
-
-        .folder-icon {
-            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
-            color: white;
-        }
-
         .file-info {
             flex: 1;
         }
@@ -198,10 +178,6 @@
 
         .add-file-btn:hover {
             transform: scale(1.05);
-        }
-
-        .file-input {
-            display: none;
         }
 
         .refresh-btn {
@@ -391,7 +367,7 @@
                     <h2>Répertoire Images</h2>
                     <div class="directory-path">https://atlas-corporation.fr/img/</div>
                 </div>
-                <div class="status-badge status-available">19 fichiers disponibles</div>
+                <div class="status-badge status-available">25 fichiers disponibles</div>
                 <button class="refresh-btn" onclick="refreshDirectory('img')" title="Actualiser">
                     🔄
                 </button>
@@ -400,7 +376,7 @@
                 <div class="error-message">
                     <div class="icon">✅</div>
                     <p><strong>Fichiers disponibles</strong></p>
-                    <p>Répertoire images - 19 fichiers détectés</p>
+                    <p>Répertoire images - 25 fichiers détectés</p>
                     <button class="add-file-btn" onclick="loadActualFiles('img')">
                         Afficher les fichiers réels
                     </button>
@@ -416,7 +392,7 @@
                     <h2>Stock Vidéo</h2>
                     <div class="directory-path">fichiers.atlas-corporation.fr/videostock</div>
                 </div>
-                <div class="status-badge status-available">10 fichiers disponibles</div>
+                <div class="status-badge status-available">11 fichiers disponibles</div>
                 <button class="refresh-btn" onclick="refreshDirectory('videostock')" title="Actualiser">
                     🔄
                 </button>
@@ -425,7 +401,7 @@
                 <div class="error-message">
                     <div class="icon">✅</div>
                     <p><strong>Fichiers disponibles</strong></p>
-                    <p>Répertoire videostock - 10 fichiers vidéo détectés</p>
+                    <p>Répertoire videostock - 11 fichiers vidéo détectés</p>
                     <button class="add-file-btn" onclick="loadActualFiles('videostock')">
                         Afficher les fichiers réels
                     </button>
@@ -448,12 +424,15 @@
     </div>
 
     <script>
-        // Données réelles des répertoires Atlas Corporation
+        // Données réelles des répertoires Atlas Corporation basées sur les images fournies
         const actualData = {
             img: [
+                { name: '120mmflowup.png', size: 'PNG', type: 'IMAGE' },
+                { name: '59votants.png', size: 'PNG', type: 'IMAGE' },
                 { name: '80plusratings.jpg', size: 'JPG', type: 'IMAGE' },
-                { name: 'aioexplication.jpg', size: 'JPG', type: 'IMAGE' },
-                { name: 'CEsitemtel14700KF.png', size: 'PNG', type: 'IMAGE' },
+                { name: '900votants.png', size: 'PNG', type: 'IMAGE' },
+                { name: 'CEsiteIntel14700KF.png', size: 'PNG', type: 'IMAGE' },
+                { name: 'CT1000.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'FH14700KFbench.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'Flowup120mm.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'Flowup120mmprove.png', size: 'PNG', type: 'IMAGE' },
@@ -461,19 +440,22 @@
                 { name: 'FlowupCorsair2.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'FlowupCorsair3.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'FlowupPageweb.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'flowupqrcodebench.png', size: 'PNG', type: 'IMAGE' },
+                { name: 'aioexplications.jpg', size: 'JPG', type: 'IMAGE' },
+                { name: 'configimg.png', size: 'PNG', type: 'IMAGE' },
+                { name: 'flowuppcdebunkbench.png', size: 'PNG', type: 'IMAGE' },
+                { name: 'imgppfrenchhardwarrefire.png', size: 'PNG', type: 'IMAGE' },
+                { name: 'p3flowup.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'p3flowupshow.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'p3stability.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'p3reality.png', size: 'PNG', type: 'IMAGE' },
+                { name: 'p3stability.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'pcinoxtagmur.png', size: 'PNG', type: 'IMAGE' },
+                { name: 'preuvebanmassif.png', size: 'PNG', type: 'IMAGE' },
+                { name: 'screen.svg', size: 'SVG', type: 'IMAGE' },
+                { name: 'txtraykopub.jpg', size: 'JPG', type: 'IMAGE' },
                 { name: 'write-over-tim2e.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'write-over-tim3e.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'write-over-time.png', size: 'PNG', type: 'IMAGE' },
                 { name: 'write-over-timem480pro.png', size: 'PNG', type: 'IMAGE' }
-                { name: '59votants.png', size: 'PNG', type: 'IMAGE' }
-                { name: '900votants.png', size: 'PNG', type: 'IMAGE' }
-                { name: 'txtraykopub.jpg', size: 'JPG', type: 'IMAGE' }
-                { name: 'preuvebanmassif.png', size: 'PNG', type: 'IMAGE' }
             ],
             videostock: [
                 { name: '120mm_tqt(1).mp4', size: 'MP4', type: 'VIDEO' },
@@ -483,10 +465,10 @@
                 { name: 'FrHardwareAutoDebunk(1).mp4', size: 'MP4', type: 'VIDEO' },
                 { name: 'Inoxtagpcpreuve.mp4', size: 'MP4', type: 'VIDEO' },
                 { name: 'paxenormedingueries.mp4', size: 'MP4', type: 'VIDEO' },
+                { name: 'pcanymedebunk.mp4', size: 'MP4', type: 'VIDEO' },
                 { name: 'rtx5080et14700kfbenchmark.mp4', size: 'MP4', type: 'VIDEO' },
                 { name: 'rx9060xtetr57500fbenchmark.mp4', size: 'MP4', type: 'VIDEO' },
                 { name: 'solotecherrorbench(1).mp4', size: 'MP4', type: 'VIDEO' }
-                { name: 'pcanymedebunk.mp4', size: 'MP4', type: 'VIDEO' }
             ]
         };
 
@@ -506,22 +488,6 @@
                     iconClass = 'doc-icon';
                     iconSymbol = '📄';
                     break;
-                case 'APPLICATION':
-                    iconClass = 'app-icon';
-                    iconSymbol = '⚙️';
-                    break;
-                case 'SCRIPT':
-                    iconClass = 'script-icon';
-                    iconSymbol = '📜';
-                    break;
-                case 'DISC_IMAGE':
-                    iconClass = 'iso-icon';
-                    iconSymbol = '💿';
-                    break;
-                case 'DIRECTORY':
-                    iconClass = 'folder-icon';
-                    iconSymbol = '📁';
-                    break;
                 default:
                     iconClass = 'img-icon';
                     iconSymbol = '📎';
@@ -540,15 +506,6 @@
                     </div>
                 </div>
             `;
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('fr-FR', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            });
         }
 
         function loadActualFiles(dirType) {
@@ -595,7 +552,7 @@
             const extension = filename.split('.').pop().toLowerCase();
             
             setTimeout(() => {
-                if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'].includes(extension)) {
+                if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg'].includes(extension)) {
                     // Afficher l'image
                     displayImage(fullUrl, filename, modalBody);
                 } else if (['html', 'htm'].includes(extension)) {
@@ -604,9 +561,6 @@
                 } else if (['mp4', 'avi', 'mov', 'webm', 'mkv'].includes(extension)) {
                     // Afficher la vidéo
                     displayVideo(fullUrl, filename, modalBody);
-                } else if (['exe', 'bat', 'iso'].includes(extension)) {
-                    // Proposer le téléchargement pour les fichiers exécutables
-                    displayDownload(fullUrl, filename, modalBody, extension);
                 } else {
                     // Type de fichier générique
                     displayGeneric(fullUrl, filename, modalBody);
@@ -636,42 +590,6 @@
                     <source src="${url}" type="video/${filename.split('.').pop()}">
                     Votre navigateur ne supporte pas la lecture vidéo.
                 </video>
-            `;
-        }
-
-        function displayDownload(url, filename, container, extension) {
-            const fileTypeDesc = {
-                'exe': 'Application exécutable',
-                'bat': 'Script batch Windows',
-                'iso': 'Image disque ISO'
-            };
-
-            container.innerHTML = `
-                <div class="download-section">
-                    <div class="file-info-modal">
-                        <h3>📁 Informations du fichier</h3>
-                        <div class="info-row">
-                            <span class="info-label">Nom :</span>
-                            <span>${filename}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Type :</span>
-                            <span>${fileTypeDesc[extension] || extension.toUpperCase()}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">URL :</span>
-                            <span style="word-break: break-all; font-family: monospace;">${url}</span>
-                        </div>
-                    </div>
-                    <div style="text-align: center; padding: 20px;">
-                        <a href="${url}" class="download-btn" download="${filename}">
-                            📥 Télécharger le fichier
-                        </a>
-                        <a href="${url}" class="download-btn" target="_blank">
-                            🔗 Ouvrir dans un nouvel onglet
-                        </a>
-                    </div>
-                </div>
             `;
         }
 
@@ -763,4 +681,3 @@
     </script>
 </body>
 </html>
-
