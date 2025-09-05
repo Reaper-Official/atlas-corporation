@@ -3,374 +3,1117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide des Pilotes - Où télécharger les bons drivers</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Installation de Drivers - Guide Complet Windows</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            --tech-blue: #3b82f6;
+            --tech-purple: #8b5cf6;
+            --tech-green: #10b981;
+            --tech-orange: #f97316;
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-        .card-hover {
-            transition: all 0.3s ease;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .warning-bg {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
+            margin: 0 auto;
+            max-width: 100vw;
         }
-        .success-bg {
-            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            width: 100%;
         }
-        .pulse-animation {
-            animation: pulse 2s infinite;
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.02) 100%);
+            transform: skewX(-15deg) translateX(20%);
         }
-        .driver-icon {
+
+        .hero > div {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--tech-blue), var(--tech-purple), var(--tech-green));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.025em;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--gray-600);
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-item {
+            background: linear-gradient(135deg, var(--tech-blue), var(--tech-purple));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            margin: 2rem auto;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-tab {
+            flex: 1 1 auto;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .nav-tab button {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border: 2px solid var(--gray-300);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            font-family: var(--font-sans);
+        }
+
+        .nav-tab button:hover {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-tab button.active {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Content Cards */
+        .content-card, .section {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 3rem 0;
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--tech-blue), var(--tech-purple), var(--tech-green));
+            background-size: 200% 100%;
+            animation: border-flow 3s linear infinite;
+        }
+
+        @keyframes border-flow {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .content-card:hover, .section:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gray-300);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-icon {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, var(--tech-blue) 0%, var(--tech-purple) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: white;
+            box-shadow: var(--shadow-md);
+            animation: float-icon 6s ease-in-out infinite;
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(-5px) rotate(0deg); }
+            75% { transform: translateY(-15px) rotate(-5deg); }
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            flex: 1;
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            counter-increment: step-counter;
+            background: var(--gray-50);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--tech-blue);
+            position: relative;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -15px;
+            top: 15px;
+            background: linear-gradient(135deg, var(--tech-blue), var(--tech-purple));
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Warning & Info Boxes */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1));
+            border: 3px solid var(--tech-orange);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            padding: 0 15px;
+            border-radius: 50%;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 2px solid var(--tech-blue);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Image Placeholders */
+        .image-placeholder {
+            background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+            border: 2px dashed var(--gray-400);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--gray-600);
+            font-style: italic;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .image-placeholder:hover {
+            background: linear-gradient(135deg, var(--gray-200), var(--gray-300));
+            border-color: var(--gray-500);
+        }
+
+        /* Comparison Cards */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .comparison-side {
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+            border: 2px solid;
+        }
+
+        .comparison-side:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .comparison-good {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            border-color: var(--success);
+            color: var(--gray-900);
+        }
+
+        .comparison-bad {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            border-color: var(--error);
+            color: var(--gray-900);
+        }
+
+        .vs-divider {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            font-weight: 900;
+            color: var(--tech-orange);
+            animation: pulse-vs 2s infinite;
+        }
+
+        @keyframes pulse-vs {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .driver-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .driver-card {
+            background: var(--gray-50);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--tech-blue);
+            transition: var(--transition);
+        }
+
+        .driver-card:hover {
+            background: var(--white);
+            border-color: var(--tech-purple);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .manufacturer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .manufacturer-card {
+            background: var(--gray-50);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .manufacturer-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--tech-blue);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--gray-50);
+            border-radius: 1rem;
+            color: var(--gray-600);
+            border: 1px solid var(--gray-200);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .comparison-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-tab button {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-card, .section {
+                padding: 2rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .meta-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-400);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-500);
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <!-- Header -->
-    <header class="gradient-bg text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="text-center">
-                <img src="https://www.gigabyte.com/Image/b3bd47e66bd8d092a701b7f7872ba13b/Product/38816/webp/2000" alt="Gigabyte B650 Eagle AX motherboard with white and black PCB, AMD B650 chipset, multiple RAM slots, PCIe slots, and integrated WiFi antenna connectors, professional product photography on white background" class="mx-auto mb-4 rounded-lg shadow-lg" />
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                    <i class="fas fa-download mr-3"></i>Guide des Pilotes
-                </h1>
-                <p class="text-xl md:text-2xl opacity-90">Téléchargez les bons drivers aux bons endroits</p>
+<body>
+    <div class="container">
+        <header class="hero">
+            <div>
+                <h1>Installation de Drivers</h1>
+                <p class="hero-subtitle">Guide complet pour installer, désinstaller et réinstaller ses drivers sous Windows</p>
+                <div class="meta-info">
+                    <span class="meta-item">Guide Technique</span>
+                    <span class="meta-item">Windows</span>
+                    <span class="meta-item">Drivers & Pilotes</span>
+                    <span class="meta-item">Hardware</span>
+                </div>
+                <img src="https://www.gigabyte.com/Image/b3bd47e66bd8d092a701b7f7872ba13b/Product/38816/webp/2000" alt="Gigabyte B650 Eagle AX motherboard" class="hero-image">
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- Alert Section -->
-    <section class="py-6">
-        <div class="container mx-auto px-4">
-            <div class="warning-bg text-white rounded-lg p-6 mb-8 shadow-lg">
-                <div class="flex items-center">
-                    <i class="fas fa-exclamation-triangle text-3xl mr-4 pulse-animation"></i>
+        <nav class="nav-tabs">
+            <div class="nav-tab"><button data-tab="introduction">Introduction</button></div>
+            <div class="nav-tab"><button data-tab="carte-mere">Carte Mère</button></div>
+            <div class="nav-tab"><button data-tab="graphiques">Graphiques</button></div>
+            <div class="nav-tab"><button data-tab="wifi">WiFi</button></div>
+            <div class="nav-tab"><button data-tab="guide-complet">Guide Complet</button></div>
+            <div class="nav-tab"><button data-tab="lexique">Lexique</button></div>
+        </nav>
+
+        <div id="introduction" class="tab-content active">
+            <div class="content-card">
+                <div class="section-header">
+                    <div class="section-icon">💻</div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">⚠️ ATTENTION - Évitez ces sites !</h3>
-                        <p class="text-lg">Ne téléchargez JAMAIS vos pilotes depuis des sites comme "TousLesDrivers", "DriverPack" ou autres sites génériques. Ils contiennent souvent des malwares !</p>
+                        <h2 class="section-title">Introduction aux Drivers</h2>
+                        <p>Comprendre l'essentiel des pilotes Windows</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Qu'est-ce qu'un driver ?</h3>
+                    <p>Un driver (ou pilote) est un composant logiciel permettant au système d'exploitation (Windows, Linux, MacOS) et à un appareil (comme une carte graphique) de communiquer entre eux.</p>
+                    
+                    <p>Dans ce guide, nous considérons un driver comme un "programme" qui permet au PC de fonctionner correctement et de façon optimale. C'est une simplification, mais suffisante pour comprendre leur importance.</p>
+
+                    <div class="info-box">
+                        <h4>📚 Pourquoi installer les drivers ?</h4>
+                        <p>Il faut installer les drivers par soi-même une fois l'acquisition ou l'assemblage de votre nouveau PC terminé. Ils permettent une communication optimale entre vos composants et Windows.</p>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>Prérequis Important</h4>
+                        <p>Pour installer les drivers, il est nécessaire d'avoir déjà installé son système d'exploitation. Ce guide porte sur une installation sous Windows uniquement.</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="success-bg text-white rounded-lg p-6 shadow-lg">
-                <div class="flex items-center">
-                    <i class="fas fa-shield-alt text-3xl mr-4"></i>
+        </div>
+
+        <div id="carte-mere" class="tab-content">
+            <div class="content-card">
+                <div class="section-header">
+                    <div class="section-icon">🔧</div>
                     <div>
-                        <h3 class="text-xl font-bold mb-2">✅ LA BONNE MÉTHODE</h3>
-                        <p class="text-lg">Téléchargez uniquement depuis le site officiel du fabricant de votre carte mère ou de vos composants !</p>
+                        <h2 class="section-title">Drivers de Carte Mère</h2>
+                        <p>La base de votre système : chipset, audio, réseau</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>🎯 Priorité Absolue</h4>
+                    <p>Il est important de commencer en premier lieu par ces drivers, car ce sont eux qui vont permettre au PC de bien fonctionner dans sa globalité.</p>
+                </div>
+
+                <h3>Méthode 1 : Installation par CD ROM</h3>
+                <div class="steps">
+                    <div class="step">
+                        Munissez-vous du CD ROM présent dans la boîte de votre carte mère. Celui-ci contient un programme permettant d'installer rapidement tous les drivers sans passer par internet.
+                    </div>
+                    <div class="step">
+                        Le programme propose généralement les drivers du chipset et le driver audio. Si d'autres drivers sont proposés, installez-les tous.
+                    </div>
+                    <div class="step">
+                        Décochez l'installation d'antivirus (comme Norton Security). Windows Defender est suffisant pour la plupart des utilisateurs et gratuit.
+                    </div>
+                </div>
+
+                <h3>Méthode 2 : Installation par site constructeur</h3>
+                <div class="steps">
+                    <div class="step">
+                        Recherchez le nom exact de votre carte mère + "drivers" sur Google
+                        <br><em>Exemple : "Asus Rog Strix B550 XE Gaming Wifi drivers"</em>
+                    </div>
+                    <div class="step">
+                        Cliquez sur le premier lien officiel du constructeur
+                    </div>
+                    <div class="step">
+                        Naviguez vers la section "Drivers" ou "Pilotes et Outils"
+                    </div>
+                    <div class="step">
+                        Sélectionnez votre système d'exploitation (Windows 10/11 64-bit)
+                    </div>
+                    <div class="step">
+                        Téléchargez et installez dans l'ordre : Chipset, Audio, LAN, WiFi
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>Sites à Éviter Absolument</h4>
+                    <p>Ne passez JAMAIS par des sites comme "Drivers Cloud" ou "Tous les Drivers". Les drivers proposés ne sont pas forcément à jour, peuvent créer des failles de sécurité et faire crasher votre PC.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="graphiques" class="tab-content">
+            <div class="content-card">
+                <div class="section-header">
+                    <div class="section-icon">🎮</div>
+                    <div>
+                        <h2 class="section-title">Drivers Graphiques</h2>
+                        <p>AMD, NVIDIA, Intel : optimisez vos performances</p>
+                    </div>
+                </div>
+
+                <h3>Carte Graphique AMD</h3>
+                <div class="steps">
+                    <div class="step">
+                        Recherchez le nom de votre carte + "driver" (ex: "6700xt driver", "7900xt driver")
+                    </div>
+                    <div class="step">
+                        Téléchargez "AMD Software : Adrenaline Edition" depuis le site officiel AMD
+                    </div>
+                    <div class="step">
+                        Lancez l'installation et choisissez "Installation complète (Full Install)"
+                    </div>
+                    <div class="step">
+                        Ce logiciel vous permettra de mettre à jour vos drivers automatiquement
+                    </div>
+                </div>
+
+                <h3>Carte Graphique NVIDIA</h3>
+                <div class="steps">
+                    <div class="step">
+                        Recherchez "nom de votre carte + driver" (ex: "RTX 4080 driver")
+                    </div>
+                    <div class="step">
+                        Accédez au site officiel NVIDIA et utilisez l'outil de détection automatique
+                    </div>
+                    <div class="step">
+                        Remplissez les informations : Type de produit, Série, Modèle, OS
+                    </div>
+                    <div class="step">
+                        Téléchargez et choisissez "GeForce Experience et pilote graphique"
+                    </div>
+                    <div class="step">
+                        Sélectionnez "Installation Personnalisée" et cochez "Effectuer une nouvelle installation"
+                    </div>
+                </div>
+
+                <h3>Désinstaller/Réinstaller des Drivers</h3>
+                
+                <h4>Étape 1 : Désinstallation Propre</h4>
+                <div class="steps">
+                    <div class="step">
+                        Téléchargez "Display Driver Uninstaller (DDU)" depuis Guru3D
+                    </div>
+                    <div class="step">
+                        Choisissez "Download Mirror EU – Germany"
+                    </div>
+                    <div class="step">
+                        Extrayez l'archive 7Zip et lancez DDU
+                    </div>
+                    <div class="step">
+                        Sélectionnez "GPU" puis votre marque de carte graphique
+                    </div>
+                    <div class="step">
+                        Cliquez sur "Nettoyer et éteindre"
+                    </div>
+                </div>
+
+                <h4>Étape 2 : Réinstallation</h4>
+                <p>Une fois le PC éteint, vous pouvez redémarrer et réinstaller les nouveaux drivers selon les méthodes AMD, NVIDIA ou Intel ci-dessus.</p>
+
+                <div class="comparison-container">
+                    <div class="comparison-side comparison-bad">
+                        <h4>❌ Erreurs Courantes</h4>
+                        <p>Installation par-dessus anciens drivers</p>
+                        <p>Utilisation de sites douteux</p>
+                        <p>Installation partielle</p>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="comparison-side comparison-good">
+                        <h4>✅ Bonne Pratique</h4>
+                        <p>Désinstallation propre avec DDU</p>
+                        <p>Sites officiels uniquement</p>
+                        <p>Installation complète</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Drivers Types Section -->
-    <section class="py-12">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
-                <i class="fas fa-list-ul mr-3 text-blue-600"></i>Quels pilotes télécharger ?
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- LAN Driver -->
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
-                    <div class="text-center">
-                        <i class="fas fa-ethernet driver-icon text-blue-600"></i>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilote LAN (Ethernet)</h3>
-                        <div class="text-left">
-                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Connexion internet par câble</p>
-                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Oui, si pas de WiFi</p>
-                            <p class="text-gray-600"><strong>Priorité :</strong> Haute</p>
-                        </div>
+        <div id="wifi" class="tab-content">
+            <div class="content-card">
+                <div class="section-header">
+                    <div class="section-icon">📶</div>
+                    <div>
+                        <h2 class="section-title">Drivers Carte WiFi</h2>
+                        <p>Connectivité réseau sans fil optimisée</p>
                     </div>
                 </div>
 
-                <!-- WLAN + Bluetooth -->
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
-                    <div class="text-center">
-                        <i class="fas fa-wifi driver-icon text-green-600"></i>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">WLAN + Bluetooth</h3>
-                        <div class="text-left">
-                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> WiFi et Bluetooth</p>
-                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Si vous utilisez le WiFi</p>
-                            <p class="text-gray-600"><strong>Priorité :</strong> Haute</p>
-                        </div>
+                <p>Cette section suit la même logique que les drivers de carte mère : simple et efficace.</p>
+
+                <h3>Méthodes d'Installation</h3>
+                <div class="steps">
+                    <div class="step">
+                        <strong>Méthode 1 :</strong> Utilisez le CD ROM fourni avec votre carte WiFi (similaire à la carte mère)
+                    </div>
+                    <div class="step">
+                        <strong>Méthode 2 :</strong> Recherchez le nom exact de votre carte WiFi + "driver" sur Google
+                    </div>
+                    <div class="step">
+                        Accédez au site officiel du constructeur (Intel, Realtek, Broadcom, etc.)
+                    </div>
+                    <div class="step">
+                        Téléchargez et installez le driver correspondant à votre OS
                     </div>
                 </div>
 
-                <!-- Graphics Driver -->
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
-                    <div class="text-center">
-                        <i class="fas fa-desktop driver-icon text-purple-600"></i>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilote Graphique</h3>
-                        <div class="text-left">
-                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Affichage et performances</p>
-                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Oui</p>
-                            <p class="text-gray-600"><strong>Priorité :</strong> Très haute</p>
-                        </div>
+                <div class="info-box">
+                    <h4>💡 Conseil Pratique</h4>
+                    <p>Si vous n'avez pas de connexion internet, utilisez d'abord un câble Ethernet pour vous connecter, puis téléchargez les drivers WiFi. Alternativement, téléchargez les drivers sur un autre ordinateur et transférez-les via clé USB.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>Problème de Compatibilité</h4>
+                    <p>Certaines cartes WiFi récentes peuvent ne pas être reconnues par Windows. Dans ce cas, l'installation manuelle du driver est indispensable pour avoir accès au réseau sans fil.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="guide-complet" class="tab-content">
+            <div class="content-card">
+                <div class="section-header">
+                    <div class="section-icon">📋</div>
+                    <div>
+                        <h2 class="section-title">Guide Complet de Téléchargement</h2>
+                        <p>Où télécharger les bons drivers en toute sécurité</p>
                     </div>
                 </div>
 
-                <!-- Audio Driver -->
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
-                    <div class="text-center">
-                        <i class="fas fa-volume-up driver-icon text-red-600"></i>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilote Audio</h3>
-                        <div class="text-left">
-                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Son et microphone</p>
-                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Oui</p>
-                            <p class="text-gray-600"><strong>Priorité :</strong> Haute</p>
-                        </div>
+                <div class="warning-box">
+                    <h4>Sites à Éviter Absolument</h4>
+                    <p>Ne téléchargez JAMAIS vos pilotes depuis des sites comme "TousLesDrivers", "DriverPack" ou autres sites génériques. Ils contiennent souvent des malwares et des versions obsolètes !</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>La Bonne Méthode</h4>
+                    <p>Téléchargez uniquement depuis le site officiel du fabricant de votre carte mère ou de vos composants !</p>
+                </div>
+
+                <h3>Types de Pilotes Essentiels</h3>
+                <div class="driver-grid">
+                    <div class="driver-card">
+                        <h4 style="color: var(--tech-blue); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🌐 Pilote LAN (Ethernet)
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Pour :</strong> Connexion internet par câble</p>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Priorité :</strong> Haute</p>
+                    </div>
+                    
+                    <div class="driver-card">
+                        <h4 style="color: var(--tech-green); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            📶 WLAN + Bluetooth
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Pour :</strong> WiFi et Bluetooth</p>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Priorité :</strong> Haute</p>
+                    </div>
+                    
+                    <div class="driver-card">
+                        <h4 style="color: var(--tech-purple); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🎮 Pilote Graphique
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Pour :</strong> Affichage et performances</p>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Priorité :</strong> Très haute</p>
+                    </div>
+                    
+                    <div class="driver-card">
+                        <h4 style="color: var(--error); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🔊 Pilote Audio
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Pour :</strong> Son et microphone</p>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Priorité :</strong> Haute</p>
+                    </div>
+                    
+                    <div class="driver-card">
+                        <h4 style="color: var(--tech-orange); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🔌 Pilotes USB
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Pour :</strong> Ports USB 3.0/3.1/3.2</p>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Priorité :</strong> Moyenne</p>
+                    </div>
+                    
+                    <div class="driver-card">
+                        <h4 style="color: var(--accent); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            ⚡ Pilote Chipset
+                        </h4>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Pour :</strong> Communication entre composants</p>
+                        <p style="margin: 0; color: var(--gray-700); font-size: 0.9rem;"><strong>Priorité :</strong> Très haute</p>
                     </div>
                 </div>
 
-                <!-- USB Driver -->
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
-                    <div class="text-center">
-                        <i class="fab fa-usb driver-icon text-orange-600"></i>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilotes USB</h3>
-                        <div class="text-left">
-                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Ports USB 3.0/3.1/3.2</p>
-                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Recommandé</p>
-                            <p class="text-gray-600"><strong>Priorité :</strong> Moyenne</p>
-                        </div>
+                <h3>Sources de Téléchargement</h3>
+                <div class="comparison-container">
+                    <div class="comparison-side comparison-good">
+                        <h4>✅ SOURCE PRINCIPALE</h4>
+                        <ul style="text-align: left; margin: 1rem 0;">
+                            <li>Site du fabricant de votre carte mère</li>
+                            <li>Section Support/Téléchargements</li>
+                            <li>Pilotes les plus récents</li>
+                            <li>Toujours à jour et sécurisés</li>
+                        </ul>
+                    </div>
+                    <div class="vs-divider">+</div>
+                    <div class="comparison-side" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); border-color: var(--tech-blue);">
+                        <h4>📱 SOURCES COMPLÉMENTAIRES</h4>
+                        <ul style="text-align: left; margin: 1rem 0;">
+                            <li>Site du fabricant GPU (NVIDIA/AMD)</li>
+                            <li>Windows Update (pilotes de base)</li>
+                            <li>Gestionnaire de périphériques</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Chipset Driver -->
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
-                    <div class="text-center">
-                        <i class="fas fa-microchip driver-icon text-teal-600"></i>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pilote Chipset</h3>
-                        <div class="text-left">
-                            <p class="text-gray-600 mb-3"><strong>Pour quoi :</strong> Communication entre composants</p>
-                            <p class="text-gray-600 mb-3"><strong>Obligatoire :</strong> Oui</p>
-                            <p class="text-gray-600"><strong>Priorité :</strong> Très haute</p>
-                        </div>
+                <h3>Guide Étape par Étape</h3>
+                <div class="steps">
+                    <div class="step">
+                        <strong>Identifiez votre carte mère</strong><br>
+                        Utilisez un logiciel comme CPU-Z, HWiNFO ou regardez directement sur la carte mère pour connaître le modèle exact.
+                    </div>
+                    <div class="step">
+                        <strong>Allez sur le site officiel</strong><br>
+                        Rendez-vous sur le site du fabricant (ASUS, MSI, Gigabyte, ASRock, etc.) et cherchez la section Support.
+                    </div>
+                    <div class="step">
+                        <strong>Recherchez votre modèle</strong><br>
+                        Tapez le nom exact de votre carte mère dans la barre de recherche du site.
+                    </div>
+                    <div class="step">
+                        <strong>Téléchargez dans l'ordre</strong><br>
+                        1. Chipset → 2. LAN/WLAN → 3. Audio → 4. USB → 5. Autres selon vos besoins.
+                    </div>
+                    <div class="step">
+                        <strong>Installez et redémarrez</strong><br>
+                        Installez chaque pilote un par un et redémarrez entre chaque installation si demandé.
+                    </div>
+                </div>
+
+                <h3>Fabricants Populaires</h3>
+                <div class="manufacturer-grid">
+                    <div class="manufacturer-card" onclick="window.open('https://www.asus.com/support/', '_blank')">
+                        <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">ASUS</h4>
+                        <p style="margin: 0; color: var(--gray-600); font-size: 0.85rem;">asus.com/support/</p>
+                    </div>
+                    
+                    <div class="manufacturer-card" onclick="window.open('https://www.msi.com/support/', '_blank')">
+                        <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">MSI</h4>
+                        <p style="margin: 0; color: var(--gray-600); font-size: 0.85rem;">msi.com/support/</p>
+                    </div>
+                    
+                    <div class="manufacturer-card" onclick="window.open('https://www.gigabyte.com/Support', '_blank')">
+                        <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">Gigabyte</h4>
+                        <p style="margin: 0; color: var(--gray-600); font-size: 0.85rem;">gigabyte.com/Support</p>
+                    </div>
+                    
+                    <div class="manufacturer-card" onclick="window.open('https://www.asrock.com/support/', '_blank')">
+                        <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">ASRock</h4>
+                        <p style="margin: 0; color: var(--gray-600); font-size: 0.85rem;">asrock.com/support/</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>💡 Conseil Pro</h4>
+                    <p>Créez un dossier "Pilotes" sur votre bureau pour sauvegarder tous vos drivers téléchargés. Cela vous sera utile pour les réinstallations futures !</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="lexique" class="tab-content">
+            <div class="content-card">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h2 class="section-title">Lexique Technique</h2>
+                        <p>Définitions des termes importants</p>
+                    </div>
+                </div>
+                
+                <div style="display: grid; gap: 1rem;">
+                    <div style="background: var(--gray-50); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid var(--tech-blue);">
+                        <h4 style="color: var(--tech-blue); margin-bottom: 0.5rem;">Carte Mère</h4>
+                        <p style="margin: 0; color: var(--gray-700);">Composant principal permettant la connexion et la liaison de tous les éléments de l'ordinateur (RAM, processeur, stockage, périphériques).</p>
+                    </div>
+                    
+                    <div style="background: var(--gray-50); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid var(--tech-blue);">
+                        <h4 style="color: var(--tech-blue); margin-bottom: 0.5rem;">CD ROM</h4>
+                        <p style="margin: 0; color: var(--gray-700);">Support de stockage optique contenant généralement les drivers et logiciels fournis par le constructeur.</p>
+                    </div>
+                    
+                    <div style="background: var(--gray-50); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid var(--tech-blue);">
+                        <h4 style="color: var(--tech-blue); margin-bottom: 0.5rem;">Chipset</h4>
+                        <p style="margin: 0; color: var(--gray-700);">Ensemble de composants électroniques intégrés gérant les flux de données entre le processeur, la mémoire et les périphériques.</p>
+                    </div>
+                    
+                    <div style="background: var(--gray-50); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid var(--tech-blue);">
+                        <h4 style="color: var(--tech-blue); margin-bottom: 0.5rem;">Driver / Pilote</h4>
+                        <p style="margin: 0; color: var(--gray-700);">Programme informatique permettant au système d'exploitation de communiquer avec un composant matériel spécifique.</p>
+                    </div>
+                    
+                    <div style="background: var(--gray-50); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid var(--tech-blue);">
+                        <h4 style="color: var(--tech-blue); margin-bottom: 0.5rem;">DDU (Display Driver Uninstaller)</h4>
+                        <p style="margin: 0; color: var(--gray-700);">Utilitaire spécialisé dans la désinstallation complète des drivers graphiques.</p>
+                    </div>
+                    
+                    <div style="background: var(--gray-50); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid var(--tech-blue);">
+                        <h4 style="color: var(--tech-blue); margin-bottom: 0.5rem;">Windows Defender</h4>
+                        <p style="margin: 0; color: var(--gray-700);">Antivirus intégré par défaut à Windows. Gratuit et suffisant pour la plupart des utilisateurs.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Where to Download -->
-    <section class="py-12 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
-                <i class="fas fa-map-marker-alt mr-3 text-green-600"></i>Où télécharger vos pilotes ?
-            </h2>
-
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Primary Source -->
-                <div class="bg-gradient-to-r from-green-400 to-green-600 text-white rounded-lg p-8 shadow-lg">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-star mr-3"></i>SOURCE PRINCIPALE
-                    </h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i class="fas fa-arrow-right mt-1 mr-3 text-green-200"></i>
-                            <p><strong>Site du fabricant de votre carte mère</strong><br>
-                            ASUS, MSI, Gigabyte, ASRock, etc.</p>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-arrow-right mt-1 mr-3 text-green-200"></i>
-                            <p><strong>Section Support/Téléchargements</strong><br>
-                            Cherchez votre modèle exact</p>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-arrow-right mt-1 mr-3 text-green-200"></i>
-                            <p><strong>Pilotes les plus récents</strong><br>
-                            Toujours à jour et sécurisés</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Secondary Sources -->
-                <div class="bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg p-8 shadow-lg">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-plus-circle mr-3"></i>SOURCES COMPLÉMENTAIRES
-                    </h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-200"></i>
-                            <p><strong>Site du fabricant GPU</strong><br>
-                            NVIDIA GeForce ou AMD Radeon</p>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-200"></i>
-                            <p><strong>Windows Update</strong><br>
-                            Pour les pilotes de base</p>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-arrow-right mt-1 mr-3 text-blue-200"></i>
-                            <p><strong>Gestionnaire de périphériques</strong><br>
-                            Pour identifier les composants</p>
-                        </div>
-                    </div>
-                </div>
+        <footer class="footer">
+            <h3>Guide Complet d'Installation des Drivers</h3>
+            <p>Ce guide vous a fourni toutes les informations nécessaires pour installer correctement vos drivers sous Windows. N'hésitez pas à revenir consulter les sections spécifiques selon vos besoins.</p>
+            <p><strong>Conseils finaux :</strong> Toujours télécharger depuis les sites officiels, maintenir vos drivers à jour, et faire une désinstallation propre avant toute réinstallation.</p>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--gray-300);">
+                <p style="color: var(--gray-500); font-size: 0.9rem;">
+                    Guide technique - Toujours vérifier la compatibilité de vos composants
+                </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Step by Step Guide -->
-    <section class="py-12 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
-                <i class="fas fa-list-ol mr-3 text-purple-600"></i>Guide étape par étape
-            </h2>
-
-            <div class="max-w-4xl mx-auto">
-                <div class="space-y-6">
-                    <!-- Step 1 -->
-                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
-                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">1</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Identifiez votre carte mère</h3>
-                            <p class="text-gray-600">Utilisez Userdiag ou regardez sur la carte mère elle-même pour connaître le modèle exact.</p>
-                        </div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
-                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">2</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Allez sur le site officiel</h3>
-                            <p class="text-gray-600">Rendez-vous sur le site du fabricant (ASUS, MSI, Gigabyte, etc.) et cherchez la section Support.</p>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
-                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">3</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Recherchez votre modèle</h3>
-                            <p class="text-gray-600">Tapez le nom exact de votre carte mère dans la barre de recherche du site.</p>
-                        </div>
-                    </div>
-
-                    <!-- Step 4 -->
-                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
-                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">4</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Téléchargez dans l'ordre</h3>
-                            <p class="text-gray-600">1. Chipset → 2. LAN/WLAN → 3. Audio → 4. USB → 5. Autres selon vos besoins.</p>
-                        </div>
-                    </div>
-
-                    <!-- Step 5 -->
-                    <div class="flex items-start bg-white rounded-lg p-6 shadow-lg card-hover">
-                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">5</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Installez et redémarrez</h3>
-                            <p class="text-gray-600">Installez chaque pilote un par un et redémarrez entre chaque installation si demandé.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Popular Manufacturers -->
-    <section class="py-12 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
-                <i class="fas fa-building mr-3 text-blue-600"></i>Liens des fabricants populaires
-            </h2>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- ASUS -->
-                <div class="bg-white-800 text-black rounded-lg p-6 text-center card-hover cursor-pointer" onclick="openLink('https://www.asus.com/support/')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/ASUS_Logo.svg/langfr-330px-ASUS_Logo.svg.png" alt="ASUS official logo with blue and white corporate branding, clean typography with stylized A symbol, professional technology company design" class="mx-auto mb-4" />
-                    <h3 class="text-lg font-bold">ASUS</h3>
-                    <p class="text-sm text-gray-300">asus.com/support/</p>
-                </div>
-
-                <!-- MSI -->
-                <div class="bg-red-600 text-white rounded-lg p-6 text-center card-hover cursor-pointer" onclick="openLink('https://www.msi.com/support/')">
-                    <img src="https://storage-asset.msi.com/frontend/imgs/logo.png" alt="MSI gaming logo featuring red and black dragon shield emblem with bold MSI lettering, gaming-focused brand design with metallic accents" class="mx-auto mb-4" />
-                    <h3 class="text-lg font-bold">MSI</h3>
-                    <p class="text-sm text-red-200">msi.com/support/</p>
-                </div>
-
-                <!-- Gigabyte -->
-                <div class="bg-orange-500 text-white rounded-lg p-10 text-center card-hover cursor-pointer" onclick="openLink('https://www.gigabyte.com/Support')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Gigabyte_Technology_logo_20080107.svg/langfr-250px-Gigabyte_Technology_logo_20080107.svg.png" alt="MSI gaming logo featuring red and black dragon shield emblem with bold MSI lettering, gaming-focused brand design with metallic accents" class="mx-auto mb-4" />                
-					<h3 class="text-lg font-bold">Gigabyte</h3>
-                    <p class="text-sm text-orange-200">gigabyte.com/Support</p>
-                </div>
-
-                <!-- ASRock -->
-                <div class="bg-blue-600 text-white rounded-lg p-6 text-center card-hover cursor-pointer" onclick="openLink('https://www.asrock.com/support/')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/ASRock_logo.svg/langfr-250px-ASRock_logo.svg.png" alt="ASRock logo with blue gradient and modern geometric design elements, clean corporate typography with stylized rock formation symbol" class="mx-auto mb-4" />
-                    <h3 class="text-lg font-bold">ASRock</h3>
-                    <p class="text-sm text-blue-200">asrock.com/support/</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="gradient-bg text-white py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-lg mb-4">
-                <i class="fas fa-lightbulb mr-2"></i>
-                Conseil : Créez un dossier "Pilotes" sur votre bureau pour sauvegarder tous vos drivers !
-            </p>
-            <p class="text-sm opacity-75">
-                Toujours télécharger depuis les sources officielles pour votre sécurité
-            </p>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script>
-        function openLink(url) {
-            window.open(url, '_blank');
-        }
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.nav-tab button');
+            const tabContents = document.querySelectorAll('.tab-content');
 
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animate cards on scroll
-            const cards = document.querySelectorAll('.card-hover');
+            function showTab(tabId) {
+                // Hide all tab contents
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Remove active class from all buttons
+                tabButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+
+                // Show selected tab and activate button
+                const selectedTab = document.getElementById(tabId);
+                const selectedButton = document.querySelector(`button[data-tab="${tabId}"]`);
+                
+                if (selectedTab && selectedButton) {
+                    selectedTab.classList.add('active');
+                    selectedButton.classList.add('active');
+                }
+            }
+
+            // Add click event listeners to tab buttons
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    showTab(tabId);
+                    
+                    // Update URL hash
+                    window.history.pushState(null, null, `#${tabId}`);
+                });
+            });
+
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash.substring(1);
+                const validTab = document.getElementById(hash);
+                if (validTab) {
+                    showTab(hash);
+                } else {
+                    showTab('introduction');
+                }
+            });
+
+            // Show initial tab based on URL hash or default to introduction
+            const initialTab = window.location.hash ? window.location.hash.substring(1) : 'introduction';
+            if (document.getElementById(initialTab)) {
+                showTab(initialTab);
+            } else {
+                showTab('introduction');
+            }
+        });
+
+        // Enhanced card hover effects
+        document.querySelectorAll('.content-card, .section').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+                card.style.boxShadow = 'var(--shadow-xl)';
+            });
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = 'var(--shadow)';
             });
+        });
 
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'all 0.5s ease';
-                observer.observe(card);
-            });
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-            // Add click effect to manufacturer cards
-            const manufacturerCards = document.querySelectorAll('[onclick]');
-            manufacturerCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1)';
-                    }, 150);
-                });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
+        }, observerOptions);
+
+        // Apply intersection observer to content cards
+        document.querySelectorAll('.content-card, .section').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        // Step animation on scroll
+        const stepObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const steps = entry.target.querySelectorAll('.step');
+                    steps.forEach((step, index) => {
+                        setTimeout(() => {
+                            step.style.opacity = '1';
+                            step.style.transform = 'translateX(0)';
+                        }, index * 150);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.steps').forEach(stepsContainer => {
+            const steps = stepsContainer.querySelectorAll('.step');
+            steps.forEach(step => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateX(-20px)';
+                step.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+            });
+            stepObserver.observe(stepsContainer);
         });
     </script>
 </body>
 </html>
-
