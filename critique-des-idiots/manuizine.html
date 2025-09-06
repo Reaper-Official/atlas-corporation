@@ -19,9 +19,9 @@
             /* Colors */
             --primary: #1a1a1a;
             --secondary: #f8fafc;
-            --accent: #f59e0b;
-            --accent-hover: #d97706;
-            --accent-light: #fcd34d;
+            --accent: #1ad309;
+            --accent-hover: #59df00bd;
+            --accent-light: #13eb0c;
             --success: #10b981;
             --warning: #f59e0b;
             --error: #ef4444;
@@ -165,431 +165,14 @@
             padding: 0 2rem;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #fffbeb 0%, var(--white) 100%);
-            text-align: center;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            line-height: 1.1;
-            color: var(--gray-900);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title .highlight {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Satirical Note */
-        .satirical-note {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
-            border: 2px solid var(--accent);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .satirical-note h3 {
-            color: var(--accent);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .center-container {
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-        }
-
-        .satirical-note p {
-            color: var(--gray-700);
-            font-style: italic;
-        }
-
-        /* Section Cards */
-        .section-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            box-shadow: var(--shadow);
-            transition: var(--transition-slow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
-            transform: scaleX(0);
-            transition: var(--transition-slow);
-        }
-
-        .section-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .section-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--accent);
-        }
-
-        .section-header {
-            display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .section-icon {
-            width: 3rem;
-            height: 3rem;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .section-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-
-        .section-subtitle {
-            color: var(--gray-600);
-            font-size: 1rem;
-            margin-top: 0.25rem;
-        }
-
-        /* Expertise Meter */
-        .expertise-meter {
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        .expertise-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .expertise-bar {
-            background: var(--gray-300);
-            height: 2rem;
-            border-radius: 1rem;
-            overflow: hidden;
-            position: relative;
-            margin: 1rem 0;
-        }
-
-        .expertise-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--error) 0%, var(--accent) 100%);
-            width: 15%;
-            animation: expertise-wobble 3s ease-in-out infinite;
-            position: relative;
-            border-radius: 1rem;
-        }
-
-        .expertise-fill::after {
-            content: '😅';
-            position: absolute;
-            right: -30px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            animation: emoji-bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes expertise-wobble {
-            0%, 100% { width: 15%; }
-            25% { width: 10%; }
-            50% { width: 20%; }
-            75% { width: 8%; }
-        }
-
-        @keyframes emoji-bounce {
-            0%, 100% { transform: translateY(-50%) scale(1); }
-            50% { transform: translateY(-70%) scale(1.2); }
-        }
-
-        .expertise-comment {
-            text-align: center;
-            color: var(--gray-600);
-            font-style: italic;
-            font-size: 0.875rem;
-        }
-
-        /* Innovation Cards */
-        .innovation-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .innovation-card {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(251, 191, 36, 0.02) 100%);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-radius: 1rem;
-            padding: 2rem;
-            border-left: 4px solid var(--accent);
-        }
-
-        .innovation-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .innovation-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .innovation-list li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(245, 158, 11, 0.1);
-            position: relative;
-            padding-left: 2rem;
-            color: var(--gray-700);
-        }
-
-        .innovation-list li::before {
-            content: '🎪';
-            position: absolute;
-            left: 0;
-            font-size: 1rem;
-        }
-
-        /* Quote Box */
-        .quote-box {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            margin: 2rem 0;
-            text-align: center;
-            font-size: 1.25rem;
-            font-weight: 600;
-            font-style: italic;
-            position: relative;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .quote-box::before {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            opacity: 0.3;
-        }
-
-        .quote-box::after {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            bottom: -30px;
-            right: 20px;
-            opacity: 0.3;
-        }
-
-        /* Video Container */
-        .video-container {
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .video-container h4 {
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .video-container video {
             width: 100%;
-            max-width: 800px;
-            height: auto;
-            border-radius: 0.75rem;
-            box-shadow: var(--shadow-lg);
+            padding: 20px;
         }
 
-        .video-warning {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            color: var(--accent);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            font-weight: 500;
-        }
-
-        /* Comparison Grid */
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .comparison-card {
-            padding: 2rem;
-            border-radius: 1rem;
-            color: white;
-            font-weight: 500;
-        }
-
-        .comparison-solotech {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-        }
-
-        .comparison-normal {
-            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
-        }
-
-        .comparison-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        /* Awards Section */
-        .awards-section {
-            background: linear-gradient(135deg, #fffbeb 0%, var(--gray-50) 100%);
-            border: 1px solid var(--gray-200);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .awards-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-
-        .awards-list {
-            list-style: none;
-            padding: 0;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .awards-list li {
-            padding: 1rem 0;
-            color: var(--gray-700);
-            font-size: 1.125rem;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .awards-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* Summary Box */
-        .summary-box {
-            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            margin: 3rem 0;
-            text-align: center;
-            box-shadow: var(--shadow-xl);
-        }
-
-        .summary-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .summary-content {
-            font-size: 1.125rem;
-            line-height: 1.7;
-        }
-
-        /* Disclaimer */
-        .disclaimer {
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 3rem 0;
-            color: var(--gray-600);
-            font-size: 0.875rem;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .disclaimer h3 {
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
         .home-button {
             display: inline-flex;
             align-items: center;
@@ -645,49 +228,356 @@
             height: 20px;
             fill: currentColor;
         }
-        /* Critique Points */
-        .critique-points .point {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(249, 115, 22, 0.05));
-            border: 1px solid var(--roast-orange);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #fffbeb 0%, var(--white) 100%);
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
         }
 
-        .critique-points .point:hover {
-            transform: translateY(-2px);
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--error);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--error) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Satirical Note */
+        .satirical-note {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 2px solid var(--error);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .satirical-note h3 {
+            color: var(--error);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .satirical-note p {
+            color: var(--gray-700);
+            font-style: italic;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--error) 0%, var(--accent) 100%);
+            transform: scaleX(0);
+            transition: var(--transition-slow);
+        }
+
+        .section-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .section-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--error);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--error) 0%, var(--accent) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
             box-shadow: var(--shadow-md);
         }
 
-        .critique-points .point h4 {
-            color: var(--roast-orange);
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
         }
 
-        /* Utility Classes */
-        .highlight {
-            color: var(--roast-red);
-            font-weight: bold;
+        .section-subtitle {
+            color: var(--gray-600);
+            font-size: 1rem;
+            margin-top: 0.25rem;
         }
 
-        .delivery-issue {
-            color: var(--roast-red);
-            font-weight: bold;
+        /* Power Calculation Box */
+        .power-calc {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(245, 158, 11, 0.05));
+            border: 2px solid var(--error);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
         }
 
-        .price-issue {
-            color: var(--roast-red);
-            font-weight: bold;
-        }
-        .center-container {
+        .power-calc h4 {
+            color: var(--error);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             display: flex;
-            justify-content: center;
             align-items: center;
+            gap: 0.5rem;
+        }
+
+        .calc-table {
             width: 100%;
-            padding: 20px;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .calc-table th, .calc-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .calc-table th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .calc-table .danger {
+            color: var(--error);
+            font-weight: bold;
+        }
+
+        .calc-table .total-row {
+            background: rgba(239, 68, 68, 0.1);
+            font-weight: bold;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: warning-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes warning-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .warning-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Video Container */
+        .video-container {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .video-container h4 {
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-warning {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: var(--error);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, var(--error) 0%, var(--accent) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-style: italic;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .quote-box::after {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        /* Problems List */
+        .problems-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .problems-list li {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .problems-list li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .problems-list li strong {
+            color: var(--error);
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .summary-content {
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .disclaimer h3 {
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
         }
 
         /* Responsive Design */
@@ -708,19 +598,18 @@
                 padding: 1.5rem;
             }
 
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-
             .section-header {
                 flex-direction: column;
                 text-align: center;
                 gap: 0.5rem;
             }
 
-            .expertise-fill::after {
-                right: -25px;
-                font-size: 1.2rem;
+            .calc-table {
+                font-size: 0.875rem;
+            }
+
+            .calc-table th, .calc-table td {
+                padding: 0.5rem;
             }
 
             .quote-box {
@@ -734,11 +623,11 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">🎪</div>
+            <a href="#" class="logo">
+                <div class="logo-icon">⚡</div>
                 <span>Atlas Corporation</span>
             </a>
-            <a href="index.html" class="header-cta">
+            <a href="#" class="header-cta">
                 ← Retour au Hub
             </a>
         </nav>
@@ -748,15 +637,10 @@
     <section class="hero">
         <div class="container">
             <div class="hero-badge">
-                
-                <span>Analyse satirique</span>
+                ⚠️ <span>DANGER - Configuration à Risque</span>
             </div>
-			<div>
-                
-                <span><img src="https://atlas-corporation.fr/favicon.ico" alt="Atlas Corporation"></span>
-            </div>
-            <div class="center-container">
             
+            <div class="center-container">
                 <a href="https://atlas-corporation.fr" class="home-button">
                     <svg class="home-icon" viewBox="0 0 24 24">
                         <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
@@ -764,12 +648,13 @@
                     Retour à l'accueil
                 </a>
             </div>
+
             <h1 class="hero-title">
-                <span class="highlight">SoloTech</span> : Le Roi du Test Approximatif
+                <span class="highlight">Manuizine</span> : Le Roi de l'Alimentation Limite
             </h1>
 
             <p class="hero-description">
-                Découvrez les expériences improbables de manuizine !
+                Découvrez comment transformer votre PC en bombe à retardement avec une alimentation 750W !
             </p>
         </div>
     </section>
@@ -779,135 +664,311 @@
         <!-- Satirical Note -->
         <div class="satirical-note">
             <h3>
-                <span>🎭</span>
-                Contenu Satirique
+                <span>⚠️</span>
+                Contenu Satirique - Analyse de Configuration Dangereuse
             </h3>
-            <p>Cette page contient des éléments satiriques et humoristiques pour souligner les erreurs techniques. L'analyse reste factuelle mais est présentée avec ironie pour un effet éducatif.</p>
+            <p>Cette page analyse de manière satirique une configuration potentiellement dangereuse. L'humour sert à éduquer sur les risques réels des alimentations sous-dimensionnées.</p>
         </div>
 
         <!-- Main Analysis -->
         <div class="section-card">
             <div class="section-header">
-                <div class="section-icon">🎯</div>
+                <div class="section-icon">⚡</div>
                 <div>
-                    <h2 class="section-title">Manuizine : L'Artiste des Configs Aléatoires</h2>
-                    <p class="section-subtitle">Quand la créativité rencontre la technique... ça donne ça !</p>
+                    <h2 class="section-title">Manuizine : L'Expert en Alimentation "Juste Suffisante"</h2>
+                    <p class="section-subtitle">Quand 750W rencontre RTX 5080 + 7800X3D... ça va être sportif !</p>
                 </div>
             </div>
 
             <div class="quote-box">
-                Pourquoi faire des configurations correct quand on peut faire n'importe quoi !
+                Pourquoi prendre 850W quand 750W ça passe... peut-être ?
             </div>
 
             <p style="margin: 2rem 0; font-size: 1.125rem; color: var(--gray-700); line-height: 1.7;">
-                Mesdames et messieurs, permettez-moi de vous présenter <strong>Manuizine</strong>, le virtuose du test informatique nouvelle génération ! 
-                Un homme qui a révolutionné l'art du benchmark en y ajoutant cette petite touche d'imprévisibilité qui manquait tant au monde de la tech !
+                Mesdames et messieurs, voici <strong>Manuizine</strong>, le spécialiste des configurations "limite-limite" ! 
+                Un véritable artiste qui nous prouve qu'avec une RTX 5080 et un 7800X3D, une alimentation 750W c'est... 
+                comment dire... <strong class="danger">audacieux</strong> !
             </p>
 
-            <!-- Expertise Meter -->
-            <div class="expertise-meter">
-                <h4 class="expertise-title">
-                    <span>🎯</span>
-                    Niveau d'Expertise Technique
+            <!-- Power Calculation -->
+            <div class="power-calc">
+                <h4>
+                    <span>🧮</span>
+                    Calcul de Consommation Réel vs. Manuizine
                 </h4>
-                <div class="expertise-bar">
-                    <div class="expertise-fill"></div>
-                </div>
-                <p class="expertise-comment">
-                    "Je maîtrise tellement bien que mes résultats me surprennent moi-même !"
+                
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Composant</th>
+                            <th>Consommation Typique</th>
+                            <th>Pics de Consommation</th>
+                            <th>Ce que Manuizine a "oublié"</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>RTX 5080</strong></td>
+                            <td>320W</td>
+                            <td class="danger">400W+ (pics)</td>
+                            <td>Les pics transitoires</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AMD 7800X3D</strong></td>
+                            <td>120W</td>
+                            <td class="danger">140W+ (boost)</td>
+                            <td>Le boost automatique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RAM DDR5</strong></td>
+                            <td>30W</td>
+                            <td>35W</td>
+                            <td>Négligeable... mais ça compte</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Carte mère + SSD</strong></td>
+                            <td>50W</td>
+                            <td>60W</td>
+                            <td>Les petits composants</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ventilateurs + Éclairage</strong></td>
+                            <td>30W</td>
+                            <td>40W</td>
+                            <td>Le RGB gourmand</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>TOTAL MINIMUM</strong></td>
+                            <td class="danger">550W</td>
+                            <td class="danger">675W+</td>
+                            <td>Sans marge de sécurité !</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="color: var(--error); font-weight: bold; text-align: center; margin-top: 1rem;">
+                    ⚠️ Avec une alimentation 750W, la marge est de... 75W en pics ! C'est du grand art !
                 </p>
             </div>
 
-            <!-- Innovations -->
-            <div class="innovation-grid">
-                <div class="innovation-card">
-                    <h4 class="innovation-title">
-                        <span>🎪</span>
-                        Ses Innovations Révolutionnaires
-                    </h4>
-                    <ul class="innovation-list">
-                        <li>Invention du "benchmark multi-tâches" : faire tourner le jeu en arrière-plan pendant le test</li>
-                        <li>Pionnier de la "méthodologie intuitive" : se fier aux FPS affichés sans vérification</li>
-                        <li>Créateur du concept "Real-World Testing" : où "real-world" signifie "n'importe comment"</li>
-                        <li>Expert en "Performance Monitoring Artistique" : MSI Afterburner comme décoration d'écran</li>
-                    </ul>
+            <!-- Warning Box -->
+            <div class="warning-box">
+                <div class="warning-title">
+                    <span>💥</span>
+                    ALERTE EXPLOSION IMMINENTE
                 </div>
-            </div>
-
-            <!-- Philosophy -->
-            <div class="quote-box">
-                Pourquoi s'embêter avec des protocoles stricts quand on peut laisser libre cours à sa créativité ? 
-                Les vrais testeurs savent que l'imprévisibilité, c'est la clé de l'innovation !
+                <p>Une alimentation sous-dimensionnée peut causer : redémarrages intempestifs, instabilités, 
+                dégradation des composants, et dans le pire des cas... la mort de l'alimentation (et potentiellement d'autres composants) !</p>
             </div>
 
             <!-- Video Analysis -->
             <div class="video-container">
-                <h4>🎬 Chef-d'œuvre de Méthodologie Créative</h4>
+                <h4>🎬 La Démonstration du Maître</h4>
                 <video controls preload="metadata" style="max-height: 400px;">
-                    <source src="https://fichiers.atlas-corporation.fr/videostock/solotecherrorbench(1).mp4" type="video/mp4">
+                    <source src="https://fichiers.atlas-corporation.fr/videostock/manuizinetiktok.mp4" type="video/mp4">
                     <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
                 </video>
                 <div class="video-warning">
-                    🎪 <strong>ATTENTION SPECTACLE EN COURS !</strong><br><br>
-                    Observez cette démonstration magistrale de l'art du "testing créatif" ! 
-                    Notez comment les jeux tournent paisiblement en arrière-plan à 30 FPS (très relaxant !), 
-                    pendant que notre artiste nous explique les performances... du jeu qu'on ne voit pas !<br><br>
-                    <strong>Bonus :</strong> Le CPU qui passe de "mode sieste" (43%) à "mode panique" selon l'humeur !
+                    <strong>🎪 SPECTACLE DE HAUTE VOLTIGE !</strong><br><br>
+                    Observez cette masterclass de dimensionnement d'alimentation ! 
+                    Notez la confiance inébranlable avec laquelle notre expert nous assure que 750W, 
+                    c'est "largement suffisant" pour cette configuration de guerre !<br><br>
+                    <strong>Spoiler :</strong> Non, ce n'est pas largement suffisant... 🔥
                 </div>
             </div>
 
-            <!-- Comparison -->
-            <div class="comparison-grid">
-                <div class="comparison-card comparison-solotech">
-                    <h4 class="comparison-title">🎪 La Méthode SoloTech™</h4>
-                    <p><strong>Étape 1 :</strong> Lancer le jeu en arrière-plan 🎮</p>
-                    <p><strong>Étape 2 :</strong> Regarder les FPS qui clignotent joyeusement 👀</p>
-                    <p><strong>Étape 3 :</strong> Conclure avec assurance ! 💪</p>
-                    <p><strong>Étape 4 :</strong> Recommander sans regarder les défauts 🙈</p>
-                </div>
-                <div class="comparison-card comparison-normal">
-                    <h4 class="comparison-title">😴 La Méthode "Ennuyeuse"</h4>
-                    <p><strong>Étape 1 :</strong> Configurer correctement les outils 🛠️</p>
-                    <p><strong>Étape 2 :</strong> Tester en conditions réelles 🎯</p>
-                    <p><strong>Étape 3 :</strong> Analyser tous les aspects 🔍</p>
-                    <p><strong>Étape 4 :</strong> Mentionner les défauts (quel rabat-joie !) 😒</p>
-                </div>
-            </div>
-
-            <!-- Awards -->
-            <div class="awards-section">
-                <h3 class="awards-title">
-                    <span>🏆</span>
-                    Ses Plus Grandes Réussites
-                </h3>
-                <ul class="awards-list">
-                    <li>🥇 <strong>Prix du Watercooling à 4°C :</strong> "Pourquoi payer 20€ de moins pour un ventirad quand on peut avoir des risques de fuite en bonus !"</li>
-                    <li>🥈 <strong>Médaille de l'Innovation Testing :</strong> "Premier à tester des jeux qu'on ne voit pas à l'écran !"</li>
-                    <li>🥉 <strong>Trophée de la Cohérence :</strong> "Des recommandations qui nous surprennent autant que lui !"</li>
-                </ul>
-            </div>
+            <!-- Problems List -->
+            <h3 style="color: var(--error); margin: 2rem 0 1rem;">🚨 Les Problèmes Ignorés par Manuizine</h3>
+            <ul class="problems-list">
+                <li>
+                    <strong>Pics transitoires :</strong> La RTX 5080 peut consommer 400W+ pendant quelques millisecondes lors des changements de charge
+                </li>
+                <li>
+                    <strong>Boost automatique :</strong> Le 7800X3D peut dépasser sa TDP de base quand il fait chaud (et il va faire chaud !)
+                </li>
+                <li>
+                    <strong>Vieillissement :</strong> Une alimentation perd en efficacité avec le temps, 750W aujourd'hui = 700W dans 2 ans
+                </li>
+                <li>
+                    <strong>Efficacité thermique :</strong> Plus l'alimentation est sollicitée, plus elle chauffe, moins elle est efficace
+                </li>
+                <li>
+                    <strong>Marge de sécurité :</strong> La règle des 80% max de charge pour une longévité optimale ? Connait pas !
+                </li>
+            </ul>
 
             <div class="quote-box">
-                Mes tests sont si innovants que même moi, parfois, je ne comprends pas mes résultats ! C'est ça, l'expertise !
+                750W c'est parfait ! Après tout, qui a besoin de stabilité quand on peut vivre dangereusement ?
             </div>
         </div>
 
         <!-- Summary -->
         <div class="summary-box">
-            <h2 class="summary-title">🎭 L'Art de la Méthodologie Alternative</h2>
+            <h2 class="summary-title">💀 L'Art de Vivre Dangereusement</h2>
             <div class="summary-content">
-                <p>SoloTech nous prouve qu'il est possible de révolutionner l'art du test informatique en ignorant toutes les conventions établies. 
-                Bravo pour cette approche si... originale !</p>
-                <p><strong>Une leçon pour nous tous : l'innovation peut parfois prendre des formes inattendues !</strong></p>
+                <p>Manuizine nous prouve qu'il est possible de transformer un PC haut de gamme en roulette russe électronique ! 
+                Avec cette configuration, chaque session de gaming devient une aventure palpitante : 
+                "Est-ce que mon PC va tenir le coup aujourd'hui ?"</p>
+                <p><strong>Conseil gratuit : Une alimentation 850W (minimum) aurait été plus sage... mais moins fun !</strong></p>
+            </div>
+        </div>
+
+        <!-- Additional Analysis -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon">🎯</div>
+                <div>
+                    <h2 class="section-title">Analyse Technique : Pourquoi c'est Dangereux</h2>
+                    <p class="section-subtitle">Les vraies raisons derrière cette configuration "explosive"</p>
+                </div>
+            </div>
+
+            <div class="power-calc">
+                <h4>
+                    <span>📊</span>
+                    Recommandations Constructeur vs. Réalité Manuizine
+                </h4>
+                
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Source</th>
+                            <th>Alimentation Recommandée</th>
+                            <th>Marge de Sécurité</th>
+                            <th>Choix Manuizine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>NVIDIA (RTX 5080)</strong></td>
+                            <td>850W minimum</td>
+                            <td>20% de marge</td>
+                            <td class="danger">750W (-100W !)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AMD (7800X3D)</strong></td>
+                            <td>750W minimum pour config complète</td>
+                            <td>15% de marge</td>
+                            <td class="danger">750W (0% marge !)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Experts Hardware</strong></td>
+                            <td>850-1000W pour cette config</td>
+                            <td>25-30% de marge</td>
+                            <td class="danger">750W (-15% marge !)</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>CONSENSUS</strong></td>
+                            <td class="danger">850W MINIMUM</td>
+                            <td class="danger">Obligatoire</td>
+                            <td class="danger">Configuration à risque</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color: var(--error); margin: 2rem 0 1rem;">🔬 Scénarios Catastrophe</h3>
+            <ul class="problems-list">
+                <li>
+                    <strong>Gaming intensif :</strong> Cyberpunk 2077 en 4K RTX ? L'alimentation va pleurer (et probablement s'éteindre)
+                </li>
+                <li>
+                    <strong>Streaming + Gaming :</strong> CPU à fond + GPU à fond = redémarrage garanti
+                </li>
+                <li>
+                    <strong>Undervolt raté :</strong> Si les tensions ne sont pas stables... bonjour les crashs aléatoires
+                </li>
+                <li>
+                    <strong>Été :</strong> Température ambiante élevée = consommation augmentée = alimentation en surchauffe
+                </li>
+                <li>
+                    <strong>Vieillissement :</strong> Dans 1-2 ans, cette config sera littéralement impossible à faire tourner
+                </li>
+            </ul>
+
+            <div class="warning-box">
+                <div class="warning-title">
+                    <span>🧠</span>
+                    Fun Fact Électrique
+                </div>
+                <p>Saviez-vous qu'une alimentation qui fonctionne à plus de 85% de sa capacité nominale 
+                voit son efficacité chuter drastiquement ET sa durée de vie divisée par 3 ? 
+                Manuizine, lui, préfère ignorer ces détails techniques "ennuyeux" !</p>
+            </div>
+        </div>
+
+        <!-- What Should Have Been Done -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon">✅</div>
+                <div>
+                    <h2 class="section-title">La Configuration Sensée (Version Ennuyeuse)</h2>
+                    <p class="section-subtitle">Ce qu'aurait recommandé quelqu'un de responsable</p>
+                </div>
+            </div>
+
+            <div class="power-calc" style="border-color: var(--success); background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.02));">
+                <h4 style="color: var(--success);">
+                    <span>💚</span>
+                    Configuration Recommandée pour RTX 5080 + 7800X3D
+                </h4>
+                
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Alimentation</th>
+                            <th>Marge de Sécurité</th>
+                            <th>Avantages</th>
+                            <th>Prix Différence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: rgba(16, 185, 129, 0.1);">
+                            <td><strong>850W Gold</strong></td>
+                            <td style="color: var(--success);">20% marge saine</td>
+                            <td>Stabilité garantie, silence</td>
+                            <td>+30€ environ</td>
+                        </tr>
+                        <tr style="background: rgba(16, 185, 129, 0.05);">
+                            <td><strong>1000W Gold</strong></td>
+                            <td style="color: var(--success);">35% marge excellente</td>
+                            <td>Évolutivité future, efficacité max</td>
+                            <td>+80€ environ</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="color: var(--success); font-weight: bold; text-align: center; margin-top: 1rem;">
+                    ✅ Économiser 30€ sur l'alimentation pour risquer 2000€+ de matériel ? Pas très malin !
+                </p>
+            </div>
+
+            <div class="quote-box" style="background: linear-gradient(135deg, var(--success) 0%, #059669 100%);">
+                "Une alimentation, c'est comme les fondations d'une maison : on peut économiser dessus, 
+                mais c'est rarement une bonne idée !" - Un expert qui sait de quoi il parle
+            </div>
+        </div>
+
+        <!-- Final Summary -->
+        <div class="summary-box">
+            <h2 class="summary-title">🎪 Le Spectacle Continue !</h2>
+            <div class="summary-content">
+                <p>Manuizine nous offre encore une masterclass de "comment transformer l'achat d'un PC en jeu de hasard" ! 
+                Avec cette alimentation 750W, chaque allumage devient une loterie électronique.</p>
+                <p><strong>Morale de l'histoire :</strong> Parfois, économiser 50€ peut coûter beaucoup plus cher... 
+                surtout quand l'alimentation rend l'âme en emportant la carte graphique avec elle ! 💥</p>
+                <p><em>Mais bon, où serait le fun sans un peu de risque ? 😅</em></p>
             </div>
         </div>
 
         <!-- Disclaimer -->
         <div class="disclaimer">
-            <h3>🎭 Avertissement Satirique</h3>
-            <p>Cette page est une œuvre de satire pure. Toute ressemblance avec des pratiques réelles de testing ne serait que pure coïncidence... 
-            ou pas ! Rappelez-vous : dans le monde merveilleux d'Internet, tout est possible, même les tests de performance créatifs !</p>
-            <p><em>Aucun influenceur n'a été blessé pendant la création de cette satire. Seul leur ego pourrait en souffrir !</em></p>
+            <h3>⚠️ Avertissement Satirique & Technique</h3>
+            <p>Cette page utilise l'humour pour sensibiliser aux vrais risques des alimentations sous-dimensionnées. 
+            Les calculs présentés sont basés sur des données constructeur réelles et l'expérience terrain.</p>
+            <p><strong>Message sérieux :</strong> Ne sous-estimez JAMAIS votre alimentation. C'est le cœur de votre PC, 
+            et une défaillance peut endommager l'ensemble de vos composants. Toujours prévoir 20-30% de marge minimum !</p>
+            <p><em>Aucun PC n'a été blessé pendant la création de cette satire... mais certains risquent de l'être avec cette config ! 😬</em></p>
         </div>
     </main>
 
@@ -951,24 +1012,6 @@
             });
         });
 
-        // Enhanced expertise meter animation
-        const expertiseFill = document.querySelector('.expertise-fill');
-        let direction = 1;
-        let wobbleIntensity = 1;
-        
-        setInterval(() => {
-            const currentWidth = parseInt(expertiseFill.style.width) || 15;
-            const randomFactor = Math.random() * 3 * wobbleIntensity;
-            const newWidth = currentWidth + (direction * randomFactor);
-            
-            if (newWidth <= 5 || newWidth >= 25) {
-                direction *= -1;
-                wobbleIntensity = Math.random() * 2 + 0.5;
-            }
-            
-            expertiseFill.style.width = Math.max(5, Math.min(25, newWidth)) + '%';
-        }, 300);
-
         // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
@@ -985,17 +1028,28 @@
         }, observerOptions);
 
         // Apply fade-in animation to elements
-        document.querySelectorAll('.section-card, .satirical-note, .summary-box').forEach(element => {
+        document.querySelectorAll('.section-card, .satirical-note, .summary-box, .power-calc').forEach(element => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(30px)';
             element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(element);
         });
 
-        // Easter egg: click on circus icons for fun
+        // Warning box pulse effect
+        const warningBoxes = document.querySelectorAll('.warning-box');
+        warningBoxes.forEach(box => {
+            box.addEventListener('mouseenter', () => {
+                box.style.animationDuration = '0.5s';
+            });
+            box.addEventListener('mouseleave', () => {
+                box.style.animationDuration = '2s';
+            });
+        });
+
+        // Easter egg: click on lightning icons for fun
         document.querySelectorAll('.section-icon').forEach(icon => {
             icon.addEventListener('click', () => {
-                icon.style.transform = 'rotate(720deg) scale(1.5)';
+                icon.style.transform = 'rotate(360deg) scale(1.5)';
                 icon.style.filter = 'drop-shadow(0 0 20px var(--accent))';
                 setTimeout(() => {
                     icon.style.transform = '';
@@ -1004,8 +1058,22 @@
             });
         });
 
-        console.log('🎪 SoloTech Analysis - Atlas Corporation (Satirical Mode)');
+        // Power calculation highlighting
+        const calcRows = document.querySelectorAll('.calc-table tr');
+        calcRows.forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                row.style.transform = 'scale(1.02)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.backgroundColor = '';
+                row.style.transform = 'scale(1)';
+            });
+        });
+
+        console.log('⚡ Manuizine Power Analysis - Atlas Corporation (Warning Mode) ⚡');
+        console.log('Configuration analysée: RTX 5080 + 7800X3D + 750W PSU');
+        console.log('Verdict: 🚨 CONFIGURATION À RISQUE 🚨');
     </script>
 </body>
-
 </html>
