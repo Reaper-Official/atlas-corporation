@@ -7,7 +7,7 @@
     <meta name="description" content="Atlas Corporation - Analyses critiques des pratiques d'influenceurs tech français. FrenchHardware, SoloTech, PAX et plus.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎭</text></svg>">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +43,8 @@
             
             /* Layout */
             --header-height: 64px;
+            --container-max-width: 1200px;
+            --container-padding: 2rem;
             
             /* Shadows & Effects */
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -56,6 +58,13 @@
             --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            
+            /* Border radius */
+            --radius-sm: 0.25rem;
+            --radius: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
         }
 
         * {
@@ -77,6 +86,9 @@
             color: var(--gray-900);
             background: var(--white);
             overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Background Pattern */
@@ -87,9 +99,31 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23f3f4f6" opacity="0.3"/><circle cx="75" cy="75" r="0.5" fill="%23e5e7eb" opacity="0.4"/><circle cx="50" cy="10" r="0.8" fill="%23d1d5db" opacity="0.2"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(239, 68, 68, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: -1;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         /* Header */
@@ -107,9 +141,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
             height: var(--header-height);
         }
 
@@ -129,11 +160,17 @@
             transform: scale(1.02);
         }
 
+        .logo:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: var(--radius);
+        }
+
         .logo-icon {
             width: 2.5rem;
             height: 2.5rem;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 0.75rem;
+            border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -152,12 +189,13 @@
             background: var(--accent);
             color: white;
             padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
+            border-radius: var(--radius);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.875rem;
             transition: var(--transition);
             box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
         }
 
         .header-cta:hover {
@@ -166,9 +204,20 @@
             box-shadow: var(--shadow-md);
         }
 
+        .header-cta:focus-visible {
+            outline: none;
+            border-color: var(--white);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+        }
+
         /* Hero Section */
         .hero {
-            padding: 6rem 2rem;
+            padding: 6rem 0;
             background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
             text-align: center;
             position: relative;
@@ -186,9 +235,7 @@
             transform: skewX(-15deg) translateX(20%);
         }
 
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .hero-content {
             position: relative;
             z-index: 2;
         }
@@ -243,21 +290,20 @@
         }
 
         /* Navigation Grid */
+        .navigation-section {
+            padding: 4rem 0;
+        }
+
         .navigation-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin: 4rem 0;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 2rem;
         }
 
         .nav-card {
             background: var(--white);
             border: 1px solid var(--gray-200);
-            border-radius: 1.5rem;
+            border-radius: var(--radius-xl);
             padding: 3rem;
             transition: var(--transition-slow);
             text-decoration: none;
@@ -265,6 +311,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow);
+            display: block;
         }
 
         .nav-card::before {
@@ -279,14 +326,17 @@
             transition: var(--transition-slow);
         }
 
-        .nav-card:hover::before {
+        .nav-card:hover::before,
+        .nav-card:focus-visible::before {
             transform: scaleX(1);
         }
 
-        .nav-card:hover {
+        .nav-card:hover,
+        .nav-card:focus-visible {
             transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
             border-color: var(--card-accent);
+            outline: none;
         }
 
         .nav-card:nth-child(1) {
@@ -304,11 +354,16 @@
             --card-accent-light: var(--accent-light);
         }
 
+        .nav-card:nth-child(4) {
+            --card-accent: var(--success);
+            --card-accent-light: #6ee7b7;
+        }
+
         .nav-icon {
             width: 4rem;
             height: 4rem;
             background: linear-gradient(135deg, var(--card-accent), var(--card-accent-light));
-            border-radius: 1rem;
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -320,7 +375,8 @@
             transition: var(--transition-bounce);
         }
 
-        .nav-card:hover .nav-icon {
+        .nav-card:hover .nav-icon,
+        .nav-card:focus-visible .nav-icon {
             transform: scale(1.1) rotate(5deg);
             box-shadow: var(--shadow-lg);
         }
@@ -337,6 +393,7 @@
             font-size: 1rem;
             line-height: 1.7;
             color: var(--gray-600);
+            margin-bottom: 1rem;
         }
 
         .nav-arrow {
@@ -346,11 +403,11 @@
             color: var(--card-accent);
             font-weight: 600;
             font-size: 0.875rem;
-            margin-top: 1rem;
             transition: var(--transition);
         }
 
-        .nav-card:hover .nav-arrow {
+        .nav-card:hover .nav-arrow,
+        .nav-card:focus-visible .nav-arrow {
             transform: translateX(4px);
         }
 
@@ -359,20 +416,21 @@
             transition: var(--transition);
         }
 
-        .nav-card:hover .nav-arrow::after {
+        .nav-card:hover .nav-arrow::after,
+        .nav-card:focus-visible .nav-arrow::after {
             transform: translateX(2px);
         }
 
         /* Disclaimer Section */
+        .disclaimer-section {
+            padding: 4rem 0;
+        }
+
         .disclaimer {
             background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
             border: 1px solid var(--gray-200);
-            border-radius: 1.5rem;
+            border-radius: var(--radius-xl);
             padding: 3rem;
-            margin: 4rem 2rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
             box-shadow: var(--shadow);
         }
 
@@ -392,21 +450,24 @@
             margin-bottom: 1rem;
         }
 
+        .disclaimer p:last-child {
+            margin-bottom: 0;
+        }
+
         .disclaimer-icon {
             font-size: 1.75rem;
+            flex-shrink: 0;
         }
 
         /* Footer */
         .footer {
             background: var(--gray-900);
             color: var(--gray-300);
-            padding: 4rem 2rem 2rem;
-            margin-top: 6rem;
+            padding: 4rem 0 2rem;
+            margin-top: auto;
         }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .footer-content {
             text-align: center;
         }
 
@@ -422,16 +483,22 @@
             justify-content: center;
             gap: 2rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
             color: var(--gray-400);
             text-decoration: none;
             transition: var(--transition);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius);
         }
 
-        .footer-links a:hover {
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
             color: white;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .footer-bottom {
@@ -439,6 +506,24 @@
             padding-top: 2rem;
             text-align: center;
             color: var(--gray-500);
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--accent);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: var(--radius);
+            z-index: 10000;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 6px;
         }
 
         /* Animations */
@@ -453,20 +538,38 @@
             }
         }
 
+        /* Focus Management */
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
+            :root {
+                --container-padding: 1rem;
+            }
+
             .nav {
-                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 0;
+                height: auto;
+            }
+
+            .header {
+                position: relative;
             }
 
             .hero {
-                padding: 4rem 1rem;
+                padding: 4rem 0;
             }
 
             .navigation-grid {
                 grid-template-columns: 1fr;
+                grid-template-rows: auto;
                 gap: 1.5rem;
-                padding: 0 1rem;
+                max-width: none;
             }
 
             .nav-card {
@@ -474,7 +577,6 @@
             }
 
             .disclaimer {
-                margin: 3rem 1rem;
                 padding: 2rem;
             }
 
@@ -482,124 +584,206 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.125rem;
+            }
         }
 
-        :focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
+        @media (max-width: 480px) {
+            .nav-card {
+                padding: 1.5rem;
+            }
+
+            .disclaimer {
+                padding: 1.5rem;
+            }
+
+            .disclaimer h3 {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header,
+            .footer {
+                display: none;
+            }
+
+            .nav-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 2px solid var(--gray-300);
+            }
+
+            body::before {
+                display: none;
+            }
+        }
+
+        /* High Contrast Mode */
+        @media (prefers-contrast: high) {
+            :root {
+                --gray-100: #e5e7eb;
+                --gray-200: #d1d5db;
+                --shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+                --shadow-md: 0 0 0 2px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .hero-badge-dot {
+                animation: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
     <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="https://atlas-corporation.fr" class="logo">
-                <div class="logo-icon">🎭</div>
-                <span>Atlas Corporation</span>
-            </a>
-            <a href="https://atlas-corporation.fr" class="header-cta">
-                🏠 Retour au site principal
-            </a>
-        </nav>
+    <header class="header" role="banner">
+        <div class="container">
+            <nav class="nav" role="navigation" aria-label="Navigation principale">
+                <a href="#" class="logo" aria-label="Atlas Corporation - Retour à l'accueil">
+                    <div class="logo-icon" aria-hidden="true">🎭</div>
+                    <span>Atlas Corporation</span>
+                </a>
+                <a href="#" class="header-cta" aria-label="Retourner au site principal d'Atlas Corporation">
+                    <span aria-hidden="true">🏠</span> Retour au site principal
+                </a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-badge">
-                <div class="hero-badge-dot"></div>
-                <span>Analyses critiques indépendantes</span>
-            </div>
+    <!-- Main Content -->
+    <main class="main" id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge" role="status" aria-live="polite">
+                        <div class="hero-badge-dot" aria-hidden="true"></div>
+                        <span>Analyses critiques indépendantes</span>
+                    </div>
 
-            <h1 class="hero-title">
-                Hub de <span class="highlight">Critique</span> des Influenceurs Tech
-            </h1>
+                    <h1 id="hero-title" class="hero-title">
+                        Hub de <span class="highlight">Critique</span> des Influenceurs Tech
+                    </h1>
 
-            <p class="hero-description">
-                Découvrez nos analyses approfondies des pratiques douteuses de certains influenceurs tech français. 
-                Une approche factuelle et documentée pour vous aider à faire des choix éclairés.
-            </p>
-        </div>
-    </section>
-
-    <!-- Navigation Grid -->
-    <div class="navigation-grid">
-        <a href="frenchhardware.html" class="nav-card">
-            <div class="nav-icon">FH</div>
-            <h2 class="nav-title">FrenchHardware</h2>
-            <p class="nav-description">
-                Analyse des contradictions flagrantes, benchmarks douteux et recommandations incohérentes. 
-                Découvrez les pratiques commerciales problématiques de FrenchHardware et FlowUp.
-            </p>
-            <div class="nav-arrow">Voir l'analyse</div>
-        </a>
-
-        <a href="solotech.html" class="nav-card">
-            <div class="nav-icon">ST</div>
-            <h2 class="nav-title">SoloTech</h2>
-            <p class="nav-description">
-                L'art du test approximatif et de la méthodologie créative. Quand l'expertise technique 
-                rencontre l'improvisation totale dans l'univers des benchmarks.
-            </p>
-            <div class="nav-arrow">Découvrir</div>
-        </a>
-
-        <a href="pax.html" class="nav-card">
-            <div class="nav-icon">PAX</div>
-            <h2 class="nav-title">PAX</h2>
-            <p class="nav-description">
-                Méconnaissance des principes physiques et diffusion d'informations erronées. 
-                Analyse des erreurs techniques et des recommandations dangereuses.
-            </p>
-            <div class="nav-arrow">Analyser</div>
-        </a>
-        
-        <a href="manuizine.html" class="nav-card">
-            <div class="nav-icon">MNZ</div>
-            <h2 class="nav-title">Manuizine</h2>
-            <p class="nav-description">
-                Méconnaissance des règles mathématiques (15+15 ça fait 30, pas 0), physiques et logiques
-            </p>
-            <div class="nav-arrow">Observer</div>
-        </a>
-    </div>
-
-    <!-- Disclaimer -->
-    <div class="disclaimer">
-        <h3>
-            <span class="disclaimer-icon">⚖️</span>
-            Approche Critique et Factuelle
-        </h3>
-        <p>
-            Ces analyses sont basées sur des contenus publics et des faits documentés. L'objectif est éducatif : 
-            sensibiliser aux pratiques douteuses et promouvoir l'esprit critique dans l'univers tech.
-        </p>
-        <p>
-            Tous les éléments présentés sont issus de sources publiques (vidéos, publications, sites web) 
-            librement accessibles au moment de leur consultation.
-        </p>
-        <p>
-            <strong>Note importante :</strong> Cette démarche vise à protéger les consommateurs et à encourager 
-            des pratiques plus transparentes dans l'influence technologique.
-        </p>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>Atlas Corporation</h3>
-                <div class="footer-links">
-                    <a href="https://atlas-corporation.fr">Site Principal</a>
-                    <a href="https://atlas-corporation.fr/creator/">À Propos</a>
-                    <a href="https://atlas-corporation.fr/cgu/">CGU</a>
-                    <a href="mailto:reaper@etik.com">Contact</a>
+                    <p class="hero-description">
+                        Découvrez nos analyses approfondies des pratiques douteuses de certains influenceurs tech français. 
+                        Une approche factuelle et documentée pour vous aider à faire des choix éclairés.
+                    </p>
                 </div>
             </div>
+        </section>
 
-            <div class="footer-bottom">
-                <p>&copy; 2025 Atlas Corporation. Analyses indépendantes et critiques constructives.</p>
+        <!-- Navigation Grid -->
+        <section class="navigation-section" aria-labelledby="analyses-title">
+            <div class="container">
+                <h2 id="analyses-title" class="sr-only">Analyses des influenceurs tech</h2>
+                <div class="navigation-grid" role="list">
+                    <a href="#frenchhardware" class="nav-card" role="listitem" aria-describedby="fh-desc">
+                        <div class="nav-icon" aria-hidden="true">FH</div>
+                        <h3 class="nav-title">FrenchHardware</h3>
+                        <p class="nav-description" id="fh-desc">
+                            Analyse des contradictions flagrantes, benchmarks douteux et recommandations incohérentes. 
+                            Découvrez les pratiques commerciales problématiques de FrenchHardware et FlowUp.
+                        </p>
+                        <span class="nav-arrow" aria-hidden="true">Voir l'analyse</span>
+                    </a>
+
+                    <a href="#solotech" class="nav-card" role="listitem" aria-describedby="st-desc">
+                        <div class="nav-icon" aria-hidden="true">ST</div>
+                        <h3 class="nav-title">SoloTech</h3>
+                        <p class="nav-description" id="st-desc">
+                            L'art du test approximatif et de la méthodologie créative. Quand l'expertise technique 
+                            rencontre l'improvisation totale dans l'univers des benchmarks.
+                        </p>
+                        <span class="nav-arrow" aria-hidden="true">Découvrir</span>
+                    </a>
+
+                    <a href="#pax" class="nav-card" role="listitem" aria-describedby="pax-desc">
+                        <div class="nav-icon" aria-hidden="true">PAX</div>
+                        <h3 class="nav-title">PAX</h3>
+                        <p class="nav-description" id="pax-desc">
+                            Méconnaissance des principes physiques et diffusion d'informations erronées. 
+                            Analyse des erreurs techniques et des recommandations dangereuses.
+                        </p>
+                        <span class="nav-arrow" aria-hidden="true">Analyser</span>
+                    </a>
+                    
+                    <a href="#manuizine" class="nav-card" role="listitem" aria-describedby="mnz-desc">
+                        <div class="nav-icon" aria-hidden="true">MNZ</div>
+                        <h3 class="nav-title">Manuizine</h3>
+                        <p class="nav-description" id="mnz-desc">
+                            Méconnaissance des règles mathématiques (15+15 ça fait 30, pas 0), physiques et logiques. 
+                            Analyse des erreurs de calcul et de raisonnement.
+                        </p>
+                        <span class="nav-arrow" aria-hidden="true">Observer</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <section class="disclaimer-section" aria-labelledby="disclaimer-title">
+            <div class="container">
+                <div class="disclaimer">
+                    <h3 id="disclaimer-title">
+                        <span class="disclaimer-icon" aria-hidden="true">⚖️</span>
+                        Approche Critique et Factuelle
+                    </h3>
+                    <p>
+                        Ces analyses sont basées sur des contenus publics et des faits documentés. L'objectif est éducatif : 
+                        sensibiliser aux pratiques douteuses et promouvoir l'esprit critique dans l'univers tech.
+                    </p>
+                    <p>
+                        Tous les éléments présentés sont issus de sources publiques (vidéos, publications, sites web) 
+                        librement accessibles au moment de leur consultation.
+                    </p>
+                    <p>
+                        <strong>Note importante :</strong> Cette démarche vise à protéger les consommateurs et à encourager 
+                        des pratiques plus transparentes dans l'influence technologique.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Atlas Corporation</h3>
+                    <nav class="footer-links" aria-label="Liens du pied de page">
+                        <a href="#" aria-label="Retourner au site principal">Site Principal</a>
+                        <a href="#" aria-label="En savoir plus sur Atlas Corporation">À Propos</a>
+                        <a href="#" aria-label="Consulter les conditions générales d'utilisation">CGU</a>
+                        <a href="mailto:contact@atlas-corporation.fr" aria-label="Nous contacter par email">Contact</a>
+                    </nav>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Atlas Corporation. Analyses indépendantes et critiques constructives.</p>
+                </div>
             </div>
         </div>
     </footer>
