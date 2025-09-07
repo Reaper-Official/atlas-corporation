@@ -3,1078 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuizine : Le Champion des configs bancales - Atlas Corporation</title>
-    <meta name="description" content="Analyse critique satirique des configurations de Manuizine.">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <title>Section Stockage - Atlas Corporation</title>
+    <meta http-equiv="refresh" content="5;url=https://atlas-corporation.fr">
     <style>
-        :root {
-            /* Colors */
-            --primary: #1a1a1a;
-            --secondary: #f8fafc;
-            --accent: #1ad309;
-            --accent-hover: #59df00bd;
-            --accent-light: #13eb0c;
-            --success: #10b981;
-            --warning: #076b18;
-            --error: #ef4444;
-            --white: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
-            
-            /* Typography */
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
-            
-            /* Layout */
-            --header-height: 64px;
-            
-            /* Shadows & Effects */
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            
-            /* Transitions */
-            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
         body {
-            font-family: var(--font-sans);
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--gray-900);
-            background: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* Background Pattern */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23fcd34d" opacity="0.1"/><circle cx="75" cy="75" r="0.5" fill="%23f59e0b" opacity="0.1"/><circle cx="50" cy="10" r="0.8" fill="%23d97706" opacity="0.05"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Header */
-        .header {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid var(--gray-200);
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            height: var(--header-height);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--gray-900);
-            font-weight: 800;
-            font-size: 1.25rem;
-            transition: var(--transition);
-        }
-
-        .logo:hover {
-            color: var(--accent);
-            transform: scale(1.02);
-        }
-
-        .logo-icon {
-            width: 2.5rem;
-            height: 2.5rem;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 0.75rem;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        .header-cta {
-            background: var(--accent);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.875rem;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .header-cta:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .center-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            padding: 20px;
-        }
-
-        .home-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            color: #333;
-            text-decoration: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            box-shadow: 
-                0 8px 25px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid transparent;
-            position: relative;
             overflow: hidden;
         }
 
-        .home-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .home-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 12px 35px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            border-color: #667eea;
-        }
-
-        .home-button:hover::before {
-            left: 100%;
-        }
-
-        .home-button:active {
-            transform: translateY(-1px);
-            box-shadow: 
-                0 6px 20px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
-        }
-
-        .home-icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #fffbeb 0%, var(--white) 100%);
+        .container {
             text-align: center;
-            border-bottom: 1px solid var(--gray-200);
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            animation: fadeIn 1s ease-out;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--error);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            line-height: 1.1;
-            color: var(--gray-900);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title .highlight {
-            background: linear-gradient(135deg, var(--error) 0%, var(--accent) 100%);
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #e0e0e0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero-description {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            max-width: 700px;
-            margin: 0 auto 2rem;
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #f0f0f0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Satirical Note */
-        .satirical-note {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
-            border: 2px solid var(--error);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
+        .message {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: #e0e0e0;
         }
 
-        .satirical-note h3 {
-            color: var(--error);
-            font-size: 1.5rem;
-            font-weight: 700;
+        .empty-icon {
+            font-size: 4rem;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
+            opacity: 0.7;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .satirical-note p {
-            color: var(--gray-700);
+        .redirect-info {
+            font-size: 1rem;
+            margin-top: 2rem;
+            color: #b0b0b0;
             font-style: italic;
         }
 
-        /* Section Cards */
-        .section-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            box-shadow: var(--shadow);
-            transition: var(--transition-slow);
-            position: relative;
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 1rem;
             overflow: hidden;
         }
 
-        .section-card::before {
-            content: '';
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            animation: loadingProgress 5s linear forwards;
+        }
+		        /* Image Sections */
+        .image-section img, .flowup-image, .corsair-image, .benchmark-image {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            margin: 1rem 0;
+        }
+
+        .image-section img:hover, .flowup-image:hover, .corsair-image:hover, .benchmark-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes loadingProgress {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        .particles {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--error) 0%, var(--accent) 100%);
-            transform: scaleX(0);
-            transition: var(--transition-slow);
-        }
-
-        .section-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .section-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--error);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .section-icon {
-            width: 3rem;
-            height: 3rem;
-            background: linear-gradient(135deg, var(--warning) 0%, var(--accent) 100%);
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .section-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-
-        .section-subtitle {
-            color: var(--gray-600);
-            font-size: 1rem;
-            margin-top: 0.25rem;
-        }
-
-        /* Power Calculation Box */
-        .power-calc {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(245, 158, 11, 0.05));
-            border: 2px solid var(--error);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        .power-calc h4 {
-            color: var(--error);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .calc-table {
             width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            background: white;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: var(--shadow);
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        .calc-table th, .calc-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .calc-table th {
-            background: var(--gray-50);
-            font-weight: 600;
-            color: var(--gray-900);
-        }
-
-        .calc-table .danger {
-            color: var(--error);
-            font-weight: bold;
-        }
-
-        .calc-table .total-row {
-            background: rgba(239, 68, 68, 0.1);
-            font-weight: bold;
-        }
-
-        /* Warning Box */
-        .warning-box {
-            background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            margin: 2rem 0;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            animation: warning-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes warning-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .warning-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        /* Video Container */
-        .video-container {
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .video-container h4 {
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .video-container video {
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            border-radius: 0.75rem;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .video-warning {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            color: var(--error);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            font-weight: 500;
-        }
-
-        /* Quote Box */
-        .quote-box {
-            background: linear-gradient(135deg, var(--warning) 0%, var(--accent) 100%);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            margin: 2rem 0;
-            text-align: center;
-            font-size: 1.25rem;
-            font-weight: 600;
-            font-style: italic;
-            position: relative;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .quote-box::before {
-            content: '"';
-            font-size: 4rem;
+        .particle {
             position: absolute;
-            top: -10px;
-            left: 20px;
-            opacity: 0.3;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: particleFloat 6s infinite linear;
         }
 
-        .quote-box::after {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            bottom: -30px;
-            right: 20px;
-            opacity: 0.3;
-        }
-
-        /* Problems List */
-        .problems-list {
-            list-style: none;
-            padding: 0;
-            margin: 2rem 0;
-        }
-
-        .problems-list li {
-            background: rgba(239, 68, 68, 0.05);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .problems-list li::before {
-            content: '⚠️';
-            position: absolute;
-            left: 1rem;
-            top: 15px;
-            font-size: 1.5rem;
-        }
-
-        .problems-list li strong {
-            color: var(--error);
-        }
-
-        /* Summary Box */
-        .summary-box {
-            background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            margin: 3rem 0;
-            text-align: center;
-            box-shadow: var(--shadow-xl);
-        }
-
-        .summary-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .summary-content {
-            font-size: 1.125rem;
-            line-height: 1.7;
-        }
-
-        /* Disclaimer */
-        .disclaimer {
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 3rem 0;
-            color: var(--gray-600);
-            font-size: 0.875rem;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .disclaimer h3 {
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
             }
-
-            .nav {
-                padding: 1rem;
+            10% {
+                opacity: 1;
             }
-
-            .hero {
-                padding: 3rem 0;
+            90% {
+                opacity: 1;
             }
-
-            .section-card {
-                padding: 1.5rem;
-            }
-
-            .section-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
-            }
-
-            .calc-table {
-                font-size: 0.875rem;
-            }
-
-            .calc-table th, .calc-table td {
-                padding: 0.5rem;
-            }
-
-            .quote-box {
-                font-size: 1.125rem;
-                padding: 2rem;
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="logo">
-                <div class="logo-icon">⚡</div>
-                <span>Atlas Corporation</span>
-            </a>
-            <a href="https://atlas-corporation.fr/critique-des-idiots" class="header-cta">
-                ← Retour au Hub
-            </a>
-        </nav>
-    </header>
+    <div class="particles">
+        <div class="particle" style="left: 10%; width: 4px; height: 4px; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; width: 2px; height: 2px; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 30%; width: 3px; height: 3px; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 40%; width: 5px; height: 5px; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 50%; width: 2px; height: 2px; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 60%; width: 4px; height: 4px; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; width: 3px; height: 3px; animation-delay: 2.5s;"></div>
+        <div class="particle" style="left: 80%; width: 2px; height: 2px; animation-delay: 1.5s;"></div>
+        <div class="particle" style="left: 90%; width: 4px; height: 4px; animation-delay: 3.5s;"></div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-badge">
-                ⚠️ <span>DANGER - Configuration à Risque</span>
-            </div>
-            
-            <div class="center-container">
-                <a href="https://atlas-corporation.fr" class="home-button">
-                    <svg class="home-icon" viewBox="0 0 24 24">
-                        <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
-                    </svg>
-                    Retour à l'accueil
-                </a>
-            </div>
-
-            <h1 class="hero-title">
-                <span class="highlight">Manuizine</span> : Le Roi de l'Alimentation Limite
-            </h1>
-
-            <p class="hero-description">
-                Découvrez comment transformer votre PC en bombe à retardement avec une alimentation 750W !
-            </p>
+    <div class="container">
+        <div class="logo">ATLAS CORPORATION</div>
+        <div class="section-title">FrenchHardware</div>
+        
+        <img src="https://atlas-corporation.fr/img/manuizinephoto.png" alt="Rire FrenchHardware" class="benchmark-image">
+        
+        <div class="message">
+            La page a été redirigée à un autre emplacement.<br>
+            Redrection en cours...
         </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Satirical Note -->
-        <div class="satirical-note">
-            <h3>
-                <span>⚠️</span>
-                Contenu Satirique - Analyse de Configuration Dangereuse
-            </h3>
-            <p>Cette page analyse de manière satirique une configuration potentiellement dangereuse. L'humour sert à éduquer sur les risques réels des alimentations sous-dimensionnées.</p>
+        
+        <div class="redirect-info">
+            Redirection automatique vers la page souhaitée...
         </div>
-
-        <!-- Main Analysis -->
-        <div class="section-card">
-            <div class="section-header">
-                <div class="section-icon">⚡</div>
-                <div>
-                    <h2 class="section-title">Manuizine : L'Expert en Alimentation "Juste Suffisante"</h2>
-                    <p class="section-subtitle">Quand 750W rencontre RTX 5080 + 7800X3D... ça va être sportif !</p>
-                </div>
-            </div>
-
-            <div class="quote-box">
-                Pourquoi prendre 850W quand 750W ça passe... peut-être ?
-            </div>
-
-            <p style="margin: 2rem 0; font-size: 1.125rem; color: var(--gray-700); line-height: 1.7;">
-                Mesdames et messieurs, voici <strong>Manuizine</strong>, le spécialiste des configurations "limite-limite" ! 
-                Un véritable artiste qui nous prouve qu'avec une RTX 5080 et un 7800X3D, une alimentation 750W c'est... 
-                comment dire... <strong class="danger">audacieux</strong> !
-            </p>
-
-            <!-- Power Calculation -->
-            <div class="power-calc">
-                <h4>
-                    <span>🧮</span>
-                    Calcul de Consommation Réel vs. Manuizine
-                </h4>
-                
-                <table class="calc-table">
-                    <thead>
-                        <tr>
-                            <th>Composant</th>
-                            <th>Consommation Typique</th>
-                            <th>Pics de Consommation</th>
-                            <th>Ce que Manuizine a "oublié"</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>RTX 5080</strong></td>
-                            <td>320W</td>
-                            <td class="danger">400W+ (pics)</td>
-                            <td>Les pics transitoires</td>
-                        </tr>
-                        <tr>
-                            <td><strong>AMD 7800X3D</strong></td>
-                            <td>120W</td>
-                            <td class="danger">140W+ (boost)</td>
-                            <td>Le boost automatique</td>
-                        </tr>
-                        <tr>
-                            <td><strong>RAM DDR5</strong></td>
-                            <td>30W</td>
-                            <td>35W</td>
-                            <td>Négligeable... mais ça compte</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Carte mère + SSD</strong></td>
-                            <td>50W</td>
-                            <td>60W</td>
-                            <td>Les petits composants</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Ventilateurs + Éclairage</strong></td>
-                            <td>30W</td>
-                            <td>40W</td>
-                            <td>Le RGB gourmand</td>
-                        </tr>
-                        <tr class="total-row">
-                            <td><strong>TOTAL MINIMUM</strong></td>
-                            <td class="danger">550W</td>
-                            <td class="danger">675W+</td>
-                            <td>Sans marge de sécurité !</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <p style="color: var(--error); font-weight: bold; text-align: center; margin-top: 1rem;">
-                    ⚠️ Avec une alimentation 750W, la marge est de... 75W en pics ! C'est du grand art !
-                </p>
-            </div>
-
-            <!-- Warning Box -->
-            <div class="warning-box">
-                <div class="warning-title">
-                    <span>💥</span>
-                    ALERTE EXPLOSION IMMINENTE
-                </div>
-                <p>Une alimentation sous-dimensionnée peut causer : redémarrages intempestifs, instabilités, 
-                dégradation des composants, et dans le pire des cas... la mort de l'alimentation (et potentiellement d'autres composants) !</p>
-            </div>
-
-            <!-- Video Analysis -->
-            <div class="video-container">
-                <h4>🎬 La Démonstration du Maître</h4>
-                <video controls preload="metadata" style="max-height: 400px;">
-                    <source src="https://fichiers.atlas-corporation.fr/videostock/manuizinetiktok.mp4" type="video/mp4">
-                    <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
-                </video>
-                <div class="video-warning">
-                    <strong>🎪 SPECTACLE DE HAUTE VOLTIGE !</strong><br><br>
-                    Observez cette masterclass de dimensionnement d'alimentation ! 
-                    Notez la confiance inébranlable avec laquelle notre expert nous assure que 750W, 
-                    c'est "largement suffisant" pour cette configuration de guerre !<br><br>
-                    <strong>Spoiler :</strong> Non, ce n'est pas largement suffisant... 🔥
-                </div>
-            </div>
-
-            <!-- Problems List -->
-            <h3 style="color: var(--error); margin: 2rem 0 1rem;">🚨 Les Problèmes Ignorés par Manuizine</h3>
-            <ul class="problems-list">
-                <li>
-                    <strong>Pics transitoires :</strong> La RTX 5080 peut consommer 400W+ pendant quelques millisecondes lors des changements de charge
-                </li>
-                <li>
-                    <strong>Boost automatique :</strong> Le 7800X3D peut dépasser sa TDP de base quand il fait chaud (et il va faire chaud !)
-                </li>
-                <li>
-                    <strong>Vieillissement :</strong> Une alimentation perd en efficacité avec le temps, 750W aujourd'hui = 700W dans 2 ans
-                </li>
-                <li>
-                    <strong>Efficacité thermique :</strong> Plus l'alimentation est sollicitée, plus elle chauffe, moins elle est efficace
-                </li>
-                <li>
-                    <strong>Marge de sécurité :</strong> La règle des 80% max de charge pour une longévité optimale ? Connait pas !
-                </li>
-            </ul>
-
-            <div class="quote-box">
-                750W c'est parfait ! Après tout, qui a besoin de stabilité quand on peut vivre dangereusement ?
-            </div>
+        
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
         </div>
-
-        <!-- Summary -->
-        <div class="summary-box">
-            <h2 class="summary-title">💀 L'Art de Vivre Dangereusement</h2>
-            <div class="summary-content">
-                <p>Manuizine nous prouve qu'il est possible de transformer un PC haut de gamme en roulette russe électronique ! 
-                Avec cette configuration, chaque session de gaming devient une aventure palpitante : 
-                "Est-ce que mon PC va tenir le coup aujourd'hui ?"</p>
-                <p><strong>Conseil gratuit : Une alimentation 850W (minimum) aurait été plus sage... mais moins fun !</strong></p>
-            </div>
-        </div>
-
-        <!-- Additional Analysis -->
-        <div class="section-card">
-            <div class="section-header">
-                <div class="section-icon">🎯</div>
-                <div>
-                    <h2 class="section-title">Analyse Technique : Pourquoi c'est Dangereux</h2>
-                    <p class="section-subtitle">Les vraies raisons derrière cette configuration "explosive"</p>
-                </div>
-            </div>
-
-            <div class="power-calc">
-                <h4>
-                    <span>📊</span>
-                    Recommandations Constructeur vs. Réalité Manuizine
-                </h4>
-                
-                <table class="calc-table">
-                    <thead>
-                        <tr>
-                            <th>Source</th>
-                            <th>Alimentation Recommandée</th>
-                            <th>Marge de Sécurité</th>
-                            <th>Choix Manuizine</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>NVIDIA (RTX 5080)</strong></td>
-                            <td>850W minimum</td>
-                            <td>20% de marge</td>
-                            <td class="danger">750W (-100W !)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>AMD (7800X3D)</strong></td>
-                            <td>750W minimum pour config complète</td>
-                            <td>15% de marge</td>
-                            <td class="danger">750W (0% marge !)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Experts Hardware</strong></td>
-                            <td>850-1000W pour cette config</td>
-                            <td>25-30% de marge</td>
-                            <td class="danger">750W (-15% marge !)</td>
-                        </tr>
-                        <tr class="total-row">
-                            <td><strong>CONSENSUS</strong></td>
-                            <td class="danger">850W MINIMUM</td>
-                            <td class="danger">Obligatoire</td>
-                            <td class="danger">Configuration à risque</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3 style="color: var(--error); margin: 2rem 0 1rem;">🔬 Scénarios Catastrophe</h3>
-            <ul class="problems-list">
-                <li>
-                    <strong>Gaming intensif :</strong> Cyberpunk 2077 en 4K RTX ? L'alimentation va pleurer (et probablement s'éteindre)
-                </li>
-                <li>
-                    <strong>Streaming + Gaming :</strong> CPU à fond + GPU à fond = redémarrage garanti
-                </li>
-                <li>
-                    <strong>Undervolt raté :</strong> Si les tensions ne sont pas stables... bonjour les crashs aléatoires
-                </li>
-                <li>
-                    <strong>Été :</strong> Température ambiante élevée = consommation augmentée = alimentation en surchauffe
-                </li>
-                <li>
-                    <strong>Vieillissement :</strong> Dans 1-2 ans, cette config sera littéralement impossible à faire tourner
-                </li>
-            </ul>
-
-            <div class="warning-box">
-                <div class="warning-title">
-                    <span>🧠</span>
-                    Fun Fact Électrique
-                </div>
-                <p>Saviez-vous qu'une alimentation qui fonctionne à plus de 85% de sa capacité nominale 
-                voit son efficacité chuter drastiquement ET sa durée de vie divisée par 3 ? 
-                Manuizine, lui, préfère ignorer ces détails techniques "ennuyeux" !</p>
-            </div>
-        </div>
-
-        <!-- What Should Have Been Done -->
-        <div class="section-card">
-            <div class="section-header">
-                <div class="section-icon">✅</div>
-                <div>
-                    <h2 class="section-title">La Configuration Sensée (Version Ennuyeuse)</h2>
-                    <p class="section-subtitle">Ce qu'aurait recommandé quelqu'un de responsable</p>
-                </div>
-            </div>
-
-            <div class="power-calc" style="border-color: var(--success); background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.02));">
-                <h4 style="color: var(--success);">
-                    <span>💚</span>
-                    Configuration Recommandée pour RTX 5080 + 7800X3D
-                </h4>
-                
-                <table class="calc-table">
-                    <thead>
-                        <tr>
-                            <th>Alimentation</th>
-                            <th>Marge de Sécurité</th>
-                            <th>Avantages</th>
-                            <th>Prix Différence</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background: rgba(16, 185, 129, 0.1);">
-                            <td><strong>850W Gold</strong></td>
-                            <td style="color: var(--success);">20% marge saine</td>
-                            <td>Stabilité garantie, silence</td>
-                            <td>+30€ environ</td>
-                        </tr>
-                        <tr style="background: rgba(16, 185, 129, 0.05);">
-                            <td><strong>1000W Gold</strong></td>
-                            <td style="color: var(--success);">35% marge excellente</td>
-                            <td>Évolutivité future, efficacité max</td>
-                            <td>+80€ environ</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <p style="color: var(--success); font-weight: bold; text-align: center; margin-top: 1rem;">
-                    ✅ Économiser 30€ sur l'alimentation pour risquer 2000€+ de matériel ? Pas très malin !
-                </p>
-            </div>
-
-            <div class="quote-box" style="background: linear-gradient(135deg, var(--success) 0%, #059669 100%);">
-                "Une alimentation, c'est comme les fondations d'une maison : on peut économiser dessus, 
-                mais c'est rarement une bonne idée !" - Un expert qui sait de quoi il parle
-            </div>
-        </div>
-
-        <!-- Final Summary -->
-        <div class="summary-box">
-            <h2 class="summary-title">🎪 Le Spectacle Continue !</h2>
-            <div class="summary-content">
-                <p>Manuizine nous offre encore une masterclass de "comment transformer l'achat d'un PC en jeu de hasard" ! 
-                Avec cette alimentation 750W, chaque allumage devient une loterie électronique.</p>
-                <p><strong>Morale de l'histoire :</strong> Parfois, économiser 50€ peut coûter beaucoup plus cher... 
-                surtout quand l'alimentation rend l'âme en emportant la carte graphique avec elle ! 💥</p>
-                <p><em>Mais bon, où serait le fun sans un peu de risque ? 😅</em></p>
-            </div>
-        </div>
-
-        <!-- Disclaimer -->
-        <div class="disclaimer">
-            <h3>⚠️ Avertissement Satirique & Technique</h3>
-            <p>Cette page utilise l'humour pour sensibiliser aux vrais risques des alimentations sous-dimensionnées. 
-            Les calculs présentés sont basés sur des données constructeur réelles et l'expérience terrain.</p>
-            <p><strong>Message sérieux :</strong> Ne sous-estimez JAMAIS votre alimentation. C'est le cœur de votre PC, 
-            et une défaillance peut endommager l'ensemble de vos composants. Toujours prévoir 20-30% de marge minimum !</p>
-            <p><em>Aucun PC n'a été blessé pendant la création de cette satire... mais certains risquent de l'être avec cette config ! 😬</em></p>
-        </div>
-    </main>
+    </div>
 
     <script>
-        // Smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // Redirection manuelle au cas où la meta refresh ne fonctionnerait pas
+        setTimeout(() => {
+            window.location.href = 'https://atlas-corporation.fr/critique-des-idiots/frenchhardware/';
+        }, 5000);
+
+        // Effet de clic pour redirection immédiate
+        document.addEventListener('click', () => {
+            window.location.href = 'https://atlas-corporation.fr/critique-des-idiots/frenchhardware/';
         });
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.backdropFilter = 'blur(30px) saturate(200%)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(20px) saturate(180%)';
-            }
-        });
+        // Ajouter plus de particules dynamiquement
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = Math.random() * 4 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            document.querySelector('.particles').appendChild(particle);
 
-        // Card hover effects with enhanced animation
-        document.querySelectorAll('.section-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-4px)';
-                card.style.boxShadow = 'var(--shadow-xl)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = 'var(--shadow)';
-            });
-        });
+            // Supprimer la particule après l'animation
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Apply fade-in animation to elements
-        document.querySelectorAll('.section-card, .satirical-note, .summary-box, .power-calc').forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(30px)';
-            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(element);
-        });
-
-        // Warning box pulse effect
-        const warningBoxes = document.querySelectorAll('.warning-box');
-        warningBoxes.forEach(box => {
-            box.addEventListener('mouseenter', () => {
-                box.style.animationDuration = '0.5s';
-            });
-            box.addEventListener('mouseleave', () => {
-                box.style.animationDuration = '2s';
-            });
-        });
-
-        // Easter egg: click on lightning icons for fun
-        document.querySelectorAll('.section-icon').forEach(icon => {
-            icon.addEventListener('click', () => {
-                icon.style.transform = 'rotate(360deg) scale(1.5)';
-                icon.style.filter = 'drop-shadow(0 0 20px var(--accent))';
-                setTimeout(() => {
-                    icon.style.transform = '';
-                    icon.style.filter = '';
-                }, 1000);
-            });
-        });
-
-        // Power calculation highlighting
-        const calcRows = document.querySelectorAll('.calc-table tr');
-        calcRows.forEach(row => {
-            row.addEventListener('mouseenter', () => {
-                row.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                row.style.transform = 'scale(1.02)';
-            });
-            row.addEventListener('mouseleave', () => {
-                row.style.backgroundColor = '';
-                row.style.transform = 'scale(1)';
-            });
-        });
-
-        console.log('⚡ Manuizine Power Analysis - Atlas Corporation (Warning Mode) ⚡');
-        console.log('Configuration analysée: RTX 5080 + 7800X3D + 750W PSU');
-        console.log('Verdict: 🚨 CONFIGURATION À RISQUE 🚨');
+        // Créer des particules en continu
+        setInterval(createParticle, 800);
     </script>
 </body>
 </html>
