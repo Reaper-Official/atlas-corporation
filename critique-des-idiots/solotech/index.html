@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoloTech : Le Roi du Test Approximatif - Atlas Corporation</title>
+    <meta name="description" content="Analyse critique satirique des méthodes de test créatives de SoloTech et de ses pratiques douteuses.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Colors */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --accent-light: #fcd34d;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Layout */
+            --header-height: 64px;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23fcd34d" opacity="0.1"/><circle cx="75" cy="75" r="0.5" fill="%23f59e0b" opacity="0.1"/><circle cx="50" cy="10" r="0.8" fill="%23d97706" opacity="0.05"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            height: var(--header-height);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--gray-900);
+            font-weight: 800;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-cta {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #fffbeb 0%, var(--white) 100%);
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Satirical Note */
+        .satirical-note {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .satirical-note h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .satirical-note p {
+            color: var(--gray-700);
+            font-style: italic;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+            transform: scaleX(0);
+            transition: var(--transition-slow);
+        }
+
+        .section-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .section-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .section-subtitle {
+            color: var(--gray-600);
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Expertise Meter */
+        .expertise-meter {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .expertise-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .expertise-bar {
+            background: var(--gray-300);
+            height: 2rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .expertise-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--error) 0%, var(--accent) 100%);
+            width: 15%;
+            animation: expertise-wobble 3s ease-in-out infinite;
+            position: relative;
+            border-radius: 1rem;
+        }
+
+        .expertise-fill::after {
+            content: '😅';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            animation: emoji-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes expertise-wobble {
+            0%, 100% { width: 15%; }
+            25% { width: 10%; }
+            50% { width: 20%; }
+            75% { width: 8%; }
+        }
+
+        @keyframes emoji-bounce {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-70%) scale(1.2); }
+        }
+
+        .expertise-comment {
+            text-align: center;
+            color: var(--gray-600);
+            font-style: italic;
+            font-size: 0.875rem;
+        }
+
+        /* Innovation Cards */
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .innovation-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(251, 191, 36, 0.02) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .innovation-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .innovation-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .innovation-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+            position: relative;
+            padding-left: 2rem;
+            color: var(--gray-700);
+        }
+
+        .innovation-list li::before {
+            content: '🎪';
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-style: italic;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .quote-box::after {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        /* Video Container */
+        .video-container {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .video-container h4 {
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            color: var(--accent);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            padding: 2rem;
+            border-radius: 1rem;
+            color: white;
+            font-weight: 500;
+        }
+
+        .comparison-solotech {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+        }
+
+        .comparison-normal {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+        }
+
+        .comparison-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Awards Section */
+        .awards-section {
+            background: linear-gradient(135deg, #fffbeb 0%, var(--gray-50) 100%);
+            border: 1px solid var(--gray-200);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .awards-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .awards-list {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .awards-list li {
+            padding: 1rem 0;
+            color: var(--gray-700);
+            font-size: 1.125rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .awards-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .summary-content {
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .disclaimer h3 {
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            color: #333;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border-color: #667eea;
+        }
+
+        .home-button:hover::before {
+            left: 100%;
+        }
+
+        .home-button:active {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .home-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        /* Critique Points */
+        .critique-points .point {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(249, 115, 22, 0.05));
+            border: 1px solid var(--roast-orange);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .critique-points .point:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .critique-points .point h4 {
+            color: var(--roast-orange);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Utility Classes */
+        .highlight {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+
+        .delivery-issue {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+
+        .price-issue {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .section-card {
+                padding: 1.5rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .expertise-fill::after {
+                right: -25px;
+                font-size: 1.2rem;
+            }
+
+            .quote-box {
+                font-size: 1.125rem;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🎪</div>
+                <span>Atlas Corporation</span>
+            </a>
+            <a href="index.html" class="header-cta">
+                ← Retour au Hub
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                
+                <span>Analyse satirique</span>
+            </div>
+			<div>
+                
+                <span><img src="https://atlas-corporation.fr/favicon.ico" alt="Atlas Corporation"></span>
+            </div>
+            <div class="center-container">
+            
+                <a href="https://atlas-corporation.fr" class="home-button">
+                    <svg class="home-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
+                    </svg>
+                    Retour à l'accueil
+                </a>
+            </div>
+            <h1 class="hero-title">
+                <span class="highlight">SoloTech</span> : Le Roi du Test Approximatif
+            </h1>
+
+            <p class="hero-description">
+                Découvrez l'univers merveilleux de SoloTech, où la science du benchmark rencontre 
+                l'art de l'improvisation totale. Préparez-vous à un voyage dans les méandres 
+                de la méthodologie... "alternative" !
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Satirical Note -->
+        <div class="satirical-note">
+            <h3>
+                <span>🎭</span>
+                Contenu Satirique
+            </h3>
+            <p>Cette page contient des éléments satiriques et humoristiques pour souligner les erreurs techniques. L'analyse reste factuelle mais est présentée avec ironie pour un effet éducatif.</p>
+        </div>
+
+        <!-- Main Analysis -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon">🎯</div>
+                <div>
+                    <h2 class="section-title">SoloTech : L'Artiste du Benchmark</h2>
+                    <p class="section-subtitle">Quand la créativité rencontre la technique... ça donne ça !</p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                Pourquoi faire des tests rigoureux quand on peut faire des tests... artistiques ?
+            </div>
+
+            <p style="margin: 2rem 0; font-size: 1.125rem; color: var(--gray-700); line-height: 1.7;">
+                Mesdames et messieurs, permettez-moi de vous présenter <strong>SoloTech</strong>, le virtuose du test informatique nouvelle génération ! 
+                Un homme qui a révolutionné l'art du benchmark en y ajoutant cette petite touche d'imprévisibilité qui manquait tant au monde de la tech !
+            </p>
+
+            <!-- Expertise Meter -->
+            <div class="expertise-meter">
+                <h4 class="expertise-title">
+                    <span>🎯</span>
+                    Niveau d'Expertise Technique
+                </h4>
+                <div class="expertise-bar">
+                    <div class="expertise-fill"></div>
+                </div>
+                <p class="expertise-comment">
+                    "Je maîtrise tellement bien que mes résultats me surprennent moi-même !"
+                </p>
+            </div>
+
+            <!-- Innovations -->
+            <div class="innovation-grid">
+                <div class="innovation-card">
+                    <h4 class="innovation-title">
+                        <span>🎪</span>
+                        Ses Innovations Révolutionnaires
+                    </h4>
+                    <ul class="innovation-list">
+                        <li>Invention du "benchmark multi-tâches" : faire tourner le jeu en arrière-plan pendant le test</li>
+                        <li>Pionnier de la "méthodologie intuitive" : se fier aux FPS affichés sans vérification</li>
+                        <li>Créateur du concept "Real-World Testing" : où "real-world" signifie "n'importe comment"</li>
+                        <li>Expert en "Performance Monitoring Artistique" : MSI Afterburner comme décoration d'écran</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Philosophy -->
+            <div class="quote-box">
+                Pourquoi s'embêter avec des protocoles stricts quand on peut laisser libre cours à sa créativité ? 
+                Les vrais testeurs savent que l'imprévisibilité, c'est la clé de l'innovation !
+            </div>
+
+            <!-- Video Analysis -->
+            <div class="video-container">
+                <h4>🎬 Chef-d'œuvre de Méthodologie Créative</h4>
+                <video controls preload="metadata" style="max-height: 400px;">
+                    <source src="https://fichiers.atlas-corporation.fr/videostock/solotecherrorbench(1).mp4" type="video/mp4">
+                    <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                </video>
+                <div class="video-warning">
+                    🎪 <strong>ATTENTION SPECTACLE EN COURS !</strong><br><br>
+                    Observez cette démonstration magistrale de l'art du "testing créatif" ! 
+                    Notez comment les jeux tournent paisiblement en arrière-plan à 30 FPS (très relaxant !), 
+                    pendant que notre artiste nous explique les performances... du jeu qu'on ne voit pas !<br><br>
+                    <strong>Bonus :</strong> Le CPU qui passe de "mode sieste" (43%) à "mode panique" selon l'humeur !
+                </div>
+            </div>
+
+            <!-- Comparison -->
+            <div class="comparison-grid">
+                <div class="comparison-card comparison-solotech">
+                    <h4 class="comparison-title">🎪 La Méthode SoloTech™</h4>
+                    <p><strong>Étape 1 :</strong> Lancer le jeu en arrière-plan 🎮</p>
+                    <p><strong>Étape 2 :</strong> Regarder les FPS qui clignotent joyeusement 👀</p>
+                    <p><strong>Étape 3 :</strong> Conclure avec assurance ! 💪</p>
+                    <p><strong>Étape 4 :</strong> Recommander sans regarder les défauts 🙈</p>
+                </div>
+                <div class="comparison-card comparison-normal">
+                    <h4 class="comparison-title">😴 La Méthode "Ennuyeuse"</h4>
+                    <p><strong>Étape 1 :</strong> Configurer correctement les outils 🛠️</p>
+                    <p><strong>Étape 2 :</strong> Tester en conditions réelles 🎯</p>
+                    <p><strong>Étape 3 :</strong> Analyser tous les aspects 🔍</p>
+                    <p><strong>Étape 4 :</strong> Mentionner les défauts (quel rabat-joie !) 😒</p>
+                </div>
+            </div>
+
+            <!-- Awards -->
+            <div class="awards-section">
+                <h3 class="awards-title">
+                    <span>🏆</span>
+                    Ses Plus Grandes Réussites
+                </h3>
+                <ul class="awards-list">
+                    <li>🥇 <strong>Prix du Watercooling à 4°C :</strong> "Pourquoi payer 20€ de moins pour un ventirad quand on peut avoir des risques de fuite en bonus !"</li>
+                    <li>🥈 <strong>Médaille de l'Innovation Testing :</strong> "Premier à tester des jeux qu'on ne voit pas à l'écran !"</li>
+                    <li>🥉 <strong>Trophée de la Cohérence :</strong> "Des recommandations qui nous surprennent autant que lui !"</li>
+                </ul>
+            </div>
+
+            <div class="quote-box">
+                Mes tests sont si innovants que même moi, parfois, je ne comprends pas mes résultats ! C'est ça, l'expertise !
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <h2 class="summary-title">🎭 L'Art de la Méthodologie Alternative</h2>
+            <div class="summary-content">
+                <p>SoloTech nous prouve qu'il est possible de révolutionner l'art du test informatique en ignorant toutes les conventions établies. 
+                Bravo pour cette approche si... originale !</p>
+                <p><strong>Une leçon pour nous tous : l'innovation peut parfois prendre des formes inattendues !</strong></p>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <h3>🎭 Avertissement Satirique</h3>
+            <p>Cette page est une œuvre de satire pure. Toute ressemblance avec des pratiques réelles de testing ne serait que pure coïncidence... 
+            ou pas ! Rappelez-vous : dans le monde merveilleux d'Internet, tout est possible, même les tests de performance créatifs !</p>
+            <p><em>Aucun influenceur n'a été blessé pendant la création de cette satire. Seul leur ego pourrait en souffrir !</em></p>
+        </div>
+    </main>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.backdropFilter = 'blur(30px) saturate(200%)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+            }
+        });
+
+        // Card hover effects with enhanced animation
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.boxShadow = 'var(--shadow-xl)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = 'var(--shadow)';
+            });
+        });
+
+        // Enhanced expertise meter animation
+        const expertiseFill = document.querySelector('.expertise-fill');
+        let direction = 1;
+        let wobbleIntensity = 1;
+        
+        setInterval(() => {
+            const currentWidth = parseInt(expertiseFill.style.width) || 15;
+            const randomFactor = Math.random() * 3 * wobbleIntensity;
+            const newWidth = currentWidth + (direction * randomFactor);
+            
+            if (newWidth <= 5 || newWidth >= 25) {
+                direction *= -1;
+                wobbleIntensity = Math.random() * 2 + 0.5;
+            }
+            
+            expertiseFill.style.width = Math.max(5, Math.min(25, newWidth)) + '%';
+        }, 300);
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply fade-in animation to elements
+        document.querySelectorAll('.section-card, .satirical-note, .summary-box').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+
+        // Easter egg: click on circus icons for fun
+        document.querySelectorAll('.section-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                icon.style.transform = 'rotate(720deg) scale(1.5)';
+                icon.style.filter = 'drop-shadow(0 0 20px var(--accent))';
+                setTimeout(() => {
+                    icon.style.transform = '';
+                    icon.style.filter = '';
+                }, 1000);
+            });
+        });
+
+        console.log('🎪 SoloTech Analysis - Atlas Corporation (Satirical Mode)');
+    </script>
+</body>
+</html>
