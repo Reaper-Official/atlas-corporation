@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1SPT5GQKM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Q1SPT5GQKM');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrenchHardware : Masterclass en Incohérence 😂</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Colors - Atlas Corporation Style */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Special colors for roasting */
+            --roast-red: #ef4444;
+            --roast-orange: #f97316;
+            --roast-yellow: #eab308;
+            --roast-green: #22c55e;
+            --roast-purple: #a855f7;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Hero Section - Atlas Style */
+        .hero {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%);
+            transform: skewX(-15deg) translateX(20%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--roast-red), var(--roast-orange), var(--roast-yellow));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.025em;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--gray-600);
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Tabs - Atlas Style */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-tab {
+            flex: 1 1 auto;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .nav-tab button {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border: 2px solid var(--gray-300);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            font-family: var(--font-sans);
+        }
+
+        .nav-tab button:hover {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-tab button.active {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Content Cards - Atlas Style */
+        .contradiction-card, .content-section {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 3rem 0;
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .contradiction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--roast-red), var(--roast-orange), var(--roast-yellow));
+            background-size: 200% 100%;
+            animation: border-flow 3s linear infinite;
+        }
+
+        @keyframes border-flow {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .contradiction-card:hover, .content-section:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gray-300);
+        }
+
+        .contradiction-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contradiction-icon {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, var(--roast-red) 0%, var(--roast-orange) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: white;
+            box-shadow: var(--shadow-md);
+            animation: float-icon 6s ease-in-out infinite;
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(-5px) rotate(0deg); }
+            75% { transform: translateY(-15px) rotate(-5deg); }
+        }
+
+        .contradiction-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            flex: 1;
+        }
+
+        /* Roast Box - Special Styling */
+        .roast-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(249, 115, 22, 0.1));
+            border: 3px solid var(--roast-orange);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { 
+                box-shadow: var(--shadow-lg);
+                border-color: var(--roast-orange);
+            }
+            50% { 
+                box-shadow: var(--shadow-2xl);
+                border-color: var(--roast-red);
+            }
+        }
+
+        .roast-box::before {
+            content: '🔥';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            padding: 0 15px;
+            border-radius: 50%;
+            animation: fire-dance 1.5s ease-in-out infinite;
+        }
+
+        @keyframes fire-dance {
+            0%, 100% { transform: translateX(-50%) rotate(-10deg); }
+            50% { transform: translateX(-50%) rotate(10deg); }
+        }
+
+        /* VS Container - Atlas Style */
+        .vs-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .vs-side {
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+            border: 2px solid;
+        }
+
+        .vs-side:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .vs-left {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            border-color: var(--roast-red);
+            color: var(--gray-900);
+        }
+
+        .vs-right {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            border-color: var(--success);
+            color: var(--gray-900);
+        }
+
+        .vs-divider {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--roast-orange);
+            animation: pulse-vs 2s infinite;
+        }
+
+        @keyframes pulse-vs {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Disaster Sections */
+        .ssd-disaster, .benchmark-fail, .watercooling-logic {
+            background: var(--white);
+            border: 3px solid var(--roast-red);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .benchmark-fail {
+            border-style: dashed;
+            border-color: var(--roast-yellow);
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.05), rgba(239, 68, 68, 0.05));
+            text-align: center;
+            position: relative;
+        }
+
+        .benchmark-fail::before {
+            content: '🤡';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            padding: 0 15px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: bounce-clown 2s infinite;
+        }
+
+        @keyframes bounce-clown {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Performance Chart */
+        .performance-chart {
+            display: flex;
+            justify-content: space-around;
+            align-items: end;
+            height: 250px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chart-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bar {
+            width: 80px;
+            border-radius: 0.5rem 0.5rem 0 0;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+
+        .bar:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .bar-nvme {
+            height: 60px;
+            background: var(--roast-red);
+        }
+
+        .bar-raid {
+            height: 140px;
+            background: var(--success);
+        }
+
+        .bar-sata {
+            height: 100px;
+            background: var(--roast-yellow);
+        }
+
+        .bar-label {
+            font-size: 0.875rem;
+            text-align: center;
+            color: var(--gray-700);
+            font-weight: 600;
+        }
+
+        /* Meme Section */
+        .meme-section {
+            background: linear-gradient(135deg, var(--roast-orange), var(--roast-yellow), var(--success));
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 1rem;
+            margin: 3rem 0;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meme-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 900%;
+            height: 900%;
+            background: repeating-conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1) 10deg, transparent 20deg);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .meme-section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hypocrisy Cards */
+        .corsair-hypocrisy {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .hypocrisy-card {
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 3px solid;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .hypocrisy-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .private-opinion {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            border-color: var(--roast-red);
+            color: var(--gray-900);
+        }
+
+        .public-action {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            border-color: var(--success);
+            color: var(--gray-900);
+        }
+
+        /* Price Comparison */
+        .price-comparison {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            gap: 2rem;
+        }
+
+        .price-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 1rem;
+            flex: 1;
+            transition: var(--transition);
+            border: 2px solid;
+        }
+
+        .price-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .expensive {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            border-color: var(--roast-red);
+            color: var(--gray-900);
+        }
+
+        .cheap {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            border-color: var(--success);
+            color: var(--gray-900);
+        }
+
+        /* Image Sections */
+        .image-section img, .flowup-image, .corsair-image, .benchmark-image {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            margin: 1rem 0;
+        }
+
+        .image-section img:hover, .flowup-image:hover, .corsair-image:hover, .benchmark-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Video Containers */
+        .video-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .video-container video, .video-container iframe {
+            max-width: 100%;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .video-container video:hover, .video-container iframe:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+
+        /* Video Disclaimer */
+        .video-disclaimer {
+            background: linear-gradient(135d, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
+            border: 2px solid var(--accent);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            color: var(--gray-600);
+            text-align: center;
+        }
+
+        /* Conclusion */
+        .conclusion {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(168, 85, 247, 0.05));
+            border: 3px solid var(--accent);
+            border-radius: 1rem;
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: var(--gray-50);
+            border: 2px solid var(--roast-yellow);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(239, 68, 68, 0.1));
+            border: 2px solid var(--roast-yellow);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .warning-box h3 {
+            color: var(--roast-yellow);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .warning-icon {
+            font-size: 2rem;
+            color: var(--roast-yellow);
+        }
+
+        /* Specs Comparison */
+        .specs-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .spec-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .spec-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .spec-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .spec-card p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-700);
+        }
+.home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            color: #333;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border-color: #667eea;
+        }
+
+        .home-button:hover::before {
+            left: 100%;
+        }
+
+        .home-button:active {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .home-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        /* Critique Points */
+        .critique-points .point {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(249, 115, 22, 0.05));
+            border: 1px solid var(--roast-orange);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .critique-points .point:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .critique-points .point h4 {
+            color: var(--roast-orange);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Utility Classes */
+        .highlight {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+
+        .delivery-issue {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+
+        .price-issue {
+            color: var(--roast-red);
+            font-weight: bold;
+        }
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .vs-container, .corsair-hypocrisy {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .performance-chart {
+                height: 180px;
+                padding: 1rem;
+            }
+            
+            .price-comparison {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-tab button {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contradiction-card, .content-section {
+                padding: 2rem;
+            }
+
+            .hero {
+                padding: 3rem 2rem;
+            }
+
+            .specs-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-400);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-500);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <div>
+                <h1>🎭 FrenchHardware : Masterclass en Incohérence</h1>
+                <p class="hero-subtitle">Quand l'influence tech rencontre l'art du foutage de gueule professionnel</p>
+            </div>
+        </header>
+        <div class="center-container">
+            
+                <a href="https://atlas-corporation.fr" class="home-button">
+                    <svg class="home-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
+                    </svg>
+                    Retour à l'accueil
+                </a>
+            </div>
+        <div class="roast-box">
+            <h2>🏆 FÉLICITATIONS !</h2>
+            <p style="font-size: 1.3rem; font-weight: bold;">Vous avez atteint le niveau maximum de l'incohérence technologique !</p>
+            <p>🎯 Achievement unlocked: "Dire tout et son contraire en gardant un air sérieux"</p>
+            <p>Alors là Grand Prince. La révérence, Messieurs FrenchHardware vous avez eu l'honneur de vous auto-terminer sur place et je vous en remercie</p>
+            </br>
+            <h2>Image Illustrative</h2>
+            <p style="font-size: 1.3rem; font-weight: bold;">Cette image est à but de faire rire</p>
+            <p>Cette image a été créée dans un esprit d’humour. Elle n’a pas pour objectif de dénigrer ou de nuire à la réputation de FrenchHardware. Merci de la recevoir avec légèreté et dans son contexte.</p>
+            <img src="https://atlas-corporation.fr/img/imgppfrenchhardwarerire.png" alt="Rire FrenchHardware" class="benchmark-image">
+        </div>
+
+        <nav class="nav-tabs">
+			
+            <div class="nav-tab"><button data-tab="ssd">SSD de Merde</button></div>
+            <div class="nav-tab"><button data-tab="corsair">Corsair Hypocrisie</button></div>
+            <div class="nav-tab"><button data-tab="watercooling">Watercooling 120mm</button></div>
+            <div class="nav-tab"><button data-tab="pc-influenceurs">PC Influenceurs</button></div>
+            <div class="nav-tab"><button data-tab="benchmarks">Benchmarks "Créatifs"</button></div>
+			
+            <div class="nav-tab"><button data-tab="video-doute">Vidéo du Doute</button></div>
+            <div class="nav-tab"><button data-tab="intel-discord">Intel & Discord</button></div>
+            <div class="nav-tab"><button data-tab="analyse-video">Flowup Scam ?</button></div>
+        </nav>
+
+        <div id="ssd" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🎪</div>
+                    <div>
+                        <h2 class="contradiction-title">Le Grand Cirque des SSD de Merde</h2>
+                        <p>Quand un NVMe devient plus lent que tes vieux HDD du grenier... 💀</p>
+                    </div>
+                </div>
+
+                <div class="ssd-disaster">
+                    <h3>🔥 Kingston NV3 & NV2 : Les "Fusées" qui Rampent</h3>
+                    <p><strong>FlowUp :</strong> "SSD NVMe ultra-performants !" 🚀</p>
+                    <p><strong>La réalité :</strong> Plus lents qu'un RAID de HDD d'il y a 20 ans ! 🐌</p>
+                    
+                    <div class="roast-box">
+                        <h4>🎯 DIRECT AU BUT :</h4>
+                        <p style="font-size: 1.2rem;">Vendre du NVMe qui va moins vite qu'un HDD, c'est du GÉNIE ! 🧠</p>
+                    </div>
+                    
+                    <div class="image-section">
+                        <h4>📊 Les Preuves du Carnage :</h4>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <img src="https://atlas-corporation.fr/img/write-over-time.png" alt="Performance Kingston NV3">
+                            <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
+                                💀 Kingston NV3 : L'effondrement en direct !
+                            </p>
+                        </div>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <img src="https://atlas-corporation.fr/img/write-over-tim2e.png" alt="Performance Kingston NV2">
+                            <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
+                                🤮 Kingston NV2 : Moins pire que le NV3 !
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-chart">
+                        <div class="chart-bar">
+                            <div class="bar bar-nvme"></div>
+                            <div class="bar-label">Kingston NV3<br>(NVMe 2024)<br>307 Mo/s 💩</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar bar-raid"></div>
+                            <div class="bar-label">RAID HDD<br>(Technologie 2005)<br>500+ Mo/s 👑</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar bar-sata"></div>
+                            <div class="bar-label">SSD SATA<br>(Stable)<br>400+ Mo/s ✅</div>
+                        </div>
+                    </div>
+
+                    <div class="meme-section">
+                        <h3>🏆 RECORD BATTU !</h3>
+                        <p style="font-size: 1.3rem;">Premier SSD NVMe à perdre contre la technologie du siècle dernier !</p>
+                        <p><em>🎖️ Médaille d'or de la régression technologique</em></p>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border: 2px solid var(--roast-red); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
+                        <h4>🤡 Et maintenant... Le Crucial P3 !</h4>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <img src="https://atlas-corporation.fr/img/p3stability.png" alt="Crucial P3 benchmark" class="benchmark-image">
+                            <p style="color: var(--gray-900); font-weight: bold;">Crucial P3 : "Regardez comme je suis LENT !" 🐌</p>
+                        </div>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <img src="https://atlas-corporation.fr/img/p3reality.png" alt="Crucial P3 copie Windows" class="benchmark-image">
+                            <p style="color: var(--gray-900); font-weight: bold; font-size: 1.2rem;">
+                                🚨 COPIE DE 40 GO SUR P3 : VOUS ALLEZ ATTENDRE LONGTEMPS ! 
+                            </p>
+                            <img src="https://atlas-corporation.fr/img/p3flowupshow.png" alt="Crucial P3 copie Windows" class="benchmark-image">
+                            <img src="https://atlas-corporation.fr/img/p3flowupnew.png" alt="Crucial P3 copie Windows" class="benchmark-image">
+                            <p style="color: var(--gray-900); font-weight: bold; font-size: 1.2rem;">
+                                🚨 ET FLOWUP EN MET ! 
+                            </p>
+                        </div>
+
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <p style="color: var(--gray-900); font-weight: bold; font-size: 1.2rem;">
+                                Voici des SSD Honteux de Corsair: 
+                            </p>
+                            <img src="https://atlas-corporation.fr/img/mp700elitecorsaire.png" alt="Crucial P3 copie Windows" class="benchmark-image">
+                            
+                            <img src="https://atlas-corporation.fr/img/mp600corextcorsaire.png" alt="Crucial P3 copie Windows" class="benchmark-image">
+                            <p style="color: var(--gray-900); font-weight: bold; font-size: 1.2rem;">
+                                🚨 ET TOUJOURS PLUS BAS !
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1)); color: var(--gray-900); padding: 2rem; border-radius: 1rem; margin: 2rem 0; border: 2px solid var(--success);">
+                        <h4>💎 Pour comparaison, des VRAIS SSD performants :</h4>
+                        <div class="image-grid">
+                            <img src="https://atlas-corporation.fr/img/write-over-tim3e.png" alt="KC3000 performance" class="benchmark-image">
+                            <p style="font-weight: bold;">KC3000 : Voilà ce que ça donne quand c'est BIEN fait !</p>
+                            <img src="https://atlas-corporation.fr/img/write-over-timem480pro.png" alt="M480 PRO performance" class="benchmark-image">
+                            <p style="font-weight: bold;">MSI M480 PRO 2Tb : La VRAIE performance NVMe !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="corsair" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🎭</div>
+                    <div>
+                        <h2 class="contradiction-title">Corsair : L'Art du Foutage de Gueule</h2>
+                        <p>Niveau EXPERT en double discours ! 🥇</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🎯 LE RÉSUMÉ :</h3>
+                    <p style="font-size: 1.2rem;">Critiquer Corsair en interview puis le vendre sur sa boutique...</p>
+                    <p><strong>C'est du GÉNIE commercial ou de l'incompétence ? 🤔</strong></p>
+                </div>
+
+                <div class="corsair-hypocrisy">
+                    <div class="hypocrisy-card private-opinion">
+                        <h3>🤐 En PRIVÉ (RTBF)</h3>
+                        <ul>
+                            <li>💀 Corsair change les composants sans prévenir</li>
+                            <li>🎲 Même référence = composants aléatoires</li>
+                            <li>💥 Profils XMP qui plantent</li>
+                            <li>🔥 Instabilités en permanence</li>
+                        </ul>
+                    </div>
+                    <div class="hypocrisy-card public-action">
+                        <h3>💰 En PUBLIC (FlowUp Shop)</h3>
+                        <ul>
+                            <li>✨ "RAM Corsair de qualité"</li>
+                            <li>🎯 "Produits sélectionnés avec soin"</li>
+                            <li>👍 Recommandations positives</li>
+                            <li>🤐 Zéro mention des problèmes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border: 3px solid var(--roast-yellow); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
+                    <h4>🎥 FrenchHardware se DEBUNK lui-même en DIRECT !</h4>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem;">
+                            <source src="https://fichiers.atlas-corporation.fr/videostock/FrHardwareAutoDebunk(1).mp4" type="video/mp4">
+                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                        </video>
+                        <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                            🤡 AUTO-DÉBUNKAGE LEVEL 9000 ! ILS SE CONTREDISENT EUX-MÊMES !
+                        </p>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--roast-orange), var(--roast-yellow)); color: var(--white); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
+                    <h4>📸 LES PREUVES sur FlowUp Shop (Screenshots du 20/06/2025) :</h4>
+                    <div class="image-grid">
+                        <img src="https://atlas-corporation.fr/img/FlowupCorsair1.png" alt="FlowUp Corsair 1" class="corsair-image">
+                        <img src="https://atlas-corporation.fr/img/FlowupCorsair2.png" alt="FlowUp Corsair 2" class="corsair-image">
+                        <img src="https://atlas-corporation.fr/img/FlowupCorsair3.png" alt="FlowUp Corsair 3" class="corsair-image">
+                    </div>
+                    <div class="meme-section" style="margin: 1rem 0;">
+                        <p style="font-size: 1.3rem; font-weight: bold;">
+                            🎪 "CORSAIR C'EST DE LA MERDE... MAIS ON VOUS EN VEND QUAND MÊME !" 
+                        </p>
+                    </div>
+                </div>
+
+                <div class="vs-container">
+                    <div class="vs-side vs-left">
+                        <h4>🎤 Ce qu'ils DISENT</h4>
+                        <p>"Corsair c'est problématique"</p>
+                        <p>"Composants changeants"</p>
+                        <p>"Instabilités fréquentes"</p>
+                    </div>
+                    <div class="vs-divider">🆚</div>
+                    <div class="vs-side vs-right">
+                        <h4>💰 Ce qu'ils VENDENT</h4>
+                        <p>"RAM Corsair de qualité !"</p>
+                        <p>"Sélection rigoureuse"</p>
+                        <p>"Performances garanties"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="watercooling" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🌊</div>
+                    <div>
+                        <h2 class="contradiction-title">Watercooling 120mm : "C'est BOF mais on en vend !"</h2>
+                        <p>La physique, c'est relatif selon le porte-monnaie ! 💸</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🧠 LA LOGIQUE FLOWUP :</h3>
+                    <p style="font-size: 1.2rem;">Step 1: "Les AIO 120mm c'est bof"</p>
+                    <p style="font-size: 1.2rem;">Step 2: *en vend sur leur boutique*</p>
+                    <p style="font-size: 1.2rem;">Step 3: PROFIT ! 💰</p>
+                </div>
+
+                <div class="watercooling-logic">
+                    <h3>🎭 La Contradiction en Images et Vidéos :</h3>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border: 2px solid var(--roast-red); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
+                        <h4>🎥 FrenchHardware : "Les AIO 120mm sont BOF" :</h4>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem;">
+                                <source src="https://fichiers.atlas-corporation.fr/videostock/120mm_tqt(1).mp4" type="video/mp4">
+                                <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                            </video>
+                            <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                                🤔 "Les AIO 120mm c'est bof..." (Regardez la tête de Matis qui dit tout !) 
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1)); color: var(--gray-900); padding: 2rem; border-radius: 1rem; margin: 2rem 0; border: 2px solid var(--success);">
+                        <h4>💰 FlowUp Shop : "Mais on vous en vend quand même !"</h4>
+                        <div class="image-grid">
+                            <img src="https://atlas-corporation.fr/img/Flowup120mm.png" alt="FlowUp AIO 120mm" class="flowup-image">
+                            <p style="font-weight: bold;">PC avec AIO 120mm en vente chez FlowUp ! 🤡</p>
+                            <img src="https://atlas-corporation.fr/img/Flowup120mmprove.png" alt="FlowUp AIO 120mm preuve" class="flowup-image">
+                            <p style="font-weight: bold;">PREUVE que c'est bien un AIO 120mm !</p>
+                            <img src="https://atlas-corporation.fr/img/120mmflowup.png" alt="Flowup PC 120 mm" class="flowup-image">
+                            <p style="font-weight: bold;"> Un autre PC où de VISU on voit le 120mm !</p>
+                        </div>
+                        <div class="meme-section" style="margin: 1rem 0;">
+                            <p style="font-size: 1.3rem; font-weight: bold;">
+                                🎪 "C'EST BOF MAIS ACHETEZ-EN QUAND MÊME !" 
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="price-comparison">
+                        <div class="price-item expensive">
+                            <h4>💸 AIO 120mm FlowUp</h4>
+                            <p>100€+</p>
+                            <p>Performances moyennes</p>
+                            <p>Risque de fuite</p>
+                            <p style="color: var(--roast-red); font-weight: bold;">⚠️ "C'est BOF" - FrenchHardware</p>
+                        </div>
+                        <div class="price-item cheap">
+                            <h4>🏆 Ventirad de qualité</h4>
+                            <p>40-50€</p>
+                            <p>Meilleures performances</p>
+                            <p>Fiabilité à 100%</p>
+                            <p style="color: var(--success); font-weight: bold;">✅ Physique respectée</p>
+                        </div>
+                    </div>
+                    
+                    <div class="meme-section">
+                        <h3>🎓 COURS DE PHYSIQUE GRATUIT :</h3>
+                        <p>Radiateur 120mm = Surface d'échange LIMITÉE</p>
+                        <p>Gros ventirad = Plus de surface = Meilleur refroidissement</p>
+                        <p style="font-size: 1.2rem; font-weight: bold;">
+                            🤷‍♂️ Mais bon, pourquoi respecter la physique quand on peut VENDRE ?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pc-influenceurs" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🎮</div>
+                    <div>
+                        <h2 class="contradiction-title">PC Influenceurs : Quand le Marketing Rencontre la Réalité</h2>
+                        <p>L'art de faire foirer un PC en direct devant des millions de viewers ! 📺</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🎯 MISSION IMPOSSIBLE :</h3>
+                    <p style="font-size: 1.2rem;">Livrer un PC qui fonctionne correctement à un influenceur...</p>
+                    <p><strong>🤡 Spoiler : MISSION FAILED !</strong></p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border: 3px solid var(--roast-red); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
+                    <h4>🎬 INOXTAG : Le PC qui dit NON en direct !</h4>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem;">
+                            <source src="https://fichiers.atlas-corporation.fr/videostock/Inoxtagpcpreuve.mp4" type="video/mp4">
+                            <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                        </video>
+                        <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                            🚨 LIVE DEVANT DES MILLIONS : "Ça marche pas..." 
+                        </p>
+                    </div>
+                    
+                    <div class="meme-section" style="margin: 2rem 0;">
+                        <h4>📺 CONTEXTE :</h4>
+                        <p style="font-size: 1.1rem;">PC fourni par FlowUp à Inoxtag qui commence à avoir des problèmes de performance</p>
+                        <p style="font-size: 1.2rem; font-weight: bold;">
+                            🎪 Résultat : FAIL en direct devant toute la France !
+                        </p>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1)); border: 3px solid var(--roast-yellow); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
+                    <h4>🔧 DIAGNOSTIC : Quand l'Installation Défie la Physique</h4>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <img src="https://atlas-corporation.fr/img/pcinoxtagmur.png" alt="PC Inoxtag problème pompe" style="max-width: 100%; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                        <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                            💀 ERREUR CRITIQUE : La pompe au point le plus HAUT de la loop !
+                        </p>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1)); color: var(--gray-900); padding: 2rem; border-radius: 1rem; margin: 2rem 0; border: 2px solid var(--success);">
+                        <h4>🎓 COURS DE PHYSIQUE ILLUSTRÉ :</h4>
+                        <div style="text-align: center; margin: 1rem 0;">
+                            <img src="https://atlas-corporation.fr/img/aioexplications.jpg" alt="Explication AIO installation correcte" style="max-width: 100%; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                            <p style="color: var(--gray-900); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">
+                                📚 RÈGLE D'OR : Le point le plus HAUT ne doit JAMAIS être la pompe !
+                            </p>
+                        </div>
+                        <div class="meme-section" style="margin: 1rem 0;">
+                            <p style="font-size: 1.1rem; font-weight: bold;">
+                                🧠 L'AIR REMONTE, LA POMPE SOUFFRE, LES PERFORMANCES CHUTENT !
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="vs-container" style="margin: 2rem 0;">
+                        <div class="vs-side vs-left">
+                            <h4>🚫 CE QU'IL FAUT PAS FAIRE</h4>
+                            <p>Pompe au point le plus haut</p>
+                            <p>Air dans le circuit</p>
+                            <p>Performances dégradées</p>
+                            <p>Usure prématurée</p>
+                        </div>
+                        <div class="vs-divider">⚠️</div>
+                        <div class="vs-side vs-right">
+                            <h4>✅ INSTALLATION CORRECTE</h4>
+                            <p>Pompe en point bas</p>
+                            <p>Réservoir au point haut</p>
+                            <p>Circulation optimale</p>
+                            <p>Fiabilité maximale</p>
+                        </div>
+                    </div>
+
+                    <div class="benchmark-fail">
+                        <h4>🎓 COURS DE PHYSIQUE GRATUIT #2 :</h4>
+                        <p style="font-size: 1.1rem; font-weight: bold;">L'air remonte TOUJOURS vers le haut !</p>
+                        <p>Pompe en haut = Air dans la pompe = Cavitation = Performance dégradée</p>
+                        <div class="meme-section" style="margin: 1rem 0;">
+                            <p style="font-size: 1.3rem; font-weight: bold;">
+                                🤷‍♂️ Mais bon, pourquoi respecter la physique... ENCORE ?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🏆 RÉSULTAT FINAL :</h3>
+                    <p style="font-size: 1.2rem;">PC qui se dégrade progressivement chez l'influenceur</p>
+                    <p style="font-size: 1.2rem;">Problèmes de performance en direct</p>
+                    <p style="font-size: 1.4rem; font-weight: bold;">
+                        🎭 MARKETING FAIL LEVEL : OVER 9000 !
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        💡 Pro tip : Avant de livrer un PC, vérifiez qu'il fonctionne... ET qu'il va continuer à fonctionner !
+                    </p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--roast-orange), var(--roast-yellow)); color: var(--white); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
+                    <h4>🎯 MORAL DE L'HISTOIRE :</h4>
+                    <p style="font-size: 1.2rem; font-weight: bold;">
+                        Livrer un PC mal assemblé à un influenceur = Publicité négative GRATUITE !
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        🎪 Rien de mieux qu'un FAIL en direct pour promouvoir sa marque !
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="benchmarks" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">📊</div>
+                    <div>
+                        <h2 class="contradiction-title">Benchmarks "Créatifs" : L'Art de Tester n'importe quoi</h2>
+                        <p>Quand la précision devient optionnelle ! 🎨</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🎯 INNOVATION FLOWUP :</h3>
+                    <p style="font-size: 1.2rem;">Pourquoi tester ce qu'on annonce quand on peut tester AUTRE CHOSE ?</p>
+                    <p><strong>🧠 Big Brain Time ! Personne n'y avait pensé !</strong></p>
+                </div>
+
+                <div class="benchmark-fail">
+                    <h3>🎭 Masterclass en Précision Technique</h3>
+                    <div class="vs-container">
+                        <div class="vs-side vs-left">
+                            <h4>📢 TITRE annoncé</h4>
+                            <p>"Test du Ryzen 7800X3D"</p>
+                        </div>
+                        <div class="vs-divider">≠</div>
+                        <div class="vs-side vs-right">
+                            <h4>🔧 CPU réellement testé</h4>
+                            <p>"Intel 14700KF"</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 1.1rem; font-weight: bold;"><em>🎨 Plot twist : C'est de l'ART CONCEPTUEL !</em></p>
+
+                    <div style="background: var(--white); border: 3px solid var(--roast-yellow); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
+                        <h4>🎥 LES PREUVES VIDEO de leurs "erreurs" :</h4>
+                        
+                        <div style="margin: 2rem 0; border: 2px solid var(--roast-red); border-radius: 1rem; padding: 1.5rem; background: rgba(239, 68, 68, 0.05);">
+                            <h5>📊 Benchmark Fail #1 : Le Grand N'importe Quoi</h5>
+                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem; margin: 1rem 0;">
+                                <source src="https://fichiers.atlas-corporation.fr/videostock/FlowupErrorBenchmark1.mp4" type="video/mp4">
+                                <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                            </video>
+                            <div style="text-align: center; margin: 1rem 0;">
+                                <img src="https://atlas-corporation.fr/img/flowuppcdebunkbench.png" alt="FlowUp Tests Biaisés Bench" class="flowup-image">
+                                <p style="color: var(--roast-yellow); font-weight: bold; font-size: 1.1rem;">
+                                    ⚠️ C'est LEUR VIDÉO sur LEUR SITE ! Incohérence 100% assumée !
+                                </p>
+                            </div>
+                            <div style="text-align: center; margin: 1rem 0;">
+                                <img src="https://atlas-corporation.fr/img/FlowupPageweb.png" alt="Page web FlowUp" class="benchmark-image">
+                            </div>
+                        </div>
+
+                        <div style="margin: 2rem 0; border: 2px solid var(--roast-red); border-radius: 1rem; padding: 1.5rem; background: rgba(239, 68, 68, 0.05);">
+                            <h5>📊 Benchmark Fail #2 : Ça Continue ! 🎪</h5>
+                            <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem; margin: 1rem 0;">
+                                <source src="https://fichiers.atlas-corporation.fr/videostock/FlowupErrorBench2.mp4" type="video/mp4">
+                                <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                            </video>
+                            <div style="border: 2px dashed var(--accent); border-radius: 1rem; padding: 2rem; background: var(--gray-50);">
+                                <h5>📊 Benchmark 14700KF</h5>
+                                <div style="text-align: center; margin: 1rem 0;">
+                                    <img src="https://atlas-corporation.fr/img/FH14700KFbench.png" alt="Benchmark 14700KF" class="benchmark-image">
+                                    <div class="meme-section" style="margin: 1rem 0;">
+                                        <p style="font-size: 1.2rem; font-weight: bold;">
+                                            🤯 BONUS FAIL : 4,7 GHz au lieu de 5,6 GHz !
+                                        </p>
+                                        <p>Même processeur, mauvaises fréquences ! 🎯</p>
+                                    </div>
+                                    <img src="https://atlas-corporation.fr/img/CEsiteIntel14700KF.png" alt="Spec Intel 14700KF" class="benchmark-image">
+                                    <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
+                                        💀 Intel dit 5,6 GHz, FlowUp teste à 4,7 GHz... FAIL COMPLET !
+                                    </p>
+                                    <div class="roast-box" style="margin: 1rem 0;">
+                                        <p style="font-size: 1.1rem;">
+                                            🎭 RAPPEL : Introduction = Ryzen 7800X3D, Test OCCT = Intel 14700KF sous-clocké
+                                        </p>
+                                        <p><strong>🏆 TRIPLE FAIL COMBO !</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meme-section">
+                    <h3>🏅 PRIX D'EXCELLENCE EN INCOMPÉTENCE</h3>
+                    <p style="font-size: 1.2rem;">Mention TRÈS spéciale pour avoir réinventé les benchmarks !</p>
+                    <p>🎨 Qui a dit qu'il fallait tester le BON processeur à la BONNE fréquence ?</p>
+                    <p><strong>🤡 Innovation FlowUp : "L'important c'est de faire du contenu !"</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="video-doute" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">📺</div>
+                    <div>
+                        <h2 class="contradiction-title">La Vidéo du Doute : Quand l'Expertise Prend l'Eau</h2>
+                        <p>Une masterclass en contradictions et choix douteux ! 🤦‍♂️</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🎯 LE SCÉNARIO PARFAIT POUR UN DÉBUNKAGE :</h3>
+                    <p style="font-size: 1.2rem;">Quand chaque phrase et chaque composant sont une invitation à la critique !</p>
+                    <p><strong>Préparez le pop-corn, ça va être croustillant ! 🍿</strong></p>
+                </div>
+
+                <div class="video-container">
+                    <video controls style="max-width: 100%; max-height: 400px; border-radius: 1rem; margin: 1rem 0;">
+                        <source src="https://fichiers.atlas-corporation.fr/videostock/pcanymedebunk.mp4" type="video/mp4">
+                        <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                    </video>
+                    <p style="color: var(--gray-500); margin-top: 1rem;">La vidéo en question : "Le PC de Rêve" ou "Le Cauchemar de la Cohérence" ?</p>
+                </div>
+
+                <div class="ssd-disaster">
+                    <h3>🤯 RAM Corsair : Le "On Sait que c'est de la Merde, mais on Met Quand Même"</h3>
+                    <p><strong>Leur aveu :</strong> "Corsair a eu des soucis..." 😬</p>
+                    <p><strong>Leur action :</strong> "...mais on vous en met quand même dans votre PC à 6000€ !" 💸</p>
+                    <div class="roast-box">
+                        <h4>🎯 LA LOGIQUE IMPARABLE :</h4>
+                        <p style="font-size: 1.2rem;">Connaître les problèmes d'un produit, le dire, et l'installer quand même. C'est ça, la confiance client ! 🤡</p>
+                    </div>
+                </div>
+
+                <div class="benchmark-fail">
+                    <h3>🗣️ Mathis et l'Art de la Contradiction Instantanée</h3>
+                    <div class="vs-container">
+                        <div class="vs-side vs-left">
+                            <h4>🎤 Phrase #1 (4:55)</h4>
+                            <p>"Tu auras jamais de blue screens !" ✅</p>
+                        </div>
+                        <div class="vs-divider">🔄</div>
+                        <div class="vs-side vs-right">
+                            <h4>🎤 Phrase #2 (5:02)</h4>
+                            <p>"Ça peut toujours arriver..." 💀</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 1.1rem; font-weight: bold;"><em>C'est pas de l'incohérence, c'est de la POÉSIE ! 🎭</em></p>
+                    <div class="meme-section">
+                        <p style="font-size: 1.3rem;">"Je suis sûr à 100%... enfin, à 50%... non, à 0% en fait."</p>
+                        <p><em>Le niveau de fiabilité des affirmations.</em></p>
+                    </div>
+                </div>
+
+                <div class="watercooling-logic">
+                    <h3>💰 La RTX 5080 dans un PC à 6000€+ : Le Choix Économique... pour EUX !</h3>
+                    <p><strong>Le budget :</strong> 6000€ ou plus pour un créateur de contenu. 🤑</p>
+                    <p><strong>La carte :</strong> Une RTX 5080. 🤔</p>
+					<p><strong>Même Jensen Huang (Patron de Nvidia) est chokbar (c'est faux,il a pas réagi mais c'est la probable réaction au massacre crée par FrenchHardware) </strong> </p>
+
+                    <p><img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcSwpZwTzXjdtuZI3Kjl6P_IGq1y1Wq_trHKppmlQRZBnYiNG9g1irA0nGzkNfx_kfqfzB0lh2sshIRqxyE" alt="Spec Intel 14700KF" class="benchmark-image"> </p>
+                    <p><strong>La question :</strong> Pourquoi pas une RTX 5090 pour ce prix ? 🤷‍♂️</p>
+                    <div class="roast-box">
+                        <h4>🎯 LE CALCUL EST SIMPLE :</h4>
+                        <p style="font-size: 1.2rem;">Quand le budget permet le top du top, mais qu'on met le "presque top"... C'est pour qui le profit ? 💸</p>
+                        <p><em>"On respecte le budget... le nôtre !"</em></p>
+                    </div>
+                </div>
+
+                <div class="ssd-disaster">
+                    <h3>💻 Le Processeur Fantôme : Quand le CPU n'Existe Pas !</h3>
+                    <p><strong>Leur annonce :</strong> Un processeur qui n'existe pas sur le marché. 🤯</p>
+                    <p><strong>La preuve :</strong> Une simple recherche Google suffit à les démasquer. 🕵️‍♂️</p>
+                    <div class="roast-box">
+                        <h4>🎯 LE DÉTAIL QUI TUE :</h4>
+                        <p style="font-size: 1.2rem;">Citer un composant inexistant, c'est le summum de la préparation et de l'expertise ! 🤡</p>
+                        <p><em>"On invente les specs pour que ça sonne bien !"</em></p>
+                    </div>
+                </div>
+
+                <div class="benchmark-fail">
+                    <h3>📉 RAM 8000MHz : L'Instabilité au Service du "Hype"</h3>
+                    <p><strong>Leur choix :</strong> Des barrettes de RAM à 8000MHz. 🚀</p>
+                    <p><strong>La réalité :</strong> Très peu fiables, pas du tout recommandables pour le grand public. ⚠️</p>
+                    <div class="roast-box">
+                        <h4>🎯 LE CONSEIL D'AMI :</h4>
+                        <p style="font-size: 1.2rem;">Mettre de la RAM instable dans un PC client, c'est s'assurer des retours SAV... ou des blue screens, Gauthier ! 😉</p>
+                        <p><em>"La stabilité ? C'est pour les faibles !"</em></p>
+                    </div>
+                </div>
+
+                <div class="meme-section">
+                    <h3>🏆 PRIX SPÉCIAL DE LA VIDÉO LA PLUS DÉBUNKABLE</h3>
+                    <p style="font-size: 1.3rem;">Chaque minute est une mine d'or pour la critique !</p>
+                    <p><strong>Merci FrenchHardware pour ce contenu... involontairement hilarant ! 😂</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="intel-discord" class="tab-content">
+            <div class="contradiction-card">
+                <div class="contradiction-header">
+                    <div class="contradiction-icon">🤝</div>
+                    <div>
+                        <h2 class="contradiction-title">Intel & Discord : Quand la Pub Fait Fuir la Communauté</h2>
+                        <p>L'art de la promotion forcée et de la purge de membres ! 📉</p>
+                    </div>
+                </div>
+
+                <div class="roast-box">
+                    <h3>🎯 LA STRATÉGIE "GÉNIALE" :</h3>
+                    <p style="font-size: 1.2rem;">Faire de la pub pour Intel avec des sondages bidons et bannir les mécontents.</p>
+                    <p><strong>Résultat : Moins de membres, plus de doutes ! 🤔</strong></p>
+                </div>
+
+                <div class="watercooling-logic">
+                    <h3>📊 La Collab Intel : Des Sondages "Représentatifs" ?</h3>
+                    <p><strong>Leur objectif :</strong> Promouvoir les "super processeurs" Intel via des sondages Discord. 📈</p>
+                    <p><strong>La réalité :</strong> Sur un serveur de 43 000 membres, les sondages atteignent un maximum de 900 votants, et parfois seulement 59 ! 📉</p>
+                    <div class="roast-box">
+                        <h4>🎯 LE CALCUL EST SIMPLE :</h4>
+                        <p style="font-size: 1.2rem;">Moins de 2% de participation sur le plus gros sondage, et à peine 0.1% sur le plus petit. C'est ça, la "représentativité" ? 🤡</p>
+                        <img src="https://atlas-corporation.fr/img/59votants.png" alt="Ban Massifs FH" class="benchmark-image">
+                        <img src="https://atlas-corporation.fr/img/900votants.png" alt="Ban Massifs FH" class="benchmark-image">
+                        <p><em>"Nos sondages sont aussi fiables que nos SSD Crucial P3 !"</em></p>
+                    </div>
+                </div>
+
+                <div class="ssd-disaster">
+                    <h3>🚫 Rayko et les Purges Discord : La Liberté d'Expression, C'est Non !</h3>
+                    <p><strong>L'action de Rayko :</strong> Publicité massive pour FlowUp, bannissant quiconque ose contredire ou critiquer. ⛔</p>
+                    <p><strong>La conséquence :</strong> Perte d'environ 2000 membres suite à ces "purges". 📉</p>
+                    <img src="https://atlas-corporation.fr/img/txtraykopub.jpg" alt="Rayko Pub" class="benchmark-image">
+                    <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
+                        💀 Le message de Rayko
+                    </p>
+                    <img src="https://atlas-corporation.fr/img/preuvebanmassif.png" alt="Ban Massifs FH" class="benchmark-image">
+                    <p style="color: var(--roast-red); font-weight: bold; font-size: 1.1rem;">
+                        Preuves des Bans Massifs (les pseudos en blanc indique qu'ils sont bannis du serveur Discord)
+                    </p>
+                    <div class="roast-box">
+                        <h4>🎯 LA GESTION DE COMMUNAUTÉ "EXPERT" :</h4>
+                        <p style="font-size: 1.2rem;">Faire fuir 2000 membres pour maintenir une image parfaite, c'est une stratégie... audacieuse ! 🤦‍♂️</p>
+                        <p><em>"La critique ? Connais pas !"</em></p>
+                    </div>
+                    
+                </div>
+
+                <div class="vs-container">
+                    <div class="vs-side vs-left">
+                        <h4>📢 Ce qu'ils VEULENT</h4>
+                        <p>Sondages "validant" Intel</p>
+                        <p>Communauté unie et positive</p>
+                        <p>Image de marque impeccable</p>
+                    </div>
+                    <div class="vs-divider">❌</div>
+                    <div class="vs-side vs-right">
+                        <h4>📉 Ce qu'ils OBTIENNENT</h4>
+                        <p>Sondages non représentatifs</p>
+                        <p>Purges et perte de membres</p>
+                        <p>Réputation entachée</p>
+                    </div>
+                </div>
+                
+                <div class="meme-section">
+                    <h3>🏆 PRIX DE LA GESTION DE COMMUNAUTÉ "INNOVANTE"</h3>
+                    <p style="font-size: 1.3rem;">Félicitations pour avoir transformé un Discord en chambre d'écho !</p>
+                    <p><strong>🤡 Qui a besoin de membres quand on a des processeurs Intel à vendre ?</strong></p>
+                </div>
+
+
+                
+                <div class="roast-box">
+                        <p><em>On t'aime pas Rayan/Rayko 😆</em></p>
+                        <h4>🎯 "L'Ouverture d'Esprit" :</h4>
+                        <p style="font-size: 1.2rem;">Discuter de certaines choses mais toujours dire du bien de FrenchHardware sinon c'est un refus d'écoute et d'ouverture d'esprit.</p>
+                        <p><em>FH ? C tro bi1 !</em></p>
+                        </br>
+                        <h4>💰 Flowup le Finance</h4>
+                        <p style="font-size: 1.2rem;">Indique qu'il n'est "pas payé par Flowup" alors qu'il m'a souligné qu'il touche "plus d'1 smic"</p>
+                        <p><em>J'aime l'argent</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="analyse-video" class="tab-content">
+            <div class="content-section">
+                <h2>🎥 Vidéo d'Analyse</h2>
+                
+                <div class="video-disclaimer">
+                    <strong>Note :</strong> Regardez la vidéo ci-dessous pour une explication plus détaillée et explicite des problèmes identifiés. Cette analyse est indépendante et nous ne sommes pas partenaires avec l'auteur de la vidéo.
+                </div>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/3Q9HImILXxI" 
+                        title="Analyse FlowUp" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                    <img src="https://atlas-corporation.fr/img/configimg.png" alt="Ban Massifs FH" class="benchmark-image">
+                </div>
+
+                <p><em>Cette vidéo présente une analyse détaillée des pratiques de FlowUp. Nous recommandons vivement de la visionner pour comprendre l'ampleur des problèmes identifiés.</em></p>
+            </div>
+                
+            <div class="content-section">
+                <h2>🚨 Problèmes Identifiés</h2>
+                
+                <div class="critique-points">
+                    <h3>Points Critiques Majeurs</h3>
+                    
+                    <div class="point">
+                        <h4>1. Composants Délibérément Surpayés</h4>
+                        <p>FlowUp a intentionnellement sélectionné des composants <span class="highlight">"overpriced"</span> (prix supérieurs au marché actuel). Cette pratique semble viser à gonfler artificiellement le prix final des configurations.</p>
+                    </div>
+
+                    <div class="point">
+                        <h4>2. Choix de Processeur Inadéquat</h4>
+                        <p>Le choix du <strong>9950X3D</strong> pour justifier un PC à 8000€ est particulièrement problématique :</p>
+                        <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                            <li>Moins performant que le <strong>9950X</strong> en rendu</li>
+                            <li>Moins performant que le <strong>9800X3D</strong> pour les jeux vidéos</li>
+                            <li>Choix qui semble fait uniquement pour justifier un prix élevé</li>
+                        </ul>
+                    </div>
+
+                    <div class="point">
+                        <h4>3. Délais de Livraison Non Respectés</h4>
+                        <p>
+                            <span class="delivery-issue">Délai annoncé :</span> 14 jours ouvrés maximum<br>
+                            <span class="delivery-issue">Délai réel :</span> 75 jours de livraison<br>
+                            <em>Soit plus de 5 fois le délai promis !</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>📊 Analyse des Pratiques</h2>
+                
+                <div class="warning-box">
+                    <h3><span class="warning-icon">⚠️</span> Pratiques Commerciales Douteuses</h3>
+                    <p>Les éléments identifiés suggèrent une stratégie commerciale problématique :</p>
+                    <ul style="margin-left: 2rem; margin-top: 1rem;">
+                        <li>Majoration excessive des prix</li>
+                        <li>Sélection de composants inadaptés pour justifier des tarifs élevés</li>
+                        <li>Non-respect des engagements de livraison</li>
+                        <li>Manque de transparence sur les choix techniques</li>
+                    </ul>
+                </div>
+
+                <div class="specs-comparison">
+                    <div class="spec-card">
+                        <h4>Processeur Choisi</h4>
+                        <p><strong>9950X3D</strong></p>
+                        <p class="price-issue">❌ Moins bon en rendu que le 9950X</p>
+                        <p class="price-issue">❌ Moins bon en gaming que le 9800X3D</p>
+                        <p class="price-issue">❌ Prix gonflé</p>
+                    </div>
+                    
+                    <div class="spec-card">
+                        <h4>Alternatives Recommandées</h4>
+                        <p><strong>Pour le rendu :</strong> 9950X</p>
+                        <p><strong>Pour le gaming :</strong> 9800X3D</p>
+                        <p style="color: var(--success);">✅ Meilleures performances</p>
+                        <p style="color: var(--success);">✅ Meilleur rapport qualité/prix</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>💡 Recommandations</h2>
+                <p>Suite à cette analyse, nous recommandons aux consommateurs de :</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem; line-height: 2;">
+                    <li><strong>Comparer les prix</strong> avec d'autres assembleurs</li>
+                    <li><strong>Vérifier la pertinence</strong> des composants choisis</li>
+                    <li><strong>Demander des garanties écrites</strong> sur les délais de livraison</li>
+                    <li><strong>Consulter des avis indépendants</strong> avant tout achat</li>
+                    <li><strong>Privilégier la transparence</strong> dans le choix des composants</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h2>🎉 EN CONCLUSION : BRAVO LES ARTISTES !</h2>
+            <p style="font-size: 1.3rem; margin: 1rem 0;">FrenchHardware/FlowUp nous enseigne que :</p>
+            <ul style="text-align: left; max-width: 700px; margin: 2rem auto; font-size: 1.1rem;">
+                <li>✅ La cohérence c'est SURFAIT</li>
+                <li>✅ Les lois de la physique sont NÉGOCIABLES</li>
+                <li>✅ On peut critiquer ET vendre le même produit</li>
+                <li>✅ Les benchmarks sont une forme d'ART ABSTRAIT</li>
+                <li>✅ Un SSD NVMe peut être plus lent qu'un HDD</li>
+                <li>✅ Dire "c'est bof" puis le vendre = GÉNIE COMMERCIAL</li>
+                <li>✅ Tester le mauvais processeur = CRÉATIVITÉ</li>
+                <li>✅ Donner un PC mal assemblé = MARKETING VIRAL</li>
+                <li>✅ Ignorer les règles d'installation = INNOVATION</li>
+                <li>✅ Vendre des RAM à problèmes en connaissance de cause = TRANSPARENCE (ou pas)</li>
+                <li>✅ Citer un processeur inexistant = EXPERTISE AVANCÉE</li>
+                <li>✅ Contredire ses propres paroles en 2 secondes = MAÎTRISE DE L'ORATOIRE</li>
+                <li>✅ Les sondages Discord à 2% de participation sont "fiables"</li>
+                <li>✅ Bannir les critiques = Excellente gestion de communauté</li>
+            </ul>
+            
+            <div class="roast-box" style="margin: 2rem 0;">
+                <h3>🏆 FÉLICITATIONS FINALES</h3>
+                <p style="font-size: 1.4rem; font-weight: bold;">
+                    Vous avez réussi à transformer l'influence tech en SPECTACLE de CIRQUE !
+                </p>
+                <p style="font-size: 1.2rem;">
+                    🎪 Chapeau les artistes, c'était du grand art ! 👏
+                </p>
+                <p style="font-size: 1.1rem;">
+                    💡 Et merci de nous avoir montré qu'un PC mural mal assemblé fait un influenceur mécontent !
+                </p>
+                <p style="font-size: 1.1rem;">
+                    💡 Et merci de nous avoir appris qu'on peut ignorer la physique DEUX FOIS dans la même chaîne !
+                </p>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            <p><strong>📝 Disclaimer :</strong> Cette page est une satire basée sur des contradictions RÉELLES et DOCUMENTÉES. 
+            Tous les éléments mentionnés sont issus de contenus PUBLICS avec preuves à l'appui. 
+            L'objectif est humoristique et vise à sensibiliser à l'importance de la COHÉRENCE dans les tests tech.
+            🎯 Message : Toujours vérifier par soi-même et garder un œil critique !</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.nav-tab button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            function showTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                tabButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+
+                document.getElementById(tabId).classList.add('active');
+                document.querySelector(`.nav-tab button[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    showTab(tabId);
+                });
+            });
+
+            // Show the first tab by default or based on URL hash
+            const initialTab = window.location.hash ? window.location.hash.substring(1) : 'ssd';
+            if (document.getElementById(initialTab)) {
+                showTab(initialTab);
+            } else {
+                showTab('ssd');
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Card hover effects
+        document.querySelectorAll('.contradiction-card, .content-section').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Performance chart animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.bar');
+                    bars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            bar.style.transform = 'translateY(-5px)';
+                            setTimeout(() => {
+                                bar.style.transform = 'translateY(0)';
+                            }, 300);
+                        }, index * 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.performance-chart').forEach(chart => {
+            observer.observe(chart);
+        });
+    </script>
+</body>
+</html>
