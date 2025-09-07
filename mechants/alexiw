@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étude de Cas - Comportements Problématiques</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #e74c3c;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        .timeline {
+            border-left: 3px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        .timeline-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .problematic {
+            background: #ffebee !important;
+            border-left-color: #e74c3c !important;
+        }
+        .good {
+            background: #e8f5e8 !important;
+            border-left-color: #27ae60 !important;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .analysis {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .red-flag {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .quote {
+            font-style: italic;
+            background: #f5f5f5;
+            padding: 10px;
+            border-left: 3px solid #bdc3c7;
+            margin: 10px 0;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-box {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .lessons {
+            background: #fff9c4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Étude de Cas : Consultation PC Problématique</h1>
+        
+        <div class="warning">
+            <strong>⚠️ Objectif Pédagogique :</strong> Cette analyse vise à identifier les comportements problématiques récurrents pour améliorer notre processus de consultation et former notre communauté.
+        </div>
+
+        <h2>📋 Contexte Initial</h2>
+        <div class="analysis">
+            <strong>Demande :</strong> Configuration PC gaming/gamedev, budget 3000-3500€<br>
+            <strong>Consultant assigné :</strong> HH-Zaxz (expert bénévole)<br>
+            <strong>Durée totale :</strong> 7 jours<br>
+            <strong>Temps investi :</strong> ~3 heures (consultation + vocal)
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">7</div>
+                <div>Jours de suivi</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">15+</div>
+                <div>Modifications demandées</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">2</div>
+                <div>Séances vocales</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">0€</div>
+                <div>Commande finalisée</div>
+            </div>
+        </div>
+
+        <h2>⏰ Chronologie des Événements</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item good">
+                <div class="timeline-date">29/08 - Jour 1</div>
+                <strong>Questionnaire rempli correctement</strong><br>
+                Budget clair, besoins définis, critères esthétiques précisés.
+            </div>
+
+            <div class="timeline-item good">
+                <div class="timeline-date">05/09 - Jour 7</div>
+                <strong>Configuration livrée</strong><br>
+                <div class="quote">"Config en full blanche et 4To SSD et 2x32go de ram et boitier aquarium et total largement en dessous du budget"</div>
+                Prix : 2784€ (sous budget de 716€)
+            </div>
+
+            <div class="timeline-item problematic">
+                <div class="timeline-date">05/09 - 2h après livraison</div>
+                <strong class="red-flag">🚩 Première contestation</strong><br>
+                <div class="quote">"Peut être une question conne mais à ce budget là pk ne peut pas me prendre un processeur un plus cher ?"</div>
+                <strong>Problème :</strong> Remet en question l'expertise sans comprendre les explications
+            </div>
+
+            <div class="timeline-item problematic">
+                <div class="timeline-date">05/09 - Après explications</div>
+                <strong class="red-flag">🚩 Insistance malgré les explications</strong><br>
+                <div class="quote">"Et les autres, j'vois ya plein de amd9 à 500 balles"</div>
+                <strong>Problème :</strong> Confond prix et performance après explications claires
+            </div>
+
+            <div class="timeline-item problematic">
+                <div class="timeline-date">06/09 - Demande de vocal</div>
+                <strong class="red-flag">🚩 Escalade après refus d'écouter</strong><br>
+                Demande un vocal pour rediscuter des points déjà expliqués
+            </div>
+
+            <div class="timeline-item problematic">
+                <div class="timeline-date">06/09 - Après le vocal</div>
+                <strong class="red-flag">🚩 Série de modifications esthétiques</strong><br>
+                <ul>
+                    <li>Changement de boîtier (C8 au lieu de C5)</li>
+                    <li>Ventilateurs RGB spéciaux</li>
+                    <li>RAM RGB blanche</li>
+                    <li>Carte graphique "marque connue" pour l'esthétique</li>
+                    <li>Watercooling "plus stylé"</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item problematic">
+                <div class="timeline-date">07/09 - Point de rupture</div>
+                <strong class="red-flag">🚩 Refus et redirection</strong><br>
+                <div class="quote">"Franchement non aucune envie tu iras chez FH"</div>
+                <strong>Consultant épuisé par les demandes répétitives</strong>
+            </div>
+        </div>
+
+        <h2>🔍 Analyse des Comportements Problématiques</h2>
+
+        <div class="analysis">
+            <h3>1. Non-respect de l'expertise</h3>
+            <p>Malgré les explications sur le 9950X3D ("explosé au sol, que des pertes de perfs"), continue d'insister sur des choix techniquement inadaptés.</p>
+        </div>
+
+        <div class="analysis">
+            <h3>2. Dérive des priorités</h3>
+            <p>Passe d'une demande professionnelle (gamedev) à des préoccupations purement esthétiques ("c'est purement esthétique pour moi").</p>
+        </div>
+
+        <div class="analysis">
+            <h3>3. Gaspillage de temps</h3>
+            <p>Multiplie les canaux (écrit + vocal) pour des points déjà clarifiés, forçant les consultants à répéter les mêmes explications.</p>
+        </div>
+
+        <div class="analysis">
+            <h3>4. Modification excessive post-livraison</h3>
+            <p>Demande des changements majeurs après validation, ignorant le travail déjà fourni.</p>
+        </div>
+
+        <h2>💡 Signaux d'Alarme Identifiés</h2>
+
+        <div class="lessons">
+            <h3>🔴 Red Flags à surveiller :</h3>
+            <ul>
+                <li><strong>"Peut-être une question conne mais..."</strong> → Souvent suivi d'une contestation</li>
+                <li><strong>Demande de vocal après explications écrites</strong> → Perte de temps prévisible</li>
+                <li><strong>"C'est purement esthétique"</strong> → Dérive des priorités techniques</li>
+                <li><strong>Remise en question systématique</strong> → Non-respect de l'expertise</li>
+                <li><strong>Multiplication des modifications</strong> → Indécision chronique</li>
+            </ul>
+        </div>
+
+        <h2>✅ Leçons Apprises</h2>
+
+        <div class="lessons">
+            <h3>Mesures Préventives :</h3>
+            <ul>
+                <li><strong>Limite de modifications :</strong> Maximum 2 ajustements mineurs</li>
+                <li><strong>Politique vocal :</strong> Uniquement pour points complexes non clarifiables par écrit</li>
+                <li><strong>Validation ferme :</strong> Une fois la config livrée, modifications = nouvelle demande</li>
+                <li><strong>Formation utilisateur :</strong> Expliquer pourquoi prix ≠ performance</li>
+                <li><strong>Engagement préalable :</strong> Signature de charte de consultation</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>🎯 Objectif :</strong> Cette analyse vise à protéger le temps précieux de nos consultants bénévoles et à améliorer l'expérience pour tous les membres sérieux de la communauté.
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: #7f8c8d;">
+            <p><em>Hardware Hub Community - Étude de cas pédagogique</em></p>
+            <p><strong>"Apprendre des erreurs pour mieux servir la communauté"</strong></p>
+        </div>
+    </div>
+</body>
+</html>
