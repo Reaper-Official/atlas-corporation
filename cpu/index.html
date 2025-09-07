@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparatif Ryzen 9950X, 9950X3D et 9900X | Atlas Corporation</title>
+    <meta name="description" content="Atlas Corporation - Analyse complète des processeurs Ryzen 9. Découvrez pourquoi le 9950X3D coûte plus cher et quel processeur choisir selon vos besoins.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
+    <link rel="shortcut icon" href="https://atlas-corporation.fr/favicon.ico">
+    <link rel="apple-touch-icon" href="https://atlas-corporation.fr/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Colors */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Layout */
+            --sidebar-width: 320px;
+            --header-height: 64px;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--white);
+            border-right: 1px solid var(--gray-200);
+            z-index: 1000;
+            overflow-y: auto;
+            transition: var(--transition-slow);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-400);
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--gray-900);
+            font-weight: 800;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .sidebar-logo:hover {
+            color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .sidebar-logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-bounce);
+            overflow: hidden;
+        }
+
+        .sidebar-logo-icon img {
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: contain;
+        }
+
+        .sidebar-logo:hover .sidebar-logo-icon {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sidebar-content {
+            padding: 1rem 0 2rem;
+        }
+
+        .nav-section {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            user-select: none;
+            border-radius: 0.5rem;
+            margin: 0 0.75rem;
+        }
+
+        .nav-section-header:hover {
+            background: var(--gray-50);
+        }
+
+        .nav-section-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--gray-700);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-section-toggle {
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            transition: var(--transition);
+            font-size: 0.75rem;
+        }
+
+        .nav-section.collapsed .nav-section-toggle {
+            transform: rotate(-90deg);
+        }
+
+        .nav-section-items {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+
+        .nav-section.collapsed .nav-section-items {
+            max-height: 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.625rem 1.5rem 0.625rem 3rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            position: relative;
+            gap: 0.75rem;
+            border-radius: 0.5rem;
+            margin: 0 0.75rem 0.25rem;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: var(--transition);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .nav-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .nav-item:hover {
+            background: var(--gray-50);
+            color: var(--gray-900);
+            transform: translateX(4px);
+        }
+
+        .nav-item-icon {
+            font-size: 1rem;
+            width: 1.25rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .nav-item-text {
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-badge {
+            font-size: 0.625rem;
+            font-weight: 700;
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.375rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            margin-left: auto;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .nav-badge.hot {
+            background: var(--error);
+            color: white;
+        }
+
+        .nav-badge.new {
+            background: var(--success);
+            color: white;
+        }
+
+        .nav-badge.info {
+            background: var(--warning);
+            color: white;
+        }
+
+        .nav-badge.special {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+        }
+
+        /* Mobile Sidebar */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: 0.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .mobile-toggle:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            background: var(--white);
+        }
+
+        /* Top Header */
+        .top-header {
+            height: var(--header-height);
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .header-cta {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Article Content */
+        .article-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            border-radius: 1rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .article-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .article-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .article-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-slow);
+        }
+
+        .content-section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+
+        .highlight-box strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Truth Boxes */
+        .truth-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .truth-box::before {
+            content: "⚠️ RÉALITÉ : ";
+            color: var(--error);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .myth-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .myth-box::before {
+            content: "✅ FAIT : ";
+            color: var(--success);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin: 2rem 0;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+            color: var(--gray-900);
+            padding: 1rem;
+            font-weight: 700;
+            text-align: left;
+            border-bottom: 2px solid var(--gray-200);
+            font-family: var(--font-sans);
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .comparison-table tr:hover td {
+            background: var(--gray-50);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* CPU Cards */
+        .cpu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .cpu-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cpu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+
+        .cpu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .cpu-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .cpu-price {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .cpu-specs {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .cpu-specs li {
+            padding: 0.25rem 0;
+            color: var(--gray-600);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cpu-specs strong {
+            color: var(--gray-900);
+        }
+
+        /* Performance Bars */
+        .performance-section {
+            margin: 2rem 0;
+        }
+
+        .performance-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .performance-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .performance-bar {
+            height: 0.75rem;
+            background: var(--gray-200);
+            border-radius: 0.375rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .performance-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.375rem;
+            transition: width 1.5s ease;
+            position: relative;
+        }
+
+        .performance-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Recommendations */
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .recommendation-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition-slow);
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .recommendation-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendation-cpu {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .recommendation-description {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Conclusion */
+        .conclusion {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .conclusion h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .conclusion p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay {
+                display: block;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .cpu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recommendations {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-container {
+                padding: 1rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+
+            .recommendations {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.875rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu navigation">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="https://atlas-corporation.fr" class="sidebar-logo">
+                <div class="sidebar-logo-icon">
+                    AC
+                </div>
+                <span>Atlas Corporation</span>
+            </a>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="nav-section">
+                <div class="nav-section-header">
+                    <div class="nav-section-title">
+                        <span>📖</span>
+                        Guide d'achat
+                    </div>
+                    <div class="nav-section-toggle">▼</div>
+                </div>
+                <div class="nav-section-items">
+                    <a href="#mystere" class="nav-item">
+                        <span class="nav-item-icon">🤔</span>
+                        <span class="nav-item-text">Le mystère du pricing</span>
+                    </a>
+                    <a href="#technologie" class="nav-item">
+                        <span class="nav-item-icon">🏗️</span>
+                        <span class="nav-item-text">Technologie 3D V-Cache</span>
+                    </a>
+                    <a href="#comparatif" class="nav-item">
+                        <span class="nav-item-icon">⚔️</span>
+                        <span class="nav-item-text">Comparatif détaillé</span>
+                    </a>
+                    <a href="#benchmarks" class="nav-item">
+                        <span class="nav-item-icon">📊</span>
+                        <span class="nav-item-text">Benchmarks</span>
+                        <span class="nav-badge hot">Hot</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-header">
+                    <div class="nav-section-title">
+                        <span>⚡</span>
+                        Processeurs
+                    </div>
+                    <div class="nav-section-toggle">▼</div>
+                </div>
+                <div class="nav-section-items">
+                    <a href="#9950x3d" class="nav-item">
+                        <span class="nav-item-icon">👑</span>
+                        <span class="nav-item-text">Ryzen 9 9950X3D</span>
+                        <span class="nav-badge special">699€</span>
+                    </a>
+                    <a href="#9950x" class="nav-item">
+                        <span class="nav-item-icon">💪</span>
+                        <span class="nav-item-text">Ryzen 9 9950X</span>
+                        <span class="nav-badge info">549€</span>
+                    </a>
+                    <a href="#9900x" class="nav-item">
+                        <span class="nav-item-icon">💰</span>
+                        <span class="nav-item-text">Ryzen 9 9900X</span>
+                        <span class="nav-badge new">399€</span>
+                    </a>
+                    <a href="#9800x3d" class="nav-item">
+                        <span class="nav-item-icon">🎮</span>
+                        <span class="nav-item-text">Ryzen 7 9800X3D</span>
+                        <span class="nav-badge hot">479€</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-header">
+                    <div class="nav-section-title">
+                        <span>🎯</span>
+                        Recommandations
+                    </div>
+                    <div class="nav-section-toggle">▼</div>
+                </div>
+                <div class="nav-section-items">
+                    <a href="#limitations" class="nav-item">
+                        <span class="nav-item-icon">⚠️</span>
+                        <span class="nav-item-text">Limitations pratiques</span>
+                    </a>
+                    <a href="#marketing" class="nav-item">
+                        <span class="nav-item-icon">🎯</span>
+                        <span class="nav-item-text">Analyse marketing</span>
+                    </a>
+                    <a href="#recommandations" class="nav-item">
+                        <span class="nav-item-icon">💡</span>
+                        <span class="nav-item-text">Guide par usage</span>
+                        <span class="nav-badge new">New</span>
+                    </a>
+                    <a href="#conclusion" class="nav-item">
+                        <span class="nav-item-icon">🏁</span>
+                        <span class="nav-item-text">Verdict final</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-header">
+                    <div class="nav-section-title">
+                        <span>🔗</span>
+                        Liens utiles
+                    </div>
+                    <div class="nav-section-toggle">▼</div>
+                </div>
+                <div class="nav-section-items">
+                    <a href="https://atlas-corporation.fr" class="nav-item">
+                        <span class="nav-item-icon">🏠</span>
+                        <span class="nav-item-text">Accueil</span>
+                    </a>
+                    <a href="https://atlas-corporation.fr/hardware" class="nav-item">
+                        <span class="nav-item-icon">💻</span>
+                        <span class="nav-item-text">Autres guides</span>
+                    </a>
+                    <a href="https://atlas-corporation.fr/contact" class="nav-item">
+                        <span class="nav-item-icon">📧</span>
+                        <span class="nav-item-text">Contact</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-title">Analyse Hardware</div>
+            <a href="https://atlas-corporation.fr" class="header-cta">
+                🏠 Retour Accueil
+            </a>
+        </header>
+
+        <!-- Article Container -->
+        <div class="article-container">
+            <!-- Article Header -->
+            <div class="article-header">
+                <div class="article-badge">
+                    💻 Analyse Hardware
+                </div>
+                <h1 class="article-title">
+                    Comparatif Ryzen 9950X, 9950X3D et 9900X
+                </h1>
+                <p class="article-subtitle">
+                    Pourquoi le Ryzen 9950X3D coûte-t-il plus cher alors que les benchmarks montrent parfois des performances inférieures ? 
+                    Analyse complète des différences, usages et arguments clés de chaque processeur.
+                </p>
+            </div>
+
+            <!-- Introduction -->
+            <section class="content-section" id="mystere">
+                <h2 class="section-title">
+                    <div class="section-icon">🤔</div>
+                    Le mystère du pricing AMD
+                </h2>
+                <div class="highlight-box">
+                    <p><strong>Question centrale :</strong> Comment expliquer qu'un processeur vendu plus cher que ses concurrents puisse offrir des performances parfois inférieures ? Ce document démystifie cette apparente contradiction en analysant les facteurs techniques, marketing et d'usage qui justifient ces écarts de prix.</p>
+                </div>
+                <p>Les prix des processeurs ne reflètent pas uniquement les performances brutes. Plusieurs facteurs complexes entrent en jeu : coût de production des technologies embarquées, positionnement marketing stratégique, segmentation de marché et optimisation pour des cas d'usage spécifiques. Le Ryzen 9950X3D illustre parfaitement cette complexité du marché des CPU modernes.</p>
+            </section>
+
+            <!-- Technologie 3D V-Cache -->
+            <section class="content-section" id="technologie">
+                <h2 class="section-title">
+                    <div class="section-icon">🏗️</div>
+                    La technologie 3D V-Cache décryptée
+                </h2>
+                
+                <div class="myth-box">
+                    <p><strong>Principe technique :</strong> Le 3D V-Cache est une couche supplémentaire de mémoire cache L3 empilée verticalement sur le die du processeur. Cette innovation augmente drastiquement la quantité de données immédiatement accessibles au CPU, réduisant les latences d'accès à la RAM système.</p>
+                </div>
+
+                <h3 style="color: var(--gray-700); margin: 2rem 0 1rem; font-size: 1.25rem;">Impact sur les performances</h3>
+                
+                <div class="performance-section">
+                    <div class="performance-item">
+                        <div class="performance-label">
+                            <span><strong>Gaming 1080p (CPU-limité)</strong></span>
+                            <span style="color: var(--accent); font-weight: 600;">+15-25%</span>
+                        </div>
+                        <div class="performance-bar">
+                            <div class="performance-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-item">
+                        <div class="performance-label">
+                            <span><strong>Gaming 1440p</strong></span>
+                            <span style="color: var(--warning); font-weight: 600;">+5-8%</span>
+                        </div>
+                        <div class="performance-bar">
+                            <div class="performance-fill" style="width: 35%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-item">
+                        <div class="performance-label">
+                            <span><strong>Gaming 4K</strong></span>
+                            <span style="color: var(--gray-500); font-weight: 600;">+1-3%</span>
+                        </div>
+                        <div class="performance-bar">
+                            <div class="performance-fill" style="width: 15%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-item">
+                        <div class="performance-label">
+                            <span><strong>Productivité générale</strong></span>
+                            <span style="color: var(--error); font-weight: 600;">-3-5%</span>
+                        </div>
+                        <div class="performance-bar">
+                            <div class="performance-fill" style="width: 25%; background: linear-gradient(90deg, var(--error) 0%, #ff7675 100%);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="truth-box">
+                    <p><strong>Coût de production :</strong> La technologie 3D V-Cache augmente les coûts de fabrication de 40 à 60% par rapport à un processeur classique. Cette complexité technique explique en grande partie l'écart de prix de 150€ entre le 9950X3D et le 9950X standard, indépendamment des performances effectives.</p>
+                </div>
+            </section>
+
+            <!-- Comparatif des processeurs -->
+            <section class="content-section" id="comparatif">
+                <h2 class="section-title">
+                    <div class="section-icon">⚔️</div>
+                    Comparatif détaillé des processeurs
+                </h2>
+
+                <div class="cpu-grid">
+                    <div class="cpu-card" id="9950x3d">
+                        <h3 class="cpu-name">Ryzen 9 9950X3D</h3>
+                        <div class="cpu-price">699€</div>
+                        <ul class="cpu-specs">
+                            <li><strong>Cœurs/Threads :</strong> <span>16C/32T</span></li>
+                            <li><strong>Fréquence boost :</strong> <span>5.7 GHz</span></li>
+                            <li><strong>Cache L3 :</strong> <span>128 Mo</span></li>
+                            <li><strong>TDP :</strong> <span>170W</span></li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Points forts :</strong> Performances gaming exceptionnelles en 1080p, cache massif pour les applications spécialisées</p>
+                            <p><strong>Limites :</strong> Prix élevé, performances productivité inférieures, fréquences bridées</p>
+                        </div>
+                    </div>
+
+                    <div class="cpu-card" id="9950x">
+                        <h3 class="cpu-name">Ryzen 9 9950X</h3>
+                        <div class="cpu-price">549€</div>
+                        <ul class="cpu-specs">
+                            <li><strong>Cœurs/Threads :</strong> <span>16C/32T</span></li>
+                            <li><strong>Fréquence boost :</strong> <span>5.7 GHz</span></li>
+                            <li><strong>Cache L3 :</strong> <span>64 Mo</span></li>
+                            <li><strong>TDP :</strong> <span>170W</span></li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Points forts :</strong> Polyvalence maximale, excellent en productivité, prix rationnel</p>
+                            <p><strong>Limites :</strong> Gaming légèrement inférieur au 9950X3D en 1080p</p>
+                        </div>
+                    </div>
+
+                    <div class="cpu-card" id="9900x">
+                        <h3 class="cpu-name">Ryzen 9 9900X</h3>
+                        <div class="cpu-price">399€</div>
+                        <ul class="cpu-specs">
+                            <li><strong>Cœurs/Threads :</strong> <span>12C/24T</span></li>
+                            <li><strong>Fréquence boost :</strong> <span>5.6 GHz</span></li>
+                            <li><strong>Cache L3 :</strong> <span>64 Mo</span></li>
+                            <li><strong>TDP :</strong> <span>120W</span></li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Points forts :</strong> Excellent rapport qualité-prix, suffisant pour 90% des usages</p>
+                            <p><strong>Limites :</strong> Moins de cœurs, performances brutes inférieures</p>
+                        </div>
+                    </div>
+
+                    <div class="cpu-card" id="9800x3d">
+                        <h3 class="cpu-name">Ryzen 7 9800X3D</h3>
+                        <div class="cpu-price">479€</div>
+                        <ul class="cpu-specs">
+                            <li><strong>Cœurs/Threads :</strong> <span>8C/16T</span></li>
+                            <li><strong>Fréquence boost :</strong> <span>5.2 GHz</span></li>
+                            <li><strong>Cache L3 :</strong> <span>96 Mo</span></li>
+                            <li><strong>TDP :</strong> <span>120W</span></li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Points forts :</strong> Roi du gaming pur, meilleur rapport perf/prix gaming</p>
+                            <p><strong>Limites :</strong> Moins adapté aux charges multithread lourdes</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tableau de benchmarks -->
+            <section class="content-section" id="benchmarks">
+                <h2 class="section-title">
+                    <div class="section-icon">📊</div>
+                    Benchmarks et performances réelles
+                </h2>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Processeur</th>
+                            <th>Gaming 1080p</th>
+                            <th>Gaming 1440p</th>
+                            <th>Gaming 4K</th>
+                            <th>Productivité</th>
+                            <th>Rapport qualité-prix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>9950X3D</strong></td>
+                            <td style="color: var(--success); font-weight: 600;">185 FPS</td>
+                            <td style="color: var(--accent); font-weight: 600;">142 FPS</td>
+                            <td style="color: var(--gray-600);">95 FPS</td>
+                            <td style="color: var(--warning);">95%</td>
+                            <td style="color: var(--error);">⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9950X</strong></td>
+                            <td style="color: var(--accent); font-weight: 600;">165 FPS</td>
+                            <td style="color: var(--accent); font-weight: 600;">140 FPS</td>
+                            <td style="color: var(--gray-600);">95 FPS</td>
+                            <td style="color: var(--success);">100%</td>
+                            <td style="color: var(--accent);">⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9900X</strong></td>
+                            <td style="color: var(--gray-600);">160 FPS</td>
+                            <td style="color: var(--gray-600);">135 FPS</td>
+                            <td style="color: var(--gray-600);">93 FPS</td>
+                            <td style="color: var(--accent);">85%</td>
+                            <td style="color: var(--success);">⭐⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9800X3D</strong></td>
+                            <td style="color: var(--success); font-weight: 600;">190 FPS</td>
+                            <td style="color: var(--success); font-weight: 600;">145 FPS</td>
+                            <td style="color: var(--gray-600);">95 FPS</td>
+                            <td style="color: var(--error);">78%</td>
+                            <td style="color: var(--success);">⭐⭐⭐⭐⭐</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="truth-box">
+                    <p><strong>Révélation surprenante :</strong> Le Ryzen 7 9800X3D à 479€ surpasse le 9950X3D à 699€ en gaming pur ! Cette situation illustre parfaitement l'incohérence du positionnement "flagship gaming" du 9950X3D. AMD a créé une hiérarchie de prix qui ne correspond pas à la hiérarchie de performances.</p>
+                </div>
+            </section>
+
+            <!-- Limitations pratiques -->
+            <section class="content-section" id="limitations">
+                <h2 class="section-title">
+                    <div class="section-icon">⚠️</div>
+                    Limitations pratiques importantes
+                </h2>
+
+                <h3 style="color: var(--gray-700); margin: 1.5rem 0 1rem; font-size: 1.25rem;">Impact de la résolution sur l'utilité du 3D V-Cache</h3>
+                
+                <div class="highlight-box">
+                    <p><strong>Facteur critique :</strong> Avec une carte graphique haut de gamme (RTX 4080/4090), l'avantage du 3D V-Cache diminue drastiquement avec l'augmentation de la résolution :</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem; color: var(--gray-700);">
+                        <li><strong>1080p :</strong> CPU devient le facteur limitant → Avantage 3D V-Cache maximal</li>
+                        <li><strong>1440p :</strong> Équilibre CPU/GPU → Avantage réduit à 5-8%</li>
+                        <li><strong>4K :</strong> GPU devient le goulot → Avantage quasi-nul (1-3%)</li>
+                    </ul>
+                </div>
+
+                <div class="myth-box">
+                    <p><strong>Réalité du marché :</strong> 95% des gamers jouent en 1440p ou 4K avec des cartes graphiques modernes. Pour cette majorité, l'investissement dans un 9950X3D devient économiquement irrationnel, l'amélioration étant imperceptible par rapport au surcoût de 300€ versus un 9900X.</p>
+                </div>
+            </section>
+
+            <!-- Positionnement marketing -->
+            <section class="content-section" id="marketing">
+                <h2 class="section-title">
+                    <div class="section-icon">🎯</div>
+                    Analyse du positionnement marketing AMD
+                </h2>
+                
+                <p>AMD a stratégiquement positionné le 9950X3D comme son modèle "flagship gaming" pour justifier un prix premium, créant une hiérarchie artificielle qui ne reflète pas les performances réelles :</p>
+                
+                <div class="cpu-grid">
+                    <div style="background: var(--gray-50); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid var(--gray-200);">
+                        <h4 style="color: var(--accent); margin-bottom: 0.75rem; font-size: 1.1rem;">Positionnement officiel AMD</h4>
+                        <ul style="color: var(--gray-600); line-height: 1.8;">
+                            <li>9950X3D → "Ultimate Gaming Flagship"</li>
+                            <li>9950X → "Créateur & Polyvalent"</li>
+                            <li>9900X → "Performance Mainstream"</li>
+                            <li>9800X3D → "Gaming Specialized"</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: var(--gray-50); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid var(--gray-200);">
+                        <h4 style="color: var(--error); margin-bottom: 0.75rem; font-size: 1.1rem;">Réalité des performances</h4>
+                        <ul style="color: var(--gray-600); line-height: 1.8;">
+                            <li>9800X3D → Meilleur en gaming pur</li>
+                            <li>9950X → Plus polyvalent que le 9950X3D</li>
+                            <li>9900X → 90% des perf pour 43% du prix</li>
+                            <li>9950X3D → Premium injustifié</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="truth-box">
+                    <p><strong>Stratégie commerciale :</strong> Le prix élevé du 9950X3D sert principalement à valoriser l'ensemble de la gamme par effet de halo. AMD compte sur l'effet psychologique du "produit le plus cher = le meilleur" et sur l'ignorance technique du consommateur moyen pour maintenir cette segmentation artificielle.</p>
+                </div>
+            </section>
+
+            <!-- Recommandations -->
+            <section class="content-section" id="recommandations">
+                <h2 class="section-title">
+                    <div class="section-icon">🎯</div>
+                    Recommandations par usage
+                </h2>
+
+                <div class="recommendations">
+                    <div class="recommendation-card">
+                        <div class="recommendation-icon">🎮</div>
+                        <h3 class="recommendation-title">Gaming Compétitif 1080p</h3>
+                        <div class="recommendation-cpu">Ryzen 7 9800X3D</div>
+                        <p class="recommendation-description">
+                            Le champion incontesté du gaming pur. Performances supérieures au 9950X3D pour 220€ de moins. Choix logique pour l'esport et le gaming haute fréquence.
+                        </p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <div class="recommendation-icon">🏢</div>
+                        <h3 class="recommendation-title">Productivité & Création</h3>
+                        <div class="recommendation-cpu">Ryzen 9 9950X</div>
+                        <p class="recommendation-description">
+                            Le vrai polyvalent. Excellent en création de contenu, streaming, et développement. 150€ moins cher que le 9950X3D avec de meilleures performances professionnelles.
+                        </p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <div class="recommendation-icon">💰</div>
+                        <h3 class="recommendation-title">Rapport Qualité-Prix</h3>
+                        <div class="recommendation-cpu">Ryzen 9 9900X</div>
+                        <p class="recommendation-description">
+                            Le choix intelligent. Fait 90% du travail des processeurs plus chers pour moins de 400€. Parfait pour du gaming 1440p/4K et de la bureautique avancée.
+                        </p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <div class="recommendation-icon">🎪</div>
+                        <h3 class="recommendation-title">Budget Illimité</h3>
+                        <div class="recommendation-cpu">Ryzen 9 9950X3D</div>
+                        <p class="recommendation-description">
+                            Pour les collectionneurs et les utilisateurs avec un budget sans limite qui veulent le processeur le plus cher, indépendamment de l'efficacité économique.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conclusion -->
+            <div class="conclusion" id="conclusion">
+                <h2>Verdict Final</h2>
+                <p>
+                    Le Ryzen 9950X3D coûte plus cher en raison de sa technologie 3D V-Cache coûteuse et de son positionnement marketing premium, 
+                    mais il n'est objectivement pas le meilleur choix pour la majorité des utilisateurs. 
+                    <strong>Investissez plutôt les 300€ d'économie dans une meilleure carte graphique</strong> - l'impact sur vos performances sera réel et mesurable, 
+                    contrairement au surcoût du 9950X3D qui reste théorique dans 95% des cas d'usage.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sidebar Management
+        class SidebarManager {
+            constructor() {
+                this.sidebar = document.getElementById('sidebar');
+                this.overlay = document.getElementById('sidebarOverlay');
+                this.toggle = document.getElementById('mobileToggle');
+                this.sectionHeaders = document.querySelectorAll('.nav-section-header');
+                this.isOpen = false;
+                
+                this.init();
+            }
+
+            init() {
+                this.toggle?.addEventListener('click', () => this.toggleSidebar());
+                this.overlay?.addEventListener('click', () => this.closeSidebar());
+                
+                this.sectionHeaders.forEach(header => {
+                    header.addEventListener('click', () => this.toggleSection(header));
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.isOpen) {
+                        this.closeSidebar();
+                    }
+                });
+
+                this.setSectionHeights();
+            }
+
+            setSectionHeights() {
+                document.querySelectorAll('.nav-section-items').forEach(items => {
+                    if (!items.parentElement.classList.contains('collapsed')) {
+                        items.style.maxHeight = items.scrollHeight + 'px';
+                    } else {
+                        items.style.maxHeight = '0px';
+                    }
+                });
+            }
+
+            toggleSection(header) {
+                const section = header.parentElement;
+                const items = section.querySelector('.nav-section-items');
+                const toggle = header.querySelector('.nav-section-toggle');
+                
+                if (section.classList.contains('collapsed')) {
+                    section.classList.remove('collapsed');
+                    items.style.maxHeight = items.scrollHeight + 'px';
+                    toggle.style.transform = 'rotate(0deg)';
+                } else {
+                    section.classList.add('collapsed');
+                    items.style.maxHeight = '0px';
+                    toggle.style.transform = 'rotate(-90deg)';
+                }
+            }
+
+            toggleSidebar() {
+                this.isOpen ? this.closeSidebar() : this.openSidebar();
+            }
+
+            openSidebar() {
+                this.sidebar?.classList.add('mobile-open');
+                this.overlay?.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                this.isOpen = true;
+            }
+
+            closeSidebar() {
+                this.sidebar?.classList.remove('mobile-open');
+                this.overlay?.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                this.isOpen = false;
+            }
+        }
+
+        // Animation des barres de performance
+        class PerformanceAnimations {
+            constructor() {
+                this.observer = new IntersectionObserver(
+                    this.handleIntersection.bind(this),
+                    { threshold: 0.3 }
+                );
+                this.init();
+            }
+
+            init() {
+                document.querySelectorAll('.performance-fill').forEach(bar => {
+                    this.observer.observe(bar);
+                });
+            }
+
+            handleIntersection(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0%';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 200);
+                        this.observer.unobserve(entry.target);
+                    }
+                });
+            }
+        }
+
+        // Scroll Animations
+        class ScrollAnimations {
+            constructor() {
+                this.elements = document.querySelectorAll('.content-section, .cpu-card, .recommendation-card');
+                this.observer = new IntersectionObserver(
+                    this.handleIntersection.bind(this),
+                    { 
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    }
+                );
+                this.init();
+            }
+
+            init() {
+                this.elements.forEach((element, index) => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(30px)';
+                    element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                    this.observer.observe(element);
+                });
+            }
+
+            handleIntersection(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        this.observer.unobserve(entry.target);
+                    }
+                });
+            }
+        }
+
+        // Smooth scroll for navigation links
+        document.addEventListener('DOMContentLoaded', () => {
+            new SidebarManager();
+            new PerformanceAnimations();
+            new ScrollAnimations();
+
+            // Add smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Close sidebar on mobile after clicking
+                        if (window.innerWidth <= 1024) {
+                            const sidebar = document.getElementById('sidebar');
+                            const overlay = document.getElementById('sidebarOverlay');
+                            sidebar?.classList.remove('mobile-open');
+                            overlay?.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Responsive
+        window.addEventListener('resize', () => {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth > 1024 && sidebar?.classList.contains('mobile-open')) {
+                sidebar.classList.remove('mobile-open');
+                document.getElementById('sidebarOverlay')?.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script
