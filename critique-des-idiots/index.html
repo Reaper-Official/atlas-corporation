@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hub Critique des Influenceurs Tech - Atlas Corporation</title>
-    <meta name="description" content="Atlas Corporation - Analyses critiques des pratiques d'influenceurs tech français. FrenchHardware, SoloTech, PAX et plus.">
+    <meta name="description" content="Atlas Corporation - Analyses critiques des pratiques d'influenceurs tech français. FrenchHardware, SoloTech, PAX, Benjy_ Hardware et plus.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎭</text></svg>">
@@ -25,6 +25,8 @@
             --success: #10b981;
             --warning: #f59e0b;
             --error: #ef4444;
+            --purple: #8b5cf6;
+            --purple-light: #a78bfa;
             --white: #ffffff;
             --gray-50: #f9fafb;
             --gray-100: #f3f4f6;
@@ -355,6 +357,11 @@
         }
 
         .nav-card:nth-child(4) {
+            --card-accent: var(--purple);
+            --card-accent-light: var(--purple-light);
+        }
+
+        .nav-card:nth-child(5) {
             --card-accent: var(--success);
             --card-accent-light: #6ee7b7;
         }
@@ -727,6 +734,16 @@
                             Analyse des erreurs techniques et des recommandations dangereuses.
                         </p>
                         <span class="nav-arrow" aria-hidden="true">Analyser</span>
+                    </a>
+
+                    <a href="benjy_hardware.html" class="nav-card" role="listitem" aria-describedby="bh-desc">
+                        <div class="nav-icon" aria-hidden="true">BH</div>
+                        <h3 class="nav-title">Benjy Hardware</h3>
+                        <p class="nav-description" id="bh-desc">
+                            Quizz de niveau CE2 et défense discutable de Corsair malgré les problèmes documentés. 
+                            L'expertise hardware qui rencontre les conflits d'intérêts commerciaux.
+                        </p>
+                        <span class="nav-arrow" aria-hidden="true">Examiner</span>
                     </a>
                     
                     <a href="manuizine.html" class="nav-card" role="listitem" aria-describedby="mnz-desc">
