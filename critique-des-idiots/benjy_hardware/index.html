@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuizine : Le Champion des configs bancales - Atlas Corporation</title>
-    <meta name="description" content="Analyse critique satirique des configurations de Manuizine.">
+    <title>Benjy_ Hardware : L'Expert Hardware - Atlas Corporation</title>
+    <meta name="description" content="Analyse critique des contenus de Benjy_ Hardware : quizz simplistes et défense discutable de Corsair malgré les problèmes documentés.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
@@ -16,15 +16,27 @@
     
     <style>
         :root {
-            /* Colors */
+            /* Colors - Purple Theme */
             --primary: #1a1a1a;
             --secondary: #f8fafc;
-            --accent: #1ad309;
-            --accent-hover: #59df00bd;
-            --accent-light: #13eb0c;
+            --accent: #8b5cf6;
+            --accent-hover: #7c3aed;
+            --accent-light: #a78bfa;
+            --accent-dark: #6d28d9;
+            --purple-50: #faf5ff;
+            --purple-100: #f3e8ff;
+            --purple-200: #e9d5ff;
+            --purple-300: #d8b4fe;
+            --purple-400: #c084fc;
+            --purple-500: #a855f7;
+            --purple-600: #9333ea;
+            --purple-700: #7e22ce;
+            --purple-800: #6b21a8;
+            --purple-900: #581c87;
             --success: #10b981;
-            --warning: #076b18;
+            --warning: #f59e0b;
             --error: #ef4444;
+            --quiz-yellow: #fbbf24;
             --white: #ffffff;
             --gray-50: #f9fafb;
             --gray-100: #f3f4f6;
@@ -50,6 +62,7 @@
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-purple: 0 10px 25px -5px rgba(139, 92, 246, 0.3);
             
             /* Transitions */
             --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -85,7 +98,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23fcd34d" opacity="0.1"/><circle cx="75" cy="75" r="0.5" fill="%23f59e0b" opacity="0.1"/><circle cx="50" cy="10" r="0.8" fill="%23d97706" opacity="0.05"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23a78bfa" opacity="0.1"/><circle cx="75" cy="75" r="0.5" fill="%238b5cf6" opacity="0.1"/><circle cx="50" cy="10" r="0.8" fill="%237c3aed" opacity="0.05"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
             pointer-events: none;
             z-index: -1;
         }
@@ -165,12 +178,48 @@
             padding: 0 2rem;
         }
 
-        .center-container {
-            display: flex;
-            justify-content: center;
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--purple-50) 0%, var(--white) 100%);
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero-badge {
+            display: inline-flex;
             align-items: center;
-            width: 100%;
-            padding: 20px;
+            gap: 0.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 2rem;
         }
 
         .home-button {
@@ -209,18 +258,11 @@
             box-shadow: 
                 0 12px 35px rgba(0, 0, 0, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            border-color: #667eea;
+            border-color: var(--accent);
         }
 
         .home-button:hover::before {
             left: 100%;
-        }
-
-        .home-button:active {
-            transform: translateY(-1px);
-            box-shadow: 
-                0 6px 20px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
         }
 
         .home-icon {
@@ -229,74 +271,12 @@
             fill: currentColor;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #fffbeb 0%, var(--white) 100%);
-            text-align: center;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--error);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            line-height: 1.1;
-            color: var(--gray-900);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title .highlight {
-            background: linear-gradient(135deg, var(--error) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Satirical Note */
-        .satirical-note {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
-            border: 2px solid var(--error);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .satirical-note h3 {
-            color: var(--error);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .center-container {
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-        }
-
-        .satirical-note p {
-            color: var(--gray-700);
-            font-style: italic;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
         }
 
         /* Section Cards */
@@ -319,7 +299,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--error) 0%, var(--accent) 100%);
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
             transform: scaleX(0);
             transition: var(--transition-slow);
         }
@@ -330,8 +310,8 @@
 
         .section-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--error);
+            box-shadow: var(--shadow-purple);
+            border-color: var(--accent);
         }
 
         .section-header {
@@ -344,7 +324,7 @@
         .section-icon {
             width: 3rem;
             height: 3rem;
-            background: linear-gradient(135deg, var(--warning) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
             border-radius: 0.75rem;
             display: flex;
             align-items: center;
@@ -366,81 +346,149 @@
             margin-top: 0.25rem;
         }
 
-        /* Power Calculation Box */
-        .power-calc {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(245, 158, 11, 0.05));
-            border: 2px solid var(--error);
+        /* Problem Cards */
+        .problem-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(167, 139, 250, 0.02) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
             border-radius: 1rem;
             padding: 2rem;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
         }
 
-        .power-calc h4 {
-            color: var(--error);
-            font-size: 1.5rem;
+        .problem-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .calc-table {
-            width: 100%;
-            border-collapse: collapse;
+        .problem-content {
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+
+        .problem-list {
+            list-style: none;
+            padding: 0;
             margin: 1rem 0;
-            background: white;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: var(--shadow);
         }
 
-        .calc-table th, .calc-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--gray-200);
+        .problem-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            position: relative;
+            padding-left: 2rem;
         }
 
-        .calc-table th {
-            background: var(--gray-50);
-            font-weight: 600;
-            color: var(--gray-900);
+        .problem-list li::before {
+            content: '🎯';
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
         }
 
-        .calc-table .danger {
+        /* Quiz Section */
+        .quiz-card {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+            border: 2px solid var(--quiz-yellow);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quiz-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--quiz-yellow);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .quiz-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        /* Corsair Defense */
+        .corsair-card {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            border: 2px solid var(--error);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .corsair-title {
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--error);
-            font-weight: bold;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .calc-table .total-row {
-            background: rgba(239, 68, 68, 0.1);
+        .quote-box {
+            background: var(--white);
+            border: 2px solid var(--error);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: -0.5rem;
+            left: 1rem;
+            background: var(--white);
+            color: var(--error);
+            font-size: 3rem;
             font-weight: bold;
+            padding: 0 0.5rem;
+        }
+
+        .quote-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--error);
+            text-align: center;
+            font-style: italic;
         }
 
         /* Warning Box */
         .warning-box {
-            background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
-            color: white;
-            padding: 2rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border: 2px solid var(--accent);
             border-radius: 1rem;
+            padding: 2rem;
             margin: 2rem 0;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            animation: warning-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes warning-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
         }
 
         .warning-title {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+        }
+
+        .warning-content {
+            color: var(--gray-700);
+            line-height: 1.7;
         }
 
         /* Video Container */
@@ -466,83 +514,98 @@
             height: auto;
             border-radius: 0.75rem;
             box-shadow: var(--shadow-lg);
+            margin-bottom: 1rem;
         }
 
         .video-warning {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            color: var(--error);
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            color: var(--accent);
             padding: 1rem;
             border-radius: 0.5rem;
             margin-top: 1rem;
             font-weight: 500;
         }
 
-        /* Quote Box */
-        .quote-box {
-            background: linear-gradient(135deg, var(--warning) 0%, var(--accent) 100%);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
             margin: 2rem 0;
-            text-align: center;
-            font-size: 1.25rem;
-            font-weight: 600;
-            font-style: italic;
-            position: relative;
+        }
+
+        .image-item {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .image-item:hover {
+            transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
 
-        .quote-box::before {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            opacity: 0.3;
+        .image-item img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .quote-box::after {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            bottom: -30px;
-            right: 20px;
-            opacity: 0.3;
+        .image-caption {
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 500;
         }
 
-        /* Problems List */
-        .problems-list {
+        /* Best Practices */
+        .best-practices {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .best-practices h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .practices-list {
             list-style: none;
             padding: 0;
-            margin: 2rem 0;
         }
 
-        .problems-list li {
-            background: rgba(239, 68, 68, 0.05);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+        .practices-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
-            padding-left: 3rem;
+            padding-left: 2rem;
         }
 
-        .problems-list li::before {
-            content: '⚠️';
+        .practices-list li::before {
+            content: '🛡️';
             position: absolute;
-            left: 1rem;
-            top: 15px;
-            font-size: 1.5rem;
+            left: 0;
+            font-size: 1rem;
         }
 
-        .problems-list li strong {
-            color: var(--error);
+        .practices-list li:last-child {
+            border-bottom: none;
         }
 
         /* Summary Box */
         .summary-box {
-            background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
             color: white;
             padding: 2.5rem;
             border-radius: 1.5rem;
@@ -581,6 +644,21 @@
             font-size: 1.25rem;
         }
 
+        /* Level Badge */
+        .level-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid var(--quiz-yellow);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--quiz-yellow);
+            margin-bottom: 1rem;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -605,17 +683,8 @@
                 gap: 0.5rem;
             }
 
-            .calc-table {
-                font-size: 0.875rem;
-            }
-
-            .calc-table th, .calc-table td {
-                padding: 0.5rem;
-            }
-
-            .quote-box {
-                font-size: 1.125rem;
-                padding: 2rem;
+            .image-gallery {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -624,11 +693,11 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <a href="#" class="logo">
-                <div class="logo-icon">⚡</div>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🧪</div>
                 <span>Atlas Corporation</span>
             </a>
-            <a href="https://atlas-corporation.fr/critique-des-idiots" class="header-cta">
+            <a href="index.html" class="header-cta">
                 ← Retour au Hub
             </a>
         </nav>
@@ -638,7 +707,11 @@
     <section class="hero">
         <div class="container">
             <div class="hero-badge">
-                ⚠️ <span>DANGER - Configuration à Risque</span>
+                <span>Analyse critique</span>
+            </div>
+            
+            <div>
+                <span><img src="https://atlas-corporation.fr/favicon.ico" alt="Atlas Corporation"></span>
             </div>
             
             <div class="center-container">
@@ -649,18 +722,300 @@
                     Retour à l'accueil
                 </a>
             </div>
-
+            
             <h1 class="hero-title">
-                <span class="highlight">Benjy_Hardware</span> : L'Hardware Française n'a qu'à bien se tenir !
+                <span class="highlight">Benjy_ Hardware</span> : L'Expert Hardware
             </h1>
 
-            
+            <p class="hero-description">
+                Analyse critique des contenus de Benjy_ Hardware : entre quizz simplistes et 
+                défense discutable de Corsair malgré les problèmes documentés.
+            </p>
         </div>
     </section>
 
-    <main>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Quiz Section -->
+        <div class="section-card">
+            <div class="quiz-card">
+                <h2 class="quiz-title">
+                    <span>🧒</span>
+                    Les Quizz "Hardware" : Niveau École Primaire
+                </h2>
+                
+                <div class="level-badge">
+                    <span>📚</span>
+                    Niveau : CE2
+                </div>
+                
+                <p class="quiz-subtitle">
+                    Quand l'expertise hardware rencontre le contenu pour enfants... 🎪
+                </p>
 
-        
+                <div class="video-container">
+                    <h4>🎥 Quizz Hardware #1 - Les Bases Ultra-Basiques</h4>
+                    <video controls preload="metadata" style="max-height: 400px;">
+                        <source src="https://fichiers.atlas-corporation.fr/videostock/benjyhardwarequizz1.mp4" type="video/mp4">
+                        <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                    </video>
+                    <div class="video-warning">
+                        🎯 Questions d'un niveau surprenant pour un "expert" hardware
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <h4>🎥 Quizz Hardware #2 - La Suite Pas Plus Compliquée</h4>
+                    <video controls preload="metadata" style="max-height: 400px;">
+                        <source src="https://fichiers.atlas-corporation.fr/videostock/benjyhardwarequizz2.mp4" type="video/mp4">
+                        <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                    </video>
+                    <div class="video-warning">
+                        🧸 Contenu adapté aux débutants... très débutants
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <h4 class="problem-title">
+                        <span>🎪</span>
+                        Problèmes des Quizz Simplistes
+                    </h4>
+                    <ul class="problem-list">
+                        <li>Questions d'un niveau CE2 pour un "expert" hardware</li>
+                        <li>Aucune complexité technique abordée</li>
+                        <li>Contenu infantilisant pour l'audience cible</li>
+                        <li>Décalage avec l'image d'expertise revendiquée</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Corsair Defense Section -->
+        <div class="section-card">
+            <div class="corsair-card">
+                <h2 class="corsair-title">
+                    <span>🤝</span>
+                    La Défense de Corsair : Conflits d'Intérêts
+                </h2>
+
+                <div class="warning-box">
+                    <h4 class="warning-title">
+                        <span>⚠️</span>
+                        Problèmes Corsair Documentés
+                    </h4>
+                    <div class="warning-content">
+                        <p>Les problèmes de la RAM Corsair sont largement documentés sur 
+                        <a href="https://atlas-corporation.fr/ram_corsair/" target="_blank" style="color: var(--accent); text-decoration: underline;">
+                            Atlas Corporation
+                        </a>, avec des preuves techniques détaillées.</p>
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <h4>🎥 Collaboration Corsair - Conflit d'Intérêts Évident</h4>
+                    <video controls preload="metadata" style="max-height: 400px;">
+                        <source src="https://fichiers.atlas-corporation.fr/videostock/benjyhardwarecollabcorsair.mp4" type="video/mp4">
+                        <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                    </video>
+                    <div class="video-warning">
+                        💰 Collaboration commerciale avec la marque défendue
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <h4>🎥 Critique Sélective - RAM Corsair Épargnée</h4>
+                    <video controls preload="metadata" style="max-height: 400px;">
+                        <source src="https://fichiers.atlas-corporation.fr/videostock/benjyhardwarejugementconfigavecramcorsair.mp4" type="video/mp4">
+                        <p>Votre navigateur ne supporte pas la lecture de cette vidéo.</p>
+                    </video>
+                    <div class="video-warning">
+                        🎯 Critique le 5600X mais épargne mystérieusement la RAM Corsair
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    <p class="quote-text">
+                        "Toi aussi tu l'aurais pris si on te l'avait offert"
+                    </p>
+                </div>
+
+                <div class="image-gallery">
+                    <div class="image-item">
+                        <img src="https://atlas-corporation.fr/img/benjyhardwaredefendcorsair.png" alt="Défense Corsair par Benjy">
+                        <div class="image-caption">
+                            La défense de Corsair avec l'argument du "cadeau offert" - 
+                            Quand l'objectivité rencontre les intérêts commerciaux
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <h4 class="problem-title">
+                        <span>🤔</span>
+                        Incohérences dans l'Approche Critique
+                    </h4>
+                    <ul class="problem-list">
+                        <li>Collaboration commerciale avec Corsair documentée</li>
+                        <li>Critique sélective : AMD oui, Corsair non</li>
+                        <li>Justification douteuse par l'argument du "cadeau"</li>
+                        <li>Ignorance des problèmes techniques documentés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Analysis Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon">🔬</div>
+                <div>
+                    <h2 class="section-title">Analyse du Niveau Technique</h2>
+                    <p class="section-subtitle">Entre simplisme et partialité</p>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <h4 class="problem-title">
+                    <span>📉</span>
+                    Problèmes de Crédibilité
+                </h4>
+                <div class="problem-content">
+                    <p><strong>Contenu simplifié à l'extrême :</strong> Quizz d'un niveau inadapté à l'expertise revendiquée</p>
+                    <p><strong>Conflits d'intérêts :</strong> Défense de marques partenaires malgré les problèmes techniques</p>
+                    <p><strong>Critique sélective :</strong> Deux poids, deux mesures selon les relations commerciales</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4 class="warning-title">
+                    <span>🎭</span>
+                    Le Paradoxe de l'Expertise
+                </h4>
+                <div class="warning-content">
+                    <p>Comment concilier des quizz de niveau CE2 avec une image d'expert hardware ? 
+                    Le décalage est saisissant entre le contenu proposé et l'expertise revendiquée.</p>
+                    <ul style="list-style: disc; margin-left: 1.5rem; margin-top: 1rem;">
+                        <li>Questions trop basiques pour un public averti</li>
+                        <li>Absence de contenu technique approfondi</li>
+                        <li>Format inadapté à la transmission de connaissances</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon">⚖️</div>
+                <div>
+                    <h2 class="section-title">Comparaison des Standards</h2>
+                    <p class="section-subtitle">Ce qu'attendre d'un vrai expert</p>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid var(--error); border-radius: 1rem; padding: 1.5rem;">
+                    <h4 style="color: var(--error); margin-bottom: 1rem;">❌ Approche Actuelle</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; color: var(--gray-700);">• Quizz niveau débutant</li>
+                        <li style="padding: 0.5rem 0; color: var(--gray-700);">• Défense de partenaires</li>
+                        <li style="padding: 0.5rem 0; color: var(--gray-700);">• Critique sélective</li>
+                        <li style="padding: 0.5rem 0; color: var(--gray-700);">• Conflits d'intérêts</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid var(--success); border-radius: 1rem; padding: 1.5rem;">
+                    <h4 style="color: var(--success); margin-bottom: 1rem;">✅ Expertise Attendue</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; color: var(--gray-700);">• Contenu technique poussé</li>
+                        <li style="padding: 0.5rem 0; color: var(--gray-700);">• Objectivité constante</li>
+                        <li style="padding: 0.5rem 0; color: var(--gray-700);">• Tests indépendants</li>
+                        <li style="padding: 0.5rem 0; color: var(--gray-700);">• Transparence totale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="best-practices">
+            <h3>
+                <span>🛡️</span>
+                Comment Identifier un Vrai Expert Hardware
+            </h3>
+            <ul class="practices-list">
+                <li>Contenu technique approfondi : Analyses détaillées, pas de simplifications excessives</li>
+                <li>Objectivité constante : Critique équitable de toutes les marques sans exception</li>
+                <li>Transparence financière : Déclaration claire des partenariats et sponsorings</li>
+                <li>Tests indépendants : Méthodologie rigoureuse et reproductible</li>
+                <li>Mise à jour régulière : Correction des erreurs et évolution avec les nouvelles données</li>
+                <li>Sources vérifiables : Références techniques et documentation officielle</li>
+            </ul>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <h2 class="summary-title">🎯 Verdict Final</h2>
+            <div class="summary-content">
+                <p>Benjy_ Hardware présente un paradoxe troublant : une expertise revendiquée 
+                contredite par des contenus simplistes et des conflits d'intérêts évidents.</p>
+                <p><strong>Le niveau des quizz et la défense sélective de Corsair soulèvent 
+                des questions légitimes sur la crédibilité technique.</strong></p>
+            </div>
+        </div>
+
+        <!-- Additional Evidence -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon">📋</div>
+                <div>
+                    <h2 class="section-title">Preuves Documentées</h2>
+                    <p class="section-subtitle">Sources et références vérifiables</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4 class="warning-title">
+                    <span>🔗</span>
+                    Liens et Sources
+                </h4>
+                <div class="warning-content">
+                    <ul style="list-style: disc; margin-left: 1.5rem;">
+                        <li>
+                            <strong>Problèmes Corsair documentés :</strong> 
+                            <a href="https://atlas-corporation.fr/ram_corsair/" target="_blank" style="color: var(--accent);">
+                                https://atlas-corporation.fr/ram_corsair/
+                            </a>
+                        </li>
+                        <li><strong>Vidéos des quizz :</strong> Niveau technique questionnable</li>
+                        <li><strong>Collaboration Corsair :</strong> Conflit d'intérêts documenté</li>
+                        <li><strong>Défense photographiée :</strong> Argument du "cadeau offert"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <h4 class="problem-title">
+                    <span>🔍</span>
+                    Points d'Attention pour les Consommateurs
+                </h4>
+                <ul class="problem-list">
+                    <li>Méfiance face aux contenus trop simplifiés d'supposés experts</li>
+                    <li>Vérification des partenariats commerciaux des influenceurs</li>
+                    <li>Recherche de sources indépendantes pour les achats importants</li>
+                    <li>Questionnement sur les motivations derrière les recommandations</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <h3>⚖️ Méthodologie d'Analyse</h3>
+            <p>Cette analyse est basée sur des contenus publics disponibles et vise à sensibiliser 
+            les consommateurs aux biais potentiels dans le contenu hardware sur YouTube.</p>
+            <p>L'objectif est éducatif : développer l'esprit critique face aux contenus techniques 
+            et aux recommandations d'achat influencées par des intérêts commerciaux.</p>
+            <p>Tous les éléments analysés proviennent de sources publiques et vérifiables.</p>
+        </div>
     </main>
 
     <script>
@@ -690,11 +1045,11 @@
             }
         });
 
-        // Card hover effects with enhanced animation
+        // Card hover effects with purple theme
         document.querySelectorAll('.section-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 card.style.transform = 'translateY(-4px)';
-                card.style.boxShadow = 'var(--shadow-xl)';
+                card.style.boxShadow = '0 20px 40px -5px rgba(139, 92, 246, 0.3)';
             });
             
             card.addEventListener('mouseleave', () => {
@@ -719,52 +1074,41 @@
         }, observerOptions);
 
         // Apply fade-in animation to elements
-        document.querySelectorAll('.section-card, .satirical-note, .summary-box, .power-calc').forEach(element => {
+        document.querySelectorAll('.section-card, .best-practices, .summary-box').forEach(element => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(30px)';
             element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(element);
         });
 
-        // Warning box pulse effect
-        const warningBoxes = document.querySelectorAll('.warning-box');
-        warningBoxes.forEach(box => {
-            box.addEventListener('mouseenter', () => {
-                box.style.animationDuration = '0.5s';
+        // Special effects for quiz cards
+        document.querySelectorAll('.quiz-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.02)';
+                card.style.boxShadow = '0 15px 35px rgba(251, 191, 36, 0.3)';
             });
-            box.addEventListener('mouseleave', () => {
-                box.style.animationDuration = '2s';
-            });
-        });
-
-        // Easter egg: click on lightning icons for fun
-        document.querySelectorAll('.section-icon').forEach(icon => {
-            icon.addEventListener('click', () => {
-                icon.style.transform = 'rotate(360deg) scale(1.5)';
-                icon.style.filter = 'drop-shadow(0 0 20px var(--accent))';
-                setTimeout(() => {
-                    icon.style.transform = '';
-                    icon.style.filter = '';
-                }, 1000);
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+                card.style.boxShadow = 'var(--shadow-lg)';
             });
         });
 
-        // Power calculation highlighting
-        const calcRows = document.querySelectorAll('.calc-table tr');
-        calcRows.forEach(row => {
-            row.addEventListener('mouseenter', () => {
-                row.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                row.style.transform = 'scale(1.02)';
+        // Special effects for Corsair cards
+        document.querySelectorAll('.corsair-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.02)';
+                card.style.boxShadow = '0 15px 35px rgba(239, 68, 68, 0.3)';
             });
-            row.addEventListener('mouseleave', () => {
-                row.style.backgroundColor = '';
-                row.style.transform = 'scale(1)';
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+                card.style.boxShadow = 'var(--shadow-lg)';
             });
         });
 
-        console.log('⚡ Manuizine Power Analysis - Atlas Corporation (Warning Mode) ⚡');
-        console.log('Configuration analysée: RTX 5080 + 7800X3D + 750W PSU');
-        console.log('Verdict: 🚨 CONFIGURATION À RISQUE 🚨');
+        console.log('🎯 Benjy_ Hardware Analysis - Atlas Corporation');
+        console.log('Theme: Purple Expert Analysis');
     </script>
 </body>
 </html>
