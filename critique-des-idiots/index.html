@@ -290,7 +290,79 @@
             margin-left: auto;
             margin-right: auto;
         }
+        /* Hero Section */
+        .sub-hero {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
+        .sub-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+            transform: skewX(-15deg) translateX(20%);
+        }
+
+        .sub-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .sub-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sub-hero-badge-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background: var(--warning);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .sub-hero-title {
+            font-size: clamp(1rem, 3vw, 2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .sub-hero-title .highlight {
+            background: linear-gradient(135deg, var(--warning) 0%, var(--error) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sub-hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         /* Navigation Grid */
         .navigation-section {
             padding: 4rem 0;
@@ -699,7 +771,7 @@
                         
                     </p>
                 </br>
-                    <h2 id="hero-title" class="hero-title">
+                    <h2 id="hero-title" class="sub-hero-title">
                         Nos <span class="highlight">Influenceurs Tech</span> Français ont du talents pour réinventer les règles Physiques
                     </h2>
                 </div>
