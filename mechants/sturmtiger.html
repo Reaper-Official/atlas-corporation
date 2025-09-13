@@ -50,20 +50,22 @@
             color: #43b581;
         }
         
+        /* REAPER en vert (il a raison techniquement) */
         .reaper {
-            border-left-color: #f04747;
+            border-left-color: #43b581;
         }
         
         .reaper .username {
-            color: #f04747;
+            color: #43b581;
         }
         
+        /* sturmtiger en rouge (comportement problématique) */
         .sturmtiger {
-            border-left-color: #faa61a;
+            border-left-color: #f04747;
         }
         
         .sturmtiger .username {
-            color: #faa61a;
+            color: #f04747;
         }
         
         .questionnaire {
@@ -94,7 +96,13 @@
             border-left-width: 6px;
         }
         
-        .toxic-behavior {
+        .correct-behavior {
+            background-color: #43b58122;
+            border-left-color: #43b581;
+            border-left-width: 6px;
+        }
+        
+        .problematic-behavior {
             background-color: #f0474722;
             border-left-color: #f04747;
             border-left-width: 6px;
@@ -135,7 +143,7 @@
             </div>
         </div>
 
-        <div class="message sturmtiger">
+        <div class="message sturmtiger problematic-behavior">
             <div class="username">sturmtiger-_+[1VSG] <span class="timestamp">11:59</span></div>
             <div>AM5 pas à ce budget</div>
         </div>
@@ -145,7 +153,7 @@
             <div><strong>Tout changer à part le GPU c'est pas possible ? En allant AM5</strong></div>
         </div>
 
-        <div class="message reaper toxic-behavior">
+        <div class="message reaper correct-behavior">
             <div class="username">REAPER - [TF-141][CYBR] <span class="timestamp">11:59</span></div>
             <div><strong>bon toi je suis pas sûr que tu sois le mieux renseigné<br>
             tu nous as fait une FH alors bon</strong></div>
@@ -161,7 +169,7 @@
             <div>Ouais mon ami compte garder la 1050 ti<br>Il veut tout changer à part la 1050 ti</div>
         </div>
 
-        <div class="message reaper toxic-behavior">
+        <div class="message reaper correct-behavior">
             <div class="username">REAPER - [TF-141][CYBR] <span class="timestamp">12:00</span></div>
             <div><strong>la pauvre</strong></div>
         </div>
@@ -176,7 +184,7 @@
             <div><strong>En prenant en compte les frais de port ?</strong></div>
         </div>
 
-        <div class="message sturmtiger">
+        <div class="message sturmtiger problematic-behavior">
             <div class="username">sturmtiger-_+[1VSG] <span class="timestamp">12:02-12:04</span></div>
             <div>Je t'envoie tout ça dès que possible<br>
             C'est à dire que tu prends SSD, RAM, CM sur Reichelt donc ça stack<br>
@@ -189,7 +197,7 @@
             <div>Oh ok ok</div>
         </div>
 
-        <div class="message reaper toxic-behavior">
+        <div class="message reaper correct-behavior">
             <div class="username">REAPER - [TF-141][CYBR] <span class="timestamp">12:03-12:05</span></div>
             <div><strong>XDDDDDDDDD<br>
             viens en voc stp aussi<br>
@@ -200,15 +208,15 @@
             tout y est</strong></div>
         </div>
 
-        <div class="message sturmtiger">
+        <div class="message sturmtiger problematic-behavior">
             <div class="username">sturmtiger-_+[1VSG] <span class="timestamp">12:05</span></div>
             <div>Sors le moi<br>C'est à toi de prouver ptdr</div>
         </div>
 
-        <div class="message reaper toxic-behavior">
+        <div class="message reaper correct-behavior">
             <div class="username">REAPER - [TF-141][CYBR] <span class="timestamp">12:05</span></div>
             <div>
-                <img src="https://atlas-corporation.fr/cpu/img.png" alt="Atlas Corporation">
+                <img src="https://atlas-corporation.fr/cpu/img.png" alt="Atlas Corporation" style="max-width: 100%; height: auto;">
                 <br>
                 <em>Image montrant la comparaison entre Ryzen 9 9950X3D (699€), Ryzen 9 9950X (549€), Ryzen 9 9900X (399€) et Ryzen 7 9800X3D (479€)</em><br><br>
                 <strong>mettre un cache 3D inexploitable c'est du génie<br>
@@ -217,7 +225,7 @@
             </div>
         </div>
 
-        <div class="message sturmtiger">
+        <div class="message sturmtiger problematic-behavior">
             <div class="username">sturmtiger-_+[1VSG] <span class="timestamp">12:07</span></div>
             <div>
                 <a href="https://gamersnexus.net/cpus/amd-ryzen-9-9950x3d-cpu-review-benchmarks-vs-9800x3d-285k-9950x-more" class="link">https://gamersnexus.net/cpus/amd-ryzen-9-9950x3d-cpu-review-benchmarks-vs-9800x3d-285k-9950x-more</a> btw<br>
@@ -230,35 +238,28 @@
             <div><strong>Ok att j'arrive dans quelques minutes</strong></div>
         </div>
 
-        <div class="message reaper toxic-behavior">
+        <div class="message reaper correct-behavior">
             <div class="username">REAPER - [TF-141][CYBR] <span class="timestamp">12:07-12:08</span></div>
-            <div><strong>met du cache 3D exploitable que par les jeux en 1080p sachant que simplement aucun jeux tournera en 1080p à ce budget XD</strong></div>
-            <img src="https://gamersnexus.net/u/styles/large/public/inline-images/GN%20CPU%20Benchmark%20_%20Blender%20All-Core%20Frequency%20Validation%20_%20GN%20Logo%20Render%20_%20GamersNexus_all-4x_foolhardy_Remacri.png.webp" alt="Atlas Corporation">
-            <img src="https://gamersnexus.net/u/styles/large_responsive_no_watermark_/public/inline-images/GN%20CPU%20Benchmark%20_%20Blender%204.2-4x_foolhardy_Remacri_4.png.webp" alt="Atlas Corporation">
- 
+            <div><strong>met du cache 3D exploitable que par les jeux en 1080p sachant que simplement aucun jeux tournera en 1080p à ce budget XD</strong><br><br>
+            <img src="https://gamersnexus.net/u/styles/large/public/inline-images/GN%20CPU%20Benchmark%20_%20Blender%20All-Core%20Frequency%20Validation%20_%20GN%20Logo%20Render%20_%20GamersNexus_all-4x_foolhardy_Remacri.png.webp" alt="Benchmark GamersNexus" style="max-width: 100%; height: auto; margin: 10px 0;"><br>
+            <img src="https://gamersnexus.net/u/styles/large_responsive_no_watermark_/public/inline-images/GN%20CPU%20Benchmark%20_%20Blender%204.2-4x_foolhardy_Remacri_4.png.webp" alt="Benchmark GamersNexus" style="max-width: 100%; height: auto; margin: 10px 0;">
+            </div>
         </div>
 
-        <div class="message sturmtiger">
+        <div class="message sturmtiger problematic-behavior">
             <div class="username">sturmtiger-_+[1VSG] <span class="timestamp">12:08</span></div>
             <div><strong>Rien à foutre des jeux</strong></div>
         </div>
 
-        <div class="message reaper toxic-behavior">
+        <div class="message reaper correct-behavior">
             <div class="username">REAPER - [TF-141][CYBR] <span class="timestamp">12:08</span></div>
             <div>
-                <strong>📊 [IMAGE JOINTE - Benchmark GamersNexus]</strong><br>
-                <em>Graphique de fréquences All-Core montrant les performances du 9950X3D, 9950X et 9800X3D sur 800 secondes de test Blender</em><br><br>
+                <strong>📊 [BENCHMARKS GAMERSNEXUS]</strong><br>
+                <em>Graphiques de fréquences All-Core montrant les performances du 9950X3D, 9950X et 9800X3D sur 800 secondes de test Blender</em><br><br>
                 <strong>et même le graph prouve que c'est pas lui le plus haut mais oklm</strong>
             </div>
         </div>
 
-        <div class="message op highlight-behavior">
-            <div class="username">Utilisateur_Anonyme[NEN] (OP) <span class="timestamp">12:07</span></div>
-            <div><strong>Ok att j'arrive dans quelques minutes</strong></div>
-        </div>
-
-        <!-- Dispute continue entre REAPER et sturmtiger avec échanges agressifs -->
-        
         <div class="message op highlight-behavior">
             <div class="username">Utilisateur_Anonyme[NEN] (OP) <span class="timestamp">12:09</span></div>
             <div><strong>att je ramène mon ami pour voc</strong></div>
@@ -270,9 +271,7 @@
             <a href="https://fr.pcpartpicker.com/list/KD26wY" class="link">Part List - AMD Ryzen 5 8400F, MSI MAG FORGE 112R</a></div>
         </div>
 
-        <!-- Suite des disputes techniques -->
-
-        <div class="message sturmtiger">
+        <div class="message sturmtiger problematic-behavior">
             <div class="username">sturmtiger-_+[1VSG] <span class="timestamp">12:22-12:23</span></div>
             <div><strong>Enfin, retournons au début de la chose<br>
             Lâche moi les burnes et va chez HH</strong><br>
@@ -295,45 +294,53 @@
             <div>nan 1To suffisant</div>
         </div>
 
-        <div style="margin-top: 30px; padding: 15px; background-color: #faa61a22; border-radius: 5px; border-left: 4px solid #faa61a;">
-            <h3>🔍 Analyse du comportement</h3>
-            <p><strong>Utilisateur anonymisé :</strong></p>
+        <div style="margin-top: 30px; padding: 15px; background-color: #43b58122; border-radius: 5px; border-left: 4px solid #43b581;">
+            <h3>✅ Analyse technique - REAPER avait raison</h3>
+            <p><strong>Points techniques valides de REAPER :</strong></p>
             <ul>
-                <li>Pose des questions techniques pertinentes</li>
-                <li>Reste poli et respectueux malgré les tensions</li>
-                <li>Essaie de recentrer la discussion sur son besoin</li>
-                <li>Fait preuve de patience face aux disputes</li>
-                <li>Cherche activement des solutions dans son budget</li>
+                <li><strong>9950X3D pas optimal :</strong> Les benchmarks GamersNexus confirment que le 9950X3D n'est pas systématiquement le plus performant</li>
+                <li><strong>Cache 3D limité :</strong> Le cache 3D V-Cache est principalement optimisé pour le gaming, pas pour tous les workloads</li>
+                <li><strong>PBO limité :</strong> Le cache 3D impose des limitations sur le Precision Boost Overdrive</li>
+                <li><strong>Budget réaliste :</strong> Discuter de CPUs à 600-700€ pour un budget de 500-540€ est hors sujet</li>
+                <li><strong>GPU bottleneck :</strong> Avec une GTX 1050 Ti, le processeur ne sera jamais le facteur limitant</li>
             </ul>
         </div>
 
         <div style="margin-top: 20px; padding: 15px; background-color: #f0474722; border-radius: 5px; border-left: 4px solid #f04747;">
-            <h3>⚠️ Contexte sur sturmtiger</h3>
-            <p><strong>Comportement problématique connu :</strong></p>
+            <h3>❌ Comportement problématique de sturmtiger</h3>
+            <p><strong>Issues identifiées :</strong></p>
             <ul>
-                <li>Sturmtiger est une personne connue de REAPER et de Hardware Hub pour son comportement très dérangeant</li>
-                <li>Il manifeste une haine évidente contre les configurations de Hardware Hub</li>
-                <li>Dans d'autres discussions sur le serveur FrenchHardware (reconnu comme l'un des pires serveurs Discord - voir <a href="https://atlas-corporation.fr/critique-des-idiots/frenchhardware/" class="link" target="_blank">critique détaillée section Intel&Discord</a>), il cautionne ce qui s'y fait</li>
-                <li>Il qualifie les configs de Hardware Hub "d'horreurs" et dit que "c'est éclaté"</li>
-                <li><strong>Hypocrisie manifeste :</strong> Il critique alors qu'il ne fait pas mieux</li>
-                <li><strong>Origine de sa haine :</strong> Il a été banni de Hardware Hub car il racontait trop de bêtises</li>
-                <li>Son comportement dans cette conversation illustre parfaitement sa toxicité habituelle</li>
+                <li><strong>Hors sujet :</strong> Propose des solutions inadaptées au budget (AM5 avec processeurs haut de gamme)</li>
+                <li><strong>Agressivité :</strong> Ton déplacé et provocateur ("lâche moi les burnes")</li>
+                <li><strong>Déni technique :</strong> Refuse d'admettre les faits techniques pourtant documentés</li>
+                <li><strong>Détournement :</strong> Lance une dispute technique au lieu d'aider l'utilisateur</li>
+                <li><strong>Historique :</strong> Comportement cohérent avec sa réputation problématique sur les serveurs Discord hardware</li>
+                <li><strong>"Rien à foutre des jeux" :</strong> Attitude méprisante alors que l'utilisateur veut jouer (Roblox, Genshin Impact, HSR)</li>
             </ul>
-            <p><em>Cette information explique l'animosité visible dans les échanges et le ton agressif adopté.</em></p>
+        </div>
+
+        <div style="margin-top: 20px; padding: 15px; background-color: #faa61a22; border-radius: 5px; border-left: 4px solid #faa61a;">
+            <h3>🎯 L'utilisateur anonymisé - Victime de la situation</h3>
+            <p><strong>Comportement exemplaire :</strong></p>
+            <ul>
+                <li>Reste poli et patient malgré la dispute qui l'ignore</li>
+                <li>Recentre régulièrement sur son besoin réel (config à 540€)</li>
+                <li>Fournit toutes les informations nécessaires dans son questionnaire</li>
+                <li>Essaie de faire avancer constructivement la discussion</li>
+                <li>Mérite une aide technique de qualité, pas une dispute d'ego</li>
+            </ul>
         </div>
 
         <div style="margin-top: 20px; padding: 15px; background-color: #7289da22; border-radius: 5px; border-left: 4px solid #7289da;">
-            <h3>📊 Analyse technique de la dispute 9950X3D vs 9950X</h3>
-            <p><strong>Contexte de l'argument :</strong></p>
+            <h3>📝 Conclusion technique</h3>
+            <p><strong>Les faits :</strong></p>
             <ul>
-                <li>REAPER critique sturmtiger pour avoir mentionné le 9950X3D comme "meilleur" processeur</li>
-                <li><strong>Les faits :</strong> D'après les benchmarks GamersNexus, le 9950X3D n'est effectivement pas systématiquement le plus performant</li>
-                <li>Le graphique de fréquences montre que les trois processeurs (9950X3D, 9950X, 9800X3D) ont des performances très proches</li>
-                <li><strong>Le vrai problème :</strong> Pour un budget de 500-540€, discuter de processeurs à 600-700€ est complètement hors sujet</li>
-                <li>Sturmtiger détourne la conversation technique au lieu d'aider l'utilisateur avec son budget réel</li>
-                <li><strong>REAPER a techniquement raison</strong> sur les performances, mais sa méthode de communication reste toxique</li>
+                <li><strong>REAPER techniquement correct :</strong> Ses arguments sur les performances CPU sont factuellement justes</li>
+                <li><strong>sturmtiger dans l'erreur :</strong> Propose des solutions inadaptées et refuse les preuves</li>
+                <li><strong>Communication problématique :</strong> Malgré sa justesse technique, REAPER aurait pu être plus constructif</li>
+                <li><strong>Vraie solution :</strong> Pour ce budget avec GTX 1050 Ti, un Ryzen 5 5600 ou i5-12400F aurait été plus adapté</li>
+                <li><strong>Priorité mal placée :</strong> L'utilisateur aurait mieux fait d'upgrader d'abord son GPU</li>
             </ul>
-            <p><em>Cette dispute technique masque le vrai problème : l'absence de conseil constructif pour l'utilisateur.</em></p>
         </div>
     </div>
 </body>
