@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guillaume : Le Roi du Graphique Fantaisiste - Atlas Corporation</title>
+    <meta name="description" content="Analyse critique satirique des méthodes d'analyse créatives de Guillaume et de ses graphiques... originaux.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Gray Theme Colors */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #64748b;
+            --accent-hover: #475569;
+            --accent-light: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Layout */
+            --header-height: 64px;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            overflow-x: hidden;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%2394a3b8" opacity="0.1"/><circle cx="75" cy="75" r="0.5" fill="%2364748b" opacity="0.1"/><circle cx="50" cy="10" r="0.8" fill="%23475569" opacity="0.05"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--gray-300);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            height: var(--header-height);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--gray-900);
+            font-weight: 800;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-cta {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(100, 116, 139, 0.1);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Home Button */
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            color: #333;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border-color: var(--accent);
+        }
+
+        .home-button:hover::before {
+            left: 100%;
+        }
+
+        .home-button:active {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .home-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* Satirical Note */
+        .satirical-note {
+            background: linear-gradient(135deg, rgba(100, 116, 139, 0.1) 0%, rgba(148, 163, 184, 0.05) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .satirical-note h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .satirical-note p {
+            color: var(--gray-700);
+            font-style: italic;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+            transform: scaleX(0);
+            transition: var(--transition-slow);
+        }
+
+        .section-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .section-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .section-subtitle {
+            color: var(--gray-600);
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Expertise Meter */
+        .expertise-meter {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .expertise-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .expertise-bar {
+            background: var(--gray-300);
+            height: 2rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .expertise-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--error) 0%, var(--accent) 100%);
+            width: 12%;
+            animation: expertise-wobble 3s ease-in-out infinite;
+            position: relative;
+            border-radius: 1rem;
+        }
+
+        .expertise-fill::after {
+            content: '📊';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            animation: chart-spin 2s linear infinite;
+        }
+
+        @keyframes expertise-wobble {
+            0%, 100% { width: 12%; }
+            25% { width: 8%; }
+            50% { width: 18%; }
+            75% { width: 6%; }
+        }
+
+        @keyframes chart-spin {
+            0% { transform: translateY(-50%) rotate(0deg); }
+            100% { transform: translateY(-50%) rotate(360deg); }
+        }
+
+        .expertise-comment {
+            text-align: center;
+            color: var(--gray-600);
+            font-style: italic;
+            font-size: 0.875rem;
+        }
+
+        /* Innovation Cards */
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .innovation-card {
+            background: linear-gradient(135deg, rgba(100, 116, 139, 0.05) 0%, rgba(148, 163, 184, 0.02) 100%);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .innovation-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .innovation-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .innovation-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+            position: relative;
+            padding-left: 2rem;
+            color: var(--gray-700);
+        }
+
+        .innovation-list li::before {
+            content: '📈';
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-style: italic;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .quote-box::after {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        /* Media Container */
+        .media-container {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-300);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .media-container h4 {
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .media-item {
+            margin: 2rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .media-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 2px solid var(--gray-300);
+            border-radius: 0.75rem;
+        }
+
+        .media-item video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 0.75rem;
+            border: 2px solid var(--gray-300);
+        }
+
+        .media-caption {
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            background: var(--gray-100);
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .media-warning {
+            background: rgba(100, 116, 139, 0.1);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            color: var(--accent);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .media-link {
+            color: var(--accent);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .media-link:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Graph Warning Box */
+        .graph-warning {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border: 2px solid var(--error);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .graph-warning h4 {
+            color: var(--error);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .graph-warning p {
+            color: var(--gray-700);
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            padding: 2rem;
+            border-radius: 1rem;
+            color: white;
+            font-weight: 500;
+        }
+
+        .comparison-guillaume {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+        }
+
+        .comparison-normal {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+        }
+
+        .comparison-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Awards Section */
+        .awards-section {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+            border: 1px solid var(--gray-200);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .awards-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .awards-list {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .awards-list li {
+            padding: 1rem 0;
+            color: var(--gray-700);
+            font-size: 1.125rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .awards-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, var(--gray-700) 0%, var(--gray-800) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .summary-content {
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .disclaimer h3 {
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .section-card {
+                padding: 1.5rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .expertise-fill::after {
+                right: -25px;
+                font-size: 1.2rem;
+            }
+
+            .quote-box {
+                font-size: 1.125rem;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">📊</div>
+                <span>Atlas Corporation</span>
+            </a>
+            <a href="index.html" class="header-cta">
+                ← Retour au Hub
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span>Analyse satirique</span>
+            </div>
+			<div>
+                <span><img src="https://atlas-corporation.fr/favicon.ico" alt="Atlas Corporation"></span>
+            </div>
+            <div class="center-container">
+                <a href="https://atlas-corporation.fr" class="home-button">
+                    <svg class="home-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
+                    </svg>
+                    Retour à l'accueil
+                </a>
+            </div>
+            <h1 class="hero-title">
+                <span class="highlight">Guillaume</span> : Le Roi du Graphique Fantaisiste
+            </h1>
+
+            <p class="hero-description">
+                Découvrez l'univers extraordinaire de Guillaume, où l'art de la visualisation de données 
+                rencontre l'innovation graphique... si créative que même les fournisseurs de données 
+                n'y comprennent plus rien !
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Satirical Note -->
+        <div class="satirical-note">
+            <h3>
+                <span>🎭</span>
+                Contenu Satirique
+            </h3>
+            <p>Cette page contient des éléments satiriques et humoristiques pour souligner les erreurs d'analyse. L'analyse reste factuelle mais est présentée avec ironie pour un effet éducatif.</p>
+        </div>
+
+        <!-- Main Analysis -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon">📈</div>
+                <div>
+                    <h2 class="section-title">Guillaume : Le Virtuose des Données Créatives</h2>
+                    <p class="section-subtitle">Quand la statistique rencontre l'art... abstrait !</p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                Pourquoi faire confiance aux fournisseurs de données quand on peut réinventer les graphiques ?
+            </div>
+
+            <p style="margin: 2rem 0; font-size: 1.125rem; color: var(--gray-700); line-height: 1.7;">
+                Mesdames et messieurs, permettez-moi de vous présenter <strong>Guillaume</strong>, le révolutionnaire de l'analyse de données ! 
+                Un homme qui a découvert comment transformer des statistiques banales en œuvres d'art graphique si originales 
+                que même les créateurs des données originales n'y reconnaissent plus leurs propres chiffres !
+            </p>
+
+            <!-- Expertise Meter -->
+            <div class="expertise-meter">
+                <h4 class="expertise-title">
+                    <span>📊</span>
+                    Niveau d'Expertise en Analyse de Données
+                </h4>
+                <div class="expertise-bar">
+                    <div class="expertise-fill"></div>
+                </div>
+                <p class="expertise-comment">
+                    "Mes graphiques sont si avant-gardistes que même les fournisseurs de données sont perdus !"
+                </p>
+            </div>
+
+            <!-- Graph Warning -->
+            <div class="graph-warning">
+                <h4>
+                    <span>⚠️</span>
+                    Alerte Fournisseur de Données !
+                </h4>
+                <p><strong>Fait véridique :</strong> Guillaume a réussi l'exploit rare de sortir un graphique si "créatif" que le fournisseur officiel des données a dû intervenir pour dire : <em>"Euh... ce n'est pas vraiment fiable ce que vous avez fait là..."</em></p>
+                <p style="margin-top: 1rem; font-style: italic;">Quand même les créateurs des données ne reconnaissent plus leurs propres chiffres, c'est qu'on a affaire à un vrai artiste !</p>
+            </div>
+
+            <!-- Innovations -->
+            <div class="innovation-grid">
+                <div class="innovation-card">
+                    <h4 class="innovation-title">
+                        <span>📈</span>
+                        Ses Innovations Révolutionnaires
+                    </h4>
+                    <ul class="innovation-list">
+                        <li>Pionnier de la "Réinterprétation Graphique Libre" : transformer des données jusqu'à les rendre méconnaissables</li>
+                        <li>Créateur du concept "Graphique Artistique" : quand la beauté prime sur la précision</li>
+                        <li>Expert en "Analyse Sélective" : oublier de mentionner les défauts évidents (RAM Corsair, on te voit !)</li>
+                        <li>Maître de l'"Ignorance Stratégique" : faire comme si les problèmes bien documentés n'existaient pas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Video and Images Section -->
+            <div class="media-container">
+                <h4>🎬 La Vidéo Scandalouse & Les Preuves Accablantes</h4>
+                
+                <!-- Video -->
+                <div class="media-item">
+                    <div class="media-caption">🎥 Guillaume dans sa vidéo : l'artiste à l'œuvre</div>
+                    <video controls preload="metadata" width="100%" height="auto">
+                        <source src="https://fichiers.atlas-corporation.fr/videostock/guillaumevideoscandaleuse.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de cette vidéo.
+                    </video>
+                </div>
+
+                <!-- Images -->
+                <div class="media-item">
+                    <div class="media-caption">📸 Hardware & Co : "Nous ne savons pas où placer certaines marques..."</div>
+                    <img src="https://atlas-corporation.fr/img/h&co(1).png" alt="Hardware & Co - Confusion sur le classement (1)" loading="lazy">
+                </div>
+
+                <div class="media-item">
+                    <div class="media-caption">📸 Hardware & Co confirme leur perplexité face aux "graphiques créatifs"</div>
+                    <img src="https://atlas-corporation.fr/img/h&co(2).png" alt="Hardware & Co - Confusion sur le classement (2)" loading="lazy">
+                </div>
+
+                <div class="media-item">
+                    <div class="media-caption">📸 Guillaume expliquant ses méthodes "révolutionnaires"</div>
+                    <img src="https://atlas-corporation.fr/img/h&co(3).png" alt="Guillaume dans sa vidéo d'analyse" loading="lazy">
+                </div>
+
+                <div class="media-warning">
+                    📊 <strong>L'EXPLOIT HISTORIQUE EN IMAGES !</strong><br><br>
+                    Découvrez cette collection unique de preuves montrant comment Guillaume a réussi l'impossible : 
+                    créer des graphiques si "artistiques" que même Hardware & Co, des professionnels reconnus du secteur, 
+                    ne savent plus comment interpréter les données !<br><br>
+                    <strong>Attention :</strong> Ces images documentent un moment historique de la tech française !<br><br>
+                    <em>Si les médias ne se chargent pas correctement, consultez directement :</em><br>
+                    <a href="https://fichiers.atlas-corporation.fr/videostock/guillaumevideoscandaleuse.mp4" target="_blank" class="media-link">📹 La vidéo scandalouse</a><br>
+                    <a href="https://atlas-corporation.fr/img/h&co(1).png" target="_blank" class="media-link">🖼️ Preuve 1</a> | 
+                    <a href="https://atlas-corporation.fr/img/h&co(2).png" target="_blank" class="media-link">🖼️ Preuve 2</a> | 
+                    <a href="https://atlas-corporation.fr/img/h&co(3).png" target="_blank" class="media-link">🖼️ Preuve 3</a>
+                </div>
+            </div>
+
+            <!-- RAM Corsair Section -->
+            <div class="section-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(249, 115, 22, 0.02) 100%); border-color: var(--error);">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);">🐘</div>
+                    <div>
+                        <h3 class="section-title" style="color: var(--error);">L'Éléphant dans la Pièce : La RAM Corsair</h3>
+                        <p class="section-subtitle" style="color: var(--error);">Quand on fait semblant que les problèmes n'existent pas...</p>
+                    </div>
+                </div>
+
+                <div class="quote-box" style="background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);">
+                    Pourquoi mentionner les défauts bien connus quand on peut faire comme si de rien n'était ?
+                </div>
+
+                <p style="margin: 2rem 0; font-size: 1.125rem; color: var(--gray-700); line-height: 1.7;">
+                    Ah, Guillaume ! Toujours fidèle à sa réputation d'analyste... <em>sélectif</em> ! Quand Atlas Corporation documente méticuleusement 
+                    les <strong>problèmes bien réels</strong> de la RAM Corsair (disponible sur <a href="https://atlas-corporation.fr/ram_corsair/" target="_blank" style="color: var(--error); text-decoration: underline;">atlas-corporation.fr/ram_corsair/</a>), 
+                    notre héros choisit la stratégie de l'autruche : <em>"Si je ne le mentionne pas, ça n'existe pas !"</em>
+                </p>
+
+                <div class="innovation-card" style="border-color: var(--error); background: rgba(239, 68, 68, 0.05);">
+                    <h4 class="innovation-title" style="color: var(--error);">
+                        <span>🙈</span>
+                        La Stratégie de l'Ignorance Sélective
+                    </h4>
+                    <ul class="innovation-list">
+                        <li>Ignorer complètement les analyses détaillées d'Atlas Corporation sur les défauts de la RAM Corsair</li>
+                        <li>Faire comme si les problèmes de compatibilité et de stabilité n'existaient pas</li>
+                        <li>Ne pas mentionner les retours d'expérience négatifs bien documentés</li>
+                        <li>Préférer ses graphiques "créatifs" aux faits établis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Philosophy -->
+            <div class="quote-box">
+                L'art de l'analyse, c'est de savoir quoi ignorer ! Pourquoi s'encombrer de faits gênants 
+                quand on peut créer ses propres graphiques fantaisistes ?
+            </div>
+
+            <!-- Comparison -->
+            <div class="comparison-grid">
+                <div class="comparison-card comparison-guillaume">
+                    <h4 class="comparison-title">📊 La Méthode Guillaume™</h4>
+                    <p><strong>Étape 1 :</strong> Créer un graphique "artistique" 🎨</p>
+                    <p><strong>Étape 2 :</strong> Ignorer les sources contradictoires 🙈</p>
+                    <p><strong>Étape 3 :</strong> Publier malgré les avertissements 📤</p>
+                    <p><strong>Étape 4 :</strong> Prétendre que c'est de la "créativité" 🎭</p>
+                </div>
+                <div class="comparison-card comparison-normal">
+                    <h4 class="comparison-title">😴 La Méthode "Ennuyeuse"</h4>
+                    <p><strong>Étape 1 :</strong> Vérifier les données sources 📋</p>
+                    <p><strong>Étape 2 :</strong> Mentionner les défauts connus 🔍</p>
+                    <p><strong>Étape 3 :</strong> Écouter les fournisseurs de données 👂</p>
+                    <p><strong>Étape 4 :</strong> Fournir une analyse complète (quelle originalité !) 😒</p>
+                </div>
+            </div>
+
+            <!-- Awards -->
+            <div class="awards-section">
+                <h3 class="awards-title">
+                    <span>🏆</span>
+                    Ses Plus Grandes Réussites
+                </h3>
+                <ul class="awards-list">
+                    <li>🥇 <strong>Prix du Graphique Surréaliste :</strong> "Premier à faire dire aux fournisseurs : 'Mais qu'est-ce que vous avez fait ?!'"</li>
+                    <li>🥈 <strong>Médaille de l'Ignorance Sélective :</strong> "Capacité remarquable à ignorer les analyses détaillées d'Atlas Corporation !"</li>
+                    <li>🥉 <strong>Trophée de la Créativité Statistique :</strong> "Réinventer les données jusqu'à les rendre méconnaissables !"</li>
+                    <li>🏅 <strong>Mention Spéciale Hardware & Co :</strong> "Réussir à perdre des professionnels avec ses graphiques !"</li>
+                    <li>🎖️ <strong>Prix Spécial RAM Corsair :</strong> "Champion du 'faire comme si les problèmes n'existaient pas' !"</li>
+                </ul>
+            </div>
+
+            <div class="quote-box">
+                Mes analyses sont si innovantes que même les créateurs des données originales 
+                n'y comprennent plus rien ! Hardware & Co peut en témoigner !
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <h2 class="summary-title">📊 L'Art de l'Analyse... Alternative</h2>
+            <div class="summary-content">
+                <p>Guillaume nous prouve qu'il est possible de révolutionner l'art de l'analyse de données en créant 
+                ses propres règles et en ignorant soigneusement tout ce qui pourrait contrarier ses conclusions.</p>
+                <p><strong>Une leçon pour nous tous : parfois, l'imagination peut remplacer... la rigueur !</strong></p>
+                <p><em>Et quand même Hardware & Co s'y perd, on sait qu'on a affaire à un vrai artiste !</em></p>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <h3>🎭 Avertissement Satirique</h3>
+            <p>Cette page est une œuvre de satire pure. Toute ressemblance avec des pratiques réelles d'analyse serait pure coïncidence... 
+            ou pas ! Dans le monde merveilleux des influenceurs tech, même les graphiques peuvent devenir des œuvres d'art abstrait !</p>
+            <p><em>Aucun graphique n'a été maltraité pendant la création de cette satire. Seuls les fournisseurs de données et Hardware & Co ont pu en souffrir !</em></p>
+            <p style="margin-top: 1rem;"><strong>PS :</strong> Pour une analyse factuelle des problèmes de RAM Corsair, rendez-vous sur <a href="https://atlas-corporation.fr/ram_corsair/" target="_blank" style="color: var(--accent); text-decoration: underline;">atlas-corporation.fr/ram_corsair/</a> - là où les faits sont respectés !</p>
+        </div>
+    </main>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.backdropFilter = 'blur(30px) saturate(200%)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+            }
+        });
+
+        // Card hover effects with enhanced animation
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.boxShadow = 'var(--shadow-xl)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = 'var(--shadow)';
+            });
+        });
+
+        // Enhanced expertise meter animation with chart spinning
+        const expertiseFill = document.querySelector('.expertise-fill');
+        let direction = 1;
+        let wobbleIntensity = 1;
+        
+        setInterval(() => {
+            const currentWidth = parseInt(expertiseFill.style.width) || 12;
+            const randomFactor = Math.random() * 4 * wobbleIntensity;
+            const newWidth = currentWidth + (direction * randomFactor);
+            
+            if (newWidth <= 4 || newWidth >= 25) {
+                direction *= -1;
+                wobbleIntensity = Math.random() * 2 + 0.5;
+            }
+            
+            expertiseFill.style.width = Math.max(4, Math.min(25, newWidth)) + '%';
+        }, 400);
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply fade-in animation to elements
+        document.querySelectorAll('.section-card, .satirical-note, .summary-box, .media-container').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+
+        // Easter egg: click on chart icons for fun
+        document.querySelectorAll('.section-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                icon.style.transform = 'rotate(720deg) scale(1.5)';
+                icon.style.filter = 'drop-shadow(0 0 20px var(--accent))';
+                setTimeout(() => {
+                    icon.style.transform = '';
+                    icon.style.filter = '';
+                }, 1000);
+            });
+        });
+
+        // Special effect for media items
+        document.querySelectorAll('.media-item').forEach((item, index) => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.02)';
+                item.style.transition = 'transform 0.3s ease';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+
+        // Special effect for graph warning box
+        const graphWarning = document.querySelector('.graph-warning');
+        if (graphWarning) {
+            setInterval(() => {
+                graphWarning.style.borderColor = graphWarning.style.borderColor === 'rgb(239, 68, 68)' ? 'rgba(239, 68, 68, 0.5)' : 'rgb(239, 68, 68)';
+            }, 2000);
+        }
+
+        console.log('📊 Guillaume Analysis - Atlas Corporation (Satirical Mode - Gray Theme) - Media Enhanced');
+    </script>
+</body>
+</html>
