@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hub Critique des Influenceurs Tech - Atlas Corporation</title>
-    <meta name="description" content="Atlas Corporation - Analyses critiques des pratiques d'influenceurs tech français. FrenchHardware, SoloTech, PAX, Benjy_ Hardware et plus.">
+    <meta name="description" content="Atlas Corporation - Analyses critiques des pratiques d'influenceurs tech français. FrenchHardware, SoloTech, PAX, Benjy Hardware et plus.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎭</text></svg>">
@@ -219,7 +219,7 @@
 
         /* Hero Section */
         .hero {
-            padding: 6rem 0;
+            padding: 6rem 0 4rem 0;
             background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
             text-align: center;
             position: relative;
@@ -285,84 +285,34 @@
             font-size: 1.25rem;
             line-height: 1.6;
             color: var(--gray-600);
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
-        /* Hero Section */
+
+        /* Sub-hero (section intégrée) */
         .sub-hero {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sub-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
-            transform: skewX(-15deg) translateX(20%);
-        }
-
-        .sub-hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .sub-hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--gray-100);
-            border: 1px solid var(--gray-200);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--gray-700);
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .sub-hero-badge-dot {
-            width: 0.5rem;
-            height: 0.5rem;
-            background: var(--warning);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
+            padding: 2rem 0;
         }
 
         .sub-hero-title {
-            font-size: clamp(1rem, 3vw, 2rem);
-            font-weight: 900;
-            line-height: 1.1;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
             color: var(--gray-900);
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
 
         .sub-hero-title .highlight {
-            background: linear-gradient(135deg, var(--warning) 0%, var(--error) 100%);
+            background: linear-gradient(135deg, var(--purple) 0%, var(--error) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .sub-hero-description {
-            font-size: 1.25rem;
-            line-height: 1.6;
-            color: var(--gray-600);
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
         /* Navigation Grid */
         .navigation-section {
             padding: 4rem 0;
@@ -372,13 +322,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            max-width: 100%;
         }
 
         .nav-card {
             background: var(--white);
             border: 1px solid var(--gray-200);
             border-radius: var(--radius-xl);
-            padding: 3rem;
+            padding: 2.5rem;
             transition: var(--transition-slow);
             text-decoration: none;
             color: inherit;
@@ -386,6 +337,7 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             display: block;
+            cursor: pointer;
         }
 
         .nav-card::before {
@@ -413,6 +365,7 @@
             outline: none;
         }
 
+        /* Couleurs spécifiques pour chaque carte */
         .nav-card:nth-child(1) {
             --card-accent: var(--error);
             --card-accent-light: #fca5a5;
@@ -438,15 +391,20 @@
             --card-accent-light: #6ee7b7;
         }
 
+        .nav-card:nth-child(6) {
+            --card-accent: #ec4899;
+            --card-accent-light: #f9a8d4;
+        }
+
         .nav-icon {
-            width: 4rem;
-            height: 4rem;
+            width: 3.5rem;
+            height: 3.5rem;
             background: linear-gradient(135deg, var(--card-accent), var(--card-accent-light));
             border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: white;
             margin-bottom: 1.5rem;
@@ -461,7 +419,7 @@
         }
 
         .nav-title {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--gray-900);
             margin-bottom: 1rem;
@@ -472,7 +430,7 @@
             font-size: 1rem;
             line-height: 1.7;
             color: var(--gray-600);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .nav-arrow {
@@ -503,21 +461,24 @@
         /* Disclaimer Section */
         .disclaimer-section {
             padding: 4rem 0;
+            background: var(--gray-50);
         }
 
         .disclaimer {
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+            background: var(--white);
             border: 1px solid var(--gray-200);
             border-radius: var(--radius-xl);
             padding: 3rem;
             box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .disclaimer h3 {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--gray-900);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -527,6 +488,7 @@
             color: var(--gray-600);
             line-height: 1.7;
             margin-bottom: 1rem;
+            font-size: 1rem;
         }
 
         .disclaimer p:last-child {
@@ -641,14 +603,12 @@
             }
 
             .hero {
-                padding: 4rem 0;
+                padding: 4rem 0 2rem 0;
             }
 
             .navigation-grid {
                 grid-template-columns: 1fr;
-                grid-template-rows: auto;
                 gap: 1.5rem;
-                max-width: none;
             }
 
             .nav-card {
@@ -662,14 +622,6 @@
             .footer-links {
                 flex-direction: column;
                 gap: 1rem;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-description {
-                font-size: 1.125rem;
             }
         }
 
@@ -686,6 +638,14 @@
                 flex-direction: column;
                 text-align: center;
                 gap: 0.5rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .sub-hero-title {
+                font-size: 1.5rem;
             }
         }
 
@@ -768,12 +728,14 @@
                     <p class="hero-description">
                         Découvrez nos analyses approfondies des pratiques douteuses de certains influenceurs tech français. 
                         Une approche factuelle et documentée pour vous aider à faire des choix éclairés.
-                        
                     </p>
-                </br>
-                    <h2 id="hero-title" class="sub-hero-title">
-                        Nos <span class="highlight">Influenceurs Tech</span> Français ont du talents pour <span class="highlight">réinventer les règles Physiques</span>
-                    </h2>
+
+                    <!-- Sous-titre intégré dans le hero -->
+                    <div class="sub-hero">
+                        <h2 class="sub-hero-title">
+                            Nos <span class="highlight">Influenceurs Tech</span> français ont du talent pour <span class="highlight">réinventer les règles physiques</span>
+                        </h2>
+                    </div>
                 </div>
             </div>
         </section>
@@ -817,19 +779,10 @@
                         <div class="nav-icon" aria-hidden="true">BH</div>
                         <h3 class="nav-title">Benjy Hardware</h3>
                         <p class="nav-description" id="bh-desc">
-                            Quizz de niveau CE2 et défense discutable de Corsair malgré les problèmes documentés. 
+                            Quiz de niveau CE2 et défense discutable de Corsair malgré les problèmes documentés. 
                             L'expertise hardware qui rencontre les conflits d'intérêts commerciaux.
                         </p>
                         <span class="nav-arrow" aria-hidden="true">Examiner</span>
-                    </a>
-
-                    <a href="guillaume.html" class="nav-card" role="listitem" aria-describedby="bh-desc">
-                        <div class="nav-icon" aria-hidden="true">GL</div>
-                        <h3 class="nav-title">Guillaume</h3>
-                        <p class="nav-description" id="bh-desc">
-                            Dis pas mal de bêtises avec des graphes et aussi une mise en avant de la RAM Corsair.
-                        </p>
-                        <span class="nav-arrow" aria-hidden="true">Voir</span>
                     </a>
                     
                     <a href="manuizine.html" class="nav-card" role="listitem" aria-describedby="mnz-desc">
@@ -842,7 +795,15 @@
                         <span class="nav-arrow" aria-hidden="true">Observer</span>
                     </a>
 
-                  
+                    <a href="guillaume.html" class="nav-card" role="listitem" aria-describedby="gl-desc">
+                        <div class="nav-icon" aria-hidden="true">GL</div>
+                        <h3 class="nav-title">Guillaume</h3>
+                        <p class="nav-description" id="gl-desc">
+                            Dit pas mal de bêtises avec des graphiques et mise en avant discutable de la RAM Corsair. 
+                            Analyse des erreurs de présentation et des biais commerciaux.
+                        </p>
+                        <span class="nav-arrow" aria-hidden="true">Voir</span>
+                    </a>
                 </div>
             </div>
         </section>
