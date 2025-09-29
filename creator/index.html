@@ -649,7 +649,16 @@
             position: relative;
             overflow: hidden;
         }
-
+        
+        .about-avatar img{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #58a6ff;
+            height: 32px;
+        }
         .about-avatar::before {
             content: '';
             position: absolute;
@@ -665,7 +674,7 @@
         .about-avatar:hover::before {
             opacity: 0.1;
         }
-
+        
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -1100,7 +1109,9 @@
             </div>
             <div class="about-content">
                 <div class="about-image slide-left">
-                    <div class="about-avatar"><img src="ppreaper.png"></div>
+                    <div class="about-avatar">
+                        <img src="ppreaper.png">
+                    </div>
                 </div>
                 <div class="about-text slide-right">
                     <p>Passionné d'informatique avec une expertise approfondie dans divers domaines technologiques, je me spécialise dans la cybersécurité, plus précisément dans la <span class="highlight">Blue Team</span> ou Équipe de CyberProtection.</p>
