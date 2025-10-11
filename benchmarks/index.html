@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Complet de Benchmark PC - Atlas Corporation</title>
+    <meta name="description" content="Guide professionnel pour réaliser un benchmark complet de votre PC Windows avec UserDiag, 3DMark, CrystalDiskInfo et MSI Afterburner.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Colors */
+            --primary: #1a1a1a;
+            --secondary: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--gray-900);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .header-cta {
+            background: var(--accent);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .header-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Section */
+        .section {
+            padding: 4rem 2rem;
+        }
+
+        .section-alt {
+            background: var(--gray-50);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid var(--warning);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .intro-box h3 {
+            color: #856404;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .intro-box ul {
+            list-style: none;
+            color: #856404;
+        }
+
+        .intro-box li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+
+        .intro-box li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Step Card */
+        .step-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+            transform: scaleX(0);
+            transition: var(--transition-slow);
+        }
+
+        .step-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gray-300);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-card h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin: 1.5rem 0 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-card ul {
+            margin-left: 1.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .step-card li {
+            margin-bottom: 0.5rem;
+            color: var(--gray-700);
+        }
+
+        /* Special Section */
+        .special-section {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            border-left: 4px solid #00acc1;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .special-section h2 {
+            color: #006064;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .special-section h3 {
+            color: #00838f;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-400);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #263238;
+            color: #aed581;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            box-shadow: var(--shadow-md);
+        }
+
+        .code-block pre {
+            margin: 0;
+        }
+
+        /* Path Box */
+        .path-box {
+            background: var(--gray-100);
+            border: 2px dashed var(--gray-400);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-family: var(--font-mono);
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: #ffebee;
+            border-left: 4px solid var(--error);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .warning-box strong {
+            color: #c62828;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Tips Box */
+        .tips-box {
+            background: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .tips-box h3 {
+            color: #2e7d32;
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tips-box ul {
+            margin-left: 1.5rem;
+        }
+
+        /* Results Box */
+        .results-box {
+            background: #fff8e1;
+            border-left: 4px solid var(--warning);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .results-box h3 {
+            color: #e65100;
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .results-box ul {
+            margin-left: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: var(--gray-300);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        /* Download Button Group */
+        .download-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .step-card {
+                padding: 1.5rem;
+            }
+
+            .download-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="https://atlas-corporation.fr" class="logo">
+                <div class="logo-icon">🚀</div>
+                <span>Atlas Corporation</span>
+            </a>
+            <a href="https://atlas-corporation.fr" class="header-cta">
+                Retour au site
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                📊 Guide Technique Professionnel
+            </div>
+            <h1 class="hero-title">
+                Guide Complet pour Réaliser un <span class="highlight">Benchmark PC</span>
+            </h1>
+            <p class="hero-description">
+                Évaluation fiable et complète des performances de votre ordinateur Windows avec les meilleurs outils professionnels.
+            </p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div class="section">
+        <div class="container">
+            <!-- Introduction -->
+            <div class="intro-box fade-in">
+                <h3>📋 Préparation et Objectifs</h3>
+                <p><strong>Objectif :</strong> Obtenir une évaluation fiable et complète des performances de votre PC Windows.</p>
+                <ul>
+                    <li><strong>Ne PAS désactiver Windows Defender</strong> - laissez-le actif</li>
+                    <li>Fermer tous les programmes inutiles avant de commencer</li>
+                    <li>Assurez-vous que votre PC est branché sur secteur (pour les laptops)</li>
+                    <li>Prévoyez environ 1 à 2 heures pour l'ensemble des tests</li>
+                </ul>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="step-card fade-in">
+                <div class="step-number">1</div>
+                <h2>Test Général avec UserDiag</h2>
+                <p><strong>UserDiag</strong> effectue un diagnostic complet de votre système directement en ligne.</p>
+                
+                <h3>📥 Procédure :</h3>
+                <ul>
+                    <li>Visitez le site officiel : <a href="https://userdiag.com" target="_blank">https://userdiag.com</a></li>
+                    <li>Lancez le <strong>test rapide en ligne</strong> (directement dans le navigateur)</li>
+                    <li>Une fois le test terminé, <strong>copiez le lien du rapport généré</strong></li>
+                    <li>Conservez ce lien pour référence future</li>
+                </ul>
+
+                <div class="warning-box" style="background: #e3f2fd; border-left-color: #1976d2;">
+                    <strong style="color: #0d47a1;">💡 Important :</strong> Pas besoin de télécharger de logiciel, le test se fait directement en ligne. Conservez simplement le lien du rapport !
+                </div>
+                
+                <div style="margin-top: 1.5rem;">
+                    <a href="https://userdiag.com" target="_blank" class="btn btn-primary">
+                        <span>🌐</span>
+                        Accéder à UserDiag
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card fade-in">
+                <div class="step-number">2</div>
+                <h2>Benchmark Graphique avec 3DMark</h2>
+                <p><strong>3DMark</strong> est la référence mondiale pour tester les performances graphiques.</p>
+                
+                <h3>🎮 Procédure :</h3>
+                <ul>
+                    <li>Ouvrez <strong>Steam</strong></li>
+                    <li>Recherchez <strong>3DMark</strong> dans le store</li>
+                    <li>Installez la <strong>version démo</strong> (gratuite)</li>
+                    <li>Lancez le test par défaut (<strong>Time Spy</strong> recommandé)</li>
+                    <li>Prenez une capture d'écran des résultats à la fin du test</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ Attention :</strong> Le test peut durer plusieurs minutes et solliciter intensément votre GPU.
+                </div>
+                
+                <div style="margin-top: 1.5rem;">
+                    <a href="https://store.steampowered.com/app/223850/3DMark/" target="_blank" class="btn btn-primary">
+                        <span>🎮</span>
+                        Télécharger 3DMark
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card fade-in">
+                <div class="step-number">3</div>
+                <h2>Vérification du Stockage avec CrystalDiskInfo</h2>
+                <p><strong>CrystalDiskInfo</strong> analyse l'état de santé de vos disques durs et SSD.</p>
+                
+                <h3>💾 Procédure :</h3>
+                <ul>
+                    <li>Téléchargez depuis : <a href="https://crystalmark.info/en/software/crystaldiskinfo/" target="_blank">crystalmark.info</a></li>
+                    <li>Installez et lancez le logiciel</li>
+                    <li>Vérifiez en priorité l'état du <strong>SSD contenant Windows</strong></li>
+                    <li>Contrôlez ensuite les autres disques</li>
+                    <li>Exportez les résultats ou faites une capture d'écran</li>
+                </ul>
+                
+                <p><strong>Indicateurs à surveiller :</strong> Température, état de santé, heures d'utilisation</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <a href="https://crystalmark.info/en/software/crystaldiskinfo/" target="_blank" class="btn btn-primary">
+                        <span>💾</span>
+                        Télécharger CrystalDiskInfo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-card fade-in">
+                <div class="step-number">4</div>
+                <h2>Monitoring Matériel avec MSI Afterburner & RivaTuner</h2>
+                <p><strong>MSI Afterburner</strong> (avec RivaTuner) permet d'afficher en temps réel les performances de votre PC pendant une session de jeu intensive.</p>
+                
+                <h3>📊 Procédure :</h3>
+                <ul>
+                    <li>Téléchargez et installez <strong>MSI Afterburner</strong> (RivaTuner est inclus)</li>
+                    <li>Importez la configuration personnalisée (voir section ci-dessous)</li>
+                    <li>Activez l'affichage à l'écran (OSD) pour monitorer :
+                        <ul>
+                            <li>Températures CPU / GPU</li>
+                            <li>Fréquences et taux d'utilisation</li>
+                            <li>FPS en temps réel</li>
+                            <li>Utilisation RAM et VRAM</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>🎮 Test Intensif Obligatoire (10 minutes minimum)</h3>
+                <div class="warning-box" style="background: #fff3e0; border-left-color: #f57c00;">
+                    <strong style="color: #e65100;">⚠️ Protocole de Test Important :</strong>
+                    <p style="margin-top: 0.5rem; color: #e65100;">Pour obtenir des résultats représentatifs, vous devez :</p>
+                </div>
+                <ul style="margin-top: 1rem;">
+                    <li><strong>MSI Afterburner doit être lancé</strong>, mais doit rester <strong>en arrière-plan</strong> (ne doit PAS être l'application au premier plan)</li>
+                    <li><strong>Le jeu doit être l'application au premier plan</strong> - c'est lui qui doit avoir le focus</li>
+                    <li>MSI Afterburner affichera automatiquement l'OSD (affichage à l'écran) sur le jeu</li>
+                    <li><strong>Lancer un jeu exigeant</strong> (AAA récent ou jeu que vous utilisez régulièrement)</li>
+                    <li><strong>Activer l'enregistrement vidéo</strong> (OBS, NVIDIA ShadowPlay, AMD ReLive, etc.) pour simuler une charge processeur plus lourde</li>
+                    <li><strong>Jouer pendant au moins 10 minutes</strong> en conditions réelles</li>
+                    <li><strong>Vérifier que toutes les données sont visibles à l'écran</strong> (températures, FPS, utilisation CPU/GPU)</li>
+                    <li>Prendre plusieurs <strong>captures d'écran pendant la session</strong></li>
+                </ul>
+
+                <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
+                    <strong style="color: #2e7d32;">💡 Pourquoi l'enregistrement est important ?</strong>
+                    <p style="margin-top: 0.5rem; color: #2e7d32;">L'enregistrement vidéo active le décodeur et sollicite davantage le CPU, simulant ainsi la charge des jeux AAA modernes qui utilisent plusieurs threads simultanément. Cela permet d'évaluer les performances en conditions réelles d'utilisation intensive.</p>
+                </div>
+            </div>
+
+            <!-- Special Section: MSI Afterburner -->
+            <div class="special-section fade-in">
+                <h2>⚙️ Configuration Automatique de MSI Afterburner</h2>
+                <p>Pour gagner du temps, utilisez notre configuration pré-paramétrée qui affiche toutes les informations essentielles à l'écran.</p>
+                
+                <h3>📦 Méthode Manuelle</h3>
+                <ol>
+                    <li>Téléchargez le fichier de configuration :<br>
+                        <a href="https://fichiers.atlas-corporation.fr/MSIAfterburner.cfg" target="_blank" style="color: #00695c; font-weight: 600;">https://fichiers.atlas-corporation.fr/MSIAfterburner.cfg</a>
+                    </li>
+                    <li>Copiez ce fichier dans le dossier :
+                        <div class="path-box">C:\Program Files (x86)\MSI Afterburner\Profiles</div>
+                    </li>
+                    <li>Redémarrez MSI Afterburner pour appliquer les réglages</li>
+                </ol>
+
+                <h3>🤖 Installation Automatique avec Script</h3>
+                <p>Cliquez sur le bouton ci-dessous pour télécharger automatiquement le script d'installation. Ensuite, exécutez-le en tant qu'<strong>administrateur</strong> (clic droit → "Exécuter en tant qu'administrateur").</p>
+                
+                <div class="download-group">
+                    <button id="downloadBat" class="btn btn-success">
+                        <span>📥</span>
+                        Télécharger le Script .BAT
+                    </button>
+                    <a href="https://fichiers.atlas-corporation.fr/MSIAfterburner.cfg" class="btn btn-secondary" download>
+                        <span>⚙️</span>
+                        Télécharger la Config Manuellement
+                    </a>
+                </div>
+
+                <h3>📝 Contenu du Script</h3>
+                <p>Le script télécharge automatiquement le fichier de configuration et le place dans le dossier adéquat :</p>
+                
+                <div class="code-block">
+<pre>@echo off
+echo Téléchargement de la configuration MSI Afterburner...
+set "cfg_url=https://fichiers.atlas-corporation.fr/MSIAfterburner.cfg"
+set "dest=C:\Program Files (x86)\MSI Afterburner\Profiles\MSIAfterburner.cfg"
+
+powershell -Command "Invoke-WebRequest '%cfg_url%' -OutFile '%dest%'"
+
+if exist "%dest%" (
+    echo Configuration installée avec succès dans "%dest%".
+) else (
+    echo Erreur : impossible d'installer la configuration.
+)
+pause</pre>
+                </div>
+
+                <p><strong>💡 Astuce :</strong> Faites un clic droit sur le fichier .bat → "Exécuter en tant qu'administrateur"</p>
+            </div>
+
+            <!-- Tips -->
+            <div class="tips-box fade-in">
+                <h3>✅ Conseils pour des Résultats Optimaux</h3>
+                <ul>
+                    <li>Fermez <strong>tous</strong> les programmes en arrière-plan (navigateurs, clients de jeux, Discord, etc.) sauf pour le test RivaTuner</li>
+                    <li>Notez les versions de vos pilotes graphiques (NVIDIA ou AMD)</li>
+                    <li>N'exécutez <strong>qu'un seul benchmark à la fois</strong></li>
+                    <li>Attendez que le PC soit à température stable avant de commencer</li>
+                    <li><strong>Gardez Windows Defender actif</strong> - ne le désactivez pas</li>
+                    <li>Assurez-vous que le mode de performance est réglé sur "Performances maximales"</li>
+                    <li>Vérifiez que votre PC n'est pas en mode économie d'énergie</li>
+                    <li>Pour le test RivaTuner : utilisez un logiciel d'enregistrement pour charger le CPU (OBS, ShadowPlay, ReLive)</li>
+                </ul>
+            </div>
+
+            <!-- Results -->
+            <div class="results-box fade-in">
+                <h3>📁 Résultats à Conserver</h3>
+                <p>À la fin de tous les tests, conservez les fichiers et captures suivants :</p>
+                <ul>
+                    <li>✔️ <strong>Lien du rapport UserDiag</strong> (copié depuis le site web)</li>
+                    <li>✔️ Résultats 3DMark (captures d'écran + score)</li>
+                    <li>✔️ Informations CrystalDiskInfo (capture ou export)</li>
+                    <li>✔️ <strong>Captures d'écran RivaTuner / Afterburner pendant les 10 minutes de jeu intensif</strong> (avec enregistrement actif et toutes les données visibles)</li>
+                    <li>✔️ Vidéo de l'enregistrement de la session de jeu (optionnel mais recommandé)</li>
+                </ul>
+                <p><strong>Conseil :</strong> Créez un dossier dédié avec la date du benchmark pour tout archiver (exemple: "Benchmark_PC_11-10-2025").</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Atlas Corporation - Guide de Benchmark PC Professionnel</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">Créé pour des résultats fiables et reproductibles</p>
+    </footer>
+
+    <script>
+        // Fonction pour télécharger le fichier .bat
+        document.getElementById('downloadBat').addEventListener('click', function() {
+            // Contenu du fichier .bat
+            const batContent = `@echo off
+echo ====================================
+echo  Configuration MSI Afterburner
+echo  Atlas Corporation - Benchmark Tool
+echo ====================================
+echo.
+echo Téléchargement de la configuration MSI Afterburner...
+echo.
+
+set "cfg_url=https://fichiers.atlas-corporation.fr/MSIAfterburner.cfg"
+set "dest=C:\\Program Files (x86)\\MSI Afterburner\\Profiles\\MSIAfterburner.cfg"
+
+echo URL: %cfg_url%
+echo Destination: %dest%
+echo.
+
+powershell -Command "Invoke-WebRequest '%cfg_url%' -OutFile '%dest%'"
+
+echo.
+if exist "%dest%" (
+    echo [SUCCESS] Configuration installée avec succès !
+    echo.
+    echo Fichier installé dans: %dest%
+    echo.
+    echo Veuillez redémarrer MSI Afterburner pour appliquer la configuration.
+) else (
+    echo [ERREUR] Impossible d'installer la configuration.
+    echo.
+    echo Vérifiez que:
+    echo - MSI Afterburner est installé
+    echo - Vous exécutez ce script en tant qu'administrateur
+    echo - Le dossier de destination existe
+)
+echo.
+echo ====================================
+pause`;
+
+            // Créer un Blob avec le contenu
+            const blob = new Blob([batContent], { type: 'text/plain' });
+            
+            // Créer un lien de téléchargement
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'install_afterburner_config.bat';
+            
+            // Déclencher le téléchargement
+            document.body.appendChild(a);
+            a.click();
+            
+            // Nettoyer
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            // Feedback visuel
+            const btn = this;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span>✅</span> Téléchargement réussi !';
+            btn.style.background = '#10b981';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+            }, 3000);
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Smooth scroll pour les liens
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        console.log('🚀 Guide de Benchmark PC - Atlas Corporation');
+        console.log('📊 Page initialisée avec succès !');
+    </script>
+</body>
+</html>
