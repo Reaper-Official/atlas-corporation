@@ -1,683 +1,407 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlas Corporation - Navigateur de fichiers</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Galerie — Atlas Corporation</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#1a1a1a;
+      --accent:#3b82f6;
+      --accent-hover:#2563eb;
+      --accent-light:#60a5fa;
+      --white:#ffffff;
+      --gray-50:#f9fafb;
+      --gray-100:#f3f4f6;
+      --gray-200:#e5e7eb;
+      --gray-300:#d1d5db;
+      --gray-400:#9ca3af;
+      --gray-500:#6b7280;
+      --gray-700:#374151;
+      --gray-900:#111827;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 6px 18px -8px rgba(0,0,0,0.15);
+      --shadow-lg: 0 12px 30px -12px rgba(0,0,0,0.18);
+      --transition: all .22s cubic-bezier(.2,.9,.3,1);
+      --card-radius: 1rem;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
-            color: #333;
-        }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--font-sans);
+      background:linear-gradient(135deg,var(--gray-50),var(--white));
+      color:var(--gray-900);
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    /* header */
+    .header{
+      position:sticky;top:0;z-index:60;
+      background:rgba(255,255,255,0.86);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid var(--gray-200);
+      padding:1.5rem 2.5rem;
+    }
+    .header .row{display:flex;align-items:center;gap:.75rem}
+    .logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--gray-900);font-weight:800;font-size:1.25rem}
+    .logo-icon{width:3rem;height:3rem;border-radius:.75rem;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),var(--accent-light));box-shadow:var(--shadow-md)}
+    .subtitle{color:var(--gray-500);font-size:.9rem;margin-top:.35rem}
 
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
+    /* main */
+    .main-content{max-width:1400px;margin:2.25rem auto;padding:0 1.25rem}
+    .page-title{font-size:2.4rem;font-weight:900;margin-bottom:.75rem}
+    /* filter controls */
+    .filter-controls{display:flex;gap:.75rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap}
+    .filter-btn{
+      background:white;border:1px solid var(--gray-200);padding:.5rem 1rem;border-radius:999px;font-weight:700;cursor:pointer;
+      box-shadow:var(--shadow-sm);transition:var(--transition);color:var(--gray-700)
+    }
+    .filter-btn:hover{transform:translateY(-3px)}
+    .filter-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent-light));color:white;border-color:rgba(255,255,255,0.2);box-shadow:var(--shadow-lg)}
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+    /* gallery grid */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:1rem;
+      align-items:start;
+    }
 
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
+    .card{
+      background:white;border-radius:var(--card-radius);overflow:hidden;border:1px solid var(--gray-200);
+      box-shadow:var(--shadow-sm);cursor:pointer;transition:var(--transition);display:flex;flex-direction:column;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+    .card-figure{
+      height:140px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gray-100),var(--gray-50));position:relative;overflow:hidden;
+    }
+    .card-figure img{max-width:100%;max-height:100%;object-fit:cover;display:block}
+    .card-caption{padding:.6rem .75rem;display:flex;align-items:center;gap:.5rem;justify-content:space-between}
+    .filename{font-size:.9rem;font-weight:600;color:var(--gray-700);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+    .btn-ghost{border:1px solid var(--gray-200);background:white;padding:.35rem .6rem;border-radius:.5rem;font-size:.82rem;cursor:pointer;font-weight:600}
+    .btn-ghost:hover{background:var(--gray-50);border-color:var(--accent)}
 
-        .directory-section {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
+    /* video card look */
+    .card.video .card-figure{background:linear-gradient(135deg,#111827,#374151);height:140px;color:white}
+    .video-thumb{
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;
+    }
+    .video-badge{
+      position:absolute;left:8px;top:8px;background:rgba(0,0,0,0.35);backdrop-filter:blur(3px);padding:.25rem .45rem;border-radius:.4rem;font-weight:700;font-size:.78rem;color:white;border:1px solid rgba(255,255,255,0.06)
+    }
+    .play-icon{
+      width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));box-shadow:0 6px 20px rgba(0,0,0,0.35);
+      transition:transform .25s ease;
+    }
+    .card.video:hover .play-icon{transform:scale(1.08)}
+    .play-icon svg{width:36px;height:36px;stroke:white;stroke-width:1;fill:white;opacity:0.95}
 
-        .directory-section:hover {
-            transform: translateY(-5px);
-        }
+    /* separator (spans full grid) */
+    .separator{
+      grid-column: 1 / -1;
+      display:flex;align-items:center;justify-content:center;padding:1rem 0;margin:0;
+      position:relative;
+    }
+    .separator::before{
+      content:"";position:absolute;left:4%;right:4%;height:2px;background:linear-gradient(90deg,transparent,var(--accent-light),var(--accent),transparent);filter:blur(2px);opacity:.85;
+      transform:translateY(0);
+      box-shadow:0 0 18px rgba(59,130,246,0.18);
+      animation:pulse 3.8s ease-in-out infinite;
+    }
+    @keyframes pulse{0%{opacity:.6}50%{opacity:1}100%{opacity:.6}}
+    .separator .sep-label{position:relative;background:white;padding:.25rem .9rem;border-radius:999px;font-weight:800;color:var(--gray-700);border:1px solid var(--gray-100)}
 
-        .directory-header {
-            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+    /* lightbox */
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(2,6,23,0.85);z-index:1200;align-items:center;justify-content:center;padding:2rem}
+    .lightbox.active{display:flex}
+    .lightbox-inner{max-width:92%;max-height:92%;position:relative;display:flex;flex-direction:column;align-items:center;gap:.6rem}
+    .lightbox-media{max-width:100%;max-height:80vh;border-radius:.6rem;box-shadow:0 20px 60px rgba(0,0,0,0.65)}
+    .lightbox-close{position:absolute;right:-.8rem;top:-.8rem;background:white;border-radius:50%;width:44px;height:44px;border:none;cursor:pointer;box-shadow:var(--shadow-md);font-weight:800}
+    .lightbox-close:hover{background:var(--accent);color:white;transform:rotate(25deg)}
+    .lightbox-info{display:flex;gap:.6rem;align-items:center;background:white;padding:.5rem .75rem;border-radius:.5rem}
+    .lightbox-filename{font-family:var(--font-mono);font-weight:700;color:var(--gray-700)}
 
-        .directory-icon {
-            font-size: 2rem;
-        }
+    /* toast */
+    .toast{position:fixed;top:20px;right:20px;background:var(--accent);color:white;padding:.6rem .95rem;border-radius:.5rem;box-shadow:var(--shadow-lg);font-weight:700;z-index:1300;transform:translateY(-6px);opacity:0;animation:toastIn .35s forwards}
+    @keyframes toastIn{to{opacity:1;transform:translateY(0)}}
 
-        .directory-title {
-            flex: 1;
-        }
-
-        .directory-title h2 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-
-        .directory-path {
-            opacity: 0.9;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-
-        .status-badge {
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .status-available {
-            background: rgba(46, 204, 113, 0.2);
-            color: #27ae60;
-        }
-
-        .file-list {
-            padding: 20px;
-        }
-
-        .file-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            transition: background-color 0.2s ease;
-            cursor: pointer;
-        }
-
-        .file-item:hover {
-            background: #f8f9fa;
-        }
-
-        .file-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-
-        .img-icon {
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            color: white;
-        }
-
-        .video-icon {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            color: white;
-        }
-
-        .doc-icon {
-            background: linear-gradient(45deg, #74b9ff, #0984e3);
-            color: white;
-        }
-
-        .file-info {
-            flex: 1;
-        }
-
-        .file-name {
-            font-weight: 600;
-            margin-bottom: 3px;
-        }
-
-        .file-details {
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .error-message {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
-        }
-
-        .error-message .icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            opacity: 0.5;
-        }
-
-        .add-file-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s ease;
-            margin-top: 15px;
-        }
-
-        .add-file-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .refresh-btn {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 4px;
-            transition: background-color 0.2s ease;
-        }
-
-        .refresh-btn:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-
-        .loading {
-            animation: pulse 2s infinite;
-        }
-
-        /* Modal pour afficher les médias */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            position: relative;
-            margin: 2% auto;
-            width: 90%;
-            max-width: 1000px;
-            height: 90%;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .modal-header {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s ease;
-        }
-
-        .close-btn:hover {
-            background-color: rgba(255,255,255,0.2);
-        }
-
-        .modal-body {
-            padding: 0;
-            height: calc(100% - 80px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f8f9fa;
-        }
-
-        .modal-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .modal-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: white;
-        }
-
-        .download-section {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .download-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.2s ease;
-            margin: 10px;
-        }
-
-        .download-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .file-info-modal {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px;
-            text-align: left;
-        }
-
-        .file-info-modal h3 {
-            color: #333;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .info-label {
-            font-weight: bold;
-            color: #666;
-        }
-
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    /* responsive tweaks */
+    @media(max-width:720px){
+      .card-figure{height:120px}
+      .gallery-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .page-title{font-size:1.8rem}
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🗂️ Atlas Corporation</h1>
-            <p>Navigateur de fichiers multimédia</p>
-        </div>
+  <header class="header">
+    <div class="row">
+      <a class="logo" href="https://atlas-corporation.fr">
+        <div class="logo-icon"><img src="https://atlas-corporation.fr/favicon.ico" alt="Atlas" width="24" style="display:block"></div>
+        Atlas Corporation
+      </a>
+    </div>
+    <p class="subtitle">Galerie d'images et vidéos</p>
+  </header>
 
-        <!-- Section Images -->
-        <div class="directory-section">
-            <div class="directory-header">
-                <div class="directory-icon">🖼️</div>
-                <div class="directory-title">
-                    <h2>Répertoire Images</h2>
-                    <div class="directory-path">https://atlas-corporation.fr/img/</div>
-                </div>
-                <div class="status-badge status-available">25 fichiers disponibles</div>
-                <button class="refresh-btn" onclick="refreshDirectory('img')" title="Actualiser">
-                    🔄
-                </button>
-            </div>
-            <div class="file-list" id="img-files">
-                <div class="error-message">
-                    <div class="icon">✅</div>
-                    <p><strong>Fichiers disponibles</strong></p>
-                    <p>Répertoire images - 25 fichiers détectés</p>
-                    <button class="add-file-btn" onclick="loadActualFiles('img')">
-                        Afficher les fichiers réels
-                    </button>
-                </div>
-            </div>
-        </div>
+  <main class="main-content">
+    <h1 class="page-title">Galerie</h1>
 
-        <!-- Section Vidéos -->
-        <div class="directory-section">
-            <div class="directory-header">
-                <div class="directory-icon">🎬</div>
-                <div class="directory-title">
-                    <h2>Stock Vidéo</h2>
-                    <div class="directory-path">fichiers.atlas-corporation.fr/videostock</div>
-                </div>
-                <div class="status-badge status-available">11 fichiers disponibles</div>
-                <button class="refresh-btn" onclick="refreshDirectory('videostock')" title="Actualiser">
-                    🔄
-                </button>
-            </div>
-            <div class="file-list" id="videostock-files">
-                <div class="error-message">
-                    <div class="icon">✅</div>
-                    <p><strong>Fichiers disponibles</strong></p>
-                    <p>Répertoire videostock - 11 fichiers vidéo détectés</p>
-                    <button class="add-file-btn" onclick="loadActualFiles('videostock')">
-                        Afficher les fichiers réels
-                    </button>
-                </div>
-            </div>
-        </div>
+    <div class="filter-controls" aria-label="Filtrer la galerie">
+      <button class="filter-btn active" data-filter="all">Les deux</button>
+      <button class="filter-btn" data-filter="images">Images</button>
+      <button class="filter-btn" data-filter="videos">Vidéos</button>
     </div>
 
-    <!-- Modal pour afficher les médias -->
-    <div id="mediaModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title" id="modalTitle">Chargement...</div>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <div class="loading-spinner"></div>
-            </div>
+    <section class="gallery-grid" id="gallery" aria-live="polite"></section>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-inner" id="lightbox-inner"></div>
+  </div>
+
+  <footer style="text-align:center;padding:2.5rem 1rem;background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);border-top:1px solid #eee;">
+    <small style="color:var(--gray-600)">&copy; 2025 Atlas Corporation. Tous droits réservés.</small>
+  </footer>
+
+  <script>
+    // mapping noms lisibles
+    const fileDisplayNames = {
+      // Images
+      "write-over-timem480pro.png": "SSD M480 Pro Graph",
+      "write-over-time.png": "SSD Kingston NV3 Graph",
+      "write-over-tim2e.png": "SSD Kingston NV2 Graph",
+      "write-over-tim3e.png": "SSD Kingston KC3000 Graph",
+      "txtraykopub.jpg": "Texte Rayko PUB FH Discord",
+      "srayko.png": "Profil Rayko Infinytech",
+      "solotechphoto.png": "SoloTech Photo",
+      "serverrayko3.png": "Server InfinyTech Bazzard 3",
+      "serverrayko2.png": "Server InfinyTech Bazzard 2",
+      "serverrayko1.png": "Server InfinyTech Bazzard 1",
+      "screen.svg": "Image Taille Écrans",
+      "preuvebanmassif.png": "Preuve Ban Massifs FH Discord",
+      "pcinoxtagmur.png": "PC Inoxtag Mur",
+      "paxphoto.png": "PAX Photo",
+      "p3stability.png": "SSD Crucial(s) Graph",
+      "p3reality.png": "P3 Graph Copie Windows",
+      "mp700elitecorsaire.png": "SSD Corsair MP700 Elite",
+      "mp600corextcorsaire.png": "SSD Corsair MP600 CORE XT",
+      "manuizinephoto.png": "Manuizine Photo",
+      "imgppguillaume.png": "Guillaume Photo",
+      "imgppfrenchhardwarerire.png": "FrenchHardware Photo Rire",
+      "h&co(3).png": "Image RAM Hardware And Co 3",
+      "h&co(2).png": "Image RAM Hardware And Co 2",
+      "h&co(1).png": "Image RAM Hardware And Co 1",
+      "flowuppcdebunkbench.png": "PC Flowup Benchmark Preuve",
+      "configimg.png": "Flowup PC Sur Mesure Horreur",
+      "benjyhardwaredefendcorsair.png": "Benjy_Hardware qui défend Corsair",
+      "benjy_hardware.png": "Benjy_Hardware Photo",
+      "aioexplications.jpg": "Image Watercooling Explication Montage",
+      "FlowupPageweb.png": "PC Flowup Benchmark Site Base",
+      "FlowupCorsair3.png": "PC RAM Corsair Flowup 3",
+      "FlowupCorsair2.png": "PC RAM Corsair Flowup 2",
+      "FlowupCorsair1.png": "PC RAM Corsair Flowup 1",
+      "Flowup120mmprove.png": "PC Watercooling 120mm Expliqué",
+      "Flowup120mm.png": "PC Watercooling 120mm Base",
+      "FH14700KFbench.png": "Benchmark 14700KF Flowup",
+      "CEsiteIntel14700KF.png": "Site Intel 14700KF",
+      "900votants.png": "Sondage Intel IA MAX Votants",
+      "80plusratings.jpg": "Norme 80 Plus Graph",
+      "59votants.png": "Sondage Intel IA MIN votants",
+      "120mmflowup.png": "PC 120mm Flowup",
+      "fhfrontmerch.png": "FH Front Merch",
+      // Vidéos
+      "120mm_tqt(1).mp4": "FrenchHardware 1200mm Moyen",
+      "14juilletvideo.mp4": "Vidéo 14 Juillet",
+      "benjyhardwarecollabcorsair.mp4": "Benjy_Hardware Promo Corsair (Ram Inclus)",
+      "benjyhardwarejugementconfigavecramcorsair.mp4": "Benjy_Hardware Non Critique Ram Corsair",
+      "benjyhardwarequizz1.mp4": "Benjy_Hardware Quizz Ridicule 1",
+      "benjyhardwarequizz2.mp4": "Benjy_Hardware Quizz Ridicule 2",
+      "FlowupErrorBench2.mp4": "Flowup BenchMark 5080 & 7800X3D Avec Intel",
+      "FlowupErrorBenchmark1.mp4": "Flowup BenchMark 9060XT = 5090 ?",
+      "FrHardwareAutoDebunk(1).mp4": "FrenchHardware Critique Corsair (Ram)",
+      "guillaumevideoscandaleuse.mp4": "Guillaume Promo Corsair (XD)",
+      "Inoxtagpcpreuve.mp4": "Preuve Discord Haine Inoxtag FrenchHardware",
+      "manuizinetiktok.mp4": "Manuizine 750W & 5080",
+      "paxenormedingueries.mp4": "Pax Norme 80 + Non connu",
+      "pcanymedebunk.mp4": "FrenchHardware PC Anyme",
+      "solotecherrorbench(1).mp4": "Solotech Bride Tests 30 FPS"
+    };
+
+    // listes complètes (issues du fichier d'origine)
+    const filenames = [
+      "120mmflowup.png","59votants.png","80plusratings.jpg","900votants.png","CEsiteIntel14700KF.png","FH14700KFbench.png","Flowup120mm.png","Flowup120mmprove.png","FlowupCorsair1.png","FlowupCorsair2.png","FlowupCorsair3.png","FlowupPageweb.png","aioexplications.jpg","benjy_hardware.png","benjyhardwaredefendcorsair.png","configimg.png","fhfrontmerch.png","flowuppcdebunkbench.png","h&co(1).png","h&co(2).png","h&co(3).png","imgppfrenchhardwarerire.png","imgppguillaume.png","manuizinephoto.png","mp600corextcorsaire.png","mp700elitecorsaire.png","p3reality.png","p3stability.png","paxphoto.png","pcinoxtagmur.png","preuvebanmassif.png","screen.svg","serverrayko1.png","serverrayko2.png","serverrayko3.png","solotechphoto.png","srayko.png","txtraykopub.jpg","write-over-tim2e.png","write-over-tim3e.png","write-over-time.png","write-over-timem480pro.png"
+    ];
+
+    const videoFilenames = [
+      "120mm_tqt(1).mp4","14juilletvideo.mp4","benjyhardwarecollabcorsair.mp4","benjyhardwarejugementconfigavecramcorsair.mp4","benjyhardwarequizz1.mp4","benjyhardwarequizz2.mp4","FlowupErrorBench2.mp4","FlowupErrorBenchmark1.mp4","FrHardwareAutoDebunk(1).mp4","guillaumevideoscandaleuse.mp4","Inoxtagpcpreuve.mp4","manuizinetiktok.mp4","paxenormedingueries.mp4","pcanymedebunk.mp4","solotecherrorbench(1).mp4"
+    ];
+
+    const base = 'https://atlas-corporation.fr/img/';
+    const videoBase = 'https://fichiers.atlas-corporation.fr/videostock/';
+
+    const gallery = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxInner = document.getElementById('lightbox-inner');
+
+    // utils
+    function safeEncode(name){ return encodeURIComponent(name).replace(/%20/g, '+'); }
+    function createImageCard(name){
+      const src = base + safeEncode(name);
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.setAttribute('data-type','image');
+      card.onclick = () => openLightbox(src, name, false);
+
+      card.innerHTML = `
+        <figure class="card-figure">
+          <img src="${src}" alt="${escapeHtml(fileDisplayNames[name] || name)}" loading="lazy" onerror="this.style.opacity='.25'"/>
+        </figure>
+        <div class="card-caption">
+          <span class="filename">${escapeHtml(fileDisplayNames[name] || name)}</span>
+          <button class="btn-ghost" onclick="event.stopPropagation(); copyUrl('${src}')">Copier</button>
         </div>
-    </div>
+      `;
+      return card;
+    }
 
-    <script>
-        // Données réelles des répertoires Atlas Corporation basées sur les images fournies
-        const actualData = {
-            img: [
-                { name: '120mmflowup.png', size: 'PNG', type: 'IMAGE' },
-                { name: '59votants.png', size: 'PNG', type: 'IMAGE' },
-                { name: '80plusratings.jpg', size: 'JPG', type: 'IMAGE' },
-                { name: '900votants.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'CEsiteIntel14700KF.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'CT1000.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'FH14700KFbench.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'Flowup120mm.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'Flowup120mmprove.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'FlowupCorsair1.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'FlowupCorsair2.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'FlowupCorsair3.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'FlowupPageweb.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'aioexplications.jpg', size: 'JPG', type: 'IMAGE' },
-                { name: 'configimg.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'flowuppcdebunkbench.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'imgppfrenchhardwarrefire.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'p3flowup.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'p3flowupshow.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'p3reality.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'p3stability.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'pcinoxtagmur.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'preuvebanmassif.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'screen.svg', size: 'SVG', type: 'IMAGE' },
-                { name: 'txtraykopub.jpg', size: 'JPG', type: 'IMAGE' },
-                { name: 'write-over-tim2e.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'write-over-tim3e.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'write-over-time.png', size: 'PNG', type: 'IMAGE' },
-                { name: 'write-over-timem480pro.png', size: 'PNG', type: 'IMAGE' }
-            ],
-            videostock: [
-                { name: '120mm_tqt(1).mp4', size: 'MP4', type: 'VIDEO' },
-                { name: '14juilletvideo.mp4', size: 'MP4', type: 'VIDEO' },
-                { name: 'FlowupErrorBench2.mp4', size: 'MP4', type: 'VIDEO' },
-                { name: 'FlowupErrorBenchmark1.mp4', size: 'MP4', type: 'VIDEO' },
-                { name: 'FrHardwareAutoDebunk(1).mp4', size: 'MP4', type: 'VIDEO' },
-                { name: 'Inoxtagpcpreuve.mp4', size: 'MP4', type: 'VIDEO' },
-                { name: 'paxenormedingueries.mp4', size: 'MP4', type: 'VIDEO' },
-                { name: 'pcanymedebunk.mp4', size: 'MP4', type: 'VIDEO' },
-                { name: 'rtx5080et14700kfbenchmark.mp4', size: 'MP4', type: 'VIDEO' },
-                { name: 'rx9060xtetr57500fbenchmark.mp4', size: 'MP4', type: 'VIDEO' },
-                { name: 'solotecherrorbench(1).mp4', size: 'MP4', type: 'VIDEO' }
-            ]
-        };
+    function createVideoCard(name){
+      const src = videoBase + safeEncode(name);
+      const card = document.createElement('article');
+      card.className = 'card video';
+      card.setAttribute('data-type','video');
+      card.onclick = () => openLightbox(src, name, true);
 
-        function createFileItem(file, dirType) {
-            let iconClass, iconSymbol;
-            
-            switch(file.type) {
-                case 'IMAGE':
-                    iconClass = 'img-icon';
-                    iconSymbol = '🖼️';
-                    break;
-                case 'VIDEO':
-                    iconClass = 'video-icon';
-                    iconSymbol = '🎬';
-                    break;
-                case 'DOCUMENT':
-                    iconClass = 'doc-icon';
-                    iconSymbol = '📄';
-                    break;
-                default:
-                    iconClass = 'img-icon';
-                    iconSymbol = '📎';
-            }
-            
-            return `
-                <div class="file-item" onclick="openFile('${file.name}', '${dirType}')">
-                    <div class="file-icon ${iconClass}">
-                        ${iconSymbol}
-                    </div>
-                    <div class="file-info">
-                        <div class="file-name">${file.name}</div>
-                        <div class="file-details">
-                            ${file.size} • Type: ${file.type}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
+      // attempt poster fetch isn't available, so we keep a stylized thumbnail
+      card.innerHTML = `
+        <figure class="card-figure">
+          <div class="video-thumb" aria-hidden="true">
+            <div class="play-icon" title="Lire la vidéo">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+          </div>
+          <div class="video-badge">VIDÉO</div>
+        </figure>
+        <div class="card-caption">
+          <span class="filename">${escapeHtml(fileDisplayNames[name] || name)}</span>
+          <button class="btn-ghost" onclick="event.stopPropagation(); copyUrl('${src}')">Copier</button>
+        </div>
+      `;
+      return card;
+    }
 
-        function loadActualFiles(dirType) {
-            const containerId = dirType === 'videostock' ? 'videostock-files' : `${dirType}-files`;
-            const container = document.getElementById(containerId);
-            const files = actualData[dirType];
-            
-            // Animation de chargement
-            container.innerHTML = '<div class="error-message loading"><div class="icon">⏳</div><p>Chargement des fichiers réels...</p></div>';
-            
-            setTimeout(() => {
-                const filesList = files.map(file => createFileItem(file, dirType)).join('');
-                container.innerHTML = filesList;
-            }, 1000);
-        }
+    // render functions
+    function loadGallery(filter='all'){
+      gallery.innerHTML = '';
+      const showImages = filter === 'all' || filter === 'images';
+      const showVideos = filter === 'all' || filter === 'videos';
 
-        function refreshDirectory(dirType) {
-            const containerId = dirType === 'videostock' ? 'videostock-files' : `${dirType}-files`;
-            const container = document.getElementById(containerId);
-            const refreshBtn = document.querySelector(`button[onclick="refreshDirectory('${dirType}')"]`);
-            
-            refreshBtn.style.animation = 'pulse 1s infinite';
-            
-            setTimeout(() => {
-                refreshBtn.style.animation = '';
-                // Charge directement les fichiers réels
-                loadActualFiles(dirType);
-            }, 1000);
-        }
-
-        function openFile(filename, dirType) {
-            const baseUrl = dirType === 'img' ? 'https://atlas-corporation.fr/img/' : 'https://fichiers.atlas-corporation.fr/videostock/';
-            const fullUrl = baseUrl + filename;
-            const modal = document.getElementById('mediaModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalBody = document.getElementById('modalBody');
-            
-            // Afficher la modal avec un spinner de chargement
-            modalTitle.textContent = filename;
-            modalBody.innerHTML = '<div class="loading-spinner"></div>';
-            modal.style.display = 'block';
-            
-            // Détecter le type de fichier
-            const extension = filename.split('.').pop().toLowerCase();
-            
-            setTimeout(() => {
-                if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg'].includes(extension)) {
-                    // Afficher l'image
-                    displayImage(fullUrl, filename, modalBody);
-                } else if (['html', 'htm'].includes(extension)) {
-                    // Afficher la page HTML dans un iframe
-                    displayHTML(fullUrl, filename, modalBody);
-                } else if (['mp4', 'avi', 'mov', 'webm', 'mkv'].includes(extension)) {
-                    // Afficher la vidéo
-                    displayVideo(fullUrl, filename, modalBody);
-                } else {
-                    // Type de fichier générique
-                    displayGeneric(fullUrl, filename, modalBody);
-                }
-            }, 500);
-        }
-
-        function displayImage(url, filename, container) {
-            container.innerHTML = `
-                <img src="${url}" alt="${filename}" class="modal-image" 
-                     onerror="handleImageError(this, '${url}', '${filename}')"
-                     onload="handleImageLoad(this)">
-            `;
-        }
-
-        function displayHTML(url, filename, container) {
-            container.innerHTML = `
-                <iframe src="${url}" class="modal-iframe" 
-                        onerror="handleIframeError(this, '${url}', '${filename}')">
-                </iframe>
-            `;
-        }
-
-        function displayVideo(url, filename, container) {
-            container.innerHTML = `
-                <video controls class="modal-image" style="max-width: 100%; max-height: 100%;">
-                    <source src="${url}" type="video/${filename.split('.').pop()}">
-                    Votre navigateur ne supporte pas la lecture vidéo.
-                </video>
-            `;
-        }
-
-        function displayGeneric(url, filename, container) {
-            container.innerHTML = `
-                <div class="download-section">
-                    <div class="file-info-modal">
-                        <h3>📄 Fichier générique</h3>
-                        <div class="info-row">
-                            <span class="info-label">Nom :</span>
-                            <span>${filename}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">URL :</span>
-                            <span style="word-break: break-all; font-family: monospace;">${url}</span>
-                        </div>
-                    </div>
-                    <div style="text-align: center; padding: 20px;">
-                        <a href="${url}" class="download-btn" target="_blank">
-                            🔗 Ouvrir dans un nouvel onglet
-                        </a>
-                    </div>
-                </div>
-            `;
-        }
-
-        function handleImageError(img, url, filename) {
-            img.parentElement.innerHTML = `
-                <div class="download-section">
-                    <div class="file-info-modal">
-                        <h3>⚠️ Erreur de chargement</h3>
-                        <p>L'image ne peut pas être chargée directement.</p>
-                        <div class="info-row">
-                            <span class="info-label">Nom :</span>
-                            <span>${filename}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">URL :</span>
-                            <span style="word-break: break-all; font-family: monospace;">${url}</span>
-                        </div>
-                    </div>
-                    <div style="text-align: center; padding: 20px;">
-                        <a href="${url}" class="download-btn" target="_blank">
-                            🔗 Essayer d'ouvrir dans un nouvel onglet
-                        </a>
-                    </div>
-                </div>
-            `;
-        }
-
-        function handleImageLoad(img) {
-            // Image chargée avec succès
-            console.log('Image chargée:', img.src);
-        }
-
-        function closeModal() {
-            document.getElementById('mediaModal').style.display = 'none';
-        }
-
-        // Fermer la modal en cliquant en dehors
-        window.onclick = function(event) {
-            const modal = document.getElementById('mediaModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-
-        // Fermer avec la touche Echap
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
+      if (showImages) {
+        filenames.forEach(name => {
+          gallery.appendChild(createImageCard(name));
         });
+      }
 
-        // Animation d'entrée
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.directory-section');
-            sections.forEach((section, index) => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(30px)';
-                
-                setTimeout(() => {
-                    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }, index * 200);
-            });
+      // si affiche les deux, ajouter séparateur stylé
+      if (showImages && showVideos) {
+        const sep = document.createElement('div');
+        sep.className = 'separator';
+        sep.innerHTML = `<div class="sep-label">Vidéos</div>`;
+        gallery.appendChild(sep);
+      }
+
+      if (showVideos) {
+        videoFilenames.forEach(name => {
+          gallery.appendChild(createVideoCard(name));
         });
-    </script>
+      }
+    }
+
+    // lightbox open/close
+    let activeMedia = null;
+    function openLightbox(src, filename, isVideo){
+      activeMedia = {src, filename, isVideo};
+      lightboxInner.innerHTML = `
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center;">
+          <button class="lightbox-close" aria-label="Fermer" onclick="closeLightbox()">✕</button>
+          ${isVideo
+            ? `<video class="lightbox-media" controls autoplay playsinline>
+                 <source src="${src}" type="video/mp4">
+                 Votre navigateur ne supporte pas la vidéo.
+               </video>`
+            : `<img class="lightbox-media" src="${src}" alt="${escapeHtml(fileDisplayNames[filename] || filename)}">`
+          }
+          <div class="lightbox-info" style="margin-top:.6rem;">
+            <div style="display:flex;align-items:center;gap:.6rem">
+              <div class="lightbox-filename">${escapeHtml(fileDisplayNames[filename] || filename)}</div>
+            </div>
+            <div>
+              <button class="btn-ghost" onclick="copyUrl('${src}')">Copier</button>
+            </div>
+          </div>
+        </div>
+      `;
+      lightbox.classList.add('active');
+      lightbox.setAttribute('aria-hidden','false');
+      // lock scroll
+      document.documentElement.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden','true');
+      document.documentElement.style.overflow = '';
+      lightboxInner.innerHTML = '';
+      activeMedia = null;
+    }
+
+    // copy + toast
+    function copyUrl(url){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(()=> showToast('Lien copié !'));
+      } else {
+        // fallback
+        const ta = document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();
+        try{ document.execCommand('copy'); showToast('Lien copié !'); }catch(e){ alert('Copie manuelle : ' + url); }
+        ta.remove();
+      }
+    }
+
+    function showToast(msg){
+      const t = document.createElement('div'); t.className='toast'; t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(()=>{ t.remove(); }, 2200);
+    }
+
+    // filter button events
+    document.querySelectorAll('.filter-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        loadGallery(btn.dataset.filter);
+      });
+    });
+
+    // close when clicking background or Esc
+    lightbox.addEventListener('click', (e)=>{
+      if(e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+
+    // small helper to escape html in text nodes
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); });
+    }
+
+    // initial render (les deux)
+    loadGallery('all');
+  </script>
 </body>
 </html>
