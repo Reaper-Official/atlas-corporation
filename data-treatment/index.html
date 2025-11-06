@@ -1,786 +1,299 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cheminement des Données - Téléchargement Windows</title>
-    <meta name="description" content="Visualisation détaillée du parcours complet des données lors d'un téléchargement de fichier sur Windows, depuis Internet jusqu'au stockage sur SSD.">
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analyse du Cheminement des Données Windows : 1 SSD ou 2 SSD ?</title>
+    <meta name="description" content="Analyse technique du cheminement des données dans Windows — comparaison entre un SSD unique et deux SSD." />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        :root {
-            --primary: #1a1a1a;
-            --secondary: #f8fafc;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --accent-light: #60a5fa;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --white: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
-            
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
-            
-            --sidebar-width: 320px;
-            --header-height: 64px;
-            
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            
-            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        :root{
+            --primary:#0f172a;
+            --accent:#3b82f6;
+            --accent-light:#60a5fa;
+            --bg:#ffffff;
+            --muted:#6b7280;
+            --card:#ffffff;
+            --glass: rgba(255,255,255,0.6);
+            --sidebar-width:320px;
+            --header-height:64px;
+            --shadow-sm:0 1px 2px rgba(2,6,23,0.06);
+            --shadow-lg:0 10px 15px rgba(2,6,23,0.08);
+            --font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth}
+        body{
+            font-family:var(--font-sans);
+            background:var(--bg);
+            color:var(--primary);
+            line-height:1.6;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
         }
 
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        /* Sidebar */
+        .sidebar{
+            position:fixed;left:0;top:0;
+            width:var(--sidebar-width);height:100vh;
+            background:linear-gradient(180deg,#ffffff,#fbfdff);
+            border-right:1px solid #e6e9ef;
+            padding:1.25rem;overflow-y:auto;
+            box-shadow:var(--shadow-lg);z-index:1000;
         }
+        .sidebar-header{padding-bottom:1rem;border-bottom:1px solid #eef2f6;position:sticky;top:0;background:transparent;z-index:10}
+        .logo{font-weight:800;font-size:1.15rem;color:var(--primary);text-decoration:none;display:flex;gap:.6rem;align-items:center}
+        .logo-mark{width:55px;height:40px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:var(--font-mono)}
+        .sidebar .nav-section{margin-top:1.25rem}
+        .nav-section-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem}
+        .nav-item{display:block;padding:.6rem .85rem;border-radius:.5rem;color:var(--muted);text-decoration:none;font-weight:600;margin-bottom:.35rem;transition:all .18s}
+        .nav-item:hover,.nav-item.active{background:#f8fafc;color:var(--primary)}
 
-        body {
-            font-family: var(--font-sans);
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--gray-900);
-            background: var(--white);
-            overflow-x: hidden;
-        }
+        /* Main */
+        .main{margin-left:var(--sidebar-width);min-height:100vh}
+        .topbar{height:var(--header-height);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;border-bottom:1px solid #eef2f6;background:transparent;position:sticky;top:0;z-index:90;backdrop-filter:blur(4px)}
+        .header-title{font-weight:600;color:var(--primary)}
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: var(--sidebar-width);
-            height: 100vh;
-            background: var(--white);
-            border-right: 1px solid var(--gray-200);
-            z-index: 1000;
-            overflow-y: auto;
-            transition: var(--transition-slow);
-            box-shadow: var(--shadow-lg);
-        }
+        .content{max-width:1200px;margin:0 auto;padding:2.25rem}
+        .page-head{text-align:center;margin-bottom:2.5rem}
+        .page-title{font-size:2.4rem;font-weight:800;line-height:1.12;margin-bottom:.6rem}
+        .page-sub{color:var(--muted);max-width:900px;margin:0 auto;font-size:1rem}
 
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
+        .card{background:var(--card);border:1px solid #eef2f6;border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow-sm)}
+        .section-title{font-size:1.25rem;font-weight:700;margin-bottom:.6rem;color:var(--primary)}
 
-        .sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
+        .flow-diagram{display:flex;flex-direction:column;gap:1rem;align-items:center}
+        .flow-step{width:100%;max-width:900px;display:flex;gap:1rem;align-items:flex-start}
+        .step-num{flex:0 0 3rem;height:3rem;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--font-mono)}
+        .step-content{flex:1;background:#fbfdff;border-radius:10px;padding:1rem;border:1px solid #eef2f6}
+        .step-title{font-weight:700;margin-bottom:.3rem}
+        .step-route{font-family:var(--font-mono);color:var(--accent);font-weight:600;font-size:.9rem}
 
-        .sidebar::-webkit-scrollbar-thumb {
-            background: var(--gray-300);
-            border-radius: 3px;
-        }
+        .arrow{font-size:1.5rem;color:var(--accent);margin:0.2rem 0;animation:bounce 2s infinite}
+        @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
-        .sidebar-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--gray-200);
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+        .highlight{background:linear-gradient(135deg,#fbfdff,#ffffff);border-left:4px solid var(--accent);padding:1rem;border-radius:8px;margin:1rem 0}
 
-        .sidebar-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--gray-900);
-            font-weight: 800;
-            font-size: 1.25rem;
-            line-height: 1.3;
-        }
+        table{width:100%;border-collapse:collapse;border:1px solid #eef2f6;border-radius:8px;overflow:hidden}
+        th,td{padding:.9rem 1rem;border-bottom:1px solid #f1f5f9;text-align:left}
+        thead th{background:#fbfdff;text-transform:uppercase;font-size:.8rem;letter-spacing:.04em;color:var(--muted)}
 
-        .sidebar-content {
-            padding: 2rem 1.5rem;
-        }
+        ul{margin:0.6rem 0 0.6rem 1.1rem}
+        li{margin-bottom:.45rem}
 
-        .nav-section {
-            margin-bottom: 2rem;
-        }
-
-        .nav-section-title {
-            font-size: 0.875rem;
-            font-weight: 700;
-            color: var(--gray-500);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-        }
-
-        .nav-item {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--gray-600);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9375rem;
-            transition: var(--transition);
-            border-radius: 0.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background: var(--gray-50);
-            color: var(--gray-900);
-        }
-
-        .main-content {
-            margin-left: var(--sidebar-width);
-            min-height: 100vh;
-            background: var(--white);
-        }
-
-        .top-header {
-            height: var(--header-height);
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-200);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .header-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--gray-900);
-        }
-
-        .content-wrapper {
-            padding: 3rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .page-title {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
-            line-height: 1.2;
-        }
-
-        .page-subtitle {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .section {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .section-content {
-            color: var(--gray-700);
-            line-height: 1.8;
-        }
-
-        .section-content p {
-            margin-bottom: 1rem;
-        }
-
-        .section-content ul {
-            margin: 1rem 0;
-            padding-left: 1.5rem;
-        }
-
-        .section-content li {
-            margin-bottom: 0.75rem;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
-            border-left: 4px solid var(--accent);
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            background: var(--white);
-            border-radius: 0.5rem;
-            overflow: hidden;
-            border: 1px solid var(--gray-200);
-        }
-
-        .data-table thead {
-            background: var(--gray-50);
-        }
-
-        .data-table th {
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-            color: var(--gray-900);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 2px solid var(--gray-200);
-        }
-
-        .data-table td {
-            padding: 1rem;
-            color: var(--gray-700);
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .data-table tbody tr:hover {
-            background: var(--gray-50);
-        }
-
-        .data-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .graph-container {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .graph-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .flow-diagram {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .flow-step {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .step-number {
-            flex-shrink: 0;
-            width: 3rem;
-            height: 3rem;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.25rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        .step-content {
-            flex: 1;
-            background: var(--gray-50);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--gray-200);
-            transition: var(--transition);
-        }
-
-        .step-content:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent-light);
-        }
-
-        .step-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-        }
-
-        .step-title {
-            font-weight: 600;
-            color: var(--gray-900);
-            font-size: 1.125rem;
-        }
-
-        .step-route {
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        .step-description {
-            color: var(--gray-600);
-            font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-
-        .arrow-down {
-            width: 3rem;
-            height: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 1.5rem;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(5px);
-            }
-        }
-
-        .mobile-toggle {
-            display: none;
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 1001;
-            background: var(--white);
-            border: 1px solid var(--gray-300);
-            border-radius: 0.5rem;
-            width: 2.5rem;
-            height: 2.5rem;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-        }
-
-        @media (max-width: 1024px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.mobile-open {
-                transform: translateX(0);
-            }
-
-            .mobile-toggle {
-                display: flex;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .content-wrapper {
-                padding: 2rem 1rem;
-            }
-
-            .page-title {
-                font-size: 2rem;
-            }
-
-            .step-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
+        /* Mobile */
+        .mobile-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:1100;background:#fff;border:1px solid #e6e9ef;border-radius:8px;padding:.5rem;box-shadow:var(--shadow-sm);cursor:pointer}
+        @media (max-width:1024px){
+            .sidebar{transform:translateX(-110%);position:fixed;transition:transform .28s}
+            .sidebar.open{transform:translateX(0)}
+            .main{margin-left:0}
+            .mobile-toggle{display:flex}
+            .content{padding:1.25rem}
+            .page-title{font-size:1.6rem}
         }
     </style>
 </head>
 <body>
-    <button class="mobile-toggle" id="mobileToggle">
-        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Ouvrir le menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
 
-    <nav class="sidebar" id="sidebar">
+    <nav class="sidebar" id="sidebar" aria-label="Navigation principale">
         <div class="sidebar-header">
-            <a href="#" class="sidebar-logo">
-                Cheminement des Données
+            <a class="logo" href="#top">
+                <span class="logo-mark">Atlas</span>
+                <span>Cheminement des Données</span>
+				
             </a>
         </div>
 
-        <div class="sidebar-content">
-            <div class="nav-section">
-                <div class="nav-section-title">Navigation</div>
-                <a href="#graph" class="nav-item active">Diagramme de flux</a>
-                <a href="#recapitulatif" class="nav-item">Tableau récapitulatif</a>
-                <a href="#etape1" class="nav-item">Internet → Carte réseau</a>
-                <a href="#etape2" class="nav-item">Carte réseau → RAM</a>
-                <a href="#etape3" class="nav-item">Traitement CPU</a>
-                <a href="#etape4" class="nav-item">RAM → SSD</a>
-                <a href="#etape5" class="nav-item">Gestion CPU</a>
-                <a href="#etape6" class="nav-item">Déplacement de fichier</a>
-                <a href="#conclusion" class="nav-item">Conclusion</a>
-            </div>
+        <div class="nav-section">
+			<img src="https://atlas-corporation.fr/favicon.ico">
+            <div class="nav-section-title">Navigation</div>
+            <a class="nav-item active" href="#introduction">Introduction</a>
+            <a class="nav-item" href="#flux">Flux des données</a>
+            <a class="nav-item" href="#analyse">Analyse technique</a>
+            <a class="nav-item" href="#comparaison">Comparaison SSD</a>
+            <a class="nav-item" href="#conclusion">Conclusion</a>
+            <a class="nav-item" href="#references">Références & Notes</a>
         </div>
     </nav>
 
-    <main class="main-content">
-        <header class="top-header">
+    <main class="main" id="top">
+        <header class="topbar">
             <div class="header-title">Documentation Technique Windows</div>
         </header>
 
-        <div class="content-wrapper">
-            <div class="page-header">
-                <h1 class="page-title">Cheminement des Données lors d'un Téléchargement</h1>
-                <p class="page-subtitle">
-                    Visualisation détaillée et complète du parcours des données depuis Internet jusqu'au stockage sur disque lors d'un téléchargement de fichier sur un système Windows. Ce document explore chaque étape du processus, de la réception des paquets réseau à l'écriture finale sur le SSD.
-                </p>
+        <div class="content">
+            <div class="page-head" id="introduction">
+                <h1 class="page-title">Analyse du Cheminement des Données Windows : 1 SSD ou 2 SSD ?</h1>
+                <p class="page-sub">Comparaison pratique et technique — pourquoi un SSD plus grand paraît souvent préférable à deux disques plus petits dans un système Windows.</p>
             </div>
 
-            <div class="graph-container" id="graph">
-                <h2 class="graph-title">Diagramme de flux du téléchargement</h2>
-                <div class="flow-diagram">
+            <section class="card" id="flux">
+                <h2 class="section-title">Cheminement typique des données dans Windows</h2>
+                <p>Lors d’un téléchargement ou d’un transfert de fichier, les données suivent un chemin bien précis et optimisé :</p>
+                <ul>
+                    <li>Les paquets arrivent d’Internet vers la <strong>carte réseau</strong>.</li>
+                    <li>Ils transitent ensuite vers la <strong>RAM</strong> via le bus système (souvent PCIe).</li>
+                    <li>Le <strong>CPU</strong> vérifie, déchiffre et valide les paquets.</li>
+                    <li>Les blocs validés sont écrits sur le <strong>SSD système (C:)</strong> via le système de fichiers (NTFS/ReFS).</li>
+                    <li>Si nécessaire, le fichier est ensuite déplacé ou copié vers un autre disque.</li>
+                </ul>
+                <div class="highlight">⚙️ <strong>Constat :</strong> Toutes les opérations passent d’abord par la RAM et, par défaut, par le SSD principal (sauf si l’application écrit explicitement sur un autre volume).</div>
+
+                <div style="margin-top:1rem" class="flow-diagram" aria-hidden="false">
                     <div class="flow-step">
-                        <div class="step-number">1</div>
+                        <div class="step-num">1</div>
                         <div class="step-content">
-                            <div class="step-header">
-                                <div class="step-title">Internet → Carte réseau</div>
-                                <div class="step-route">TCP/IP</div>
-                            </div>
-                            <div class="step-description">
-                                Réception des paquets de données via le routeur et décodage des trames physiques par la carte réseau (Ethernet/Wi-Fi)
-                            </div>
+                            <div class="step-title">Internet → Carte réseau</div>
+                            <div class="step-route">TCP/IP</div>
+                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Réception des paquets via modem/routeur puis décodage par la NIC.</div>
                         </div>
                     </div>
 
-                    <div class="arrow-down">↓</div>
+                    <div class="arrow">↓</div>
 
                     <div class="flow-step">
-                        <div class="step-number">2</div>
+                        <div class="step-num">2</div>
                         <div class="step-content">
-                            <div class="step-header">
-                                <div class="step-title">Carte réseau → RAM</div>
-                                <div class="step-route">PCIe Bus</div>
-                            </div>
-                            <div class="step-description">
-                                Transfert des données via le bus système et stockage temporaire dans les buffers RAM pour traitement
-                            </div>
+                            <div class="step-title">Carte réseau → RAM</div>
+                            <div class="step-route">PCIe / DMA</div>
+                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Transfert dans les buffers RAM (parfois via DMA pour alléger le CPU).</div>
                         </div>
                     </div>
 
-                    <div class="arrow-down">↓</div>
+                    <div class="arrow">↓</div>
 
                     <div class="flow-step">
-                        <div class="step-number">3</div>
+                        <div class="step-num">3</div>
                         <div class="step-content">
-                            <div class="step-header">
-                                <div class="step-title">Traitement CPU</div>
-                                <div class="step-route">CU + ALU</div>
-                            </div>
-                            <div class="step-description">
-                                Orchestration par l'unité de contrôle, vérification des checksums, décryptage HTTPS et traitement dans les registres
-                            </div>
+                            <div class="step-title">Traitement CPU</div>
+                            <div class="step-route">Unité de contrôle / ALU</div>
+                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Vérification des checksums, décryptage HTTPS, et préparation des blocs applicatifs.</div>
                         </div>
                     </div>
 
-                    <div class="arrow-down">↓</div>
+                    <div class="arrow">↓</div>
 
                     <div class="flow-step">
-                        <div class="step-number">4</div>
+                        <div class="step-num">4</div>
                         <div class="step-content">
-                            <div class="step-header">
-                                <div class="step-title">RAM → SSD système</div>
-                                <div class="step-route">SATA/NVMe</div>
-                            </div>
-                            <div class="step-description">
-                                Écriture des données validées sur le SSD via NTFS, création du fichier temporaire dans le dossier de téléchargement
-                            </div>
+                            <div class="step-title">RAM → SSD système</div>
+                            <div class="step-route">SATA / NVMe</div>
+                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Écriture via NTFS : création d'un fichier temporaire dans le dossier de téléchargement, flush des caches si nécessaire.</div>
                         </div>
                     </div>
 
-                    <div class="arrow-down">↓</div>
+                    <div class="arrow">↓</div>
 
                     <div class="flow-step">
-                        <div class="step-number">5</div>
+                        <div class="step-num">5</div>
                         <div class="step-content">
-                            <div class="step-header">
-                                <div class="step-title">Supervision CPU</div>
-                                <div class="step-route">Continue</div>
-                            </div>
-                            <div class="step-description">
-                                Gestion en boucle de la progression du téléchargement, vérification de la connexion et écriture incrémentale
-                            </div>
+                            <div class="step-title">Supervision CPU</div>
+                            <div class="step-route">Continue</div>
+                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Le CPU suit l'avancement, relance des I/O, et gère les callbacks d'écriture.</div>
                         </div>
                     </div>
 
-                    <div class="arrow-down">↓</div>
+                    <div class="arrow">↓</div>
 
                     <div class="flow-step">
-                        <div class="step-number">6</div>
+                        <div class="step-num">6</div>
                         <div class="step-content">
-                            <div class="step-header">
-                                <div class="step-title">SSD → SSD cible (optionnel)</div>
-                                <div class="step-route">Déplacement</div>
-                            </div>
-                            <div class="step-description">
-                                Si nécessaire, copie du fichier depuis le SSD système vers un autre disque de stockage
-                            </div>
+                            <div class="step-title">SSD → SSD cible (optionnel)</div>
+                            <div class="step-route">Copie via le CPU / système de fichiers</div>
+                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Si déplacement après téléchargement, lecture depuis C: puis écriture sur le disque cible.</div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <section class="section" id="recapitulatif">
-                <h2 class="section-title">Récapitulatif simplifié du parcours</h2>
-                <div class="section-content">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Étape</th>
-                                <th>Source</th>
-                                <th>Destination</th>
-                                <th>Traitement principal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Internet</td>
-                                <td>Carte réseau</td>
-                                <td>Réception des paquets TCP/IP</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Carte réseau</td>
-                                <td>RAM</td>
-                                <td>Décomposition / Reconstruction des paquets</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>CPU</td>
-                                <td>RAM</td>
-                                <td>Traitement protocolaire, vérification, chiffrement</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>RAM</td>
-                                <td>SSD (C:)</td>
-                                <td>Écriture dans un fichier temporaire</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>CPU</td>
-                                <td>SSD (C:)</td>
-                                <td>Suivi du téléchargement</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>SSD (C:)</td>
-                                <td>SSD (D:) optionnel</td>
-                                <td>Copie finale si déplacé via le CPU (redirection de pistes éléctriques)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </section>
 
-            <section class="section" id="etape1">
-                <h2 class="section-title">Étape 1 : Internet → Carte réseau</h2>
-                <div class="section-content">
-                    <p>Lorsqu'un téléchargement commence depuis votre navigateur :</p>
-                    <ul>
-                        <li>Les <strong>données</strong> (paquets TCP/IP) arrivent depuis Internet</li>
-                        <li>Elles passent par votre routeur/modem puis atteignent votre carte réseau (Ethernet ou Wi-Fi)</li>
-                        <li>La carte réseau (NIC) décode les trames physiques (Ethernet/Wi-Fi) et les transmet au système d'exploitation via le bus du système (souvent PCIe)</li>
-                    </ul>
-                    <div class="highlight-box">
-                        <strong>Point clé :</strong> À ce stade, les données sont encore dans des tampons (buffers) de la carte réseau ou de la RAM, pas encore dans un fichier.
-                    </div>
-                </div>
+            <section class="card" id="analyse">
+                <h2 class="section-title">Analyse technique</h2>
+                <p>Windows centralise la plupart des opérations d’I/O et de cache sur le volume système. Points importants :</p>
+                <ul>
+                    <li><strong>Mémoire virtuelle & caches :</strong> résidant généralement sur le SSD système, ils concentrent beaucoup d'écritures.</li>
+                    <li><strong>Téléchargements :</strong> la majorité des applications écrivent d'abord sur C: (ou un dossier désigné), puis déplacent si demandé.</li>
+                    <li><strong>Scheduler I/O :</strong> Windows et le contrôleur NVMe/SATA optimisent l'ordre des écritures pour latence et endurance.</li>
+                </ul>
+
+                <div class="highlight">🧠 <strong>Implication :</strong> Avoir deux SSD n'entraîne pas automatiquement une répartition d'écritures pour une même opération — beaucoup d'écritures restent concentrées sur le disque système.</div>
             </section>
 
-            <section class="section" id="etape2">
-                <h2 class="section-title">Étape 2 : Carte réseau → CPU / RAM</h2>
-                <div class="section-content">
-                    <p>Le CPU intervient pour :</p>
-                    <ul>
-                        <li>Gérer les interruptions matérielles de la carte réseau</li>
-                        <li>Exécuter les pilotes (drivers) de la carte</li>
-                        <li>Faire remonter les paquets dans la pile réseau de Windows (TCP/IP stack)</li>
-                    </ul>
-                    <p>
-                        Les paquets sont alors reconstitués en données applicatives (HTTP, HTTPS, etc.) et stockés temporairement dans la RAM, non sur le disque encore.
-                    </p>
-                </div>
+            <section class="card" id="comparaison">
+                <h2 class="section-title">Comparaison : 1 SSD grand vs 2 SSD plus petits</h2>
+                <p>Résumé comparatif pour les configurations courantes :</p>
+                <table aria-describedby="comparaison-desc">
+                    <thead>
+                        <tr><th>Configuration</th><th>Avantages</th><th>Inconvénients</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1 × SSD 1 To</strong></td><td>Performances maximales, gestion simplifiée, plus d’espace libre pour Windows</td><td>Coût initial légèrement supérieur</td></tr>
+                        <tr><td><strong>2 × SSD 500 Go</strong></td><td>Séparation possible entre système et données</td><td>Transferts inter-disques plus lents, gestion plus complexe, usure potentiellement doublée</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight">💡 <strong>Conclusion intermédiaire :</strong> Comme Windows concentre les écritures (caches, fichiers temporaires, pagefile) sur le SSD système, un SSD unique et plus grand exploite mieux l'espace libre et réduit les copies internes.</div>
+
+                <h3 style="margin-top:1rem;font-size:1rem;font-weight:700">Quelques recommandations pratiques</h3>
+                <ul>
+                    <li>Si possible, installez Windows et le pagefile sur le SSD le plus rapide et le plus ample.</li>
+                    <li>Pour le stockage de masse, préférez un seul NVMe capacitif plutôt que plusieurs petits SSD, sauf si vous avez des besoins stricts de séparation des volumes.</li>
+                    <li>Si vous utilisez deux SSD, définissez clairement les rôles (Système vs Données) et évitez les copies manuelles fréquentes.</li>
+                </ul>
             </section>
 
-            <section class="section" id="etape3">
-                <h2 class="section-title">Étape 3 : CPU - Unité de contrôle, ALU, registres</h2>
-                <div class="section-content">
-                    <p>Dans le CPU :</p>
-                    <ul>
-                        <li>L'<strong>unité de contrôle (CU)</strong> orchestre les instructions pour traiter les paquets</li>
-                        <li>L'<strong>ALU</strong> peut intervenir pour vérifier des sommes de contrôle (checksums, cryptage/décryptage HTTPS, etc.)</li>
-                        <li>Les <strong>registres</strong> stockent les données immédiates (adresses mémoire, résultats intermédiaires)</li>
-                        <li>Ces opérations se font en boucle tant que les paquets arrivent</li>
-                    </ul>
-                </div>
+            <section class="card" id="conclusion">
+                <h2 class="section-title">Conclusion générale</h2>
+                <p>En synthèse :</p>
+                <ul>
+                    <li>Toutes les écritures passent d’abord par la RAM puis par le disque système, sauf configuration explicite contraire.</li>
+                    <li>Les copies internes entre SSD ajoutent des étapes CPU/RAM et peuvent dégrader la performance globale.</li>
+                    <li>La gestion d’un seul volume optimise performances, fiabilité et durée de vie dans la plupart des cas.</li>
+                </ul>
+                <div class="highlight">✅ <strong>En résumé :</strong> Pour la plupart des utilisateurs Windows, il est <strong>plus logique, plus rapide et souvent plus économique</strong> d’opter pour <strong>un seul SSD plus grand</strong> plutôt que deux plus petits.</div>
             </section>
 
-            <section class="section" id="etape4">
-                <h2 class="section-title">Étape 4 : RAM → SSD Windows</h2>
-                <div class="section-content">
-                    <p>Une fois les données reçues et validées, le navigateur ou l'application de téléchargement :</p>
-                    <ul>
-                        <li>Alloue un fichier temporaire (souvent dans %TEMP% ou le dossier de téléchargement)</li>
-                        <li>Le CPU ordonne à Windows (via le système de fichiers NTFS) d'écrire les blocs de données sur le SSD système (C:)</li>
-                        <li>Le contrôleur SSD reçoit les ordres via le bus (SATA ou NVMe) et écrit les données dans la mémoire flash</li>
-                    </ul>
-                </div>
+            <section class="card" id="references">
+                <h2 class="section-title">Références & Notes</h2>
+                <p class="section-desc" style="color:var(--muted)">Contenu synthétisé à partir d'observations sur le comportement Windows en matière d'I/O, caches et schémas de téléchargement. Pour des cas avancés (RAID, stockage en réseau, configurations professionnelles), une étude dédiée est recommandée.</p>
             </section>
 
-            <section class="section" id="etape5">
-                <h2 class="section-title">Étape 5 : CPU - Gestion du processus</h2>
-                <div class="section-content">
-                    <p>Pendant tout le téléchargement :</p>
-                    <ul>
-                        <li>Le CPU supervise le transfert via le navigateur</li>
-                        <li>Il vérifie la progression, gère la connexion</li>
-                        <li>Il stocke les nouveaux paquets au fur et à mesure sur le SSD</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="section" id="etape6">
-                <h2 class="section-title">Étape 6 : SSD Windows → SSD voulu (optionnel)</h2>
-                <div class="section-content">
-                    <p>Si vous décidez de télécharger directement vers un autre disque (ex. D:) :</p>
-                    <ul>
-                        <li>Windows écrit les données directement sur ce disque, en passant par le même système de fichiers</li>
-                        <li>Si vous déplacez le fichier après coup :
-                            <ul>
-                                <li>Les données sont lues depuis le SSD système</li>
-                                <li>Puis réécrites sur le SSD cible</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="section" id="conclusion">
-                <h2 class="section-title">Conclusion et points essentiels</h2>
-                <div class="section-content">
-                    <p>
-                        Cette description détaille le cheminement complet des données lors d'un téléchargement. Voici les points essentiels à retenir :
-                    </p>
-                    <div class="highlight-box">
-                        <ul style="margin: 0; padding-left: 1.5rem;">
-                            <li>Les données passent <strong>toujours par la RAM</strong> avant le SSD</li>
-                            <li>Le CPU intervient <strong>constamment</strong> pour gérer le transfert, pas seulement au début et à la fin</li>
-                            <li>Windows n'écrit pas directement depuis Internet vers le SSD sans passer par la mémoire</li>
-                        </ul>
-                    </div>
-                    <p>
-                        Ce processus optimisé permet d'assurer la fiabilité, la sécurité et l'intégrité des données téléchargées tout en maximisant les performances du système. Chaque composant matériel (carte réseau, CPU, RAM, SSD) joue un rôle crucial dans la chaîne de traitement, et leur coordination par le système d'exploitation Windows garantit un téléchargement efficace et sécurisé.
-                    </p>
-                </div>
-            </section>
+            <footer style="text-align:center;color:var(--muted);margin-top:1rem;font-size:.95rem">Généré : Analyse combinée — design modernisé et contenu technique consolidé.</footer>
         </div>
     </main>
 
     <script>
-        const sidebar = document.getElementById('sidebar');
+        // Mobile toggle
         const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+        mobileToggle.addEventListener('click', ()=> sidebar.classList.toggle('open'));
 
-        mobileToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('mobile-open');
-        });
-
+        // Navigation highlighting
         const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                navItems.forEach(nav => nav.classList.remove('active'));
-                item.classList.add('active');
-                
-                if (window.innerWidth <= 1024) {
-                    sidebar.classList.remove('mobile-open');
-                }
-            });
-        });
-
-        const sections = document.querySelectorAll('section[id], .graph-container[id]');
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '-100px 0px -100px 0px'
-        };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        const sections = document.querySelectorAll('section, .page-head');
+        const obs = new IntersectionObserver((entries)=>{
+            entries.forEach(entry=>{
                 const id = entry.target.getAttribute('id');
-                const navItem = document.querySelector(`.nav-item[href="#${id}"]`);
-                if (entry.isIntersecting && navItem) {
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    navItem.classList.add('active');
+                const link = document.querySelector('.nav-item[href="#'+id+'"]');
+                if(entry.isIntersecting && link){
+                    navItems.forEach(i=>i.classList.remove('active'));
+                    link.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }, {threshold:0.45});
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+        sections.forEach(s => obs.observe(s));
+
+        // Close sidebar on navigation (mobile)
+        navItems.forEach(item=> item.addEventListener('click', ()=> sidebar.classList.remove('open')));
     </script>
 </body>
 </html>
