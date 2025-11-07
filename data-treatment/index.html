@@ -1,299 +1,540 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Analyse du Cheminement des Données Windows : 1 SSD ou 2 SSD ?</title>
-    <meta name="description" content="Analyse technique du cheminement des données dans Windows — comparaison entre un SSD unique et deux SSD." />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuit de traitement des données - Atlas Corporation (corrigé)</title>
+    <meta name="description" content="Comprendre le circuit de traitement des données et pourquoi 2 SSD séparés sont moins performants qu'un seul SSD">
+    <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
-        :root{
-            --primary:#0f172a;
-            --accent:#3b82f6;
-            --accent-light:#60a5fa;
-            --bg:#ffffff;
-            --muted:#6b7280;
-            --card:#ffffff;
-            --glass: rgba(255,255,255,0.6);
-            --sidebar-width:320px;
-            --header-height:64px;
-            --shadow-sm:0 1px 2px rgba(2,6,23,0.06);
-            --shadow-lg:0 10px 15px rgba(2,6,23,0.08);
-            --font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
-        }
+        :root {
+  /* Couleurs principales */
+  --primary: #1a1a1a;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-light: #60a5fa;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-700: #374151;
+  --gray-900: #111827;
 
-        *{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
-        body{
-            font-family:var(--font-sans);
-            background:var(--bg);
-            color:var(--primary);
-            line-height:1.6;
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-        }
+  /* Dégradés */
+  --error-gradient: linear-gradient(135deg, #ef4444, #dc2626);
+  --success-gradient: linear-gradient(135deg, #10b981, #059669);
 
-        /* Sidebar */
-        .sidebar{
-            position:fixed;left:0;top:0;
-            width:var(--sidebar-width);height:100vh;
-            background:linear-gradient(180deg,#ffffff,#fbfdff);
-            border-right:1px solid #e6e9ef;
-            padding:1.25rem;overflow-y:auto;
-            box-shadow:var(--shadow-lg);z-index:1000;
-        }
-        .sidebar-header{padding-bottom:1rem;border-bottom:1px solid #eef2f6;position:sticky;top:0;background:transparent;z-index:10}
-        .logo{font-weight:800;font-size:1.15rem;color:var(--primary);text-decoration:none;display:flex;gap:.6rem;align-items:center}
-        .logo-mark{width:55px;height:40px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:var(--font-mono)}
-        .sidebar .nav-section{margin-top:1.25rem}
-        .nav-section-title{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem}
-        .nav-item{display:block;padding:.6rem .85rem;border-radius:.5rem;color:var(--muted);text-decoration:none;font-weight:600;margin-bottom:.35rem;transition:all .18s}
-        .nav-item:hover,.nav-item.active{background:#f8fafc;color:var(--primary)}
+  /* Typographie */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-        /* Main */
-        .main{margin-left:var(--sidebar-width);min-height:100vh}
-        .topbar{height:var(--header-height);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;border-bottom:1px solid #eef2f6;background:transparent;position:sticky;top:0;z-index:90;backdrop-filter:blur(4px)}
-        .header-title{font-weight:600;color:var(--primary)}
+  /* Transitions */
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        .content{max-width:1200px;margin:0 auto;padding:2.25rem}
-        .page-head{text-align:center;margin-bottom:2.5rem}
-        .page-title{font-size:2.4rem;font-weight:800;line-height:1.12;margin-bottom:.6rem}
-        .page-sub{color:var(--muted);max-width:900px;margin:0 auto;font-size:1rem}
+/* Réinitialisation et base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        .card{background:var(--card);border:1px solid #eef2f6;border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow-sm)}
-        .section-title{font-size:1.25rem;font-weight:700;margin-bottom:.6rem;color:var(--primary)}
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
 
-        .flow-diagram{display:flex;flex-direction:column;gap:1rem;align-items:center}
-        .flow-step{width:100%;max-width:900px;display:flex;gap:1rem;align-items:flex-start}
-        .step-num{flex:0 0 3rem;height:3rem;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--font-mono)}
-        .step-content{flex:1;background:#fbfdff;border-radius:10px;padding:1rem;border:1px solid #eef2f6}
-        .step-title{font-weight:700;margin-bottom:.3rem}
-        .step-route{font-family:var(--font-mono);color:var(--accent);font-weight:600;font-size:.9rem}
+body {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--gray-900);
+  background: #fff;
+}
 
-        .arrow{font-size:1.5rem;color:var(--accent);margin:0.2rem 0;animation:bounce 2s infinite}
-        @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+/* Conteneur principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
 
-        .highlight{background:linear-gradient(135deg,#fbfdff,#ffffff);border-left:4px solid var(--accent);padding:1rem;border-radius:8px;margin:1rem 0}
+/* Header */
+.header {
+  background: #fff;
+  border-bottom: 1px solid var(--gray-200);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
 
-        table{width:100%;border-collapse:collapse;border:1px solid #eef2f6;border-radius:8px;overflow:hidden}
-        th,td{padding:.9rem 1rem;border-bottom:1px solid #f1f5f9;text-align:left}
-        thead th{background:#fbfdff;text-transform:uppercase;font-size:.8rem;letter-spacing:.04em;color:var(--muted)}
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-        ul{margin:0.6rem 0 0.6rem 1.1rem}
-        li{margin-bottom:.45rem}
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--gray-900);
+  font-weight: 800;
+  font-size: 1.25rem;
+  transition: var(--transition);
+}
 
-        /* Mobile */
-        .mobile-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:1100;background:#fff;border:1px solid #e6e9ef;border-radius:8px;padding:.5rem;box-shadow:var(--shadow-sm);cursor:pointer}
-        @media (max-width:1024px){
-            .sidebar{transform:translateX(-110%);position:fixed;transition:transform .28s}
-            .sidebar.open{transform:translateX(0)}
-            .main{margin-left:0}
-            .mobile-toggle{display:flex}
-            .content{padding:1.25rem}
-            .page-title{font-size:1.6rem}
-        }
+.header-logo:hover {
+  color: var(--accent);
+}
+
+.header-cta {
+  background: var(--accent);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.header-cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* Titres de page */
+.page-title {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.page-title h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  color: var(--gray-700);
+  max-width: 800px;
+  margin: 0.75rem auto 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Introduction */
+.intro {
+  background: var(--gray-50);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Schéma du flux */
+.flow-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  padding: 3rem 0;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3rem;
+}
+
+.component {
+  text-align: center;
+  z-index: 2;
+}
+
+.component img {
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  border-radius: 0.75rem;
+  border: 1px solid var(--gray-200);
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: var(--transition);
+}
+
+.component:hover img {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.component-label {
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.arrow {
+  width: 4px;
+  height: 50px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-hover));
+  margin: -10px auto;
+  border-radius: 2px;
+}
+
+/* Images additionnelles */
+.small-annot {
+  display: block;
+  margin: 1rem auto 0;
+  max-width: 380px;
+  width: 90%;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: var(--transition);
+}
+
+.small-annot:hover {
+  transform: scale(1.04);
+}
+
+/* Animation du logo de donnée */
+.data-packet {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  width: 90px;
+  pointer-events: none;
+  z-index: 999;
+  transition: transform 0.08s linear, opacity 0.25s ease;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.15));
+  opacity: 0;
+}
+
+/* Sections Conclusion / Recommandation */
+.conclusion,
+.recommendation {
+  color: white;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.conclusion {
+  background: var(--error-gradient);
+}
+
+.recommendation {
+  background: var(--success-gradient);
+}
+
+.conclusion h2,
+.recommendation h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.conclusion ul,
+.recommendation ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.conclusion li,
+.recommendation li {
+  padding: 0.75rem 0;
+  padding-left: 2.5rem;
+  position: relative;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.conclusion li::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+  top: 0.3rem;
+}
+
+.recommendation li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+  top: 0.3rem;
+}
+
+/* Pied de page */
+.footer {
+  background: var(--gray-900);
+  color: #d1d5db;
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  .component img {
+    max-width: 180px;
+  }
+  .small-annot {
+    max-width: 300px;
+  }
+}
+
     </style>
 </head>
 <body>
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Ouvrir le menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-
-    <nav class="sidebar" id="sidebar" aria-label="Navigation principale">
-        <div class="sidebar-header">
-            <a class="logo" href="#top">
-                <span class="logo-mark">Atlas</span>
-                <span>Cheminement des Données</span>
-				
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="header-logo">
+                <div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;color:#fff">A</div>
+                <span>Atlas Corporation</span>
             </a>
+            <a href="#" class="header-cta">🏠 Retour</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-title"><h1>🔄 Circuit de <span style="background:linear-gradient(135deg,var(--accent),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Traitement des Données</span></h1>
+            <p class="page-subtitle">Comprendre le parcours d'une donnée et pourquoi un seul SSD performant surpasse deux disques séparés</p>
         </div>
 
-        <div class="nav-section">
-			<img src="https://atlas-corporation.fr/favicon.ico">
-            <div class="nav-section-title">Navigation</div>
-            <a class="nav-item active" href="#introduction">Introduction</a>
-            <a class="nav-item" href="#flux">Flux des données</a>
-            <a class="nav-item" href="#analyse">Analyse technique</a>
-            <a class="nav-item" href="#comparaison">Comparaison SSD</a>
-            <a class="nav-item" href="#conclusion">Conclusion</a>
-            <a class="nav-item" href="#references">Références & Notes</a>
+        <div class="intro"><h2>📡 Comprendre le parcours d'une donnée</h2>
+            <p>Lorsque vous téléchargez un fichier depuis Internet, celui-ci traverse plusieurs composants avant d'être stocké sur disque. Le script ci‑dessous pilote l'animation du logo d'application (data‑packet) pendant le scroll — corrigé pour être fiable sur PC et mobile.</p>
         </div>
-    </nav>
 
-    <main class="main" id="top">
-        <header class="topbar">
-            <div class="header-title">Documentation Technique Windows</div>
-        </header>
+        <div class="flow-container" id="flowContainer">
+            <img src="https://atlas-corporation.fr/img/logoapptelechargement.png" class="data-packet" id="dataPacket" alt="Donnée en transit">
 
-        <div class="content">
-            <div class="page-head" id="introduction">
-                <h1 class="page-title">Analyse du Cheminement des Données Windows : 1 SSD ou 2 SSD ?</h1>
-                <p class="page-sub">Comparaison pratique et technique — pourquoi un SSD plus grand paraît souvent préférable à deux disques plus petits dans un système Windows.</p>
+            <div class="component" data-step="0">
+                <img src="https://atlas-corporation.fr/img/internetlogo.png" alt="Internet">
+                <div class="component-label">1️⃣ Internet</div>
+                <p class="sr">Source réseau public → paquets TCP/UDP</p>
             </div>
 
-            <section class="card" id="flux">
-                <h2 class="section-title">Cheminement typique des données dans Windows</h2>
-                <p>Lors d’un téléchargement ou d’un transfert de fichier, les données suivent un chemin bien précis et optimisé :</p>
-                <ul>
-                    <li>Les paquets arrivent d’Internet vers la <strong>carte réseau</strong>.</li>
-                    <li>Ils transitent ensuite vers la <strong>RAM</strong> via le bus système (souvent PCIe).</li>
-                    <li>Le <strong>CPU</strong> vérifie, déchiffre et valide les paquets.</li>
-                    <li>Les blocs validés sont écrits sur le <strong>SSD système (C:)</strong> via le système de fichiers (NTFS/ReFS).</li>
-                    <li>Si nécessaire, le fichier est ensuite déplacé ou copié vers un autre disque.</li>
-                </ul>
-                <div class="highlight">⚙️ <strong>Constat :</strong> Toutes les opérations passent d’abord par la RAM et, par défaut, par le SSD principal (sauf si l’application écrit explicitement sur un autre volume).</div>
+            <div class="arrow"></div>
 
-                <div style="margin-top:1rem" class="flow-diagram" aria-hidden="false">
-                    <div class="flow-step">
-                        <div class="step-num">1</div>
-                        <div class="step-content">
-                            <div class="step-title">Internet → Carte réseau</div>
-                            <div class="step-route">TCP/IP</div>
-                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Réception des paquets via modem/routeur puis décodage par la NIC.</div>
-                        </div>
-                    </div>
+            <div class="component" data-step="1">
+                <img src="https://atlas-corporation.fr/img/cartereseau10g.png" alt="Carte réseau">
+                <div class="component-label">2️⃣ Carte Réseau 10G</div>
+                <p class="sr">Réception des paquets, offload matériel possible</p>
+            </div>
 
-                    <div class="arrow">↓</div>
+            <div class="arrow"></div>
 
-                    <div class="flow-step">
-                        <div class="step-num">2</div>
-                        <div class="step-content">
-                            <div class="step-title">Carte réseau → RAM</div>
-                            <div class="step-route">PCIe / DMA</div>
-                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Transfert dans les buffers RAM (parfois via DMA pour alléger le CPU).</div>
-                        </div>
-                    </div>
+            <div class="component" data-step="2">
+                <img src="https://atlas-corporation.fr/img/cartemere.png" alt="Carte mère">
+                <div class="component-label">3️⃣ Carte Mère</div>
+                <p class="sr">Bus PCIe, contrôleur DMA, interconnexions</p>
+            </div>
 
-                    <div class="arrow">↓</div>
+            <div class="arrow"></div>
 
-                    <div class="flow-step">
-                        <div class="step-num">3</div>
-                        <div class="step-content">
-                            <div class="step-title">Traitement CPU</div>
-                            <div class="step-route">Unité de contrôle / ALU</div>
-                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Vérification des checksums, décryptage HTTPS, et préparation des blocs applicatifs.</div>
-                        </div>
-                    </div>
+            <div class="component" data-step="3">
+                <img src="https://atlas-corporation.fr/img/proc.png" alt="Processeur">
+                <div class="component-label">4️⃣ CPU + RAM</div>
+                <p class="sr">Traitement, contrôle antivirus, buffering en RAM</p>
+            </div>
 
-                    <div class="arrow">↓</div>
+            <div class="arrow"></div>
 
-                    <div class="flow-step">
-                        <div class="step-num">4</div>
-                        <div class="step-content">
-                            <div class="step-title">RAM → SSD système</div>
-                            <div class="step-route">SATA / NVMe</div>
-                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Écriture via NTFS : création d'un fichier temporaire dans le dossier de téléchargement, flush des caches si nécessaire.</div>
-                        </div>
-                    </div>
+            <div class="component" data-step="4">
+                <img src="https://atlas-corporation.fr/img/ssdmauvais.png" alt="SSD Windows">
+                <div class="component-label">5️⃣ SSD Windows (Temporaire)</div>
+                <p class="sr">Écriture initiale pour inspection / traitement système</p>
+                <!-- image demandée pour le SSD pourri -->
+                <img class="small-annot" src="https://atlas-corporation.fr/img/write-over-time.png" alt="Write over time - SSD lent">
+            </div>
 
-                    <div class="arrow">↓</div>
+            <div class="arrow"></div>
 
-                    <div class="flow-step">
-                        <div class="step-num">5</div>
-                        <div class="step-content">
-                            <div class="step-title">Supervision CPU</div>
-                            <div class="step-route">Continue</div>
-                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Le CPU suit l'avancement, relance des I/O, et gère les callbacks d'écriture.</div>
-                        </div>
-                    </div>
+            <div class="component" data-step="5">
+                <img src="https://atlas-corporation.fr/img/proc.png" alt="Retour CPU">
+                <div class="component-label">6️⃣ Retour CPU (Redirection)</div>
+                <p class="sr">Redirection et préparation du transfert vers stockage final</p>
+            </div>
 
-                    <div class="arrow">↓</div>
+            <div class="arrow"></div>
 
-                    <div class="flow-step">
-                        <div class="step-num">6</div>
-                        <div class="step-content">
-                            <div class="step-title">SSD → SSD cible (optionnel)</div>
-                            <div class="step-route">Copie via le CPU / système de fichiers</div>
-                            <div class="step-desc" style="color:var(--muted);margin-top:.4rem">Si déplacement après téléchargement, lecture depuis C: puis écriture sur le disque cible.</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="card" id="analyse">
-                <h2 class="section-title">Analyse technique</h2>
-                <p>Windows centralise la plupart des opérations d’I/O et de cache sur le volume système. Points importants :</p>
-                <ul>
-                    <li><strong>Mémoire virtuelle & caches :</strong> résidant généralement sur le SSD système, ils concentrent beaucoup d'écritures.</li>
-                    <li><strong>Téléchargements :</strong> la majorité des applications écrivent d'abord sur C: (ou un dossier désigné), puis déplacent si demandé.</li>
-                    <li><strong>Scheduler I/O :</strong> Windows et le contrôleur NVMe/SATA optimisent l'ordre des écritures pour latence et endurance.</li>
-                </ul>
-
-                <div class="highlight">🧠 <strong>Implication :</strong> Avoir deux SSD n'entraîne pas automatiquement une répartition d'écritures pour une même opération — beaucoup d'écritures restent concentrées sur le disque système.</div>
-            </section>
-
-            <section class="card" id="comparaison">
-                <h2 class="section-title">Comparaison : 1 SSD grand vs 2 SSD plus petits</h2>
-                <p>Résumé comparatif pour les configurations courantes :</p>
-                <table aria-describedby="comparaison-desc">
-                    <thead>
-                        <tr><th>Configuration</th><th>Avantages</th><th>Inconvénients</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>1 × SSD 1 To</strong></td><td>Performances maximales, gestion simplifiée, plus d’espace libre pour Windows</td><td>Coût initial légèrement supérieur</td></tr>
-                        <tr><td><strong>2 × SSD 500 Go</strong></td><td>Séparation possible entre système et données</td><td>Transferts inter-disques plus lents, gestion plus complexe, usure potentiellement doublée</td></tr>
-                    </tbody>
-                </table>
-
-                <div class="highlight">💡 <strong>Conclusion intermédiaire :</strong> Comme Windows concentre les écritures (caches, fichiers temporaires, pagefile) sur le SSD système, un SSD unique et plus grand exploite mieux l'espace libre et réduit les copies internes.</div>
-
-                <h3 style="margin-top:1rem;font-size:1rem;font-weight:700">Quelques recommandations pratiques</h3>
-                <ul>
-                    <li>Si possible, installez Windows et le pagefile sur le SSD le plus rapide et le plus ample.</li>
-                    <li>Pour le stockage de masse, préférez un seul NVMe capacitif plutôt que plusieurs petits SSD, sauf si vous avez des besoins stricts de séparation des volumes.</li>
-                    <li>Si vous utilisez deux SSD, définissez clairement les rôles (Système vs Données) et évitez les copies manuelles fréquentes.</li>
-                </ul>
-            </section>
-
-            <section class="card" id="conclusion">
-                <h2 class="section-title">Conclusion générale</h2>
-                <p>En synthèse :</p>
-                <ul>
-                    <li>Toutes les écritures passent d’abord par la RAM puis par le disque système, sauf configuration explicite contraire.</li>
-                    <li>Les copies internes entre SSD ajoutent des étapes CPU/RAM et peuvent dégrader la performance globale.</li>
-                    <li>La gestion d’un seul volume optimise performances, fiabilité et durée de vie dans la plupart des cas.</li>
-                </ul>
-                <div class="highlight">✅ <strong>En résumé :</strong> Pour la plupart des utilisateurs Windows, il est <strong>plus logique, plus rapide et souvent plus économique</strong> d’opter pour <strong>un seul SSD plus grand</strong> plutôt que deux plus petits.</div>
-            </section>
-
-            <section class="card" id="references">
-                <h2 class="section-title">Références & Notes</h2>
-                <p class="section-desc" style="color:var(--muted)">Contenu synthétisé à partir d'observations sur le comportement Windows en matière d'I/O, caches et schémas de téléchargement. Pour des cas avancés (RAID, stockage en réseau, configurations professionnelles), une étude dédiée est recommandée.</p>
-            </section>
-
-            <footer style="text-align:center;color:var(--muted);margin-top:1rem;font-size:.95rem">Généré : Analyse combinée — design modernisé et contenu technique consolidé.</footer>
+            <div class="component" data-step="6">
+                <img src="https://atlas-corporation.fr/img/ssdnvmebon.png" alt="SSD stockage">
+                <div class="component-label">7️⃣ SSD de Stockage Final</div>
+                <p class="sr">Écriture définitive — idéalement NVMe rapide</p>
+                <!-- image demandée pour le SSD performant -->
+                <img class="small-annot" src="https://atlas-corporation.fr/img/write-over-tim3e.png" alt="Write over time - SSD performant">
+            </div>
         </div>
-    </main>
+
+        <div class="conclusion">
+      <h2>⚠️ Problème majeur de la configuration à 2 SSD séparés</h2>
+      <ul>
+        <li><strong>Double écriture obligatoire :</strong> La donnée est d'abord écrite sur le SSD Windows (pour analyse) puis copiée vers le SSD final.</li>
+        <li><strong>Goulot d'étranglement :</strong> La vitesse est limitée par le SSD Windows s'il est lent.</li>
+        <li><strong>Latence accrue :</strong> Chaque transfert repasse par le CPU et la carte-mère.</li>
+        <li><strong>Usure prématurée :</strong> Deux SSD écrivent inutilement les mêmes données.</li>
+        <li><strong>Gestion complexe :</strong> Plus de points de défaillance et maintenance compliquée.</li>
+      </ul>
+    </div>
+
+    <div class="recommendation">
+      <h2>✅ Solution optimale recommandée : 1 seul SSD NVMe performant</h2>
+      <ul>
+        <li><strong>Une seule écriture :</strong> pas de transfert intermédiaire.</li>
+        <li><strong>Pas de double passage CPU :</strong> économie de latence.</li>
+        <li><strong>Vitesse constante :</strong> sans goulot d'étranglement.</li>
+        <li><strong>Usure réduite :</strong> composants préservés.</li>
+        <li><strong>Gestion simplifiée :</strong> système plus fiable et durable.</li>
+      </ul>
+    </div>
+  </div>
+
+    <footer class="footer">&copy; 2025 Atlas Corporation</footer>
 
     <script>
-        // Mobile toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const sidebar = document.getElementById('sidebar');
-        mobileToggle.addEventListener('click', ()=> sidebar.classList.toggle('open'));
+        // Amélioration du positionnement de la vignette "dataPacket" pendant le scroll.
+        // Principes :
+        // - On calcule les positions absolues des composants (centres) une fois puis à chaque resize / images chargées.
+        // - On déplace la vignette en la positionnant par rapport à la fenêtre (position:fixed). Donc on convertit "document" -> "viewport" coords.
+        // - La vignette suit le centre de la fenêtre (viewport center) interpolé entre le 1er et dernier composant.
+        // - Garde la vignette visible aux extrémités et ajuste l'échelle lorsqu'elle passe près d'un composant.
 
-        // Navigation highlighting
-        const navItems = document.querySelectorAll('.nav-item');
-        const sections = document.querySelectorAll('section, .page-head');
-        const obs = new IntersectionObserver((entries)=>{
-            entries.forEach(entry=>{
-                const id = entry.target.getAttribute('id');
-                const link = document.querySelector('.nav-item[href="#'+id+'"]');
-                if(entry.isIntersecting && link){
-                    navItems.forEach(i=>i.classList.remove('active'));
-                    link.classList.add('active');
-                }
+        (function(){
+            const dataPacket = document.getElementById('dataPacket');
+            const flowContainer = document.getElementById('flowContainer');
+            const components = Array.from(document.querySelectorAll('.component'));
+            let compCenters = [];
+
+            function computeComponentCenters(){
+                compCenters = components.map(c => {
+                    const r = c.getBoundingClientRect();
+                    const absCenter = r.top + window.scrollY + (r.height / 2);
+                    return { el: c, center: absCenter };
+                });
+            }
+
+            // Call on load, after images, on resize
+            function safeCompute(){
+                computeComponentCenters();
+            }
+
+            // Recompute when images inside components load (some images may be remote)
+            const imgs = flowContainer.querySelectorAll('img');
+            let loadedCount = 0;
+            imgs.forEach(img => {
+                if (img.complete) { loadedCount++; return; }
+                img.addEventListener('load', () => { loadedCount++; if (loadedCount === imgs.length) safeCompute(); });
+                img.addEventListener('error', () => { loadedCount++; if (loadedCount === imgs.length) safeCompute(); });
             });
-        }, {threshold:0.45});
 
-        sections.forEach(s => obs.observe(s));
+            // Also observe size changes of the container (if layout changes)
+            let ro = null;
+            if (window.ResizeObserver) {
+                ro = new ResizeObserver(() => { safeCompute(); });
+                ro.observe(flowContainer);
+            }
 
-        // Close sidebar on navigation (mobile)
-        navItems.forEach(item=> item.addEventListener('click', ()=> sidebar.classList.remove('open')));
+            window.addEventListener('resize', () => { safeCompute(); });
+            // initial compute after small timeout to allow fonts/layout
+            setTimeout(safeCompute, 150);
+
+            // Main update loop for scroll
+            let ticking = false;
+            function update(){
+                const scrollY = window.scrollY;
+                const viewportH = window.innerHeight;
+                const viewportCenter = scrollY + viewportH / 2;
+
+                if (!compCenters.length) {
+                    dataPacket.style.opacity = '0';
+                    return;
+                }
+
+                const start = compCenters[0].center;
+                const end = compCenters[compCenters.length - 1].center;
+
+                // If start == end (edge case) avoid division by 0
+                const range = Math.max(1, end - start);
+
+                // Compute progress according to viewport center (so animation feels centered on screen)
+                let progress = (viewportCenter - start) / range;
+                // Slightly extend visibility before/after ends for nicer entrance/exit
+                const visibleMargin = 0.08; // 8% before and after
+                const isVisible = (progress >= -visibleMargin && progress <= 1 + visibleMargin);
+
+                if (!isVisible) {
+                    dataPacket.style.opacity = '0';
+                    return;
+                }
+
+                dataPacket.style.opacity = '1';
+
+                // Clamp progress 0..1 for positioning
+                const clamped = Math.max(0, Math.min(1, progress));
+                const targetAbsY = start + clamped * range; // absolute document coord
+
+                // Convert to viewport coord because data-packet is position:fixed
+                const targetViewportY = targetAbsY - scrollY;
+
+                // Keep the packet inside the viewport with small padding
+                const padTop = Math.max(24, viewportH * 0.06); // at least 24px or 6% of viewport
+                const padBottom = padTop;
+                const minY = padTop;
+                const maxY = viewportH - padBottom;
+                const finalViewportY = Math.max(minY, Math.min(maxY, targetViewportY));
+
+                // Scale depending on proximity to nearest component center (in viewport coordinates)
+                const threshold = window.innerWidth < 768 ? 60 : 120; // smaller threshold on mobile
+                let nearestDist = Infinity;
+                compCenters.forEach(c => {
+                    const compViewportCenter = c.center - scrollY;
+                    const d = Math.abs(compViewportCenter - finalViewportY);
+                    if (d < nearestDist) nearestDist = d;
+                });
+                // map nearestDist [0..threshold] -> scale [0.5..1]
+                const norm = Math.max(0, Math.min(1, nearestDist / threshold));
+                const minScale = 0.5;
+                const scale = minScale + norm * (1 - minScale);
+
+                // Apply transform and top
+                dataPacket.style.transform = `translateX(-50%) scale(${scale})`;
+                dataPacket.style.top = `${finalViewportY}px`;
+            }
+
+            function onScroll(){ if (!ticking){ window.requestAnimationFrame(()=>{ update(); ticking = false; }); ticking = true; } }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            // initial update
+            setTimeout(() => { safeCompute(); update(); }, 300);
+
+            // Expose for debugging (optional)
+            window._atlasDebug = { recompute: safeCompute };
+        })();
+
+        console.log('🚀 Atlas — animation dataPacket: script initialisé (version corrigée)');
     </script>
 </body>
 </html>
