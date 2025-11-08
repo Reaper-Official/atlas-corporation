@@ -403,8 +403,9 @@
         // Charger les données
         async function loadData() {
             try {
-                // Déterminer le chemin de base (pour GitHub Pages et local)
-                const basePath = window.location.protocol === 'file:' ? '' : './';
+                // Déterminer le chemin de base
+                const isLocal = window.location.protocol === 'file:';
+                const basePath = isLocal ? '' : './';
                 
                 const [gpuResponse, cpuResponse] = await Promise.all([
                     fetch(basePath + 'gpu_data.json'),
@@ -427,8 +428,7 @@
                 if (window.location.protocol === 'file:') {
                     showFileLoaders();
                 } else {
-                    // Si on est sur GitHub Pages, afficher une erreur claire
-                    showError('❌ Erreur : Les fichiers gpu_data.json et cpu_data.json sont introuvables. Assurez-vous qu\'ils sont bien dans le repository.');
+                    showError('❌ Erreur : Les fichiers gpu_data.json et cpu_data.json sont introuvables. Vérifiez qu\'ils sont bien dans /comparator/');
                 }
             }
         }
