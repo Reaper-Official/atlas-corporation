@@ -5,112 +5,232 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Comparateur GPU/CPU - Atlas Corporation</title>
 <link rel="icon" type="image/x-icon" href="https://atlas-corporation.fr/favicon.ico">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 :root {
-    --primary: #1a1a1a;
-    --secondary: #f8fafc;
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
-    --accent-light: #60a5fa;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --error: #ef4444;
-    --white: #ffffff;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
-
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
-
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --accent-blue: #3b82f6;
+  --accent-green: #10b981;
+  --accent-orange: #f59e0b;
+  --bg-light: #f9fafb;
+  --bg-dark: #111827;
+  --text-light: #f9fafb;
+  --text-dark: #111827;
+  --card-light: #ffffff;
+  --card-dark: #1f2937;
+  --shadow: 0 4px 6px rgba(0,0,0,0.1);
+  --radius: 0.8rem;
+  --transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-    font-family: var(--font-sans);
-    background: var(--gray-50);
-    color: var(--gray-900);
-    line-height: 1.6;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  transition: var(--transition);
+  margin: 0;
+  padding: 0;
 }
 
-.container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
-.header { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%); color: white; padding: 3rem 2rem; text-align: center; margin-bottom: 3rem; border-radius: 1rem; box-shadow: var(--shadow-xl); }
-.header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.025em; }
-.header p { font-size: 1.25rem; opacity: 0.95; }
-.controls { background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-md); margin-bottom: 2rem; display: grid; gap: 1.5rem; }
-.select-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
-.select-wrapper { display: flex; flex-direction: column; gap: 0.5rem; }
-.select-wrapper label { font-weight: 600; font-size: 0.875rem; color: var(--gray-700); text-transform: uppercase; letter-spacing: 0.025em; }
-select { padding: 0.75rem 1rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; font-size: 1rem; font-family: var(--font-sans); background: white; color: var(--gray-900); cursor: pointer; transition: var(--transition); }
-select:hover { border-color: var(--accent-light); }
-select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
-.btn { padding: 0.875rem 1.5rem; background: var(--accent); color: white; border: none; border-radius: 0.5rem; font-weight: 600; font-size: 1rem; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow); }
-.btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-.comparison-grid { display: grid; gap: 2rem; }
-.comparison-card { background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-md); }
-.chart-container { position: relative; height: 400px; margin-top: 1.5rem; }
-@media (max-width: 768px) { .chart-container { height: 300px; } }
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  padding: 3rem 1rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 900;
+}
+
+.controls {
+  background: var(--card-light);
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+@media (prefers-color-scheme: dark) {
+  .controls {
+    background: var(--card-dark);
+  }
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-bar input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background: inherit;
+  color: inherit;
+}
+
+.filter-buttons button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.filter-buttons button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.btn-nvidia { background: #76b900; color: white; }
+.btn-amd { background: #d72828; color: white; }
+.btn-intel { background: #0071c5; color: white; }
+
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background: inherit;
+  color: inherit;
+}
+
+.btn-compare {
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background: var(--accent-blue);
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-compare:hover {
+  background: var(--accent-green);
+  transform: translateY(-3px);
+}
+
+.comparison-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.comparison-card {
+  background: var(--card-light);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+@media (prefers-color-scheme: dark) {
+  .comparison-card {
+    background: var(--card-dark);
+  }
+}
+
+.spec-card {
+  margin-bottom: 1rem;
+}
+
+.spec-card h3 {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.3rem 0;
+}
+
+.chart-container {
+  height: 400px;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .chart-container { height: 300px; }
+}
 </style>
 </head>
 <body>
 <div class="container">
-    <div class="header">
-        <h1>🔥 Comparateur GPU/CPU</h1>
-        <p>Comparez les performances de vos composants en temps réel</p>
+  <div class="header">
+    <h1>⚡ Comparateur GPU / CPU</h1>
+    <p>Comparez les performances de vos composants en un clic</p>
+  </div>
+
+  <div class="controls">
+    <h2>🔍 Filtres & Sélection</h2>
+    <div class="filter-bar">
+      <input type="text" id="gpuSearch" placeholder="Rechercher un GPU...">
+      <div class="filter-buttons">
+        <button class="btn-nvidia" onclick="filterGPU('NVIDIA')">NVIDIA</button>
+        <button class="btn-amd" onclick="filterGPU('AMD')">AMD</button>
+        <button class="btn-intel" onclick="filterGPU('INTEL')">INTEL</button>
+      </div>
+    </div>
+    <div class="select-group">
+      <label for="gpu1">GPU 1 :</label>
+      <select id="gpu1"><option value="">Sélectionnez un GPU</option></select>
+      <label for="gpu2">GPU 2 :</label>
+      <select id="gpu2"><option value="">Sélectionnez un GPU</option></select>
     </div>
 
-    <div class="controls">
-        <div class="select-group">
-            <div class="select-wrapper">
-                <label for="gpu1">GPU 1</label>
-                <select id="gpu1"><option value="">Chargement...</option></select>
-            </div>
-            <div class="select-wrapper">
-                <label for="gpu2">GPU 2</label>
-                <select id="gpu2"><option value="">Chargement...</option></select>
-            </div>
-        </div>
-        <div class="select-group">
-            <div class="select-wrapper">
-                <label for="cpu1">CPU 1</label>
-                <select id="cpu1"><option value="">Chargement...</option></select>
-            </div>
-            <div class="select-wrapper">
-                <label for="cpu2">CPU 2</label>
-                <select id="cpu2"><option value="">Chargement...</option></select>
-            </div>
-        </div>
-        <button class="btn" onclick="compareComponents()">🚀 Comparer les composants</button>
+    <hr style="margin: 2rem 0; opacity: 0.2;">
+
+    <div class="filter-bar">
+      <input type="text" id="cpuSearch" placeholder="Rechercher un CPU...">
+      <div class="filter-buttons">
+        <button class="btn-intel" onclick="filterCPU('Intel')">Intel</button>
+        <button class="btn-amd" onclick="filterCPU('AMD')">AMD</button>
+      </div>
+    </div>
+    <div class="select-group">
+      <label for="cpu1">CPU 1 :</label>
+      <select id="cpu1"><option value="">Sélectionnez un CPU</option></select>
+      <label for="cpu2">CPU 2 :</label>
+      <select id="cpu2"><option value="">Sélectionnez un CPU</option></select>
     </div>
 
-    <div class="comparison-grid">
-        <div class="comparison-card" id="gpuComparison">
-            <h2>💻 Comparaison GPU</h2>
-        </div>
-        <div class="comparison-card" id="cpuComparison">
-            <h2>🖥️ Comparaison CPU</h2>
-        </div>
+    <button class="btn-compare" onclick="compareComponents()">🚀 Comparer</button>
+  </div>
+
+  <div class="comparison-grid">
+    <div class="comparison-card" id="gpuComparison">
+      <h2>💻 Comparaison GPU</h2>
     </div>
+    <div class="comparison-card" id="cpuComparison">
+      <h2>🖥️ Comparaison CPU</h2>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -120,177 +240,123 @@ let gpuCharts = [];
 let cpuCharts = [];
 
 async function loadData() {
-    try {
-        const basePath = window.location.protocol === 'file:' ? '' : './';
-        const [gpuResponse, cpuResponse] = await Promise.all([
-            fetch(basePath + 'gpu_data.json'),
-            fetch(basePath + 'cpu_data.json')
-        ]);
-        gpuData = await gpuResponse.json();
-        cpuData = await cpuResponse.json();
-        populateSelects();
-        console.log('✅ Données chargées:', gpuData.length, 'GPU,', cpuData.length, 'CPU');
-    } catch(e) { console.error(e); }
+  try {
+    const [gpuRes, cpuRes] = await Promise.all([
+      fetch('gpu_data.json'),
+      fetch('cpu_data.json')
+    ]);
+    gpuData = await gpuRes.json();
+    cpuData = await cpuRes.json();
+    populateSelects();
+  } catch (e) { console.error("Erreur de chargement:", e); }
 }
 
 function populateSelects() {
-    const gpu1 = document.getElementById('gpu1');
-    const gpu2 = document.getElementById('gpu2');
-    const cpu1 = document.getElementById('cpu1');
-    const cpu2 = document.getElementById('cpu2');
-    gpuData.forEach((g,i)=> { 
-        gpu1.innerHTML += `<option value="${i}">${g.name} (${g.vendor})</option>`;
-        gpu2.innerHTML += `<option value="${i}">${g.name} (${g.vendor})</option>`;
-    });
-    cpuData.forEach((c,i)=>{
-        cpu1.innerHTML += `<option value="${i}">${c.name} (${c.vendor})</option>`;
-        cpu2.innerHTML += `<option value="${i}">${c.name} (${c.vendor})</option>`;
-    });
+  const gpu1 = document.getElementById('gpu1');
+  const gpu2 = document.getElementById('gpu2');
+  const cpu1 = document.getElementById('cpu1');
+  const cpu2 = document.getElementById('cpu2');
+  gpuData.forEach((g,i)=> {
+    const opt = `<option value="${i}">${g.name} (${g.vendor})</option>`;
+    gpu1.innerHTML += opt; gpu2.innerHTML += opt;
+  });
+  cpuData.forEach((c,i)=>{
+    const opt = `<option value="${i}">${c.name} (${c.vendor})</option>`;
+    cpu1.innerHTML += opt; cpu2.innerHTML += opt;
+  });
+}
+
+function filterGPU(vendor) {
+  const select1 = document.getElementById('gpu1');
+  const select2 = document.getElementById('gpu2');
+  select1.innerHTML = '<option value="">Sélectionnez un GPU</option>';
+  select2.innerHTML = '<option value="">Sélectionnez un GPU</option>';
+  gpuData.forEach((g,i)=>{
+    if(g.vendor.toUpperCase().includes(vendor.toUpperCase())) {
+      const opt = `<option value="${i}">${g.name} (${g.vendor})</option>`;
+      select1.innerHTML += opt; select2.innerHTML += opt;
+    }
+  });
+}
+
+function filterCPU(vendor) {
+  const select1 = document.getElementById('cpu1');
+  const select2 = document.getElementById('cpu2');
+  select1.innerHTML = '<option value="">Sélectionnez un CPU</option>';
+  select2.innerHTML = '<option value="">Sélectionnez un CPU</option>';
+  cpuData.forEach((c,i)=>{
+    if(c.vendor.toUpperCase().includes(vendor.toUpperCase())) {
+      const opt = `<option value="${i}">${c.name} (${c.vendor})</option>`;
+      select1.innerHTML += opt; select2.innerHTML += opt;
+    }
+  });
 }
 
 function compareComponents() {
-    const g1 = gpuData[document.getElementById('gpu1').value];
-    const g2 = gpuData[document.getElementById('gpu2').value];
-    const c1 = cpuData[document.getElementById('cpu1').value];
-    const c2 = cpuData[document.getElementById('cpu2').value];
-    if(g1 && g2) showGPUComparison(g1,g2);
-    if(c1 && c2) showCPUComparison(c1,c2);
+  const g1 = gpuData[document.getElementById('gpu1').value];
+  const g2 = gpuData[document.getElementById('gpu2').value];
+  const c1 = cpuData[document.getElementById('cpu1').value];
+  const c2 = cpuData[document.getElementById('cpu2').value];
+  if(g1 && g2) showGPUComparison(g1,g2);
+  if(c1 && c2) showCPUComparison(c1,c2);
 }
 
-// ================= GPU =================
 function showGPUComparison(g1,g2){
-    const container = document.getElementById('gpuComparison');
-    container.innerHTML = `<h2>💻 Comparaison GPU</h2>
-        <div id="gpuSpecs" class="specs-comparison"></div>
-        <div id="gpuCharts"></div>`;
-    const specDiv = document.getElementById('gpuSpecs');
-    [g1,g2].forEach((g,i)=>{
-        specDiv.innerHTML += createGPUCard(g,i+1);
-    });
-    createGPUCharts(g1,g2);
+  const container = document.getElementById('gpuComparison');
+  container.innerHTML = `<h2>💻 Comparaison GPU</h2><div class="chart-container"><canvas id="gpuChart"></canvas></div>`;
+  gpuCharts.forEach(c=>c.destroy());
+  gpuCharts=[];
+
+  const ctx = document.getElementById('gpuChart').getContext('2d');
+  const labels = ['Cores','TMUs','ROPs','Base Clock (MHz)','Boost Clock (MHz)','VRAM (GB)'];
+  const data1 = [g1.cores,g1.tmus,g1.rops,g1.base_clock,g1.boost_clock,g1.memory_size];
+  const data2 = [g2.cores,g2.tmus,g2.rops,g2.base_clock,g2.boost_clock,g2.memory_size];
+
+  gpuCharts.push(new Chart(ctx,{
+    type:'bar',
+    data:{labels,
+      datasets:[
+        {label:g1.name, data:data1, backgroundColor:'rgba(59,130,246,0.8)'},
+        {label:g2.name, data:data2, backgroundColor:'rgba(16,185,129,0.8)'}
+      ]},
+    options:{
+      responsive:true,
+      plugins:{title:{display:true,text:'GPU Comparison',color:getComputedStyle(document.body).color}},
+      scales:{
+        y:{beginAtZero:true, ticks:{color:getComputedStyle(document.body).color}},
+        x:{ticks:{color:getComputedStyle(document.body).color}}
+      }
+    }
+  }));
 }
 
-function createGPUCard(g,num){
-    return `<div class="spec-card">
-        <h3>GPU ${num} <span class="spec-vendor vendor-${g.vendor}">${g.vendor}</span></h3>
-        <div class="spec-item"><span class="spec-label">Nom</span><span class="spec-value">${g.name}</span></div>
-        <div class="spec-item"><span class="spec-label">Date sortie</span><span class="spec-value">${g.release_date||'N/A'}</span></div>
-        <div class="spec-item"><span class="spec-label">Mémoire</span><span class="spec-value">${g.memory_size||'N/A'}</span></div>
-        <div class="spec-item"><span class="spec-label">Type mémoire</span><span class="spec-value">${g.memory_type||'N/A'}</span></div>
-        <div class="spec-item"><span class="spec-label">Bus mémoire</span><span class="spec-value">${g.memory_bus||'N/A'}</span></div>
-        <div class="spec-item"><span class="spec-label">Architecture</span><span class="spec-value">${g.architecture||'N/A'}</span></div>
-        <div class="spec-item"><span class="spec-label">PCIe</span><span class="spec-value">${g.pcie||'N/A'}</span></div>
-        <div class="spec-item"><span class="spec-label">Base Clock</span><span class="spec-value">${g.base_clock||'N/A'}</span></div>
-        <div class="spec-item"><span class="spec-label">Boost Clock</span><span class="spec-value">${g.boost_clock||'N/A'}</span></div>
-        <div class="spec-item"><span class="spec-label">Cores</span><span class="spec-value">${g.cores||'0'}</span></div>
-        <div class="spec-item"><span class="spec-label">TMUs</span><span class="spec-value">${g.tmus||'0'}</span></div>
-        <div class="spec-item"><span class="spec-label">ROPs</span><span class="spec-value">${g.rops||'0'}</span></div>
-    </div>`;
-}
-
-function createGPUCharts(g1,g2){
-    const chartContainer = document.getElementById('gpuCharts');
-    chartContainer.innerHTML = `
-        <div class="chart-container"><canvas id="gpuChart1"></canvas></div>
-        <div class="chart-container"><canvas id="gpuChart2"></canvas></div>
-        <div class="chart-container"><canvas id="gpuChart3"></canvas></div>
-    `;
-    gpuCharts.forEach(c=>c.destroy());
-    gpuCharts = [];
-
-    // Chart Cores/TMUs/ROPs
-    const ctx1 = document.getElementById('gpuChart1').getContext('2d');
-    gpuCharts.push(new Chart(ctx1,{
-        type:'bar',
-        data:{labels:['Cores','TMUs','ROPs'],datasets:[
-            {label:g1.name,data:[parseInt(g1.cores)||0,parseInt(g1.tmus)||0,parseInt(g1.rops)||0],backgroundColor:'rgba(59,130,246,0.8)'},
-            {label:g2.name,data:[parseInt(g2.cores)||0,parseInt(g2.tmus)||0,parseInt(g2.rops)||0],backgroundColor:'rgba(16,185,129,0.8)'}
-        ]},
-        options:{responsive:true,plugins:{title:{display:true,text:'Cores / TMUs / ROPs'}}}
-    }));
-
-    // Chart Base/Boost Clock
-    const ctx2 = document.getElementById('gpuChart2').getContext('2d');
-    gpuCharts.push(new Chart(ctx2,{
-        type:'bar',
-        data:{labels:['Base Clock','Boost Clock'],datasets:[
-            {label:g1.name,data:[parseInt(g1.base_clock)||0,parseInt(g1.boost_clock)||0],backgroundColor:'rgba(59,130,246,0.8)'},
-            {label:g2.name,data:[parseInt(g2.base_clock)||0,parseInt(g2.boost_clock)||0],backgroundColor:'rgba(16,185,129,0.8)'}
-        ]},
-        options:{responsive:true,plugins:{title:{display:true,text:'Base / Boost Clock (MHz)'}}}
-    }));
-
-    // Chart Memory Size
-    const mem1 = parseInt(g1.memory_size)||0;
-    const mem2 = parseInt(g2.memory_size)||0;
-    const ctx3 = document.getElementById('gpuChart3').getContext('2d');
-    gpuCharts.push(new Chart(ctx3,{
-        type:'bar',
-        data:{labels:['Memory Size (GB)'],datasets:[
-            {label:g1.name,data:[mem1],backgroundColor:'rgba(59,130,246,0.8)'},
-            {label:g2.name,data:[mem2],backgroundColor:'rgba(16,185,129,0.8)'}
-        ]},
-        options:{responsive:true,plugins:{title:{display:true,text:'Mémoire (GB)'}}}
-    }));
-}
-
-// ================= CPU =================
 function showCPUComparison(c1,c2){
-    const container = document.getElementById('cpuComparison');
-    container.innerHTML = `<h2>🖥️ Comparaison CPU</h2>
-        <div id="cpuSpecs" class="specs-comparison"></div>
-        <div id="cpuCharts"></div>`;
-    const specDiv = document.getElementById('cpuSpecs');
-    [c1,c2].forEach((c,i)=>{
-        specDiv.innerHTML += createCPUCard(c,i+1);
-    });
-    createCPUCharts(c1,c2);
-}
+  const container = document.getElementById('cpuComparison');
+  container.innerHTML = `<h2>🖥️ Comparaison CPU</h2><div class="chart-container"><canvas id="cpuChart"></canvas></div>`;
+  cpuCharts.forEach(c=>c.destroy());
+  cpuCharts=[];
 
-function createCPUCard(c,num){
-    const props = c.properties||[];
-    return `<div class="spec-card">
-        <h3>CPU ${num} <span class="spec-vendor vendor-${c.vendor}">${c.vendor}</span></h3>
-        <div class="spec-item"><span class="spec-label">Nom</span><span class="spec-value">${c.name}</span></div>
-        ${props.map((p,i)=>`<div class="spec-item"><span class="spec-label">Info ${i+1}</span><span class="spec-value">${p}</span></div>`).join('')}
-    </div>`;
-}
+  const ctx = document.getElementById('cpuChart').getContext('2d');
+  const labels = ['Cores','Threads','Base Clock (GHz)','Boost Clock (GHz)','TDP (W)'];
+  const data1 = [c1.cores,c1.threads,c1.base_clock,c1.boost_clock,c1.tdp];
+  const data2 = [c2.cores,c2.threads,c2.base_clock,c2.boost_clock,c2.tdp];
 
-function createCPUCharts(c1,c2){
-    const container = document.getElementById('cpuCharts');
-    container.innerHTML = `
-        <div class="chart-container"><canvas id="cpuChart1"></canvas></div>
-        <div class="chart-container"><canvas id="cpuChart2"></canvas></div>
-    `;
-    cpuCharts.forEach(c=>c.destroy());
-    cpuCharts=[];
-
-    // Chart Radar (Performance simulée)
-    const ctx1 = document.getElementById('cpuChart1').getContext('2d');
-    cpuCharts.push(new Chart(ctx1,{
-        type:'radar',
-        data:{
-            labels:['Performance','Efficacité','Prix/Perf','Disponibilité'],
-            datasets:[
-                {label:c1.name,data:[85,75,80,90],backgroundColor:'rgba(59,130,246,0.2)',borderColor:'rgba(59,130,246,1)',pointBackgroundColor:'rgba(59,130,246,1)'},
-                {label:c2.name,data:[80,85,75,85],backgroundColor:'rgba(16,185,129,0.2)',borderColor:'rgba(16,185,129,1)',pointBackgroundColor:'rgba(16,185,129,1)'}
-            ]
-        },
-        options:{responsive:true,plugins:{title:{display:true,text:'Performance CPU (estimée)'}}}
-    }));
-
-    // Chart Bar: Nombre de cœurs / Threads (si présents)
-    const cores1=parseInt(c1.cores)||0, cores2=parseInt(c2.cores)||0;
-    const threads1=parseInt(c1.threads)||0, threads2=parseInt(c2.threads)||0;
-    const ctx2 = document.getElementById('cpuChart2').getContext('2d');
-    cpuCharts.push(new Chart(ctx2,{
-        type:'bar',
-        data:{labels:['Cores','Threads'],datasets:[
-            {label:c1.name,data:[cores1,threads1],backgroundColor:'rgba(59,130,246,0.8)'},
-            {label:c2.name,data:[cores2,threads2],backgroundColor:'rgba(16,185,129,0.8)'}
-        ]},
-        options:{responsive:true,plugins:{title:{display:true,text:'Cores / Threads CPU'}}}
-    }));
+  cpuCharts.push(new Chart(ctx,{
+    type:'bar',
+    data:{labels,
+      datasets:[
+        {label:c1.name, data:data1, backgroundColor:'rgba(59,130,246,0.8)'},
+        {label:c2.name, data:data2, backgroundColor:'rgba(245,158,11,0.8)'}
+      ]},
+    options:{
+      responsive:true,
+      plugins:{title:{display:true,text:'CPU Comparison',color:getComputedStyle(document.body).color}},
+      scales:{
+        y:{beginAtZero:true, ticks:{color:getComputedStyle(document.body).color}},
+        x:{ticks:{color:getComputedStyle(document.body).color}}
+      }
+    }
+  }));
 }
 
 loadData();
