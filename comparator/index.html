@@ -12,12 +12,10 @@
   --accent-blue: #3b82f6;
   --accent-green: #10b981;
   --accent-orange: #f59e0b;
-  --bg-light: #f9fafb;
-  --bg-dark: #111827;
-  --text-light: #f9fafb;
-  --text-dark: #111827;
-  --card-light: #ffffff;
-  --card-dark: #1f2937;
+  --bg: #ffffff;
+  --text: #111827;
+  --card: #f9fafb;
+  --border: #e5e7eb;
   --shadow: 0 4px 6px rgba(0,0,0,0.1);
   --radius: 0.8rem;
   --transition: all 0.3s ease;
@@ -25,18 +23,10 @@
 }
 
 body {
-  background-color: var(--bg-light);
-  color: var(--text-dark);
-  transition: var(--transition);
+  background-color: var(--bg);
+  color: var(--text);
   margin: 0;
   padding: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-  }
 }
 
 .container {
@@ -61,17 +51,11 @@ body {
 }
 
 .controls {
-  background: var(--card-light);
+  background: var(--card);
   margin-top: 2rem;
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  transition: var(--transition);
-}
-@media (prefers-color-scheme: dark) {
-  .controls {
-    background: var(--card-dark);
-  }
 }
 
 .filter-bar {
@@ -84,11 +68,11 @@ body {
 .filter-bar input {
   flex: 1;
   padding: 0.75rem 1rem;
-  border: 2px solid #ccc;
+  border: 2px solid var(--border);
   border-radius: var(--radius);
   font-size: 1rem;
-  background: inherit;
-  color: inherit;
+  background: white;
+  color: var(--text);
 }
 
 .filter-buttons button {
@@ -98,6 +82,7 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: var(--transition);
+  color: white;
 }
 
 .filter-buttons button:hover {
@@ -105,18 +90,18 @@ body {
   opacity: 0.9;
 }
 
-.btn-nvidia { background: #76b900; color: white; }
-.btn-amd { background: #d72828; color: white; }
-.btn-intel { background: #0071c5; color: white; }
+.btn-nvidia { background: #76b900; }
+.btn-amd { background: #d72828; }
+.btn-intel { background: #0071c5; }
 
 select {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #ccc;
+  border: 2px solid var(--border);
   border-radius: var(--radius);
   font-size: 1rem;
-  background: inherit;
-  color: inherit;
+  background: white;
+  color: var(--text);
 }
 
 .btn-compare {
@@ -143,16 +128,10 @@ select {
 }
 
 .comparison-card {
-  background: var(--card-light);
+  background: var(--card);
   border-radius: var(--radius);
   padding: 2rem;
   box-shadow: var(--shadow);
-  transition: var(--transition);
-}
-@media (prefers-color-scheme: dark) {
-  .comparison-card {
-    background: var(--card-dark);
-  }
 }
 
 .spec-card {
@@ -321,10 +300,10 @@ function showGPUComparison(g1,g2){
       ]},
     options:{
       responsive:true,
-      plugins:{title:{display:true,text:'GPU Comparison',color:getComputedStyle(document.body).color}},
+      plugins:{title:{display:true,text:'Comparaison GPU',color:'#111827'}},
       scales:{
-        y:{beginAtZero:true, ticks:{color:getComputedStyle(document.body).color}},
-        x:{ticks:{color:getComputedStyle(document.body).color}}
+        y:{beginAtZero:true,ticks:{color:'#111827'}},
+        x:{ticks:{color:'#111827'}}
       }
     }
   }));
@@ -350,10 +329,10 @@ function showCPUComparison(c1,c2){
       ]},
     options:{
       responsive:true,
-      plugins:{title:{display:true,text:'CPU Comparison',color:getComputedStyle(document.body).color}},
+      plugins:{title:{display:true,text:'Comparaison CPU',color:'#111827'}},
       scales:{
-        y:{beginAtZero:true, ticks:{color:getComputedStyle(document.body).color}},
-        x:{ticks:{color:getComputedStyle(document.body).color}}
+        y:{beginAtZero:true,ticks:{color:'#111827'}},
+        x:{ticks:{color:'#111827'}}
       }
     }
   }));
