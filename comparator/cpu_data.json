@@ -1,0 +1,1502 @@
+[
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core Ultra 3 205",
+    "url": "/cpu-specs/core-ultra-3-205.c4242",
+    "properties": [
+      "Arrow Lake-S",
+      "8c",
+      "3.8 to 4.9 GHz",
+      "Socket 1851",
+      "3 nm",
+      "15 MB",
+      "57 W",
+      "Aug 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 7400",
+    "url": "/cpu-specs/ryzen-5-7400.c4243",
+    "properties": [
+      "Raphael",
+      "6c/12t",
+      "3.3 to 4.3 GHz",
+      "Socket AM5",
+      "5 nm",
+      "16 MB",
+      "65 W",
+      "Sep 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 5700X",
+    "url": "/cpu-specs/ryzen-7-5700x.c2755",
+    "properties": [
+      "Vermeer",
+      "8c/16t",
+      "3.4 to 4.6 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "65 W",
+      "Apr 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 3600",
+    "url": "/cpu-specs/ryzen-5-3600.c2132",
+    "properties": [
+      "Matisse",
+      "6c/12t",
+      "3.6 to 4.2 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "65 W",
+      "Jul 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 5600F",
+    "url": "/cpu-specs/ryzen-5-5600f.c4241",
+    "properties": [
+      "Vermeer",
+      "6c/12t",
+      "3 to 4 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "65 W",
+      "Sep 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 5500",
+    "url": "/cpu-specs/ryzen-5-5500.c2756",
+    "properties": [
+      "Cezanne",
+      "6c/12t",
+      "3.6 to 4.2 GHz",
+      "Socket AM4",
+      "7 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core i7-11700B",
+    "url": "/cpu-specs/core-i7-11700b.c4246",
+    "properties": [
+      "Tiger Lake-H",
+      "8c/16t",
+      "3.2 to 4.8 GHz",
+      "BGA 1787",
+      "10 nm",
+      "24 MB",
+      "65 W",
+      "May 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 5600",
+    "url": "/cpu-specs/ryzen-5-5600.c2743",
+    "properties": [
+      "Vermeer",
+      "6c/12t",
+      "3.5 to 4.4 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "65 W",
+      "Apr 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core i7-11850HE",
+    "url": "/cpu-specs/core-i7-11850he.c4247",
+    "properties": [
+      "Tiger Lake-H",
+      "8c/16t",
+      "2.1 to 4.7 GHz",
+      "BGA 1787",
+      "10 nm",
+      "24 MB",
+      "35 W",
+      "Aug 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 9700F",
+    "url": "/cpu-specs/ryzen-7-9700f.c4245",
+    "properties": [
+      "Granite Ridge",
+      "8c/16t",
+      "3.8 to 5.5 GHz",
+      "Socket AM5",
+      "4 nm",
+      "32 MB",
+      "65 W",
+      "Sep 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core i5-110",
+    "url": "/cpu-specs/core-i5-110.c4240",
+    "properties": [
+      "Comet Lake",
+      "6c/12t",
+      "2.9 to 4.3 GHz",
+      "Socket 1200",
+      "14 nm",
+      "12 MB",
+      "65 W",
+      "Sep 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Xeon W-11865MRE",
+    "url": "/cpu-specs/xeon-w-11865mre.c4248",
+    "properties": [
+      "Tiger Lake-H",
+      "8c/16t",
+      "2.1 to 4.7 GHz",
+      "BGA 1787",
+      "10 nm",
+      "24 MB",
+      "35 W",
+      "Aug 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 9500F",
+    "url": "/cpu-specs/ryzen-5-9500f.c4244",
+    "properties": [
+      "Granite Ridge",
+      "6c/12t",
+      "3.8 to 5 GHz",
+      "Socket AM5",
+      "4 nm",
+      "32 MB",
+      "65 W",
+      "Sep 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 5600G",
+    "url": "/cpu-specs/ryzen-5-5600g.c2471",
+    "properties": [
+      "Cezanne",
+      "6c/12t",
+      "3.9 to 4.4 GHz",
+      "Socket AM4",
+      "7 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 5825U",
+    "url": "/cpu-specs/ryzen-7-5825u.c2521",
+    "properties": [
+      "Barcelo",
+      "8c/16t",
+      "2 to 4.5 GHz",
+      "Socket FP6",
+      "7 nm",
+      "16 MB",
+      "15 W",
+      "Jan 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 5600GT",
+    "url": "/cpu-specs/ryzen-5-5600gt.c3438",
+    "properties": [
+      "Cezanne",
+      "6c/12t",
+      "3.6 to 4.6 GHz",
+      "Socket AM4",
+      "7 nm",
+      "16 MB",
+      "65 W",
+      "Jan 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 5700G",
+    "url": "/cpu-specs/ryzen-7-5700g.c2472",
+    "properties": [
+      "Cezanne",
+      "8c/16t",
+      "3.8 to 4.6 GHz",
+      "Socket AM4",
+      "7 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 7800X3D",
+    "url": "/cpu-specs/ryzen-7-7800x3d.c3022",
+    "properties": [
+      "Raphael",
+      "8c/16t",
+      "4.2 to 5 GHz",
+      "Socket AM5",
+      "5 nm",
+      "96 MB",
+      "120 W",
+      "Jan 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Xeon W-11865MLE",
+    "url": "/cpu-specs/xeon-w-11865mle.c4249",
+    "properties": [
+      "Tiger Lake-H",
+      "8c/16t",
+      "1.5 to 4.5 GHz",
+      "BGA 1787",
+      "10 nm",
+      "24 MB",
+      "25 W",
+      "Aug 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 3700X",
+    "url": "/cpu-specs/ryzen-7-3700x.c2130",
+    "properties": [
+      "Matisse",
+      "8c/16t",
+      "3.6 to 4.4 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "65 W",
+      "Jul 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 2600",
+    "url": "/cpu-specs/ryzen-5-2600.c2015",
+    "properties": [
+      "Zen",
+      "6c/12t",
+      "3.4 to 3.9 GHz",
+      "Socket AM4",
+      "12 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2018"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 9 9950X3D",
+    "url": "/cpu-specs/ryzen-9-9950x3d.c3993",
+    "properties": [
+      "Granite Ridge",
+      "16c/32t",
+      "4.3 to 5.7 GHz",
+      "Socket AM5",
+      "4 nm",
+      "128 MB",
+      "170 W",
+      "Jan 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 5600X",
+    "url": "/cpu-specs/ryzen-5-5600x.c2365",
+    "properties": [
+      "Vermeer",
+      "6c/12t",
+      "3.7 to 4.6 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "65 W",
+      "Nov 2020"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 9800X3D",
+    "url": "/cpu-specs/ryzen-7-9800x3d.c3891",
+    "properties": [
+      "Granite Ridge",
+      "8c/16t",
+      "4.7 to 5.2 GHz",
+      "Socket AM5",
+      "4 nm",
+      "96 MB",
+      "120 W",
+      "Nov 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 3400G",
+    "url": "/cpu-specs/ryzen-5-3400g.c2204",
+    "properties": [
+      "Picasso",
+      "4c/8t",
+      "3.7 to 4.2 GHz",
+      "Socket AM4",
+      "12 nm",
+      "4 MB",
+      "65 W",
+      "Jul 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 5700X3D",
+    "url": "/cpu-specs/ryzen-7-5700x3d.c3437",
+    "properties": [
+      "Vermeer",
+      "8c/16t",
+      "3 to 4.1 GHz",
+      "Socket AM4",
+      "7 nm",
+      "96 MB",
+      "105 W",
+      "Jan 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 3 3200G",
+    "url": "/cpu-specs/ryzen-3-3200g.c2205",
+    "properties": [
+      "Picasso",
+      "4c",
+      "3.6 to 4 GHz",
+      "Socket AM4",
+      "12 nm",
+      "4 MB",
+      "65 W",
+      "Jul 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 7500F",
+    "url": "/cpu-specs/ryzen-5-7500f.c3259",
+    "properties": [
+      "Raphael",
+      "6c/12t",
+      "3.7 to 5 GHz",
+      "Socket AM5",
+      "5 nm",
+      "32 MB",
+      "65 W",
+      "Jul 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 5500U",
+    "url": "/cpu-specs/ryzen-5-5500u.c2372",
+    "properties": [
+      "Lucienne",
+      "6c/12t",
+      "2.1 to 4 GHz",
+      "Socket FP6",
+      "7 nm",
+      "8 MB",
+      "15 W",
+      "Jan 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 9600X",
+    "url": "/cpu-specs/ryzen-5-9600x.c3652",
+    "properties": [
+      "Granite Ridge",
+      "6c/12t",
+      "3.9 to 5.4 GHz",
+      "Socket AM5",
+      "4 nm",
+      "32 MB",
+      "65 W",
+      "Aug 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 5700U",
+    "url": "/cpu-specs/ryzen-7-5700u.c2744",
+    "properties": [
+      "Lucienne",
+      "8c/16t",
+      "1.8 to 4.3 GHz",
+      "Socket FP6",
+      "7 nm",
+      "8 MB",
+      "15 W",
+      "Jan 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 5800X",
+    "url": "/cpu-specs/ryzen-7-5800x.c2362",
+    "properties": [
+      "Vermeer",
+      "8c/16t",
+      "3.8 to 4.7 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "105 W",
+      "Nov 2020"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 3500X",
+    "url": "/cpu-specs/ryzen-5-3500x.c2264",
+    "properties": [
+      "Matisse",
+      "6c",
+      "3.6 to 4.1 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "65 W",
+      "Sep 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 4600G",
+    "url": "/cpu-specs/ryzen-5-4600g.c2319",
+    "properties": [
+      "Renoir",
+      "6c/12t",
+      "3.7 to 4.2 GHz",
+      "Socket AM4",
+      "7 nm",
+      "8 MB",
+      "65 W",
+      "Jul 2020"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 9700X",
+    "url": "/cpu-specs/ryzen-7-9700x.c3651",
+    "properties": [
+      "Granite Ridge",
+      "8c/16t",
+      "3.8 to 5.5 GHz",
+      "Socket AM5",
+      "4 nm",
+      "32 MB",
+      "65 W",
+      "Aug 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 7600X",
+    "url": "/cpu-specs/ryzen-5-7600x.c2849",
+    "properties": [
+      "Raphael",
+      "6c/12t",
+      "4.7 to 5.3 GHz",
+      "Socket AM5",
+      "5 nm",
+      "32 MB",
+      "105 W",
+      "Sep 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 3500U",
+    "url": "/cpu-specs/ryzen-5-3500u.c2138",
+    "properties": [
+      "Picasso",
+      "4c/8t",
+      "2.1 to 3.7 GHz",
+      "Socket FP5",
+      "12 nm",
+      "4 MB",
+      "15 W",
+      "Jan 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 1600",
+    "url": "/cpu-specs/ryzen-5-1600.c1900",
+    "properties": [
+      "Zen",
+      "6c/12t",
+      "3.2 to 3.6 GHz",
+      "Socket AM4",
+      "14 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2017"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 5800X3D",
+    "url": "/cpu-specs/ryzen-7-5800x3d.c2532",
+    "properties": [
+      "Vermeer",
+      "8c/16t",
+      "3.4 to 4.5 GHz",
+      "Socket AM4",
+      "7 nm",
+      "96 MB",
+      "105 W",
+      "Apr 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 2700X",
+    "url": "/cpu-specs/ryzen-7-2700x.c2011",
+    "properties": [
+      "Zen",
+      "8c/16t",
+      "3.7 to 4.35 GHz",
+      "Socket AM4",
+      "12 nm",
+      "16 MB",
+      "105 W",
+      "Apr 2018"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 3 2200G",
+    "url": "/cpu-specs/ryzen-3-2200g.c1978",
+    "properties": [
+      "Raven Ridge",
+      "4c",
+      "3.5 to 3.7 GHz",
+      "Socket AM4",
+      "14 nm",
+      "4 MB",
+      "65 W",
+      "Feb 2018"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 4500",
+    "url": "/cpu-specs/ryzen-5-4500.c2758",
+    "properties": [
+      "Renoir",
+      "6c/12t",
+      "3.6 to 4.1 GHz",
+      "Socket AM4",
+      "7 nm",
+      "8 MB",
+      "65 W",
+      "Apr 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen AI Max+ 395",
+    "url": "/cpu-specs/ryzen-ai-max-395.c3994",
+    "properties": [
+      "Strix Halo",
+      "16c/32t",
+      "3 to 5.1 GHz",
+      "Socket FP11",
+      "4 nm",
+      "64 MB",
+      "55 W",
+      "Jan 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD FX-8350",
+    "url": "/cpu-specs/fx-8350.c1099",
+    "properties": [
+      "Vishera",
+      "8c",
+      "4 to 4.2 GHz",
+      "Socket AM3+",
+      "32 nm",
+      "8 MB",
+      "125 W",
+      "Oct 2012"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 7730U",
+    "url": "/cpu-specs/ryzen-7-7730u.c3037",
+    "properties": [
+      "Barcelo-R",
+      "8c/16t",
+      "2 to 4.5 GHz",
+      "Socket FP6",
+      "7 nm",
+      "16 MB",
+      "15 W",
+      "Jan 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 5625U",
+    "url": "/cpu-specs/ryzen-5-5625u.c2520",
+    "properties": [
+      "Barcelo",
+      "6c/12t",
+      "2.3 to 4.3 GHz",
+      "Socket FP6",
+      "7 nm",
+      "16 MB",
+      "15 W",
+      "Jan 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen AI 7 350",
+    "url": "/cpu-specs/ryzen-ai-7-350.c4004",
+    "properties": [
+      "Krackan Point",
+      "8c/16t",
+      "2 to 5 GHz",
+      "Socket FP8",
+      "4 nm",
+      "8 MB",
+      "28 W",
+      "Jan 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 9 3900X",
+    "url": "/cpu-specs/ryzen-9-3900x.c2128",
+    "properties": [
+      "Matisse",
+      "12c/24t",
+      "3.8 to 4.6 GHz",
+      "Socket AM4",
+      "7 nm",
+      "64 MB",
+      "105 W",
+      "Jul 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 PRO 4650G",
+    "url": "/cpu-specs/ryzen-5-pro-4650g.c2325",
+    "properties": [
+      "Renoir",
+      "6c/12t",
+      "3.7 to 4.2 GHz",
+      "Socket AM4",
+      "7 nm",
+      "8 MB",
+      "65 W",
+      "Jul 2020"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 2400G",
+    "url": "/cpu-specs/ryzen-5-2400g.c1976",
+    "properties": [
+      "Raven Ridge",
+      "4c/8t",
+      "3.6 to 3.9 GHz",
+      "Socket AM4",
+      "14 nm",
+      "4 MB",
+      "65 W",
+      "Feb 2018"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 7520U",
+    "url": "/cpu-specs/ryzen-5-7520u.c3046",
+    "properties": [
+      "Mendocino",
+      "4c/8t",
+      "2.8 to 4.3 GHz",
+      "Socket FT6",
+      "6 nm",
+      "4 MB",
+      "15 W",
+      "Sep 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 7700",
+    "url": "/cpu-specs/ryzen-7-7700.c2960",
+    "properties": [
+      "Raphael",
+      "8c/16t",
+      "3.8 to 5.3 GHz",
+      "Socket AM5",
+      "5 nm",
+      "32 MB",
+      "65 W",
+      "Jan 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 3600X",
+    "url": "/cpu-specs/ryzen-5-3600x.c2131",
+    "properties": [
+      "Matisse",
+      "6c/12t",
+      "3.8 to 4.4 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "95 W",
+      "Jul 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen AI 9 HX 370",
+    "url": "/cpu-specs/ryzen-ai-9-hx-370.c3655",
+    "properties": [
+      "Strix Point",
+      "12c/24t",
+      "2 to 5.1 GHz",
+      "Socket FP8",
+      "4 nm",
+      "16 MB",
+      "28 W",
+      "Jul 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core i5-12400F",
+    "url": "/cpu-specs/core-i5-12400f.c2550",
+    "properties": [
+      "Alder Lake-S",
+      "6c/12t",
+      "2.5 to 4.4 GHz",
+      "Socket 1700",
+      "10 nm",
+      "18 MB",
+      "65 W",
+      "Jan 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 1700",
+    "url": "/cpu-specs/ryzen-7-1700.c1893",
+    "properties": [
+      "Zen",
+      "8c/16t",
+      "3 to 3.7 GHz",
+      "Socket AM4",
+      "14 nm",
+      "16 MB",
+      "65 W",
+      "Mar 2017"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 9 5950X",
+    "url": "/cpu-specs/ryzen-9-5950x.c2364",
+    "properties": [
+      "Vermeer",
+      "16c/32t",
+      "3.4 to 4.9 GHz",
+      "Socket AM4",
+      "7 nm",
+      "64 MB",
+      "105 W",
+      "Nov 2020"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 7600",
+    "url": "/cpu-specs/ryzen-5-7600.c2959",
+    "properties": [
+      "Raphael",
+      "6c/12t",
+      "3.8 to 5.1 GHz",
+      "Socket AM5",
+      "5 nm",
+      "32 MB",
+      "65 W",
+      "Jan 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 9 5900X",
+    "url": "/cpu-specs/ryzen-9-5900x.c2363",
+    "properties": [
+      "Vermeer",
+      "12c/24t",
+      "3.7 to 4.8 GHz",
+      "Socket AM4",
+      "7 nm",
+      "64 MB",
+      "105 W",
+      "Nov 2020"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 5700",
+    "url": "/cpu-specs/ryzen-7-5700.c3305",
+    "properties": [
+      "Cezanne",
+      "8c/16t",
+      "3.7 to 4.6 GHz",
+      "Socket AM4",
+      "7 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD FX-6300",
+    "url": "/cpu-specs/fx-6300.c1210",
+    "properties": [
+      "Vishera",
+      "6c",
+      "3.5 to 4.1 GHz",
+      "Socket AM3+",
+      "32 nm",
+      "8 MB",
+      "95 W",
+      "Oct 2012"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen Threadripper PRO 9995WX",
+    "url": "/cpu-specs/ryzen-threadripper-pro-9995wx.c4163",
+    "properties": [
+      "Shimada Peak",
+      "96c/192t",
+      "2.5 to 5.4 GHz",
+      "Socket sTR5",
+      "4 nm",
+      "384 MB",
+      "350 W",
+      "Jul 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 6600H",
+    "url": "/cpu-specs/ryzen-5-6600h.c2525",
+    "properties": [
+      "Rembrandt",
+      "6c/12t",
+      "3.3 to 4.5 GHz",
+      "Socket FP7",
+      "6 nm",
+      "16 MB",
+      "45 W",
+      "Jan 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 2600X",
+    "url": "/cpu-specs/ryzen-5-2600x.c2014",
+    "properties": [
+      "Zen",
+      "6c/12t",
+      "3.6 to 4.25 GHz",
+      "Socket AM4",
+      "12 nm",
+      "16 MB",
+      "95 W",
+      "Apr 2018"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 8700G",
+    "url": "/cpu-specs/ryzen-7-8700g.c3434",
+    "properties": [
+      "Phoenix",
+      "8c/16t",
+      "4.2 to 5.1 GHz",
+      "Socket AM5",
+      "4 nm",
+      "16 MB",
+      "65 W",
+      "Jan 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 8845HS",
+    "url": "/cpu-specs/ryzen-7-8845hs.c3400",
+    "properties": [
+      "Hawk Point",
+      "8c/16t",
+      "3.8 to 5.1 GHz",
+      "Socket FP8",
+      "4 nm",
+      "16 MB",
+      "45 W",
+      "Dec 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 PRO 4650U",
+    "url": "/cpu-specs/ryzen-5-pro-4650u.c2504",
+    "properties": [
+      "Renoir",
+      "6c/12t",
+      "2.1 to 4 GHz",
+      "Socket FP6",
+      "7 nm",
+      "8 MB",
+      "15 W",
+      "May 2020"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 5500GT",
+    "url": "/cpu-specs/ryzen-5-5500gt.c3439",
+    "properties": [
+      "Cezanne",
+      "6c/12t",
+      "3.6 to 4.4 GHz",
+      "Socket AM4",
+      "7 nm",
+      "16 MB",
+      "65 W",
+      "Jan 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core Ultra 9 285K",
+    "url": "/cpu-specs/core-ultra-9-285k.c3773",
+    "properties": [
+      "Arrow Lake-S",
+      "24c",
+      "3.7 to 5.7 GHz",
+      "Socket 1851",
+      "3 nm",
+      "36 MB",
+      "125 W",
+      "Oct 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core 2 Duo E8400",
+    "url": "/cpu-specs/core-2-duo-e8400.c467",
+    "properties": [
+      "Wolfdale",
+      "2c",
+      "3 GHz",
+      "Socket 775",
+      "45 nm",
+      "N/A",
+      "65 W",
+      "Jan 2008"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 8400F",
+    "url": "/cpu-specs/ryzen-5-8400f.c3568",
+    "properties": [
+      "Phoenix",
+      "6c/12t",
+      "4.2 to 4.7 GHz",
+      "Socket AM5",
+      "4 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 7535HS",
+    "url": "/cpu-specs/ryzen-5-7535hs.c3042",
+    "properties": [
+      "Rembrandt-R",
+      "6c/12t",
+      "3.3 to 4.55 GHz",
+      "Socket FP7",
+      "6 nm",
+      "16 MB",
+      "35 W",
+      "Jan 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core i5-13420H",
+    "url": "/cpu-specs/core-i5-13420h.c3058",
+    "properties": [
+      "Raptor Lake-H",
+      "8c/12t",
+      "2.1 to 4.6 GHz",
+      "BGA 1744",
+      "10 nm",
+      "12 MB",
+      "45 W",
+      "Jan 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 3800X",
+    "url": "/cpu-specs/ryzen-7-3800x.c2129",
+    "properties": [
+      "Matisse",
+      "8c/16t",
+      "3.9 to 4.5 GHz",
+      "Socket AM4",
+      "7 nm",
+      "32 MB",
+      "105 W",
+      "Jul 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Processor N150",
+    "url": "/cpu-specs/processor-n150.c4109",
+    "properties": [
+      "Twin Lake",
+      "4c",
+      "0.1 to 3.6 GHz",
+      "BGA 1264",
+      "10 nm",
+      "6 MB",
+      "6 W",
+      "Nov 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core i5-14400F",
+    "url": "/cpu-specs/core-i5-14400f.c3454",
+    "properties": [
+      "Raptor Lake-R",
+      "10c/16t",
+      "2.5 to 4.7 GHz",
+      "Socket 1700",
+      "10 nm",
+      "20 MB",
+      "65 W",
+      "Jan 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 9 9950X",
+    "url": "/cpu-specs/ryzen-9-9950x.c3649",
+    "properties": [
+      "Granite Ridge",
+      "16c/32t",
+      "4.3 to 5.7 GHz",
+      "Socket AM5",
+      "4 nm",
+      "64 MB",
+      "170 W",
+      "Aug 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 PRO 5650U",
+    "url": "/cpu-specs/ryzen-5-pro-5650u.c2773",
+    "properties": [
+      "Cezanne-U",
+      "6c/12t",
+      "2.3 to 4.2 GHz",
+      "Socket FP6",
+      "7 nm",
+      "16 MB",
+      "15 W",
+      "Mar 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 6800H",
+    "url": "/cpu-specs/ryzen-7-6800h.c2527",
+    "properties": [
+      "Rembrandt",
+      "8c/16t",
+      "3.2 to 4.7 GHz",
+      "Socket FP7",
+      "6 nm",
+      "16 MB",
+      "45 W",
+      "Jan 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 3 7320U",
+    "url": "/cpu-specs/ryzen-3-7320u.c3045",
+    "properties": [
+      "Mendocino",
+      "4c/8t",
+      "2.4 to 4.1 GHz",
+      "Socket FT6",
+      "6 nm",
+      "4 MB",
+      "15 W",
+      "Sep 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 7735HS",
+    "url": "/cpu-specs/ryzen-7-7735hs.c3041",
+    "properties": [
+      "Rembrandt-R",
+      "8c/16t",
+      "3.2 to 4.75 GHz",
+      "Socket FP7",
+      "6 nm",
+      "16 MB",
+      "35 W",
+      "Apr 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 5800H",
+    "url": "/cpu-specs/ryzen-7-5800h.c2368",
+    "properties": [
+      "Cezanne",
+      "8c/16t",
+      "3.2 to 4.4 GHz",
+      "Socket FP6",
+      "7 nm",
+      "16 MB",
+      "45 W",
+      "Jan 2021"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core Ultra 7 155H",
+    "url": "/cpu-specs/core-ultra-7-155h.c3307",
+    "properties": [
+      "Meteor Lake",
+      "16c/22t",
+      "3.8 to 4.8 GHz",
+      "BGA 2049",
+      "7 nm",
+      "24 MB",
+      "28 W",
+      "Dec 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 8600G",
+    "url": "/cpu-specs/ryzen-5-8600g.c3435",
+    "properties": [
+      "Phoenix",
+      "6c/12t",
+      "4.3 to 5 GHz",
+      "Socket AM5",
+      "4 nm",
+      "16 MB",
+      "65 W",
+      "Jan 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 8700F",
+    "url": "/cpu-specs/ryzen-7-8700f.c3567",
+    "properties": [
+      "Phoenix",
+      "8c/16t",
+      "4.1 to 5 GHz",
+      "Socket AM5",
+      "4 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 3550H",
+    "url": "/cpu-specs/ryzen-5-3550h.c2139",
+    "properties": [
+      "Picasso",
+      "4c/8t",
+      "2.1 to 3.7 GHz",
+      "Socket FP5",
+      "12 nm",
+      "4 MB",
+      "35 W",
+      "Jan 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core i7-7700",
+    "url": "/cpu-specs/core-i7-7700.c1843",
+    "properties": [
+      "Kaby Lake",
+      "4c/8t",
+      "3.6 to 4.2 GHz",
+      "Socket 1151",
+      "14 nm",
+      "8 MB",
+      "65 W",
+      "Jan 2017"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 5 4500U",
+    "url": "/cpu-specs/ryzen-5-4500u.c2285",
+    "properties": [
+      "Renoir",
+      "6c",
+      "2.3 to 4 GHz",
+      "Socket FP6",
+      "7 nm",
+      "8 MB",
+      "15 W",
+      "Jan 2020"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 2700",
+    "url": "/cpu-specs/ryzen-7-2700.c2013",
+    "properties": [
+      "Zen",
+      "8c/16t",
+      "3.2 to 4.1 GHz",
+      "Socket AM4",
+      "12 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2018"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 7700X",
+    "url": "/cpu-specs/ryzen-7-7700x.c2848",
+    "properties": [
+      "Raphael",
+      "8c/16t",
+      "4.5 to 5.4 GHz",
+      "Socket AM5",
+      "5 nm",
+      "32 MB",
+      "105 W",
+      "Sep 2022"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core Ultra 7 265K",
+    "url": "/cpu-specs/core-ultra-7-265k.c3776",
+    "properties": [
+      "Arrow Lake-S",
+      "20c",
+      "3.9 to 5.5 GHz",
+      "Socket 1851",
+      "3 nm",
+      "30 MB",
+      "125 W",
+      "Oct 2024"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core i9-14900K",
+    "url": "/cpu-specs/core-i9-14900k.c3269",
+    "properties": [
+      "Raptor Lake-R",
+      "24c/32t",
+      "3.2 to 6 GHz",
+      "Socket 1700",
+      "10 nm",
+      "36 MB",
+      "125 W",
+      "Oct 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 3 3100",
+    "url": "/cpu-specs/ryzen-3-3100.c2298",
+    "properties": [
+      "Matisse",
+      "4c/8t",
+      "3.6 to 3.9 GHz",
+      "Socket AM4",
+      "7 nm",
+      "16 MB",
+      "65 W",
+      "Apr 2020"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 7 260",
+    "url": "/cpu-specs/ryzen-7-260.c4010",
+    "properties": [
+      "Hawk Point",
+      "8c/16t",
+      "3.8 to 5.1 GHz",
+      "Socket FP8",
+      "4 nm",
+      "16 MB",
+      "45 W",
+      "Jan 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Processor N100",
+    "url": "/cpu-specs/processor-n100.c3007",
+    "properties": [
+      "Gracemont",
+      "4c",
+      "0.1 to 3.4 GHz",
+      "BGA 1264",
+      "10 nm",
+      "6 MB",
+      "6 W",
+      "Jan 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Athlon 3000G (FH)",
+    "url": "/cpu-specs/athlon-3000g-fh.c2243",
+    "properties": [
+      "Zen",
+      "2c/4t",
+      "3.5 GHz",
+      "Socket AM4",
+      "14 nm",
+      "4 MB",
+      "35 W",
+      "Nov 2019"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "Intel Core i7-13620H",
+    "url": "/cpu-specs/core-i7-13620h.c3053",
+    "properties": [
+      "Raptor Lake-H",
+      "10c/16t",
+      "2.4 to 4.9 GHz",
+      "BGA 1744",
+      "10 nm",
+      "24 MB",
+      "45 W",
+      "Jan 2023"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen AI Max+ PRO 395",
+    "url": "/cpu-specs/ryzen-ai-max-pro-395.c3998",
+    "properties": [
+      "Strix Halo",
+      "16c/32t",
+      "3 to 5.1 GHz",
+      "Socket FP11",
+      "4 nm",
+      "64 MB",
+      "55 W",
+      "Jan 2025"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD A8-7600",
+    "url": "/cpu-specs/a8-7600.c2615",
+    "properties": [
+      "Kaveri",
+      "4c",
+      "3.1 to 3.8 GHz",
+      "Socket FM2+",
+      "28 nm",
+      "N/A",
+      "65 W",
+      "Jul 2014"
+    ]
+  },
+  {
+    "vendor": "Unknown",
+    "name": "AMD Ryzen 3 1200",
+    "url": "/cpu-specs/ryzen-3-1200.c1899",
+    "properties": [
+      "Zen",
+      "4c",
+      "3.1 to 3.4 GHz",
+      "Socket AM4",
+      "14 nm",
+      "8 MB",
+      "65 W",
+      "Jul 2017"
+    ]
+  }
+]
